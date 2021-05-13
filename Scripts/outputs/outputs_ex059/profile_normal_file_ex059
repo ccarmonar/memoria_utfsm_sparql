@@ -1,0 +1,58 @@
+Cindy	Marshall			
+Richard	Mutt			
+Craig	Ellis			
+Richard	Mutt			
+Craig	Ellis			
+Cindy	Marshall			
+Bradley	Perry			
+Katherine	Duncan			
+
+  { 
+    time       3.3% fanout         1 input         1 rows
+    time        45% fanout         8 input         1 rows
+    RDF_QUAD         8 rows(s_17_10_t5.S$29, s_17_10_t5.O$28)
+     inlined  P =  IRI_ID"...lastName" 
+    time        19% fanout         1 input         8 rows
+    RDF_QUAD         1 rows(s_17_10_t4.S$33, s_17_10_t4.O$32)
+     inlined  P =  IRI_ID"...firstName"  ,  S = s_17_10_t5.S$29
+    time       6.9% fanout         1 input         8 rows
+    Precode:
+      0: __all_eq$35 := Call __all_eq (s_17_10_t4.S$33, s_17_10_t5.S$29)
+      5: BReturn 0
+    outer {
+        Subquery 37 
+          { 
+            time        17% fanout     0.125 input         8 rows
+            RDF_QUAD         1 rows(s_15_8_t0.S$44, s_15_8_t0.O$43)
+             inlined  P =  IRI_ID"...workTel"  ,  S = k___all_eq$131
+            time       8.4% fanout         0 input         1 rows
+            RDF_QUAD         1 rows(s_15_8_t1.O$47)
+             inlined  P =  IRI_ID"...nick"  ,  S = s_15_8_t0.S$44
+            
+            After code:
+            0: s$38 :=  := artm s_15_8_t0.S$44
+            4: workTel$39 :=  := artm s_15_8_t0.O$43
+            8: nick$40 :=  := artm s_15_8_t1.O$47
+            12: BReturn 0
+            time         0% fanout         0 input         0 rows
+            Subquery Select(s$38, workTel$39, nick$40)
+          }
+        time         0% fanout         0 input         0 rows
+      } /* end of outer */
+    set_ctr$57
+     out: (nick$40, workTel$39, s$38, set_no$41)
+     shadow: ( <none> ,  <none> ,  <none> ,  <none> )
+    
+    After code:
+    0: last$66 := Call __ro2sq (s_17_10_t5.O$28)
+    5: first$68 := Call __ro2sq (s_17_10_t4.O$32)
+    10: workTel$70 := Call __ro2sq (workTel$39)
+    15: nick$72 := Call __ro2sq (nick$40)
+    20: BReturn 0
+    time      0.35% fanout         0 input         8 rows
+    Select (first$68, last$66, workTel$70, nick$72)
+  }
+
+
+ 0 msec 11% cpu,        34 rnd         7 seq        40% same seg   28.5714% same pg 
+Compilation: 1 msec 0 reads         0% read 0 messages         0% clw

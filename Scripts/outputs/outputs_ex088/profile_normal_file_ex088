@@ -1,0 +1,42 @@
+Richard	Mutt	32 Main St.	Springfield	Connecticut	49345	
+Richard	Mutt	32 Main St.	Springfield	Connecticut	49345	
+
+  { 
+    time       1.1% fanout         1 input         1 rows
+    time        16% fanout         2 input         1 rows
+    RDF_QUAD         1 rows(s_17_14_t2.S$29, s_17_14_t2.O$28)
+     inlined  P =  IRI_ID"...address" 
+    time       7.7% fanout         1 input         2 rows
+    RDF_QUAD         1 rows(s_17_14_t0.S$33, s_17_14_t0.O$32)
+     inlined  P =  IRI_ID"...firstName"  ,  S = s_17_14_t2.S$29
+    time       4.1% fanout         1 input         2 rows
+    RDF_QUAD         1 rows(s_17_14_t1.O$36)
+     inlined  P =  IRI_ID"...lastName"  ,  S = s_17_14_t0.S$33
+    time       7.3% fanout         1 input         2 rows
+    RDF_QUAD         1 rows(s_17_14_t6.S$40, s_17_14_t6.O$39)
+     inlined  P =  IRI_ID"...region"  ,  S = k_s_17_14_t2.O$119
+    time       4.9% fanout         1 input         2 rows
+    RDF_QUAD         1 rows(s_17_14_t5.S$44, s_17_14_t5.O$43)
+     inlined  P =  IRI_ID"...streetAddress"  ,  S = k_s_17_14_t2.O$134
+    time         6% fanout         1 input         2 rows
+    RDF_QUAD         1 rows(s_17_14_t4.S$48, s_17_14_t4.O$47)
+     inlined  P =  IRI_ID"...city"  ,  S = k_s_17_14_t2.O$149
+    time        53% fanout         1 input         2 rows
+    RDF_QUAD         1 rows(s_17_14_t3.O$51)
+     inlined  P =  IRI_ID"...postalCode"  ,  S = k_s_17_14_t2.O$164
+    
+    After code:
+    0: region$53 := Call __ro2sq (s_17_14_t6.O$39)
+    5: city$55 := Call __ro2sq (s_17_14_t4.O$47)
+    10: streetAddress$57 := Call __ro2sq (s_17_14_t5.O$43)
+    15: lastName$59 := Call __ro2sq (s_17_14_t1.O$36)
+    20: firstName$61 := Call __ro2sq (s_17_14_t0.O$32)
+    25: postalCode$63 := Call __ro2sq (s_17_14_t3.O$51)
+    30: BReturn 0
+    time     0.098% fanout         0 input         2 rows
+    Select (firstName$61, lastName$59, streetAddress$57, city$55, region$53, postalCode$63)
+  }
+
+
+ 0 msec 4% cpu,        25 rnd         1 seq   23.0769% same seg   23.0769% same pg 
+Compilation: 4 msec 0 reads         0% read 0 messages         0% clw

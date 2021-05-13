@@ -1,0 +1,36 @@
+  { 
+    RDF_QUAD         8 rows(s_17_10_t5.S$29, s_17_10_t5.O$28)
+     inlined  P =  IRI_ID"...lastName" 
+    RDF_QUAD         1 rows(s_17_10_t4.S$33, s_17_10_t4.O$32)
+     inlined  P =  IRI_ID"...firstName"  ,  S = s_17_10_t5.S$29
+    Precode:
+      0: __all_eq$35 := Call __all_eq (s_17_10_t4.S$33, s_17_10_t5.S$29)
+      5: BReturn 0
+    outer {
+        Subquery 37 
+          { 
+            RDF_QUAD         1 rows(s_15_8_t0.S$44, s_15_8_t0.O$43)
+             inlined  P =  IRI_ID"...workTel"  ,  S = k___all_eq$115
+            RDF_QUAD         1 rows(s_15_8_t1.O$47)
+             inlined  P =  IRI_ID"...nick"  ,  S = s_15_8_t0.S$44
+            
+            After code:
+            0: s$38 :=  := artm s_15_8_t0.S$44
+            4: workTel$39 :=  := artm s_15_8_t0.O$43
+            8: nick$40 :=  := artm s_15_8_t1.O$47
+            12: BReturn 0
+            Subquery Select(s$38, workTel$39, nick$40)
+          }
+      } /* end of outer */
+    set_ctr$57
+     out: (s$38, workTel$39, nick$40, set_no$41)
+     shadow: ( <none> ,  <none> ,  <none> ,  <none> )
+    
+    After code:
+    0: last$66 := Call __ro2sq (s_17_10_t5.O$28)
+    5: first$68 := Call __ro2sq (s_17_10_t4.O$32)
+    10: workTel$70 := Call __ro2sq (workTel$39)
+    15: nick$72 := Call __ro2sq (nick$40)
+    20: BReturn 0
+    Select (first$68, last$66, workTel$70, nick$72)
+  }

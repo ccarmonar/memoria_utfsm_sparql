@@ -1,0 +1,20 @@
+  { 
+    RDF_QUAD         8 rows(t2.S$29, t2.O$28)
+     inlined  P =  IRI_ID"...lastName" 
+    RDF_QUAD         1 rows(t1.S$33, t1.O$32)
+     inlined  P =  IRI_ID"...firstName"  ,  S = t2.S$29
+    outer {
+        RDF_QUAD         1 rows(t4.O$36)
+         inlined  P =  IRI_ID"...workTel"  ,  S = k_t2.S$91
+      } /* end of outer */
+    set_ctr$41
+     out: (t4.O$36)
+     shadow: ( <none> )
+    
+    After code:
+    0: last$50 := Call __ro2sq (t2.O$28)
+    5: first$52 := Call __ro2sq (t1.O$32)
+    10: workTel$54 := Call __ro2sq (t4.O$36)
+    15: BReturn 0
+    Select (first$52, last$50, workTel$54)
+  }

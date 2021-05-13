@@ -1,0 +1,17 @@
+  { 
+    Precode:
+      0: __rdflit$27 := Call __rdflit (rdflit1070)
+      5: __rdflit$29 := Call __rdflit (rdflit1071)
+      10: BReturn 0
+    RDF_QUAD_POGS         2 rows(s_12_6_t1.S$32)
+     P =  IRI_ID"...lastName"  ,  O = rdflit1071
+    RDF_QUAD_POGS      0.25 rows(s_12_6_t0.S$35)
+     inlined  P =  IRI_ID"...firstName"  ,  O = rdflit1070 ,  S = s_12_6_t1.S$32
+    RDF_QUAD       1.2 rows(s_12_6_t2.O$38)
+     inlined  P =  IRI_ID"...email"  ,  S = s_12_6_t0.S$35
+    
+    After code:
+    0: craigEmail$40 := Call __ro2sq (s_12_6_t2.O$38)
+    5: BReturn 0
+    Select (craigEmail$40)
+  }

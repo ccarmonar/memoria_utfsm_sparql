@@ -1,0 +1,63 @@
+SELECT __ro2sq ( "s_0_16"."first") AS "first",
+  __ro2sq ( "s_0_16"."last") AS "last",
+  __ro2sq ( "s_0_16"."instrument") AS "instrument"
+FROM (
+    SELECT "s_19_13_t4-u17"."O" AS "instrument" ANY,
+      "s_19_13_t3-u17"."O" AS "last" ANY,
+      "s_19_13_t2-u17"."O" AS "first" ANY
+    FROM DB.DBA.RDF_QUAD AS "s_19_13_t2-u17"
+      INNER JOIN DB.DBA.RDF_QUAD AS "s_19_13_t3-u17"
+      ON (
+        "s_19_13_t3-u17"."S" = "s_19_13_t2-u17"."S")
+      INNER JOIN DB.DBA.RDF_QUAD AS "s_19_13_t4-u17"
+      ON (
+        "s_19_13_t4-u17"."S" = "s_19_13_t3-u17"."S"
+        AND 
+        "s_19_13_t4-u17"."S" = "s_19_13_t2-u17"."S")
+      INNER JOIN DB.DBA.RDF_QUAD AS "s_14_8_t0-c5-u17"
+      ON (
+        "s_19_13_t4-u17"."S" = "s_14_8_t0-c5-u17"."S"
+        AND 
+        "s_19_13_t3-u17"."S" = "s_14_8_t0-c5-u17"."S"
+        AND 
+        "s_19_13_t2-u17"."S" = "s_14_8_t0-c5-u17"."S")
+    WHERE
+      "s_19_13_t2-u17"."P" = __i2idn ( __bft( 'http://learningsparql.com/ns/addressbook#firstName' , 1))
+      AND 
+      "s_19_13_t3-u17"."P" = __i2idn ( __bft( 'http://learningsparql.com/ns/addressbook#lastName' , 1))
+      AND 
+      "s_19_13_t4-u17"."P" = __i2idn ( __bft( 'http://learningsparql.com/ns/addressbook#instrument' , 1))
+      AND 
+      "s_14_8_t0-c5-u17"."P" = __i2idn ( __bft( 'http://learningsparql.com/ns/addressbook#instrument' , 1))
+      AND 
+      "s_14_8_t0-c5-u17"."O" = DB.DBA.RDF_OBJ_OF_SQLVAL ( 'sax' )
+    UNION ALL SELECT "s_19_13_t4"."O" AS "instrument",
+      "s_19_13_t3"."O" AS "last",
+      "s_19_13_t2"."O" AS "first"
+    FROM DB.DBA.RDF_QUAD AS "s_19_13_t2"
+      INNER JOIN DB.DBA.RDF_QUAD AS "s_19_13_t3"
+      ON (
+        "s_19_13_t3"."S" = "s_19_13_t2"."S")
+      INNER JOIN DB.DBA.RDF_QUAD AS "s_19_13_t4"
+      ON (
+        "s_19_13_t4"."S" = "s_19_13_t3"."S"
+        AND 
+        "s_19_13_t4"."S" = "s_19_13_t2"."S")
+      INNER JOIN DB.DBA.RDF_QUAD AS "s_18_11_t1-c11"
+      ON (
+        "s_19_13_t4"."S" = "s_18_11_t1-c11"."S"
+        AND 
+        "s_19_13_t3"."S" = "s_18_11_t1-c11"."S"
+        AND 
+        "s_19_13_t2"."S" = "s_18_11_t1-c11"."S")
+    WHERE
+      "s_19_13_t2"."P" = __i2idn ( __bft( 'http://learningsparql.com/ns/addressbook#firstName' , 1))
+      AND 
+      "s_19_13_t3"."P" = __i2idn ( __bft( 'http://learningsparql.com/ns/addressbook#lastName' , 1))
+      AND 
+      "s_19_13_t4"."P" = __i2idn ( __bft( 'http://learningsparql.com/ns/addressbook#instrument' , 1))
+      AND 
+      "s_18_11_t1-c11"."P" = __i2idn ( __bft( 'http://learningsparql.com/ns/addressbook#instrument' , 1))
+      AND 
+      "s_18_11_t1-c11"."O" = DB.DBA.RDF_OBJ_OF_SQLVAL ( 'trumpet' )) AS "s_0_16"
+OPTION (QUIETCAST)

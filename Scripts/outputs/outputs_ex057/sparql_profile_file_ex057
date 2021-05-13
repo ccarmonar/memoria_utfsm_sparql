@@ -1,0 +1,40 @@
+Craig	Ellis	(245) 315-5486	
+Cindy	Marshall		
+Richard	Mutt		
+Richard	Mutt		
+Craig	Ellis		
+Cindy	Marshall		
+Bradley	Perry		
+Katherine	Duncan		
+
+  { 
+    time       1.7% fanout         1 input         1 rows
+    time        29% fanout         8 input         1 rows
+    RDF_QUAD         8 rows(t2.S$29, t2.O$28)
+     inlined  P =  IRI_ID"...lastName" 
+    time        12% fanout         1 input         8 rows
+    RDF_QUAD         1 rows(t1.S$33, t1.O$32)
+     inlined  P =  IRI_ID"...firstName"  ,  S = t2.S$29
+    time      0.63% fanout         1 input         8 rows
+    outer {
+        time       9.6% fanout     0.125 input         8 rows
+        RDF_QUAD         1 rows(t4.O$36)
+         inlined  P =  IRI_ID"...workTel"  ,  S = k_t2.S$107
+        time        46% fanout         8 input         1 rows
+      } /* end of outer */
+    set_ctr$41
+     out: (t4.O$36)
+     shadow: ( <none> )
+    
+    After code:
+    0: last$50 := Call __ro2sq (t2.O$28)
+    5: first$52 := Call __ro2sq (t1.O$32)
+    10: workTel$54 := Call __ro2sq (t4.O$36)
+    15: BReturn 0
+    time       0.3% fanout         0 input         8 rows
+    Select (first$52, last$50, workTel$54)
+  }
+
+
+ 0 msec 20% cpu,        34 rnd         7 seq        40% same seg   25.7143% same pg 
+Compilation: 1 msec 0 reads         0% read 0 messages         0% clw
