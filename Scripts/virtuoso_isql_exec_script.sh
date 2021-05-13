@@ -1,6 +1,7 @@
 #!/bin/bash
 
 system_password="161905";
+current_path="/home/c161905/Memoria/memoria_utfsm_sparql"
 path_virtuoso_isql=$VIRTUOSO7_isql;
 path_virtuoso_db=$VIRTUOSO7_db;
 path_virtuoso_sparql_path=$VIRTUOSO7_test_sparql;
@@ -28,13 +29,15 @@ SET BLOBS ON;
 profile('SPARQL $str_sparql');
 "
 
+mkdir -p outputs
+
 echo "Executando isql";
-echo -e $system_password | sudo -S $path_virtuoso_isql $isql_host $isql_username $isql_password VERBOSE=OFF BANNER=OFF exec="$sparql_translate" > sparql_translate_file.txt
-echo -e $system_password | sudo -S $path_virtuoso_isql $isql_host $isql_username $isql_password VERBOSE=OFF BANNER=OFF exec="$explain_normal" > explain_normal_file.txt
-echo -e $system_password | sudo -S $path_virtuoso_isql $isql_host $isql_username $isql_password VERBOSE=OFF BANNER=OFF exec="$profile_normal" > profile_normal_file.txt
+echo -e $system_password | sudo -S $path_virtuoso_isql $isql_host $isql_username $isql_password VERBOSE=OFF BANNER=OFF exec="$sparql_translate" > outputs/sparql_translate_file
+echo -e $system_password | sudo -S $path_virtuoso_isql $isql_host $isql_username $isql_password VERBOSE=OFF BANNER=OFF exec="$explain_normal" > outputs/explain_normal_file
+echo -e $system_password | sudo -S $path_virtuoso_isql $isql_host $isql_username $isql_password VERBOSE=OFF BANNER=OFF exec="$profile_normal" > outputs/profile_normal_file
 
 
-sparql_translate_file=$(cat sparql_translate_file.txt)
+sparql_translate_file=$(cat outputs/sparql_translate_file)
 
 sparql_explain="
 SET EXPLAIN ON;
@@ -48,7 +51,7 @@ $sparql_translate_file;
 SET PROFILE OFF;
 "
 
-echo -e $system_password | sudo -S $path_virtuoso_isql $isql_host $isql_username $isql_password VERBOSE=OFF BANNER=OFF exec="$sparql_explain" > sparql_explain_file.txt
-echo -e $system_password | sudo -S $path_virtuoso_isql $isql_host $isql_username $isql_password VERBOSE=OFF BANNER=OFF exec="$sparql_profile" > sparql_profile_file.txt
+echo -e $system_password | sudo -S $path_virtuoso_isql $isql_host $isql_username $isql_password VERBOSE=OFF BANNER=OFF exec="$sparql_explain" > outputs/sparql_explain_file
+echo -e $system_password | sudo -S $path_virtuoso_isql $isql_host $isql_username $isql_password VERBOSE=OFF BANNER=OFF exec="$sparql_profile" > outputs/sparql_profile_file
 
 
