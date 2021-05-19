@@ -1,0 +1,157 @@
+OpenLink Virtuoso Interactive SQL (Virtuoso)
+Version 07.20.3232 as of May 11 2021
+Type HELP; for help and EXIT; to exit.
+Connected to OpenLink Virtuoso
+Driver: 07.20.3232 OpenLink Virtuoso ODBC Driver
+SPARQL_TO_SQL_TEXT
+LONG VARCHAR
+_______________________________________________________________________________
+
+SELECT __ro2sq ( "s_0_16"."first") AS "first",
+  __ro2sq ( "s_0_16"."last") AS "last",
+  __ro2sq ( "s_0_16"."instrument") AS "instrument"
+FROM (
+    SELECT "s_19_13_t4-u17"."O" AS "instrument" ANY,
+      "s_19_13_t3-u17"."O" AS "last" ANY,
+      "s_19_13_t2-u17"."O" AS "first" ANY
+    FROM DB.DBA.RDF_QUAD AS "s_19_13_t2-u17"
+      INNER JOIN DB.DBA.RDF_QUAD AS "s_19_13_t3-u17"
+      ON (
+        "s_19_13_t3-u17"."S" = "s_19_13_t2-u17"."S")
+      INNER JOIN DB.DBA.RDF_QUAD AS "s_19_13_t4-u17"
+      ON (
+        "s_19_13_t4-u17"."S" = "s_19_13_t3-u17"."S"
+        AND 
+        "s_19_13_t4-u17"."S" = "s_19_13_t2-u17"."S")
+      INNER JOIN DB.DBA.RDF_QUAD AS "s_14_8_t0-c5-u17"
+      ON (
+        "s_19_13_t4-u17"."S" = "s_14_8_t0-c5-u17"."S"
+        AND 
+        "s_19_13_t3-u17"."S" = "s_14_8_t0-c5-u17"."S"
+        AND 
+        "s_19_13_t2-u17"."S" = "s_14_8_t0-c5-u17"."S")
+    WHERE
+      "s_19_13_t2-u17"."P" = __i2idn ( __bft( 'http://learningsparql.com/ns/addressbook#firstName' , 1))
+      AND 
+      "s_19_13_t3-u17"."P" = __i2idn ( __bft( 'http://learningsparql.com/ns/addressbook#lastName' , 1))
+      AND 
+      "s_19_13_t4-u17"."P" = __i2idn ( __bft( 'http://learningsparql.com/ns/addressbook#instrument' , 1))
+      AND 
+      "s_14_8_t0-c5-u17"."P" = __i2idn ( __bft( 'http://learningsparql.com/ns/addressbook#instrument' , 1))
+      AND 
+      "s_14_8_t0-c5-u17"."O" = DB.DBA.RDF_OBJ_OF_SQLVAL ( 'sax' )
+    UNION ALL SELECT "s_19_13_t4"."O" AS "instrument",
+      "s_19_13_t3"."O" AS "last",
+      "s_19_13_t2"."O" AS "first"
+    FROM DB.DBA.RDF_QUAD AS "s_19_13_t2"
+      INNER JOIN DB.DBA.RDF_QUAD AS "s_19_13_t3"
+      ON (
+        "s_19_13_t3"."S" = "s_19_13_t2"."S")
+      INNER JOIN DB.DBA.RDF_QUAD AS "s_19_13_t4"
+      ON (
+        "s_19_13_t4"."S" = "s_19_13_t3"."S"
+        AND 
+        "s_19_13_t4"."S" = "s_19_13_t2"."S")
+      INNER JOIN DB.DBA.RDF_QUAD AS "s_18_11_t1-c11"
+      ON (
+        "s_19_13_t4"."S" = "s_18_11_t1-c11"."S"
+        AND 
+        "s_19_13_t3"."S" = "s_18_11_t1-c11"."S"
+        AND 
+        "s_19_13_t2"."S" = "s_18_11_t1-c11"."S")
+    WHERE
+      "s_19_13_t2"."P" = __i2idn ( __bft( 'http://learningsparql.com/ns/addressbook#firstName' , 1))
+      AND 
+      "s_19_13_t3"."P" = __i2idn ( __bft( 'http://learningsparql.com/ns/addressbook#lastName' , 1))
+      AND 
+      "s_19_13_t4"."P" = __i2idn ( __bft( 'http://learningsparql.com/ns/addressbook#instrument' , 1))
+      AND 
+      "s_18_11_t1-c11"."P" = __i2idn ( __bft( 'http://learningsparql.com/ns/addressbook#instrument' , 1))
+      AND 
+      "s_18_11_t1-c11"."O" = DB.DBA.RDF_OBJ_OF_SQLVAL ( 'trumpet' )) AS "s_0_16"
+OPTION (QUIETCAST)
+
+1 Rows. -- 1 msec.
+
+Done. -- 0 msec.
+
+Done. -- 0 msec.
+
+Done. -- 0 msec.
+result
+LONG VARCHAR
+_______________________________________________________________________________
+
+Richard	Mutt	clarinet	
+Richard	Mutt	sax	
+Craig	Ellis	trumpet	
+
+  { 
+    time       2.1% fanout         1 input         1 rows
+    Precode:
+      0: __rdflit$27 := Call __rdflit (rdflit1111)
+      5: __rdflit$29 := Call __rdflit (rdflit1112)
+      10: BReturn 0
+    Subquery 31 
+      { 
+        Union
+          { 
+            time        30% fanout         1 input         1 rows
+            RDF_QUAD_POGS         1 rows(s_14_8_t0-c5-u17.S$38)
+             P =  IRI_ID"...instrument"  ,  O = rdflit1111
+            time        16% fanout         1 input         1 rows
+            RDF_QUAD         1 rows(s_19_13_t3-u17.S$42, s_19_13_t3-u17.O$41)
+             inlined  P =  IRI_ID"...lastName"  ,  S = s_14_8_t0-c5-u17.S$38
+            time       7.6% fanout         2 input         1 rows
+            RDF_QUAD       1.3 rows(s_19_13_t4-u17.S$46, s_19_13_t4-u17.O$45)
+             inlined  P =  IRI_ID"...instrument"  ,  S = s_19_13_t3-u17.S$42
+            time        11% fanout         1 input         2 rows
+            RDF_QUAD         1 rows(s_19_13_t2-u17.O$49)
+             inlined  P =  IRI_ID"...firstName"  ,  S = k_s_19_13_t3-u17.S$147
+            
+            After code:
+            0: instrument$32 :=  := artm s_19_13_t4-u17.O$45
+            4: last$33 :=  := artm s_19_13_t3-u17.O$41
+            8: first$34 :=  := artm s_19_13_t2-u17.O$49
+            12: BReturn 0
+            time      0.75% fanout         0 input         2 rows
+            Subquery Select(instrument$32, last$33, first$34)
+          }
+          { 
+            time       9.6% fanout         1 input         1 rows
+            RDF_QUAD_POGS         1 rows(s_18_11_t1-c11.S$59)
+             P =  IRI_ID"...instrument"  ,  O = rdflit1112
+            time       7.6% fanout         1 input         1 rows
+            RDF_QUAD         1 rows(s_19_13_t3.S$63, s_19_13_t3.O$62)
+             inlined  P =  IRI_ID"...lastName"  ,  S = s_18_11_t1-c11.S$59
+            time       6.7% fanout         1 input         1 rows
+            RDF_QUAD       1.3 rows(s_19_13_t4.S$67, s_19_13_t4.O$66)
+             inlined  P =  IRI_ID"...instrument"  ,  S = s_19_13_t3.S$63
+            time       7.6% fanout         1 input         1 rows
+            RDF_QUAD         1 rows(s_19_13_t2.O$70)
+             inlined  P =  IRI_ID"...firstName"  ,  S = k_s_19_13_t3.S$203
+            
+            After code:
+            0: instrument$32 :=  := artm s_19_13_t4.O$66
+            4: last$33 :=  := artm s_19_13_t3.O$62
+            8: first$34 :=  := artm s_19_13_t2.O$70
+            12: BReturn 0
+            time      0.26% fanout         0 input         1 rows
+            Subquery Select(instrument$32, last$33, first$34)
+          }
+      }
+    
+    After code:
+    0: first$80 := Call __ro2sq (first$34)
+    5: last$82 := Call __ro2sq (last$33)
+    10: instrument$84 := Call __ro2sq (instrument$32)
+    15: BReturn 0
+    time      0.48% fanout         0 input         3 rows
+    Select (first$80, last$82, instrument$84)
+  }
+
+
+ 0 msec 7% cpu,        18 rnd         1 seq   5.26316% same seg   15.7895% same pg 
+Compilation: 2 msec 0 reads         0% read 0 messages         0% clw
+
+4 Rows. -- 7 msec.

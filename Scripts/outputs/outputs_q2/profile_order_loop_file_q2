@@ -1,0 +1,40 @@
+http://www.snee.com/hr/emp2	John	
+http://www.snee.com/hr/emp1	Heidi	
+
+  { 
+    time       1.8% fanout         1 input         1 rows
+      clear: (<V set_ctr$45 in>)
+    s# 48 46 cluster outer seq start, set no <V set_ctr$45 in>    
+    save ctx:()
+    time        30% fanout         2 input         1 rows
+    Precode:
+      0: <V __rdflit$27 x> := Call __rdflit (rdflit1046)
+      5: BReturn 0
+      clear: (<V s_9_4_t0.S$30 rn>, <V __rdflit$27 x>)
+      clear on continue: (<V s_9_4_t0.S$30 rn>)
+    s# 57 29 from DB.DBA.RDF_QUAD by RDF_QUAD_POGS          2 rows   
+    Key RDF_QUAD_POGS  ASC  (<V s_9_4_t0.S$30 rn>)
+     P =  IRI_ID"...family-name"  ,  O = rdflit1046
+    
+    time        68% fanout         1 input         2 rows
+      clear: (<V s_9_4_t1.O$33 an>, <V givenName$37 a>, <V person$35 a>)
+      clear on continue: (<V s_9_4_t1.O$33 an>, <V givenName$37 a>, <V person$35 a>)$30 () 
+    s# 67 32 from DB.DBA.RDF_QUAD by RDF_QUAD          1 rows   
+    Key RDF_QUAD  ASC  (<V s_9_4_t1.O$33 an>)
+     inlined  P =  IRI_ID"...given-name"  ,  S = <V s_9_4_t0.S$30 rn>
+    
+    After code:
+      0: <V person$35 a> := Call __id2in (<r s_9_4_t0.S$30 via  Set67>)
+      5: <V givenName$37 a> := Call __ro2sq (<V s_9_4_t1.O$33 an>)
+      10: BReturn 0
+    time      0.16% fanout         0 input         2 rows
+    $35 () $37 () $45 (32 29 46 ) 
+    s# 77 39 Select (<V person$35 a>, <V givenName$37 a>)
+      set no: <r set_ctr$45 via  Set67 Set57>
+  }
+Warning: You might have a Cartesian product.
+
+
+
+ 0 msec 15% cpu,         5 rnd         1 seq   16.6667% same seg   16.6667% same pg 
+Compilation: 0 msec 0 reads         0% read 0 messages         0% clw

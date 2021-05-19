@@ -1,0 +1,46 @@
+John	Smith	2015-01-30	
+John	Smith	2015-03-15	
+Heidi	Smith	2015-01-30	
+
+  { 
+    time       1.5% fanout         1 input         1 rows
+      clear: (<V set_ctr$50 in>)
+    s# 53 51 cluster outer seq start, set no <V set_ctr$50 in>    
+    save ctx:()
+    time        23% fanout         3 input         1 rows
+      clear: (<V s_11_6_t2.O$28 an>, <V s_11_6_t2.S$29 rn>)
+      clear on continue: (<V s_11_6_t2.O$28 an>, <V s_11_6_t2.S$29 rn>)
+    s# 62 27 from DB.DBA.RDF_QUAD by RDF_QUAD          3 rows   
+    Key RDF_QUAD  ASC  (<V s_11_6_t2.S$29 rn>, <V s_11_6_t2.O$28 an>)
+     inlined  P =  IRI_ID"...completedOrientation" 
+    
+    time        11% fanout         1 input         3 rows
+      clear: (<V s_11_6_t0.O$32 an>, <V s_11_6_t0.S$33 rn>)
+      clear on continue: (<V s_11_6_t0.O$32 an>, <V s_11_6_t0.S$33 rn>)$29 () 
+    s# 73 31 from DB.DBA.RDF_QUAD by RDF_QUAD          1 rows   
+    Key RDF_QUAD  ASC  (<V s_11_6_t0.S$33 rn>, <V s_11_6_t0.O$32 an>)
+     inlined  P =  IRI_ID"...given-name"  ,  S = <V s_11_6_t2.S$29 rn>
+    
+    time        64% fanout         1 input         3 rows
+      clear: (<V s_11_6_t1.O$36 an>, <V familyName$42 a>, <V givenName$40 a>, <V oDate$38 a>)
+      clear on continue: (<V s_11_6_t1.O$36 an>, <V familyName$42 a>, <V givenName$40 a>, <V oDate$38 a>)$32 () $33 () $28 (31 ) 
+    s# 84 35 from DB.DBA.RDF_QUAD by RDF_QUAD          1 rows   
+    Key RDF_QUAD  ASC  (<V s_11_6_t1.O$36 an>)
+     inlined  P =  IRI_ID"...family-name"  ,  S = <V s_11_6_t0.S$33 rn>
+    
+    After code:
+      0: <V oDate$38 a> := Call __ro2sq (<r s_11_6_t2.O$28 via  Set84 Set73>)
+      5: <V givenName$40 a> := Call __ro2sq (<r s_11_6_t0.O$32 via  Set84>)
+      10: <V familyName$42 a> := Call __ro2sq (<V s_11_6_t1.O$36 an>)
+      15: BReturn 0
+    time      0.22% fanout         0 input         3 rows
+    $38 () $40 () $42 () $50 (35 31 27 51 ) 
+    s# 94 44 Select (<V givenName$40 a>, <V familyName$42 a>, <V oDate$38 a>)
+      set no: <r set_ctr$50 via  Set84 Set73 Set62>
+  }
+Warning: You might have a Cartesian product.
+
+
+
+ 0 msec 14% cpu,        16 rnd         2 seq   23.5294% same seg   23.5294% same pg 
+Compilation: 1 msec 0 reads         0% read 0 messages         0% clw

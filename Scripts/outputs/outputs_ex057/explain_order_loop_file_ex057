@@ -1,0 +1,55 @@
+  { 
+      clear: (<V set_ctr$74 in>)
+    s# 77 75 cluster outer seq start, set no <V set_ctr$74 in>    
+    save ctx:()
+      clear: (<V s_12_8_t3.O$28 an>, <V s_12_8_t3.S$29 rn>)
+      clear on continue: (<V s_12_8_t3.O$28 an>, <V s_12_8_t3.S$29 rn>)
+    s# 82 27 from DB.DBA.RDF_QUAD by RDF_QUAD          8 rows   
+    Key RDF_QUAD  ASC  (<V s_12_8_t3.S$29 rn>, <V s_12_8_t3.O$28 an>)
+     inlined  P =  IRI_ID"...firstName" 
+    
+      clear: (<V s_12_8_t4.O$32 an>, <V s_12_8_t4.S$33 rn>)
+      clear on continue: (<V s_12_8_t4.O$32 an>, <V s_12_8_t4.S$33 rn>)
+    s# 89 31 from DB.DBA.RDF_QUAD by RDF_QUAD          1 rows   
+    Key RDF_QUAD  ASC  (<V s_12_8_t4.S$33 rn>, <V s_12_8_t4.O$32 an>)
+     inlined  P =  IRI_ID"...lastName"  ,  S = <V s_12_8_t3.S$29 rn>
+    
+    Precode:
+      0: <V __all_eq$35 x> := Call __all_eq (<r s_12_8_t3.S$29 via  Set89>, <V s_12_8_t4.S$33 rn>)
+      5: BReturn 0
+      clear: (<V set_ctr$53 i>, <V __all_eq$35 x>)$33 () $29 (31 ) 
+    s# 96 57 cluster outer seq start, set no <V set_ctr$53 i>    
+    save ctx:()
+      clear: (<V workTel$39 a>, <V s$38 r>, <V set_no$40 i>)
+    s# 101 37 Subquery 37 
+      multistate set no = <V set_no$40 i>
+      { 
+          clear: (<V s_12_6_t0.O$42 an>, <V s_12_6_t0.S$43 rn>, <V workTel$39 a>, <V s$38 r>)
+          clear on continue: (<V s$38 r>, <V workTel$39 a>, <V s_12_6_t0.S$43 rn>, <V s_12_6_t0.O$42 an>)$35 (57 ) 
+        s# 105 41 from DB.DBA.RDF_QUAD by RDF_QUAD          1 rows   
+        Key RDF_QUAD  ASC  (<V s_12_6_t0.S$43 rn>, <V s_12_6_t0.O$42 an>)
+         inlined  P =  IRI_ID"...workTel"  ,  S = <v k___all_eq$109 Set111 rn>
+        vector param casts: <r __all_eq$35 via  Set96>-> <v k___all_eq$109 Set111 rn>
+        
+        After code:
+          0: <V s$38 r> :=  := artm <V s_12_6_t0.S$43 rn>
+          4: <V workTel$39 a> :=  := artm <V s_12_6_t0.O$42 an>
+          8: BReturn 0
+        
+        s# 101 45 Subquery Select(<V s$38 r>, <V workTel$39 a>)
+          set no: <r set_no$40 via  Set105 Set111>
+      }
+    
+      clear: (<V workTel$66 a>, <V first$64 a>, <V last$62 a>)$32 (37 57 ) $38 (37 ) $39 (37 ) $40 (37 ) $53 (37 57 ) $28 (37 57 31 ) 
+    s# 121 52 end of outer seq <r set_ctr$53 via  Set101>
+     out: (<V s$38 r>, <V set_no$40 i>, <V workTel$39 a>)
+     shadow: ( <none> ,  <none> ,  <none> )
+    After code:
+      0: <V last$62 a> := Call __ro2sq (<r s_12_8_t4.O$32 via  Set121>)
+      5: <V first$64 a> := Call __ro2sq (<r s_12_8_t3.O$28 via  Set121 Set89>)
+      10: <V workTel$66 a> := Call __ro2sq (<V workTel$39 a>)
+      15: BReturn 0
+    $62 (52 ) $64 (52 ) $66 (52 ) $74 (52 37 57 31 27 75 ) 
+    s# 125 68 Select (<V first$64 a>, <V last$62 a>, <V workTel$66 a>)
+      set no: <r set_ctr$74 via  Set121 Set89 Set82>
+  }

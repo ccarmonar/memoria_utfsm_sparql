@@ -1,0 +1,77 @@
+John	Smith	2015-01-30	
+John	Smith	2015-03-15	
+Heidi	Smith	2015-01-30	
+Francis	Jones		
+Jane	Berger		
+
+  { 
+    time       1.4% fanout         1 input         1 rows
+      clear: (<V set_ctr$74 in>)
+    s# 77 75 cluster outer seq start, set no <V set_ctr$74 in>    
+    save ctx:()
+    time        21% fanout         4 input         1 rows
+      clear: (<V s_11_8_t3.O$28 an>, <V s_11_8_t3.S$29 rn>)
+      clear on continue: (<V s_11_8_t3.O$28 an>, <V s_11_8_t3.S$29 rn>)
+    s# 86 27 from DB.DBA.RDF_QUAD by RDF_QUAD          4 rows   
+    Key RDF_QUAD  ASC  (<V s_11_8_t3.S$29 rn>, <V s_11_8_t3.O$28 an>)
+     inlined  P =  IRI_ID"...given-name" 
+    
+    time        11% fanout         1 input         4 rows
+      clear: (<V s_11_8_t4.O$32 an>, <V s_11_8_t4.S$33 rn>)
+      clear on continue: (<V s_11_8_t4.O$32 an>, <V s_11_8_t4.S$33 rn>)
+    s# 97 31 from DB.DBA.RDF_QUAD by RDF_QUAD          1 rows   
+    Key RDF_QUAD  ASC  (<V s_11_8_t4.S$33 rn>, <V s_11_8_t4.O$32 an>)
+     inlined  P =  IRI_ID"...family-name"  ,  S = <V s_11_8_t3.S$29 rn>
+    
+    time        45% fanout         1 input         4 rows
+    Precode:
+      0: <V givenName$35 a> := Call __ro2sq (<r s_11_8_t3.O$28 via  Set97>)
+      5: <V __all_eq$37 x> := Call __all_eq (<r s_11_8_t3.S$29 via  Set97>, <V s_11_8_t4.S$33 rn>)
+      10: <V familyName$39 a> := Call __ro2sq (<V s_11_8_t4.O$32 an>)
+      15: BReturn 0
+      clear: (<V set_ctr$57 i>, <V familyName$39 a>, <V __all_eq$37 x>, <V givenName$35 a>)$32 () $33 () $28 (31 ) $29 (31 ) 
+    s# 108 61 cluster outer seq start, set no <V set_ctr$57 i>    
+    save ctx:()
+      clear: (<V oDate$43 a>, <V person$42 r>, <V set_no$44 i>)
+    s# 117 41 Subquery 41 
+      multistate set no = <V set_no$44 i>
+      { 
+        time        12% fanout      0.75 input         4 rows
+          clear: (<V s_10_6_t0.O$46 an>, <V s_10_6_t0.S$47 rn>, <V oDate$43 a>, <V person$42 r>)
+          clear on continue: (<V person$42 r>, <V oDate$43 a>, <V s_10_6_t0.S$47 rn>, <V s_10_6_t0.O$46 an>)$37 (61 ) 
+        s# 121 45 from DB.DBA.RDF_QUAD by RDF_QUAD        1.5 rows   
+        Key RDF_QUAD  ASC  (<V s_10_6_t0.S$47 rn>, <V s_10_6_t0.O$46 an>)
+         inlined  P =  IRI_ID"...completedOrientation"  ,  S = <v k___all_eq$125 Set127 rn>
+        vector param casts: <r __all_eq$37 via  Set108>-> <v k___all_eq$125 Set127 rn>
+        
+        After code:
+          0: <V person$42 r> :=  := artm <V s_10_6_t0.S$47 rn>
+          4: <V oDate$43 a> :=  := artm <V s_10_6_t0.O$46 an>
+          8: BReturn 0
+        time       0.5% fanout         0 input         3 rows
+        
+        s# 117 49 Subquery Select(<V person$42 r>, <V oDate$43 a>)
+          set no: <r set_no$44 via  Set121 Set127>
+      }
+    
+    time       9.9% fanout   1.66667 input         3 rows
+      clear: (<V oDate$66 a>)$42 (41 ) $43 (41 ) $44 (41 ) $57 (41 61 ) 
+    s# 145 56 end of outer seq <r set_ctr$57 via  Set117>
+     out: (<V person$42 r>, <V set_no$44 i>, <V oDate$43 a>)
+     shadow: ( <none> ,  <none> ,  <none> )
+    After code:
+      0: <V oDate$66 a> := Call __ro2sq (<V oDate$43 a>)
+      5: BReturn 0
+    time      0.23% fanout         0 input         5 rows
+    $35 (56 41 61 ) $66 (56 ) $39 (56 41 61 ) $74 (56 41 61 31 27 75 ) 
+    s# 153 68 Select (<r givenName$35 via  Set145>, <r familyName$39 via  Set145>, <V oDate$66 a>)
+      set no: <r set_ctr$74 via  Set145 Set97 Set86>
+  }
+Warning: You might have a Cartesian product.
+
+Warning: You might have a Cartesian product.
+
+
+
+ 0 msec 14% cpu,        19 rnd         4 seq        25% same seg        40% same pg 
+Compilation: 0 msec 0 reads         0% read 0 messages         0% clw

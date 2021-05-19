@@ -1,0 +1,134 @@
+
+  { 
+    time         7% fanout         1 input         1 rows
+      clear: (<V set_ctr$117 in>)
+    s# 120 118 cluster outer seq start, set no <V set_ctr$117 in>    
+    save ctx:()
+    Precode:
+      0: <V vector$27 x> := Call vector (<DB_NULL>, <DB_NULL>, <DB_NULL>)
+      5: <V vector$29 x> := Call vector (<c stubvar14>)
+      10: <V vector$31 x> := Call vector ()
+      15: BReturn 0
+      clear: (<V personLabel$37 x>, <V cityLabel$36 x>, <V streetLabel$35 x>, <V street$34 a>, <V set_no$38 i>, <V vector$31 x>, <V vector$29 x>, <V vector$27 x>, <V personLabel$109 a>, <V cityLabel$107 a>, <V streetLabel$105 a>, <V street$103 a>)
+    s# 129 33 Subquery 33 
+      multistate set no = <V set_no$38 i>
+      { 
+        time         6% fanout         1 input         1 rows
+        
+        s# 216 80 Fork 80 {  
+                
+            save ctx:()
+              set no = <V set_no$38 i> array  <none>  save: 
+            time        82% fanout         0 input         1 rows
+            Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:    0.0014 Fanout:         0
+              clear: (<V s_76_13_t1.S$40 rn>)
+              clear on continue: (<V s_76_13_t1.S$40 rn>)
+            s# 134 39 from DB.DBA.RDF_QUAD by RDF_QUAD_POGS     0.0014 rows   
+            Key RDF_QUAD_POGS  ASC  (<V s_76_13_t1.S$40 rn>)
+             P =  IRI_ID"...direct/P31"  ,  O =  IRI_ID"...Q79007" 
+            
+            time         0% fanout         0 input         0 rows
+            Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:    0.0014 Fanout:         0
+              clear: (<V s_76_13_t2.S$43 rn>)
+              clear on continue: (<V s_76_13_t2.S$43 rn>)
+            s# 144 42 from DB.DBA.RDF_QUAD by RDF_QUAD_POGS     0.0014 rows   
+            Key RDF_QUAD_POGS  ASC  (<V s_76_13_t2.S$43 rn>)
+             inlined  P =  IRI_ID"...direct/P17"  ,  O =  IRI_ID"...Q142"  ,  S = <V s_76_13_t1.S$40 rn>
+            
+            time         0% fanout         0 input         0 rows
+            Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:    0.0014 Fanout:         0
+              clear: (<V s_76_13_t3.O$46 an>, <V s_76_13_t3.S$47 rn>)
+              clear on continue: (<V s_76_13_t3.S$47 rn>, <V s_76_13_t3.O$46 an>)$158 (45 ) 
+            s# 154 45 from DB.DBA.RDF_QUAD by RDF_QUAD     0.0014 rows   
+            Key RDF_QUAD  ASC  (<V s_76_13_t3.S$47 rn>, <V s_76_13_t3.O$46 an>)
+             inlined  P =  IRI_ID"...direct/P131"  ,  S = <v k_s_76_13_t1.S$158 Set160 rn>
+            vector param casts: <r s_76_13_t1.S$40 via  Set144>-> <v k_s_76_13_t1.S$158 Set160 rn>
+            
+            time         0% fanout         0 input         0 rows
+            Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:     1e-06 Fanout:         0
+              clear: (<V s_76_13_t4.O$50 an>)
+              clear on continue: (<V s_76_13_t4.O$50 an>)$173 (49 ) 
+            s# 169 49 from DB.DBA.RDF_QUAD by RDF_QUAD_POGS      1e-06 rows   
+            Key RDF_QUAD_POGS  ASC  (<V s_76_13_t4.O$50 an>)
+             inlined  P =  IRI_ID"...direct/P138" 
+            row specs:  S = <v k_s_76_13_t1.S$173 Set175 rn>
+            vector param casts: <r s_76_13_t1.S$40 via  Set154 Set160 Set144>-> <v k_s_76_13_t1.S$173 Set175 rn>
+            
+            time         0% fanout         0 input         0 rows
+            Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:    0.0014 Fanout:         0
+            $187 (52 ) $50 () 
+            s# 183 52 from DB.DBA.RDF_QUAD by RDF_QUAD_POGS     0.0014 rows   
+            Key RDF_QUAD_POGS  ASC  ()
+             inlined  P =  IRI_ID"...direct/P31"  ,  O =  IRI_ID"...Q5"  ,  S = <v cast$187 Set189 rn>
+            vector param casts: <V s_76_13_t4.O$50 an>-> <v cast$187 Set189 rn>
+            
+            time         0% fanout         0 input         0 rows
+            Precode:
+              0: <V __id2in$54 a> := Call __id2in (<r s_76_13_t1.S$40 via  Set183 Set189 Set169 Set175 Set154 Set160 Set144>)
+              5: <V __ro2sq$56 a> := Call __ro2sq (<r s_76_13_t3.O$46 via  Set183 Set189 Set169 Set175>)
+              10: <V ws_endpoint$63 sn> :=  := artm <tag 182 flag 1 c http://wikiba.se/ontology#label>
+              14: <V ws_params$65 x> :=  := artm <r vector$31 via  Set183 Set189 Set169 Set175 Set154 Set160 Set144 Set134>
+              18: <V qtext_template$67 sn> :=  := artm <c  SELECT ?stubvar14
+               WHERE {  <http://www.bigdata.com/rdf#serviceParam> <http://wikiba.se/ontology#language> "fr" . }>
+              22: <V qtext_posmap$69 Nn> :=  := artm <tag 225 c >
+              26: <V param_row$71 x> :=  := artm <r vector$27 via  Set183 Set189 Set169 Set175 Set154 Set160 Set144 Set134>
+              30: <V expected_vars$73 x> :=  := artm <r vector$29 via  Set183 Set189 Set169 Set175 Set154 Set160 Set144 Set134>
+              34: <V proc_ctr$59 i> :=  := artm  0 
+              38:  <none>  := Call __reset_temp ( 140210885805776 )
+              43:  <proc table>  := Call DB.DBA.SPARQL_SINV_IMP (<tag 182 flag 1 c http://wikiba.se/ontology#label>, <r vector$31 via  Set183 Set189 Set169 Set175 Set154 Set160 Set144 Set134>, <c  SELECT ?stubvar14
+               WHERE {  <http://www.bigdata.com/rdf#serviceParam> <http://wikiba.se/ontology#language> "fr" . }>, <tag 225 c >, <r vector$27 via  Set183 Set189 Set169 Set175 Set154 Set160 Set144 Set134>, <r vector$29 via  Set183 Set189 Set169 Set175 Set154 Set160 Set144 Set134>)
+              50: BReturn 0
+              clear: (<V RSET$61 a>, <V proc_ctr$59 i>, <V expected_vars$73 x>, <V param_row$71 x>, <V qtext_posmap$69 Nn>, <V qtext_template$67 sn>, <V ws_params$65 x>, <V ws_endpoint$63 sn>, <V __ro2sq$56 a>, <V __id2in$54 a>, <V $84 x>, <V $83 x>, <V $82 x>)
+              clear on continue: (<V $82 x>, <V $83 x>, <V $84 x>, <V proc_ctr$59 i>, <V RSET$61 a>)$40 (52 49 45 42 ) $46 (52 49 ) 
+            s# 196 58 Key from temp (<V proc_ctr$59 i>, <V RSET$61 a>)
+            
+            
+            After code:
+              0: <V $82 x> :=  := artm <DB_NULL>
+              4: <V $83 x> :=  := artm <DB_NULL>
+              8: <V $84 x> :=  := artm <DB_NULL>
+              12: BReturn 0
+            time         0% fanout         0 input         0 rows
+            $82 () $83 () $84 () $56 (58 ) 
+            s# 208 81 Sort (HASH) set no <r set_no$38 via  Set196 Set183 Set189 Set169 Set175 Set154 Set160 Set144 Set134>(<r __ro2sq$56 via  Set196>) -> (<r __id2in$54 via  Set196>, <V $82 x>, <V $83 x>, <V $84 x>)
+            
+        }
+        time       5.1% fanout         0 input         1 rows
+          clear: (<V $84 x>, <V $83 x>, <V $82 x>, <V __id2in$54 a>, <V personLabel$37 x>, <V cityLabel$36 x>, <V streetLabel$35 x>, <V street$34 a>)
+          clear on continue: (<V $84 x>, <V $83 x>, <V $82 x>, <V __id2in$54 a>, <V personLabel$37 x>, <V cityLabel$36 x>, <V streetLabel$35 x>, <V street$34 a>)
+        s# 223 89 Key from temp (<V __id2in$54 a>, <V $82 x>, <V $83 x>, <V $84 x>)
+        
+        
+        After code:
+          0: <V street$34 a> :=  := artm <V __id2in$54 a>
+          4: <V streetLabel$35 x> :=  := artm <DB_NULL>
+          8: <V cityLabel$36 x> :=  := artm <DB_NULL>
+          12: <V personLabel$37 x> :=  := artm <DB_NULL>
+          16: BReturn 0
+        time         0% fanout         0 input         0 rows
+        
+        s# 129 96 Subquery Select(<V street$34 a>, <V streetLabel$35 x>, <V cityLabel$36 x>, <V personLabel$37 x>)
+          set no: <r set_no$38 via  Set223>
+      }
+    
+    After code:
+      0: <V street$103 a> := Call __ro2sq (<V street$34 a>)
+      5: <V streetLabel$105 a> := Call __ro2sq (<V streetLabel$35 x>)
+      10: <V cityLabel$107 a> := Call __ro2sq (<V cityLabel$36 x>)
+      15: <V personLabel$109 a> := Call __ro2sq (<V personLabel$37 x>)
+      20: BReturn 0
+    time         0% fanout         0 input         0 rows
+    $103 (33 ) $105 (33 ) $107 (33 ) $109 (33 ) $117 (33 118 ) 
+    s# 243 111 Select (<V street$103 a>, <V streetLabel$105 a>, <V cityLabel$107 a>, <V personLabel$109 a>)
+      set no: <r set_ctr$117 via  Set129>
+  }
+Warning: You might have a Cartesian product.
+
+Warning: You might have a Cartesian product.
+
+Warning: You might have a Cartesian product.
+
+
+
+ 1 msec 2% cpu,         1 rnd         0 seq         0% same seg         0% same pg 
+Compilation: 1 msec 0 reads         0% read 0 messages         0% clw

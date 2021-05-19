@@ -1,0 +1,126 @@
+OpenLink Virtuoso Interactive SQL (Virtuoso)
+Version 07.20.3232 as of May 11 2021
+Type HELP; for help and EXIT; to exit.
+Connected to OpenLink Virtuoso
+Driver: 07.20.3232 OpenLink Virtuoso ODBC Driver
+SPARQL_TO_SQL_TEXT
+LONG VARCHAR
+_______________________________________________________________________________
+
+SELECT __id2in ( "s_74_14_t0"."S") AS "lexemeId",
+  __ro2sq ( "s_74_14_t2"."O") AS "lemma",
+  __ro2sq ( "s_74_14_t3"."O") AS "form",
+  __ro2sq ( "s_74_14_t6"."O") AS "word"
+FROM DB.DBA.RDF_QUAD AS "s_74_14_t0"
+  INNER JOIN DB.DBA.RDF_QUAD AS "s_74_14_t1"
+  ON (
+    "s_74_14_t0"."S" = "s_74_14_t1"."S")
+  INNER JOIN DB.DBA.RDF_QUAD AS "s_74_14_t2"
+  ON (
+    "s_74_14_t0"."S" = "s_74_14_t2"."S"
+    AND 
+    "s_74_14_t1"."S" = "s_74_14_t2"."S")
+  INNER JOIN DB.DBA.RDF_QUAD AS "s_74_14_t3"
+  ON (
+    "s_74_14_t0"."S" = "s_74_14_t3"."S"
+    AND 
+    "s_74_14_t1"."S" = "s_74_14_t3"."S"
+    AND 
+    "s_74_14_t2"."S" = "s_74_14_t3"."S")
+  INNER JOIN DB.DBA.RDF_QUAD AS "s_74_14_t4"
+  ON (
+    "s_74_14_t3"."O" = "s_74_14_t4"."S")
+  INNER JOIN DB.DBA.RDF_QUAD AS "s_74_14_t5"
+  ON (
+    "s_74_14_t3"."O" = "s_74_14_t5"."S"
+    AND 
+    "s_74_14_t4"."S" = "s_74_14_t5"."S")
+  INNER JOIN DB.DBA.RDF_QUAD AS "s_74_14_t6"
+  ON (
+    "s_74_14_t3"."O" = "s_74_14_t6"."S"
+    AND 
+    "s_74_14_t4"."S" = "s_74_14_t6"."S"
+    AND 
+    "s_74_14_t5"."S" = "s_74_14_t6"."S")
+WHERE
+  "s_74_14_t0"."P" = __i2idn ( __bft( 'http://purl.org/dc/terms/language' , 1))
+  AND 
+  "s_74_14_t0"."O" = __i2idn ( __bft( 'http://www.wikidata.org/entity/Q9288' , 1))
+  AND 
+  "s_74_14_t1"."P" = __i2idn ( __bft( 'http://wikiba.se/ontology#lexicalCategory' , 1))
+  AND 
+  "s_74_14_t1"."O" = __i2idn ( __bft( 'http://www.wikidata.org/entity/Q1084' , 1))
+  AND 
+  "s_74_14_t2"."P" = __i2idn ( __bft( 'http://wikiba.se/ontology#lemma' , 1))
+  AND 
+  "s_74_14_t3"."P" = __i2idn ( __bft( 'http://www.w3.org/ns/lemon/ontolex#lexicalForm' , 1))
+  AND 
+  "s_74_14_t4"."P" = __i2idn ( __bft( 'http://wikiba.se/ontology#grammaticalFeature' , 1))
+  AND 
+  "s_74_14_t4"."O" = __i2idn ( __bft( 'http://www.wikidata.org/entity/Q499327' , 1))
+  AND 
+  "s_74_14_t5"."P" = __i2idn ( __bft( 'http://wikiba.se/ontology#grammaticalFeature' , 1))
+  AND 
+  "s_74_14_t5"."O" = __i2idn ( __bft( 'http://www.wikidata.org/entity/Q1775415' , 1))
+  AND 
+  "s_74_14_t6"."P" = __i2idn ( __bft( 'http://www.w3.org/ns/lemon/ontolex#representation' , 1))
+OPTION (QUIETCAST)
+
+1 Rows. -- 1 msec.
+
+Done. -- 1 msec.
+
+Done. -- 0 msec.
+
+Done. -- 0 msec.
+result
+LONG VARCHAR
+_______________________________________________________________________________
+
+
+  { 
+    time       7.9% fanout         1 input         1 rows
+    time        92% fanout         0 input         1 rows
+    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:    0.0014 Fanout:         0
+    RDF_QUAD_POGS    0.0014 rows(s_74_14_t0.S$28)
+     P =  IRI_ID"...language"  ,  O =  IRI_ID"...Q9288" 
+    time         0% fanout         0 input         0 rows
+    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:    0.0014 Fanout:         0
+    RDF_QUAD_POGS    0.0014 rows(s_74_14_t1.S$31)
+     inlined  P =  IRI_ID"...lexicalCategory"  ,  O =  IRI_ID"...Q1084"  ,  S = s_74_14_t0.S$28
+    time         0% fanout         0 input         0 rows
+    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:    0.0014 Fanout:         0
+    RDF_QUAD    0.0014 rows(s_74_14_t2.S$35, s_74_14_t2.O$34)
+     inlined  P =  IRI_ID"...lemma"  ,  S = k_s_74_14_t0.S$99
+    time         0% fanout         0 input         0 rows
+    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:     1e-06 Fanout:         0
+    RDF_QUAD_POGS     1e-06 rows(s_74_14_t3.O$38)
+     inlined  P =  IRI_ID"...lexicalForm"  S = k_s_74_14_t0.S$114
+    time         0% fanout         0 input         0 rows
+    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:    0.0014 Fanout:         0
+    RDF_QUAD_POGS    0.0014 rows(s_74_14_t4.S$41)
+     inlined  P =  IRI_ID"...grammaticalFeature"  ,  O =  IRI_ID"...Q499327"  ,  S = k_s_74_14_t3.O$128
+    time         0% fanout         0 input         0 rows
+    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:    0.0014 Fanout:         0
+    RDF_QUAD_POGS    0.0014 rows(s_74_14_t5.S$44)
+     inlined  P =  IRI_ID"...grammaticalFeature"  ,  O =  IRI_ID"...Q1775415"  ,  S = k_s_74_14_t3.O$142
+    time         0% fanout         0 input         0 rows
+    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:    0.0014 Fanout:         0
+    RDF_QUAD    0.0014 rows(s_74_14_t6.O$47)
+     inlined  P =  IRI_ID"...representation"  ,  S = k_s_74_14_t3.O$156
+    
+    After code:
+    0: form$49 := Call __ro2sq (s_74_14_t3.O$38)
+    5: lemma$51 := Call __ro2sq (s_74_14_t2.O$34)
+    10: lexemeId$53 := Call __id2in (s_74_14_t0.S$28)
+    15: word$55 := Call __ro2sq (s_74_14_t6.O$47)
+    20: BReturn 0
+    time         0% fanout         0 input         0 rows
+    Select (lexemeId$53, lemma$51, form$49, word$55)
+  }
+
+
+ 0 msec 2% cpu,         1 rnd         0 seq         0% same seg         0% same pg 
+Compilation: 2 msec 0 reads         0% read 0 messages         0% clw
+
+4 Rows. -- 7 msec.

@@ -1,43 +1,65 @@
   { 
-    Subquery 27 
+      clear: (<V set_ctr$77 in>)
+    s# 80 78 cluster outer seq start, set no <V set_ctr$77 in>    
+    save ctx:()
+      clear: (<V course$32 a>, <V courseName$31 a>, <V person$30 a>, <V first$29 a>, <V last$28 a>, <V set_no$33 i>, <V courseName$69 a>, <V course$67 a>, <V last$65 a>, <V first$63 a>, <V person$61 a>)
+    s# 85 27 Subquery 27 
+      multistate set no = <V set_no$33 i>
       { 
-        Union
+        
+        s# 89 34 Union
           { 
-            RDF_QUAD         8 rows(s_11_4_t0.S$37, s_11_4_t0.O$36)
+              clear: (<V s_11_4_t0.O$36 an>, <V s_11_4_t0.S$37 rn>)
+              clear on continue: (<V s_11_4_t0.O$36 an>, <V s_11_4_t0.S$37 rn>)
+            s# 92 35 from DB.DBA.RDF_QUAD by RDF_QUAD          8 rows   
+            Key RDF_QUAD  ASC  (<V s_11_4_t0.S$37 rn>, <V s_11_4_t0.O$36 an>)
              inlined  P =  IRI_ID"...firstName" 
-            RDF_QUAD         1 rows(s_11_4_t1.O$40)
-             inlined  P =  IRI_ID"...lastName"  ,  S = s_11_4_t0.S$37
+            
+              clear: (<V s_11_4_t1.O$40 an>, <V course$32 a>, <V courseName$31 a>, <V person$30 a>, <V first$29 a>, <V last$28 a>)
+              clear on continue: (<V s_11_4_t1.O$40 an>, <V course$32 a>, <V courseName$31 a>, <V person$30 a>, <V first$29 a>, <V last$28 a>)$36 () $37 () 
+            s# 99 39 from DB.DBA.RDF_QUAD by RDF_QUAD          1 rows   
+            Key RDF_QUAD  ASC  (<V s_11_4_t1.O$40 an>)
+             inlined  P =  IRI_ID"...lastName"  ,  S = <V s_11_4_t0.S$37 rn>
             
             After code:
-            0: last$28 :=  := artm s_11_4_t1.O$40
-            4: first$29 :=  := artm s_11_4_t0.O$36
-            8: person$30 :=  := artm s_11_4_t0.S$37
-            12: courseName$31 :=  := artm <DB_NULL>
-            16: course$32 :=  := artm <DB_NULL>
-            20: BReturn 0
-            Subquery Select(last$28, first$29, person$30, courseName$31, course$32)
+              0: <V last$28 a> :=  := artm <V s_11_4_t1.O$40 an>
+              4: <V first$29 a> :=  := artm <r s_11_4_t0.O$36 via  Set99>
+              8: <V person$30 a> :=  := artm <r s_11_4_t0.S$37 via  Set99>
+              12: <V courseName$31 a> :=  := artm <DB_NULL>
+              16: <V course$32 a> :=  := artm <DB_NULL>
+              20: BReturn 0
+            
+            s# 85 42 Subquery Select(<V last$28 a>, <V first$29 a>, <V person$30 a>, <V courseName$31 a>, <V course$32 a>)
+              set no: <r set_no$33 via  Set99 Set92>
           }
           { 
-            RDF_QUAD_POGS         6 rows(s_15_7_t2.O$51, s_15_7_t2.S$50)
+              clear: (<V s_15_7_t2.S$50 rn>, <V s_15_7_t2.O$51 an>, <V course$32 a>, <V courseName$31 a>, <V person$30 a>, <V first$29 a>, <V last$28 a>)
+              clear on continue: (<V s_15_7_t2.S$50 rn>, <V s_15_7_t2.O$51 an>, <V course$32 a>, <V courseName$31 a>, <V person$30 a>, <V first$29 a>, <V last$28 a>)
+            s# 113 49 from DB.DBA.RDF_QUAD by RDF_QUAD_POGS          6 rows   
+            Key RDF_QUAD_POGS  ASC  (<V s_15_7_t2.O$51 an>, <V s_15_7_t2.S$50 rn>)
              inlined  P =  IRI_ID"...courseTitle" 
             
             After code:
-            0: last$28 :=  := artm <DB_NULL>
-            4: first$29 :=  := artm <DB_NULL>
-            8: person$30 :=  := artm <DB_NULL>
-            12: courseName$31 :=  := artm s_15_7_t2.O$51
-            16: course$32 :=  := artm s_15_7_t2.S$50
-            20: BReturn 0
-            Subquery Select(last$28, first$29, person$30, courseName$31, course$32)
+              0: <V last$28 a> :=  := artm <DB_NULL>
+              4: <V first$29 a> :=  := artm <DB_NULL>
+              8: <V person$30 a> :=  := artm <DB_NULL>
+              12: <V courseName$31 a> :=  := artm <V s_15_7_t2.O$51 an>
+              16: <V course$32 a> :=  := artm <V s_15_7_t2.S$50 rn>
+              20: BReturn 0
+            
+            Subquery Select(<V last$28 a>, <V first$29 a>, <V person$30 a>, <V courseName$31 a>, <V course$32 a>)
+              set no: <r set_no$33 via  Set113>
           }
       }
     
     After code:
-    0: person$61 := Call __id2in (person$30)
-    5: first$63 := Call __ro2sq (first$29)
-    10: last$65 := Call __ro2sq (last$28)
-    15: course$67 := Call __id2in (course$32)
-    20: courseName$69 := Call __ro2sq (courseName$31)
-    25: BReturn 0
-    Select (person$61, first$63, last$65, course$67, courseName$69)
+      0: <V person$61 a> := Call __id2in (<V person$30 a>)
+      5: <V first$63 a> := Call __ro2sq (<V first$29 a>)
+      10: <V last$65 a> := Call __ro2sq (<V last$28 a>)
+      15: <V course$67 a> := Call __id2in (<V course$32 a>)
+      20: <V courseName$69 a> := Call __ro2sq (<V courseName$31 a>)
+      25: BReturn 0
+    $63 (27 ) $65 (27 ) $67 (27 ) $69 (27 ) $77 (27 78 ) $61 (27 ) 
+    s# 123 71 Select (<V person$61 a>, <V first$63 a>, <V last$65 a>, <V course$67 a>, <V courseName$69 a>)
+      set no: <r set_ctr$77 via  Set85>
   }

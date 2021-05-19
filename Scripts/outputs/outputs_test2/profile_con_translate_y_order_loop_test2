@@ -1,0 +1,164 @@
+OpenLink Virtuoso Interactive SQL (Virtuoso)
+Version 07.20.3232 as of May 11 2021
+Type HELP; for help and EXIT; to exit.
+Connected to OpenLink Virtuoso
+Driver: 07.20.3232 OpenLink Virtuoso ODBC Driver
+SPARQL_TO_SQL_TEXT
+LONG VARCHAR
+_______________________________________________________________________________
+
+set_row_count ( DB.DBA.SPARUL_RUN ( vector (
+       (SELECT TOP 1  DB.DBA.SPARQL_INSERT_DICT_CONTENT (
+     __bft( 'urn:sparql:bind:tests' , 1),
+      DB.DBA.SPARQL_CONSTRUCT (
+        vector (),
+        vector (),
+        vector (
+          vector (
+           3,
+           __i2id ( UNAME'http://example.org/book/book1' ),
+           3,
+           __i2id ( UNAME'http://purl.org/dc/elements/1.1/title' ),
+           3,
+           DB.DBA.RDF_MAKE_LONG_OF_SQLVAL ( 'SPARQL Tutorial' )),
+          vector (
+           3,
+           __i2id ( UNAME'http://example.org/book/book1' ),
+           3,
+           __i2id ( UNAME'http://example.org/ns#price' ),
+           3,
+           42),
+          vector (
+           3,
+           __i2id ( UNAME'http://example.org/book/book1' ),
+           3,
+           __i2id ( UNAME'http://example.org/ns#discount' ),
+           3,
+           0.2),
+          vector (
+           3,
+           __i2id ( UNAME'http://example.org/book/book2' ),
+           3,
+           __i2id ( UNAME'http://purl.org/dc/elements/1.1/title' ),
+           3,
+           DB.DBA.RDF_MAKE_LONG_OF_SQLVAL ( 'The Semantic Web' )),
+          vector (
+           3,
+           __i2id ( UNAME'http://example.org/book/book2' ),
+           3,
+           __i2id ( UNAME'http://example.org/ns#price' ),
+           3,
+           23),
+          vector (
+           3,
+           __i2id ( UNAME'http://example.org/book/book2' ),
+           3,
+           __i2id ( UNAME'http://example.org/ns#discount' ),
+           3,
+           0.25)),
+       0),
+     0,
+     NULL,
+     0) AS "callret-0"
+FROM (SELECT TOP 1 1 AS __dummy_retval
+  FROM
+    (SELECT 1 as __stub) AS "stub-s_15_7"
+  ) as "limofs"
+OPTION (QUIETCAST))))
+   )
+
+1 Rows. -- 1 msec.
+
+Done. -- 1 msec.
+
+Done. -- 0 msec.
+
+Done. -- 0 msec.
+result
+LONG VARCHAR
+_______________________________________________________________________________
+
+  { 
+    Precode:
+      0:   { FOR UPDATE
+          time       0.5% fanout         1 input         1 rows
+            clear: (<V ext_sets$91 i>, <V set_ctr$71 in>)
+          s# 92 72 cluster outer seq start, set no <V set_ctr$71 in>    
+          save ctx:()
+          time       7.4% fanout         1 input         1 rows
+          Precode:
+            0: <V vector$27 x> := Call vector ()
+            5: <V DB.DBA.RDF_MAKE_LONG_OF_SQLVAL$29 a> := Call DB.DBA.RDF_MAKE_LONG_OF_SQLVAL (<c SPARQL Tutorial>)
+            12: <V vector$31 x> := Call vector ( 3 ,  IRI_ID"...book1" ,  3 ,  IRI_ID"...1.1/title" ,  3 , <V DB.DBA.RDF_MAKE_LONG_OF_SQLVAL$29 a>)
+            17: <V vector$33 x> := Call vector ( 3 ,  IRI_ID"...book1" ,  3 ,  IRI_ID"...price" ,  3 ,  42 )
+            22: <V vector$35 x> := Call vector ( 3 ,  IRI_ID"...book1" ,  3 ,  IRI_ID"...discount" ,  3 ,  0.2 )
+            27: <V DB.DBA.RDF_MAKE_LONG_OF_SQLVAL$37 a> := Call DB.DBA.RDF_MAKE_LONG_OF_SQLVAL (<c The Semantic Web>)
+            34: <V vector$39 x> := Call vector ( 3 ,  IRI_ID"...book2" ,  3 ,  IRI_ID"...1.1/title" ,  3 , <V DB.DBA.RDF_MAKE_LONG_OF_SQLVAL$37 a>)
+            39: <V vector$41 x> := Call vector ( 3 ,  IRI_ID"...book2" ,  3 ,  IRI_ID"...price" ,  3 ,  23 )
+            44: <V vector$43 x> := Call vector ( 3 ,  IRI_ID"...book2" ,  3 ,  IRI_ID"...discount" ,  3 ,  0.25 )
+            49: <V vector$45 x> := Call vector (<V vector$31 x>, <V vector$33 x>, <V vector$35 x>, <V vector$39 x>, <V vector$41 x>, <V vector$43 x>)
+            54: BReturn 0
+            clear: (<V vector$45 x>, <V vector$43 x>, <V vector$41 x>, <V vector$39 x>, <V DB.DBA.RDF_MAKE_LONG_OF_SQLVAL$37 a>, <V vector$35 x>, <V vector$33 x>, <V vector$31 x>, <V DB.DBA.RDF_MAKE_LONG_OF_SQLVAL$29 a>, <V vector$27 x>)$31 (73 ) $33 (73 ) $35 (73 ) $37 (73 ) $39 (73 ) $41 (73 ) $43 (73 ) $29 (73 ) 
+          s# 144 73 Fork 73 {  
+                clear: (<V __dummy_retval$48 x>, <V set_no$49 i>, <V user_aggr_ret$76 x>)$45 (47 ) $27 (47 ) 
+              s# 103 47 Subquery 47 
+                multistate set no = <V set_no$49 i>
+                { 
+                    clear: (<V __stub$51 in>, <V set_no$52 i>)
+                  s# 107 50 Subquery 50 
+                    multistate set no = <V set_no$52 i>
+                    { 
+                      time       0.4% fanout         1 input         1 rows
+                      Precode:
+                        0: <V __stub$51 in> :=  := artm  1 
+                        4: BReturn 0
+                        clear: (<V __stub$51 in>)
+                      s# 112 59 END Node
+                      time      0.26% fanout         0 input         1 rows
+                      $51 (59 ) 
+                      s# 107 53 Subquery Select(<r __stub$51 via  Set112>)
+                        set no: <r set_no$52 via  Set112>
+                    }
+                  
+                  time      0.21% fanout         1 input         1 rows
+                  
+                  s# 126 69 skip node  1  <none> <r set_no$49 via  Set107>
+                  time     0.051% fanout         0 input         1 rows
+                  
+                  s# 103 61 Subquery Select( <none> )
+                    set no: <r set_no$49 via  Set126 Set107>
+                }
+              
+              After code:
+                0: if (user_aggr_notfirst$74  =  1 ) then 15 else 4 unkn 4
+                4: user_aggr_notfirst$74  :=  := artm  1 
+                8: <V user_aggr_ret$76 x> := Call DB.DBA.SPARQL_CONSTRUCT_INIT (user_aggr_env$75 )
+                15: <V user_aggr_ret$76 x> := Call DB.DBA.SPARQL_CONSTRUCT_ACC (user_aggr_env$75 , <r vector$27 via  Set103>, <r vector$27 via  Set103>, <r vector$45 via  Set103>,  0 )
+                22: BReturn 0
+          }
+          time        91% fanout         1 input         1 rows
+            clear: (<V callret-0$79 a>, <V DB.DBA.SPARQL_CONSTRUCT_FIN$77 x>)
+          s# 151 89 skip node  1  <none> <V set_ctr$71 in>
+          After code:
+            0: <V DB.DBA.SPARQL_CONSTRUCT_FIN$77 x> := Call DB.DBA.SPARQL_CONSTRUCT_FIN (user_aggr_env$75 )
+            7: <V callret-0$79 a> := Call DB.DBA.SPARQL_INSERT_DICT_CONTENT (<tag 182 flag 1 c urn:sparql:bind:tests>, <V DB.DBA.SPARQL_CONSTRUCT_FIN$77 x>,  0 , <DB_NULL>,  0 )
+            14: BReturn 0
+          time      0.14% fanout         0 input         1 rows
+          $71 (89 73 72 ) $79 (89 ) $91 (89 73 72 ) 
+          s# 159 81 Subquery Select(<V callret-0$79 a>)
+            set no: <r set_ctr$71 via  Set151>
+        }
+      
+      8: vector$168  := Call vector (scalar$169 )
+      13: DB.DBA.SPARUL_RUN$167  := Call DB.DBA.SPARUL_RUN (vector$168 )
+      20:  <none>  := Call set_row_count (DB.DBA.SPARUL_RUN$167 )
+      25: BReturn 0
+    
+    END Node
+  }
+
+
+ 1 msec 19% cpu,         6 rnd         0 seq         0% same seg         0% same pg 
+Compilation: 0 msec 0 reads         0% read 0 messages         0% clw
+
+3 Rows. -- 6 msec.

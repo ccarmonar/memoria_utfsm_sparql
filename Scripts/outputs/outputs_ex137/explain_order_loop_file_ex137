@@ -1,0 +1,50 @@
+  { 
+      clear: (<V set_ctr$63 in>)
+    s# 66 64 cluster outer seq start, set no <V set_ctr$63 in>    
+    save ctx:()
+      clear: (<V lastName$28 an>, <V set_no$29 i>)
+    s# 71 27 Subquery 27 
+      multistate set no = <V set_no$29 i>
+      { 
+          clear: (<V s_13_2_t0.O$31 an>, <V lastName$28 an>)
+          clear on continue: (<V s_13_2_t0.O$31 an>, <V lastName$28 an>)
+        s# 75 30 from DB.DBA.RDF_QUAD by RDF_QUAD_POGS          8 rows   
+        Key RDF_QUAD_POGS  ASC  (<V s_13_2_t0.O$31 an>)
+         inlined  P =  IRI_ID"...lastName" 
+        
+        After code:
+          0: <V lastName$28 an> :=  := artm <V s_13_2_t0.O$31 an>
+          4: BReturn 0
+        
+        s# 71 33 Subquery Select(<V lastName$28 an>)
+          set no: <r set_no$29 via  Set75>
+      }
+    
+    Precode:
+      0: <V lastName$40 a> := Call __ro2sq (<V lastName$28 an>)
+      5: BReturn 0
+      clear: (<V courseName$43 an>, <V set_no$44 i>, <V lastName$40 a>, <V courseName$55 a>)$28 (27 ) 
+    s# 85 42 Subquery 42 
+      multistate set no = <V set_no$44 i>
+      { 
+          clear: (<V s_18_6_t1.O$46 an>, <V courseName$43 an>)
+          clear on continue: (<V s_18_6_t1.O$46 an>, <V courseName$43 an>)
+        s# 89 45 from DB.DBA.RDF_QUAD by RDF_QUAD_POGS          6 rows   
+        Key RDF_QUAD_POGS  ASC  (<V s_18_6_t1.O$46 an>)
+         inlined  P =  IRI_ID"...courseTitle" 
+        
+        After code:
+          0: <V courseName$43 an> :=  := artm <V s_18_6_t1.O$46 an>
+          4: BReturn 0
+        
+        s# 85 48 Subquery Select(<V courseName$43 an>)
+          set no: <r set_no$44 via  Set89>
+      }
+    
+    After code:
+      0: <V courseName$55 a> := Call __ro2sq (<V courseName$43 an>)
+      5: BReturn 0
+    $63 (42 27 64 ) $40 (42 ) $55 (42 ) 
+    s# 99 57 Select (<r lastName$40 via  Set85>, <V courseName$55 a>)
+      set no: <r set_ctr$63 via  Set85 Set71>
+  }

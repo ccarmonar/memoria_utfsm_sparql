@@ -2,41 +2,87 @@ Richard	Mutt	32 Main St.	Springfield	Connecticut	49345
 Richard	Mutt	32 Main St.	Springfield	Connecticut	49345	
 
   { 
-    time      0.86% fanout         1 input         1 rows
-    time        13% fanout         2 input         1 rows
-    RDF_QUAD         1 rows(s_17_14_t2.S$29, s_17_14_t2.O$28)
+    time       1.3% fanout         1 input         1 rows
+      clear: (<V set_ctr$71 in>)
+    s# 74 72 cluster outer seq start, set no <V set_ctr$71 in>    
+    save ctx:()
+    time        18% fanout         2 input         1 rows
+      clear: (<V s_17_14_t2.O$28 an>, <V s_17_14_t2.S$29 rn>)
+      clear on continue: (<V s_17_14_t2.O$28 an>, <V s_17_14_t2.S$29 rn>)
+    s# 83 27 from DB.DBA.RDF_QUAD by RDF_QUAD          2 rows   
+    Key RDF_QUAD  ASC  (<V s_17_14_t2.S$29 rn>, <V s_17_14_t2.O$28 an>)
      inlined  P =  IRI_ID"...address" 
-    time       5.7% fanout         1 input         2 rows
-    RDF_QUAD         1 rows(s_17_14_t0.S$33, s_17_14_t0.O$32)
-     inlined  P =  IRI_ID"...firstName"  ,  S = s_17_14_t2.S$29
-    time         3% fanout         1 input         2 rows
-    RDF_QUAD         1 rows(s_17_14_t1.O$36)
-     inlined  P =  IRI_ID"...lastName"  ,  S = s_17_14_t0.S$33
-    time       5.4% fanout         1 input         2 rows
-    RDF_QUAD         1 rows(s_17_14_t6.S$40, s_17_14_t6.O$39)
-     inlined  P =  IRI_ID"...region"  ,  S = k_s_17_14_t2.O$119
-    time       3.7% fanout         1 input         2 rows
-    RDF_QUAD         1 rows(s_17_14_t5.S$44, s_17_14_t5.O$43)
-     inlined  P =  IRI_ID"...streetAddress"  ,  S = k_s_17_14_t2.O$134
-    time       4.2% fanout         1 input         2 rows
-    RDF_QUAD         1 rows(s_17_14_t4.S$48, s_17_14_t4.O$47)
-     inlined  P =  IRI_ID"...city"  ,  S = k_s_17_14_t2.O$149
-    time        64% fanout         1 input         2 rows
-    RDF_QUAD         1 rows(s_17_14_t3.O$51)
-     inlined  P =  IRI_ID"...postalCode"  ,  S = k_s_17_14_t2.O$164
+    
+    time       7.4% fanout         1 input         2 rows
+      clear: (<V s_17_14_t0.O$32 an>, <V s_17_14_t0.S$33 rn>)
+      clear on continue: (<V s_17_14_t0.O$32 an>, <V s_17_14_t0.S$33 rn>)$29 () 
+    s# 94 31 from DB.DBA.RDF_QUAD by RDF_QUAD          1 rows   
+    Key RDF_QUAD  ASC  (<V s_17_14_t0.S$33 rn>, <V s_17_14_t0.O$32 an>)
+     inlined  P =  IRI_ID"...firstName"  ,  S = <V s_17_14_t2.S$29 rn>
+    
+    time       3.8% fanout         1 input         2 rows
+      clear: (<V s_17_14_t1.O$36 an>)
+      clear on continue: (<V s_17_14_t1.O$36 an>)$33 () 
+    s# 105 35 from DB.DBA.RDF_QUAD by RDF_QUAD          1 rows   
+    Key RDF_QUAD  ASC  (<V s_17_14_t1.O$36 an>)
+     inlined  P =  IRI_ID"...lastName"  ,  S = <V s_17_14_t0.S$33 rn>
+    
+    time         7% fanout         1 input         2 rows
+      clear: (<V s_17_14_t6.O$39 an>, <V s_17_14_t6.S$40 rn>)
+      clear on continue: (<V s_17_14_t6.S$40 rn>, <V s_17_14_t6.O$39 an>)$119 (38 ) 
+    s# 115 38 from DB.DBA.RDF_QUAD by RDF_QUAD          1 rows   
+    Key RDF_QUAD  ASC  (<V s_17_14_t6.S$40 rn>, <V s_17_14_t6.O$39 an>)
+     inlined  P =  IRI_ID"...region"  ,  S = <v k_s_17_14_t2.O$119 Set121 rn>
+    vector param casts: <r s_17_14_t2.O$28 via  Set105 Set94>-> <v k_s_17_14_t2.O$119 Set121 rn>
+    
+    time       4.9% fanout         1 input         2 rows
+      clear: (<V s_17_14_t5.O$43 an>, <V s_17_14_t5.S$44 rn>)
+      clear on continue: (<V s_17_14_t5.S$44 rn>, <V s_17_14_t5.O$43 an>)$134 (42 ) 
+    s# 130 42 from DB.DBA.RDF_QUAD by RDF_QUAD          1 rows   
+    Key RDF_QUAD  ASC  (<V s_17_14_t5.S$44 rn>, <V s_17_14_t5.O$43 an>)
+     inlined  P =  IRI_ID"...streetAddress"  ,  S = <v k_s_17_14_t2.O$134 Set136 rn>
+    vector param casts: <r s_17_14_t2.O$28 via  Set115 Set121 Set105 Set94>-> <v k_s_17_14_t2.O$134 Set136 rn>
+    
+    time       5.6% fanout         1 input         2 rows
+      clear: (<V s_17_14_t4.O$47 an>, <V s_17_14_t4.S$48 rn>)
+      clear on continue: (<V s_17_14_t4.S$48 rn>, <V s_17_14_t4.O$47 an>)$149 (46 ) 
+    s# 145 46 from DB.DBA.RDF_QUAD by RDF_QUAD          1 rows   
+    Key RDF_QUAD  ASC  (<V s_17_14_t4.S$48 rn>, <V s_17_14_t4.O$47 an>)
+     inlined  P =  IRI_ID"...city"  ,  S = <v k_s_17_14_t2.O$149 Set151 rn>
+    vector param casts: <r s_17_14_t2.O$28 via  Set130 Set136 Set115 Set121 Set105 Set94>-> <v k_s_17_14_t2.O$149 Set151 rn>
+    
+    time        52% fanout         1 input         2 rows
+      clear: (<V s_17_14_t3.O$51 an>, <V postalCode$63 a>, <V firstName$61 a>, <V lastName$59 a>, <V streetAddress$57 a>, <V city$55 a>, <V region$53 a>)
+      clear on continue: (<V region$53 a>, <V city$55 a>, <V streetAddress$57 a>, <V lastName$59 a>, <V firstName$61 a>, <V postalCode$63 a>, <V s_17_14_t3.O$51 an>)$32 (46 42 38 35 ) $36 (46 42 38 ) $39 (46 42 ) $164 (50 ) $43 (46 ) $47 () $28 (46 42 38 35 31 ) 
+    s# 160 50 from DB.DBA.RDF_QUAD by RDF_QUAD          1 rows   
+    Key RDF_QUAD  ASC  (<V s_17_14_t3.O$51 an>)
+     inlined  P =  IRI_ID"...postalCode"  ,  S = <v k_s_17_14_t2.O$164 Set166 rn>
+    vector param casts: <r s_17_14_t2.O$28 via  Set145 Set151 Set130 Set136 Set115 Set121 Set105 Set94>-> <v k_s_17_14_t2.O$164 Set166 rn>
     
     After code:
-    0: region$53 := Call __ro2sq (s_17_14_t6.O$39)
-    5: city$55 := Call __ro2sq (s_17_14_t4.O$47)
-    10: streetAddress$57 := Call __ro2sq (s_17_14_t5.O$43)
-    15: lastName$59 := Call __ro2sq (s_17_14_t1.O$36)
-    20: firstName$61 := Call __ro2sq (s_17_14_t0.O$32)
-    25: postalCode$63 := Call __ro2sq (s_17_14_t3.O$51)
-    30: BReturn 0
-    time      0.13% fanout         0 input         2 rows
-    Select (firstName$61, lastName$59, streetAddress$57, city$55, region$53, postalCode$63)
+      0: <V region$53 a> := Call __ro2sq (<r s_17_14_t6.O$39 via  Set160 Set166 Set145 Set151 Set130 Set136>)
+      5: <V city$55 a> := Call __ro2sq (<r s_17_14_t4.O$47 via  Set160 Set166>)
+      10: <V streetAddress$57 a> := Call __ro2sq (<r s_17_14_t5.O$43 via  Set160 Set166 Set145 Set151>)
+      15: <V lastName$59 a> := Call __ro2sq (<r s_17_14_t1.O$36 via  Set160 Set166 Set145 Set151 Set130 Set136 Set115 Set121>)
+      20: <V firstName$61 a> := Call __ro2sq (<r s_17_14_t0.O$32 via  Set160 Set166 Set145 Set151 Set130 Set136 Set115 Set121 Set105>)
+      25: <V postalCode$63 a> := Call __ro2sq (<V s_17_14_t3.O$51 an>)
+      30: BReturn 0
+    time      0.16% fanout         0 input         2 rows
+    $63 () $71 (50 46 42 38 35 31 27 72 ) $53 () $55 () $57 () $59 () $61 () 
+    s# 174 65 Select (<V firstName$61 a>, <V lastName$59 a>, <V streetAddress$57 a>, <V city$55 a>, <V region$53 a>, <V postalCode$63 a>)
+      set no: <r set_ctr$71 via  Set160 Set166 Set145 Set151 Set130 Set136 Set115 Set121 Set105 Set94 Set83>
   }
+Warning: You might have a Cartesian product.
+
+Warning: You might have a Cartesian product.
+
+Warning: You might have a Cartesian product.
+
+Warning: You might have a Cartesian product.
+
+Warning: You might have a Cartesian product.
 
 
- 0 msec 2% cpu,        25 rnd         1 seq   23.0769% same seg   23.0769% same pg 
-Compilation: 8 msec 0 reads         0% read 0 messages         0% clw
+
+ 1 msec 3% cpu,        25 rnd         1 seq   23.0769% same seg   23.0769% same pg 
+Compilation: 4 msec 0 reads         0% read 0 messages         0% clw

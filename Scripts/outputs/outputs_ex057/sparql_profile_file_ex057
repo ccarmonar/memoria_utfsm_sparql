@@ -9,32 +9,55 @@ Katherine	Duncan
 
   { 
     time       1.7% fanout         1 input         1 rows
-    time        29% fanout         8 input         1 rows
-    RDF_QUAD         8 rows(t2.S$29, t2.O$28)
+      clear: (<V set_ctr$38 in>)
+    s# 63 39 cluster outer seq start, set no <V set_ctr$38 in>    
+    save ctx:()
+    time        26% fanout         8 input         1 rows
+      clear: (<V t2.O$28 an>, <V t2.S$29 rn>)
+      clear on continue: (<V t2.O$28 an>, <V t2.S$29 rn>)
+    s# 72 27 from DB.DBA.RDF_QUAD by RDF_QUAD          8 rows   
+    Key RDF_QUAD  ASC  (<V t2.S$29 rn>, <V t2.O$28 an>)
      inlined  P =  IRI_ID"...lastName" 
-    time        12% fanout         1 input         8 rows
-    RDF_QUAD         1 rows(t1.S$33, t1.O$32)
-     inlined  P =  IRI_ID"...firstName"  ,  S = t2.S$29
-    time      0.63% fanout         1 input         8 rows
-    outer {
-        time       9.6% fanout     0.125 input         8 rows
-        RDF_QUAD         1 rows(t4.O$36)
-         inlined  P =  IRI_ID"...workTel"  ,  S = k_t2.S$107
-        time        46% fanout         8 input         1 rows
-      } /* end of outer */
-    set_ctr$41
-     out: (t4.O$36)
-     shadow: ( <none> )
     
+    time        13% fanout         1 input         8 rows
+      clear: (<V t1.O$32 an>, <V t1.S$33 rn>)
+      clear on continue: (<V t1.O$32 an>, <V t1.S$33 rn>)
+    s# 83 31 from DB.DBA.RDF_QUAD by RDF_QUAD          1 rows   
+    Key RDF_QUAD  ASC  (<V t1.S$33 rn>, <V t1.O$32 an>)
+     inlined  P =  IRI_ID"...firstName"  ,  S = <V t2.S$29 rn>
+    
+    time       0.7% fanout         1 input         8 rows
+      clear: (<V set_ctr$41 i>)
+    s# 94 45 cluster outer seq start, set no <V set_ctr$41 i>    
+    save ctx:()
+    time        10% fanout     0.125 input         8 rows
+      clear: (<V t4.O$36 a>)
+      clear on continue: (<V t4.O$36 a>)$107 (35 ) $29 (45 31 ) 
+    s# 103 35 from DB.DBA.RDF_QUAD by RDF_QUAD          1 rows   
+    Key RDF_QUAD  ASC  (<V t4.O$36 a>)
+     inlined  P =  IRI_ID"...workTel"  ,  S = <v k_t2.S$107 Set109 rn>
+    vector param casts: <r t2.S$29 via  Set94 Set83>-> <v k_t2.S$107 Set109 rn>
+    
+    time        48% fanout         8 input         1 rows
+      clear: (<V workTel$54 a>, <V first$52 a>, <V last$50 a>)$32 (35 45 ) $36 () $41 (35 45 ) $28 (35 45 31 ) 
+    s# 117 40 end of outer seq <r set_ctr$41 via  Set103 Set109>
+     out: (<V t4.O$36 a>)
+     shadow: ( <none> )
     After code:
-    0: last$50 := Call __ro2sq (t2.O$28)
-    5: first$52 := Call __ro2sq (t1.O$32)
-    10: workTel$54 := Call __ro2sq (t4.O$36)
-    15: BReturn 0
-    time       0.3% fanout         0 input         8 rows
-    Select (first$52, last$50, workTel$54)
+      0: <V last$50 a> := Call __ro2sq (<r t2.O$28 via  Set117 Set83>)
+      5: <V first$52 a> := Call __ro2sq (<r t1.O$32 via  Set117>)
+      10: <V workTel$54 a> := Call __ro2sq (<V t4.O$36 a>)
+      15: BReturn 0
+    time      0.42% fanout         0 input         8 rows
+    $38 (40 35 45 31 27 39 ) $50 (40 ) $52 (40 ) $54 (40 ) 
+    s# 125 56 Select (<V first$52 a>, <V last$50 a>, <V workTel$54 a>)
+      set no: <r set_ctr$38 via  Set117 Set83 Set72>
   }
+Warning: You might have a Cartesian product.
+
+Warning: You might have a Cartesian product.
 
 
- 0 msec 20% cpu,        34 rnd         7 seq        40% same seg   25.7143% same pg 
+
+ 0 msec 17% cpu,        34 rnd         7 seq        40% same seg   25.7143% same pg 
 Compilation: 1 msec 0 reads         0% read 0 messages         0% clw

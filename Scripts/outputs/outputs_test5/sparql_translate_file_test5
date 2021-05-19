@@ -1,0 +1,88 @@
+ SELECT  __ro2sq ("s_18_9_rbc"."lo_revenue") AS "lo_revenue", __ro2sq ("s_18_9_rbc"."d_year") AS "d_year", __ro2sq ("s_18_9_rbc"."p_brand1") AS "p_brand1" FROM (SELECT  SUM (
+       "s_18_9_t4"."O") AS "lo_revenue",
+    __ro2sq ( "s_18_9_t5"."O") AS "d_year",
+    __ro2sq ( "s_18_9_t6"."O") AS "p_brand1"
+  FROM DB.DBA.RDF_QUAD AS "s_18_9_t0"
+    INNER JOIN DB.DBA.RDF_QUAD AS "s_18_9_t1"
+    ON (
+      "s_18_9_t0"."S" = "s_18_9_t1"."S")
+    INNER JOIN DB.DBA.RDF_QUAD AS "s_18_9_t2"
+    ON (
+      "s_18_9_t0"."S" = "s_18_9_t2"."S"
+      AND 
+      "s_18_9_t1"."S" = "s_18_9_t2"."S")
+    INNER JOIN DB.DBA.RDF_QUAD AS "s_18_9_t3"
+    ON (
+      "s_18_9_t0"."S" = "s_18_9_t3"."S"
+      AND 
+      "s_18_9_t1"."S" = "s_18_9_t3"."S"
+      AND 
+      "s_18_9_t2"."S" = "s_18_9_t3"."S")
+    INNER JOIN DB.DBA.RDF_QUAD AS "s_18_9_t4"
+    ON (
+      "s_18_9_t0"."S" = "s_18_9_t4"."S"
+      AND 
+      "s_18_9_t1"."S" = "s_18_9_t4"."S"
+      AND 
+      "s_18_9_t2"."S" = "s_18_9_t4"."S"
+      AND 
+      "s_18_9_t3"."S" = "s_18_9_t4"."S")
+    INNER JOIN DB.DBA.RDF_QUAD AS "s_18_9_t5"
+    ON (
+      "s_18_9_t1"."O" = "s_18_9_t5"."S")
+    INNER JOIN DB.DBA.RDF_QUAD AS "s_18_9_t6"
+    ON (
+      "s_18_9_t2"."O" = "s_18_9_t6"."S")
+    INNER JOIN DB.DBA.RDF_QUAD AS "s_18_9_t7"
+    ON (
+      "s_18_9_t2"."O" = "s_18_9_t7"."S"
+      AND 
+      "s_18_9_t6"."S" = "s_18_9_t7"."S")
+    INNER JOIN DB.DBA.RDF_QUAD AS "s_18_9_t8"
+    ON (
+      "s_18_9_t3"."O" = "s_18_9_t8"."S")
+  WHERE
+    "s_18_9_t0"."G" = __i2idn ( __bft( 'http://lod2.eu/schemas/rdfh-inst#ssb1_ttl_qb' , 1))
+    AND 
+    "s_18_9_t0"."P" = __i2idn ( __bft( 'http://www.w3.org/1999/02/22-rdf-syntax-ns#type' , 1))
+    AND 
+    "s_18_9_t0"."O" = __i2idn ( __bft( 'http://lod2.eu/schemas/rdfh#lineorder' , 1))
+    AND 
+    "s_18_9_t1"."G" = __i2idn ( __bft( 'http://lod2.eu/schemas/rdfh-inst#ssb1_ttl_qb' , 1))
+    AND 
+    "s_18_9_t1"."P" = __i2idn ( __bft( 'http://lod2.eu/schemas/rdfh#lo_orderdate' , 1))
+    AND 
+    "s_18_9_t2"."G" = __i2idn ( __bft( 'http://lod2.eu/schemas/rdfh-inst#ssb1_ttl_qb' , 1))
+    AND 
+    "s_18_9_t2"."P" = __i2idn ( __bft( 'http://lod2.eu/schemas/rdfh#lo_partkey' , 1))
+    AND 
+    "s_18_9_t3"."G" = __i2idn ( __bft( 'http://lod2.eu/schemas/rdfh-inst#ssb1_ttl_qb' , 1))
+    AND 
+    "s_18_9_t3"."P" = __i2idn ( __bft( 'http://lod2.eu/schemas/rdfh#lo_suppkey' , 1))
+    AND 
+    "s_18_9_t4"."G" = __i2idn ( __bft( 'http://lod2.eu/schemas/rdfh-inst#ssb1_ttl_qb' , 1))
+    AND 
+    "s_18_9_t4"."P" = __i2idn ( __bft( 'http://lod2.eu/schemas/rdfh#lo_revenue' , 1))
+    AND 
+    "s_18_9_t5"."G" = __i2idn ( __bft( 'http://lod2.eu/schemas/rdfh-inst#ssb1_ttl_qb' , 1))
+    AND 
+    "s_18_9_t5"."P" = __i2idn ( __bft( 'http://lod2.eu/schemas/rdfh#d_year' , 1))
+    AND 
+    "s_18_9_t6"."G" = __i2idn ( __bft( 'http://lod2.eu/schemas/rdfh-inst#ssb1_ttl_qb' , 1))
+    AND 
+    "s_18_9_t6"."P" = __i2idn ( __bft( 'http://lod2.eu/schemas/rdfh#p_brand1' , 1))
+    AND 
+    "s_18_9_t7"."G" = __i2idn ( __bft( 'http://lod2.eu/schemas/rdfh-inst#ssb1_ttl_qb' , 1))
+    AND 
+    "s_18_9_t7"."P" = __i2idn ( __bft( 'http://lod2.eu/schemas/rdfh#p_category' , 1))
+    AND 
+    "s_18_9_t7"."O" = DB.DBA.RDF_OBJ_OF_SQLVAL ( 'MFGR#12' )
+    AND 
+    "s_18_9_t8"."G" = __i2idn ( __bft( 'http://lod2.eu/schemas/rdfh-inst#ssb1_ttl_qb' , 1))
+    AND 
+    "s_18_9_t8"."P" = __i2idn ( __bft( 'http://lod2.eu/schemas/rdfh#s_region' , 1))
+    AND 
+    "s_18_9_t8"."O" = DB.DBA.RDF_OBJ_OF_SQLVAL ( 'AMERICA' )
+  GROUP BY "s_18_9_t5"."O", "s_18_9_t6"."O"
+  ORDER BY __ro2sq ( "s_18_9_t5"."O") ASC, __ro2sq ( "s_18_9_t6"."O") ASC
+OPTION (QUIETCAST)) AS "s_18_9_rbc"

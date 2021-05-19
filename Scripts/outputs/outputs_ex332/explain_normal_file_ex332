@@ -1,0 +1,56 @@
+  { 
+      clear: (<V set_ctr$76 in>)
+    s# 79 77 cluster outer seq start, set no <V set_ctr$76 in>    
+    save ctx:()
+      clear: (<V g$31 a>, <V o$30 a>, <V p$29 rn>, <V s$28 rn>, <V set_no$32 i>, <V o$68 a>, <V p$66 a>, <V s$64 a>, <V g$62 a>)
+    s# 84 27 Subquery 27 
+      multistate set no = <V set_no$32 i>
+      { 
+        
+        s# 88 33 Union
+          { 
+              clear: (<V s_7_2_t0-u8.O$35 an>, <V s_7_2_t0-u8.P$36 rn>, <V s_7_2_t0-u8.S$37 rn>, <V g$31 a>, <V o$30 a>, <V p$29 rn>, <V s$28 rn>)
+              clear on continue: (<V s_7_2_t0-u8.O$35 an>, <V s_7_2_t0-u8.P$36 rn>, <V s_7_2_t0-u8.S$37 rn>, <V g$31 a>, <V o$30 a>, <V p$29 rn>, <V s$28 rn>)
+            s# 91 34 from DB.DBA.RDF_QUAD by RDF_QUAD_POGS      7e+03 rows   
+            Key RDF_QUAD_POGS  ASC  (<V s_7_2_t0-u8.S$37 rn>, <V s_7_2_t0-u8.P$36 rn>, <V s_7_2_t0-u8.O$35 an>)
+            
+            
+            After code:
+              0: <V s$28 rn> :=  := artm <V s_7_2_t0-u8.S$37 rn>
+              4: <V p$29 rn> :=  := artm <V s_7_2_t0-u8.P$36 rn>
+              8: <V o$30 a> :=  := artm <V s_7_2_t0-u8.O$35 an>
+              12: <V g$31 a> :=  := artm <DB_NULL>
+              16: BReturn 0
+            
+            s# 84 40 Subquery Select(<V s$28 rn>, <V p$29 rn>, <V o$30 a>, <V g$31 a>)
+              set no: <r set_no$32 via  Set91>
+          }
+          { 
+              clear: (<V s_8_4_t1.G$48 rn>, <V s_8_4_t1.O$49 an>, <V s_8_4_t1.P$50 rn>, <V s_8_4_t1.S$51 rn>, <V g$31 a>, <V o$30 a>, <V p$29 rn>, <V s$28 rn>)
+              clear on continue: (<V s_8_4_t1.G$48 rn>, <V s_8_4_t1.O$49 an>, <V s_8_4_t1.P$50 rn>, <V s_8_4_t1.S$51 rn>, <V g$31 a>, <V o$30 a>, <V p$29 rn>, <V s$28 rn>)
+            s# 106 47 from DB.DBA.RDF_QUAD by RDF_QUAD_POGS      7e+03 rows   
+            Key RDF_QUAD_POGS  ASC  (<V s_8_4_t1.S$51 rn>, <V s_8_4_t1.P$50 rn>, <V s_8_4_t1.O$49 an>, <V s_8_4_t1.G$48 rn>)
+            
+            
+            After code:
+              0: <V s$28 rn> :=  := artm <V s_8_4_t1.S$51 rn>
+              4: <V p$29 rn> :=  := artm <V s_8_4_t1.P$50 rn>
+              8: <V o$30 a> :=  := artm <V s_8_4_t1.O$49 an>
+              12: <V g$31 a> :=  := artm <V s_8_4_t1.G$48 rn>
+              16: BReturn 0
+            
+            Subquery Select(<V s$28 rn>, <V p$29 rn>, <V o$30 a>, <V g$31 a>)
+              set no: <r set_no$32 via  Set106>
+          }
+      }
+    
+    After code:
+      0: <V g$62 a> := Call __id2in (<V g$31 a>)
+      5: <V s$64 a> := Call __id2in (<V s$28 rn>)
+      10: <V p$66 a> := Call __id2in (<V p$29 rn>)
+      15: <V o$68 a> := Call __ro2sq (<V o$30 a>)
+      20: BReturn 0
+    $62 (27 ) $64 (27 ) $66 (27 ) $68 (27 ) $76 (27 77 ) 
+    s# 118 70 Select (<V g$62 a>, <V s$64 a>, <V p$66 a>, <V o$68 a>)
+      set no: <r set_ctr$76 via  Set84>
+  }
