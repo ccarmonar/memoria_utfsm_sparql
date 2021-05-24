@@ -134,6 +134,14 @@ SET BLOBS ON;
 profile('SPARQL DEFINE sql:select-option \"order,loop\" $str_sparql');
 "
 
+explain_parse_tree="
+__dbf_set('enable_qr_comment', 1);             
+__dbf_set('dbf_explain_level', 3);
+dbg_obj_print('$1');
+select dbg_obj_print(explain('sparql $str_sparql',-2));
+
+"
+
 echo "Executando isql";
 echo -e $system_password | sudo -S $path_virtuoso_isql $isql_host $isql_username $isql_password exec="$sparql_execution"
 echo -e $system_password | sudo -S $path_virtuoso_isql $isql_host $isql_username $isql_password exec="$sparql_execution" > outputs_$filename/sparql_execution_file_$filename
@@ -143,6 +151,7 @@ echo -e $system_password | sudo -S $path_virtuoso_isql $isql_host $isql_username
 echo -e $system_password | sudo -S $path_virtuoso_isql $isql_host $isql_username $isql_password VERBOSE=OFF BANNER=OFF exec="$profile_normal" > outputs_$filename/profile_normal_file_$filename
 echo -e $system_password | sudo -S $path_virtuoso_isql $isql_host $isql_username $isql_password VERBOSE=OFF BANNER=OFF exec="$profile_loop" > outputs_$filename/profile_loop_file_$filename
 echo -e $system_password | sudo -S $path_virtuoso_isql $isql_host $isql_username $isql_password VERBOSE=OFF BANNER=OFF exec="$profile_order_loop" > outputs_$filename/profile_order_loop_file_$filename
+
 echo -e $system_password | sudo -S $path_virtuoso_isql $isql_host $isql_username $isql_password exec="$profile_con_translate" > outputs_$filename/profile_con_translate_$filename
 echo -e $system_password | sudo -S $path_virtuoso_isql $isql_host $isql_username $isql_password exec="$profile_con_translate_y_order_loop" > outputs_$filename/profile_con_translate_y_order_loop_$filename
 echo -e $system_password | sudo -S $path_virtuoso_isql $isql_host $isql_username $isql_password exec="$profile_con_translate_explain_bajo" > outputs_$filename/profile_con_translate_explain_bajo_$filename
@@ -172,4 +181,5 @@ SET PROFILE OFF;
 echo -e $system_password | sudo -S $path_virtuoso_isql $isql_host $isql_username $isql_password VERBOSE=OFF BANNER=OFF exec="$sparql_explain" > outputs_$filename/sparql_explain_file_$filename
 echo -e $system_password | sudo -S $path_virtuoso_isql $isql_host $isql_username $isql_password VERBOSE=OFF BANNER=OFF exec="$sparql_profile" > outputs_$filename/sparql_profile_file_$filename
 
-
+echo "PARSE TREE";
+echo -e $system_password | sudo -S $path_virtuoso_isql $isql_host $isql_username $isql_password exec="$explain_parse_tree"

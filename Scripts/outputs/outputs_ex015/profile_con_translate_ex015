@@ -29,9 +29,9 @@ WHERE
   "s_12_6_t2"."P" = __i2idn ( __bft( 'http://learningsparql.com/ns/addressbook#email' , 1))
 OPTION (QUIETCAST)
 
-1 Rows. -- 1 msec.
+1 Rows. -- 0 msec.
 
-Done. -- 1 msec.
+Done. -- 0 msec.
 
 Done. -- 1 msec.
 
@@ -44,11 +44,11 @@ c.ellis@usairwaysgroup.com
 craigellis@yahoo.com	
 
   { 
-    time       2.3% fanout         1 input         1 rows
+    time       2.2% fanout         1 input         1 rows
       clear: (<V set_ctr$48 in>)
     s# 51 49 cluster outer seq start, set no <V set_ctr$48 in>    
     save ctx:()
-    time        32% fanout         2 input         1 rows
+    time        34% fanout         2 input         1 rows
     Precode:
       0: <V __rdflit$27 x> := Call __rdflit (rdflit1070)
       5: <V __rdflit$29 x> := Call __rdflit (rdflit1071)
@@ -59,14 +59,14 @@ craigellis@yahoo.com
     Key RDF_QUAD_POGS  ASC  (<V s_12_6_t1.S$32 rn>)
      P =  IRI_ID"...lastName"  ,  O = rdflit1071
     
-    time        16% fanout         1 input         2 rows
+    time        14% fanout         1 input         2 rows
       clear: (<V s_12_6_t0.S$35 rn>)
       clear on continue: (<V s_12_6_t0.S$35 rn>)$32 () 
     s# 70 34 from DB.DBA.RDF_QUAD by RDF_QUAD_POGS       0.25 rows   
     Key RDF_QUAD_POGS  ASC  (<V s_12_6_t0.S$35 rn>)
      inlined  P =  IRI_ID"...firstName"  ,  O = rdflit1070 ,  S = <V s_12_6_t1.S$32 rn>
     
-    time        49% fanout         1 input         2 rows
+    time        50% fanout         1 input         2 rows
       clear: (<V s_12_6_t2.O$38 an>, <V craigEmail$40 a>)
       clear on continue: (<V s_12_6_t2.O$38 an>, <V craigEmail$40 a>)$35 () 
     s# 80 37 from DB.DBA.RDF_QUAD by RDF_QUAD        1.2 rows   
@@ -76,7 +76,7 @@ craigellis@yahoo.com
     After code:
       0: <V craigEmail$40 a> := Call __ro2sq (<V s_12_6_t2.O$38 an>)
       5: BReturn 0
-    time       0.2% fanout         0 input         2 rows
+    time      0.19% fanout         0 input         2 rows
     $40 () $48 (37 34 31 49 ) 
     s# 90 42 Select (<V craigEmail$40 a>)
       set no: <r set_ctr$48 via  Set80 Set70 Set60>
@@ -85,7 +85,7 @@ Warning: You might have a Cartesian product.
 
 
 
- 1 msec 8% cpu,         7 rnd         2 seq        25% same seg      12.5% same pg 
+ 0 msec 8% cpu,         7 rnd         2 seq        25% same seg      12.5% same pg 
 Compilation: 1 msec 0 reads         0% read 0 messages         0% clw
 
 4 Rows. -- 11 msec.

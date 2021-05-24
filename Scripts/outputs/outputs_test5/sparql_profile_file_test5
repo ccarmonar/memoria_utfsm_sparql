@@ -1,6 +1,6 @@
 
   { 
-    time       6.5% fanout         1 input         1 rows
+    time       7.8% fanout         1 input         1 rows
       clear: (<V set_ctr$148 in>)
     s# 151 149 cluster outer seq start, set no <V set_ctr$148 in>    
     save ctx:()
@@ -12,19 +12,19 @@
     s# 160 31 Subquery 31 
       multistate set no = <V set_no$35 i>
       { 
-        time       5.8% fanout         1 input         1 rows
+        time       4.2% fanout         1 input         1 rows
         
         s# 311 116 Fork 116 {  
                 
             save ctx:()
               set no = <V set_no$35 i> array  <none>  save: 
-            time       3.3% fanout         1 input         1 rows
+            time       3.6% fanout         1 input         1 rows
             
             s# 286 69 Fork 69 {  
                     
                 save ctx:()
                   set no = <V set_no$35 i> array  <none>  save: 
-                time        77% fanout         0 input         1 rows
+                time        75% fanout         0 input         1 rows
                 Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:   2.2e-06 Fanout:         0
                   clear: (<V s_18_9_t4.O$37 an>, <V s_18_9_t4.S$38 rn>)
                   clear on continue: (<V s_18_9_t4.O$37 an>, <V s_18_9_t4.S$38 rn>)
@@ -125,7 +125,7 @@
                 s# 278 70 Sort (HASH) set no <r set_no$35 via  Set264 Set270 Set251 Set257 Set238 Set244 Set224 Set230 Set209 Set215 Set198 Set188 Set177 Set166>(<V s_18_9_t5.O$65 an>, <r s_18_9_t6.O$52 via  Set264 Set270 Set251 Set257 Set238 Set244 Set224 Set230>) -> (<r s_18_9_t4.O$37 via  Set264 Set270 Set251 Set257 Set238 Set244 Set224 Set230 Set209 Set215 Set198 Set188 Set177>, <r __ro2sq$62 via  Set264 Set270>, <V __ro2sq$67 a>) up to   4.3e+06 distinct
                 
             }
-            time       3.6% fanout         0 input         1 rows
+            time       4.3% fanout         0 input         1 rows
               clear: (<V __ro2sq$67 a>, <V __ro2sq$62 a>, <V aggregate$71 an>, <V s_18_9_t6.O$52 an>, <V s_18_9_t5.O$65 an>)
               clear on continue: (<V __ro2sq$67 a>, <V __ro2sq$62 a>, <V aggregate$71 an>, <V s_18_9_t6.O$52 an>, <V s_18_9_t5.O$65 an>)
             s# 293 77 group by read node  
@@ -135,7 +135,7 @@
             s# 303 117 Sort (HASH) set no <r set_no$35 via  Set293>(<V __ro2sq$67 a>, <V __ro2sq$62 a>) -> (<V aggregate$71 an>)
             
         }
-        time         4% fanout         0 input         1 rows
+        time       4.7% fanout         0 input         1 rows
           clear: (<V __ro2sq$62 a>, <V __ro2sq$67 a>, <V aggregate$71 an>, <V p_brand1$34 a>, <V d_year$33 a>, <V lo_revenue$32 an>)
           clear on continue: (<V __ro2sq$62 a>, <V __ro2sq$67 a>, <V aggregate$71 an>, <V p_brand1$34 a>, <V d_year$33 a>, <V lo_revenue$32 an>)
         s# 318 122 Key from temp (<V aggregate$71 an>, <V __ro2sq$67 a>, <V __ro2sq$62 a>)
@@ -170,5 +170,5 @@ Warning: You might have a Cartesian product.
 
 
 
- 0 msec 1% cpu,         1 rnd         0 seq         0% same seg         0% same pg 
-Compilation: 2 msec 0 reads         0% read 0 messages         0% clw
+ 1 msec 1% cpu,         1 rnd         0 seq         0% same seg         0% same pg 
+Compilation: 3 msec 0 reads         0% read 0 messages         0% clw

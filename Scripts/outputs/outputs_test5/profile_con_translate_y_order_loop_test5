@@ -98,18 +98,18 @@ OPTION (QUIETCAST)) AS "s_18_9_rbc"
 
 1 Rows. -- 2 msec.
 
-Done. -- 0 msec.
+Done. -- 1 msec.
 
 Done. -- 0 msec.
 
-Done. -- 0 msec.
+Done. -- 1 msec.
 result
 LONG VARCHAR
 _______________________________________________________________________________
 
 
   { 
-    time       7.4% fanout         1 input         1 rows
+    time         5% fanout         1 input         1 rows
       clear: (<V set_ctr$148 in>)
     s# 151 149 cluster outer seq start, set no <V set_ctr$148 in>    
     save ctx:()
@@ -121,19 +121,19 @@ _______________________________________________________________________________
     s# 160 31 Subquery 31 
       multistate set no = <V set_no$35 i>
       { 
-        time         4% fanout         1 input         1 rows
+        time       3.2% fanout         1 input         1 rows
         
         s# 319 116 Fork 116 {  
                 
             save ctx:()
               set no = <V set_no$35 i> array  <none>  save: 
-            time       2.8% fanout         1 input         1 rows
+            time         3% fanout         1 input         1 rows
             
             s# 294 69 Fork 69 {  
                     
                 save ctx:()
                   set no = <V set_no$35 i> array  <none>  save: 
-                time        78% fanout         0 input         1 rows
+                time        82% fanout         0 input         1 rows
                 Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:       0.3 Fanout:         0
                   clear: (<V s_18_9_t0.S$37 rn>)
                   clear on continue: (<V s_18_9_t0.S$37 rn>)
@@ -236,7 +236,7 @@ _______________________________________________________________________________
                 s# 286 70 Sort (HASH) set no <r set_no$35 via  Set273 Set279 Set260 Set266 Set245 Set251 Set231 Set237 Set217 Set223 Set202 Set208 Set187 Set193 Set176 Set166>(<r s_18_9_t5.O$55 via  Set273 Set279 Set260 Set266 Set245 Set251>, <r s_18_9_t6.O$58 via  Set273 Set279 Set260 Set266>) -> (<r s_18_9_t4.O$52 via  Set273 Set279 Set260 Set266 Set245 Set251 Set231 Set237>, <V __ro2sq$65 a>, <V __ro2sq$67 a>) up to   4.3e+06 distinct
                 
             }
-            time       3.2% fanout         0 input         1 rows
+            time       3.3% fanout         0 input         1 rows
               clear: (<V __ro2sq$67 a>, <V __ro2sq$65 a>, <V aggregate$71 an>, <V s_18_9_t6.O$58 an>, <V s_18_9_t5.O$55 an>)
               clear on continue: (<V __ro2sq$67 a>, <V __ro2sq$65 a>, <V aggregate$71 an>, <V s_18_9_t6.O$58 an>, <V s_18_9_t5.O$55 an>)
             s# 301 77 group by read node  
@@ -246,7 +246,7 @@ _______________________________________________________________________________
             s# 311 117 Sort (HASH) set no <r set_no$35 via  Set301>(<V __ro2sq$67 a>, <V __ro2sq$65 a>) -> (<V aggregate$71 an>)
             
         }
-        time       4.3% fanout         0 input         1 rows
+        time       3.9% fanout         0 input         1 rows
           clear: (<V __ro2sq$65 a>, <V __ro2sq$67 a>, <V aggregate$71 an>, <V p_brand1$34 a>, <V d_year$33 a>, <V lo_revenue$32 an>)
           clear on continue: (<V __ro2sq$65 a>, <V __ro2sq$67 a>, <V aggregate$71 an>, <V p_brand1$34 a>, <V d_year$33 a>, <V lo_revenue$32 an>)
         s# 326 122 Key from temp (<V aggregate$71 an>, <V __ro2sq$67 a>, <V __ro2sq$65 a>)
@@ -292,4 +292,4 @@ Warning: You might have a Cartesian product.
  0 msec 1% cpu,         1 rnd         0 seq         0% same seg         0% same pg 
 Compilation: 3 msec 0 reads         0% read 0 messages         0% clw
 
-4 Rows. -- 9 msec.
+4 Rows. -- 13 msec.
