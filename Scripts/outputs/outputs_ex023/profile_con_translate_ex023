@@ -3,7 +3,7 @@ Version 07.20.3232 as of May 11 2021
 Type HELP; for help and EXIT; to exit.
 Connected to OpenLink Virtuoso
 Driver: 07.20.3232 OpenLink Virtuoso ODBC Driver
-SPARQL_TO_SQL_TEXT
+{SPARQL_TO_SQL_TEXT
 LONG VARCHAR
 _______________________________________________________________________________
 
@@ -41,22 +41,22 @@ OPTION (QUIETCAST)
 
 1 Rows. -- 1 msec.
 
-Done. -- 1 msec.
+Done. -- 0 msec.
 
 Done. -- 0 msec.
 
-Done. -- 1 msec.
+Done. -- 0 msec.
 result
 LONG VARCHAR
 _______________________________________________________________________________
 
 
   { 
-    time       3.7% fanout         1 input         1 rows
+    time       3.8% fanout         1 input         1 rows
       clear: (<V set_ctr$54 in>)
     s# 57 55 cluster outer seq start, set no <V set_ctr$54 in>    
     save ctx:()
-    time        57% fanout         2 input         1 rows
+    time        54% fanout         2 input         1 rows
     Precode:
       0: <V __rdflit$27 x> := Call __rdflit (rdflit1070)
       5: <V __rdflit$29 x> := Call __rdflit (rdflit1071)
@@ -67,14 +67,14 @@ _______________________________________________________________________________
     Key RDF_QUAD_POGS  ASC  (<V s_13_8_t1.S$32 rn>)
      P =  IRI_ID"...lastName"  ,  O = rdflit1071
     
-    time        23% fanout         1 input         2 rows
+    time        26% fanout         1 input         2 rows
       clear: (<V s_13_8_t0.S$35 rn>)
       clear on continue: (<V s_13_8_t0.S$35 rn>)$32 () 
     s# 76 34 from DB.DBA.RDF_QUAD by RDF_QUAD_POGS       0.25 rows   
     Key RDF_QUAD_POGS  ASC  (<V s_13_8_t0.S$35 rn>)
      inlined  P =  IRI_ID"...firstName"  ,  O = rdflit1070 ,  S = <V s_13_8_t1.S$32 rn>
     
-    time        16% fanout         0 input         2 rows
+    time        17% fanout         0 input         2 rows
     Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:         1 Fanout:         0
       clear: (<V s_13_8_t3.O$38 an>, <V s_13_8_t3.S$39 rn>)
       clear on continue: (<V s_13_8_t3.O$38 an>, <V s_13_8_t3.S$39 rn>)
@@ -109,6 +109,7 @@ Warning: You might have a Cartesian product.
 
 
  0 msec 3% cpu,         5 rnd         1 seq   33.3333% same seg         0% same pg 
-Compilation: 1 msec 0 reads         0% read 0 messages         0% clw
+Compilation: 3 msec 0 reads         0% read 0 messages         0% clw
 
-4 Rows. -- 6 msec.
+4 Rows. -- 20 msec.
+}

@@ -3,7 +3,7 @@ Version 07.20.3232 as of May 11 2021
 Type HELP; for help and EXIT; to exit.
 Connected to OpenLink Virtuoso
 Driver: 07.20.3232 OpenLink Virtuoso ODBC Driver
-SPARQL_TO_SQL_TEXT
+}SPARQL_TO_SQL_TEXT
 LONG VARCHAR
 _______________________________________________________________________________
 
@@ -90,16 +90,14 @@ OPTION (QUIETCAST)
 
 Done. -- 1 msec.
 
-Done. -- 0 msec.
-
-Done. -- 0 msec.
+Done. -- 1 msec.
 result
 LONG VARCHAR
 _______________________________________________________________________________
 
 
   { 
-    time       7.9% fanout         1 input         1 rows
+    time       8.3% fanout         1 input         1 rows
       clear: (<V set_ctr$185 in>)
     s# 188 186 cluster outer seq start, set no <V set_ctr$185 in>    
     save ctx:()
@@ -157,7 +155,7 @@ _______________________________________________________________________________
     time         0% fanout         0 input         0 rows
     $43 (42 ) $45 (42 ) $58 (42 62 ) 
     s# 255 57 end of outer seq <r set_ctr$58 via  Set227>
-     out: (<V set_no$45 i>, <V twitter$44 a>, <V item$43 r>)
+     out: (<V twitter$44 a>, <V item$43 r>, <V set_no$45 i>)
      shadow: ( <none> ,  <none> ,  <none> )
     time         0% fanout         0 input         0 rows
       clear: (<V set_ctr$83 i>)
@@ -189,7 +187,7 @@ _______________________________________________________________________________
     time         0% fanout         0 input         0 rows
     $68 (67 ) $70 (67 ) $83 (67 87 ) 
     s# 300 82 end of outer seq <r set_ctr$83 via  Set272>
-     out: (<V item$68 r>, <V set_no$70 i>, <V LinkedIN$69 a>)
+     out: (<V item$68 r>, <V LinkedIN$69 a>, <V set_no$70 i>)
      shadow: ( <none> ,  <none> ,  <none> )
     time         0% fanout         0 input         0 rows
     Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:    0.0014 Fanout:         0
@@ -233,7 +231,7 @@ _______________________________________________________________________________
     time         0% fanout         0 input         0 rows
     $98 (97 ) $100 (97 ) $113 (97 117 ) 
     s# 359 112 end of outer seq <r set_ctr$113 via  Set331>
-     out: (<V positie_op_lijst$99 a>, <V set_no$100 i>, <V node$98 r>)
+     out: (<V node$98 r>, <V set_no$100 i>, <V positie_op_lijst$99 a>)
      shadow: ( <none> ,  <none> ,  <none> )
     time         0% fanout         0 input         0 rows
       clear: (<V set_ctr$138 i>)
@@ -265,7 +263,7 @@ _______________________________________________________________________________
     time         0% fanout         0 input         0 rows
     $138 (122 142 ) $123 (122 ) $125 (122 ) 
     s# 404 137 end of outer seq <r set_ctr$138 via  Set376>
-     out: (<V set_no$125 i>, <V politieke_partij$124 a>, <V node$123 r>)
+     out: (<V politieke_partij$124 a>, <V node$123 r>, <V set_no$125 i>)
      shadow: ( <none> ,  <none> ,  <none> )
     time         0% fanout         0 input         0 rows
     Precode:
@@ -282,7 +280,7 @@ _______________________________________________________________________________
       41: <V param_row$170 x> :=  := artm vector$27 
       45: <V expected_vars$172 x> :=  := artm vector$29 
       49: <V proc_ctr$158 i> :=  := artm  0 
-      53:  <none>  := Call __reset_temp ( 140210885803312 )
+      53:  <none>  := Call __reset_temp ( 140127536560800 )
       58:  <proc table>  := Call DB.DBA.SPARQL_SINV_IMP (<tag 182 flag 1 c http://wikiba.se/ontology#label>, vector$31 , <c  SELECT ?stubvar26
        WHERE {  <http://www.bigdata.com/rdf#serviceParam> <http://wikiba.se/ontology#language> "[AUTO_LANGUAGE],nl" . }>, <tag 225 c >, vector$27 , vector$29 )
       65: BReturn 0
@@ -315,4 +313,5 @@ Warning: You might have a Cartesian product.
  0 msec 1% cpu,         1 rnd        -1 seq         0% same seg         0% same pg 
 Compilation: 2 msec 0 reads         0% read 0 messages         0% clw
 
-4 Rows. -- 10 msec.
+4 Rows. -- 12 msec.
+}

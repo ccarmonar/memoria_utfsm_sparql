@@ -3,7 +3,7 @@ Version 07.20.3232 as of May 11 2021
 Type HELP; for help and EXIT; to exit.
 Connected to OpenLink Virtuoso
 Driver: 07.20.3232 OpenLink Virtuoso ODBC Driver
-SPARQL_TO_SQL_TEXT
+{SPARQL_TO_SQL_TEXT
 LONG VARCHAR
 _______________________________________________________________________________
 
@@ -31,11 +31,11 @@ OPTION (QUIETCAST)
 
 1 Rows. -- 1 msec.
 
+Done. -- 0 msec.
+
+Done. -- 0 msec.
+
 Done. -- 1 msec.
-
-Done. -- 0 msec.
-
-Done. -- 0 msec.
 result
 LONG VARCHAR
 _______________________________________________________________________________
@@ -51,11 +51,11 @@ LUN	10
 DIN	25.05	
 
   { 
-    time       1.4% fanout         1 input         1 rows
-    time        21% fanout         9 input         1 rows
+    time       1.8% fanout         1 input         1 rows
+    time        24% fanout         9 input         1 rows
     RDF_QUAD         9 rows(t8.S$29, t8.O$28)
      inlined  P =  IRI_ID"...amount" 
-    time        77% fanout         1 input         9 rows
+    time        74% fanout         1 input         9 rows
     RDF_QUAD         1 rows(t6.O$32)
      inlined  P =  IRI_ID"...description"  ,  S = t8.S$29
     
@@ -67,12 +67,13 @@ DIN	25.05
     22: rdf_ucase_impl$42 := Call rdf_ucase_impl (DB.DBA.RDF_LONG_OF_SQLVAL$40)
     27: mealCode$44 := Call __rdf_sqlval_of_obj (rdf_ucase_impl$42)
     32: BReturn 0
-    time      0.21% fanout         0 input         9 rows
+    time      0.19% fanout         0 input         9 rows
     Select (mealCode$44, amount$34)
   }
 
 
- 0 msec 10% cpu,        19 rnd         8 seq        40% same seg        15% same pg 
-Compilation: 2 msec 0 reads         0% read 0 messages         0% clw
+ 1 msec 9% cpu,        19 rnd         8 seq        40% same seg        15% same pg 
+Compilation: 1 msec 0 reads         0% read 0 messages         0% clw
 
-4 Rows. -- 10 msec.
+4 Rows. -- 12 msec.
+}

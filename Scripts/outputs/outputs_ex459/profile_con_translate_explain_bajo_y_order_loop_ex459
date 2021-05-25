@@ -3,7 +3,7 @@ Version 07.20.3232 as of May 11 2021
 Type HELP; for help and EXIT; to exit.
 Connected to OpenLink Virtuoso
 Driver: 07.20.3232 OpenLink Virtuoso ODBC Driver
-SPARQL_TO_SQL_TEXT
+{SPARQL_TO_SQL_TEXT
 LONG VARCHAR
 _______________________________________________________________________________
 
@@ -32,26 +32,22 @@ WHERE
   "s_14_8_t4"."P" = __i2idn ( __bft( 'http://www.w3.org/2000/01/rdf-schema#label' , 1))
 OPTION (QUIETCAST)
 
-1 Rows. -- 0 msec.
+1 Rows. -- 1 msec.
 
 Done. -- 0 msec.
 
 Done. -- 1 msec.
-
-Done. -- 0 msec.
 result
 LONG VARCHAR
 _______________________________________________________________________________
 
 
   { 
-    time         7% fanout         1 input         1 rows
+    time       6.9% fanout         1 input         1 rows
     time        93% fanout         0 input         1 rows
-    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:       0.3 Fanout:         0
     RDF_QUAD_POGS       0.3 rows(s_14_8_t3.S$28)
      P =  IRI_ID"...type"  ,  O =  IRI_ID"...BusinessFunction" 
     time         0% fanout         0 input         0 rows
-    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:       1.3 Fanout:         0
     RDF_QUAD       1.3 rows(s_14_8_t4.S$32, s_14_8_t4.O$31)
      inlined  P =  IRI_ID"...label"  ,  S = s_14_8_t3.S$28
     time         0% fanout         0 input         0 rows
@@ -62,7 +58,6 @@ _______________________________________________________________________________
         Subquery 36 
           { 
             time         0% fanout         0 input         0 rows
-            Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:         1 Fanout:         0
             RDF_QUAD         1 rows(s_12_6_t0.S$42, s_12_6_t0.O$41)
              inlined  P =  IRI_ID"...comment"  ,  S = k___all_eq$123
             
@@ -76,7 +71,7 @@ _______________________________________________________________________________
         time         0% fanout         0 input         0 rows
       } /* end of outer */
     set_ctr$52
-     out: (bf$37, comment$38, set_no$39)
+     out: (comment$38, bf$37, set_no$39)
      shadow: ( <none> ,  <none> ,  <none> )
     
     After code:
@@ -89,7 +84,8 @@ _______________________________________________________________________________
   }
 
 
- 0 msec 4% cpu,         1 rnd         0 seq         0% same seg         0% same pg 
-Compilation: 0 msec 0 reads         0% read 0 messages         0% clw
+ 0 msec 3% cpu,         1 rnd         0 seq         0% same seg         0% same pg 
+Compilation: 1 msec 0 reads         0% read 0 messages         0% clw
 
-4 Rows. -- 5 msec.
+4 Rows. -- 16 msec.
+}

@@ -1,0 +1,218 @@
+{
+  { 
+    time       7.9% fanout         1 input         1 rows
+      clear: (<V set_ctr$185 in>)
+    s# 188 186 cluster outer seq start, set no <V set_ctr$185 in>    
+    save ctx:()
+    time        92% fanout         0 input         1 rows
+    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:    0.0014 Fanout:         0
+    Precode:
+      0: vector$27  := Call vector (<DB_NULL>, <DB_NULL>, <DB_NULL>, <DB_NULL>, <DB_NULL>, <DB_NULL>)
+      5: vector$29  := Call vector (<c stubvar26>)
+      10: vector$31  := Call vector ()
+      15: BReturn 0
+      clear: (<V s_74_22_t7.O$34 an>, <V s_74_22_t7.S$35 rn>)
+      clear on continue: (<V s_74_22_t7.O$34 an>, <V s_74_22_t7.S$35 rn>)
+    s# 197 33 from DB.DBA.RDF_QUAD by RDF_QUAD_POGS     0.0014 rows   
+    Key RDF_QUAD_POGS  ASC  (<V s_74_22_t7.S$35 rn>, <V s_74_22_t7.O$34 an>)
+     inlined  P =  IRI_ID"...P3602" 
+    
+    time         0% fanout         0 input         0 rows
+    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:    0.0014 Fanout:         0
+      clear: (<V s_74_22_t8.S$38 rn>)
+      clear on continue: (<V s_74_22_t8.S$38 rn>)
+    s# 208 37 from DB.DBA.RDF_QUAD by RDF_QUAD_POGS     0.0014 rows   
+    Key RDF_QUAD_POGS  ASC  (<V s_74_22_t8.S$38 rn>)
+     inlined  P =  IRI_ID"...direct/P551"  ,  O =  IRI_ID"...Q12892"  ,  S = <V s_74_22_t7.S$35 rn>
+    
+    time         0% fanout         0 input         0 rows
+    Precode:
+      0: <V __all_eq$40 x> := Call __all_eq (<r s_74_22_t7.S$35 via  Set208>, <V s_74_22_t8.S$38 rn>)
+      5: BReturn 0
+      clear: (<V set_ctr$58 i>, <V __all_eq$40 x>)$35 (37 ) 
+    s# 218 62 cluster outer seq start, set no <V set_ctr$58 i>    
+    save ctx:()
+      clear: (<V twitter$44 a>, <V item$43 r>, <V set_no$45 i>)
+    s# 227 42 Subquery 42 
+      multistate set no = <V set_no$45 i>
+      { 
+        time         0% fanout         0 input         0 rows
+        Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:    0.0014 Fanout:         0
+          clear: (<V s_69_6_t0.O$47 an>, <V s_69_6_t0.S$48 rn>, <V twitter$44 a>, <V item$43 r>)
+          clear on continue: (<V item$43 r>, <V twitter$44 a>, <V s_69_6_t0.S$48 rn>, <V s_69_6_t0.O$47 an>)
+        s# 231 46 from DB.DBA.RDF_QUAD by RDF_QUAD     0.0014 rows   
+        Key RDF_QUAD  ASC  (<V s_69_6_t0.S$48 rn>, <V s_69_6_t0.O$47 an>)
+         inlined  P =  IRI_ID"...direct/P2002"  ,  S = <v k___all_eq$235 Set237 rn>
+        vector param casts: <r __all_eq$40 via  Set218>-> <v k___all_eq$235 Set237 rn>
+        
+        After code:
+          0: <V item$43 r> :=  := artm <V s_69_6_t0.S$48 rn>
+          4: <V twitter$44 a> :=  := artm <V s_69_6_t0.O$47 an>
+          8: BReturn 0
+        time         0% fanout         0 input         0 rows
+        
+        s# 227 50 Subquery Select(<V item$43 r>, <V twitter$44 a>)
+          set no: <r set_no$45 via  Set231 Set237>
+      }
+    
+    time         0% fanout         0 input         0 rows
+    $43 (42 ) $45 (42 ) $58 (42 62 ) 
+    s# 255 57 end of outer seq <r set_ctr$58 via  Set227>
+     out: (<V twitter$44 a>, <V item$43 r>, <V set_no$45 i>)
+     shadow: ( <none> ,  <none> ,  <none> )
+    time         0% fanout         0 input         0 rows
+      clear: (<V set_ctr$83 i>)
+    s# 263 87 cluster outer seq start, set no <V set_ctr$83 i>    
+    save ctx:()
+      clear: (<V LinkedIN$69 a>, <V item$68 r>, <V set_no$70 i>)
+    s# 272 67 Subquery 67 
+      multistate set no = <V set_no$70 i>
+      { 
+        time         0% fanout         0 input         0 rows
+        Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:    0.0014 Fanout:         0
+          clear: (<V s_70_9_t1.O$72 an>, <V s_70_9_t1.S$73 rn>, <V LinkedIN$69 a>, <V item$68 r>)
+          clear on continue: (<V item$68 r>, <V LinkedIN$69 a>, <V s_70_9_t1.S$73 rn>, <V s_70_9_t1.O$72 an>)$40 (87 57 42 62 ) 
+        s# 276 71 from DB.DBA.RDF_QUAD by RDF_QUAD     0.0014 rows   
+        Key RDF_QUAD  ASC  (<V s_70_9_t1.S$73 rn>, <V s_70_9_t1.O$72 an>)
+         inlined  P =  IRI_ID"...direct/P2035"  ,  S = <v k___all_eq$280 Set282 rn>
+        vector param casts: <r __all_eq$40 via  Set263 Set255>-> <v k___all_eq$280 Set282 rn>
+        
+        After code:
+          0: <V item$68 r> :=  := artm <V s_70_9_t1.S$73 rn>
+          4: <V LinkedIN$69 a> :=  := artm <V s_70_9_t1.O$72 an>
+          8: BReturn 0
+        time         0% fanout         0 input         0 rows
+        
+        s# 272 75 Subquery Select(<V item$68 r>, <V LinkedIN$69 a>)
+          set no: <r set_no$70 via  Set276 Set282>
+      }
+    
+    time         0% fanout         0 input         0 rows
+    $68 (67 ) $70 (67 ) $83 (67 87 ) 
+    s# 300 82 end of outer seq <r set_ctr$83 via  Set272>
+     out: (<V LinkedIN$69 a>, <V item$68 r>, <V set_no$70 i>)
+     shadow: ( <none> ,  <none> ,  <none> )
+    time         0% fanout         0 input         0 rows
+    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:    0.0014 Fanout:         0
+      clear: (<V s_74_24_t10.S$93 rn>)
+      clear on continue: (<V s_74_24_t10.S$93 rn>)$312 (92 ) 
+    s# 308 92 from DB.DBA.RDF_QUAD by RDF_QUAD_POGS     0.0014 rows   
+    Key RDF_QUAD_POGS  ASC  (<V s_74_24_t10.S$93 rn>)
+     inlined  P =  IRI_ID"...statement/P3602"  ,  O =  IRI_ID"...Q16061881"  ,  S = <v k_s_74_22_t7.O$312 Set314 rn>
+    vector param casts: <r s_74_22_t7.O$34 via  Set300 Set255 Set208>-> <v k_s_74_22_t7.O$312 Set314 rn>
+    
+    time         0% fanout         0 input         0 rows
+    Precode:
+      0: <V __all_eq$95 x> := Call __all_eq (<r s_74_22_t7.O$34 via  Set308 Set314 Set300 Set255 Set208>, <V s_74_24_t10.S$93 rn>)
+      5: BReturn 0
+      clear: (<V set_ctr$113 i>, <V __all_eq$95 x>)$93 () $34 (92 82 67 87 57 42 62 37 ) 
+    s# 322 117 cluster outer seq start, set no <V set_ctr$113 i>    
+    save ctx:()
+      clear: (<V positie_op_lijst$99 a>, <V node$98 r>, <V set_no$100 i>)
+    s# 331 97 Subquery 97 
+      multistate set no = <V set_no$100 i>
+      { 
+        time         0% fanout         0 input         0 rows
+        Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:    0.0014 Fanout:         0
+          clear: (<V s_72_14_t2.O$102 an>, <V s_72_14_t2.S$103 rn>, <V positie_op_lijst$99 a>, <V node$98 r>)
+          clear on continue: (<V node$98 r>, <V positie_op_lijst$99 a>, <V s_72_14_t2.S$103 rn>, <V s_72_14_t2.O$102 an>)
+        s# 335 101 from DB.DBA.RDF_QUAD by RDF_QUAD     0.0014 rows   
+        Key RDF_QUAD  ASC  (<V s_72_14_t2.S$103 rn>, <V s_72_14_t2.O$102 an>)
+         inlined  P =  IRI_ID"...qualifier/P1545"  ,  S = <v k___all_eq$339 Set341 rn>
+        vector param casts: <r __all_eq$95 via  Set322>-> <v k___all_eq$339 Set341 rn>
+        
+        After code:
+          0: <V node$98 r> :=  := artm <V s_72_14_t2.S$103 rn>
+          4: <V positie_op_lijst$99 a> :=  := artm <V s_72_14_t2.O$102 an>
+          8: BReturn 0
+        time         0% fanout         0 input         0 rows
+        
+        s# 331 105 Subquery Select(<V node$98 r>, <V positie_op_lijst$99 a>)
+          set no: <r set_no$100 via  Set335 Set341>
+      }
+    
+    time         0% fanout         0 input         0 rows
+    $98 (97 ) $100 (97 ) $113 (97 117 ) 
+    s# 359 112 end of outer seq <r set_ctr$113 via  Set331>
+     out: (<V set_no$100 i>, <V node$98 r>, <V positie_op_lijst$99 a>)
+     shadow: ( <none> ,  <none> ,  <none> )
+    time         0% fanout         0 input         0 rows
+      clear: (<V set_ctr$138 i>)
+    s# 367 142 cluster outer seq start, set no <V set_ctr$138 i>    
+    save ctx:()
+      clear: (<V politieke_partij$124 a>, <V node$123 r>, <V set_no$125 i>)
+    s# 376 122 Subquery 122 
+      multistate set no = <V set_no$125 i>
+      { 
+        time         0% fanout         0 input         0 rows
+        Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:    0.0014 Fanout:         0
+          clear: (<V s_73_17_t3.O$127 an>, <V s_73_17_t3.S$128 rn>, <V politieke_partij$124 a>, <V node$123 r>)
+          clear on continue: (<V node$123 r>, <V politieke_partij$124 a>, <V s_73_17_t3.S$128 rn>, <V s_73_17_t3.O$127 an>)$95 (142 112 97 117 ) 
+        s# 380 126 from DB.DBA.RDF_QUAD by RDF_QUAD     0.0014 rows   
+        Key RDF_QUAD  ASC  (<V s_73_17_t3.S$128 rn>, <V s_73_17_t3.O$127 an>)
+         inlined  P =  IRI_ID"...qualifier/P1268"  ,  S = <v k___all_eq$384 Set386 rn>
+        vector param casts: <r __all_eq$95 via  Set367 Set359>-> <v k___all_eq$384 Set386 rn>
+        
+        After code:
+          0: <V node$123 r> :=  := artm <V s_73_17_t3.S$128 rn>
+          4: <V politieke_partij$124 a> :=  := artm <V s_73_17_t3.O$127 an>
+          8: BReturn 0
+        time         0% fanout         0 input         0 rows
+        
+        s# 376 130 Subquery Select(<V node$123 r>, <V politieke_partij$124 a>)
+          set no: <r set_no$125 via  Set380 Set386>
+      }
+    
+    time         0% fanout         0 input         0 rows
+    $138 (122 142 ) $123 (122 ) $125 (122 ) 
+    s# 404 137 end of outer seq <r set_ctr$138 via  Set376>
+     out: (<V node$123 r>, <V set_no$125 i>, <V politieke_partij$124 a>)
+     shadow: ( <none> ,  <none> ,  <none> )
+    time         0% fanout         0 input         0 rows
+    Precode:
+      0: <V positie_op_lijst$147 a> := Call __ro2sq (<r positie_op_lijst$99 via  Set404>)
+      5: <V LinkedIN$149 a> := Call __ro2sq (<r LinkedIN$69 via  Set404 Set359 Set308 Set314>)
+      10: <V twitter$151 a> := Call __ro2sq (<r twitter$44 via  Set404 Set359 Set308 Set314 Set300>)
+      15: <V item$153 a> := Call __id2in (<r s_74_22_t8.S$38 via  Set404 Set359 Set308 Set314 Set300 Set255>)
+      20: <V politieke_partij$155 a> := Call __ro2sq (<V politieke_partij$124 a>)
+      25: <V ws_endpoint$162 sn> :=  := artm <tag 182 flag 1 c http://wikiba.se/ontology#label>
+      29: <V ws_params$164 x> :=  := artm vector$31 
+      33: <V qtext_template$166 sn> :=  := artm <c  SELECT ?stubvar26
+       WHERE {  <http://www.bigdata.com/rdf#serviceParam> <http://wikiba.se/ontology#language> "[AUTO_LANGUAGE],nl" . }>
+      37: <V qtext_posmap$168 Nn> :=  := artm <tag 225 c >
+      41: <V param_row$170 x> :=  := artm vector$27 
+      45: <V expected_vars$172 x> :=  := artm vector$29 
+      49: <V proc_ctr$158 i> :=  := artm  0 
+      53:  <none>  := Call __reset_temp ( 140412682130160 )
+      58:  <proc table>  := Call DB.DBA.SPARQL_SINV_IMP (<tag 182 flag 1 c http://wikiba.se/ontology#label>, vector$31 , <c  SELECT ?stubvar26
+       WHERE {  <http://www.bigdata.com/rdf#serviceParam> <http://wikiba.se/ontology#language> "[AUTO_LANGUAGE],nl" . }>, <tag 225 c >, vector$27 , vector$29 )
+      65: BReturn 0
+      clear: (<V RSET$160 a>, <V proc_ctr$158 i>, <V expected_vars$172 x>, <V param_row$170 x>, <V qtext_posmap$168 Nn>, <V qtext_template$166 sn>, <V ws_params$164 x>, <V ws_endpoint$162 sn>, <V politieke_partij$155 a>, <V item$153 a>, <V twitter$151 a>, <V LinkedIN$149 a>, <V positie_op_lijst$147 a>)
+      clear on continue: (<V proc_ctr$158 i>, <V RSET$160 a>)$69 (137 122 142 112 97 117 92 82 67 ) $99 (137 122 142 112 97 ) $38 (137 122 142 112 97 117 92 82 67 87 57 42 62 ) $44 (137 122 142 112 97 117 92 82 67 87 57 42 ) $124 (137 122 ) 
+    s# 412 157 Key from temp (<V proc_ctr$158 i>, <V RSET$160 a>)
+    
+    
+    time         0% fanout         0 input         0 rows
+    $147 (157 ) $149 (157 ) $151 (157 ) $153 (157 ) $155 (157 ) $185 (157 137 122 142 112 97 117 92 82 67 87 57 42 62 37 33 186 ) 
+    s# 421 179 Select (<r item$153 via  Set412>, <DB_NULL>, <r twitter$151 via  Set412>, <r LinkedIN$149 via  Set412>, <r politieke_partij$155 via  Set412>, <DB_NULL>, <r positie_op_lijst$147 via  Set412>)
+      set no: <r set_ctr$185 via  Set412 Set404 Set359 Set308 Set314 Set300 Set255 Set208 Set197>
+  }
+Warning: You might have a Cartesian product.
+
+Warning: You might have a Cartesian product.
+
+Warning: You might have a Cartesian product.
+
+Warning: You might have a Cartesian product.
+
+Warning: You might have a Cartesian product.
+
+Warning: You might have a Cartesian product.
+
+Warning: You might have a Cartesian product.
+
+
+
+ 0 msec 1% cpu,         1 rnd        -1 seq         0% same seg         0% same pg 
+Compilation: 4 msec 0 reads         0% read 0 messages         0% clw
+}
