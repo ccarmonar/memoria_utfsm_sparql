@@ -1,0 +1,52 @@
+{John	Smith	2015-01-30	
+John	Smith	2015-03-15	
+Heidi	Smith	2015-01-30	
+
+  { 
+    time       1.7% fanout         1 input         1 rows
+      clear: (<V set_ctr$50 in>)
+    s# 53 51 cluster outer seq start, set no <V set_ctr$50 in>    
+    save ctx:()
+    time        24% fanout         4 input         1 rows
+      clear: (<V s_11_6_t0.O$28 an>, <V s_11_6_t0.S$29 rn>)
+      clear on continue: (<V s_11_6_t0.O$28 an>, <V s_11_6_t0.S$29 rn>)
+    s# 62 27 from DB.DBA.RDF_QUAD by RDF_QUAD          4 rows   
+    Key RDF_QUAD  ASC  (<V s_11_6_t0.S$29 rn>, <V s_11_6_t0.O$28 an>)
+     inlined  P =  IRI_ID"...given-name" 
+    
+    time        13% fanout         1 input         4 rows
+      clear: (<V s_11_6_t1.O$32 an>, <V s_11_6_t1.S$33 rn>)
+      clear on continue: (<V s_11_6_t1.O$32 an>, <V s_11_6_t1.S$33 rn>)
+    s# 73 31 from DB.DBA.RDF_QUAD by RDF_QUAD          1 rows   
+    Key RDF_QUAD  ASC  (<V s_11_6_t1.S$33 rn>, <V s_11_6_t1.O$32 an>)
+     inlined  P =  IRI_ID"...family-name"  ,  S = <V s_11_6_t0.S$29 rn>
+    
+    time        61% fanout      0.75 input         4 rows
+    Precode:
+      0: <V givenName$35 a> := Call __ro2sq (<r s_11_6_t0.O$28 via  Set73>)
+      5: <V familyName$37 a> := Call __ro2sq (<V s_11_6_t1.O$32 an>)
+      10: BReturn 0
+      clear: (<V s_11_6_t2.O$40 an>, <V familyName$37 a>, <V givenName$35 a>, <V oDate$42 a>)
+      clear on continue: (<V oDate$42 a>, <V s_11_6_t2.O$40 an>)$32 () $88 (39 ) $28 (31 ) $29 (31 ) 
+    s# 84 39 from DB.DBA.RDF_QUAD by RDF_QUAD        1.5 rows   
+    Key RDF_QUAD  ASC  (<V s_11_6_t2.O$40 an>)
+     inlined  P =  IRI_ID"...completedOrientation"  ,  S = <v k_s_11_6_t0.S$88 Set90 rn>
+    vector param casts: <r s_11_6_t0.S$29 via  Set73>-> <v k_s_11_6_t0.S$88 Set90 rn>
+    
+    After code:
+      0: <V oDate$42 a> := Call __ro2sq (<V s_11_6_t2.O$40 an>)
+      5: BReturn 0
+    time      0.18% fanout         0 input         3 rows
+    $35 (39 ) $37 (39 ) $42 () $50 (39 31 27 51 ) 
+    s# 98 44 Select (<r givenName$35 via  Set84 Set90>, <r familyName$37 via  Set84 Set90>, <V oDate$42 a>)
+      set no: <r set_ctr$50 via  Set84 Set90 Set73 Set62>
+  }
+Warning: You might have a Cartesian product.
+
+Warning: You might have a Cartesian product.
+
+
+
+ 1 msec 15% cpu,        19 rnd         4 seq        25% same seg        40% same pg 
+Compilation: 0 msec 0 reads         0% read 0 messages         0% clw
+}

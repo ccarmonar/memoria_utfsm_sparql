@@ -1,0 +1,96 @@
+OpenLink Virtuoso Interactive SQL (Virtuoso)
+Version 07.20.3232 as of May 11 2021
+Type HELP; for help and EXIT; to exit.
+Connected to OpenLink Virtuoso
+Driver: 07.20.3232 OpenLink Virtuoso ODBC Driver
+}SPARQL_TO_SQL_TEXT
+LONG VARCHAR
+_______________________________________________________________________________
+
+SELECT __ro2sq ( "s_6_5"."givenName") AS "givenName",
+  __ro2sq ( "s_6_5"."familyName") AS "familyName",
+  'some value'  AS "someVariable"
+FROM (
+   SELECT "s_6_4_t0"."S" AS "person",
+      "s_6_4_t0"."O" AS "givenName",
+      "s_6_4_t1"."O" AS "familyName",
+      'some value'  AS "someVariable"
+    FROM DB.DBA.RDF_QUAD AS "s_6_4_t0"
+      INNER JOIN DB.DBA.RDF_QUAD AS "s_6_4_t1"
+      ON (
+        "s_6_4_t0"."S" = "s_6_4_t1"."S")
+    WHERE
+      "s_6_4_t0"."P" = __i2idn ( __bft( 'http://www.w3.org/2006/vcard/ns#given-name' , 1))
+      AND 
+      "s_6_4_t1"."P" = __i2idn ( __bft( 'http://www.w3.org/2006/vcard/ns#family-name' , 1))
+OPTION (QUIETCAST)
+    ) AS "s_6_5"
+OPTION (QUIETCAST)
+
+1 Rows. -- 1 msec.
+
+Done. -- 0 msec.
+
+Done. -- 0 msec.
+result
+LONG VARCHAR
+_______________________________________________________________________________
+
+John	Smith	some value	
+Heidi	Smith	some value	
+Francis	Jones	some value	
+Jane	Berger	some value	
+
+  { 
+    time       4.1% fanout         1 input         1 rows
+      clear: (<V set_ctr$57 in>)
+    s# 60 58 cluster outer seq start, set no <V set_ctr$57 in>    
+    save ctx:()
+      clear: (<V someVariable$31 sn>, <V familyName$30 an>, <V givenName$29 an>, <V person$28 rn>, <V set_no$32 i>, <V familyName$49 a>, <V givenName$47 a>)
+    s# 69 27 Subquery 27 
+      multistate set no = <V set_no$32 i>
+      { 
+        time        55% fanout         4 input         1 rows
+          clear: (<V s_6_4_t0.O$34 an>, <V s_6_4_t0.S$35 rn>)
+          clear on continue: (<V s_6_4_t0.O$34 an>, <V s_6_4_t0.S$35 rn>)
+        s# 73 33 from DB.DBA.RDF_QUAD by RDF_QUAD          4 rows   
+        Key RDF_QUAD  ASC  (<V s_6_4_t0.S$35 rn>, <V s_6_4_t0.O$34 an>)
+         inlined  P =  IRI_ID"...given-name" 
+        
+        time        39% fanout         1 input         4 rows
+          clear: (<V s_6_4_t1.O$38 an>, <V someVariable$31 sn>, <V familyName$30 an>, <V givenName$29 an>, <V person$28 rn>)
+          clear on continue: (<V s_6_4_t1.O$38 an>, <V someVariable$31 sn>, <V familyName$30 an>, <V givenName$29 an>, <V person$28 rn>)$34 () $35 () 
+        s# 84 37 from DB.DBA.RDF_QUAD by RDF_QUAD          1 rows   
+        Key RDF_QUAD  ASC  (<V s_6_4_t1.O$38 an>)
+         inlined  P =  IRI_ID"...family-name"  ,  S = <V s_6_4_t0.S$35 rn>
+        
+        After code:
+          0: <V person$28 rn> :=  := artm <r s_6_4_t0.S$35 via  Set84>
+          4: <V givenName$29 an> :=  := artm <r s_6_4_t0.O$34 via  Set84>
+          8: <V familyName$30 an> :=  := artm <V s_6_4_t1.O$38 an>
+          12: <V someVariable$31 sn> :=  := artm <c some value>
+          16: BReturn 0
+        time       1.3% fanout         0 input         4 rows
+        $31 () $28 () 
+        s# 69 40 Subquery Select(<V person$28 rn>, <V givenName$29 an>, <V familyName$30 an>, <V someVariable$31 sn>)
+          set no: <r set_no$32 via  Set84 Set73>
+      }
+    
+    After code:
+      0: <V givenName$47 a> := Call __ro2sq (<V givenName$29 an>)
+      5: <V familyName$49 a> := Call __ro2sq (<V familyName$30 an>)
+      10: BReturn 0
+    time       0.5% fanout         0 input         4 rows
+    $47 (27 ) $49 (27 ) $57 (27 58 ) 
+    s# 105 51 Select (<V givenName$47 a>, <V familyName$49 a>, <c some value>)
+      set no: <r set_ctr$57 via  Set69>
+  }
+Warning: You might have a Cartesian product.
+
+
+
+ 1 msec 10% cpu,        12 rnd         3 seq   15.3846% same seg   46.1538% same pg 
+Compilation: 1 msec 0 reads         0% read 0 messages         0% clw
+
+4 Rows. -- 21 msec.
+}

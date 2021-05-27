@@ -1,0 +1,175 @@
+OpenLink Virtuoso Interactive SQL (Virtuoso)
+Version 07.20.3232 as of May 11 2021
+Type HELP; for help and EXIT; to exit.
+Connected to OpenLink Virtuoso
+Driver: 07.20.3232 OpenLink Virtuoso ODBC Driver
+}SPARQL_TO_SQL_TEXT
+LONG VARCHAR
+_______________________________________________________________________________
+
+ DB.DBA.RDF_DICT_OF_TRIPLES_TO_THREE_COLS ((SELECT TOP 1  DB.DBA.SPARQL_CONSTRUCT (
+      vector (
+        vector (
+         1,
+         0,
+         3,
+         __i2id ( UNAME'http://www.w3.org/1999/02/22-rdf-syntax-ns#type' ),
+         3,
+         __i2id ( UNAME'http://xmlns.com/foaf/0.1/Person' )),
+        vector (
+         1,
+         0,
+         3,
+         __i2id ( UNAME'http://xmlns.com/foaf/0.1/givenName' ),
+         1,
+         3),
+        vector (
+         1,
+         0,
+         3,
+         __i2id ( UNAME'http://xmlns.com/foaf/0.1/familyName' ),
+         1,
+         2),
+        vector (
+         1,
+         0,
+         3,
+         __i2id ( UNAME'http://xmlns.com/foaf/0.1/name' ),
+         1,
+         1)),
+      vector (
+       "s_16_14"."person",
+       DB.DBA.RDF_LONG_OF_SQLVAL ( "s_16_14"."fullName"),
+       __ro2lo ( "s_16_14"."familyName"),
+       __ro2lo ( "s_16_14"."givenName")),
+      vector (),
+     1) AS "callret-0"
+FROM (
+   SELECT "s_16_13_t4"."S" AS "person",
+      "s_16_13_t4"."O" AS "givenName",
+      "s_16_13_t5"."O" AS "familyName",
+      rdf_concat_impl ( __ro2sq ( "s_16_13_t4"."O"),  ' ' ,  __ro2sq ( "s_16_13_t5"."O")) AS "fullName"
+    FROM DB.DBA.RDF_QUAD AS "s_16_13_t4"
+      INNER JOIN DB.DBA.RDF_QUAD AS "s_16_13_t5"
+      ON (
+        "s_16_13_t4"."S" = "s_16_13_t5"."S")
+    WHERE
+      "s_16_13_t4"."P" = __i2idn ( __bft( 'http://www.w3.org/2006/vcard/ns#given-name' , 1))
+      AND 
+      "s_16_13_t5"."P" = __i2idn ( __bft( 'http://www.w3.org/2006/vcard/ns#family-name' , 1))
+OPTION (QUIETCAST)
+    ) AS "s_16_14"
+OPTION (QUIETCAST)))
+
+1 Rows. -- 2 msec.
+
+Done. -- 1 msec.
+
+Done. -- 0 msec.
+result
+LONG VARCHAR
+_______________________________________________________________________________
+
+http://www.snee.com/hr/emp3	http://www.w3.org/1999/02/22-rdf-syntax-ns#type	http://xmlns.com/foaf/0.1/Person	
+http://www.snee.com/hr/emp2	http://xmlns.com/foaf/0.1/givenName	John	
+http://www.snee.com/hr/emp4	http://xmlns.com/foaf/0.1/familyName	Berger	
+http://www.snee.com/hr/emp4	http://www.w3.org/1999/02/22-rdf-syntax-ns#type	http://xmlns.com/foaf/0.1/Person	
+http://www.snee.com/hr/emp3	http://xmlns.com/foaf/0.1/familyName	Jones	
+http://www.snee.com/hr/emp1	http://xmlns.com/foaf/0.1/name	Heidi Smith	
+http://www.snee.com/hr/emp2	http://xmlns.com/foaf/0.1/name	John Smith	
+http://www.snee.com/hr/emp2	http://xmlns.com/foaf/0.1/familyName	Smith	
+http://www.snee.com/hr/emp1	http://www.w3.org/1999/02/22-rdf-syntax-ns#type	http://xmlns.com/foaf/0.1/Person	
+http://www.snee.com/hr/emp1	http://xmlns.com/foaf/0.1/givenName	Heidi	
+http://www.snee.com/hr/emp1	http://xmlns.com/foaf/0.1/familyName	Smith	
+http://www.snee.com/hr/emp4	http://xmlns.com/foaf/0.1/givenName	Jane	
+http://www.snee.com/hr/emp2	http://www.w3.org/1999/02/22-rdf-syntax-ns#type	http://xmlns.com/foaf/0.1/Person	
+http://www.snee.com/hr/emp3	http://xmlns.com/foaf/0.1/givenName	Francis	
+http://www.snee.com/hr/emp4	http://xmlns.com/foaf/0.1/name	Jane Berger	
+http://www.snee.com/hr/emp3	http://xmlns.com/foaf/0.1/name	Francis Jones	
+
+  { 
+    Precode:
+      0:   { 
+          time       1.1% fanout         1 input         1 rows
+            clear: (<V ext_sets$91 i>, <V set_ctr$73 in>)
+          s# 92 74 cluster outer seq start, set no <V set_ctr$73 in>    
+          save ctx:()
+          time       4.9% fanout         1 input         1 rows
+          Precode:
+            0: <V vector$27 x> := Call vector ( 1 ,  0 ,  3 ,  IRI_ID"...type" ,  3 ,  IRI_ID"...Person" )
+            5: <V vector$29 x> := Call vector ( 1 ,  0 ,  3 ,  IRI_ID"...givenName" ,  1 ,  3 )
+            10: <V vector$31 x> := Call vector ( 1 ,  0 ,  3 ,  IRI_ID"...familyName" ,  1 ,  2 )
+            15: <V vector$33 x> := Call vector ( 1 ,  0 ,  3 ,  IRI_ID"...name" ,  1 ,  1 )
+            20: <V vector$35 x> := Call vector (<V vector$27 x>, <V vector$29 x>, <V vector$31 x>, <V vector$33 x>)
+            25: <V vector$37 x> := Call vector ()
+            30: BReturn 0
+            clear: (<V vector$37 x>, <V vector$35 x>, <V vector$33 x>, <V vector$31 x>, <V vector$29 x>, <V vector$27 x>)$31 (75 ) $33 (75 ) $27 (75 ) $29 (75 ) 
+          s# 141 75 Fork 75 {  
+                clear: (<V fullName$43 s>, <V familyName$42 an>, <V givenName$41 an>, <V person$40 rn>, <V set_no$44 i>, <V user_aggr_ret$78 x>, <V vector$71 x>, <V __ro2lo$69 a>, <V __ro2lo$67 a>, <V DB.DBA.RDF_LONG_OF_SQLVAL$65 a>)$35 (39 ) $37 (39 ) 
+              s# 103 39 Subquery 39 
+                multistate set no = <V set_no$44 i>
+                { 
+                  time        22% fanout         4 input         1 rows
+                    clear: (<V s_16_13_t4.O$46 an>, <V s_16_13_t4.S$47 rn>)
+                    clear on continue: (<V s_16_13_t4.O$46 an>, <V s_16_13_t4.S$47 rn>)
+                  s# 107 45 from DB.DBA.RDF_QUAD by RDF_QUAD          4 rows   
+                  Key RDF_QUAD  ASC  (<V s_16_13_t4.S$47 rn>, <V s_16_13_t4.O$46 an>)
+                   inlined  P =  IRI_ID"...given-name" 
+                  
+                  time        68% fanout         1 input         4 rows
+                    clear: (<V s_16_13_t5.O$50 an>, <V fullName$43 s>, <V familyName$42 an>, <V givenName$41 an>, <V person$40 rn>, <V rdf_concat_impl$56 s>, <V __ro2sq$54 a>, <V __ro2sq$52 a>)
+                    clear on continue: (<V s_16_13_t5.O$50 an>, <V fullName$43 s>, <V familyName$42 an>, <V givenName$41 an>, <V person$40 rn>, <V rdf_concat_impl$56 s>, <V __ro2sq$54 a>, <V __ro2sq$52 a>)$46 () $47 () 
+                  s# 118 49 from DB.DBA.RDF_QUAD by RDF_QUAD          1 rows   
+                  Key RDF_QUAD  ASC  (<V s_16_13_t5.O$50 an>)
+                   inlined  P =  IRI_ID"...family-name"  ,  S = <V s_16_13_t4.S$47 rn>
+                  
+                  After code:
+                    0: <V __ro2sq$52 a> := Call __ro2sq (<r s_16_13_t4.O$46 via  Set118>)
+                    5: <V __ro2sq$54 a> := Call __ro2sq (<V s_16_13_t5.O$50 an>)
+                    10: <V rdf_concat_impl$56 s> := Call rdf_concat_impl (<V __ro2sq$52 a>, <c  >, <V __ro2sq$54 a>)
+                    15: <V person$40 rn> :=  := artm <r s_16_13_t4.S$47 via  Set118>
+                    19: <V givenName$41 an> :=  := artm <r s_16_13_t4.O$46 via  Set118>
+                    23: <V familyName$42 an> :=  := artm <V s_16_13_t5.O$50 an>
+                    27: <V fullName$43 s> :=  := artm <V rdf_concat_impl$56 s>
+                    31: BReturn 0
+                  time      0.47% fanout         0 input         4 rows
+                  
+                  s# 103 58 Subquery Select(<V person$40 rn>, <V givenName$41 an>, <V familyName$42 an>, <V fullName$43 s>)
+                    set no: <r set_no$44 via  Set118 Set107>
+                }
+              
+              After code:
+                0: <V DB.DBA.RDF_LONG_OF_SQLVAL$65 a> := Call DB.DBA.RDF_LONG_OF_SQLVAL (<V fullName$43 s>)
+                7: <V __ro2lo$67 a> := Call __ro2lo (<V familyName$42 an>)
+                12: <V __ro2lo$69 a> := Call __ro2lo (<V givenName$41 an>)
+                17: <V vector$71 x> := Call vector (<V person$40 rn>, <V DB.DBA.RDF_LONG_OF_SQLVAL$65 a>, <V __ro2lo$67 a>, <V __ro2lo$69 a>)
+                22: if (user_aggr_notfirst$76  =  1 ) then 37 else 26 unkn 26
+                26: user_aggr_notfirst$76  :=  := artm  1 
+                30: <V user_aggr_ret$78 x> := Call DB.DBA.SPARQL_CONSTRUCT_INIT (user_aggr_env$77 )
+                37: <V user_aggr_ret$78 x> := Call DB.DBA.SPARQL_CONSTRUCT_ACC (user_aggr_env$77 , <r vector$35 via  Set103>, <V vector$71 x>, <r vector$37 via  Set103>,  1 )
+                44: BReturn 0
+          }
+          time       3.8% fanout         1 input         1 rows
+            clear: (<V callret-0$79 x>)
+          s# 148 89 skip node  1  <none> <V set_ctr$73 in>
+          After code:
+            0: <V callret-0$79 x> := Call DB.DBA.SPARQL_CONSTRUCT_FIN (user_aggr_env$77 )
+            7: BReturn 0
+          time      0.29% fanout         0 input         1 rows
+          $73 (89 75 74 ) $79 (89 ) $91 (89 75 74 ) 
+          s# 156 81 Subquery Select(<V callret-0$79 x>)
+            set no: <r set_ctr$73 via  Set148>
+        }
+      
+      8:  <none>  := Call DB.DBA.RDF_DICT_OF_TRIPLES_TO_THREE_COLS (scalar$164 )
+      15: BReturn 0
+    
+    END Node
+  }
+
+
+ 1 msec 25% cpu,        20 rnd         3 seq   9.52381% same seg   57.1429% same pg 
+Compilation: 2 msec 0 reads         0% read 0 messages         0% clw
+
+4 Rows. -- 21 msec.
+}

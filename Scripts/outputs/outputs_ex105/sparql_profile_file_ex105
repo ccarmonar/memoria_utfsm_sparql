@@ -1,0 +1,35 @@
+{http://learningsparql.com/ns/data#item126	5	
+http://learningsparql.com/ns/data#item126	5.05	
+http://learningsparql.com/ns/data#item432	8	
+http://learningsparql.com/ns/data#item432	8.5	
+http://learningsparql.com/ns/data#item201	9.25	
+
+  { 
+    time       2.1% fanout         1 input         1 rows
+      clear: (<V set_ctr$41 in>)
+    s# 44 42 cluster outer seq start, set no <V set_ctr$41 in>    
+    save ctx:()
+    time        97% fanout         5 input         1 rows
+      clear: (<V s_12_2_t0.O$28 an>, <V s_12_2_t0.S$29 rn>, <V cost$33 a>, <V s$31 a>)
+      clear on continue: (<V s_12_2_t0.O$28 an>, <V s_12_2_t0.S$29 rn>, <V cost$33 a>, <V s$31 a>)
+    s# 53 27 from DB.DBA.RDF_QUAD by RDF_QUAD_POGS          5 rows   
+    Key RDF_QUAD_POGS  ASC  (<V s_12_2_t0.S$29 rn>, <V s_12_2_t0.O$28 an>)
+     P =  IRI_ID"...cost"  ,  O <  10 
+    row specs:  O <  10 
+    
+    After code:
+      0: <V s$31 a> := Call __id2in (<V s_12_2_t0.S$29 rn>)
+      5: <V cost$33 a> := Call __ro2sq (<V s_12_2_t0.O$28 an>)
+      10: BReturn 0
+    time      0.96% fanout         0 input         5 rows
+    $31 () $33 () $41 (27 42 ) 
+    s# 64 35 Select (<V s$31 a>, <V cost$33 a>)
+      set no: <r set_ctr$41 via  Set53>
+  }
+Warning: You might have a Cartesian product.
+
+
+
+ 0 msec 19% cpu,         1 rnd         7 seq         0% same seg         0% same pg 
+Compilation: 1 msec 0 reads         0% read 0 messages         0% clw
+}

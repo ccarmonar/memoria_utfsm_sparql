@@ -1,0 +1,48 @@
+{c.ellis@usairwaysgroup.com	
+craigellis@yahoo.com	
+
+  { 
+    time       1.9% fanout         1 input         1 rows
+      clear: (<V set_ctr$48 in>)
+    s# 51 49 cluster outer seq start, set no <V set_ctr$48 in>    
+    save ctx:()
+    time        32% fanout         2 input         1 rows
+    Precode:
+      0: <V __rdflit$27 x> := Call __rdflit (rdflit1070)
+      5: <V __rdflit$29 x> := Call __rdflit (rdflit1071)
+      10: BReturn 0
+      clear: (<V s_12_6_t1.S$32 rn>, <V __rdflit$29 x>, <V __rdflit$27 x>)
+      clear on continue: (<V s_12_6_t1.S$32 rn>)
+    s# 60 31 from DB.DBA.RDF_QUAD by RDF_QUAD_POGS          2 rows   
+    Key RDF_QUAD_POGS  ASC  (<V s_12_6_t1.S$32 rn>)
+     P =  IRI_ID"...lastName"  ,  O = rdflit1071
+    
+    time        17% fanout         1 input         2 rows
+      clear: (<V s_12_6_t0.S$35 rn>)
+      clear on continue: (<V s_12_6_t0.S$35 rn>)$32 () 
+    s# 70 34 from DB.DBA.RDF_QUAD by RDF_QUAD_POGS       0.25 rows   
+    Key RDF_QUAD_POGS  ASC  (<V s_12_6_t0.S$35 rn>)
+     inlined  P =  IRI_ID"...firstName"  ,  O = rdflit1070 ,  S = <V s_12_6_t1.S$32 rn>
+    
+    time        49% fanout         1 input         2 rows
+      clear: (<V s_12_6_t2.O$38 an>, <V craigEmail$40 a>)
+      clear on continue: (<V s_12_6_t2.O$38 an>, <V craigEmail$40 a>)$35 () 
+    s# 80 37 from DB.DBA.RDF_QUAD by RDF_QUAD        1.2 rows   
+    Key RDF_QUAD  ASC  (<V s_12_6_t2.O$38 an>)
+     inlined  P =  IRI_ID"...email"  ,  S = <V s_12_6_t0.S$35 rn>
+    
+    After code:
+      0: <V craigEmail$40 a> := Call __ro2sq (<V s_12_6_t2.O$38 an>)
+      5: BReturn 0
+    time      0.28% fanout         0 input         2 rows
+    $40 () $48 (37 34 31 49 ) 
+    s# 90 42 Select (<V craigEmail$40 a>)
+      set no: <r set_ctr$48 via  Set80 Set70 Set60>
+  }
+Warning: You might have a Cartesian product.
+
+
+
+ 0 msec 10% cpu,         7 rnd         2 seq        25% same seg      12.5% same pg 
+Compilation: 1 msec 0 reads         0% read 0 messages         0% clw
+}

@@ -1,0 +1,42 @@
+{  { 
+      clear: (<V set_ctr$42 in>)
+    s# 63 43 cluster outer seq start, set no <V set_ctr$42 in>    
+    save ctx:()
+      clear: (<V t2.O$28 an>, <V t2.S$29 rn>)
+      clear on continue: (<V t2.O$28 an>, <V t2.S$29 rn>)
+    s# 68 27 from DB.DBA.RDF_QUAD by RDF_QUAD          4 rows   
+    Key RDF_QUAD  ASC  (<V t2.S$29 rn>, <V t2.O$28 an>)
+     inlined  P =  IRI_ID"...family-name" 
+    
+      clear: (<V t1.O$32 an>, <V t1.S$33 rn>)
+      clear on continue: (<V t1.O$32 an>, <V t1.S$33 rn>)
+    s# 75 31 from DB.DBA.RDF_QUAD by RDF_QUAD          1 rows   
+    Key RDF_QUAD  ASC  (<V t1.S$33 rn>, <V t1.O$32 an>)
+     inlined  P =  IRI_ID"...given-name"  ,  S = <V t2.S$29 rn>
+    
+    Precode:
+      0: <V familyName$35 a> := Call __ro2sq (<r t2.O$28 via  Set75>)
+      5: <V givenName$37 a> := Call __ro2sq (<V t1.O$32 an>)
+      10: BReturn 0
+      clear: (<V set_ctr$45 i>, <V givenName$37 a>, <V familyName$35 a>)$32 () $28 (31 ) 
+    s# 82 49 cluster outer seq start, set no <V set_ctr$45 i>    
+    save ctx:()
+      clear: (<V t4.O$40 a>)
+      clear on continue: (<V t4.O$40 a>)$29 (49 31 ) $91 (39 ) 
+    s# 87 39 from DB.DBA.RDF_QUAD by RDF_QUAD        1.5 rows   
+    Key RDF_QUAD  ASC  (<V t4.O$40 a>)
+     inlined  P =  IRI_ID"...completedOrientation"  ,  S = <v k_t2.S$91 Set93 rn>
+    vector param casts: <r t2.S$29 via  Set82 Set75>-> <v k_t2.S$91 Set93 rn>
+    
+      clear: (<V oDate$54 a>)$40 () $45 (39 49 ) 
+    s# 97 44 end of outer seq <r set_ctr$45 via  Set87 Set93>
+     out: (<V t4.O$40 a>)
+     shadow: ( <none> )
+    After code:
+      0: <V oDate$54 a> := Call __ro2sq (<V t4.O$40 a>)
+      5: BReturn 0
+    $35 (44 39 49 ) $37 (44 39 49 ) $42 (44 39 49 31 27 43 ) $54 (44 ) 
+    s# 101 56 Select (<r givenName$37 via  Set97>, <r familyName$35 via  Set97>, <V oDate$54 a>)
+      set no: <r set_ctr$42 via  Set97 Set75 Set68>
+  }
+}

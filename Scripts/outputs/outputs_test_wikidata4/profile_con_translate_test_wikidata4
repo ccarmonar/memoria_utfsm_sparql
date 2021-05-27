@@ -1,0 +1,207 @@
+OpenLink Virtuoso Interactive SQL (Virtuoso)
+Version 07.20.3232 as of May 11 2021
+Type HELP; for help and EXIT; to exit.
+Connected to OpenLink Virtuoso
+Driver: 07.20.3232 OpenLink Virtuoso ODBC Driver
+{SPARQL_TO_SQL_TEXT
+LONG VARCHAR
+_______________________________________________________________________________
+
+ SELECT  __ro2sq ("s_76_13_rbc"."street") AS "street", __ro2sq ("s_76_13_rbc"."streetLabel") AS "streetLabel", __ro2sq ("s_76_13_rbc"."cityLabel") AS "cityLabel", __ro2sq ("s_76_13_rbc"."personLabel") AS "personLabel" FROM (SELECT __id2in ( "s_76_13_t1"."S") AS "street",
+    NULL /* due to conflict on streetLabel */ AS "streetLabel",
+    NULL /* due to conflict on cityLabel */ AS "cityLabel",
+    NULL /* due to conflict on personLabel */ AS "personLabel"
+  FROM DB.DBA.RDF_QUAD AS "s_76_13_t1"
+    INNER JOIN DB.DBA.RDF_QUAD AS "s_76_13_t2"
+    ON (
+      "s_76_13_t1"."S" = "s_76_13_t2"."S")
+    INNER JOIN DB.DBA.RDF_QUAD AS "s_76_13_t3"
+    ON (
+      "s_76_13_t1"."S" = "s_76_13_t3"."S"
+      AND 
+      "s_76_13_t2"."S" = "s_76_13_t3"."S")
+    INNER JOIN DB.DBA.RDF_QUAD AS "s_76_13_t4"
+    ON (
+      "s_76_13_t1"."S" = "s_76_13_t4"."S"
+      AND 
+      "s_76_13_t2"."S" = "s_76_13_t4"."S"
+      AND 
+      "s_76_13_t3"."S" = "s_76_13_t4"."S")
+    INNER JOIN DB.DBA.RDF_QUAD AS "s_76_13_t5"
+    ON (
+      "s_76_13_t4"."O" = "s_76_13_t5"."S")
+    INNER JOIN DB.DBA.SPARQL_SINV_2 "s_75_12"
+    ON (
+     "s_75_12".qtext_template =  ' SELECT ?stubvar14\012 WHERE {  <http://www.bigdata.com/rdf#serviceParam> <http://wikiba.se/ontology#language> "fr" . }' 
+      AND 
+     "s_75_12".qtext_posmap =  N'' 
+      AND 
+     "s_75_12".ws_endpoint =  __bft ( __bft( 'http://wikiba.se/ontology#label' , 1), 1)
+      AND 
+     "s_75_12".ws_params = vector ()
+      AND 
+     "s_75_12".expected_vars = vector ( 'stubvar14' )
+      AND 
+     "s_75_12".param_row = vector ( NULL /* runaway person after reorder */, NULL /* runaway street after reorder */, NULL /* runaway city after reorder */))
+  WHERE
+    "s_76_13_t1"."P" = __i2idn ( __bft( 'http://www.wikidata.org/prop/direct/P31' , 1))
+    AND 
+    "s_76_13_t1"."O" = __i2idn ( __bft( 'http://www.wikidata.org/entity/Q79007' , 1))
+    AND 
+    "s_76_13_t2"."P" = __i2idn ( __bft( 'http://www.wikidata.org/prop/direct/P17' , 1))
+    AND 
+    "s_76_13_t2"."O" = __i2idn ( __bft( 'http://www.wikidata.org/entity/Q142' , 1))
+    AND 
+    "s_76_13_t3"."P" = __i2idn ( __bft( 'http://www.wikidata.org/prop/direct/P131' , 1))
+    AND 
+    "s_76_13_t4"."P" = __i2idn ( __bft( 'http://www.wikidata.org/prop/direct/P138' , 1))
+    AND 
+    "s_76_13_t5"."P" = __i2idn ( __bft( 'http://www.wikidata.org/prop/direct/P31' , 1))
+    AND 
+    "s_76_13_t5"."O" = __i2idn ( __bft( 'http://www.wikidata.org/entity/Q5' , 1))
+  ORDER BY __ro2sq ( "s_76_13_t3"."O") ASC
+OPTION (QUIETCAST)) AS "s_76_13_rbc"
+
+1 Rows. -- 2 msec.
+
+Done. -- 0 msec.
+
+Done. -- 1 msec.
+
+Done. -- 0 msec.
+result
+LONG VARCHAR
+_______________________________________________________________________________
+
+
+  { 
+    time       6.7% fanout         1 input         1 rows
+      clear: (<V set_ctr$118 in>)
+    s# 121 119 cluster outer seq start, set no <V set_ctr$118 in>    
+    save ctx:()
+    Precode:
+      0: <V vector$27 x> := Call vector (<DB_NULL>, <DB_NULL>, <DB_NULL>)
+      5: <V vector$29 x> := Call vector (<c stubvar14>)
+      10: <V vector$31 x> := Call vector ()
+      15: BReturn 0
+      clear: (<V personLabel$37 x>, <V cityLabel$36 x>, <V streetLabel$35 x>, <V street$34 a>, <V set_no$38 i>, <V vector$31 x>, <V vector$29 x>, <V vector$27 x>, <V personLabel$110 a>, <V cityLabel$108 a>, <V streetLabel$106 a>, <V street$104 a>)
+    s# 130 33 Subquery 33 
+      multistate set no = <V set_no$38 i>
+      { 
+        time         5% fanout         1 input         1 rows
+        
+        s# 210 81 Fork 81 {  
+                
+            save ctx:()
+              set no = <V set_no$38 i> array  <none>  save: 
+            time        82% fanout         0 input         1 rows
+            Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:    0.0014 Fanout:         0
+              clear: (<V s_76_13_t5.S$40 rn>)
+              clear on continue: (<V s_76_13_t5.S$40 rn>)
+            s# 135 39 from DB.DBA.RDF_QUAD by RDF_QUAD_POGS     0.0014 rows   
+            Key RDF_QUAD_POGS  ASC  (<V s_76_13_t5.S$40 rn>)
+             P =  IRI_ID"...direct/P31"  ,  O =  IRI_ID"...Q5" 
+            
+            time         0% fanout         0 input         0 rows
+            Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:   6.9e-07 Fanout:         0
+              clear: (<V s_76_13_t4.S$43 rn>)
+              clear on continue: (<V s_76_13_t4.S$43 rn>)$40 () $149 (42 ) 
+            s# 145 42 from DB.DBA.RDF_QUAD by RDF_QUAD    6.9e-07 rows   
+            Key RDF_QUAD  ASC  (<V s_76_13_t4.S$43 rn>)
+             inlined  P =  IRI_ID"...direct/P138" 
+            row specs:  O = <v cast$149 Set151 an>
+            vector param casts: <V s_76_13_t5.S$40 rn>-> <v cast$149 Set151 an>
+            
+            time         0% fanout         0 input         0 rows
+            Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:    0.0014 Fanout:         0
+              clear: (<V s_76_13_t3.O$46 an>, <V s_76_13_t3.S$47 rn>)
+              clear on continue: (<V s_76_13_t3.O$46 an>, <V s_76_13_t3.S$47 rn>)$43 () 
+            s# 159 45 from DB.DBA.RDF_QUAD by RDF_QUAD     0.0014 rows   
+            Key RDF_QUAD  ASC  (<V s_76_13_t3.S$47 rn>, <V s_76_13_t3.O$46 an>)
+             inlined  P =  IRI_ID"...direct/P131"  ,  S = <V s_76_13_t4.S$43 rn>
+            
+            time         0% fanout         0 input         0 rows
+            Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:    0.0014 Fanout:         0
+              clear: (<V s_76_13_t2.S$50 rn>)
+              clear on continue: (<V s_76_13_t2.S$50 rn>)$47 () 
+            s# 170 49 from DB.DBA.RDF_QUAD by RDF_QUAD_POGS     0.0014 rows   
+            Key RDF_QUAD_POGS  ASC  (<V s_76_13_t2.S$50 rn>)
+             inlined  P =  IRI_ID"...direct/P17"  ,  O =  IRI_ID"...Q142"  ,  S = <V s_76_13_t3.S$47 rn>
+            
+            time         0% fanout         0 input         0 rows
+            Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:    0.0014 Fanout:         0
+              clear: (<V s_76_13_t1.S$53 rn>)
+              clear on continue: (<V s_76_13_t1.S$53 rn>)$50 () 
+            s# 180 52 from DB.DBA.RDF_QUAD by RDF_QUAD_POGS     0.0014 rows   
+            Key RDF_QUAD_POGS  ASC  (<V s_76_13_t1.S$53 rn>)
+             inlined  P =  IRI_ID"...direct/P31"  ,  O =  IRI_ID"...Q79007"  ,  S = <V s_76_13_t2.S$50 rn>
+            
+            time         0% fanout         0 input         0 rows
+            Precode:
+              0: <V __ro2sq$55 a> := Call __ro2sq (<r s_76_13_t3.O$46 via  Set180 Set170>)
+              5: <V __id2in$57 a> := Call __id2in (<V s_76_13_t1.S$53 rn>)
+              10: <V ws_endpoint$64 sn> :=  := artm <tag 182 flag 1 c http://wikiba.se/ontology#label>
+              14: <V ws_params$66 x> :=  := artm <r vector$31 via  Set180 Set170 Set159 Set145 Set151 Set135>
+              18: <V qtext_template$68 sn> :=  := artm <c  SELECT ?stubvar14
+               WHERE {  <http://www.bigdata.com/rdf#serviceParam> <http://wikiba.se/ontology#language> "fr" . }>
+              22: <V qtext_posmap$70 Nn> :=  := artm <tag 225 c >
+              26: <V param_row$72 x> :=  := artm <r vector$27 via  Set180 Set170 Set159 Set145 Set151 Set135>
+              30: <V expected_vars$74 x> :=  := artm <r vector$29 via  Set180 Set170 Set159 Set145 Set151 Set135>
+              34: <V proc_ctr$60 i> :=  := artm  0 
+              38:  <none>  := Call __reset_temp ( 140604479338736 )
+              43:  <proc table>  := Call DB.DBA.SPARQL_SINV_IMP (<tag 182 flag 1 c http://wikiba.se/ontology#label>, <r vector$31 via  Set180 Set170 Set159 Set145 Set151 Set135>, <c  SELECT ?stubvar14
+               WHERE {  <http://www.bigdata.com/rdf#serviceParam> <http://wikiba.se/ontology#language> "fr" . }>, <tag 225 c >, <r vector$27 via  Set180 Set170 Set159 Set145 Set151 Set135>, <r vector$29 via  Set180 Set170 Set159 Set145 Set151 Set135>)
+              50: BReturn 0
+              clear: (<V RSET$62 a>, <V proc_ctr$60 i>, <V expected_vars$74 x>, <V param_row$72 x>, <V qtext_posmap$70 Nn>, <V qtext_template$68 sn>, <V ws_params$66 x>, <V ws_endpoint$64 sn>, <V __id2in$57 a>, <V __ro2sq$55 a>, <V $85 x>, <V $84 x>, <V $83 x>)
+              clear on continue: (<V $83 x>, <V $84 x>, <V $85 x>, <V proc_ctr$60 i>, <V RSET$62 a>)$46 (52 49 ) $53 () 
+            s# 190 59 Key from temp (<V proc_ctr$60 i>, <V RSET$62 a>)
+            
+            
+            After code:
+              0: <V $83 x> :=  := artm <DB_NULL>
+              4: <V $84 x> :=  := artm <DB_NULL>
+              8: <V $85 x> :=  := artm <DB_NULL>
+              12: BReturn 0
+            time         0% fanout         0 input         0 rows
+            $83 () $84 () $85 () $55 (59 ) 
+            s# 202 82 Sort (HASH) set no <r set_no$38 via  Set190 Set180 Set170 Set159 Set145 Set151 Set135>(<r __ro2sq$55 via  Set190>) -> (<r __id2in$57 via  Set190>, <V $83 x>, <V $84 x>, <V $85 x>)
+            
+        }
+        time       6.5% fanout         0 input         1 rows
+          clear: (<V $85 x>, <V $84 x>, <V $83 x>, <V __id2in$57 a>, <V personLabel$37 x>, <V cityLabel$36 x>, <V streetLabel$35 x>, <V street$34 a>)
+          clear on continue: (<V $85 x>, <V $84 x>, <V $83 x>, <V __id2in$57 a>, <V personLabel$37 x>, <V cityLabel$36 x>, <V streetLabel$35 x>, <V street$34 a>)
+        s# 217 90 Key from temp (<V __id2in$57 a>, <V $83 x>, <V $84 x>, <V $85 x>)
+        
+        
+        After code:
+          0: <V street$34 a> :=  := artm <V __id2in$57 a>
+          4: <V streetLabel$35 x> :=  := artm <DB_NULL>
+          8: <V cityLabel$36 x> :=  := artm <DB_NULL>
+          12: <V personLabel$37 x> :=  := artm <DB_NULL>
+          16: BReturn 0
+        time         0% fanout         0 input         0 rows
+        
+        s# 130 97 Subquery Select(<V street$34 a>, <V streetLabel$35 x>, <V cityLabel$36 x>, <V personLabel$37 x>)
+          set no: <r set_no$38 via  Set217>
+      }
+    
+    After code:
+      0: <V street$104 a> := Call __ro2sq (<V street$34 a>)
+      5: <V streetLabel$106 a> := Call __ro2sq (<V streetLabel$35 x>)
+      10: <V cityLabel$108 a> := Call __ro2sq (<V cityLabel$36 x>)
+      15: <V personLabel$110 a> := Call __ro2sq (<V personLabel$37 x>)
+      20: BReturn 0
+    time         0% fanout         0 input         0 rows
+    $104 (33 ) $106 (33 ) $108 (33 ) $110 (33 ) $118 (33 119 ) 
+    s# 237 112 Select (<V street$104 a>, <V streetLabel$106 a>, <V cityLabel$108 a>, <V personLabel$110 a>)
+      set no: <r set_ctr$118 via  Set130>
+  }
+Warning: You might have a Cartesian product.
+
+
+
+ 0 msec 0% cpu,         1 rnd         0 seq         0% same seg         0% same pg 
+Compilation: 7 msec 0 reads         0% read 0 messages         0% clw
+
+4 Rows. -- 24 msec.
+}

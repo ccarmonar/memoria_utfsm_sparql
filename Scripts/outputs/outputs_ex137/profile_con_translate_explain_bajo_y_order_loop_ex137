@@ -1,0 +1,101 @@
+OpenLink Virtuoso Interactive SQL (Virtuoso)
+Version 07.20.3232 as of May 11 2021
+Type HELP; for help and EXIT; to exit.
+Connected to OpenLink Virtuoso
+Driver: 07.20.3232 OpenLink Virtuoso ODBC Driver
+{SPARQL_TO_SQL_TEXT
+LONG VARCHAR
+_______________________________________________________________________________
+
+SELECT __ro2sq ( "s_13_3"."lastName") AS "lastName",
+  __ro2sq ( "s_18_7"."courseName") AS "courseName"
+FROM (
+   SELECT "s_13_2_t0"."O" AS "lastName"
+    FROM DB.DBA.RDF_QUAD AS "s_13_2_t0"
+    WHERE
+      "s_13_2_t0"."P" = __i2idn ( __bft( 'http://learningsparql.com/ns/addressbook#lastName' , 1))
+OPTION (QUIETCAST)
+    ) AS "s_13_3"
+  INNER JOIN (
+   SELECT "s_18_6_t1"."O" AS "courseName"
+    FROM DB.DBA.RDF_QUAD AS "s_18_6_t1"
+    WHERE
+      "s_18_6_t1"."P" = __i2idn ( __bft( 'http://learningsparql.com/ns/addressbook#courseTitle' , 1))
+OPTION (QUIETCAST)
+    ) AS "s_18_7"
+  ON (1)
+OPTION (QUIETCAST)
+
+1 Rows. -- 2 msec.
+
+Done. -- 1 msec.
+
+Done. -- 1 msec.
+result
+LONG VARCHAR
+_______________________________________________________________________________
+
+Marshall	Enhancing Websites with RDFa	
+Marshall	Modeling Data with OWL	
+Marshall	Updating Data with SPARQL	
+Marshall	Using SPARQL with non-RDF Data	
+Marshall	Combining Public and Private RDF Data	
+Marshall	Using Named Graphs	
+Perry	Enhancing Websites with RDFa	
+Perry	Modeling Data with OWL	
+Perry	Updating Data with SPARQL	
+Perry	Using SPARQL with non-RDF Data	
+Perry	Combining Public and Private RDF Data	
+Perry	Using Named Graphs	
+Ellis	Enhancing Websites with RDFa	
+Ellis	Modeling Data with OWL	
+Ellis	Updating Data with SPARQL	
+Ellis	Using SPARQL with non-RDF Data	
+Ellis	Combining Public and Private RDF Data	
+Ellis	Using Named Graphs	
+Mutt	Enhancing Websites with RDFa	
+Mutt	Modeling Data with OWL	
+
+  { 
+    time       4.3% fanout         1 input         1 rows
+    Subquery 27 
+      { 
+        time        56% fanout         8 input         1 rows
+        RDF_QUAD_POGS         8 rows(s_13_2_t0.O$31)
+         inlined  P =  IRI_ID"...lastName" 
+        
+        After code:
+        0: lastName$28 :=  := artm s_13_2_t0.O$31
+        4: BReturn 0
+        time       1.9% fanout         0 input         8 rows
+        Subquery Select(lastName$28)
+      }
+    Precode:
+      0: lastName$40 := Call __ro2sq (lastName$28)
+      5: BReturn 0
+    Subquery 42 
+      { 
+        time        37% fanout         6 input         8 rows
+        RDF_QUAD_POGS         6 rows(s_18_6_t1.O$46)
+         inlined  P =  IRI_ID"...courseTitle" 
+        
+        After code:
+        0: courseName$43 :=  := artm s_18_6_t1.O$46
+        4: BReturn 0
+        time      0.52% fanout         0 input        48 rows
+        Subquery Select(courseName$43)
+      }
+    
+    After code:
+    0: courseName$55 := Call __ro2sq (courseName$43)
+    5: BReturn 0
+    time      0.63% fanout         0 input        48 rows
+    Select (lastName$40, courseName$55)
+  }
+
+
+ 1 msec 15% cpu,        65 rnd        47 seq   10.6061% same seg   16.6667% same pg 
+Compilation: 1 msec 0 reads         0% read 0 messages         0% clw
+
+4 Rows. -- 21 msec.
+}

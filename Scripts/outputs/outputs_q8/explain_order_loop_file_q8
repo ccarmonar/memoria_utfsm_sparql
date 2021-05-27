@@ -1,0 +1,40 @@
+{  { 
+      clear: (<V set_ctr$57 in>)
+    s# 60 58 cluster outer seq start, set no <V set_ctr$57 in>    
+    save ctx:()
+      clear: (<V someVariable$31 sn>, <V familyName$30 an>, <V givenName$29 an>, <V person$28 rn>, <V set_no$32 i>, <V familyName$49 a>, <V givenName$47 a>)
+    s# 65 27 Subquery 27 
+      multistate set no = <V set_no$32 i>
+      { 
+          clear: (<V s_6_4_t0.O$34 an>, <V s_6_4_t0.S$35 rn>)
+          clear on continue: (<V s_6_4_t0.O$34 an>, <V s_6_4_t0.S$35 rn>)
+        s# 69 33 from DB.DBA.RDF_QUAD by RDF_QUAD          4 rows   
+        Key RDF_QUAD  ASC  (<V s_6_4_t0.S$35 rn>, <V s_6_4_t0.O$34 an>)
+         inlined  P =  IRI_ID"...given-name" 
+        
+          clear: (<V s_6_4_t1.O$38 an>, <V someVariable$31 sn>, <V familyName$30 an>, <V givenName$29 an>, <V person$28 rn>)
+          clear on continue: (<V s_6_4_t1.O$38 an>, <V someVariable$31 sn>, <V familyName$30 an>, <V givenName$29 an>, <V person$28 rn>)$34 () $35 () 
+        s# 76 37 from DB.DBA.RDF_QUAD by RDF_QUAD          1 rows   
+        Key RDF_QUAD  ASC  (<V s_6_4_t1.O$38 an>)
+         inlined  P =  IRI_ID"...family-name"  ,  S = <V s_6_4_t0.S$35 rn>
+        
+        After code:
+          0: <V person$28 rn> :=  := artm <r s_6_4_t0.S$35 via  Set76>
+          4: <V givenName$29 an> :=  := artm <r s_6_4_t0.O$34 via  Set76>
+          8: <V familyName$30 an> :=  := artm <V s_6_4_t1.O$38 an>
+          12: <V someVariable$31 sn> :=  := artm <c some value>
+          16: BReturn 0
+        $31 () $28 () 
+        s# 65 40 Subquery Select(<V person$28 rn>, <V givenName$29 an>, <V familyName$30 an>, <V someVariable$31 sn>)
+          set no: <r set_no$32 via  Set76 Set69>
+      }
+    
+    After code:
+      0: <V givenName$47 a> := Call __ro2sq (<V givenName$29 an>)
+      5: <V familyName$49 a> := Call __ro2sq (<V familyName$30 an>)
+      10: BReturn 0
+    $47 (27 ) $49 (27 ) $57 (27 58 ) 
+    s# 89 51 Select (<V givenName$47 a>, <V familyName$49 a>, <c some value>)
+      set no: <r set_ctr$57 via  Set65>
+  }
+}

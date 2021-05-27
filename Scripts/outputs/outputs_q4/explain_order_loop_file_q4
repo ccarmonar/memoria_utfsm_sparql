@@ -1,0 +1,37 @@
+{  { 
+      clear: (<V set_ctr$52 in>)
+    s# 55 53 cluster outer seq start, set no <V set_ctr$52 in>    
+    save ctx:()
+    Precode:
+      0: <V __rdflit$27 x> := Call __rdflit (rdflit1413)
+      5: BReturn 0
+      clear: (<V s_11_6_t0.O$30 an>, <V s_11_6_t0.S$31 rn>, <V __rdflit$27 x>)
+      clear on continue: (<V s_11_6_t0.S$31 rn>, <V s_11_6_t0.O$30 an>)
+    s# 60 29 from DB.DBA.RDF_QUAD by RDF_QUAD          4 rows   
+    Key RDF_QUAD  ASC  (<V s_11_6_t0.S$31 rn>, <V s_11_6_t0.O$30 an>)
+     inlined  P =  IRI_ID"...given-name" 
+    
+      clear: (<V s_11_6_t1.O$34 an>, <V s_11_6_t1.S$35 rn>)
+      clear on continue: (<V s_11_6_t1.O$34 an>, <V s_11_6_t1.S$35 rn>)
+    s# 67 33 from DB.DBA.RDF_QUAD by RDF_QUAD          1 rows   
+    Key RDF_QUAD  ASC  (<V s_11_6_t1.S$35 rn>, <V s_11_6_t1.O$34 an>)
+     inlined  P =  IRI_ID"...family-name"  ,  S = <V s_11_6_t0.S$31 rn>
+    
+      clear: (<V s_11_6_t2.O$38 an>, <V hireDate$44 a>, <V givenName$42 a>, <V familyName$40 a>)
+      clear on continue: (<V familyName$40 a>, <V givenName$42 a>, <V hireDate$44 a>, <V s_11_6_t2.O$38 an>)$31 (33 ) $34 () $78 (37 ) $30 (33 ) 
+    s# 74 37 from DB.DBA.RDF_QUAD by RDF_QUAD          1 rows   
+    Key RDF_QUAD  ASC  (<V s_11_6_t2.O$38 an>)
+     P =  IRI_ID"...hireDate"  ,  S = <v k_s_11_6_t0.S$78 Set80 rn> ,  O < rdflit1413
+    row specs:  O < rdflit1413
+    vector param casts: <r s_11_6_t0.S$31 via  Set67>-> <v k_s_11_6_t0.S$78 Set80 rn>
+    
+    After code:
+      0: <V familyName$40 a> := Call __ro2sq (<r s_11_6_t1.O$34 via  Set74 Set80>)
+      5: <V givenName$42 a> := Call __ro2sq (<r s_11_6_t0.O$30 via  Set74 Set80 Set67>)
+      10: <V hireDate$44 a> := Call __ro2sq (<V s_11_6_t2.O$38 an>)
+      15: BReturn 0
+    $40 () $42 () $44 () $52 (37 33 29 53 ) 
+    s# 84 46 Select (<V givenName$42 a>, <V familyName$40 a>, <V hireDate$44 a>)
+      set no: <r set_ctr$52 via  Set74 Set80 Set67 Set60>
+  }
+}

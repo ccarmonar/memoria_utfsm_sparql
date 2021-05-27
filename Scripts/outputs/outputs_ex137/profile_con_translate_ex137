@@ -1,0 +1,101 @@
+OpenLink Virtuoso Interactive SQL (Virtuoso)
+Version 07.20.3232 as of May 11 2021
+Type HELP; for help and EXIT; to exit.
+Connected to OpenLink Virtuoso
+Driver: 07.20.3232 OpenLink Virtuoso ODBC Driver
+{SPARQL_TO_SQL_TEXT
+LONG VARCHAR
+_______________________________________________________________________________
+
+SELECT __ro2sq ( "s_13_3"."lastName") AS "lastName",
+  __ro2sq ( "s_18_7"."courseName") AS "courseName"
+FROM (
+   SELECT "s_13_2_t0"."O" AS "lastName"
+    FROM DB.DBA.RDF_QUAD AS "s_13_2_t0"
+    WHERE
+      "s_13_2_t0"."P" = __i2idn ( __bft( 'http://learningsparql.com/ns/addressbook#lastName' , 1))
+OPTION (QUIETCAST)
+    ) AS "s_13_3"
+  INNER JOIN (
+   SELECT "s_18_6_t1"."O" AS "courseName"
+    FROM DB.DBA.RDF_QUAD AS "s_18_6_t1"
+    WHERE
+      "s_18_6_t1"."P" = __i2idn ( __bft( 'http://learningsparql.com/ns/addressbook#courseTitle' , 1))
+OPTION (QUIETCAST)
+    ) AS "s_18_7"
+  ON (1)
+OPTION (QUIETCAST)
+
+1 Rows. -- 1 msec.
+
+Done. -- 0 msec.
+
+Done. -- 1 msec.
+
+Done. -- 1 msec.
+result
+LONG VARCHAR
+_______________________________________________________________________________
+
+Ellis	Using SPARQL with non-RDF Data	
+Ellis	Using SPARQL with non-RDF Data	
+Marshall	Using SPARQL with non-RDF Data	
+Marshall	Using SPARQL with non-RDF Data	
+Mutt	Using SPARQL with non-RDF Data	
+Mutt	Using SPARQL with non-RDF Data	
+Duncan	Using SPARQL with non-RDF Data	
+Perry	Using SPARQL with non-RDF Data	
+Ellis	Modeling Data with OWL	
+Ellis	Modeling Data with OWL	
+Marshall	Modeling Data with OWL	
+Marshall	Modeling Data with OWL	
+Mutt	Modeling Data with OWL	
+Mutt	Modeling Data with OWL	
+Duncan	Modeling Data with OWL	
+Perry	Modeling Data with OWL	
+Ellis	Using Named Graphs	
+Ellis	Using Named Graphs	
+Marshall	Using Named Graphs	
+Marshall	Using Named Graphs	
+
+  { 
+    time       1.4% fanout         1 input         1 rows
+      clear: (<V set_ctr$43 in>)
+    s# 46 44 cluster outer seq start, set no <V set_ctr$43 in>    
+    save ctx:()
+    time        17% fanout         6 input         1 rows
+      clear: (<V t8.O$28 an>)
+      clear on continue: (<V t8.O$28 an>)
+    s# 55 27 from DB.DBA.RDF_QUAD by RDF_QUAD_POGS          6 rows   
+    Key RDF_QUAD_POGS  ASC  (<V t8.O$28 an>)
+     inlined  P =  IRI_ID"...courseTitle" 
+    
+    time        82% fanout         8 input         6 rows
+    Precode:
+      0: <V courseName$30 a> := Call __ro2sq (<V t8.O$28 an>)
+      5: BReturn 0
+      clear: (<V t6.O$33 an>, <V courseName$30 a>, <V lastName$35 a>)
+      clear on continue: (<V lastName$35 a>, <V t6.O$33 an>)$28 () 
+    s# 65 32 from DB.DBA.RDF_QUAD by RDF_QUAD_POGS          8 rows   
+    Key RDF_QUAD_POGS  ASC  (<V t6.O$33 an>)
+     inlined  P =  IRI_ID"...lastName" 
+    
+    After code:
+      0: <V lastName$35 a> := Call __ro2sq (<V t6.O$33 an>)
+      5: BReturn 0
+    time       0.2% fanout         0 input        48 rows
+    $35 () $43 (32 27 44 ) $30 (32 ) 
+    s# 75 37 Select (<V lastName$35 a>, <r courseName$30 via  Set65>)
+      set no: <r set_ctr$43 via  Set65 Set55>
+  }
+Warning: You might have a Cartesian product.
+
+Warning: You might have a Cartesian product.
+
+
+
+ 0 msec 14% cpu,        61 rnd        47 seq   8.06452% same seg    16.129% same pg 
+Compilation: 2 msec 0 reads         0% read 0 messages         0% clw
+
+4 Rows. -- 20 msec.
+}

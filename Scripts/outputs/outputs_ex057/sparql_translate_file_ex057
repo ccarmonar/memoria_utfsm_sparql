@@ -1,0 +1,22 @@
+SELECT __ro2sq ( "s_14_8_t3"."O") AS "first",
+  __ro2sq ( "s_14_8_t4"."O") AS "last",
+  __ro2sq ( "s_12_6"."workTel") AS "workTel"
+FROM DB.DBA.RDF_QUAD AS "s_14_8_t3"
+  INNER JOIN DB.DBA.RDF_QUAD AS "s_14_8_t4"
+  ON (
+    "s_14_8_t4"."S" = "s_14_8_t3"."S")
+  LEFT OUTER JOIN (
+    SELECT "s_12_6_t0"."S" AS "s",
+      "s_12_6_t0"."O" AS "workTel"
+    FROM DB.DBA.RDF_QUAD AS "s_12_6_t0"
+    WHERE
+      "s_12_6_t0"."P" = __i2idn ( __bft( 'http://learningsparql.com/ns/addressbook#workTel' , 1))) AS "s_12_6"
+  ON (
+    "s_14_8_t4"."S" = "s_12_6"."s"
+    AND 
+    "s_14_8_t3"."S" = "s_12_6"."s")
+WHERE
+  "s_14_8_t3"."P" = __i2idn ( __bft( 'http://learningsparql.com/ns/addressbook#firstName' , 1))
+  AND 
+  "s_14_8_t4"."P" = __i2idn ( __bft( 'http://learningsparql.com/ns/addressbook#lastName' , 1))
+OPTION (QUIETCAST)

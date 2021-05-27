@@ -1,10 +1,10 @@
 {
   { 
-    time       8.5% fanout         1 input         1 rows
+    time       9.2% fanout         1 input         1 rows
       clear: (<V set_ctr$185 in>)
     s# 188 186 cluster outer seq start, set no <V set_ctr$185 in>    
     save ctx:()
-    time        92% fanout         0 input         1 rows
+    time        91% fanout         0 input         1 rows
     Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:    0.0014 Fanout:         0
     Precode:
       0: vector$27  := Call vector (<DB_NULL>, <DB_NULL>, <DB_NULL>, <DB_NULL>, <DB_NULL>, <DB_NULL>)
@@ -58,7 +58,7 @@
     time         0% fanout         0 input         0 rows
     $43 (42 ) $45 (42 ) $58 (42 62 ) 
     s# 255 57 end of outer seq <r set_ctr$58 via  Set227>
-     out: (<V twitter$44 a>, <V item$43 r>, <V set_no$45 i>)
+     out: (<V twitter$44 a>, <V set_no$45 i>, <V item$43 r>)
      shadow: ( <none> ,  <none> ,  <none> )
     time         0% fanout         0 input         0 rows
       clear: (<V set_ctr$83 i>)
@@ -90,7 +90,7 @@
     time         0% fanout         0 input         0 rows
     $68 (67 ) $70 (67 ) $83 (67 87 ) 
     s# 300 82 end of outer seq <r set_ctr$83 via  Set272>
-     out: (<V set_no$70 i>, <V LinkedIN$69 a>, <V item$68 r>)
+     out: (<V LinkedIN$69 a>, <V item$68 r>, <V set_no$70 i>)
      shadow: ( <none> ,  <none> ,  <none> )
     time         0% fanout         0 input         0 rows
     Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:    0.0014 Fanout:         0
@@ -134,7 +134,7 @@
     time         0% fanout         0 input         0 rows
     $98 (97 ) $100 (97 ) $113 (97 117 ) 
     s# 359 112 end of outer seq <r set_ctr$113 via  Set331>
-     out: (<V node$98 r>, <V set_no$100 i>, <V positie_op_lijst$99 a>)
+     out: (<V positie_op_lijst$99 a>, <V node$98 r>, <V set_no$100 i>)
      shadow: ( <none> ,  <none> ,  <none> )
     time         0% fanout         0 input         0 rows
       clear: (<V set_ctr$138 i>)
@@ -166,7 +166,7 @@
     time         0% fanout         0 input         0 rows
     $138 (122 142 ) $123 (122 ) $125 (122 ) 
     s# 404 137 end of outer seq <r set_ctr$138 via  Set376>
-     out: (<V politieke_partij$124 a>, <V node$123 r>, <V set_no$125 i>)
+     out: (<V node$123 r>, <V set_no$125 i>, <V politieke_partij$124 a>)
      shadow: ( <none> ,  <none> ,  <none> )
     time         0% fanout         0 input         0 rows
     Precode:
@@ -183,7 +183,7 @@
       41: <V param_row$170 x> :=  := artm vector$27 
       45: <V expected_vars$172 x> :=  := artm vector$29 
       49: <V proc_ctr$158 i> :=  := artm  0 
-      53:  <none>  := Call __reset_temp ( 140127536456432 )
+      53:  <none>  := Call __reset_temp ( 140604479346720 )
       58:  <proc table>  := Call DB.DBA.SPARQL_SINV_IMP (<tag 182 flag 1 c http://wikiba.se/ontology#label>, vector$31 , <c  SELECT ?stubvar26
        WHERE {  <http://www.bigdata.com/rdf#serviceParam> <http://wikiba.se/ontology#language> "[AUTO_LANGUAGE],nl" . }>, <tag 225 c >, vector$27 , vector$29 )
       65: BReturn 0
@@ -214,5 +214,5 @@ Warning: You might have a Cartesian product.
 
 
  0 msec 1% cpu,         1 rnd        -1 seq         0% same seg         0% same pg 
-Compilation: 2 msec 0 reads         0% read 0 messages         0% clw
+Compilation: 4 msec 0 reads         0% read 0 messages         0% clw
 }

@@ -1,0 +1,139 @@
+{  { 
+      clear: (<V set_ctr$148 in>)
+    s# 151 149 cluster outer seq start, set no <V set_ctr$148 in>    
+    save ctx:()
+    Precode:
+      0: <V __rdflit$27 x> := Call __rdflit (rdflit1415)
+      5: <V __rdflit$29 x> := Call __rdflit (rdflit1414)
+      10: BReturn 0
+      clear: (<V p_brand1$34 a>, <V d_year$33 a>, <V lo_revenue$32 an>, <V set_no$35 i>, <V __rdflit$29 x>, <V __rdflit$27 x>, <V p_brand1$140 a>, <V d_year$138 a>, <V lo_revenue$136 a>)
+    s# 156 31 Subquery 31 
+      multistate set no = <V set_no$35 i>
+      { 
+        
+        s# 263 116 Fork 116 {  
+                
+            save ctx:()
+              set no = <V set_no$35 i> array  <none>  save: 
+            
+            s# 250 69 Fork 69 {  
+                    
+                save ctx:()
+                  set no = <V set_no$35 i> array  <none>  save: 
+                  clear: (<V s_18_9_t0.S$37 rn>)
+                  clear on continue: (<V s_18_9_t0.S$37 rn>)
+                s# 162 36 from DB.DBA.RDF_QUAD by RDF_QUAD_POGS        0.3 rows Parallel, tail cost      -nan   
+                Key RDF_QUAD_POGS  ASC  (<V s_18_9_t0.S$37 rn>)
+                 P =  IRI_ID"...type"  ,  O =  IRI_ID"...lineorder" 
+                row specs:  G =  IRI_ID"...ssb1_ttl_qb" 
+                copy on branch $35 $0 $0 $0 sets: 151 
+                
+                  clear: (<V s_18_9_t1.O$40 an>, <V s_18_9_t1.S$41 rn>)
+                  clear on continue: (<V s_18_9_t1.O$40 an>, <V s_18_9_t1.S$41 rn>)
+                s# 168 39 from DB.DBA.RDF_QUAD by RDF_QUAD    2.2e-06 rows Parallel, tail cost      -nan   
+                Key RDF_QUAD  ASC  (<V s_18_9_t1.S$41 rn>, <V s_18_9_t1.O$40 an>)
+                 inlined  P =  IRI_ID"...lo_orderdate"  ,  S = <V s_18_9_t0.S$37 rn>
+                row specs:  G =  IRI_ID"...ssb1_ttl_qb" 
+                copy on branch $37 $35 $0 $0 sets: 151 162 
+                
+                  clear: (<V s_18_9_t2.O$44 an>, <V s_18_9_t2.S$45 rn>)
+                  clear on continue: (<V s_18_9_t2.S$45 rn>, <V s_18_9_t2.O$44 an>)$179 (43 ) 
+                s# 175 43 from DB.DBA.RDF_QUAD by RDF_QUAD    2.2e-06 rows Parallel, tail cost      -nan   
+                Key RDF_QUAD  ASC  (<V s_18_9_t2.S$45 rn>, <V s_18_9_t2.O$44 an>)
+                 inlined  P =  IRI_ID"...lo_partkey"  ,  S = <v k_s_18_9_t0.S$179 Set181 rn>
+                row specs:  G =  IRI_ID"...ssb1_ttl_qb" 
+                vector param casts: <r s_18_9_t0.S$37 via  Set168>-> <v k_s_18_9_t0.S$179 Set181 rn>
+                copy on branch $179 $37 $40 $35 sets: 151 162 168 
+                
+                  clear: (<V s_18_9_t3.O$48 an>, <V s_18_9_t3.S$49 rn>)
+                  clear on continue: (<V s_18_9_t3.S$49 rn>, <V s_18_9_t3.O$48 an>)$190 (47 ) 
+                s# 186 47 from DB.DBA.RDF_QUAD by RDF_QUAD    2.2e-06 rows Parallel, tail cost      -nan   
+                Key RDF_QUAD  ASC  (<V s_18_9_t3.S$49 rn>, <V s_18_9_t3.O$48 an>)
+                 inlined  P =  IRI_ID"...lo_suppkey"  ,  S = <v k_s_18_9_t0.S$190 Set192 rn>
+                row specs:  G =  IRI_ID"...ssb1_ttl_qb" 
+                vector param casts: <r s_18_9_t0.S$37 via  Set175 Set181 Set168>-> <v k_s_18_9_t0.S$190 Set192 rn>
+                copy on branch $190 $37 $40 $44 $35 $0 $0 $0 sets: 151 162 168 181 175 
+                
+                  clear: (<V s_18_9_t4.O$52 an>)
+                  clear on continue: (<V s_18_9_t4.O$52 an>)$37 (47 43 39 ) $201 (51 ) 
+                s# 197 51 from DB.DBA.RDF_QUAD by RDF_QUAD    2.2e-06 rows Parallel, tail cost      -nan   
+                Key RDF_QUAD  ASC  (<V s_18_9_t4.O$52 an>)
+                 inlined  P =  IRI_ID"...lo_revenue"  ,  S = <v k_s_18_9_t0.S$201 Set203 rn>
+                row specs:  G =  IRI_ID"...ssb1_ttl_qb" 
+                vector param casts: <r s_18_9_t0.S$37 via  Set186 Set192 Set175 Set181 Set168>-> <v k_s_18_9_t0.S$201 Set203 rn>
+                copy on branch $201 $40 $44 $48 $35 $0 $0 $0 sets: 151 162 168 181 175 192 186 
+                
+                  clear: (<V s_18_9_t5.O$55 an>)
+                  clear on continue: (<V s_18_9_t5.O$55 an>)$40 (51 47 43 ) $211 (54 ) 
+                s# 207 54 from DB.DBA.RDF_QUAD by RDF_QUAD    2.2e-06 rows Parallel, tail cost      -nan   
+                Key RDF_QUAD  ASC  (<V s_18_9_t5.O$55 an>)
+                 inlined  P =  IRI_ID"...d_year"  ,  S = <v k_s_18_9_t1.O$211 Set213 rn>
+                row specs:  G =  IRI_ID"...ssb1_ttl_qb" 
+                vector param casts: <r s_18_9_t1.O$40 via  Set197 Set203 Set186 Set192 Set175 Set181>-> <v k_s_18_9_t1.O$211 Set213 rn>
+                copy on branch $211 $44 $48 $35 $52 $0 $0 $0 sets: 151 162 168 181 175 192 186 203 197 
+                
+                  clear: (<V s_18_9_t6.O$58 an>, <V s_18_9_t6.S$59 rn>)
+                  clear on continue: (<V s_18_9_t6.S$59 rn>, <V s_18_9_t6.O$58 an>)$221 (57 ) 
+                s# 217 57 from DB.DBA.RDF_QUAD by RDF_QUAD    2.2e-06 rows Parallel, tail cost      -nan   
+                Key RDF_QUAD  ASC  (<V s_18_9_t6.S$59 rn>, <V s_18_9_t6.O$58 an>)
+                 inlined  P =  IRI_ID"...p_brand1"  ,  S = <v k_s_18_9_t2.O$221 Set223 rn>
+                row specs:  G =  IRI_ID"...ssb1_ttl_qb" 
+                vector param casts: <r s_18_9_t2.O$44 via  Set207 Set213 Set197 Set203 Set186 Set192>-> <v k_s_18_9_t2.O$221 Set223 rn>
+                copy on branch $221 $44 $48 $55 $35 $52 $0 $0 sets: 151 162 168 181 175 192 186 203 197 213 207 
+                
+                $44 (57 54 51 47 ) $232 (61 ) 
+                s# 228 61 from DB.DBA.RDF_QUAD by RDF_QUAD_POGS  unq   1.1e-07 rows  Parallel, tail cost      -nan   
+                Key RDF_QUAD_POGS  ASC  ()
+                 P =  IRI_ID"...p_category"  ,  O = rdflit1415 ,  S = <v k_s_18_9_t2.O$232 Set234 rn> ,  G =  IRI_ID"...ssb1_ttl_qb" 
+                vector param casts: <r s_18_9_t2.O$44 via  Set217 Set223 Set207 Set213 Set197 Set203 Set186 Set192>-> <v k_s_18_9_t2.O$232 Set234 rn>
+                copy on branch $232 $48 $58 $55 $35 $52 $0 $0 sets: 151 162 168 181 175 192 186 203 197 213 207 223 217 
+                
+                  clear: (<V __ro2sq$67 a>, <V __ro2sq$65 a>)
+                  clear on continue: (<V __ro2sq$65 a>, <V __ro2sq$67 a>)$48 (61 57 54 51 ) $241 (63 ) 
+                s# 237 63 from DB.DBA.RDF_QUAD by RDF_QUAD_POGS  unq   1.1e-07 rows  Parallel, tail cost      -nan   
+                Key RDF_QUAD_POGS  ASC  ()
+                 P =  IRI_ID"...s_region"  ,  O = rdflit1414 ,  S = <v k_s_18_9_t3.O$241 Set243 rn> ,  G =  IRI_ID"...ssb1_ttl_qb" 
+                vector param casts: <r s_18_9_t3.O$48 via  Set228 Set234 Set217 Set223 Set207 Set213 Set197 Set203>-> <v k_s_18_9_t3.O$241 Set243 rn>
+                copy on branch $241 $58 $55 $35 $52 $0 $0 $0 sets: 151 162 168 181 175 192 186 203 197 213 207 223 217 234 228 
+                
+                After code:
+                  0: <V __ro2sq$65 a> := Call __ro2sq (<r s_18_9_t6.O$58 via  Set237 Set243 Set228 Set234>)
+                  5: <V __ro2sq$67 a> := Call __ro2sq (<r s_18_9_t5.O$55 via  Set237 Set243 Set228 Set234 Set217 Set223>)
+                  10: BReturn 0
+                $52 (63 61 57 54 ) $55 (63 61 57 ) $58 (63 61 ) 
+                s# 246 70 Sort (HASH) set no <r set_no$35 via  Set237 Set243 Set228 Set234 Set217 Set223 Set207 Set213 Set197 Set203 Set186 Set192 Set175 Set181 Set168 Set162>(<r s_18_9_t5.O$55 via  Set237 Set243 Set228 Set234 Set217 Set223>, <r s_18_9_t6.O$58 via  Set237 Set243 Set228 Set234>) -> (<r s_18_9_t4.O$52 via  Set237 Set243 Set228 Set234 Set217 Set223 Set207 Set213>, <V __ro2sq$65 a>, <V __ro2sq$67 a>) up to   4.3e+06 distinct
+                
+            }
+              clear: (<V __ro2sq$67 a>, <V __ro2sq$65 a>, <V aggregate$71 an>, <V s_18_9_t6.O$58 an>, <V s_18_9_t5.O$55 an>)
+              clear on continue: (<V __ro2sq$67 a>, <V __ro2sq$65 a>, <V aggregate$71 an>, <V s_18_9_t6.O$58 an>, <V s_18_9_t5.O$55 an>)
+            s# 253 77 group by read node  
+            (<V s_18_9_t5.O$55 an>, <V s_18_9_t6.O$58 an>, <V aggregate$71 an>, <V __ro2sq$65 a>, <V __ro2sq$67 a>)
+            
+            s# 259 117 Sort (HASH) set no <r set_no$35 via  Set253>(<V __ro2sq$67 a>, <V __ro2sq$65 a>) -> (<V aggregate$71 an>)
+            
+        }
+          clear: (<V __ro2sq$65 a>, <V __ro2sq$67 a>, <V aggregate$71 an>, <V p_brand1$34 a>, <V d_year$33 a>, <V lo_revenue$32 an>)
+          clear on continue: (<V __ro2sq$65 a>, <V __ro2sq$67 a>, <V aggregate$71 an>, <V p_brand1$34 a>, <V d_year$33 a>, <V lo_revenue$32 an>)
+        s# 266 122 Key from temp (<V aggregate$71 an>, <V __ro2sq$67 a>, <V __ro2sq$65 a>)
+        
+        
+        After code:
+          0: <V lo_revenue$32 an> :=  := artm <V aggregate$71 an>
+          4: <V d_year$33 a> :=  := artm <V __ro2sq$67 a>
+          8: <V p_brand1$34 a> :=  := artm <V __ro2sq$65 a>
+          12: BReturn 0
+        
+        s# 156 129 Subquery Select(<V lo_revenue$32 an>, <V d_year$33 a>, <V p_brand1$34 a>)
+          set no: <r set_no$35 via  Set266>
+      }
+    
+    After code:
+      0: <V lo_revenue$136 a> := Call __ro2sq (<V lo_revenue$32 an>)
+      5: <V d_year$138 a> := Call __ro2sq (<V d_year$33 a>)
+      10: <V p_brand1$140 a> := Call __ro2sq (<V p_brand1$34 a>)
+      15: BReturn 0
+    $136 (31 ) $138 (31 ) $140 (31 ) $148 (31 149 ) 
+    s# 277 142 Select (<V lo_revenue$136 a>, <V d_year$138 a>, <V p_brand1$140 a>)
+      set no: <r set_ctr$148 via  Set156>
+  }
+}

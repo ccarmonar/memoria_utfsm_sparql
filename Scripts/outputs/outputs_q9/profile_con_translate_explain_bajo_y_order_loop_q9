@@ -1,0 +1,81 @@
+OpenLink Virtuoso Interactive SQL (Virtuoso)
+Version 07.20.3232 as of May 11 2021
+Type HELP; for help and EXIT; to exit.
+Connected to OpenLink Virtuoso
+Driver: 07.20.3232 OpenLink Virtuoso ODBC Driver
+{SPARQL_TO_SQL_TEXT
+LONG VARCHAR
+_______________________________________________________________________________
+
+SELECT __ro2sq ( "s_9_5"."givenName") AS "givenName",
+  __ro2sq ( "s_9_5"."familyName") AS "familyName",
+  "s_9_5"."fullName" AS "fullName"
+FROM (
+   SELECT "s_9_4_t0"."S" AS "person",
+      "s_9_4_t0"."O" AS "givenName",
+      "s_9_4_t1"."O" AS "familyName",
+      rdf_concat_impl ( __ro2sq ( "s_9_4_t0"."O"),  ' ' ,  __ro2sq ( "s_9_4_t1"."O")) AS "fullName"
+    FROM DB.DBA.RDF_QUAD AS "s_9_4_t0"
+      INNER JOIN DB.DBA.RDF_QUAD AS "s_9_4_t1"
+      ON (
+        "s_9_4_t0"."S" = "s_9_4_t1"."S")
+    WHERE
+      "s_9_4_t0"."P" = __i2idn ( __bft( 'http://www.w3.org/2006/vcard/ns#given-name' , 1))
+      AND 
+      "s_9_4_t1"."P" = __i2idn ( __bft( 'http://www.w3.org/2006/vcard/ns#family-name' , 1))
+OPTION (QUIETCAST)
+    ) AS "s_9_5"
+OPTION (QUIETCAST)
+
+1 Rows. -- 1 msec.
+
+Done. -- 0 msec.
+
+Done. -- 0 msec.
+result
+LONG VARCHAR
+_______________________________________________________________________________
+
+John	Smith	John Smith	
+Heidi	Smith	Heidi Smith	
+Francis	Jones	Francis Jones	
+Jane	Berger	Jane Berger	
+
+  { 
+    time       1.6% fanout         1 input         1 rows
+    Subquery 27 
+      { 
+        time        22% fanout         4 input         1 rows
+        RDF_QUAD         4 rows(s_9_4_t0.S$35, s_9_4_t0.O$34)
+         inlined  P =  IRI_ID"...given-name" 
+        time        76% fanout         1 input         4 rows
+        RDF_QUAD         1 rows(s_9_4_t1.O$38)
+         inlined  P =  IRI_ID"...family-name"  ,  S = s_9_4_t0.S$35
+        
+        After code:
+        0: __ro2sq$40 := Call __ro2sq (s_9_4_t0.O$34)
+        5: __ro2sq$42 := Call __ro2sq (s_9_4_t1.O$38)
+        10: rdf_concat_impl$44 := Call rdf_concat_impl (__ro2sq$40, <c  >, __ro2sq$42)
+        15: person$28 :=  := artm s_9_4_t0.S$35
+        19: givenName$29 :=  := artm s_9_4_t0.O$34
+        23: familyName$30 :=  := artm s_9_4_t1.O$38
+        27: fullName$31 :=  := artm rdf_concat_impl$44
+        31: BReturn 0
+        time      0.51% fanout         0 input         4 rows
+        Subquery Select(person$28, givenName$29, familyName$30, fullName$31)
+      }
+    
+    After code:
+    0: givenName$53 := Call __ro2sq (givenName$29)
+    5: familyName$55 := Call __ro2sq (familyName$30)
+    10: BReturn 0
+    time      0.21% fanout         0 input         4 rows
+    Select (givenName$53, familyName$55, fullName$31)
+  }
+
+
+ 0 msec 13% cpu,        20 rnd         3 seq   9.52381% same seg   57.1429% same pg 
+Compilation: 2 msec 0 reads         0% read 0 messages         0% clw
+
+4 Rows. -- 21 msec.
+}

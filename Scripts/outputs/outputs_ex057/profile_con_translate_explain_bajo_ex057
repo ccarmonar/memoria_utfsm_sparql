@@ -1,0 +1,86 @@
+OpenLink Virtuoso Interactive SQL (Virtuoso)
+Version 07.20.3232 as of May 11 2021
+Type HELP; for help and EXIT; to exit.
+Connected to OpenLink Virtuoso
+Driver: 07.20.3232 OpenLink Virtuoso ODBC Driver
+{SPARQL_TO_SQL_TEXT
+LONG VARCHAR
+_______________________________________________________________________________
+
+SELECT __ro2sq ( "s_14_8_t3"."O") AS "first",
+  __ro2sq ( "s_14_8_t4"."O") AS "last",
+  __ro2sq ( "s_12_6"."workTel") AS "workTel"
+FROM DB.DBA.RDF_QUAD AS "s_14_8_t3"
+  INNER JOIN DB.DBA.RDF_QUAD AS "s_14_8_t4"
+  ON (
+    "s_14_8_t4"."S" = "s_14_8_t3"."S")
+  LEFT OUTER JOIN (
+    SELECT "s_12_6_t0"."S" AS "s",
+      "s_12_6_t0"."O" AS "workTel"
+    FROM DB.DBA.RDF_QUAD AS "s_12_6_t0"
+    WHERE
+      "s_12_6_t0"."P" = __i2idn ( __bft( 'http://learningsparql.com/ns/addressbook#workTel' , 1))) AS "s_12_6"
+  ON (
+    "s_14_8_t4"."S" = "s_12_6"."s"
+    AND 
+    "s_14_8_t3"."S" = "s_12_6"."s")
+WHERE
+  "s_14_8_t3"."P" = __i2idn ( __bft( 'http://learningsparql.com/ns/addressbook#firstName' , 1))
+  AND 
+  "s_14_8_t4"."P" = __i2idn ( __bft( 'http://learningsparql.com/ns/addressbook#lastName' , 1))
+OPTION (QUIETCAST)
+
+1 Rows. -- 1 msec.
+
+Done. -- 0 msec.
+
+Done. -- 1 msec.
+
+Done. -- 0 msec.
+result
+LONG VARCHAR
+_______________________________________________________________________________
+
+Craig	Ellis	(245) 315-5486	
+Cindy	Marshall		
+Richard	Mutt		
+Richard	Mutt		
+Craig	Ellis		
+Cindy	Marshall		
+Bradley	Perry		
+Katherine	Duncan		
+
+  { 
+    time       1.8% fanout         1 input         1 rows
+    time        26% fanout         8 input         1 rows
+    RDF_QUAD         8 rows(t2.S$29, t2.O$28)
+     inlined  P =  IRI_ID"...lastName" 
+    time        14% fanout         1 input         8 rows
+    RDF_QUAD         1 rows(t1.S$33, t1.O$32)
+     inlined  P =  IRI_ID"...firstName"  ,  S = t2.S$29
+    time      0.76% fanout         1 input         8 rows
+    outer {
+        time       9.9% fanout     0.125 input         8 rows
+        RDF_QUAD         1 rows(t4.O$36)
+         inlined  P =  IRI_ID"...workTel"  ,  S = k_t2.S$107
+        time        48% fanout         8 input         1 rows
+      } /* end of outer */
+    set_ctr$41
+     out: (t4.O$36)
+     shadow: ( <none> )
+    
+    After code:
+    0: last$50 := Call __ro2sq (t2.O$28)
+    5: first$52 := Call __ro2sq (t1.O$32)
+    10: workTel$54 := Call __ro2sq (t4.O$36)
+    15: BReturn 0
+    time      0.41% fanout         0 input         8 rows
+    Select (first$52, last$50, workTel$54)
+  }
+
+
+ 0 msec 14% cpu,        34 rnd         7 seq        40% same seg   25.7143% same pg 
+Compilation: 2 msec 0 reads         0% read 0 messages         0% clw
+
+4 Rows. -- 17 msec.
+}
