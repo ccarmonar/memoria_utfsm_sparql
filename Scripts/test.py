@@ -162,18 +162,82 @@ def IdentifyOperatorType(operator):
 		operator['operator_type'] = 'no_scan'
 	return operator
 
+#La idea seria despues que guarde el texto del precode tambien
+def IdentifyPrecode(operator):
+	if "Precode:" in operator['profile_text']:
+		operator['precode'] = 1
+	else:
+		operator['precode'] = 0
+	return operator
+	
+#La idea sería despues que guarde el texto del after code tambien
+def IdentifyAftercode(operator):
+	if "After code:" in operator['profile_text']:
+		operator['after_code'] = 1
+	else:
+		operator['after_code'] = 0
+	return operator
+
+def VectorString():
+	return 0
+
+def TranslateSparQLtoSQL():
+	return 0
+	
+def GetGSPO(operator):
+	lines = operator['profile_text'].split('\n')
+	for ls in lines:
+		#print(ls)
+		if " P = " in ls:
+			split_P = list(filter(None,ls.strip().split(' ')))
+			for s in range(0,len(split_P)):
+				if split_P[s] == 'P':
+					operator['P'] = split_P[s+2]
+					#print(operator['P'])
+		if "O = " in ls:
+			split_P = list(filter(None,ls.strip().split(' ')))
+			for s in range(0,len(split_P)):
+				if split_P[s] == 'O':
+					operator['O'] = split_P[s+2]
+					#print(operator['O'])
+
+		if "S = " in ls:
+			split_P = list(filter(None,ls.strip().split(' ')))
+			for s in range(0,len(split_P)):
+				if split_P[s] == 'S':
+					operator['S'] = split_P[s+2]
+					
+					#print(operator['S'])
+
+		if "G = " in ls:
+			split_P = list(filter(None,ls.strip().split(' ')))
+			for s in range(0,len(split_P)):
+				if split_P[s] == 'G':
+					operator['G'] = split_P[s+2]
+					#print(operator['G'])
+
+		
+		
+	#print("---------")
+	return operator
+			
+
 def execute(profile_sparql):
 	operators = GroupOperators(profile_sparql)
 	operators = CleanOperators(operators)
 	for i in operators.keys():
 		operators[i] = GetOperatorExecutionFeatures(operators[i])
 		operators[i] = IdentifyOperatorType(operators[i])
+		operators[i] = IdentifyPrecode(operators[i])
+		operators[i] = IdentifyAftercode(operators[i])
+		operators[i] = GetGSPO(operators[i])
 	#print(operators["OP5"])	
 	return operators
 
-operators = execute(profile_sparql)
+operators = execute(profile_explain_bajo_sparql)
 
 #print(operators)
 for k,v in operators.items():
 	print("   ")	
 	print(k,v)
+
