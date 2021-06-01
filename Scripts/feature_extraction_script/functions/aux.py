@@ -1,0 +1,70 @@
+import re, time, os
+
+def GetSubstring(string_text,pattern1,pattern2,dotall = True):
+	if dotall==True:
+		substring = re.search(pattern1 + '(.+?)' + pattern2, string_text, flags=re.DOTALL)
+		if substring:
+			substring_return = substring.group(0)
+		else:
+			return None
+	else:
+		substring = re.search(pattern1 + '(.+?)' + pattern2, string_text).group(0)
+		if substring:
+			substring_return = substring.group(0)
+		else:
+			return None
+	return substring_return
+	
+	
+#Funcion que sirve para entrar dentro de los {} según nivel en un string. Esta enfocado a JSON pero sirve para al comienzo.
+def ParseNestedBracket(string, level):
+    """
+    Return string contained in nested {}, indexing i = level
+    """
+    CountLeft = len(re.findall("\{", string))
+    CountRight = len(re.findall("\}", string))
+    if CountLeft == CountRight:
+        LeftRightIndex = [x for x in zip(
+        [Left.start()+1 for Left in re.finditer('\{', string)], 
+        reversed([Right.start() for Right in re.finditer('\}', string)]))]
+
+    elif CountLeft > CountRight:
+        return ParseNestedParen(string + '}', level)
+
+    elif CountLeft < CountRight:
+        return ParseNestedParen('{' + string, level)
+
+    return string[LeftRightIndex[level][0]:LeftRightIndex[level][1]]
+
+
+#Funcion que hace una limpieza y saca los operadores que tengan texto vacio
+def CleanOperators(operators):
+	remove_list = []
+	for k in operators:
+		if operators[k]['profile_text'] == '':
+			remove_list.append(k)
+	for k in remove_list:
+		operators.pop(k)
+	return operators
+
+
+#Obtiene un diccionario con los PREFIX de la consulta Sparql
+def GetPrefixes(sparql_file):
+	dicto = {}
+	lines_split_text = sparql_file.split("\n")
+	for l in lines_split_text:
+		if "PREFIX " in l:
+			ls = l.split(" ")
+			if ls[0] == "PREFIX":
+				if ls[1][:-1] == '':
+					dicto[':'] = ls[2]
+				else:
+					dicto[ls[1][:-1]] = ls[2]
+	return dicto
+
+
+def VectorString():
+	return 0
+
+def TranslateSparQLtoSQL():
+	return 0
