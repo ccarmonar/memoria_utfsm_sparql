@@ -65,6 +65,22 @@ profile_sparql = open(path_profile_sparql, 'r').read()
 profile_explain_bajo_sparql = open(path_profile_explain_bajo_sparql, 'r').read()
 translate_sparql = open(path_translate_sparql,'r').read()
 
+def GetSubstring(string_text,pattern1,pattern2,dotall = True):
+	if dotall==True:
+		substring = re.search(pattern1 + '(.+?)' + pattern2, string_text, flags=re.DOTALL)
+		if substring:
+			substring_return = substring.group(0)
+		else:
+			return None
+	else:
+		substring = re.search(pattern1 + '(.+?)' + pattern2, string_text).group(0)
+		if substring:
+			substring_return = substring.group(0)
+		else:
+			return None
+	return substring_return
+	
+	
 #Funcion que sirve para entrar dentro de los {} según nivel en un string. Esta enfocado a JSON pero sirve para al comienzo.
 def ParseNestedBracket(string, level):
     """
@@ -84,6 +100,8 @@ def ParseNestedBracket(string, level):
         return ParseNestedParen('{' + string, level)
 
     return string[LeftRightIndex[level][0]:LeftRightIndex[level][1]]
+
+
 
 #Funcion que agrupa cada operador en un diccionario de diccionario. Esto último se hace porque servira mas adelante
 #INPUT: profile_sparql
@@ -154,6 +172,9 @@ def GetPrefixes(sparql_file):
 					dicto[ls[1][:-1]] = ls[2]
 	return dicto
 
+
+
+
 #Función que identifica si el operador es SCAN, SUBQUERY, u otro.
 def IdentifyOperatorType(operator):
 	if "P =  " and "Key RDF_QUAD" and "from DB.DBA.RDF_QUAD by RDF_QUAD" in operator['profile_text']:
@@ -162,20 +183,22 @@ def IdentifyOperatorType(operator):
 		operator['operator_type'] = 'no_scan'
 	return operator
 
-#La idea seria despues que guarde el texto del precode tambien
+#Funcion que guarda el precode en una llave, además, marca con un booleano para identificar si existe precode aqui o no.
 def IdentifyPrecode(operator):
 	if "Precode:" in operator['profile_text']:
-		operator['precode'] = 1
+		operator['precode_bool'] = 1
+		operator['precode_text'] = GetSubstring(operator['profile_text'],'Precode:','Return 0',True)
 	else:
-		operator['precode'] = 0
+		operator['precode_bool'] = 0
 	return operator
 	
-#La idea sería despues que guarde el texto del after code tambien
-def IdentifyAftercode(operator):
+#Funcion que guarda el after code en una llave, además, marca con un booleano para identificar si existe after code aqui o no.
+def IdentifyAfterCode(operator):
 	if "After code:" in operator['profile_text']:
-		operator['after_code'] = 1
+		operator['after_code_bool'] = 1
+		operator['after_code_text'] = GetSubstring(operator['profile_text'],'After code:','Return 0',True))
 	else:
-		operator['after_code'] = 0
+		operator['after_code_bool'] = 0
 	return operator
 
 def VectorString():
@@ -229,15 +252,17 @@ def execute(profile_sparql):
 		operators[i] = GetOperatorExecutionFeatures(operators[i])
 		operators[i] = IdentifyOperatorType(operators[i])
 		operators[i] = IdentifyPrecode(operators[i])
-		operators[i] = IdentifyAftercode(operators[i])
+		operators[i] = IdentifyAfterCode(operators[i])
 		operators[i] = GetGSPO(operators[i])
 	#print(operators["OP5"])	
 	return operators
 
 operators = execute(profile_explain_bajo_sparql)
 
-#print(operators)
+print(operators)
 for k,v in operators.items():
 	print("   ")	
 	print(k,v)
+print("|+++++++++++++++++++++++++++++++++++++++++++++++++|")
+print(operators["OP5"]['precode_text'])
 
