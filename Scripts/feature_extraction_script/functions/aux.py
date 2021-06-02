@@ -8,7 +8,7 @@ def GetSubstring(string_text,pattern1,pattern2,dotall = True):
 		else:
 			return None
 	else:
-		substring = re.search(pattern1 + '(.+?)' + pattern2, string_text).group(0)
+		substring = re.search(pattern1 + '(.+?)' + pattern2, string_text)
 		if substring:
 			substring_return = substring.group(0)
 		else:
@@ -41,7 +41,7 @@ def ParseNestedBracket(string, level):
 def CleanOperators(operators):
 	remove_list = []
 	for k in operators:
-		if operators[k]['profile_text'] == '':
+		if operators[k]['profile_text'] == '' or ('time' and 'fanout' and 'input') not in operators[k]['profile_text']:
 			remove_list.append(k)
 	for k in remove_list:
 		operators.pop(k)

@@ -1,12 +1,12 @@
 import re, time, os
-from functions.main import GroupOperators,GetOperatorExecutionFeatures,IdentifyOperatorType,IdentifyPrecode,IdentifyAfterCode,GetGSPO,GetIRI_ID
+from functions.main import GetFinalResults,GroupOperators,GetOperatorExecutionFeatures,IdentifyOperatorType,IdentifyPrecode,IdentifyAfterCode,GetGSPO,GetIRI_ID,GetAllPredicatesFromProfile
 from functions.aux import GetSubstring,ParseNestedBracket,CleanOperators,GetPrefixes,VectorString
 
 #current working directory
 cwd = os.getcwd()
 
 #z es el indice de el archivo de la lista n que se quiere abrir
-z = 26
+z = 37
 n = [
 	'ex003',#0
 	'ex006',#1
@@ -23,31 +23,29 @@ n = [
 	'ex137',#12
 	'ex143',#13
 	'ex269',#14	 -- ERROR
-	'ex332',#15	
-	'ex459',#16	
+	'ex332',#15
+	'ex459',#16
 	'q1',#17
-	'q2',#18	
-	'q3',#19	
-	'q4',#20	
-	'q5',#21	
-	'q6',#22	
-	'q7',#23 --ERROR	
-	'q8',#24	
-	'q9',#25	
-	'q10',#26	
-	'q11',#27	
-	'test1',#28	
-	'test2',#29	
-	'test3',#30	
-	'test4',#31	
-	'test5',#32	
-	'test_wikidata1',#33	
-	'test_wikidata2',#34	
-	'test_wikidata3',#35	
-	'test_wikidata4',#36	
-	'test_wikidata5',#37	
-	
-	
+	'q2',#18
+	'q3',#19
+	'q4',#20
+	'q5',#21
+	'q6',#22
+	'q7',#23 --ERROR
+	'q8',#24
+	'q9',#25
+	'q10',#26
+	'q11',#27
+	'test1',#28
+	'test2',#29
+	'test3',#30
+	'test4',#31
+	'test5',#32
+	'test_wikidata1',#33
+	'test_wikidata2',#34
+	'test_wikidata3',#35
+	'test_wikidata4',#36
+	'test_wikidata5',#37
 	]
 
 #PATHS
@@ -57,7 +55,7 @@ path_sparql_file = output_path + "/" + n[z] + ".rq"
 
 path_profile_sparql = output_path + "/profile_normal_file_" + n[z]
 path_profile_explain_bajo_sparql = output_path + "/profile_normal_explain_bajo_" + n[z]
-path_profile_loop_sparql = output_path +	"/profile_loop_file_" + n[z]
+path_profile_loop_sparql = output_path + "/profile_loop_file_" + n[z]
 path_profile_order_loop_sparql = output_path + "/profile_order_loop_file_" + n[z]
 
 path_explain_sparql = output_path + "/explain_normal_file_" + n[z]
@@ -70,7 +68,7 @@ sparql_file = open(path_sparql_file, 'r').read()
 profile_sparql = open(path_profile_sparql, 'r').read()
 profile_explain_bajo_sparql = open(path_profile_explain_bajo_sparql, 'r').read()
 translate_sparql = open(path_translate_sparql,'r').read()
-			
+
 
 def execute(profile_sparql):
 	operators = GroupOperators(profile_sparql)
@@ -81,33 +79,46 @@ def execute(profile_sparql):
 		operators[i] = IdentifyPrecode(operators[i])
 		operators[i] = IdentifyAfterCode(operators[i])
 		operators[i] = GetGSPO(operators[i])
-	#print(operators["OP5"])	
-	return operators
+	#print(operators["OP5"])
+	predicates_list = GetAllPredicatesFromProfile(operators)
+	return operators, predicates_list
+
 
 def test_print():
-		#print(operators)
+	#print(operators)
 	for k,v in operators.items():
-		print("   ")
-		try:
-			print(k)
-			print("+++++")
-			print(operators[k]['profile_text'])
-			print(" ")
-			print("S : "+ operators[k]['S'])
-		except KeyError:
-			print(" ")
-			print(k)
-			print("xd")
-	print("|+++++++++++++++++++++++++++++++++++++++++++++++++|")
-	print(operators["OP16"]['S'])
+		print(k,v)
+		#print("   ")
+		#try:
+		#	print(k)
+		#	print("+++++")
+		#	print(operators[k]['profile_text'])
+		#	print(" ")
+		#	print("S : "+ operators[k]['S'])
+		#except KeyError:
+		#	print(" ")
+		#	print(k)
+		#	print("xd")
+	#print("|+++++++++++++++++++++++++++++++++++++++++++++++++|")
 
 
-operators = execute(profile_sparql)
+operators, predicates_list = execute(profile_sparql)
 
-x = GetIRI_ID(sparql_file,'P')
-print(x)
-#test_print()
+x = GetIRI_ID(sparql_file, 'P')
+print("+++++++++++++")
+print(sparql_file)
+print("+++++++++++++")
+#print(profile_sparql)
+print("+++++++++++++")
+print(predicates_list)
+print("+++++++++++++")
+print(GetFinalResults(profile_sparql))
+print("+++++++++++++")
+#test_print()}
 
-	
+#print(x)
+
+
+
 
 

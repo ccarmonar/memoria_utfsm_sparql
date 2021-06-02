@@ -1,6 +1,20 @@
 import re, time, os
 from functions.aux import GetSubstring,ParseNestedBracket,CleanOperators,GetPrefixes,VectorString
 
+#Funcion que guarda los resultados finales:
+def GetFinalResults(profile_sparql,operators):
+	extract_final_results = ParseNestedBracket(profile_sparql, 0).strip().split('\n')
+	final_results_aux = (extract_final_results[-2] + ' ' + extract_final_results[-1]).split(' ')
+	final_results = list(filter(None, final_results_aux))
+	for i in range(0,len(final_results)):
+		if final_results[i] == 'msec':
+			operators['ql_rt_msec'] = final_results[i-1]
+		if final_results[i] == 'cpu,':
+			operators['ql_rt_clocks'] = final_results[i-1]
+		if final_results[i] == 'rnd':
+			operators['ql_c_rnd_rows'] = final_results[i-1]
+
+	return operators
 
 #Funcion que agrupa cada operador en un diccionario de diccionario. Esto último se hace porque servira mas adelante
 #INPUT: profile_sparql
@@ -10,17 +24,16 @@ def GroupOperators(profile_sparql):
 	c = 0
 	operators = {}
 	for i in range(0,len(extract_sparql_profile)):
-		x = extract_sparql_profile[i].strip()
-		if x != "" and (x.split(" ")[0] == "time"):
-			c = c + 1	
+		x = extract_sparql_profile[i]
+		if x != "" and ('time' and 'fanout' and 'input') in x:
+			c = c + 1
 		OP = "OP"+str(c)
 		if OP not in operators:
 			operators[OP]={'profile_text' : x}
 		else:
 			operators[OP]['profile_text']=operators[OP]['profile_text']+'\n'+x
-		
-	return operators
 
+	return operators
 
 
 #Esta función obtiene el time, fanout, input rows y estimacion de cardinalidad (si lo dispone Virtuoso, si compete y/o simplemente de existir) de un operador
@@ -45,9 +58,7 @@ def GetOperatorExecutionFeatures(operator):
 					return_dicto['cardinality_estimate'] = short_l_filt[nch+2]
 				if short_l_filt[nch] == 'Fanout:' and nch == 3:
 					return_dicto['cardinality_fanout'] = short_l_filt[nch+1]
-	return return_dicto	
-
-
+	return return_dicto
 
 
 #Función que identifica si el operador es SCAN, SUBQUERY, u otro.
@@ -58,6 +69,7 @@ def IdentifyOperatorType(operator):
 		operator['operator_type'] = 'no_scan'
 	return operator
 
+
 #Funcion que guarda el precode en una llave, además, marca con un booleano para identificar si existe precode aqui o no.
 def IdentifyPrecode(operator):
 	if "Precode:" in operator['profile_text']:
@@ -66,7 +78,8 @@ def IdentifyPrecode(operator):
 	else:
 		operator['precode_bool'] = 0
 	return operator
-	
+
+
 #Funcion que guarda el after code en una llave, además, marca con un booleano para identificar si existe after code aqui o no.
 def IdentifyAfterCode(operator):
 	if "After code:" in operator['profile_text']:
@@ -75,15 +88,14 @@ def IdentifyAfterCode(operator):
 	else:
 		operator['after_code_bool'] = 0
 	return operator
-	
+
 
 def GetGSPO(operator):
 	lines = operator['profile_text'].split('\n')
 	for ls in lines:
-		#print(ls)
 		if " P " in ls:
 			split_P = list(filter(None,ls.strip().split(' ')))
-			for s in range(0,len(split_P)):
+			for s in range(0, len(split_P)):
 				if split_P[s] == 'P':
 					if split_P[s+2][:2].lower() == "<v" or split_P[s+2][:2].lower() == "<r" or split_P[s+2][:3].lower() == "<$r" or split_P[s+2][:3].lower() == "<$v":
 						operator['P'] = VectorString(split_P[s+2:])
@@ -92,7 +104,7 @@ def GetGSPO(operator):
 					#print(operator['P'])
 		if " O " in ls:
 			split_P = list(filter(None,ls.strip().split(' ')))
-			for s in range(0,len(split_P)):
+			for s in range(0, len(split_P)):
 				if split_P[s] == 'O':
 					#print(split_P[s+2])
 					if split_P[s+2][:2].lower() == "<v" or split_P[s+2][:2].lower() == "<r" or split_P[s+2][:3].lower() == "<$r" or split_P[s+2][:3].lower() == "<$v":
@@ -109,7 +121,7 @@ def GetGSPO(operator):
 						operator['S'] = VectorString(split_P[s+2:])
 					else:
 						operator['S'] = split_P[s+2]
-					
+
 					#print(operator['S'])
 
 		if " G " in ls:
@@ -122,19 +134,25 @@ def GetGSPO(operator):
 						operator['G'] = split_P[s+2]
 					#print(operator['G'])
 
-		
-		
+
+
 	#print("---------")
 	return operator
-			
+
+
+#Función que retorna todos los predicados leidos en un query profile
+def GetAllPredicatesFromProfile(operators):
+	set_predicates = set(())
+	for k in operators.keys():
+		if 'P' in operators[k]:
+			set_predicates.add(operators[k]['P'])
+	return list(set_predicates)
+
+
+# EN CONSTRUCCION TAL VEZ SE HAGA
 def GetIRI_ID(sparql_query,triple_component):
 	if triple_component == 'P':
 		main_selection = ParseNestedBracket(sparql_query,0)
 		prefixes = GetPrefixes(sparql_query)
-	
-	print(sparql_query)
-	print("++++++++++++")
-	print(prefixes)
-	print("++++++++++++")
 	return main_selection
 
