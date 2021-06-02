@@ -144,13 +144,24 @@ def GetGSPO(operator):
 def GetAllPredicatesFromProfile(operators):
 	set_predicates = set(())
 	for k in operators.keys():
-		if 'P' in operators[k]:
+		if 'P' in operators[k].keys():
 			set_predicates.add(operators[k]['P'])
 	return list(set_predicates)
 
+#Setea un booleano como una llave segun los predicados existentes en la consulta
+def SetBooleanPredicates(operators, predicates_list):
+	for k in operators.keys():
+		if 'P' in operators[k].keys():
+			for p in predicates_list:
+				if operators[k]['P'] == p:
+					operators[k][p] = 1
+				else:
+					operators[k][p] = 0
+	return operators
+
 
 # EN CONSTRUCCION TAL VEZ SE HAGA
-def GetIRI_ID(sparql_query,triple_component):
+def GetIRI_ID(sparql_query, triple_component):
 	if triple_component == 'P':
 		main_selection = ParseNestedBracket(sparql_query,0)
 		prefixes = GetPrefixes(sparql_query)

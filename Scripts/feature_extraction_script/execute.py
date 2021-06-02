@@ -1,12 +1,12 @@
 import re, time, os
-from functions.main import GetFinalResults,GroupOperators,GetOperatorExecutionFeatures,IdentifyOperatorType,IdentifyPrecode,IdentifyAfterCode,GetGSPO,GetIRI_ID,GetAllPredicatesFromProfile
+from functions.main import GetFinalResults,GroupOperators,GetOperatorExecutionFeatures,IdentifyOperatorType,IdentifyPrecode,IdentifyAfterCode,GetGSPO,GetIRI_ID,GetAllPredicatesFromProfile,SetBooleanPredicates
 from functions.aux import GetSubstring,ParseNestedBracket,CleanOperators,GetPrefixes,VectorString
 
 #current working directory
 cwd = os.getcwd()
 
 #z es el indice de el archivo de la lista n que se quiere abrir
-z = 37
+z = 10
 n = [
 	'ex003',#0
 	'ex006',#1
@@ -79,15 +79,16 @@ def execute(profile_sparql):
 		operators[i] = IdentifyPrecode(operators[i])
 		operators[i] = IdentifyAfterCode(operators[i])
 		operators[i] = GetGSPO(operators[i])
-	#print(operators["OP5"])
 	predicates_list = GetAllPredicatesFromProfile(operators)
+	operators = SetBooleanPredicates(operators, predicates_list)
 	return operators, predicates_list
 
 
 def test_print():
 	#print(operators)
 	for k,v in operators.items():
-		print(k,v)
+		if 'P' in operators[k].keys():
+			print(k,v)
 		#print("   ")
 		#try:
 		#	print(k)
@@ -103,20 +104,20 @@ def test_print():
 
 
 operators, predicates_list = execute(profile_sparql)
-
-x = GetIRI_ID(sparql_file, 'P')
 print("+++++++++++++")
 print(sparql_file)
 print("+++++++++++++")
-#print(profile_sparql)
 print("+++++++++++++")
 print(predicates_list)
 print("+++++++++++++")
-print(GetFinalResults(profile_sparql))
-print("+++++++++++++")
-#test_print()}
+test_print()
 
 #print(x)
+
+
+
+
+
 
 
 
