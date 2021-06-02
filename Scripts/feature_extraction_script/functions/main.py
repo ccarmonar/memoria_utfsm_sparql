@@ -1,5 +1,5 @@
 import re, time, os
-from functions.aux import GetSubstring,ParseNestedBracket,CleanOperators,GetPrefixes,VectorString,TranslateSparQLtoSQL
+from functions.aux import GetSubstring,ParseNestedBracket,CleanOperators,GetPrefixes,VectorString
 
 
 #Funcion que agrupa cada operador en un diccionario de diccionario. Esto último se hace porque servira mas adelante
@@ -81,32 +81,45 @@ def GetGSPO(operator):
 	lines = operator['profile_text'].split('\n')
 	for ls in lines:
 		#print(ls)
-		if " P = " in ls:
+		if " P " in ls:
 			split_P = list(filter(None,ls.strip().split(' ')))
 			for s in range(0,len(split_P)):
 				if split_P[s] == 'P':
-					operator['P'] = split_P[s+2]
+					if split_P[s+2][:2].lower() == "<v" or split_P[s+2][:2].lower() == "<r" or split_P[s+2][:3].lower() == "<$r" or split_P[s+2][:3].lower() == "<$v":
+						operator['P'] = VectorString(split_P[s+2:])
+					else:
+						operator['P'] = split_P[s+2]
 					#print(operator['P'])
-		if "O = " in ls:
+		if " O " in ls:
 			split_P = list(filter(None,ls.strip().split(' ')))
 			for s in range(0,len(split_P)):
 				if split_P[s] == 'O':
-					operator['O'] = split_P[s+2]
+					#print(split_P[s+2])
+					if split_P[s+2][:2].lower() == "<v" or split_P[s+2][:2].lower() == "<r" or split_P[s+2][:3].lower() == "<$r" or split_P[s+2][:3].lower() == "<$v":
+						operator['O'] = VectorString(split_P[s+2:])
+					else:
+						operator['O'] = split_P[s+2]
 					#print(operator['O'])
 
-		if "S = " in ls:
+		if " S " in ls:
 			split_P = list(filter(None,ls.strip().split(' ')))
 			for s in range(0,len(split_P)):
 				if split_P[s] == 'S':
-					operator['S'] = split_P[s+2]
+					if split_P[s+2][:2].lower() == "<v" or split_P[s+2][:2].lower() == "<r" or split_P[s+2][:3].lower() == "<$r" or split_P[s+2][:3].lower() == "<$v":
+						operator['S'] = VectorString(split_P[s+2:])
+					else:
+						operator['S'] = split_P[s+2]
 					
 					#print(operator['S'])
 
-		if "G = " in ls:
+		if " G " in ls:
 			split_P = list(filter(None,ls.strip().split(' ')))
 			for s in range(0,len(split_P)):
 				if split_P[s] == 'G':
-					operator['G'] = split_P[s+2]
+					if split_P[s+2][:2].lower() == "<v" or split_P[s+2][:2].lower() == "<r" or split_P[s+2][:3].lower() == "<$r" or split_P[s+2][:3].lower() == "<$v":
+						operator['G'] = VectorString(split_P[s+2:])
+					else:
+						operator['G'] = split_P[s+2]
 					#print(operator['G'])
 
 		
@@ -114,4 +127,14 @@ def GetGSPO(operator):
 	#print("---------")
 	return operator
 			
+def GetIRI_ID(sparql_query,triple_component):
+	if triple_component == 'P':
+		main_selection = ParseNestedBracket(sparql_query,0)
+		prefixes = GetPrefixes(sparql_query)
+	
+	print(sparql_query)
+	print("++++++++++++")
+	print(prefixes)
+	print("++++++++++++")
+	return main_selection
 

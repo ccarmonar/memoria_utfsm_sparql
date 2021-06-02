@@ -63,8 +63,15 @@ def GetPrefixes(sparql_file):
 	return dicto
 
 
-def VectorString():
-	return 0
 
-def TranslateSparQLtoSQL():
-	return 0
+#Rearma el string en caso de que el objeto este en formato vector. Ocurre cuando se expande el explain
+def VectorString(auxlist):
+	vector_str = ""
+	for i in auxlist:
+		if i[-1] == ">":
+			vector_str = vector_str + i
+			break
+		vector_str = vector_str + i + " "
+	return vector_str
+	
+	

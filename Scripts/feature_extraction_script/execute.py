@@ -1,12 +1,12 @@
 import re, time, os
-from functions.main import GroupOperators,GetOperatorExecutionFeatures,IdentifyOperatorType,IdentifyPrecode,IdentifyAfterCode,GetGSPO
-from functions.aux import GetSubstring,ParseNestedBracket,CleanOperators,GetPrefixes,VectorString,TranslateSparQLtoSQL
+from functions.main import GroupOperators,GetOperatorExecutionFeatures,IdentifyOperatorType,IdentifyPrecode,IdentifyAfterCode,GetGSPO,GetIRI_ID
+from functions.aux import GetSubstring,ParseNestedBracket,CleanOperators,GetPrefixes,VectorString
 
 #current working directory
 cwd = os.getcwd()
 
 #z es el indice de el archivo de la lista n que se quiere abrir
-z = 37
+z = 26
 n = [
 	'ex003',#0
 	'ex006',#1
@@ -22,7 +22,7 @@ n = [
 	'ex105',#11
 	'ex137',#12
 	'ex143',#13
-	'ex269',#14	
+	'ex269',#14	 -- ERROR
 	'ex332',#15	
 	'ex459',#16	
 	'q1',#17
@@ -31,7 +31,7 @@ n = [
 	'q4',#20	
 	'q5',#21	
 	'q6',#22	
-	'q7',#23 ERROR	
+	'q7',#23 --ERROR	
 	'q8',#24	
 	'q9',#25	
 	'q10',#26	
@@ -84,12 +84,30 @@ def execute(profile_sparql):
 	#print(operators["OP5"])	
 	return operators
 
-operators = execute(profile_explain_bajo_sparql)
+def test_print():
+		#print(operators)
+	for k,v in operators.items():
+		print("   ")
+		try:
+			print(k)
+			print("+++++")
+			print(operators[k]['profile_text'])
+			print(" ")
+			print("S : "+ operators[k]['S'])
+		except KeyError:
+			print(" ")
+			print(k)
+			print("xd")
+	print("|+++++++++++++++++++++++++++++++++++++++++++++++++|")
+	print(operators["OP16"]['S'])
 
-print(operators)
-for k,v in operators.items():
-	print("   ")	
-	print(k,v)
-print("|+++++++++++++++++++++++++++++++++++++++++++++++++|")
-print(operators["OP5"]['precode_text'])
+
+operators = execute(profile_sparql)
+
+x = GetIRI_ID(sparql_file,'P')
+print(x)
+#test_print()
+
+	
+
 
