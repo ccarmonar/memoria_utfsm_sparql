@@ -26,15 +26,15 @@ mkdir -p outputs_$filename
 cd ..
 
 if [ "$2" == "wd" ]; then
-    echo "wikidata"
+    echo "wikidata_file"
     str_prefixes_file=$(<sparql_files/wikidata_prefixes)
     str_sparql=$(<sparql_files/$1)
     str_sparql=$str_prefixes_file$str_sparql
-    cp "$current_path/Scripts/sparql_files/$1" "outputs/outputs_$filename"
+    cp "$current_path/scripts/sparql_files/$1" "outputs/outputs_$filename"
     cat "sparql_files/wikidata_prefixes" "sparql_files/$1" > "outputs/outputs_$filename/$filename-prex.rq"
     else
     str_sparql=$(<sparql_files/$1)
-    cp "$current_path/Scripts/sparql_files/$1" "outputs/outputs_$filename"
+    cp "$current_path/scripts/sparql_files/$1" "outputs/outputs_$filename"
 fi
 
 
@@ -47,33 +47,27 @@ SET SPARQL_TRANSLATE OFF;
 "
 
 profile_normal="
-ECHO '{';
 __dbf_set('enable_qr_comment', 1);             
 __dbf_set('dbf_explain_level', 3);
 SET BLOBS ON;
 profile('SPARQL $str_sparql');
-ECHO '}';
 "
 
 profile_normal_explain_bajo="
-ECHO '{';
 __dbf_set('enable_qr_comment', 1);             
 __dbf_set('dbf_explain_level', 0);
 SET BLOBS ON;
 profile('SPARQL $str_sparql');
-ECHO '}';
 "
 
 explain_parse_tree="
-ECHO '{';
 __dbf_set('enable_qr_comment', 1);             
 __dbf_set('dbf_explain_level', 3);
 dbg_obj_print('$1');
 select dbg_obj_print(explain('sparql $str_sparql',-2));
-ECHO '}';
 "
 
-echo "Executando isql";
+echo "Executando isql $1";
 echo -e $system_password | sudo -S $path_virtuoso_isql $isql_host $isql_username $isql_password VERBOSE=OFF BANNER=OFF exec="$sparql_translate" > outputs/outputs_$filename/sparql_translate_file_$filename
 echo -e $system_password | sudo -S $path_virtuoso_isql $isql_host $isql_username $isql_password VERBOSE=OFF BANNER=OFF exec="$profile_normal" > outputs/outputs_$filename/profile_normal_file_$filename
 echo -e $system_password | sudo -S $path_virtuoso_isql $isql_host $isql_username $isql_password VERBOSE=OFF BANNER=OFF exec="$profile_normal_explain_bajo" > outputs/outputs_$filename/profile_normal_explain_bajo_$filename

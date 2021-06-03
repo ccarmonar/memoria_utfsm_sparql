@@ -21,7 +21,7 @@ def GetFinalResults(profile_sparql,operators):
 #Funcion que agrupa cada operador en un diccionario de diccionario. Esto último se hace porque servira mas adelante
 #INPUT: profile_sparql
 def GroupOperators(profile_sparql):
-	extract_sparql_profile = ParseNestedBracket(profile_sparql, 1)
+	extract_sparql_profile = profile_sparql
 	extract_sparql_profile = extract_sparql_profile.split("\n")
 	c = 0
 	operators = {}

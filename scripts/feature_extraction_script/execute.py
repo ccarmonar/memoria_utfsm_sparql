@@ -1,12 +1,25 @@
 import re, time, os, json
 from functions.main import GetFinalResults,GroupOperators,GetOperatorExecutionFeatures,IdentifyOperatorType,IdentifyPrecode,IdentifyAfterCode,GetGSPO,GetIRI_ID,GetAllPredicatesFromProfile,SetBooleanPredicates
-from functions.aux import GetSubstring,ParseNestedBracket,CleanOperators,GetPrefixes,VectorString
+from functions.aux import GetSubstring,ParseNestedBracket,CleanOperators,GetPrefixes,VectorString,MainCurlyBrackets
 
 #current working directory
 cwd = os.getcwd()
 
 #z es el indice de el archivo de la lista n que se quiere abrir
-z = 35
+z = 32
+n1 = [
+	'ex003',#0
+	'test_wikidata1',  # 1
+	'test_wikidata2',  # 2
+	'test_wikidata3',  # 3
+	'test_wikidata4',  # 4
+	'test_wikidata5',  # 5
+	'test_wikidata6',  # 6
+	'test_wikidata7',  # 7
+	'test_wikidata8',  # 8
+	'test_wikidata9',  # 9
+]
+
 n = [
 	'ex003',#0
 	'ex006',#1
@@ -48,6 +61,7 @@ n = [
 	'test_wikidata5',#37
 	]
 
+
 #PATHS
 output_path = "../outputs/outputs_" + n[z]
 
@@ -71,7 +85,8 @@ translate_sparql = open(path_translate_sparql,'r', encoding='latin-1').read()
 
 
 def execute(profile_sparql):
-	operators = GroupOperators(profile_sparql)
+	operators = MainCurlyBrackets(profile_sparql)
+	operators = GroupOperators(operators)
 	operators = CleanOperators(operators)
 	for i in operators.keys():
 		operators[i] = GetOperatorExecutionFeatures(operators[i])
@@ -85,24 +100,8 @@ def execute(profile_sparql):
 
 
 def test_print():
-	#print(operators)
 	for k,v in operators.items():
 		print(k, v)
-		#if 'P' in operators[k].keys():
-		#	print(k,v)
-		#print("   ")
-		#try:
-		#	print(k)
-		#	print("+++++")
-		#	print(operators[k]['profile_text'])
-		#	print(" ")
-		#	print("S : "+ operators[k]['S'])
-		#except KeyError:
-		#	print(" ")
-		#	print(k)
-		#	print("xd")
-	#print("|+++++++++++++++++++++++++++++++++++++++++++++++++|")
-
 
 operators, predicates_list = execute(profile_sparql)
 print("+++++++++++++")
@@ -115,9 +114,6 @@ test_print()
 
 with open('operators.json', 'w') as json_file:
 	json.dump(operators, json_file)
-
-
-#print(x)
 
 
 

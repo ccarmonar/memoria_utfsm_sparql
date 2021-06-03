@@ -18,23 +18,24 @@ def GetSubstring(string_text,pattern1,pattern2,dotall = True):
 	
 #Funcion que sirve para entrar dentro de los {} según nivel en un string. Esta enfocado a JSON pero sirve para al comienzo.
 def ParseNestedBracket(string, level):
-    """
-    Return string contained in nested {}, indexing i = level
-    """
-    CountLeft = len(re.findall("\{", string))
-    CountRight = len(re.findall("\}", string))
-    if CountLeft == CountRight:
-        LeftRightIndex = [x for x in zip(
-        [Left.start()+1 for Left in re.finditer('\{', string)], 
-        reversed([Right.start() for Right in re.finditer('\}', string)]))]
+	"""
+	Return string contained in nested {}, indexing i = level
+	"""
+	CountLeft = len(re.findall("\{", string))
+	CountRight = len(re.findall("\}", string))
+	print(CountLeft,CountRight)
+	if CountLeft == CountRight:
+		LeftRightIndex = [x for x in zip(
+		[Left.start()+1 for Left in re.finditer('\{', string)],
+		reversed([Right.start() for Right in re.finditer('\}', string)]))]
 
-    elif CountLeft > CountRight:
-        return ParseNestedParen(string + '}', level)
+	elif CountLeft > CountRight:
+		return ParseNestedParen(string + '}', level)
 
-    elif CountLeft < CountRight:
-        return ParseNestedParen('{' + string, level)
+	elif CountLeft < CountRight:
+		return ParseNestedParen('{' + string, level)
 
-    return string[LeftRightIndex[level][0]:LeftRightIndex[level][1]]
+	return string[LeftRightIndex[level][0]:LeftRightIndex[level][1]]
 
 
 #Funcion que hace una limpieza y saca los operadores que tengan texto vacio
@@ -73,3 +74,9 @@ def VectorString(auxlist):
 			break
 		vector_str = vector_str + i + " "
 	return vector_str
+
+
+def MainCurlyBrackets(sparql_file):
+	st = sparql_file
+	return st[st.find("{")+1:st.rfind("}")]
+
