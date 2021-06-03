@@ -1,4 +1,4 @@
-import re, time, os
+import re, time, os, json
 from functions.main import GetFinalResults,GroupOperators,GetOperatorExecutionFeatures,IdentifyOperatorType,IdentifyPrecode,IdentifyAfterCode,GetGSPO,GetIRI_ID,GetAllPredicatesFromProfile,SetBooleanPredicates
 from functions.aux import GetSubstring,ParseNestedBracket,CleanOperators,GetPrefixes,VectorString
 
@@ -6,7 +6,7 @@ from functions.aux import GetSubstring,ParseNestedBracket,CleanOperators,GetPref
 cwd = os.getcwd()
 
 #z es el indice de el archivo de la lista n que se quiere abrir
-z = 10
+z = 35
 n = [
 	'ex003',#0
 	'ex006',#1
@@ -64,10 +64,10 @@ path_explain_order_loop = output_path + "/explain_order_loop_file_" + n[z]
 path_translate_sparql = output_path + "/sparql_translate_file_" + n[z]
 
 #FILES
-sparql_file = open(path_sparql_file, 'r').read()
-profile_sparql = open(path_profile_sparql, 'r').read()
-profile_explain_bajo_sparql = open(path_profile_explain_bajo_sparql, 'r').read()
-translate_sparql = open(path_translate_sparql,'r').read()
+sparql_file = open(path_sparql_file, 'r', encoding='latin-1').read()
+profile_sparql = open(path_profile_sparql, 'r', encoding='latin-1').read()
+profile_explain_bajo_sparql = open(path_profile_explain_bajo_sparql, 'r', encoding='latin-1').read()
+translate_sparql = open(path_translate_sparql,'r', encoding='latin-1').read()
 
 
 def execute(profile_sparql):
@@ -87,8 +87,9 @@ def execute(profile_sparql):
 def test_print():
 	#print(operators)
 	for k,v in operators.items():
-		if 'P' in operators[k].keys():
-			print(k,v)
+		print(k, v)
+		#if 'P' in operators[k].keys():
+		#	print(k,v)
 		#print("   ")
 		#try:
 		#	print(k)
@@ -111,6 +112,10 @@ print("+++++++++++++")
 print(predicates_list)
 print("+++++++++++++")
 test_print()
+
+with open('operators.json', 'w') as json_file:
+	json.dump(operators, json_file)
+
 
 #print(x)
 

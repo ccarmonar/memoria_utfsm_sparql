@@ -1,6 +1,7 @@
 import re, time, os
 from functions.aux import GetSubstring,ParseNestedBracket,CleanOperators,GetPrefixes,VectorString
 
+
 #Funcion que guarda los resultados finales:
 def GetFinalResults(profile_sparql,operators):
 	extract_final_results = ParseNestedBracket(profile_sparql, 0).strip().split('\n')
@@ -16,6 +17,7 @@ def GetFinalResults(profile_sparql,operators):
 
 	return operators
 
+
 #Funcion que agrupa cada operador en un diccionario de diccionario. Esto último se hace porque servira mas adelante
 #INPUT: profile_sparql
 def GroupOperators(profile_sparql):
@@ -25,7 +27,7 @@ def GroupOperators(profile_sparql):
 	operators = {}
 	for i in range(0,len(extract_sparql_profile)):
 		x = extract_sparql_profile[i]
-		if x != "" and ('time' and 'fanout' and 'input') in x:
+		if x != "" and all(element in x for element in ["time", "fanout", "input", "rows"]):
 			c = c + 1
 		OP = "OP"+str(c)
 		if OP not in operators:
@@ -43,7 +45,7 @@ def GetOperatorExecutionFeatures(operator):
 	return_dicto = operator
 	for l in lines_split_text:
 		l_filt = list(filter(None,l.strip().split(" ")))
-		if 'time' and 'fanout' and 'input' in l_filt:
+		if set(["time","fanout","input","rows"]).issubset(l_filt):
 			for nch in range(0,len(l_filt)):
 				if l_filt[nch] == 'time' and nch == 0:
 					return_dicto['time'] = float(l_filt[nch+1][:-1])
@@ -51,19 +53,19 @@ def GetOperatorExecutionFeatures(operator):
 					return_dicto['fanout'] = float(l_filt[nch+1])
 				if l_filt[nch] == 'input' and nch == 4 and l_filt[nch+2] == 'rows':
 					return_dicto['input_rows'] = float(l_filt[nch+1])
-		if "Cardinality" and "estimate" in l_filt:
+		if set(["Cardinality","estimate"]).issubset(l_filt):
 			short_l_filt=l_filt[14:]
 			for nch in range(0,len(short_l_filt)):
 				if short_l_filt[nch] == 'Cardinality' and nch == 0 and short_l_filt[nch+1] == "estimate:":
-					return_dicto['cardinality_estimate'] = short_l_filt[nch+2]
+					return_dicto['cardinality_estimate'] = float(short_l_filt[nch+2])
 				if short_l_filt[nch] == 'Fanout:' and nch == 3:
-					return_dicto['cardinality_fanout'] = short_l_filt[nch+1]
+					return_dicto['cardinality_fanout'] = float(short_l_filt[nch+1])
 	return return_dicto
 
 
 #Función que identifica si el operador es SCAN, SUBQUERY, u otro.
 def IdentifyOperatorType(operator):
-	if "P =  " and "Key RDF_QUAD" and "from DB.DBA.RDF_QUAD by RDF_QUAD" in operator['profile_text']:
+	if all(element in operator['profile_text'] for element in ["P =  ", "fanout", "Key RDF_QUAD", "from DB.DBA.RDF_QUAD by RDF_QUAD"]):
 		operator['operator_type'] = 'scan'
 	else:
 		operator['operator_type'] = 'no_scan'
@@ -147,6 +149,7 @@ def GetAllPredicatesFromProfile(operators):
 		if 'P' in operators[k].keys():
 			set_predicates.add(operators[k]['P'])
 	return list(set_predicates)
+
 
 #Setea un booleano como una llave segun los predicados existentes en la consulta
 def SetBooleanPredicates(operators, predicates_list):

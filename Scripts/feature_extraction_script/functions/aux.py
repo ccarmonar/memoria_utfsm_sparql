@@ -41,7 +41,7 @@ def ParseNestedBracket(string, level):
 def CleanOperators(operators):
 	remove_list = []
 	for k in operators:
-		if operators[k]['profile_text'] == '' or ('time' and 'fanout' and 'input') not in operators[k]['profile_text']:
+		if operators[k]['profile_text'] == '' or all(element not in operators[k]['profile_text'] for element in ["time", "fanout", "input", "rows"]):
 			remove_list.append(k)
 	for k in remove_list:
 		operators.pop(k)
@@ -73,5 +73,3 @@ def VectorString(auxlist):
 			break
 		vector_str = vector_str + i + " "
 	return vector_str
-	
-	
