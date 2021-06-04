@@ -1,6 +1,6 @@
 import re, time, os, json
-from functions.main import GetFinalResults,GroupOperators,GetOperatorExecutionFeatures,IdentifyOperatorType,IdentifyPrecode,IdentifyAfterCode,GetGSPO,GetIRI_ID,GetAllPredicatesFromProfile,SetBooleanPredicates
-from functions.aux import GetSubstring,ParseNestedBracket,CleanOperators,GetPrefixes,VectorString,MainCurlyBrackets
+from functions.main import GetFinalResults, GroupOperators, GetOperatorExecutionFeatures, IdentifyOperatorType, IdentifyPrecode, IdentifyAfterCode, GetGSPO, GetIRI_ID, GetAllPredicatesFromProfile, SetBooleanPredicates, GetStartAndEndOptionalSection, SetBooleanOptionalSection
+from functions.aux import GetSubstring, ParseNestedBracket, CleanOperators, GetPrefixes, VectorString, MainCurlyBrackets
 
 #current working directory
 cwd = os.getcwd()
@@ -20,8 +20,10 @@ def execute(profile_sparql):
 		operators[i] = IdentifyPrecode(operators[i])
 		operators[i] = IdentifyAfterCode(operators[i])
 		operators[i] = GetGSPO(operators[i])
+		operators[i] = GetStartAndEndOptionalSection(operators[i], i)
 	predicates_list = GetAllPredicatesFromProfile(operators)
 	operators = SetBooleanPredicates(operators, predicates_list)
+	operators = SetBooleanOptionalSection(operators)
 	return operators, predicates_list
 
 
@@ -40,9 +42,6 @@ def test_print():
 
 #with open('operators.json', 'w') as json_file:
 	#json.dump(operators, json_file)
-
-
-
 
 
 for i in path_profiles:

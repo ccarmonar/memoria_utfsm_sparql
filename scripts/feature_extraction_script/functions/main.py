@@ -151,7 +151,7 @@ def GetAllPredicatesFromProfile(operators):
 	return list(set_predicates)
 
 
-#Setea un booleano como una llave segun los predicados existentes en la consulta
+
 def SetBooleanPredicates(operators, predicates_list):
 	for k in operators.keys():
 		if 'P' in operators[k].keys():
@@ -160,6 +160,40 @@ def SetBooleanPredicates(operators, predicates_list):
 					operators[k][p] = 1
 				else:
 					operators[k][p] = 0
+	return operators
+
+
+def GetStartAndEndOptionalSection(operator, key):
+	if key == 'OP1' or key == 'OP0':
+		operator['start_optional'] = 0
+		operator['end_optional'] = 0
+		return operator
+	else:
+		if any(element in operator['profile_text'] for element in ["cluster outer seq start", "outer {"]):
+			operator['start_optional'] = 1
+			operator['end_optional'] = 0
+		elif any(element in operator['profile_text'] for element in [" end of outer seq", "end of outer seq", "} /* end of outer */"]):
+			operator['start_optional'] = 0
+			operator['end_optional'] = 1
+		else:
+			operator['start_optional'] = 0
+			operator['end_optional'] = 0
+		return operator
+
+
+def SetBooleanOptionalSection(operators):
+	optional_boolean = 0
+	static_keys = list(operators.keys())
+	for k in static_keys:
+		if operators[k]['start_optional'] == 1:
+			optional_boolean = 1
+			operators[k]['optional_section?'] = optional_boolean
+		if operators[k]['end_optional'] == 1:
+			operators[k]['optional_section?'] = 2
+			optional_boolean = 0
+		else:
+			operators[k]['optional_section?'] = optional_boolean
+
 	return operators
 
 
