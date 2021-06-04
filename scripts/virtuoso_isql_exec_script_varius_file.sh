@@ -1,16 +1,13 @@
 #!/bin/bash
 pwd=$(pwd)
-SPARQLFILE=$pwd'/filenames.txt'
-SPARQLWIKIDATAFILE=$pwd'/filenames_wikidata.txt'
 
+sparql_folder=$pwd'/sparql_files/'
+sparql_folder_wikidata=$pwd'/sparql_files/wikidata_queries/'
 
-
-cat $SPARQLFILE | while read line
-do
-   ./virtuoso_isql_exec_script.sh $line'.rq'
+for file in $sparql_folder*'.rq'; do
+  ./virtuoso_isql_exec_script.sh ${file##*/}
 done
-
-cat $SPARQLWIKIDATAFILE | while read line
-do
-   ./virtuoso_isql_exec_script.sh $line'.rq' wd
+echo 'WIKIDATA'
+for file in $sparql_folder_wikidata*'.rq'; do
+  ./virtuoso_isql_exec_script.sh ${file##*/} wd
 done
