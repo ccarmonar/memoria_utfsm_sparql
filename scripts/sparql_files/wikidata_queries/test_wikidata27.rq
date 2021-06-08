@@ -1,0 +1,14 @@
+SELECT ?continentLabel
+WHERE
+{
+  { 
+    SELECT DISTINCT ?continent
+    WHERE
+    {
+      [] wdt:P30 ?continent.
+    }
+  }
+  SERVICE wikibase:label { bd:serviceParam wikibase:language "en". }
+}
+
+

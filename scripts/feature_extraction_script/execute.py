@@ -1,5 +1,5 @@
 import re, time, os, json
-from functions.main import GetFinalResults, GroupOperators, GetOperatorExecutionFeatures, IdentifyOperatorType, IdentifyPrecode, IdentifyAfterCode, GetGSPO, GetIRI_ID, GetAllPredicatesFromProfile, SetBooleanPredicates, GetStartAndEndOptionalSection, SetBooleanOptionalSection, SetForks, SetAfterTest
+from functions.main import GetFinalResults, GroupOperators, GetOperatorExecutionFeatures, IdentifyOperatorType, IdentifyPrecode, IdentifyAfterCode, IdentifyGroupBy, IdentifyDistinct, GetGSPO, GetIRI_ID, GetAllPredicatesFromProfile, SetBooleanPredicates, GetStartAndEndOptionalSection, SetBooleanOptionalSection, SetSorts, SetSubqueries, SetAfterTest
 from functions.aux import GetSubstring, ParseNestedBracket, CleanOperators, GetPrefixes, VectorString, MainCurlyBrackets, CountCurlyBrackets
 
 #current working directory
@@ -19,15 +19,17 @@ def execute(profile_sparql):
 		operators[i] = IdentifyOperatorType(operators[i])
 		operators[i] = IdentifyPrecode(operators[i])
 		operators[i] = IdentifyAfterCode(operators[i])
+		operators[i] = IdentifyGroupBy(operators[i])
+		operators[i] = IdentifyDistinct(operators[i])
 		operators[i] = GetGSPO(operators[i])
 		operators[i] = CountCurlyBrackets(operators[i])
 		operators[i] = GetStartAndEndOptionalSection(operators[i], i)
-
 	predicates_list = GetAllPredicatesFromProfile(operators)
 	operators = SetBooleanPredicates(operators, predicates_list)
 	operators = SetBooleanOptionalSection(operators)
-	operators = SetForks(operators)
 	operators = SetAfterTest(operators)
+	operators = SetSorts(operators)
+	operators = SetSubqueries(operators)
 	#operators = SetSubqueries(operators)
 	#operators = AddMissingFeatures(operators)
 	return operators, predicates_list

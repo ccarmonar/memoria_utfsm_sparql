@@ -105,6 +105,22 @@ def IdentifyAfterTest(operator):
 	return operator
 
 
+def IdentifyGroupBy(operator):
+	if "group by read" in operator['profile_text']:
+		operator['group_by_read_bool'] = 1
+	else:
+		operator['group_by_read'] = 0
+	return operator
+
+
+def IdentifyDistinct(operator):
+	if any(element in operator['profile_text'] for element in ["Distinct ", "Distinct (HASH)"]):
+		operator['distinct_bool'] = 1
+	else:
+		operator['distinct_bool'] = 0
+	return operator
+
+
 def GetGSPO(operator):
 	lines = operator['profile_text'].split('\n')
 	for ls in lines:
@@ -217,27 +233,50 @@ def GetLimit():
 	return 0
 
 
-def SetForks(operators):
+def SetSorts(operators):
 	sort_lvl = 0
-	union_fork_lvl = 0
+	union_sort_lvl = 0
 	for k in operators.keys():
 		if any(element in operators[k]['profile_text'] for element in ["fork {", " Fork "]):
 			sort_lvl = sort_lvl + 1
-			operators[k]['fork_lvl'] = sort_lvl
+			operators[k]['sort_lvl'] = sort_lvl
 			# detectar union UNION
-		if any(element in operators[k]['profile_text'] for element in ["union", "Union"]):
-			union_fork_lvl = union_fork_lvl + 1
-			operators[k]['union_fork_lvl'] = union_fork_lvl
+		if any(element in operators[k]['profile_text'] for element in ["union", "Union"]) and operators[k]['sort_lvl'] == sort_lvl:
+			union_sort_lvl = union_sort_lvl + 1
+			operators[k]['union_sort_lvl'] = union_sort_lvl
 		if any(element in operators[k]['profile_text'] for element in [" Sort "," Sort (HASH) ", "Sort "]) and operators[k]['}'] >= 2 and operators[k]['{'] == 0:
-				operators[k]['fork_lvl'] = sort_lvl
+				operators[k]['sort_lvl'] = sort_lvl
 				sort_lvl = sort_lvl - 1
-				union_fork_lvl = union_fork_lvl - 1
+				union_sort_lvl = union_sort_lvl - 1
 		elif any(element in operators[k]['profile_text'] for element in [" Sort "," Sort (HASH) ", "Sort "]) and operators[k]['{'] == 0:
-				operators[k]['fork_lvl'] = sort_lvl
+				operators[k]['sort_lvl'] = sort_lvl
 				sort_lvl = sort_lvl - 1
 		else:
-			operators[k]['union_fork_lvl'] = union_fork_lvl
-			operators[k]['fork_lvl'] = sort_lvl
+			operators[k]['union_sort_lvl'] = union_sort_lvl
+			operators[k]['sort_lvl'] = sort_lvl
+	return operators
+
+
+def SetSubqueries(operators):
+	subquerie_lvl = 0
+	union_sub_lvl = 0
+	for k in operators.keys():
+		if any(element in operators[k]['profile_text'] for element in ["Subquery"]) and operators[k]['{'] >= 1:
+			subquerie_lvl = subquerie_lvl + 1
+			operators[k]['subquerie_lvl'] = subquerie_lvl
+		if any(element in operators[k]['profile_text'] for element in ["union", "Union"]) and operators[k]['sort_lvl'] == 0:
+			union_sub_lvl = union_sub_lvl + 1
+			operators[k]['union_sub_lvl'] = union_sub_lvl
+		if "Subquery Select" in operators[k]['profile_text'] and operators[k]['}'] >= 2 and operators[k]['{'] == 0:
+				operators[k]['subquerie_lvl'] = subquerie_lvl
+				subquerie_lvl = subquerie_lvl - 1
+				union_sub_lvl = union_sub_lvl - 1
+		elif "Subquery Select" in operators[k]['profile_text'] and operators[k]['{'] == 0:
+				operators[k]['subquerie_lvl'] = subquerie_lvl
+				subquerie_lvl = subquerie_lvl - 1
+		else:
+			operators[k]['union_sub_lvl'] = union_sub_lvl
+			operators[k]['subquerie_lvl'] = subquerie_lvl
 	return operators
 
 
@@ -256,4 +295,6 @@ def SetAfterTest(operators):
 			else:
 				operators[k]['after_test_lvl'] = after_test_lvl
 	return operators
+
+
 
