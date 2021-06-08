@@ -41,6 +41,7 @@ def GroupOperators(profile_sparql):
 #Esta función obtiene el time, fanout, input rows y estimacion de cardinalidad (si lo dispone Virtuoso, si compete y/o simplemente de existir) de un operador
 #Crea un nuevo diccionario con estos valores
 def GetOperatorExecutionFeatures(operator):
+
 	lines_split_text = operator['profile_text'].split("\n")
 	return_dicto = operator
 	for l in lines_split_text:
@@ -60,10 +61,13 @@ def GetOperatorExecutionFeatures(operator):
 					return_dicto['cardinality_estimate'] = float(short_l_filt[nch+2])
 				if short_l_filt[nch] == 'Fanout:' and nch == 3:
 					return_dicto['cardinality_fanout'] = float(short_l_filt[nch+1])
-		if not set(["Cardinality","estimate"]).issubset(l_filt):
+		if "Cardinality estimate:" not in operator['profile_text']:
 			return_dicto['cardinality_estimate'] = 0
 			return_dicto['cardinality_fanout'] = 0
+
 	return return_dicto
+
+
 
 
 #Función que identifica si el operador es SCAN, SUBQUERY, u otro.
@@ -114,7 +118,7 @@ def IdentifyGroupBy(operator):
 
 
 def IdentifyDistinct(operator):
-	if any(element in operator['profile_text'] for element in ["Distinct ", "Distinct (HASH)"]):
+	if any(element in operator['profile_text'] for element in ["Distinct ", "Distinct (HASH)", "distinct"]):
 		operator['distinct_bool'] = 1
 	else:
 		operator['distinct_bool'] = 0
@@ -241,7 +245,7 @@ def SetSorts(operators):
 			sort_lvl = sort_lvl + 1
 			operators[k]['sort_lvl'] = sort_lvl
 			# detectar union UNION
-		if any(element in operators[k]['profile_text'] for element in ["union", "Union"]) and operators[k]['sort_lvl'] == sort_lvl:
+		if any(element in operators[k]['profile_text'] for element in ["union", "Union"]) and sort_lvl > 0:
 			union_sort_lvl = union_sort_lvl + 1
 			operators[k]['union_sort_lvl'] = union_sort_lvl
 		if any(element in operators[k]['profile_text'] for element in [" Sort "," Sort (HASH) ", "Sort "]) and operators[k]['}'] >= 2 and operators[k]['{'] == 0:
