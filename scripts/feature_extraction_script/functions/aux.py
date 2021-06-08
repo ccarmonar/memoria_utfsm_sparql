@@ -1,5 +1,6 @@
 import re, time, os
 
+
 def GetSubstring(string_text,pattern1,pattern2,dotall = True):
 	if dotall==True:
 		substring = re.search(pattern1 + '(.+?)' + pattern2, string_text, flags=re.DOTALL)
@@ -23,7 +24,6 @@ def ParseNestedBracket(string, level):
 	"""
 	CountLeft = len(re.findall("\{", string))
 	CountRight = len(re.findall("\}", string))
-	print(CountLeft,CountRight)
 	if CountLeft == CountRight:
 		LeftRightIndex = [x for x in zip(
 		[Left.start()+1 for Left in re.finditer('\{', string)],
@@ -64,7 +64,6 @@ def GetPrefixes(sparql_file):
 	return dicto
 
 
-
 #Rearma el string en caso de que el objeto este en formato vector. Ocurre cuando se expande el explain
 def VectorString(auxlist):
 	vector_str = ""
@@ -80,3 +79,9 @@ def MainCurlyBrackets(sparql_file):
 	st = sparql_file
 	return st[st.find("{")+1:st.rfind("}")]
 
+
+def CountCurlyBrackets(operator):
+	profile_text = operator['profile_text']
+	operator['{'] = profile_text.count('{')
+	operator['}'] = profile_text.count('}')
+	return operator

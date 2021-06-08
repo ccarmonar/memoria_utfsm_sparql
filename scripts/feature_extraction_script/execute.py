@@ -1,6 +1,6 @@
 import re, time, os, json
-from functions.main import GetFinalResults, GroupOperators, GetOperatorExecutionFeatures, IdentifyOperatorType, IdentifyPrecode, IdentifyAfterCode, GetGSPO, GetIRI_ID, GetAllPredicatesFromProfile, SetBooleanPredicates, GetStartAndEndOptionalSection, SetBooleanOptionalSection
-from functions.aux import GetSubstring, ParseNestedBracket, CleanOperators, GetPrefixes, VectorString, MainCurlyBrackets
+from functions.main import GetFinalResults, GroupOperators, GetOperatorExecutionFeatures, IdentifyOperatorType, IdentifyPrecode, IdentifyAfterCode, GetGSPO, GetIRI_ID, GetAllPredicatesFromProfile, SetBooleanPredicates, GetStartAndEndOptionalSection, SetBooleanOptionalSection, SetForks, SetAfterTest
+from functions.aux import GetSubstring, ParseNestedBracket, CleanOperators, GetPrefixes, VectorString, MainCurlyBrackets, CountCurlyBrackets
 
 #current working directory
 cwd = os.getcwd()
@@ -20,28 +20,22 @@ def execute(profile_sparql):
 		operators[i] = IdentifyPrecode(operators[i])
 		operators[i] = IdentifyAfterCode(operators[i])
 		operators[i] = GetGSPO(operators[i])
+		operators[i] = CountCurlyBrackets(operators[i])
 		operators[i] = GetStartAndEndOptionalSection(operators[i], i)
+
 	predicates_list = GetAllPredicatesFromProfile(operators)
 	operators = SetBooleanPredicates(operators, predicates_list)
 	operators = SetBooleanOptionalSection(operators)
+	operators = SetForks(operators)
+	operators = SetAfterTest(operators)
+	#operators = SetSubqueries(operators)
+	#operators = AddMissingFeatures(operators)
 	return operators, predicates_list
 
 
 def test_print():
 	for k,v in operators.items():
 		print(k, v)
-
-#operators, predicates_list = execute(profile_sparql)
-#print("+++++++++++++")
-#print(sparql_file)
-#print("+++++++++++++")
-#print("+++++++++++++")
-#print(predicates_list)
-#print("+++++++++++++")
-#test_print()
-
-#with open('operators.json', 'w') as json_file:
-	#json.dump(operators, json_file)
 
 
 for i in path_profiles:

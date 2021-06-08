@@ -60,15 +60,18 @@ def GetOperatorExecutionFeatures(operator):
 					return_dicto['cardinality_estimate'] = float(short_l_filt[nch+2])
 				if short_l_filt[nch] == 'Fanout:' and nch == 3:
 					return_dicto['cardinality_fanout'] = float(short_l_filt[nch+1])
+		if not set(["Cardinality","estimate"]).issubset(l_filt):
+			return_dicto['cardinality_estimate'] = 0
+			return_dicto['cardinality_fanout'] = 0
 	return return_dicto
 
 
 #Función que identifica si el operador es SCAN, SUBQUERY, u otro.
 def IdentifyOperatorType(operator):
 	if all(element in operator['profile_text'] for element in ["P =  ", "fanout", "Key RDF_QUAD", "from DB.DBA.RDF_QUAD by RDF_QUAD"]):
-		operator['operator_type'] = 'scan'
+		operator['operator_type'] = 1
 	else:
-		operator['operator_type'] = 'no_scan'
+		operator['operator_type'] = 0
 	return operator
 
 
@@ -86,9 +89,19 @@ def IdentifyPrecode(operator):
 def IdentifyAfterCode(operator):
 	if "After code:" in operator['profile_text']:
 		operator['after_code_bool'] = 1
-		operator['after_code_text'] = GetSubstring(operator['profile_text'],'After code:','Return 0',True)
+		operator['after_code_text'] = GetSubstring(operator['profile_text'], 'After code:', 'Return 0',True)
 	else:
 		operator['after_code_bool'] = 0
+	return operator
+
+
+#Funcion que guarda el after code en una llave, además, marca con un booleano para identificar si existe after code aqui o no.
+def IdentifyAfterTest(operator):
+	if "After test:" in operator['profile_text']:
+		operator['after_test_bool'] = 1
+		operator['after_test_text'] = GetSubstring(operator['profile_text'], 'After test:', 'Return 0',True)
+	else:
+		operator['after_test_bool'] = 0
 	return operator
 
 
@@ -103,18 +116,14 @@ def GetGSPO(operator):
 						operator['P'] = VectorString(split_P[s+2:])
 					else:
 						operator['P'] = split_P[s+2]
-					#print(operator['P'])
 		if " O " in ls:
 			split_P = list(filter(None,ls.strip().split(' ')))
 			for s in range(0, len(split_P)):
 				if split_P[s] == 'O':
-					#print(split_P[s+2])
 					if split_P[s+2][:2].lower() == "<v" or split_P[s+2][:2].lower() == "<r" or split_P[s+2][:3].lower() == "<$r" or split_P[s+2][:3].lower() == "<$v":
 						operator['O'] = VectorString(split_P[s+2:])
 					else:
 						operator['O'] = split_P[s+2]
-					#print(operator['O'])
-
 		if " S " in ls:
 			split_P = list(filter(None,ls.strip().split(' ')))
 			for s in range(0,len(split_P)):
@@ -123,9 +132,6 @@ def GetGSPO(operator):
 						operator['S'] = VectorString(split_P[s+2:])
 					else:
 						operator['S'] = split_P[s+2]
-
-					#print(operator['S'])
-
 		if " G " in ls:
 			split_P = list(filter(None,ls.strip().split(' ')))
 			for s in range(0,len(split_P)):
@@ -134,11 +140,6 @@ def GetGSPO(operator):
 						operator['G'] = VectorString(split_P[s+2:])
 					else:
 						operator['G'] = split_P[s+2]
-					#print(operator['G'])
-
-
-
-	#print("---------")
 	return operator
 
 
@@ -151,7 +152,6 @@ def GetAllPredicatesFromProfile(operators):
 	return list(set_predicates)
 
 
-
 def SetBooleanPredicates(operators, predicates_list):
 	for k in operators.keys():
 		if 'P' in operators[k].keys():
@@ -160,6 +160,10 @@ def SetBooleanPredicates(operators, predicates_list):
 					operators[k][p] = 1
 				else:
 					operators[k][p] = 0
+		else:
+			for p in predicates_list:
+				operators[k][p] = 0
+
 	return operators
 
 
@@ -189,7 +193,7 @@ def SetBooleanOptionalSection(operators):
 			optional_boolean = 1
 			operators[k]['optional_section?'] = optional_boolean
 		if operators[k]['end_optional'] == 1:
-			operators[k]['optional_section?'] = 2
+			operators[k]['optional_section?'] = optional_boolean
 			optional_boolean = 0
 		else:
 			operators[k]['optional_section?'] = optional_boolean
@@ -203,4 +207,53 @@ def GetIRI_ID(sparql_query, triple_component):
 		main_selection = ParseNestedBracket(sparql_query,0)
 		prefixes = GetPrefixes(sparql_query)
 	return main_selection
+
+
+def AddJoinType(operators):
+	return 0
+
+
+def GetLimit():
+	return 0
+
+
+def SetForks(operators):
+	sort_lvl = 0
+	union_fork_lvl = 0
+	for k in operators.keys():
+		if any(element in operators[k]['profile_text'] for element in ["fork {", " Fork "]):
+			sort_lvl = sort_lvl + 1
+			operators[k]['fork_lvl'] = sort_lvl
+			# detectar union UNION
+		if any(element in operators[k]['profile_text'] for element in ["union", "Union"]):
+			union_fork_lvl = union_fork_lvl + 1
+			operators[k]['union_fork_lvl'] = union_fork_lvl
+		if any(element in operators[k]['profile_text'] for element in [" Sort "," Sort (HASH) ", "Sort "]) and operators[k]['}'] >= 2 and operators[k]['{'] == 0:
+				operators[k]['fork_lvl'] = sort_lvl
+				sort_lvl = sort_lvl - 1
+				union_fork_lvl = union_fork_lvl - 1
+		elif any(element in operators[k]['profile_text'] for element in [" Sort "," Sort (HASH) ", "Sort "]) and operators[k]['{'] == 0:
+				operators[k]['fork_lvl'] = sort_lvl
+				sort_lvl = sort_lvl - 1
+		else:
+			operators[k]['union_fork_lvl'] = union_fork_lvl
+			operators[k]['fork_lvl'] = sort_lvl
+	return operators
+
+
+def SetAfterTest(operators):
+	after_test_lvl = 0
+	for k in operators.keys():
+		if "After test:" in operators[k]['profile_text'] and "Return 0" in operators[k]['profile_text'] and operators[k]['precode_bool'] == 0 and operators[k]['after_code_bool'] == 0:
+			operators[k]['after_test_lvl'] = 1
+		else:
+			if "After test:" in operators[k]['profile_text']:
+				after_test_lvl = after_test_lvl + 1
+				operators[k]['after_test_lvl'] = after_test_lvl
+			if "Return 0" in operators[k]['profile_text'] and operators[k]['precode_bool'] == 0 and operators[k]['after_code_bool'] == 0:
+				operators[k]['after_test_lvl'] = after_test_lvl
+				after_test_lvl = after_test_lvl - 1
+			else:
+				operators[k]['after_test_lvl'] = after_test_lvl
+	return operators
 
