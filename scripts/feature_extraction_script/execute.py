@@ -1,5 +1,5 @@
 import re, time, os, json
-from functions.main import GetFinalResults, GroupOperators, GetOperatorExecutionFeatures, IdentifyOperatorType, IdentifyPrecode, IdentifyAfterCode, IdentifyGroupBy, IdentifyDistinct, GetGSPO, GetIRI_ID, GetAllPredicatesFromProfile, SetBooleanPredicates, GetStartAndEndOptionalSection, SetBooleanOptionalSection, SetSorts, SetSubqueries, SetAfterTest
+from functions.main import GetFinalResults, GroupOperators, GetOperatorExecutionFeatures, IdentifyOperatorType, IdentifyPrecode, IdentifyAfterCode, IdentifyGroupBy, IdentifyDistinct, GetGSPO, GetIRI_ID, GetAllPredicatesFromProfile, SetBooleanPredicates, GetStartAndEndOptionalSection, SetBooleanOptionalSection, SetTarget, SetSorts, SetSubqueries, SetAfterTest
 from functions.aux import GetSubstring, ParseNestedBracket, CleanOperators, GetPrefixes, VectorString, MainCurlyBrackets, CountCurlyBrackets
 
 #current working directory
@@ -28,9 +28,10 @@ def execute(profile_sparql):
 	operators = SetBooleanPredicates(operators, predicates_list)
 	operators = SetBooleanOptionalSection(operators)
 	operators = SetAfterTest(operators)
+	operators = SetTarget(operators)
 	operators = SetSorts(operators)
 	operators = SetSubqueries(operators)
-	#operators = SetSubqueries(operators)
+
 	#operators = AddMissingFeatures(operators)
 	return operators, predicates_list
 
@@ -45,11 +46,4 @@ for i in path_profiles:
 	operators, predicates_list = execute(profile_sparql)
 	with open(os.getcwd()+'/scripts/feature_extraction_script/returns/'+i+'.json', 'w') as json_file:
 		json.dump(operators, json_file)
-
-
-
-
-
-
-
 
