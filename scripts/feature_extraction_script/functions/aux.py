@@ -72,7 +72,17 @@ def VectorString(auxlist):
 			vector_str = vector_str + i
 			break
 		vector_str = vector_str + i + " "
+	vector_str = CleanSalts(vector_str,True)
 	return vector_str
+
+
+def CleanSalts(string, vector=True):
+	if vector:
+		return_cleaning = string.split(" ")[1]
+	else:
+		return_cleaning = string
+	return_cleaning = return_cleaning.split("$")[0]
+	return return_cleaning
 
 
 def MainCurlyBrackets(sparql_file):

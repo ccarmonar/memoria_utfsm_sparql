@@ -1,5 +1,5 @@
 import re, time, os
-from functions.aux import GetSubstring,ParseNestedBracket,CleanOperators,GetPrefixes,VectorString
+from functions.aux import GetSubstring,ParseNestedBracket,CleanOperators,GetPrefixes,VectorString, CleanSalts
 
 
 #Funcion que guarda los resultados finales:
@@ -20,7 +20,7 @@ def GetFinalResults(profile_sparql,operators):
 
 #Funcion que agrupa cada operador en un diccionario de diccionario. Esto último se hace porque servira mas adelante
 #INPUT: profile_sparql
-def GroupOperators(profile_sparql):
+def GroupOperators(profile_sparql, profile_low_explain):
 	extract_sparql_profile = profile_sparql
 	extract_sparql_profile = extract_sparql_profile.split("\n")
 	c = 0
@@ -31,17 +31,25 @@ def GroupOperators(profile_sparql):
 			c = c + 1
 		OP = "OP"+str(c)
 		if OP not in operators:
-			operators[OP]={'profile_text' : x}
+			operators[OP] = {'profile_text': x,'profile_text_low_explain': ''}
 		else:
-			operators[OP]['profile_text']=operators[OP]['profile_text']+'\n'+x
+			operators[OP]['profile_text'] = operators[OP]['profile_text'] + '\n' + x
 
+	extract_low_explain = profile_low_explain
+	extract_low_explain = extract_low_explain.split("\n")
+	c = 0
+	for i in range(0, len(extract_low_explain)):
+		x = extract_low_explain[i]
+		if x != "" and all(element in x for element in ["time", "fanout", "input", "rows"]):
+			c = c + 1
+		OP = "OP" + str(c)
+		operators[OP]['profile_text_low_explain'] = operators[OP]['profile_text_low_explain'] + '\n' + x
 	return operators
 
 
 #Esta función obtiene el time, fanout, input rows y estimacion de cardinalidad (si lo dispone Virtuoso, si compete y/o simplemente de existir) de un operador
 #Crea un nuevo diccionario con estos valores
 def GetOperatorExecutionFeatures(operator):
-
 	lines_split_text = operator['profile_text'].split("\n")
 	return_dicto = operator
 	for l in lines_split_text:
@@ -72,7 +80,7 @@ def GetOperatorExecutionFeatures(operator):
 
 #Función que identifica si el operador es SCAN, SUBQUERY, u otro.
 def IdentifyOperatorType(operator):
-	if all(element in operator['profile_text'] for element in ["P =  ", "fanout", "Key RDF_QUAD", "from DB.DBA.RDF_QUAD by RDF_QUAD"]):
+	if all(element in operator['profile_text'] for element in ["P =  ", "RDF_QUAD"]):
 		operator['operator_type'] = 1
 	else:
 		operator['operator_type'] = 0
@@ -128,12 +136,15 @@ def IdentifyDistinct(operator):
 def GetGSPO(operator):
 	lines = operator['profile_text'].split('\n')
 	for ls in lines:
+		#PREDICADOS
 		if " P " in ls:
 			split_P = list(filter(None,ls.strip().split(' ')))
 			for s in range(0, len(split_P)):
 				if split_P[s] == 'P':
 					if split_P[s+2][:2].lower() == "<v" or split_P[s+2][:2].lower() == "<r" or split_P[s+2][:3].lower() == "<$r" or split_P[s+2][:3].lower() == "<$v":
 						operator['P'] = VectorString(split_P[s+2:])
+					elif "$" in split_P[s+2]:
+						operator['P'] = CleanSalts(split_P[s+2], False)
 					else:
 						operator['P'] = split_P[s+2]
 		if " O " in ls:
@@ -142,6 +153,8 @@ def GetGSPO(operator):
 				if split_P[s] == 'O':
 					if split_P[s+2][:2].lower() == "<v" or split_P[s+2][:2].lower() == "<r" or split_P[s+2][:3].lower() == "<$r" or split_P[s+2][:3].lower() == "<$v":
 						operator['O'] = VectorString(split_P[s+2:])
+					elif "$" in split_P[s + 2]:
+						operator['O'] = CleanSalts(split_P[s + 2], False)
 					else:
 						operator['O'] = split_P[s+2]
 		if " S " in ls:
@@ -150,6 +163,8 @@ def GetGSPO(operator):
 				if split_P[s] == 'S':
 					if split_P[s+2][:2].lower() == "<v" or split_P[s+2][:2].lower() == "<r" or split_P[s+2][:3].lower() == "<$r" or split_P[s+2][:3].lower() == "<$v":
 						operator['S'] = VectorString(split_P[s+2:])
+					elif "$" in split_P[s + 2]:
+						operator['S'] = CleanSalts(split_P[s + 2], False)
 					else:
 						operator['S'] = split_P[s+2]
 		if " G " in ls:
@@ -158,6 +173,8 @@ def GetGSPO(operator):
 				if split_P[s] == 'G':
 					if split_P[s+2][:2].lower() == "<v" or split_P[s+2][:2].lower() == "<r" or split_P[s+2][:3].lower() == "<$r" or split_P[s+2][:3].lower() == "<$v":
 						operator['G'] = VectorString(split_P[s+2:])
+					elif "$" in split_P[s + 2]:
+						operator['G'] = CleanSalts(split_P[s + 2], False)
 					else:
 						operator['G'] = split_P[s+2]
 	return operator
@@ -193,10 +210,10 @@ def GetStartAndEndOptionalSection(operator, key):
 		operator['end_optional'] = 0
 		return operator
 	else:
-		if any(element in operator['profile_text'] for element in ["cluster outer seq start", "outer {"]):
+		if any(element in operator['profile_text_low_explain'] for element in ["cluster outer seq start", "outer {"]):
 			operator['start_optional'] = 1
 			operator['end_optional'] = 0
-		elif any(element in operator['profile_text'] for element in [" end of outer seq", "end of outer seq", "} /* end of outer */"]):
+		elif any(element in operator['profile_text_low_explain'] for element in [" end of outer seq", "end of outer seq", "} /* end of outer */"]):
 			operator['start_optional'] = 0
 			operator['end_optional'] = 1
 		else:
@@ -244,17 +261,20 @@ def SetSorts(operators):
 		if any(element in operators[k]['profile_text'] for element in ["fork {", " Fork "]):
 			sort_lvl = sort_lvl + 1
 			operators[k]['sort_lvl'] = sort_lvl
+			operators[k]['union_sort_lvl'] = union_sort_lvl
 			# detectar union UNION
 		if any(element in operators[k]['profile_text'] for element in ["union", "Union"]) and sort_lvl > 0:
 			union_sort_lvl = union_sort_lvl + 1
 			operators[k]['union_sort_lvl'] = union_sort_lvl
 		if any(element in operators[k]['profile_text'] for element in [" Sort "," Sort (HASH) ", "Sort "]) and operators[k]['}'] >= 2 and operators[k]['{'] == 0:
-				operators[k]['sort_lvl'] = sort_lvl
-				sort_lvl = sort_lvl - 1
-				union_sort_lvl = union_sort_lvl - 1
+			operators[k]['union_sort_lvl'] = union_sort_lvl
+			operators[k]['sort_lvl'] = sort_lvl
+			sort_lvl = sort_lvl - 1
+			union_sort_lvl = union_sort_lvl - 1
 		elif any(element in operators[k]['profile_text'] for element in [" Sort "," Sort (HASH) ", "Sort "]) and operators[k]['{'] == 0:
-				operators[k]['sort_lvl'] = sort_lvl
-				sort_lvl = sort_lvl - 1
+			operators[k]['sort_lvl'] = sort_lvl
+			operators[k]['union_sort_lvl'] = union_sort_lvl
+			sort_lvl = sort_lvl - 1
 		else:
 			operators[k]['union_sort_lvl'] = union_sort_lvl
 			operators[k]['sort_lvl'] = sort_lvl
@@ -298,15 +318,23 @@ def SetSubqueries(operators):
 			union_sub_lvl = union_sub_lvl + 1
 			operators[k]['union_sub_lvl'] = union_sub_lvl
 		if "Subquery Select" in operators[k]['profile_text'] and operators[k]['target_bracket'] == 0 and operators[k]['after_test_lvl'] == 0 and operators[k]['transitive_bracket'] == 0 and operators[k]['}'] >= 2 and operators[k]['{'] == 0:
-				operators[k]['subquerie_lvl'] = subquerie_lvl
-				subquerie_lvl = subquerie_lvl - 1
-				union_sub_lvl = union_sub_lvl - 1
-		elif "Subquery Select" in operators[k]['profile_text'] and operators[k]['target_bracket'] == 0 and operators[k]['after_test_lvl'] == 0 and operators[k]['transitive_bracket'] == 0  and operators[k]['{'] == 0:
-				operators[k]['subquerie_lvl'] = subquerie_lvl
-				subquerie_lvl = subquerie_lvl - 1
+			operators[k]['subquerie_lvl'] = subquerie_lvl
+			subquerie_lvl = subquerie_lvl - 1
+			union_sub_lvl = union_sub_lvl - 1
+		if any(element in operators[k]['profile_text'] for element in [" Sort "," Sort (HASH) ", "Sort "]) and operators[k]['}'] >= 2 and operators[k]['{'] == 0:
+			operators[k]['subquerie_lvl'] = subquerie_lvl
+			subquerie_lvl = subquerie_lvl - 1
+		elif "Subquery Select" in operators[k]['profile_text'] and operators[k]['target_bracket'] == 0 and operators[k]['after_test_lvl'] == 0 and operators[k]['transitive_bracket'] == 0 and operators[k]['}'] >= 1 and operators[k]['{'] == 0:
+			operators[k]['subquerie_lvl'] = subquerie_lvl
+			subquerie_lvl = subquerie_lvl - 1
 		else:
 			operators[k]['union_sub_lvl'] = union_sub_lvl
 			operators[k]['subquerie_lvl'] = subquerie_lvl
+	for k in operators.keys():
+		if "Subquery Select" in operators[k]['profile_text']:
+			operators[k]['subquery_select?'] = 1
+		else:
+			operators[k]['subquery_select?'] = 0
 	return operators
 
 

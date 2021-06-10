@@ -81,10 +81,10 @@ select dbg_obj_print(explain('sparql $str_sparql',-2));
 echo "Executando isql $1";
 echo -e $system_password | sudo -S $path_virtuoso_isql $isql_host $isql_username $isql_password VERBOSE=OFF BANNER=OFF exec="$sparql_translate" > outputs/outputs_$filename/sparql_translate_file_$filename
 echo -e $system_password | sudo -S $path_virtuoso_isql $isql_host $isql_username $isql_password VERBOSE=OFF BANNER=OFF exec="$profile_normal" > outputs/outputs_$filename/profile_normal_file_$filename
-
 echo -e $system_password | sudo -S $path_virtuoso_isql $isql_host $isql_username $isql_password VERBOSE=OFF BANNER=OFF exec="$profile_normal_explain_bajo" > outputs/outputs_$filename/profile_normal_explain_bajo_$filename
 
 #echo "PARSE TREE";
 #echo -e $system_password | sudo -S $path_virtuoso_isql $isql_host $isql_username $isql_password exec="$explain_parse_tree"
 
-echo -e $system_password | sudo -S $path_virtuoso_isql $isql_host $isql_username $isql_password VERBOSE=OFF BANNER=OFF exec="$profile_normal" > sparql_profiles/profile_normal_file_$filename
+#echo -e $system_password | sudo -S $path_virtuoso_isql $isql_host $isql_username $isql_password VERBOSE=OFF BANNER=OFF exec="$profile_normal" > sparql_profiles/profile_normal_file_$filename
+#echo -e $system_password | sudo -S $path_virtuoso_isql $isql_host $isql_username $isql_password VERBOSE=OFF BANNER=OFF exec="$profile_normal_explain_bajo" > sparql_profiles/profile_normal_explain_bajo_$filename

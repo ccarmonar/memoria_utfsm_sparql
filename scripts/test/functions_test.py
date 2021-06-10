@@ -4,7 +4,7 @@ import json, os.path
 def compare_json(filename):
     returns_path = '/home/c161905/Memoria/memoria_utfsm_sparql/scripts/feature_extraction_script/returns/'
     correct_results = '/home/c161905/Memoria/memoria_utfsm_sparql/scripts/test/correct_results/'
-    filename_complete = "profile_normal_file_"+filename+".json"
+    filename_complete = filename+".json"
     if os.path.isfile(returns_path+filename_complete) and os.path.isfile(correct_results+filename_complete):
         with open(returns_path+filename_complete) as jsonFile_ts:
             jsonObject_test = json.load(jsonFile_ts)
@@ -17,7 +17,7 @@ def compare_json(filename):
         if jsonObject_test.keys() == jsonObject_target.keys():
             for k in jsonObject_test.keys():
                 for subk in jsonObject_test[k].keys():
-                    if all(element != subk for element in ["time","fanout", "input_rows", "cardinality_estimate", "cardinality_fanout", "profile_text", "precode_text", "after_code_text", "transitive_bracket"]):
+                    if all(element != subk for element in ["time","fanout", "input_rows", "cardinality_estimate", "cardinality_fanout", "profile_text", "profile_text_low_explain", "precode_text", "after_code_text"]):
                         if jsonObject_test[k][subk] == jsonObject_target[k][subk]:
                             continue
                         else:
