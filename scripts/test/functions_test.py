@@ -15,10 +15,9 @@ def compare_json(filename):
             jsonFile_tr.close()
 
         if jsonObject_test.keys() == jsonObject_target.keys():
-            true = 0
-            for k in jsonObject_target.keys():
-                for subk in jsonObject_target[k].keys():
-                    if all(element != subk for element in ["time","fanout", "input_rows", "cardinality_estimate", "cardinality_fanout", "profile_text", "precode_text", "after_code_text"]):
+            for k in jsonObject_test.keys():
+                for subk in jsonObject_test[k].keys():
+                    if all(element != subk for element in ["time","fanout", "input_rows", "cardinality_estimate", "cardinality_fanout", "profile_text", "precode_text", "after_code_text", "transitive_bracket"]):
                         if jsonObject_test[k][subk] == jsonObject_target[k][subk]:
                             continue
                         else:

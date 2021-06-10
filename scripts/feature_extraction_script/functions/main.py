@@ -261,8 +261,9 @@ def SetSorts(operators):
 	return operators
 
 
-def SetTarget(operators):
+def SetTargetAndTransitive(operators):
 	target_bracket = 0
+	transitive_bracket = 0
 	for k in operators.keys():
 		if any(element in operators[k]['profile_text'] for element in ["Target:"]) and operators[k]['{'] >= 1:
 			target_bracket = target_bracket + 1
@@ -272,6 +273,17 @@ def SetTarget(operators):
 			target_bracket = target_bracket - 1
 		else:
 			operators[k]['target_bracket'] = target_bracket
+
+	for k in operators.keys():
+		if any(element in operators[k]['profile_text'] for element in ["Transitive dt"]) and operators[k]['{'] >= 1:
+			transitive_bracket = transitive_bracket + 1
+			operators[k]['transitive_bracket'] = transitive_bracket
+		elif "Subquery Select" in operators[k]['profile_text'] and operators[k]['after_test_lvl'] == 0 and operators[k]['}'] == 1 and transitive_bracket > 0:
+			operators[k]['transitive_bracket'] = transitive_bracket
+			transitive_bracket = transitive_bracket - 1
+		else:
+			operators[k]['transitive_bracket'] = transitive_bracket
+
 	return operators
 
 
@@ -285,11 +297,11 @@ def SetSubqueries(operators):
 		if any(element in operators[k]['profile_text'] for element in ["union", "Union"]) and operators[k]['target_bracket'] == 0 and operators[k]['sort_lvl'] == 0:
 			union_sub_lvl = union_sub_lvl + 1
 			operators[k]['union_sub_lvl'] = union_sub_lvl
-		if "Subquery Select" in operators[k]['profile_text'] and operators[k]['target_bracket'] == 0 and operators[k]['after_test_lvl'] == 0 and operators[k]['}'] >= 2 and operators[k]['{'] == 0:
+		if "Subquery Select" in operators[k]['profile_text'] and operators[k]['target_bracket'] == 0 and operators[k]['after_test_lvl'] == 0 and operators[k]['transitive_bracket'] == 0 and operators[k]['}'] >= 2 and operators[k]['{'] == 0:
 				operators[k]['subquerie_lvl'] = subquerie_lvl
 				subquerie_lvl = subquerie_lvl - 1
 				union_sub_lvl = union_sub_lvl - 1
-		elif "Subquery Select" in operators[k]['profile_text'] and operators[k]['target_bracket'] == 0 and operators[k]['after_test_lvl'] == 0 and operators[k]['{'] == 0:
+		elif "Subquery Select" in operators[k]['profile_text'] and operators[k]['target_bracket'] == 0 and operators[k]['after_test_lvl'] == 0 and operators[k]['transitive_bracket'] == 0  and operators[k]['{'] == 0:
 				operators[k]['subquerie_lvl'] = subquerie_lvl
 				subquerie_lvl = subquerie_lvl - 1
 		else:

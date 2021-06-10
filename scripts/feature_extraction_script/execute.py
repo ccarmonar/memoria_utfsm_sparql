@@ -1,5 +1,5 @@
 import re, time, os, json
-from functions.main import GetFinalResults, GroupOperators, GetOperatorExecutionFeatures, IdentifyOperatorType, IdentifyPrecode, IdentifyAfterCode, IdentifyGroupBy, IdentifyDistinct, GetGSPO, GetIRI_ID, GetAllPredicatesFromProfile, SetBooleanPredicates, GetStartAndEndOptionalSection, SetBooleanOptionalSection, SetTarget, SetSorts, SetSubqueries, SetAfterTest
+from functions.main import GetFinalResults, GroupOperators, GetOperatorExecutionFeatures, IdentifyOperatorType, IdentifyPrecode, IdentifyAfterCode, IdentifyGroupBy, IdentifyDistinct, GetGSPO, GetIRI_ID, GetAllPredicatesFromProfile, SetBooleanPredicates, GetStartAndEndOptionalSection, SetBooleanOptionalSection, SetTargetAndTransitive, SetSorts, SetSubqueries, SetAfterTest
 from functions.aux import GetSubstring, ParseNestedBracket, CleanOperators, GetPrefixes, VectorString, MainCurlyBrackets, CountCurlyBrackets
 
 #current working directory
@@ -28,7 +28,7 @@ def execute(profile_sparql):
 	operators = SetBooleanPredicates(operators, predicates_list)
 	operators = SetBooleanOptionalSection(operators)
 	operators = SetAfterTest(operators)
-	operators = SetTarget(operators)
+	operators = SetTargetAndTransitive(operators)
 	operators = SetSorts(operators)
 	operators = SetSubqueries(operators)
 
