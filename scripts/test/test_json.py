@@ -24,6 +24,7 @@ class TestJson(unittest.TestCase):
         ["test_wikidata17", compare_json("test_wikidata17")],
         ["test_wikidata18", compare_json("test_wikidata18")],
         ["test_wikidata19", compare_json("test_wikidata19")],
+        ["test_wikidata19", compare_json("test_wikidata20")],
     ])
     def test_compare_json(self, name, a):
         self.assertTrue(a)

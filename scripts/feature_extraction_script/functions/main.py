@@ -1,5 +1,5 @@
 import re, time, os
-from functions.aux import GetSubstring,ParseNestedBracket,CleanOperators,GetPrefixes,VectorString, CleanSalts
+from functions.aux import GetSubstring,ParseNestedBracket,CleanOperators,GetPrefixes,VectorString, CleanSalts, SubstractStrings
 
 
 #Funcion que guarda los resultados finales:
@@ -289,7 +289,7 @@ def SetTargetAndTransitive(operators):
 		if any(element in operators[k]['profile_text'] for element in ["Target:"]) and operators[k]['{'] >= 1:
 			target_bracket = target_bracket + 1
 			operators[k]['target_bracket'] = target_bracket
-		elif "Subquery Select" in operators[k]['profile_text'] and operators[k]['after_test_lvl'] == 0 and operators[k]['}'] == 1 and target_bracket > 0:
+		elif "Subquery Select" in operators[k]['profile_text'] and operators[k]['}'] == 1 and target_bracket > 0:
 			operators[k]['target_bracket'] = target_bracket
 			target_bracket = target_bracket - 1
 		else:
@@ -299,7 +299,7 @@ def SetTargetAndTransitive(operators):
 		if any(element in operators[k]['profile_text'] for element in ["Transitive dt"]) and operators[k]['{'] >= 1:
 			transitive_bracket = transitive_bracket + 1
 			operators[k]['transitive_bracket'] = transitive_bracket
-		elif "Subquery Select" in operators[k]['profile_text'] and operators[k]['after_test_lvl'] == 0 and operators[k]['}'] == 1 and transitive_bracket > 0:
+		elif "Subquery Select" in operators[k]['profile_text'] and operators[k]['}'] == 1 and transitive_bracket > 0:
 			operators[k]['transitive_bracket'] = transitive_bracket
 			transitive_bracket = transitive_bracket - 1
 		else:
@@ -307,72 +307,102 @@ def SetTargetAndTransitive(operators):
 
 	return operators
 
-def SetSubqueries2(operators):
-	return 0
 
 def SetSubqueries(operators):
 	subquerie_lvl = 0
 	union_sub_lvl = 0
+	# SUBQUERY BRACKETS
 	for k in operators.keys():
-		#UNION union_sub_lvl>0, target = 0, sort_lvl = 0 >>> SUM UNION
-		if any(element in operators[k]['profile_text'] for element in ["union", "Union"]) and operators[k]['target_bracket'] == 0 \
-				and operators[k]['sort_lvl'] == 0:
+		operators[k]['subquerie_lvl'] = subquerie_lvl
+		operators[k]['union_sub_lvl'] = union_sub_lvl
+		if 'Subquery' in operators[k]['profile_text']:
+			aux_split = operators[k]['profile_text'].strip().split('Subquery')[1::]
+			for i in aux_split:
+				if 'Select' not in i:
+					subquerie_lvl = subquerie_lvl + 1
+					operators[k]['subquerie_lvl'] = subquerie_lvl
+					operators[k]['union_sub_lvl'] = union_sub_lvl
+				else:
+					if union_sub_lvl == 0:
+						if all(e == 0 for e in [operators[k]['transitive_bracket'], operators[k]['target_bracket'],operators[k]['after_test_lvl']]) and operators[k]['}'] > 0:
+							subquerie_lvl = subquerie_lvl - 1
+					else:
+						if all(e == 0 for e in [operators[k]['transitive_bracket'], operators[k]['target_bracket'], operators[k]['after_test_lvl']]) and operators[k]['{'] == 0 and operators[k]['}'] > 0:
+							subquerie_lvl = subquerie_lvl - 1
+		#UNION WITHOUT FORK
+		if any(element in operators[k]['profile_text'] for element in ['union', 'Union']) and operators[k]['union_sort_lvl'] < 1:
 			union_sub_lvl = union_sub_lvl + 1
 			operators[k]['union_sub_lvl'] = union_sub_lvl
-			operators[k]['union_sub_lvl'] = union_sub_lvl
-		##SUMA SUBQUERY target = 0, { >= 1, } == 0
-		if any(element in operators[k]['profile_text'] for element in ["Subquery"]) \
-				and operators[k]['target_bracket'] == 0 and operators[k]['transitive_bracket'] == 0 \
-				and operators[k]['{'] >= 1 and operators[k]['}'] == 0:
-			subquerie_lvl = subquerie_lvl + operators[k]['profile_text'].count("Subquery")
-			operators[k]['subquerie_lvl'] = subquerie_lvl
-			operators[k]['union_sub_lvl'] = union_sub_lvl
-		#RESTA UNION union_sub_lvl > 0 target_bracket=0 after_test_lvl=0 '}'>=2 '{'==0
+
+		# END OF SORT
+		if any(e in operators[k]['profile_text'] for e in [" Sort "," Sort (HASH) ", "Sort "]) \
+				and operators[k]['}'] >= 2 and operators[k]['{'] == 0 and operators[k]["sort_lvl"] > 0:
+			subquerie_lvl = subquerie_lvl - 1
+
+		# RESTA UNION union_sub_lvl > 0 target_bracket=0 after_test_lvl=0 '}'>=2 '{'==0
 		if "Subquery Select" in operators[k]['profile_text'] and operators[k]['target_bracket'] == 0 \
 				and operators[k]['after_test_lvl'] == 0 and operators[k]['transitive_bracket'] == 0 \
 				and operators[k]['}'] >= 2 and operators[k]['{'] == 0 and union_sub_lvl > 0:
-			operators[k]['subquerie_lvl'] = subquerie_lvl
-			operators[k]['union_sub_lvl'] = union_sub_lvl
 			union_sub_lvl = union_sub_lvl - 1
-		#RESTA SORT
-		elif any(element in operators[k]['profile_text'] for element in [" Sort "," Sort (HASH) ", "Sort "]) \
-				and operators[k]['}'] >= 2 and operators[k]['{'] == 0:
-			operators[k]['subquerie_lvl'] = subquerie_lvl
-			operators[k]['union_sub_lvl'] = union_sub_lvl
-			subquerie_lvl = subquerie_lvl - 1
-		#RESTA
-		elif "Subquery Select" in operators[k]['profile_text'] and operators[k]['target_bracket'] == 0 \
-				and operators[k]['after_test_lvl'] == 0 and operators[k]['transitive_bracket'] == 0 \
-				and operators[k]['}'] >= 1 and operators[k]['{'] == 0 and union_sub_lvl == 0:
-			operators[k]['subquerie_lvl'] = subquerie_lvl
-			operators[k]['union_sub_lvl'] = union_sub_lvl
-			subquerie_lvl = subquerie_lvl - 1
 
-
-
-		else:
-			operators[k]['union_sub_lvl'] = union_sub_lvl
-			operators[k]['subquerie_lvl'] = subquerie_lvl
+	# SUBQUERY SELECT
 	for k in operators.keys():
 		if "Subquery Select" in operators[k]['profile_text']:
 			operators[k]['subquery_select?'] = 1
 		else:
 			operators[k]['subquery_select?'] = 0
+
 	return operators
 
 
 def SetAfterTest(operators):
 	after_test_lvl = 0
 	for k in operators.keys():
-		if "After test:" in operators[k]['profile_text'] and "Return 0" in operators[k]['profile_text']: #and operators[k]['precode_bool'] == 0 and operators[k]['after_code_bool'] == 0:
+		if "After test:" in operators[k]['profile_text'] and "Return 0" in operators[k]['profile_text'] and operators[k]['precode_bool'] == 0 and operators[k]['after_code_bool'] == 0: #and operators[k]['precode_bool'] == 0 and operators[k]['after_code_bool'] == 0:
 			operators[k]['after_test_lvl'] = 1
+			operators[k]['after_test_1op?'] = 1
+
+		elif "After test:" in operators[k]['profile_text'] and "Return 0" in operators[k]['profile_text'] and operators[k]['precode_bool'] == 1 and operators[k]['after_code_bool'] == 0:
+			aux_text = SubstractStrings(operators[k]['profile_text'], operators[k]['precode_text'])
+			if "Return 0" in aux_text:
+				operators[k]['after_test_lvl'] = 1
+				operators[k]['after_test_1op?'] = 1
+
+		elif "After test:" in operators[k]['profile_text'] and "Return 0" in operators[k]['profile_text'] and operators[k]['precode_bool'] == 0 and operators[k]['after_code_bool'] == 1:
+			aux_text = SubstractStrings(operators[k]['profile_text'], operators[k]['after_code_text'])
+			if "Return 0" in aux_text:
+				operators[k]['after_test_lvl'] = 1
+				operators[k]['after_test_1op?'] = 1
+
+		elif "After test:" in operators[k]['profile_text'] and "Return 0" in operators[k]['profile_text'] and operators[k]['precode_bool'] == 1 and operators[k]['after_code_bool'] == 1:
+			aux_text = SubstractStrings(operators[k]['profile_text'], operators[k]['precode_text'])
+			aux_text = SubstractStrings(aux_text, operators[k]['after_code_text'])
+			if "Return 0" in aux_text:
+				operators[k]['after_test_lvl'] = 1
+				operators[k]['after_test_1op?'] = 1
+
 		else:
+			operators[k]['after_test_1op?'] = 0
+			operators[k]['after_test_lvl'] = after_test_lvl
 			if "After test:" in operators[k]['profile_text']:
 				after_test_lvl = after_test_lvl + 1
 				operators[k]['after_test_lvl'] = after_test_lvl
+
 			if "Return 0" in operators[k]['profile_text'] and operators[k]['precode_bool'] == 0 and operators[k]['after_code_bool'] == 0:
 				operators[k]['after_test_lvl'] = after_test_lvl
 				after_test_lvl = after_test_lvl - 1
+
+			elif operators[k]['precode_bool'] == 1 and after_test_lvl > 0:
+				aux_text = SubstractStrings(operators[k]['profile_text'], operators[k]['precode_text'])
+				if "Return 0" in aux_text:
+					operators[k]['after_test_lvl'] = after_test_lvl
+					after_test_lvl = after_test_lvl - 1
+
+			elif operators[k]['after_code_bool'] == 1 and after_test_lvl > 0:
+				aux_text = SubstractStrings(operators[k]['profile_text'], operators[k]['after_code_text'])
+				if "Return 0" in aux_text:
+					operators[k]['after_test_lvl'] = after_test_lvl
+					after_test_lvl = after_test_lvl - 1
 			else:
 				operators[k]['after_test_lvl'] = after_test_lvl
 	return operators

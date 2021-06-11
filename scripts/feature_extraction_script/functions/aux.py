@@ -95,3 +95,7 @@ def CountCurlyBrackets(operator):
 	operator['{'] = profile_text.count('{')
 	operator['}'] = profile_text.count('}')
 	return operator
+
+
+def SubstractStrings(a, b):
+    return "".join(a.rsplit(b))

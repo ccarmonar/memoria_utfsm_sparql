@@ -34,6 +34,5 @@ def compare_json(filename):
     else:
         print("Some file not exist in returns or correct_results. Filename: "+filename)
         return False
-"sort_lvl"
-#print(compare_json("test_wikidata1"))
+
 
