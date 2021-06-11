@@ -266,6 +266,7 @@ def SetSorts(operators):
 		if any(element in operators[k]['profile_text'] for element in ["union", "Union"]) and sort_lvl > 0:
 			union_sort_lvl = union_sort_lvl + 1
 			operators[k]['union_sort_lvl'] = union_sort_lvl
+			operators[k]['sort_lvl'] = sort_lvl
 		if any(element in operators[k]['profile_text'] for element in [" Sort "," Sort (HASH) ", "Sort "]) and operators[k]['}'] >= 2 and operators[k]['{'] == 0:
 			operators[k]['union_sort_lvl'] = union_sort_lvl
 			operators[k]['sort_lvl'] = sort_lvl
@@ -306,27 +307,49 @@ def SetTargetAndTransitive(operators):
 
 	return operators
 
+def SetSubqueries2(operators):
+	return 0
 
 def SetSubqueries(operators):
 	subquerie_lvl = 0
 	union_sub_lvl = 0
 	for k in operators.keys():
-		if any(element in operators[k]['profile_text'] for element in ["Subquery"]) and operators[k]['target_bracket'] == 0 and operators[k]['{'] >= 1:
-			subquerie_lvl = subquerie_lvl + 1
-			operators[k]['subquerie_lvl'] = subquerie_lvl
-		if any(element in operators[k]['profile_text'] for element in ["union", "Union"]) and operators[k]['target_bracket'] == 0 and operators[k]['sort_lvl'] == 0:
+		#UNION union_sub_lvl>0, target = 0, sort_lvl = 0 >>> SUM UNION
+		if any(element in operators[k]['profile_text'] for element in ["union", "Union"]) and operators[k]['target_bracket'] == 0 \
+				and operators[k]['sort_lvl'] == 0:
 			union_sub_lvl = union_sub_lvl + 1
 			operators[k]['union_sub_lvl'] = union_sub_lvl
-		if "Subquery Select" in operators[k]['profile_text'] and operators[k]['target_bracket'] == 0 and operators[k]['after_test_lvl'] == 0 and operators[k]['transitive_bracket'] == 0 and operators[k]['}'] >= 2 and operators[k]['{'] == 0:
+			operators[k]['union_sub_lvl'] = union_sub_lvl
+		##SUMA SUBQUERY target = 0, { >= 1, } == 0
+		if any(element in operators[k]['profile_text'] for element in ["Subquery"]) \
+				and operators[k]['target_bracket'] == 0 and operators[k]['transitive_bracket'] == 0 \
+				and operators[k]['{'] >= 1 and operators[k]['}'] == 0:
+			subquerie_lvl = subquerie_lvl + operators[k]['profile_text'].count("Subquery")
 			operators[k]['subquerie_lvl'] = subquerie_lvl
-			subquerie_lvl = subquerie_lvl - 1
+			operators[k]['union_sub_lvl'] = union_sub_lvl
+		#RESTA UNION union_sub_lvl > 0 target_bracket=0 after_test_lvl=0 '}'>=2 '{'==0
+		if "Subquery Select" in operators[k]['profile_text'] and operators[k]['target_bracket'] == 0 \
+				and operators[k]['after_test_lvl'] == 0 and operators[k]['transitive_bracket'] == 0 \
+				and operators[k]['}'] >= 2 and operators[k]['{'] == 0 and union_sub_lvl > 0:
+			operators[k]['subquerie_lvl'] = subquerie_lvl
+			operators[k]['union_sub_lvl'] = union_sub_lvl
 			union_sub_lvl = union_sub_lvl - 1
-		if any(element in operators[k]['profile_text'] for element in [" Sort "," Sort (HASH) ", "Sort "]) and operators[k]['}'] >= 2 and operators[k]['{'] == 0:
+		#RESTA SORT
+		elif any(element in operators[k]['profile_text'] for element in [" Sort "," Sort (HASH) ", "Sort "]) \
+				and operators[k]['}'] >= 2 and operators[k]['{'] == 0:
 			operators[k]['subquerie_lvl'] = subquerie_lvl
+			operators[k]['union_sub_lvl'] = union_sub_lvl
 			subquerie_lvl = subquerie_lvl - 1
-		elif "Subquery Select" in operators[k]['profile_text'] and operators[k]['target_bracket'] == 0 and operators[k]['after_test_lvl'] == 0 and operators[k]['transitive_bracket'] == 0 and operators[k]['}'] >= 1 and operators[k]['{'] == 0:
+		#RESTA
+		elif "Subquery Select" in operators[k]['profile_text'] and operators[k]['target_bracket'] == 0 \
+				and operators[k]['after_test_lvl'] == 0 and operators[k]['transitive_bracket'] == 0 \
+				and operators[k]['}'] >= 1 and operators[k]['{'] == 0 and union_sub_lvl == 0:
 			operators[k]['subquerie_lvl'] = subquerie_lvl
+			operators[k]['union_sub_lvl'] = union_sub_lvl
 			subquerie_lvl = subquerie_lvl - 1
+
+
+
 		else:
 			operators[k]['union_sub_lvl'] = union_sub_lvl
 			operators[k]['subquerie_lvl'] = subquerie_lvl
