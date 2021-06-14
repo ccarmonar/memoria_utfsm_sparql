@@ -141,6 +141,14 @@ def IdentifyTopOrderByRead(operator):
 	return operator
 
 
+def IdentifySelect(operator):
+	if 'Select' in operator['profile_text'] and 'Subquery' not in operator['profile_text']:
+		operator['select?'] = 1
+	else:
+		operator['select?'] = 0
+	return operator
+
+
 def IdentifyTOP(operator):
 	if "(TOP" in operator['profile_text']:
 		operator['TOP_bool'] = 1
@@ -177,7 +185,6 @@ def IdentifySkipNode(operator):
 
 def GetGSPO(operator):
 	lines = operator['profile_text'].split('\n')
-
 	for ls in lines:
 		#PREDICADOS
 		if all(e in ls for e in [" P "]) and 'row specs' not in ls:
@@ -356,10 +363,6 @@ def GetIRI_ID(sparql_query, triple_component):
 
 
 def AddJoinType(operators):
-	return 0
-
-
-def GetLimit():
 	return 0
 
 

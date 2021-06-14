@@ -1,5 +1,5 @@
 import re, time, os, json
-from functions.main import GetFinalResults, GroupOperators, GetOperatorExecutionFeatures, IdentifyOperatorType, IdentifyPrecode, IdentifyAfterCode, IdentifyGroupBy, IdentifyDistinct, IdentifyTOP, IdentifyTopOrderByRead, IdentifySkipNode, GetGSPO, GetIRI_ID, GetAllPredicatesFromProfile, SetBooleanPredicates, GetStartAndEndOptionalSection, SetBooleanOptionalSection, SetTargetAndTransitive, SetSorts, SetSubqueries, SetAfterTest
+from functions.main import GetFinalResults, GroupOperators, GetOperatorExecutionFeatures, IdentifyOperatorType, IdentifyPrecode, IdentifyAfterCode, IdentifyGroupBy, IdentifyDistinct, IdentifyTOP, IdentifyTopOrderByRead, IdentifySkipNode, IdentifySelect, GetGSPO, GetIRI_ID, GetAllPredicatesFromProfile, SetBooleanPredicates, GetStartAndEndOptionalSection, SetBooleanOptionalSection, SetTargetAndTransitive, SetSorts, SetSubqueries, SetAfterTest
 from functions.aux import GetSubstring, ParseNestedBracket, CleanOperators, GetPrefixes, VectorString, MainCurlyBrackets, CountCurlyBrackets, CleanSalts, SubstractStrings
 
 #current working directory
@@ -27,6 +27,7 @@ def execute(profile_sparql,profile_low_explain):
 		operators[i] = IdentifyTopOrderByRead(operators[i])
 		operators[i] = IdentifySkipNode(operators[i])
 		operators[i] = CountCurlyBrackets(operators[i])
+		operators[i] = IdentifySelect(operators[i])
 		operators[i] = GetStartAndEndOptionalSection(operators[i], i)
 	predicates_list = GetAllPredicatesFromProfile(operators)
 	operators = SetBooleanPredicates(operators, predicates_list)
