@@ -177,48 +177,115 @@ def IdentifySkipNode(operator):
 
 def GetGSPO(operator):
 	lines = operator['profile_text'].split('\n')
+
 	for ls in lines:
 		#PREDICADOS
-		if " P " in ls:
+		if all(e in ls for e in [" P "]) and 'row specs' not in ls:
 			split_P = list(filter(None,ls.strip().split(' ')))
 			for s in range(0, len(split_P)):
 				if split_P[s] == 'P':
-					if split_P[s+2][:2].lower() == "<v" or split_P[s+2][:2].lower() == "<r" or split_P[s+2][:3].lower() == "<$r" or split_P[s+2][:3].lower() == "<$v":
+					if split_P[s+2][:2].lower() == "<v" or split_P[s+2][:2].lower() == "<r" or split_P[s+2][:3].lower() == "<$r" or split_P[s+2][:3].lower() == "<$v" or split_P[s+2][:3].lower() == "<$c" or split_P[s+2][:3].lower() == "<c":
 						operator['P'] = VectorString(split_P[s+2:])
+						operator['P_math_op'] = split_P[s + 1]
 					elif "$" in split_P[s+2]:
 						operator['P'] = CleanSalts(split_P[s+2], False)
+						operator['P_math_op'] = split_P[s + 1]
 					else:
 						operator['P'] = split_P[s+2]
-		if " O " in ls:
+						operator['P_math_op'] = split_P[s + 1]
+		if all(e in ls for e in [" O "," P ="]) and 'row specs' not in ls:
 			split_P = list(filter(None,ls.strip().split(' ')))
 			for s in range(0, len(split_P)):
 				if split_P[s] == 'O':
-					if split_P[s+2][:2].lower() == "<v" or split_P[s+2][:2].lower() == "<r" or split_P[s+2][:3].lower() == "<$r" or split_P[s+2][:3].lower() == "<$v":
+					if split_P[s+2][:2].lower() == "<v" or split_P[s+2][:2].lower() == "<r" or split_P[s+2][:3].lower() == "<$r" or split_P[s+2][:3].lower() == "<$v" or split_P[s+2][:3].lower() == "<$c" or split_P[s+2][:3].lower() == "<c":
 						operator['O'] = VectorString(split_P[s+2:])
+						operator['O_math_op'] = split_P[s + 1]
 					elif "$" in split_P[s + 2]:
 						operator['O'] = CleanSalts(split_P[s + 2], False)
+						operator['O_math_op'] = split_P[s + 1]
 					else:
 						operator['O'] = split_P[s+2]
-		if " S " in ls:
+						operator['O_math_op'] = split_P[s + 1]
+		if all(e in ls for e in [" S "," P ="]) and 'row specs' not in ls:
 			split_P = list(filter(None,ls.strip().split(' ')))
-			for s in range(0,len(split_P)):
+			for s in range(0, len(split_P)):
 				if split_P[s] == 'S':
-					if split_P[s+2][:2].lower() == "<v" or split_P[s+2][:2].lower() == "<r" or split_P[s+2][:3].lower() == "<$r" or split_P[s+2][:3].lower() == "<$v":
+					if split_P[s+2][:2].lower() == "<v" or split_P[s+2][:2].lower() == "<r" or split_P[s+2][:3].lower() == "<$r" or split_P[s+2][:3].lower() == "<$v" or split_P[s+2][:3].lower() == "<$c" or split_P[s+2][:3].lower() == "<c":
 						operator['S'] = VectorString(split_P[s+2:])
+						operator['S_math_op'] = split_P[s+1]
 					elif "$" in split_P[s + 2]:
 						operator['S'] = CleanSalts(split_P[s + 2], False)
+						operator['S_math_op'] = split_P[s + 1]
 					else:
 						operator['S'] = split_P[s+2]
-		if " G " in ls:
+						operator['S_math_op'] = split_P[s + 1]
+		if all(e in ls for e in [" G ", " P ="]) and 'row specs' not in ls:
 			split_P = list(filter(None,ls.strip().split(' ')))
 			for s in range(0,len(split_P)):
 				if split_P[s] == 'G':
-					if split_P[s+2][:2].lower() == "<v" or split_P[s+2][:2].lower() == "<r" or split_P[s+2][:3].lower() == "<$r" or split_P[s+2][:3].lower() == "<$v":
+					if split_P[s+2][:2].lower() == "<v" or split_P[s+2][:2].lower() == "<r" or split_P[s+2][:3].lower() == "<$r" or split_P[s+2][:3].lower() == "<$v" or split_P[s+2][:3].lower() == "<$c" or split_P[s+2][:3].lower() == "<c":
 						operator['G'] = VectorString(split_P[s+2:])
+						operator['G_math_op'] = split_P[s + 1]
 					elif "$" in split_P[s + 2]:
 						operator['G'] = CleanSalts(split_P[s + 2], False)
+						operator['G_math_op'] = split_P[s + 1]
 					else:
 						operator['G'] = split_P[s+2]
+						operator['G_math_op'] = split_P[s + 1]
+		#------------------------ROW SPECS---------------------------------#
+		if all(e in ls for e in [" P ", "row specs"]):
+			split_P = list(filter(None,ls.strip().split(' ')))
+			for s in range(0, len(split_P)):
+				if split_P[s] == 'P':
+					if split_P[s+2][:2].lower() == "<v" or split_P[s+2][:2].lower() == "<r" or split_P[s+2][:3].lower() == "<$r" or split_P[s+2][:3].lower() == "<$v" or split_P[s+2][:3].lower() == "<$c" or split_P[s+2][:3].lower() == "<c":
+						operator['P_rs'] = VectorString(split_P[s+2:])
+						operator['P_rs_math_op'] = split_P[s + 1]
+					elif "$" in split_P[s+2]:
+						operator['P_rs'] = CleanSalts(split_P[s+2], False)
+						operator['P_rs_math_op'] = split_P[s + 1]
+					else:
+						operator['P_rs'] = split_P[s+2]
+						operator['P_rs_math_op'] = split_P[s + 1]
+		if all(e in ls for e in [" O ", "row specs"]):
+			split_P = list(filter(None,ls.strip().split(' ')))
+			for s in range(0, len(split_P)):
+				if split_P[s] == 'O':
+					if split_P[s+2][:2].lower() == "<v" or split_P[s+2][:2].lower() == "<r" or split_P[s+2][:3].lower() == "<$r" or split_P[s+2][:3].lower() == "<$v" or split_P[s+2][:3].lower() == "<$c" or split_P[s+2][:3].lower() == "<c":
+						operator['O_rs'] = VectorString(split_P[s+2:])
+						operator['O_rs_math_op'] = split_P[s + 1]
+					elif "$" in split_P[s + 2]:
+						operator['O_rs'] = CleanSalts(split_P[s + 2], False)
+						operator['O_rs_math_op'] = split_P[s + 1]
+					else:
+						operator['O_rs'] = split_P[s+2]
+						operator['O_rs_math_op'] = split_P[s + 1]
+		if all(e in ls for e in [" S ", "row specs"]):
+			split_P = list(filter(None,ls.strip().split(' ')))
+			for s in range(0, len(split_P)):
+				if split_P[s] == 'S':
+					if split_P[s+2][:2].lower() == "<v" or split_P[s+2][:2].lower() == "<r" or split_P[s+2][:3].lower() == "<$r" or split_P[s+2][:3].lower() == "<$v"or split_P[s+2][:3].lower() == "<$c" or split_P[s+2][:3].lower() == "<c":
+						operator['S_rs'] = VectorString(split_P[s+2:])
+						operator['S_rs_math_op'] = split_P[s+1]
+					elif "$" in split_P[s + 2]:
+						operator['S_rs'] = CleanSalts(split_P[s + 2], False)
+						operator['S_rs_math_op'] = split_P[s + 1]
+					else:
+						operator['S_rs'] = split_P[s+2]
+						operator['S_rs_math_op'] = split_P[s + 1]
+		if all(e in ls for e in [" G ", "row specs"]):
+			split_P = list(filter(None,ls.strip().split(' ')))
+			for s in range(0,len(split_P)):
+				if split_P[s] == 'G':
+					if split_P[s+2][:2].lower() == "<v" or split_P[s+2][:2].lower() == "<r" or split_P[s+2][:3].lower() == "<$r" or split_P[s+2][:3].lower() == "<$v" or split_P[s+2][:3].lower() == "<$c" or split_P[s+2][:3].lower() == "<c":
+						operator['G_rs'] = VectorString(split_P[s+2:])
+						operator['G_rs_math_op'] = split_P[s + 1]
+					elif "$" in split_P[s + 2]:
+						operator['G_rs'] = CleanSalts(split_P[s + 2], False)
+						operator['G_rs_math_op'] = split_P[s + 1]
+					else:
+						operator['G_rs'] = split_P[s+2]
+						operator['G_rs_math_op'] = split_P[s + 1]
+
 	return operator
 
 
@@ -448,6 +515,5 @@ def SetAfterTest(operators):
 			else:
 				operators[k]['after_test_lvl'] = after_test_lvl
 	return operators
-
 
 
