@@ -1,5 +1,5 @@
 import re, time, os, json
-from functions.main import GetFinalResults, GroupOperators, GetOperatorExecutionFeatures, IdentifyOperatorType, IdentifyPrecode, IdentifyAfterCode, IdentifyGroupBy, IdentifyDistinct, GetGSPO, GetIRI_ID, GetAllPredicatesFromProfile, SetBooleanPredicates, GetStartAndEndOptionalSection, SetBooleanOptionalSection, SetTargetAndTransitive, SetSorts, SetSubqueries, SetAfterTest
+from functions.main import GetFinalResults, GroupOperators, GetOperatorExecutionFeatures, IdentifyOperatorType, IdentifyPrecode, IdentifyAfterCode, IdentifyGroupBy, IdentifyDistinct, IdentifyTOP, IdentifyTopOrderByRead, IdentifySkipNode, GetGSPO, GetIRI_ID, GetAllPredicatesFromProfile, SetBooleanPredicates, GetStartAndEndOptionalSection, SetBooleanOptionalSection, SetTargetAndTransitive, SetSorts, SetSubqueries, SetAfterTest
 from functions.aux import GetSubstring, ParseNestedBracket, CleanOperators, GetPrefixes, VectorString, MainCurlyBrackets, CountCurlyBrackets, CleanSalts, SubstractStrings
 
 #current working directory
@@ -23,6 +23,9 @@ def execute(profile_sparql,profile_low_explain):
 		operators[i] = IdentifyGroupBy(operators[i])
 		operators[i] = IdentifyDistinct(operators[i])
 		operators[i] = GetGSPO(operators[i])
+		operators[i] = IdentifyTOP(operators[i])
+		operators[i] = IdentifyTopOrderByRead(operators[i])
+		operators[i] = IdentifySkipNode(operators[i])
 		operators[i] = CountCurlyBrackets(operators[i])
 		operators[i] = GetStartAndEndOptionalSection(operators[i], i)
 	predicates_list = GetAllPredicatesFromProfile(operators)
@@ -41,8 +44,8 @@ def test_print():
 	for k,v in operators.items():
 		print(k, v)
 
-for i in path_profiles:
 
+for i in path_profiles:
 	if os.path.isdir(os.getcwd()+"/scripts/outputs/"+i):
 		filename = "_".join(i.split("_")[1:])
 		profile_normal = open(os.getcwd()+"/scripts/outputs/outputs_"+filename+"/profile_normal_file_"+filename, 'r', encoding = 'latin-1').read()

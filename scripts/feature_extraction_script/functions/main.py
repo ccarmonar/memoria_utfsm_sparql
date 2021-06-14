@@ -133,6 +133,48 @@ def IdentifyDistinct(operator):
 	return operator
 
 
+def IdentifyTopOrderByRead(operator):
+	if 'top order by read' in operator['profile_text'] or 'top order by node' in operator['profile_text']:
+		operator['top_order_by_bool'] = 1
+	else:
+		operator['top_order_by_bool'] = 0
+	return operator
+
+
+def IdentifyTOP(operator):
+	if "(TOP" in operator['profile_text']:
+		operator['TOP_bool'] = 1
+		lines = operator['profile_text'].split('\n')
+		for ls in lines:
+			if '(TOP' in ls:
+				splitting = list(filter(None, ls.strip().split(' ')))
+				for sp in range(0, len(splitting)):
+					if '(TOP' in splitting[sp]:
+						operator['TOP_num'] = int(splitting[sp+1])
+
+	else:
+		operator['TOP_bool'] = 0
+		operator['TOP_num'] = 0
+	return operator
+
+
+def IdentifySkipNode(operator):
+	if " skip node " in operator['profile_text']:
+		operator['skip_node_bool'] = 1
+		lines = operator['profile_text'].split('\n')
+		for ls in lines:
+			if ' skip node ' in ls:
+				splitting = list(filter(None, ls.strip().split(' ')))
+				for sp in range(0, len(splitting)):
+					if 'skip' in splitting[sp] and 'node' in splitting[sp+1]:
+						operator['skip_node_num'] = int(splitting[sp+2])
+
+	else:
+		operator['skip_node_bool'] = 0
+		operator['skip_node_num'] = 0
+	return operator
+
+
 def GetGSPO(operator):
 	lines = operator['profile_text'].split('\n')
 	for ls in lines:
@@ -337,7 +379,7 @@ def SetSubqueries(operators):
 		# END OF SORT
 		if any(e in operators[k]['profile_text'] for e in [" Sort "," Sort (HASH) ", "Sort "]) \
 				and operators[k]['}'] >= 2 and operators[k]['{'] == 0 and operators[k]["sort_lvl"] > 0:
-			subquerie_lvl = subquerie_lvl - 1
+			subquerie_lvl = subquerie_lvl - operators[k]['}'] + operators[k]['union_sort_lvl'] + operators[k]["sort_lvl"]
 
 		# RESTA UNION union_sub_lvl > 0 target_bracket=0 after_test_lvl=0 '}'>=2 '{'==0
 		if "Subquery Select" in operators[k]['profile_text'] and operators[k]['target_bracket'] == 0 \
