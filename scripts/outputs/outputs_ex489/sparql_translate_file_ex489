@@ -1,0 +1,9 @@
+SELECT __id2in ( "s_10_2_t0"."S") AS "s"
+FROM DB.DBA.RDF_QUAD AS "s_10_2_t0"
+WHERE
+  "s_10_2_t0"."P" = __i2idn ( __bft( 'http://www.w3.org/1999/02/22-rdf-syntax-ns#type' , 1))
+  AND 
+  "s_10_2_t0"."O" = __i2idn ( __bft( 'http://www.w3.org/2002/07/owl#Class' , 1))
+  AND 
+  rdf_contains_impl ( rdf_lcase_impl ( DB.DBA.RDF_LONG_OF_SQLVAL ( __bft (__id2in ( "s_10_2_t0"."S"), 2))),  DB.DBA.RDF_MAKE_LONG_OF_SQLVAL ( 'price' ))
+OPTION (QUIETCAST)

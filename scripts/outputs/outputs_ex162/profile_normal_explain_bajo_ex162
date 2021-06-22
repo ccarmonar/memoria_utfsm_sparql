@@ -1,0 +1,63 @@
+http://www.wikidata.org/prop/direct/P5541	9	
+http://www.wikidata.org/prop/direct-normalized/P5417	24	
+http://www.wikidata.org/prop/direct/P2533	136	
+http://www.wikidata.org/prop/direct/P9613	132	
+http://www.wikidata.org/prop/direct/P167	13	
+http://www.wikidata.org/prop/direct/P8140	102	
+http://www.wikidata.org/prop/direct/P3959	144	
+http://www.wikidata.org/prop/direct/P3628	39	
+http://www.wikidata.org/prop/direct/P564	252	
+http://www.wikidata.org/prop/direct/P4392	10	
+http://www.wikidata.org/prop/direct/P2324	3	
+http://www.wikidata.org/prop/direct/P5316	1	
+http://www.wikidata.org/prop/direct/P6149	1	
+http://www.wikidata.org/prop/direct-normalized/P3181	48	
+http://www.wikidata.org/prop/direct/P1087	6353	
+http://www.wikidata.org/prop/direct/P1250	54	
+http://www.wikidata.org/prop/direct/P1363	14	
+http://www.wikidata.org/prop/direct/P1979	25	
+http://www.wikidata.org/prop/direct/P2457	1	
+http://www.wikidata.org/prop/direct/P2568	6	
+
+  { 
+    time   0.00022% fanout         1 input         1 rows
+    Subquery 27 
+      { 
+        time   0.00014% fanout         1 input         1 rows
+        fork {
+            time        20% fanout 1.90501e+07 input         1 rows
+            RDF_QUAD     5e+06 rows(s_6_2_t0.P$32)
+            
+            
+            After code:
+            0: isnotnull$35 := Call isnotnull (s_6_2_t0.P$32)
+            5: BReturn 0
+            time        80% fanout         0 input 1.90501e+07 rows
+            Sort (s_6_2_t0.P$32) -> (isnotnull$35)
+            
+          }
+        time      0.17% fanout      1000 input         1 rows
+        group by read node  
+        (s_6_2_t0.P$32, aggregate$39)
+        
+        After code:
+        0: __id2in$60 := Call __id2in (s_6_2_t0.P$32)
+        5: p$28 :=  := artm __id2in$60
+        9: pTotal$29 :=  := artm aggregate$39
+        13: BReturn 0
+        time   1.7e-05% fanout         0 input      1000 rows
+        Subquery Select(p$28, pTotal$29)
+      }
+    
+    After code:
+    0: p$69 := Call __ro2sq (p$28)
+    5: pTotal$71 := Call __ro2sq (pTotal$29)
+    10: BReturn 0
+    time   6.3e-05% fanout         0 input      1000 rows
+    Select (p$69, pTotal$71)
+  }
+
+
+ 206 msec 470% cpu,        32 rnd 1.90298e+07 seq         0% same seg   24.2424% same pg 
+224 disk reads, 510 read ahead, 0.0136484% wait
+Compilation: 1 msec 0 reads         0% read 0 messages         0% clw

@@ -1,0 +1,121 @@
+
+  { 
+    time       2.9% fanout         1 input         1 rows
+    Precode:
+      0: __all_eq$27 := Call __all_eq ( IRI_ID"...Q894107" )
+      5: BReturn 0
+    Transitive dt dir 2, input: (__all_eq$27)
+      input shadow: (__all_eq$182)
+      output: (_::trans_subj_36_0$30)
+      { 
+        time        40% fanout         0 input         1 rows
+        Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:       2.7 Fanout:         0
+        RDF_QUAD_POGS       2.7 rows(t12.S$37, t12.O$36)
+         P =  IRI_ID"...direct/P131"  ,  O = k___all_eq$188
+        
+        After code:
+        0: _::trans_subj_36_0$30 :=  := artm t12.S$37
+        4: _::trans_obj_36_1$31 :=  := artm t12.O$36
+        8: BReturn 0
+        time         0% fanout         0 input         0 rows
+        Subquery Select(_::trans_subj_36_0$30, _::trans_obj_36_1$31)
+      }
+    time        18% fanout         0 input         1 rows
+    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:       1.1 Fanout:         0
+    RDF_QUAD       1.1 rows(t17.O$58, t17.S$57)
+     inlined  P =  IRI_ID"...direct/P31"  ,  S = _::trans_subj_36_0$30 O LIKE <c Tó>
+    Precode:
+      0: __all_eq$60 := Call __all_eq (t17.O$58)
+      5: item$62 := Call __id2in (t17.S$57)
+      10: BReturn 0
+    Transitive dt dir 1, input: (__all_eq$60)
+      input shadow: (__all_eq$223)
+      output: (_::trans_obj_44_27$66)
+      { 
+        time         0% fanout         0 input         0 rows
+        Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:       1.4 Fanout:         0
+        RDF_QUAD       1.4 rows(t19.S$72, t19.O$71)
+         inlined  P =  IRI_ID"...direct/P279"  ,  S = k___all_eq$229
+        
+        After code:
+        0: _::trans_subj_44_26$65 :=  := artm t19.S$72
+        4: _::trans_obj_44_27$66 :=  := artm t19.O$71
+        8: BReturn 0
+        time         0% fanout         0 input         0 rows
+        Subquery Select(_::trans_subj_44_26$65, _::trans_obj_44_27$66)
+      }
+    time         0% fanout         0 input         0 rows
+    END Node
+    After test:
+    0: one_of_these$91 := Call one_of_these (_::trans_obj_44_27$66,  IRI_ID"...Q1746392" ,  IRI_ID"...Q108325" ,  IRI_ID"...Q4989906" ,  IRI_ID"...Q10861631" ,  IRI_ID"...Q15077340" ,  IRI_ID"...Q1516537" ,  IRI_ID"...Q47008262" )
+    5: if ( 0  < one_of_these$91) then 9 else 10 unkn 10
+    9: BReturn 1
+    10: BReturn 0
+    time         0% fanout         0 input         0 rows
+    outer {
+        Subquery 93 
+          { 
+            time         0% fanout         0 input         0 rows
+            Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:         1 Fanout:         0
+            RDF_QUAD_POGS         1 rows(t14.S$99, t14.O$98)
+             P =  IRI_ID"...about"  ,  O = k__::trans_subj_36_0$279 O LIKE <c Tó>
+            time         0% fanout         0 input         0 rows
+            Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:     2e-06 Fanout:         0
+            RDF_QUAD_POGS     2e-06 rows()
+             inlined  P =  IRI_ID"...isPartOf"  ,  O =  IRI_ID"..."  ,  S = t14.S$99
+            
+            After code:
+            0: comm$94 :=  := artm t14.S$99
+            4: item$95 :=  := artm t14.O$98
+            8: BReturn 0
+            time         0% fanout         0 input         0 rows
+            Subquery Select(comm$94, item$95)
+          }
+        time         0% fanout         0 input         0 rows
+      } /* end of outer */
+    set_ctr$111
+     out: (comm$94, item$95, set_no$96)
+     shadow: ( <none> ,  <none> ,  <none> )
+    time         0% fanout         0 input         0 rows
+    Precode:
+      0: comm$120 := Call __id2in (comm$94)
+      5: BReturn 0
+    outer {
+        time         0% fanout         0 input         0 rows
+        Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:       1.1 Fanout:         0
+        RDF_QUAD       1.1 rows(t16.O$123)
+         inlined  P =  IRI_ID"...direct/P373"  ,  S = k__::trans_subj_36_0$329
+        time         0% fanout         0 input         0 rows
+      } /* end of outer */
+    set_ctr$128
+     out: (t16.O$123)
+     shadow: ( <none> )
+    time         0% fanout         0 input         0 rows
+    skip node  8000  <none> set_ctr$125
+    
+    After code:
+    0: p373$137 := Call __ro2sq (t16.O$123)
+    5: __id2in$141 := Call __id2in (comm$94)
+    10: __bft$143 := Call __bft (__id2in$141,  2 )
+    15: DB.DBA.RDF_LONG_OF_SQLVAL$145 := Call DB.DBA.RDF_LONG_OF_SQLVAL (__bft$143)
+    22: rdf_substr_impl$147 := Call rdf_substr_impl (DB.DBA.RDF_LONG_OF_SQLVAL$145,  45 )
+    27: DB.DBA.http://wikiba.se/ontology#decodeUri$149 := Call DB.DBA.http://wikiba.se/ontology#decodeUri (rdf_substr_impl$147)
+    34: DB.DBA.RDF_LONG_OF_SQLVAL$151 := Call DB.DBA.RDF_LONG_OF_SQLVAL (DB.DBA.http://wikiba.se/ontology#decodeUri$149)
+    41: DB.DBA.rdf_replace_impl$153 := Call DB.DBA.rdf_replace_impl (DB.DBA.RDF_LONG_OF_SQLVAL$151, <c _>, <c  >)
+    48: if (DB.DBA.rdf_replace_impl$153  IS NULL  <DB_NULL>) then 57 else 52 unkn 57
+    52: coalesce_ret$139 :=  := artm DB.DBA.rdf_replace_impl$153
+    56: Jump 75 (level=0)
+    57: __ro2lo$155 := Call __ro2lo (t16.O$123)
+    62: if (__ro2lo$155  IS NULL  <DB_NULL>) then 71 else 66 unkn 71
+    66: coalesce_ret$139 :=  := artm __ro2lo$155
+    70: Jump 75 (level=0)
+    71: coalesce_ret$139 :=  := artm <DB_NULL>
+    75: cat$157 := Call __rdf_sqlval_of_obj (coalesce_ret$139)
+    80: BReturn 0
+    time         0% fanout         0 input         0 rows
+    Select (item$62, comm$120, p373$137, cat$157)
+  }
+
+
+ 0 msec 2% cpu,         2 rnd         0 seq         0% same seg         0% same pg 
+Compilation: 7 msec 0 reads         0% read 0 messages         0% clw

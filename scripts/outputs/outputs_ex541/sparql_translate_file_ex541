@@ -1,0 +1,11 @@
+SELECT __rdf_sqlval_of_obj /*l*/ ( rdf_ucase_impl ( DB.DBA.RDF_LONG_OF_SQLVAL ( rdf_substr_impl ( __ro2lo ( "s_11_4_t0"."O"),  1,  3)))) AS "callret-0",
+  __ro2sq ( "s_11_4_t1"."O") AS "amount"
+FROM DB.DBA.RDF_QUAD AS "s_11_4_t0"
+  INNER JOIN DB.DBA.RDF_QUAD AS "s_11_4_t1"
+  ON (
+    "s_11_4_t0"."S" = "s_11_4_t1"."S")
+WHERE
+  "s_11_4_t0"."P" = __i2idn ( __bft( 'http://learningsparql.com/ns/expenses#description' , 1))
+  AND 
+  "s_11_4_t1"."P" = __i2idn ( __bft( 'http://learningsparql.com/ns/expenses#amount' , 1))
+OPTION (QUIETCAST)

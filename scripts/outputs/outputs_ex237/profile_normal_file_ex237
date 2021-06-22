@@ -1,0 +1,75 @@
+http://learningsparql.com/ns/data#nodeID%3A%2F%2Fb10004	http://www.w3.org/1999/02/22-rdf-syntax-ns#type	http://learningsparql.com/ns/demo#Place	
+http://dbpedia.org/resource/Boston	http://www.w3.org/1999/02/22-rdf-syntax-ns#type	http://learningsparql.com/ns/demo#Place	
+http://dbpedia.org/resource/Lisbon	http://www.w3.org/1999/02/22-rdf-syntax-ns#type	http://learningsparql.com/ns/demo#Place	
+http://learningsparql.com/ns/data#nodeID%3A%2F%2Fb10016	http://www.w3.org/1999/02/22-rdf-syntax-ns#type	http://learningsparql.com/ns/demo#Place	
+http://learningsparql.com/ns/data#nodeID%3A%2F%2Fb10014	http://www.w3.org/1999/02/22-rdf-syntax-ns#type	http://learningsparql.com/ns/demo#Place	
+http://learningsparql.com/ns/data#Heidelberg	http://www.w3.org/1999/02/22-rdf-syntax-ns#type	http://learningsparql.com/ns/demo#Place	
+http://dbpedia.org/resource/Montréal	http://www.w3.org/1999/02/22-rdf-syntax-ns#type	http://learningsparql.com/ns/demo#Place	
+http://learningsparql.com/ns/data#nodeID%3A%2F%2Fb10015	http://www.w3.org/1999/02/22-rdf-syntax-ns#type	http://learningsparql.com/ns/demo#Place	
+http://learningsparql.com/ns/data#nodeID%3A%2F%2Fb10005	http://www.w3.org/1999/02/22-rdf-syntax-ns#type	http://learningsparql.com/ns/demo#Place	
+http://learningsparql.com/ns/data#nodeID%3A%2F%2Fb10006	http://www.w3.org/1999/02/22-rdf-syntax-ns#type	http://learningsparql.com/ns/demo#Place	
+http://dbpedia.org/resource/Montreal	http://www.w3.org/1999/02/22-rdf-syntax-ns#type	http://learningsparql.com/ns/demo#Place	
+http://dbpedia.org/resource/Ghent	http://www.w3.org/1999/02/22-rdf-syntax-ns#type	http://learningsparql.com/ns/demo#Place	
+
+  { 
+    Precode:
+      0:   { 
+          time      0.47% fanout         1 input         1 rows
+            clear: (<V ext_sets$70 i>, <V set_ctr$52 in>)
+          s# 71 53 cluster outer seq start, set no <V set_ctr$52 in>    
+          save ctx:()
+          time       1.5% fanout         1 input         1 rows
+          Precode:
+            0: <V vector$27 x> := Call vector ( 1 ,  0 ,  3 ,  IRI_ID"...type" ,  3 ,  IRI_ID"...Place" )
+            5: <V vector$29 x> := Call vector (<V vector$27 x>)
+            10: <V vector$31 x> := Call vector ()
+            15: BReturn 0
+            clear: (<V vector$31 x>, <V vector$29 x>, <V vector$27 x>)$27 (54 ) 
+          s# 95 54 Fork 54 {  
+              time        96% fanout         0 input         1 rows
+              Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:        12 Fanout:         0
+                clear: (<V t2.O$34 an>, <V user_aggr_ret$57 x>, <V vector$50 x>, <V __i2idn$48 r>, <V rdf_concat_impl$46 s>, <V rdf_encode_for_uri_impl$44 s>, <V __ro2sq$42 a>, <V callretSearchedCASE$36 a>, <V __ro2lo$40 a>, <V is_named_iri_id$38 i>)
+                clear on continue: (<V t2.O$34 an>, <V user_aggr_ret$57 x>, <V vector$50 x>, <V __i2idn$48 r>, <V rdf_concat_impl$46 s>, <V rdf_encode_for_uri_impl$44 s>, <V __ro2sq$42 a>, <V callretSearchedCASE$36 a>, <V __ro2lo$40 a>, <V is_named_iri_id$38 i>)$31 (33 ) $29 (33 ) 
+              s# 82 33 from DB.DBA.RDF_QUAD by RDF_QUAD         12 rows   
+              Key RDF_QUAD  ASC  (<V t2.O$34 an>)
+               inlined  P =  IRI_ID"...location" 
+              
+              After code:
+                0: <V is_named_iri_id$38 i> := Call is_named_iri_id (<V t2.O$34 an>)
+                5: if ( 0  = <V is_named_iri_id$38 i>) then 19 else 9 unkn 19
+                9: <V __ro2lo$40 a> := Call __ro2lo (<V t2.O$34 an>)
+                14: <V callretSearchedCASE$36 a> :=  := artm <V __ro2lo$40 a>
+                18: Jump 43 (level=0)
+                19: <V __ro2sq$42 a> := Call __ro2sq (<V t2.O$34 an>)
+                24: <V rdf_encode_for_uri_impl$44 s> := Call rdf_encode_for_uri_impl (<V __ro2sq$42 a>)
+                29: <V rdf_concat_impl$46 s> := Call rdf_concat_impl (<c http://learningsparql.com/ns/data#>, <V rdf_encode_for_uri_impl$44 s>)
+                34: <V __i2idn$48 r> := Call __i2idn (<V rdf_concat_impl$46 s>)
+                39: <V callretSearchedCASE$36 a> :=  := artm <V __i2idn$48 r>
+                43: <V vector$50 x> := Call vector (<V callretSearchedCASE$36 a>)
+                48: if (user_aggr_notfirst$55  =  1 ) then 63 else 52 unkn 52
+                52: user_aggr_notfirst$55  :=  := artm  1 
+                56: <V user_aggr_ret$57 x> := Call DB.DBA.SPARQL_CONSTRUCT_INIT (user_aggr_env$56 )
+                63: <V user_aggr_ret$57 x> := Call DB.DBA.SPARQL_CONSTRUCT_ACC (user_aggr_env$56 , <r vector$29 via  Set82>, <V vector$50 x>, <r vector$31 via  Set82>,  1 )
+                70: BReturn 0
+          }
+          time       1.4% fanout         1 input         1 rows
+            clear: (<V callret-0$58 x>)
+          s# 102 68 skip node  1  <none> <V set_ctr$52 in>
+          After code:
+            0: <V callret-0$58 x> := Call DB.DBA.SPARQL_CONSTRUCT_FIN (user_aggr_env$56 )
+            7: BReturn 0
+          time      0.21% fanout         0 input         1 rows
+          $70 (68 54 53 ) $52 (68 54 53 ) $58 (68 ) 
+          s# 110 60 Subquery Select(<V callret-0$58 x>)
+            set no: <r set_ctr$52 via  Set102>
+        }
+      
+      8:  <none>  := Call DB.DBA.RDF_DICT_OF_TRIPLES_TO_THREE_COLS (scalar$118 )
+      15: BReturn 0
+    
+    END Node
+  }
+
+
+ 1 msec 32% cpu,        19 rnd        11 seq         0% same seg        25% same pg 
+Compilation: 1 msec 4 reads   1.87621% read 0 messages         0% clw

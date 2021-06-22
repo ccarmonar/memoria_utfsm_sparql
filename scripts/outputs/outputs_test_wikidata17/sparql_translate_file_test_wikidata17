@@ -1,0 +1,69 @@
+SELECT TOP 100 __id2in ( "s_54_16_t0"."S") AS "city",
+  __ro2sq ( "s_54_16_t3"."O") AS "cityLabel",
+  __ro2sq ( "s_54_16_t2"."O") AS "country",
+  __ro2sq ( "s_54_16_t5"."O") AS "countryLabel",
+  __ro2sq ( "s_54_16_t4"."O") AS "lang",
+  __ro2sq ( "s_54_16_t7"."O") AS "langLabel",
+  __ro2sq ( "s_54_16_t6"."O") AS "langCode",
+  __ro2sq ( "s_54_16_t0"."O") AS "population"
+FROM DB.DBA.RDF_QUAD AS "s_54_16_t0"
+  INNER JOIN DB.DBA.RDF_QUAD AS "s_54_16_t1"
+  ON (
+    "s_54_16_t0"."S" = "s_54_16_t1"."S")
+  INNER JOIN DB.DBA.RDF_QUAD AS "s_54_16_t2"
+  ON (
+    "s_54_16_t0"."S" = "s_54_16_t2"."S"
+    AND 
+    "s_54_16_t1"."S" = "s_54_16_t2"."S")
+  INNER JOIN DB.DBA.RDF_QUAD AS "s_54_16_t3"
+  ON (
+    "s_54_16_t0"."S" = "s_54_16_t3"."S"
+    AND 
+    "s_54_16_t1"."S" = "s_54_16_t3"."S"
+    AND 
+    "s_54_16_t2"."S" = "s_54_16_t3"."S")
+  INNER JOIN DB.DBA.RDF_QUAD AS "s_54_16_t4"
+  ON (
+    "s_54_16_t2"."O" = "s_54_16_t4"."S")
+  INNER JOIN DB.DBA.RDF_QUAD AS "s_54_16_t5"
+  ON (
+    "s_54_16_t2"."O" = "s_54_16_t5"."S"
+    AND 
+    "s_54_16_t4"."S" = "s_54_16_t5"."S")
+  INNER JOIN DB.DBA.RDF_QUAD AS "s_54_16_t6"
+  ON (
+    "s_54_16_t4"."O" = "s_54_16_t6"."S")
+  INNER JOIN DB.DBA.RDF_QUAD AS "s_54_16_t7"
+  ON (
+    "s_54_16_t4"."O" = "s_54_16_t7"."S"
+    AND 
+    "s_54_16_t6"."S" = "s_54_16_t7"."S")
+WHERE
+  "s_54_16_t0"."P" = __i2idn ( __bft( 'http://www.wikidata.org/prop/direct/P1082' , 1))
+  AND 
+  "s_54_16_t1"."P" = __i2idn ( __bft( 'http://www.wikidata.org/prop/direct/P31' , 1))
+  AND 
+  "s_54_16_t1"."O" = __i2idn ( __bft( 'http://www.wikidata.org/entity/Q515' , 1))
+  AND 
+  "s_54_16_t2"."P" = __i2idn ( __bft( 'http://www.wikidata.org/prop/direct/P17' , 1))
+  AND 
+  "s_54_16_t3"."P" = __i2idn ( __bft( 'http://www.w3.org/2000/01/rdf-schema#label' , 1))
+  AND 
+  "s_54_16_t4"."P" = __i2idn ( __bft( 'http://www.wikidata.org/prop/direct/P37' , 1))
+  AND 
+  "s_54_16_t5"."P" = __i2idn ( __bft( 'http://www.w3.org/2000/01/rdf-schema#label' , 1))
+  AND 
+  "s_54_16_t6"."P" = __i2idn ( __bft( 'http://www.wikidata.org/prop/direct/P424' , 1))
+  AND 
+  (1 - isiri_id ( "s_54_16_t6"."O"))
+  AND 
+  "s_54_16_t7"."P" = __i2idn ( __bft( 'http://www.w3.org/2000/01/rdf-schema#label' , 1))
+  AND 
+ ( "s_54_16_t0"."O" >  1000000)
+  AND 
+ ( "s_54_16_t6"."O" =  DB.DBA.RDF_OBJ_OF_SQLVAL ( DB.DBA.RDF_LANGUAGE_OF_OBJ (__ro2sq ( "s_54_16_t3"."O"))))
+  AND 
+ ( "s_54_16_t6"."O" =  DB.DBA.RDF_OBJ_OF_SQLVAL ( DB.DBA.RDF_LANGUAGE_OF_OBJ (__ro2sq ( "s_54_16_t5"."O"))))
+  AND 
+ ( "s_54_16_t6"."O" =  DB.DBA.RDF_OBJ_OF_SQLVAL ( DB.DBA.RDF_LANGUAGE_OF_OBJ (__ro2sq ( "s_54_16_t7"."O"))))
+OPTION (QUIETCAST)

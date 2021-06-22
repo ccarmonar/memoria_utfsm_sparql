@@ -1,0 +1,48 @@
+
+  { 
+    time       4.3% fanout         1 input         1 rows
+    Subquery 27 
+      { 
+        Union
+          { 
+            time        55% fanout         0 input         1 rows
+            Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:         6 Fanout:         0
+            RDF_QUAD         6 rows(s_13_1_t0-u7.O$32)
+             inlined  P =  IRI_ID"...courseTitle"  G =  IRI_ID"...ex069.ttl" 
+            
+            After code:
+            0: courseName$28 :=  := artm s_13_1_t0-u7.O$32
+            4: BReturn 0
+            time         0% fanout         0 input         0 rows
+            Subquery Select(courseName$28)
+          }
+          { 
+            time        29% fanout         6 input         1 rows
+            RDF_QUAD       6.5 rows(s_15_3_t1.O$43, s_15_3_t1.G$42)
+             inlined  P =  IRI_ID"...courseTitle" 
+            time        12% fanout         0 input         6 rows
+            END Node
+            After test:
+            0: one_of_these$45 := Call one_of_these (s_15_3_t1.G$42,  IRI_ID"...ex125.ttl" ,  IRI_ID"...ex122.ttl" )
+            5: if ( 0  < one_of_these$45) then 9 else 10 unkn 10
+            9: BReturn 1
+            10: BReturn 0
+            
+            After code:
+            0: courseName$28 :=  := artm s_15_3_t1.O$43
+            4: BReturn 0
+            time         0% fanout         0 input         0 rows
+            Subquery Select(courseName$28)
+          }
+      }
+    
+    After code:
+    0: courseName$55 := Call __ro2sq (courseName$28)
+    5: BReturn 0
+    time         0% fanout         0 input         0 rows
+    Select (courseName$55)
+  }
+
+
+ 0 msec 5% cpu,         2 rnd         5 seq         0% same seg         0% same pg 
+Compilation: 1 msec 0 reads         0% read 0 messages         0% clw

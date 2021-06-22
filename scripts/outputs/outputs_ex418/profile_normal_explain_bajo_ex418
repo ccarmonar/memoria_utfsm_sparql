@@ -1,0 +1,24 @@
+
+  { 
+    time       2.5% fanout         1 input         1 rows
+    time        35% fanout         4 input         1 rows
+    RDF_QUAD         4 rows(s_11_4_t0.S$29, s_11_4_t0.O$28)
+     inlined  P =  IRI_ID"...fileName" 
+    time        62% fanout         0 input         4 rows
+    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:       1.8 Fanout:         0
+    Precode:
+      0: filename$31 := Call __ro2sq (s_11_4_t0.O$28)
+      5: BReturn 0
+    RDF_QUAD       1.8 rows(s_11_4_t1.O$34)
+     inlined  P =  IRI_ID"...1.1/creator"  ,  S = s_11_4_t0.S$29
+    
+    After code:
+    0: creator$36 := Call __ro2sq (s_11_4_t1.O$34)
+    5: BReturn 0
+    time         0% fanout         0 input         0 rows
+    Select (filename$31, creator$36)
+  }
+
+
+ 1 msec 11% cpu,         9 rnd         3 seq        30% same seg        30% same pg 
+Compilation: 0 msec 0 reads         0% read 0 messages         0% clw

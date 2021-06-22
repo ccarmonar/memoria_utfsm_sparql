@@ -1,0 +1,35 @@
+Error: 42001: SR185: Undefined procedure DB.DBA.http://jena.hpl.hp.com/ARQ/function#localname.
+  { 
+    time        81% fanout         1 input         1 rows
+    time        19% fanout         1 input         1 rows
+    time         0% fanout         0 input         1 rows
+    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:     5e+06 Fanout:         0
+    RDF_QUAD     5e+06 rows(t3.S$33)
+    
+    
+    After code:
+    0: __id2in$36 := Call __id2in (t3.S$33)
+    5: DB.DBA.http://jena.hpl.hp.com/ARQ/function#localname$38 := Call DB.DBA.http://jena.hpl.hp.com/ARQ/function#localname (__id2in$36)
+    12: DB.DBA.http://jena.hpl.hp.com/ARQ/function#namespace$40 := Call DB.DBA.http://jena.hpl.hp.com/ARQ/function#namespace (__id2in$36)
+    19: BReturn 0
+    time         0% fanout         0 input         0 rows
+    Distinct (t3.S$33, DB.DBA.http://jena.hpl.hp.com/ARQ/function#localname$38, DB.DBA.http://jena.hpl.hp.com/ARQ/function#namespace$40)
+    
+    After code:
+    0: s$28 :=  := artm t3.S$33
+    4: sLocalname$29 :=  := artm DB.DBA.http://jena.hpl.hp.com/ARQ/function#localname$38
+    8: sNamespace$30 :=  := artm DB.DBA.http://jena.hpl.hp.com/ARQ/function#namespace$40
+    12: BReturn 0
+    time         0% fanout         0 input         0 rows
+    Subquery Select(s$28, sLocalname$29, sNamespace$30)
+    
+    After code:
+    0: s$56 := Call __ro2sq (s$28)
+    5: BReturn 0
+    time         0% fanout         0 input         0 rows
+    Select (s$56, sLocalname$29, sNamespace$30)
+  }
+
+
+ 3 msec 66% cpu,         2 rnd       998 seq         0% same seg         0% same pg 
+Compilation: 2 msec 0 reads         0% read 0 messages         0% clw

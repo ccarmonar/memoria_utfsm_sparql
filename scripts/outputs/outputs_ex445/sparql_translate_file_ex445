@@ -1,0 +1,13 @@
+SELECT __id2in ( "s_12_4_t0"."S") AS "propClass",
+  __id2in ( "s_12_4_t1"."S") AS "property"
+FROM DB.DBA.RDF_QUAD AS "s_12_4_t0"
+  INNER JOIN DB.DBA.RDF_QUAD AS "s_12_4_t1"
+  ON (
+    "s_12_4_t0"."S" = "s_12_4_t1"."O")
+WHERE
+  "s_12_4_t0"."P" = __i2idn ( __bft( 'http://www.w3.org/2000/01/rdf-schema#subClassOf' , 1))
+  AND 
+  "s_12_4_t0"."O" = __i2idn ( __bft( 'http://www.w3.org/1999/02/22-rdf-syntax-ns#Property' , 1))
+  AND 
+  "s_12_4_t1"."P" = __i2idn ( __bft( 'http://www.w3.org/1999/02/22-rdf-syntax-ns#type' , 1))
+OPTION (QUIETCAST)

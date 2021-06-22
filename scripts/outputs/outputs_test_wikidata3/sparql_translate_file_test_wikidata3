@@ -1,0 +1,58 @@
+ SELECT  __ro2sq ("s_46_22_rbc"."pokemon") AS "pokemon", __ro2sq ("s_46_22_rbc"."pokemonLabel") AS "pokemonLabel", __ro2sq ("s_46_22_rbc"."pokedexNumber") AS "pokedexNumber" FROM (SELECT DISTINCT TOP 5000 __id2in ( "s_46_22_t3"."S") AS "pokemon",
+    NULL /* due to conflict on pokemonLabel */ AS "pokemonLabel",
+    __ro2sq ( "s_46_22_t4"."O") AS "pokedexNumber"
+  FROM DB.DBA.RDF_QUAD AS "s_38_3_t0"
+    INNER JOIN (
+     SELECT TRANSITIVE T_OUT(2) T_IN(1) T_MIN( 0) T_NO_CYCLES "s_38_9_t1"."S" AS "_::trans_subj_38_5",
+        "s_38_9_t1"."O" AS "_::trans_obj_38_6"
+      FROM DB.DBA.RDF_QUAD AS "s_38_9_t1"
+      WHERE
+        "s_38_9_t1"."P" = __i2idn ( __bft( 'http://www.wikidata.org/prop/direct/P279' , 1))
+OPTION (QUIETCAST)
+      ) AS "s_38_12"
+    ON (
+      "s_38_3_t0"."O" = "s_38_12"."_::trans_subj_38_5")
+    INNER JOIN DB.DBA.RDF_QUAD AS "s_46_22_t3"
+    ON (
+      "s_46_22_t3"."S" = "s_38_3_t0"."S")
+    INNER JOIN DB.DBA.RDF_QUAD AS "s_46_22_t4"
+    ON (
+      "s_46_22_t3"."O" = "s_46_22_t4"."S")
+    INNER JOIN DB.DBA.RDF_QUAD AS "s_46_22_t5"
+    ON (
+      "s_46_22_t3"."O" = "s_46_22_t5"."S"
+      AND 
+      "s_46_22_t4"."S" = "s_46_22_t5"."S")
+    INNER JOIN DB.DBA.SPARQL_SINV_2 "s_44_21"
+    ON (
+     "s_44_21".qtext_template =  ' SELECT ?stubvar23\012 WHERE {  <http://www.bigdata.com/rdf#serviceParam> <http://wikiba.se/ontology#language> "[AUTO_LANGUAGE],en" . }' 
+      AND 
+     "s_44_21".qtext_posmap =  N'' 
+      AND 
+     "s_44_21".ws_endpoint =  __bft ( __bft( 'http://wikiba.se/ontology#label' , 1), 1)
+      AND 
+     "s_44_21".ws_params = vector ()
+      AND 
+     "s_44_21".expected_vars = vector ( 'stubvar23' )
+      AND 
+     "s_44_21".param_row = vector ( NULL /* runaway statement after reorder */, NULL /* runaway pokedexNumber after reorder */, NULL /* runaway pokemon after reorder */, NULL /* runaway _::trans_obj_38_6 after reorder */, NULL /* runaway _::trans_subj_38_5 after reorder */, NULL /* runaway _::ppath_seq_38_0 after reorder */))
+  WHERE
+    "s_38_3_t0"."P" = __i2idn ( __bft( 'http://www.wikidata.org/prop/direct/P31' , 1))
+    AND 
+    isiri_id ( "s_38_3_t0"."O")
+    AND 
+    "s_46_22_t3"."P" = __i2idn ( __bft( 'http://www.wikidata.org/prop/P1685' , 1))
+    AND 
+    "s_46_22_t4"."P" = __i2idn ( __bft( 'http://www.wikidata.org/prop/statement/P1685' , 1))
+    AND 
+    "s_46_22_t5"."P" = __i2idn ( __bft( 'http://www.wikidata.org/prop/qualifier/P972' , 1))
+    AND 
+    "s_46_22_t5"."O" = __i2idn ( __bft( 'http://www.wikidata.org/entity/Q20005020' , 1))
+    AND 
+   ( "s_38_12"."_::trans_obj_38_6" =  __i2idn ( __bft( 'http://www.wikidata.org/entity/Q3966183' , 1)))
+    AND 
+    not ( sparql_ebv_int_of_sqlval (  DB.DBA."http://wikiba.se/ontology#isSomeValue" (  __ro2sq ( "s_46_22_t4"."O"))))
+    AND 
+    1
+  ORDER BY __ro2sq ( "s_46_22_t4"."O") ASC
+OPTION (QUIETCAST)) AS "s_46_22_rbc"

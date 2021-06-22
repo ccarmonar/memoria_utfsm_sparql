@@ -1,0 +1,28 @@
+SELECT __id2in ( "s_0_12"."class") AS "class",
+  __ro2sq ( "s_0_12"."classType") AS "classType"
+FROM (
+    SELECT "s_14_9_t2-u13"."S" AS "class",
+      "s_14_9_t2-u13"."O" AS "classType" ANY
+    FROM DB.DBA.RDF_QUAD AS "s_10_2_t0-c5-u13"
+      INNER JOIN DB.DBA.RDF_QUAD AS "s_14_9_t2-u13"
+      ON (
+        "s_14_9_t2-u13"."S" = "s_10_2_t0-c5-u13"."S")
+    WHERE
+      "s_10_2_t0-c5-u13"."P" = __i2idn ( __bft( 'http://www.w3.org/1999/02/22-rdf-syntax-ns#type' , 1))
+      AND 
+      "s_10_2_t0-c5-u13"."O" = __i2idn ( __bft( 'http://www.w3.org/2002/07/owl#Class' , 1))
+      AND 
+      "s_14_9_t2-u13"."P" = __i2idn ( __bft( 'http://www.w3.org/1999/02/22-rdf-syntax-ns#type' , 1))
+    UNION ALL SELECT "s_14_9_t2"."S" AS "class",
+      "s_14_9_t2"."O" AS "classType"
+    FROM DB.DBA.RDF_QUAD AS "s_13_5_t1-c11"
+      INNER JOIN DB.DBA.RDF_QUAD AS "s_14_9_t2"
+      ON (
+        "s_14_9_t2"."S" = "s_13_5_t1-c11"."S")
+    WHERE
+      "s_13_5_t1-c11"."P" = __i2idn ( __bft( 'http://www.w3.org/1999/02/22-rdf-syntax-ns#type' , 1))
+      AND 
+      "s_13_5_t1-c11"."O" = __i2idn ( __bft( 'http://www.w3.org/2000/01/rdf-schema#Class' , 1))
+      AND 
+      "s_14_9_t2"."P" = __i2idn ( __bft( 'http://www.w3.org/1999/02/22-rdf-syntax-ns#type' , 1))) AS "s_0_12"
+OPTION (QUIETCAST)

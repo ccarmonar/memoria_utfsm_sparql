@@ -1,0 +1,54 @@
+SELECT __ro2sq ( "s_16_14_t0"."O") AS "firstName",
+  __ro2sq ( "s_16_14_t1"."O") AS "lastName",
+  __ro2sq ( "s_16_14_t5"."O") AS "streetAddress",
+  __ro2sq ( "s_16_14_t4"."O") AS "city",
+  __ro2sq ( "s_16_14_t6"."O") AS "region",
+  __ro2sq ( "s_16_14_t3"."O") AS "postalCode"
+FROM DB.DBA.RDF_QUAD AS "s_16_14_t0"
+  INNER JOIN DB.DBA.RDF_QUAD AS "s_16_14_t1"
+  ON (
+    "s_16_14_t0"."S" = "s_16_14_t1"."S")
+  INNER JOIN DB.DBA.RDF_QUAD AS "s_16_14_t2"
+  ON (
+    "s_16_14_t0"."S" = "s_16_14_t2"."S"
+    AND 
+    "s_16_14_t1"."S" = "s_16_14_t2"."S")
+  INNER JOIN DB.DBA.RDF_QUAD AS "s_16_14_t3"
+  ON (
+    "s_16_14_t2"."O" = "s_16_14_t3"."S")
+  INNER JOIN DB.DBA.RDF_QUAD AS "s_16_14_t4"
+  ON (
+    "s_16_14_t2"."O" = "s_16_14_t4"."S"
+    AND 
+    "s_16_14_t3"."S" = "s_16_14_t4"."S")
+  INNER JOIN DB.DBA.RDF_QUAD AS "s_16_14_t5"
+  ON (
+    "s_16_14_t2"."O" = "s_16_14_t5"."S"
+    AND 
+    "s_16_14_t3"."S" = "s_16_14_t5"."S"
+    AND 
+    "s_16_14_t4"."S" = "s_16_14_t5"."S")
+  INNER JOIN DB.DBA.RDF_QUAD AS "s_16_14_t6"
+  ON (
+    "s_16_14_t2"."O" = "s_16_14_t6"."S"
+    AND 
+    "s_16_14_t3"."S" = "s_16_14_t6"."S"
+    AND 
+    "s_16_14_t4"."S" = "s_16_14_t6"."S"
+    AND 
+    "s_16_14_t5"."S" = "s_16_14_t6"."S")
+WHERE
+  "s_16_14_t0"."P" = __i2idn ( __bft( 'http://learningsparql.com/ns/addressbook#firstName' , 1))
+  AND 
+  "s_16_14_t1"."P" = __i2idn ( __bft( 'http://learningsparql.com/ns/addressbook#lastName' , 1))
+  AND 
+  "s_16_14_t2"."P" = __i2idn ( __bft( 'http://learningsparql.com/ns/addressbook#address' , 1))
+  AND 
+  "s_16_14_t3"."P" = __i2idn ( __bft( 'http://learningsparql.com/ns/addressbook#postalCode' , 1))
+  AND 
+  "s_16_14_t4"."P" = __i2idn ( __bft( 'http://learningsparql.com/ns/addressbook#city' , 1))
+  AND 
+  "s_16_14_t5"."P" = __i2idn ( __bft( 'http://learningsparql.com/ns/addressbook#streetAddress' , 1))
+  AND 
+  "s_16_14_t6"."P" = __i2idn ( __bft( 'http://learningsparql.com/ns/addressbook#region' , 1))
+OPTION (QUIETCAST)

@@ -1,0 +1,15 @@
+SELECT __ro2sq ( "s_17_5"."courseName") AS "courseName"
+FROM (
+    SELECT "s_13_1_t0-u7"."O" AS "courseName" ANY
+    FROM DB.DBA.RDF_QUAD AS "s_13_1_t0-u7"
+    WHERE
+      "s_13_1_t0-u7"."G" = __i2idn ( __bft( 'ex069.ttl' , 1))
+      AND 
+      "s_13_1_t0-u7"."P" = __i2idn ( __bft( 'http://learningsparql.com/ns/addressbook#courseTitle' , 1))
+    UNION ALL SELECT "s_15_3_t1"."O" AS "courseName"
+    FROM DB.DBA.RDF_QUAD AS "s_15_3_t1"
+    WHERE
+      "s_15_3_t1"."P" = __i2idn ( __bft( 'http://learningsparql.com/ns/addressbook#courseTitle' , 1))
+      AND 
+      ( "s_15_3_t1"."G" in ( __i2idn ( __bft ( __bft( 'ex125.ttl' , 1), 1)),  __i2idn ( __bft ( __bft( 'ex122.ttl' , 1), 1))))) AS "s_17_5"
+OPTION (QUIETCAST)

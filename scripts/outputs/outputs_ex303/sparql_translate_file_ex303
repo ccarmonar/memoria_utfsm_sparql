@@ -1,0 +1,10 @@
+SELECT "s_10_1"."currentTime" AS "currentTime",
+  "s_10_1"."currentSeconds" AS "currentSeconds"
+FROM (
+   SELECT rdf_now_impl () AS "currentTime",
+      rdf_seconds_impl ( rdf_now_impl ()) AS "currentSeconds"
+    FROM
+      (SELECT 1 as __stub) AS "stub-s_10_0"
+OPTION (QUIETCAST)
+    ) AS "s_10_1"
+OPTION (QUIETCAST)

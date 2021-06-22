@@ -1,0 +1,34 @@
+http://learningsparql.com/ns/data#two	
+http://learningsparql.com/ns/data#item2a	
+http://learningsparql.com/ns/data#item2b	
+http://learningsparql.com/ns/data#item2c	
+http://learningsparql.com/ns/data#item2d	
+http://learningsparql.com/ns/data#x	
+http://www.wikidata.org/entity/Q511316	
+
+  { 
+    time   1.5e-05% fanout         1 input         1 rows
+    time       2.4% fanout 1.90501e+07 input         1 rows
+    RDF_QUAD     5e+06 rows(s_8_2_t0.O$29, s_8_2_t0.S$28)
+    
+    time        98% fanout 3.67451e-07 input 1.90501e+07 rows
+    END Node
+    After test:
+    0: __rdf_strsqlval$32 := Call __rdf_strsqlval (s_8_2_t0.O$29,  0 )
+    5: if (<c two> = __rdf_strsqlval$32) then 9 else 10 unkn 10
+    9: BReturn 1
+    10: BReturn 0
+    time   0.00097% fanout         1 input         7 rows
+    skip node  30  <none> set_ctr$42
+    
+    After code:
+    0: s$34 := Call __id2in (s_8_2_t0.S$28)
+    5: BReturn 0
+    time   7.2e-06% fanout         0 input         7 rows
+    Select (s$34)
+  }
+
+
+ 23648 msec 99% cpu, 1.76359e+07 rnd 1.90297e+07 seq         0% same seg   71.3791% same pg 
+392085 disk reads, 1947036 read ahead,   8.13753% wait
+Compilation: 1 msec 0 reads         0% read 0 messages         0% clw

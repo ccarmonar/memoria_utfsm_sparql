@@ -1,0 +1,89 @@
+http://dbpedia.org/resource/Joseph_Hocking	http://xmlns.com/foaf/0.1/isPrimaryTopicOf	http://en.wikipedia.org/wiki/Joseph_Hocking	
+http://dbpedia.org/resource/Joseph_Hocking	http://dbpedia.org/ontology/wikiPageID	21236854	
+http://dbpedia.org/resource/Joseph_Hocking	http://dbpedia.org/property/author	yes	
+http://dbpedia.org/resource/Joseph_Hocking	http://dbpedia.org/ontology/wikiPageWikiLink	http://dbpedia.org/resource/Joan_Shill	
+http://dbpedia.org/resource/Joseph_Hocking	http://www.w3.org/2000/01/rdf-schema#comment	Joseph Hocking (7 November 1860 – 4 March 1937) was a Cornish novelist and United Methodist Free Church minister.	
+http://dbpedia.org/resource/Joseph_Hocking	http://dbpedia.org/property/name	Joseph Hocking	
+http://dbpedia.org/resource/Joseph_Hocking	http://www.w3.org/1999/02/22-rdf-syntax-ns#type	http://www.w3.org/2002/07/owl#Thing	
+http://dbpedia.org/resource/Joseph_Hocking	http://dbpedia.org/property/id	Hocking,+Joseph	
+http://dbpedia.org/resource/Joseph_Hocking	http://dbpedia.org/ontology/abstract	Joseph Hocking (7 November 1860 – 4 March 1937) was a Cornish novelist and United Methodist Free Church minister.	
+http://dbpedia.org/resource/Joseph_Hocking	http://schema.org/sameAs	http://viaf.org/viaf/57688419	
+http://dbpedia.org/resource/Joseph_Hocking	http://purl.org/dc/terms/subject	http://dbpedia.org/resource/Category:English_historical_novelists	
+http://dbpedia.org/resource/Joseph_Hocking	http://purl.org/dc/terms/subject	http://dbpedia.org/resource/Category:English_male_novelists	
+http://dbpedia.org/resource/Joseph_Hocking	http://www.w3.org/1999/02/22-rdf-syntax-ns#type	http://dbpedia.org/class/yago/Organism100004475	
+http://dbpedia.org/resource/Joseph_Hocking	http://purl.org/dc/terms/subject	http://dbpedia.org/resource/Category:Cornish_novelists	
+http://dbpedia.org/resource/Joseph_Hocking	http://www.w3.org/1999/02/22-rdf-syntax-ns#type	http://dbpedia.org/class/yago/Person100007846	
+http://dbpedia.org/resource/Joseph_Hocking	http://purl.org/dc/terms/subject	http://dbpedia.org/resource/Category:Cornish_writers	
+http://dbpedia.org/resource/Joseph_Hocking	http://purl.org/dc/terms/subject	http://dbpedia.org/resource/Category:19th-century_Methodist_ministers	
+http://dbpedia.org/resource/Joseph_Hocking	http://www.w3.org/1999/02/22-rdf-syntax-ns#type	http://dbpedia.org/class/yago/Object100002684	
+http://dbpedia.org/resource/Joseph_Hocking	http://purl.org/dc/terms/subject	http://dbpedia.org/resource/Category:Cornish_Methodists	
+http://dbpedia.org/resource/Joseph_Hocking	http://www.w3.org/1999/02/22-rdf-syntax-ns#type	http://dbpedia.org/class/yago/Wikicat19th-centuryMethodistMinisters	
+
+  { 
+    Precode:
+      0:   { 
+          time   0.00014% fanout         1 input         1 rows
+          time   0.00047% fanout         1 input         1 rows
+          Precode:
+            0: vector$27 := Call vector ()
+            5: vector$29 := Call vector (<c o>, <c p>)
+            10: vector$31 := Call vector ( 3 ,  IRI_ID"...Joseph_Hocking" ,  1 ,  0 ,  1 ,  1 )
+            15: vector$33 := Call vector (vector$31)
+            20: BReturn 0
+          fork {
+              Subquery 35 
+                { 
+                  time   0.00014% fanout         1 input         1 rows
+                  Precode:
+                    0: __stub$36 :=  := artm  1 
+                    4: BReturn 0
+                  END Node
+                  time   5.5e-05% fanout         0 input         1 rows
+                  Subquery Select(__stub$36)
+                }
+              time     1e+02% fanout         0 input         1 rows
+              Precode:
+                0: ws_endpoint$51 :=  := artm <tag 182 flag 1 c http://DBpedia.org/sparql>
+                4: ws_params$53 :=  := artm vector$27
+                8: qtext_template$55 :=  := artm <c  SELECT ?o ?p
+                 WHERE {  <http://dbpedia.org/resource/Joseph_Hocking> ?p ?o . }>
+                12: qtext_posmap$57 :=  := artm <tag 225 c >
+                16: param_row$59 :=  := artm vector$27
+                20: expected_vars$61 :=  := artm vector$29
+                24: proc_ctr$47 :=  := artm  0 
+                28:  <none>  := Call __reset_temp ( 139746102330096 )
+                33:  <proc table>  := Call DB.DBA.SPARQL_SINV_IMP (<tag 182 flag 1 c http://DBpedia.org/sparql>, vector$27, <c  SELECT ?o ?p
+                 WHERE {  <http://dbpedia.org/resource/Joseph_Hocking> ?p ?o . }>, <tag 225 c >, vector$27, vector$29)
+                40: BReturn 0
+              Key from temp (proc_ctr$47, RSET$49)
+              
+              
+              After code:
+              0: aref$68 := Call aref (RSET$49,  1 )
+              5: aref$70 := Call aref (RSET$49,  0 )
+              10: __ro2lo$72 := Call __ro2lo (aref$70)
+              15: vector$74 := Call vector (aref$68, __ro2lo$72)
+              20: if (user_aggr_notfirst$79  =  1 ) then 35 else 24 unkn 24
+              24: user_aggr_notfirst$79  :=  := artm  1 
+              28: user_aggr_ret$81 := Call DB.DBA.SPARQL_CONSTRUCT_INIT (user_aggr_env$80 )
+              35: user_aggr_ret$81 := Call DB.DBA.SPARQL_CONSTRUCT_ACC (user_aggr_env$80 , vector$33, vector$74, vector$27,  1 )
+              42: BReturn 0
+            }
+          time    0.0003% fanout         1 input         1 rows
+          skip node  1  <none> set_ctr$76
+          
+          After code:
+          0: callret-0$82 := Call DB.DBA.SPARQL_CONSTRUCT_FIN (user_aggr_env$80 )
+          7: BReturn 0
+          time   2.3e-05% fanout         0 input         1 rows
+          Subquery Select(callret-0$82)
+        }
+      
+      8:  <none>  := Call DB.DBA.RDF_DICT_OF_TRIPLES_TO_THREE_COLS (scalar$159 )
+      15: BReturn 0
+    END Node
+  }
+
+
+ 1595 msec 1% cpu,        22 rnd         6 seq         0% same seg   21.7391% same pg 
+Compilation: 1 msec 0 reads         0% read 0 messages         0% clw

@@ -1,0 +1,70 @@
+http://learningsparql.com/ns/demo#prob32	http://www.w3.org/2000/01/rdf-schema#label	Amount must be an integer.	
+http://learningsparql.com/ns/data#item5	http://learningsparql.com/ns/demo#problem	http://learningsparql.com/ns/demo#prob32	
+http://learningsparql.com/ns/data#item4	http://learningsparql.com/ns/demo#problem	http://learningsparql.com/ns/demo#prob32	
+http://learningsparql.com/ns/data#item693	http://learningsparql.com/ns/demo#problem	http://learningsparql.com/ns/demo#prob32	
+http://learningsparql.com/ns/data#item3	http://learningsparql.com/ns/demo#problem	http://learningsparql.com/ns/demo#prob32	
+http://learningsparql.com/ns/data#id5	http://learningsparql.com/ns/demo#problem	http://learningsparql.com/ns/demo#prob32	
+http://learningsparql.com/ns/data#item2	http://learningsparql.com/ns/demo#problem	http://learningsparql.com/ns/demo#prob32	
+
+  { 
+    Precode:
+      0:   { 
+          time      0.37% fanout         1 input         1 rows
+            clear: (<V ext_sets$65 i>, <V set_ctr$47 in>)
+          s# 66 48 cluster outer seq start, set no <V set_ctr$47 in>    
+          save ctx:()
+          time       5.7% fanout         1 input         1 rows
+          Precode:
+            0: <V vector$27 x> := Call vector ( 1 ,  0 ,  3 ,  IRI_ID"...problem" ,  3 ,  IRI_ID"...prob32" )
+            5: <V vector$29 x> := Call vector (<V vector$27 x>)
+            10: <V DB.DBA.RDF_MAKE_LONG_OF_SQLVAL$31 a> := Call DB.DBA.RDF_MAKE_LONG_OF_SQLVAL (<c Amount must be an integer.>)
+            17: <V vector$33 x> := Call vector ( 3 ,  IRI_ID"...prob32" ,  3 ,  IRI_ID"...label" ,  3 , <V DB.DBA.RDF_MAKE_LONG_OF_SQLVAL$31 a>)
+            22: <V vector$35 x> := Call vector (<V vector$33 x>)
+            27: BReturn 0
+            clear: (<V vector$35 x>, <V vector$33 x>, <V DB.DBA.RDF_MAKE_LONG_OF_SQLVAL$31 a>, <V vector$29 x>, <V vector$27 x>)$31 (49 ) $33 (49 ) $27 (49 ) 
+          s# 103 49 Fork 49 {  
+              time       8.3% fanout        18 input         1 rows
+                clear: (<V s_17_7_t2.S$38 rn>, <V s_17_7_t2.O$39 an>)
+                clear on continue: (<V s_17_7_t2.S$38 rn>, <V s_17_7_t2.O$39 an>)
+              s# 77 37 from DB.DBA.RDF_QUAD by RDF_QUAD         18 rows   
+              Key RDF_QUAD  ASC  (<V s_17_7_t2.O$39 an>, <V s_17_7_t2.S$38 rn>)
+               inlined  P =  IRI_ID"...amount" 
+              
+              time        84% fanout         0 input        18 rows
+                clear: (<V DB.DBA.RDF_DATATYPE_OF_OBJ$43 a>, <V __ro2sq$41 a>, <V user_aggr_ret$52 x>, <V vector$45 x>)$38 () $39 () 
+              s# 93 88 END Node
+              After test:
+                0: <V __ro2sq$41 a> := Call __ro2sq (<V s_17_7_t2.O$39 an>)
+                5: <V DB.DBA.RDF_DATATYPE_OF_OBJ$43 a> := Call DB.DBA.RDF_DATATYPE_OF_OBJ (<V __ro2sq$41 a>)
+                12: if (<tag 182 flag 1 c http://www.w3.org/2001/XMLSchema#integer> = <V DB.DBA.RDF_DATATYPE_OF_OBJ$43 a>) then 17 else 16 unkn 17
+                16: BReturn 1
+                17: BReturn 0
+              After code:
+                0: <V vector$45 x> := Call vector (<r s_17_7_t2.S$38 via  Set93>)
+                5: if (user_aggr_notfirst$50  =  1 ) then 20 else 9 unkn 9
+                9: user_aggr_notfirst$50  :=  := artm  1 
+                13: <V user_aggr_ret$52 x> := Call DB.DBA.SPARQL_CONSTRUCT_INIT (user_aggr_env$51 )
+                20: <V user_aggr_ret$52 x> := Call DB.DBA.SPARQL_CONSTRUCT_ACC (user_aggr_env$51 , <r vector$29 via  Set93 Set77>, <V vector$45 x>, <r vector$35 via  Set93 Set77>,  1 )
+                27: BReturn 0
+          }
+          time       1.2% fanout         1 input         1 rows
+            clear: (<V callret-0$53 x>)
+          s# 110 63 skip node  1  <none> <V set_ctr$47 in>
+          After code:
+            0: <V callret-0$53 x> := Call DB.DBA.SPARQL_CONSTRUCT_FIN (user_aggr_env$51 )
+            7: BReturn 0
+          time      0.12% fanout         0 input         1 rows
+          $65 (63 49 48 ) $47 (63 49 48 ) $53 (63 ) 
+          s# 118 55 Subquery Select(<V callret-0$53 x>)
+            set no: <r set_ctr$47 via  Set110>
+        }
+      
+      8:  <none>  := Call DB.DBA.RDF_DICT_OF_TRIPLES_TO_THREE_COLS (scalar$126 )
+      15: BReturn 0
+    
+    END Node
+  }
+
+
+ 1 msec 33% cpu,         6 rnd        17 seq         0% same seg   14.2857% same pg 
+Compilation: 2 msec 0 reads         0% read 0 messages         0% clw

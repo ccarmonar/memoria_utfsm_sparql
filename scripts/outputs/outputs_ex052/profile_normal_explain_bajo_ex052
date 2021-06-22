@@ -1,0 +1,45 @@
+equivalentClass	http://www.w3.org/ns/ldp#Container	
+equivalentClass	http://www.w3.org/ns/ldp#Container	
+equivalentClass	nodeID://b10007	
+equivalentClass	nodeID://b10007	
+equivalentClass	nodeID://b10017	
+equivalentClass	nodeID://b10017	
+equivalentClass	nodeID://b10008	
+equivalentClass	nodeID://b10008	
+equivalentClass	nodeID://b10018	
+equivalentClass	nodeID://b10018	
+equivalentClass	nodeID://b10009	
+equivalentClass	nodeID://b10009	
+equivalentClass	nodeID://b10019	
+equivalentClass	nodeID://b10019	
+equivalentProperty	http://www.w3.org/ns/ldp#contains	
+equivalentProperty	http://www.w3.org/ns/ldp#contains	
+equivalentProperty	http://dbpedia.org/property/deathPlace	
+equivalentProperty	http://dbpedia.org/property/deathPlace	
+equivalentProperty	http://dbpedia.org/property/death	
+equivalentProperty	http://dbpedia.org/property/death	
+
+  { 
+    time    0.0015% fanout         1 input         1 rows
+    time      0.75% fanout    257000 input         1 rows
+    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:     5e+06 Fanout:   2.6e+05
+    RDF_QUAD     5e+06 rows(s_11_4_t0.P$29, s_11_4_t0.O$28)
+    
+    time        99% fanout 0.000163424 input    257000 rows
+    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:        26 Fanout:   0.00016
+    Precode:
+      0: value$32 := Call __ro2sq (s_11_4_t0.O$28)
+      5: BReturn 0
+    RDF_QUAD        26 rows(s_11_4_t1.O$35)
+     inlined  P =  IRI_ID"...label"  ,  S = s_11_4_t0.P$29
+    
+    After code:
+    0: propertyLabel$37 := Call __ro2sq (s_11_4_t1.O$35)
+    5: BReturn 0
+    time   0.00013% fanout         0 input        42 rows
+    Select (propertyLabel$37, value$32)
+  }
+
+
+ 235 msec 99% cpu,    258241 rnd    256719 seq   99.4195% same seg  0.179289% same pg 
+Compilation: 1 msec 0 reads         0% read 0 messages         0% clw

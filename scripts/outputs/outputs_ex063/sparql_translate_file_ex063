@@ -1,0 +1,30 @@
+SELECT COALESCE (
+     __ro2sq ( "s_11_9"."first"),
+     __ro2sq ( "s_11_7"."first")) AS "first",
+  __ro2sq ( "s_11_9"."last") AS "last"
+FROM (
+    SELECT "s_11_9_t3"."S" AS "s",
+      "s_11_9_t3"."O" AS "last",
+      "s_10_4"."first" AS "first"
+    FROM DB.DBA.RDF_QUAD AS "s_11_9_t3"
+      LEFT OUTER JOIN (
+        SELECT "s_10_4_t0"."S" AS "s",
+          "s_10_4_t0"."O" AS "first"
+        FROM DB.DBA.RDF_QUAD AS "s_10_4_t0"
+        WHERE
+          "s_10_4_t0"."P" = __i2idn ( __bft( 'http://learningsparql.com/ns/addressbook#nick' , 1))) AS "s_10_4"
+      ON (
+        "s_11_9_t3"."S" = "s_10_4"."s")
+    WHERE
+      "s_11_9_t3"."P" = __i2idn ( __bft( 'http://learningsparql.com/ns/addressbook#lastName' , 1))) AS "s_11_9"
+  LEFT OUTER JOIN (
+    SELECT "s_11_7_t1"."S" AS "s",
+      "s_11_7_t1"."O" AS "first"
+    FROM DB.DBA.RDF_QUAD AS "s_11_7_t1"
+    WHERE
+      "s_11_7_t1"."P" = __i2idn ( __bft( 'http://learningsparql.com/ns/addressbook#firstName' , 1))) AS "s_11_7"
+  ON (
+    ( "s_11_9"."first" IS NULL  OR ( "s_11_9"."first" = "s_11_7"."first" ) )
+    AND 
+    "s_11_9"."s" = "s_11_7"."s")
+OPTION (QUIETCAST)

@@ -1,0 +1,41 @@
+SELECT __id2in ( "s_9_13"."index") AS "index",
+  "s_9_13"."mult" AS "mult"
+FROM (
+   SELECT "s_9_12_t4"."S" AS "index",
+      ( "s_9_12_t4"."S" *  100) AS "mult"
+    FROM DB.DBA.RDF_QUAD AS "s_9_12_t0"
+      INNER JOIN DB.DBA.RDF_QUAD AS "s_9_12_t1"
+      ON (
+        "s_9_12_t0"."S" = "s_9_12_t1"."S")
+      INNER JOIN DB.DBA.RDF_QUAD AS "s_9_12_t2"
+      ON (
+        "s_9_12_t1"."O" = "s_9_12_t2"."S")
+      INNER JOIN DB.DBA.RDF_QUAD AS "s_9_12_t3"
+      ON (
+        "s_9_12_t1"."O" = "s_9_12_t3"."S"
+        AND 
+        "s_9_12_t2"."S" = "s_9_12_t3"."S")
+      INNER JOIN DB.DBA.RDF_QUAD AS "s_9_12_t4"
+      ON (
+        "s_9_12_t0"."S" = "s_9_12_t4"."O"
+        AND 
+        "s_9_12_t1"."S" = "s_9_12_t4"."O")
+    WHERE
+      "s_9_12_t0"."P" = __i2idn ( __bft( 'http://www.w3.org/1999/02/22-rdf-syntax-ns#first' , 1))
+      AND 
+      "s_9_12_t0"."O" = 3
+      AND 
+      "s_9_12_t1"."P" = __i2idn ( __bft( 'http://www.w3.org/1999/02/22-rdf-syntax-ns#rest' , 1))
+      AND 
+      "s_9_12_t2"."P" = __i2idn ( __bft( 'http://www.w3.org/1999/02/22-rdf-syntax-ns#first' , 1))
+      AND 
+      "s_9_12_t2"."O" = 6
+      AND 
+      "s_9_12_t3"."P" = __i2idn ( __bft( 'http://www.w3.org/1999/02/22-rdf-syntax-ns#rest' , 1))
+      AND 
+      "s_9_12_t3"."O" = __i2idn ( __bft( 'http://www.w3.org/1999/02/22-rdf-syntax-ns#nil' , 1))
+      AND 
+      "s_9_12_t4"."P" = __i2idn ( __bft( 'http://www.topbraid.org/tops#for' , 1))
+OPTION (QUIETCAST)
+    ) AS "s_9_13"
+OPTION (QUIETCAST)

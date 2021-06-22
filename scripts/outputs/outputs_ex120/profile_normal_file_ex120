@@ -1,0 +1,32 @@
+equivalentProperty	
+
+  { 
+    time         2% fanout         1 input         1 rows
+      clear: (<V set_ctr$38 in>)
+    s# 44 39 cluster outer seq start, set no <V set_ctr$38 in>    
+    save ctx:()
+    time        61% fanout      1000 input         1 rows
+    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:   2.5e+06 Fanout:     1e+03
+      clear: (<V s_9_2_t0.O$28 an>)
+      clear on continue: (<V s_9_2_t0.O$28 an>)
+    s# 53 27 from DB.DBA.RDF_QUAD by RDF_QUAD    2.5e+06 rows   
+    Key RDF_QUAD  ASC  (<V s_9_2_t0.O$28 an>)
+     inlined  P =  IRI_ID"...label" 
+    
+    time        37% fanout     0.001 input      1000 rows
+      clear: (<V label$30 a>)$28 () 
+    s# 63 42 skip node  1  3 <r set_ctr$38 via  Set53>
+    After code:
+      0: <V label$30 a> := Call __ro2sq (<r s_9_2_t0.O$28 via  Set63>)
+      5: BReturn 0
+    time      0.24% fanout         0 input         1 rows
+    $38 (42 27 39 ) $30 (42 ) 
+    s# 71 32 Select (<V label$30 a>)
+      set no: <r set_ctr$38 via  Set63 Set53>
+  }
+Warning: You might have a Cartesian product.
+
+
+
+ 1 msec 16% cpu,         2 rnd       997 seq         0% same seg         0% same pg 
+Compilation: 0 msec 0 reads         0% read 0 messages         0% clw

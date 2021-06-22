@@ -1,0 +1,95 @@
+http://learningsparql.com/ns/addressbook#i0432	http://xmlns.com/foaf/0.1/familyName	Mutt	
+http://learningsparql.com/ns/data#i2194	http://xmlns.com/foaf/0.1/givenName	Bradley	
+http://learningsparql.com/ns/data#i0432	http://xmlns.com/foaf/0.1/familyName	Mutt	
+http://learningsparql.com/ns/data#i9771	http://xmlns.com/foaf/0.1/familyName	Marshall	
+http://learningsparql.com/ns/data#i8301	http://xmlns.com/foaf/0.1/givenName	Craig	
+http://learningsparql.com/ns/data#i0432	http://xmlns.com/foaf/0.1/mbox_sha1sum	b7f191315aa6bb4a9ab56b02e334647c4b1104a0	
+http://learningsparql.com/ns/data#i8301	http://xmlns.com/foaf/0.1/mbox_sha1sum	faec1b07cf7c10e302544f22958c02c53844a4fa	
+http://learningsparql.com/ns/data#i2194	http://xmlns.com/foaf/0.1/familyName	Perry	
+http://learningsparql.com/ns/data#i8301	http://xmlns.com/foaf/0.1/familyName	Ellis	
+http://learningsparql.com/ns/data#i9771	http://xmlns.com/foaf/0.1/givenName	Cindy	
+http://learningsparql.com/ns/data#i2194	http://xmlns.com/foaf/0.1/mbox_sha1sum	868f415ef3eff97dc7cc0deefdf292146f72cbb8	
+http://learningsparql.com/ns/addressbook#i0432	http://xmlns.com/foaf/0.1/givenName	Richard	
+http://learningsparql.com/ns/data#i5433	http://xmlns.com/foaf/0.1/familyName	Duncan	
+http://learningsparql.com/ns/addressbook#i0432	http://xmlns.com/foaf/0.1/mbox_sha1sum	b7f191315aa6bb4a9ab56b02e334647c4b1104a0	
+http://learningsparql.com/ns/data#i9771	http://xmlns.com/foaf/0.1/mbox_sha1sum	821be6ab56326d7b08246f2cb9c0f68afe0156d9	
+http://learningsparql.com/ns/data#i5433	http://xmlns.com/foaf/0.1/mbox_sha1sum	9275cda04adf31f4aad2f69d945c7cf5fb00ef4c	
+http://learningsparql.com/ns/data#i0432	http://xmlns.com/foaf/0.1/givenName	Richard	
+http://learningsparql.com/ns/data#i5433	http://xmlns.com/foaf/0.1/givenName	Katherine	
+http://learningsparql.com/ns/data#i8301	http://xmlns.com/foaf/0.1/mbox_sha1sum	396d3e3aef87e0fecd3cbbdd2479eb3797d7af18	
+
+  { 
+    Precode:
+      0:   { 
+          time      0.31% fanout         1 input         1 rows
+            clear: (<V ext_sets$78 i>, <V set_ctr$60 in>)
+          s# 79 61 cluster outer seq start, set no <V set_ctr$60 in>    
+          save ctx:()
+          time       1.5% fanout         1 input         1 rows
+          Precode:
+            0: <V vector$27 x> := Call vector ( 1 ,  0 ,  3 ,  IRI_ID"...givenName" ,  1 ,  3 )
+            5: <V vector$29 x> := Call vector ( 1 ,  0 ,  3 ,  IRI_ID"...familyName" ,  1 ,  2 )
+            10: <V vector$31 x> := Call vector ( 1 ,  0 ,  3 ,  IRI_ID"...mbox_sha1sum" ,  1 ,  1 )
+            15: <V vector$33 x> := Call vector (<V vector$27 x>, <V vector$29 x>, <V vector$31 x>)
+            20: <V vector$35 x> := Call vector ()
+            25: BReturn 0
+            clear: (<V vector$35 x>, <V vector$33 x>, <V vector$31 x>, <V vector$29 x>, <V vector$27 x>)$31 (62 ) $27 (62 ) $29 (62 ) 
+          s# 124 62 Fork 62 {  
+              time       6.7% fanout         8 input         1 rows
+                clear: (<V t3.O$38 an>, <V t3.S$39 rn>)
+                clear on continue: (<V t3.O$38 an>, <V t3.S$39 rn>)
+              s# 90 37 from DB.DBA.RDF_QUAD by RDF_QUAD          8 rows   
+              Key RDF_QUAD  ASC  (<V t3.S$39 rn>, <V t3.O$38 an>)
+               inlined  P =  IRI_ID"...lastName" 
+              
+              time       8.2% fanout         1 input         8 rows
+                clear: (<V t2.O$42 an>, <V t2.S$43 rn>)
+                clear on continue: (<V t2.O$42 an>, <V t2.S$43 rn>)$39 () 
+              s# 101 41 from DB.DBA.RDF_QUAD by RDF_QUAD          1 rows   
+              Key RDF_QUAD  ASC  (<V t2.S$43 rn>, <V t2.O$42 an>)
+               inlined  P =  IRI_ID"...firstName"  ,  S = <V t3.S$39 rn>
+              
+              time        82% fanout         0 input         8 rows
+              Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:       1.2 Fanout:         0
+              Precode:
+                0: <V __ro2lo$45 a> := Call __ro2lo (<r t3.O$38 via  Set101>)
+                5: <V __ro2lo$47 a> := Call __ro2lo (<V t2.O$42 an>)
+                10: BReturn 0
+                clear: (<V t4.O$50 an>, <V __ro2lo$47 a>, <V __ro2lo$45 a>, <V user_aggr_ret$65 x>, <V vector$58 x>, <V DB.DBA.RDF_LONG_OF_SQLVAL$56 a>, <V rdf_sha1_impl$54 s>, <V __ro2sq$52 a>)
+                clear on continue: (<V __ro2sq$52 a>, <V rdf_sha1_impl$54 s>, <V DB.DBA.RDF_LONG_OF_SQLVAL$56 a>, <V vector$58 x>, <V user_aggr_ret$65 x>, <V t4.O$50 an>)$38 (41 ) $42 () $43 () $45 (49 ) $47 (49 ) 
+              s# 112 49 from DB.DBA.RDF_QUAD by RDF_QUAD        1.2 rows   
+              Key RDF_QUAD  ASC  (<V t4.O$50 an>)
+               inlined  P =  IRI_ID"...email"  ,  S = <V t2.S$43 rn>
+              
+              After code:
+                0: <V __ro2sq$52 a> := Call __ro2sq (<V t4.O$50 an>)
+                5: <V rdf_sha1_impl$54 s> := Call rdf_sha1_impl (<V __ro2sq$52 a>)
+                10: <V DB.DBA.RDF_LONG_OF_SQLVAL$56 a> := Call DB.DBA.RDF_LONG_OF_SQLVAL (<V rdf_sha1_impl$54 s>)
+                17: <V vector$58 x> := Call vector (<r t2.S$43 via  Set112>, <V DB.DBA.RDF_LONG_OF_SQLVAL$56 a>, <r __ro2lo$45 via  Set112>, <r __ro2lo$47 via  Set112>)
+                22: if (user_aggr_notfirst$63  =  1 ) then 37 else 26 unkn 26
+                26: user_aggr_notfirst$63  :=  := artm  1 
+                30: <V user_aggr_ret$65 x> := Call DB.DBA.SPARQL_CONSTRUCT_INIT (user_aggr_env$64 )
+                37: <V user_aggr_ret$65 x> := Call DB.DBA.SPARQL_CONSTRUCT_ACC (user_aggr_env$64 , <r vector$33 via  Set112 Set101 Set90>, <V vector$58 x>, <r vector$35 via  Set112 Set101 Set90>,  1 )
+                44: BReturn 0
+          }
+          time       1.1% fanout         1 input         1 rows
+            clear: (<V callret-0$66 x>)
+          s# 131 76 skip node  1  <none> <V set_ctr$60 in>
+          After code:
+            0: <V callret-0$66 x> := Call DB.DBA.SPARQL_CONSTRUCT_FIN (user_aggr_env$64 )
+            7: BReturn 0
+          time      0.16% fanout         0 input         1 rows
+          $66 (76 ) $78 (76 62 61 ) $60 (76 62 61 ) 
+          s# 139 68 Subquery Select(<V callret-0$66 x>)
+            set no: <r set_ctr$60 via  Set131>
+        }
+      
+      8:  <none>  := Call DB.DBA.RDF_DICT_OF_TRIPLES_TO_THREE_COLS (scalar$147 )
+      15: BReturn 0
+    
+    END Node
+  }
+
+
+ 1 msec 27% cpu,        55 rnd         8 seq        25% same seg   35.7143% same pg 
+Compilation: 3 msec 0 reads         0% read 0 messages         0% clw

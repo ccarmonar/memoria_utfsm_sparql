@@ -1,0 +1,32 @@
+SELECT __ro2sq ( "s_14_2_t0"."O") AS "first",
+  __ro2sq ( "s_14_2_t1"."O") AS "last",
+  __ro2sq ( "s_22_8_t3"."O") AS "courseTitle"
+FROM DB.DBA.RDF_QUAD AS "s_14_2_t0"
+  INNER JOIN DB.DBA.RDF_QUAD AS "s_14_2_t1"
+  ON (
+    "s_14_2_t1"."S" = "s_14_2_t0"."S")
+  INNER JOIN DB.DBA.RDF_QUAD AS "s_18_5_t2"
+  ON (
+    "s_18_5_t2"."S" = "s_14_2_t1"."S"
+    AND 
+    "s_18_5_t2"."S" = "s_14_2_t0"."S")
+  INNER JOIN DB.DBA.RDF_QUAD AS "s_22_8_t3"
+  ON (
+    "s_22_8_t3"."S" = "s_18_5_t2"."O")
+WHERE
+  "s_14_2_t0"."G" = __i2idn ( __bft( 'http://learningsparql.com/graphs/people' , 1))
+  AND 
+  "s_14_2_t0"."P" = __i2idn ( __bft( 'http://learningsparql.com/ns/addressbook#firstName' , 1))
+  AND 
+  "s_14_2_t1"."G" = __i2idn ( __bft( 'http://learningsparql.com/graphs/people' , 1))
+  AND 
+  "s_14_2_t1"."P" = __i2idn ( __bft( 'http://learningsparql.com/ns/addressbook#lastName' , 1))
+  AND 
+  "s_18_5_t2"."G" = __i2idn ( __bft( 'http://learningsparql.com/graphs/enrollment' , 1))
+  AND 
+  "s_18_5_t2"."P" = __i2idn ( __bft( 'http://learningsparql.com/ns/addressbook#takingCourse' , 1))
+  AND 
+  "s_22_8_t3"."G" = __i2idn ( __bft( 'http://learningsparql.com/graphs/courses' , 1))
+  AND 
+  "s_22_8_t3"."P" = __i2idn ( __bft( 'http://learningsparql.com/ns/addressbook#courseTitle' , 1))
+OPTION (QUIETCAST)

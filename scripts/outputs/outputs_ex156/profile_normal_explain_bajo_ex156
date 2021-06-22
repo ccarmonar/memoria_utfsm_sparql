@@ -1,0 +1,29 @@
+14.764444444444444	
+
+  { 
+    time       2.9% fanout         1 input         1 rows
+    time        11% fanout         1 input         1 rows
+    fork {
+        time        85% fanout         0 input         1 rows
+        Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:         9 Fanout:         0
+        RDF_QUAD         9 rows(s_6_2_t0.O$28)
+         inlined  P =  IRI_ID"...amount" 
+        
+        After code:
+        0: temp$30 := artm s_6_2_t0.O$28 +  0 
+        4: isnotnull$32 := Call isnotnull (temp$30)
+        9:  sum count$37isnotnull$32set no set_ctr$34
+        14:  sum sum$38temp$30set no set_ctr$34
+        19: BReturn 0
+      }
+    
+    After code:
+    0: avgAmount$42 := artm sum$38 / count$37
+    4: BReturn 0
+    time       1.2% fanout         0 input         1 rows
+    Select (avgAmount$42)
+  }
+
+
+ 0 msec 7% cpu,         1 rnd         8 seq         0% same seg         0% same pg 
+Compilation: 1 msec 0 reads         0% read 0 messages         0% clw

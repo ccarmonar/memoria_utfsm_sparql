@@ -1,0 +1,80 @@
+
+  { 
+    time       7.1% fanout         1 input         1 rows
+    Precode:
+      0: vector$27 := Call vector (<DB_NULL>, <DB_NULL>, <DB_NULL>)
+      5: vector$29 := Call vector (<c stubvar12>)
+      10: vector$31 := Call vector ()
+      15: BReturn 0
+    Subquery 33 
+      { 
+        time       4.3% fanout         1 input         1 rows
+        fork {
+            time        85% fanout         0 input         1 rows
+            Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:       0.3 Fanout:         0
+            RDF_QUAD_POGS       0.3 rows(s_45_11_t1.S$39)
+             P =  IRI_ID"...direct/P361"  ,  O =  IRI_ID"...Q297853" 
+            time         0% fanout         0 input         0 rows
+            Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:       2.2 Fanout:         0
+            RDF_QUAD_POGS       2.2 rows(s_45_11_t4.S$43, s_45_11_t4.O$42)
+             P =  IRI_ID"...direct/P527"  ,  O = cast$149
+            time         0% fanout         0 input         0 rows
+            Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:   6.7e-05 Fanout:         0
+            RDF_QUAD   6.7e-05 rows(s_45_11_t3.S$46)
+             inlined  P =  IRI_ID"...direct/P31"  ,  S = s_45_11_t4.S$43 ,  O =  IRI_ID"...Q1907114" 
+            time         0% fanout         0 input         0 rows
+            Precode:
+              0: __id2in$48 := Call __id2in (s_45_11_t3.S$46)
+              5: ws_endpoint$55 :=  := artm <tag 182 flag 1 c http://wikiba.se/ontology#label>
+              9: ws_params$57 :=  := artm vector$31
+              13: qtext_template$59 :=  := artm <c  SELECT ?stubvar12
+               WHERE {  <http://www.bigdata.com/rdf#serviceParam> <http://wikiba.se/ontology#language> "[AUTO_LANGUAGE],en" . }>
+              17: qtext_posmap$61 :=  := artm <tag 225 c >
+              21: param_row$63 :=  := artm vector$27
+              25: expected_vars$65 :=  := artm vector$29
+              29: proc_ctr$51 :=  := artm  0 
+              33:  <none>  := Call __reset_temp ( 139746098212112 )
+              38:  <proc table>  := Call DB.DBA.SPARQL_SINV_IMP (<tag 182 flag 1 c http://wikiba.se/ontology#label>, vector$31, <c  SELECT ?stubvar12
+               WHERE {  <http://www.bigdata.com/rdf#serviceParam> <http://wikiba.se/ontology#language> "[AUTO_LANGUAGE],en" . }>, <tag 225 c >, vector$27, vector$29)
+              45: BReturn 0
+            Key from temp (proc_ctr$51, RSET$53)
+            
+            time         0% fanout         0 input         0 rows
+            Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:       1.2 Fanout:         0
+            RDF_QUAD       1.2 rows(s_45_11_t2.O$73)
+             inlined  P =  IRI_ID"...direct/P1082"  ,  S = k_s_45_11_t1.S$183
+            
+            After code:
+            0: $77 :=  := artm <DB_NULL>
+            4: BReturn 0
+            time         0% fanout         0 input         0 rows
+            Sort (s_45_11_t3.S$46, $77) -> (s_45_11_t2.O$73, __id2in$48)
+            
+          }
+        time       3.4% fanout         0 input         1 rows
+        group by read node  
+        (s_45_11_t3.S$46, $77, aggregate$78, __id2in$48)
+        time         0% fanout         0 input         0 rows
+        skip node  500  <none> set_no$37
+        
+        After code:
+        0: area$34 :=  := artm __id2in$48
+        4: areaLabel$35 :=  := artm $77
+        8: total_folkm$36 :=  := artm aggregate$78
+        12: BReturn 0
+        time         0% fanout         0 input         0 rows
+        Subquery Select(area$34, areaLabel$35, total_folkm$36)
+      }
+    
+    After code:
+    0: area$106 := Call __ro2sq (area$34)
+    5: areaLabel$108 := Call __ro2sq (areaLabel$35)
+    10: total_folkm$110 := Call __ro2sq (total_folkm$36)
+    15: BReturn 0
+    time         0% fanout         0 input         0 rows
+    Select (area$106, areaLabel$108, total_folkm$110)
+  }
+
+
+ 0 msec 1% cpu,         1 rnd         0 seq         0% same seg         0% same pg 
+Compilation: 4 msec 0 reads         0% read 0 messages         0% clw

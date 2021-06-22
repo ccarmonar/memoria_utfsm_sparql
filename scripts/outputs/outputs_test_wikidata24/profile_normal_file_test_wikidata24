@@ -1,0 +1,280 @@
+
+  { 
+    time       6.7% fanout         1 input         1 rows
+      clear: (<V set_ctr$208 in>)
+    s# 211 209 cluster outer seq start, set no <V set_ctr$208 in>    
+    save ctx:()
+    Precode:
+      0: __rdflit$27  := Call __rdflit (rdflit1424)
+      5: DB.DBA.RDF_MAKE_LONG_OF_SQLVAL$29  := Call DB.DBA.RDF_MAKE_LONG_OF_SQLVAL (<c N/A>)
+      12: __rdflit$31  := Call __rdflit (rdflit1425)
+      17: BReturn 0
+      clear: (<V picture$38 a>, <V valLabel$37 a>, <V valUrl$36 a>, <V propLabel$35 a>, <V propUrl$34 a>, <V set_no$39 i>, <V picture$200 a>, <V valLabel$198 a>, <V valUrl$196 a>, <V propLabel$194 a>, <V propUrl$192 a>)
+    s# 220 33 Subquery 33 
+      multistate set no = <V set_no$39 i>
+      { 
+        time       4.5% fanout         1 input         1 rows
+        
+        s# 489 158 Fork 158 {  
+                
+            save ctx:()
+              set no = <V set_no$39 i> array  <none>  save: 
+              clear: (<V valLabel$45 a>, <V propLabel$44 a>, <V valUrl$43 r>, <V propUrl$42 a>, <V picture$41 a>, <V set_no$46 i>)
+            s# 225 40 Subquery 40 
+              multistate set no = <V set_no$46 i>
+              { 
+                
+                s# 229 47 Union
+                  { 
+                    time        66% fanout         0 input         1 rows
+                    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:     2e-06 Fanout:         0
+                    
+                    s# 232 48 from DB.DBA.RDF_QUAD by RDF_QUAD_POGS      2e-06 rows   
+                    Key RDF_QUAD_POGS  ASC  ()
+                     inlined  P =  IRI_ID"...optimizer"  ,  O = rdflit1424 ,  S =  IRI_ID"...Query" 
+                    
+                    time         0% fanout         0 input         0 rows
+                    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:   1.5e+02 Fanout:         0
+                      clear: (<V t17.O$51 an>)
+                      clear on continue: (<V t17.O$51 an>)
+                    s# 241 50 from DB.DBA.RDF_QUAD by RDF_QUAD    1.5e+02 rows   
+                    Key RDF_QUAD  ASC  (<V t17.O$51 an>)
+                     inlined  P =  IRI_ID"...label"  ,  S =  IRI_ID"...Q42" 
+                    
+                    time         0% fanout         0 input         0 rows
+                      clear: (<V DB.DBA.RDF_LANGUAGE_OF_OBJ$55 a>, <V __ro2sq$53 a>)
+                    s# 256 251 END Node
+                    After test:
+                      0: <V __ro2sq$53 a> := Call __ro2sq (<V t17.O$51 an>)
+                      5: <V DB.DBA.RDF_LANGUAGE_OF_OBJ$55 a> := Call DB.DBA.RDF_LANGUAGE_OF_OBJ (<V __ro2sq$53 a>)
+                      12: if (<c en> = <V DB.DBA.RDF_LANGUAGE_OF_OBJ$55 a>) then 16 else 17 unkn 17
+                      16: BReturn 1
+                      17: BReturn 0
+                      clear: (<V __stub$58 in>, <V set_no$59 i>)
+                    s# 264 57 Subquery 57 
+                      multistate set no = <V set_no$59 i>
+                      { 
+                        time         0% fanout         0 input         0 rows
+                        Precode:
+                          0: <V __stub$58 in> :=  := artm  1 
+                          4: BReturn 0
+                          clear: (<V __stub$58 in>)
+                        s# 269 66 END Node
+                        time         0% fanout         0 input         0 rows
+                        $58 (66 ) 
+                        s# 264 60 Subquery Select(<r __stub$58 via  Set269>)
+                          set no: <r set_no$59 via  Set269>
+                      }
+                    
+                    time         0% fanout         0 input         0 rows
+                      clear: (<V set_ctr$85 i>)
+                    s# 283 89 cluster outer seq start, set no <V set_ctr$85 i>    
+                    save ctx:()
+                      clear: (<V picture$71 a>, <V valUrl$70 s>, <V _::default_54_21$69 r>, <V set_no$72 i>)
+                    s# 292 68 Subquery 68 
+                      multistate set no = <V set_no$72 i>
+                      { 
+                        time         0% fanout         0 input         0 rows
+                        Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:         2 Fanout:         0
+                          clear: (<V t19.O$74 an>, <V t19.G$75 rn>, <V picture$71 a>, <V valUrl$70 s>, <V _::default_54_21$69 r>)
+                          clear on continue: (<V t19.O$74 an>, <V t19.G$75 rn>, <V picture$71 a>, <V valUrl$70 s>, <V _::default_54_21$69 r>)
+                        s# 296 73 from DB.DBA.RDF_QUAD by RDF_QUAD          2 rows   
+                        Key RDF_QUAD  ASC  (<V t19.G$75 rn>, <V t19.O$74 an>)
+                         inlined  P =  IRI_ID"...direct/P18"  ,  S =  IRI_ID"...Q42" 
+                        
+                        After code:
+                          0: <V _::default_54_21$69 r> :=  := artm <V t19.G$75 rn>
+                          4: <V valUrl$70 s> :=  := artm <tag 182 flag 1 c http://www.wikidata.org/entity/Q42>
+                          8: <V picture$71 a> :=  := artm <V t19.O$74 an>
+                          12: BReturn 0
+                        time         0% fanout         0 input         0 rows
+                        
+                        s# 292 77 Subquery Select(<V _::default_54_21$69 r>, <V valUrl$70 s>, <V picture$71 a>)
+                          set no: <r set_no$72 via  Set296>
+                      }
+                    
+                    time         0% fanout         0 input         0 rows
+                      clear: (<V valLabel$45 a>, <V propLabel$44 a>, <V valUrl$43 r>, <V propUrl$42 a>, <V picture$41 a>)$69 (68 ) $70 (68 ) $71 (68 ) $72 (68 ) $85 (68 89 ) $51 (68 89 57 251 ) 
+                    s# 317 84 end of outer seq <r set_ctr$85 via  Set292>
+                     out: (<V set_no$72 i>, <V picture$71 a>, <V _::default_54_21$69 r>, <V valUrl$70 s>)
+                     shadow: ( <none> ,  <none> ,  <none> ,  <none> )
+                    After code:
+                      0: <V picture$41 a> :=  := artm <V picture$71 a>
+                      4: <V propUrl$42 a> :=  := artm DB.DBA.RDF_MAKE_LONG_OF_SQLVAL$29 
+                      8: <V valUrl$43 r> :=  := artm  IRI_ID"...Q42" 
+                      12: <V propLabel$44 a> :=  := artm __rdflit$31 
+                      16: <V valLabel$45 a> :=  := artm <r t17.O$51 via  Set317 Set264 Set256>
+                      20: BReturn 0
+                    time         0% fanout         0 input         0 rows
+                    Precode:
+                      0: <V __rdf_sqlval_of_obj$154 a> := Call __rdf_sqlval_of_obj (<V propUrl$42 a>)
+                      5: <V __id2in$156 a> := Call __id2in (<V valUrl$43 r>)
+                      10: BReturn 0
+                      clear: (<V __id2in$156 a>, <V __rdf_sqlval_of_obj$154 a>)
+                    s# 330 159 Sort (HASH) set no <r set_no$39 via  Set317 Set264 Set256 Set241 Set232>(TOP  200  ) (<V __rdf_sqlval_of_obj$154 a>, <V __id2in$156 a>) -> (<V propLabel$44 a>, <V valLabel$45 a>, <V picture$41 a>)
+                    
+                  }
+                  { 
+                    time        17% fanout         0 input         1 rows
+                    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:     2e-06 Fanout:         0
+                    
+                    s# 338 101 from DB.DBA.RDF_QUAD by RDF_QUAD_POGS      2e-06 rows   
+                    Key RDF_QUAD_POGS  ASC  ()
+                     inlined  P =  IRI_ID"...optimizer"  ,  O = rdflit1424 ,  S =  IRI_ID"...Query" 
+                    
+                    time         0% fanout         0 input         0 rows
+                    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:       0.3 Fanout:         0
+                      clear: (<V t31.S$104 rn>)
+                      clear on continue: (<V t31.S$104 rn>)
+                    s# 347 103 from DB.DBA.RDF_QUAD by RDF_QUAD_POGS        0.3 rows   
+                    Key RDF_QUAD_POGS  ASC  (<V t31.S$104 rn>)
+                     P =  IRI_ID"...type"  ,  O =  IRI_ID"...Property" 
+                    
+                    time         0% fanout         0 input         0 rows
+                    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:        13 Fanout:         0
+                      clear: (<V t30.P$107 rn>, <V t30.S$108 rn>)
+                      clear on continue: (<V t30.P$107 rn>, <V t30.S$108 rn>)
+                    s# 357 106 from DB.DBA.RDF_QUAD by RDF_QUAD_SP         13 rows   
+                    Key RDF_QUAD_SP  ASC  (<V t30.S$108 rn>, <V t30.P$107 rn>)
+                     inlined  S = <V t31.S$104 rn>
+                    
+                    time         0% fanout         0 input         0 rows
+                    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:       1.2 Fanout:         0
+                      clear: (<V t30.O$112 an>)
+                      clear on continue: (<V t30.O$112 an>)$372 (111 ) $107 () 
+                    s# 368 111 from DB.DBA.RDF_QUAD by RDF_QUAD        1.2 rows   
+                    Key RDF_QUAD  ASC  (<V t30.O$112 an>)
+                     inlined  P = <V t30.P$107 rn> ,  S = <v k_t31.S$372 Set374 rn>
+                    vector param casts: <r t31.S$104 via  Set357>-> <v k_t31.S$372 Set374 rn>
+                    
+                    time         0% fanout         0 input         0 rows
+                    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:      0.69 Fanout:         0
+                      clear: (<V t29.O$116 an>)
+                      clear on continue: (<V t29.O$116 an>)$386 (115 ) 
+                    s# 382 115 from DB.DBA.RDF_QUAD by RDF_QUAD       0.69 rows   
+                    Key RDF_QUAD  ASC  (<V t29.O$116 an>)
+                     inlined  P = <v cast$386 Set388 rn> ,  S =  IRI_ID"...Q42" 
+                    vector param casts: <V t30.O$112 an>-> <v cast$386 Set388 rn>
+                    
+                    time         0% fanout         0 input         0 rows
+                    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:        12 Fanout:         0
+                      clear: (<V t33.S$119 rn>, <V t33.O$120 an>)
+                      clear on continue: (<V t33.S$119 rn>, <V t33.O$120 an>)$116 () $400 (118 ) 
+                    s# 396 118 from DB.DBA.RDF_QUAD by RDF_QUAD         12 rows   
+                    Key RDF_QUAD  ASC  (<V t33.O$120 an>, <V t33.S$119 rn>)
+                     inlined  P =  IRI_ID"...label"  ,  S = <v cast$400 Set402 rn>
+                    vector param casts: <V t29.O$116 an>-> <v cast$400 Set402 rn>
+                    
+                    time         0% fanout         0 input         0 rows
+                      clear: (<V DB.DBA.RDF_LANGUAGE_OF_OBJ$124 a>, <V __ro2sq$122 a>)
+                    s# 416 411 END Node
+                    After test:
+                      0: <V __ro2sq$122 a> := Call __ro2sq (<V t33.O$120 an>)
+                      5: <V DB.DBA.RDF_LANGUAGE_OF_OBJ$124 a> := Call DB.DBA.RDF_LANGUAGE_OF_OBJ (<V __ro2sq$122 a>)
+                      12: if (<c en> = <V DB.DBA.RDF_LANGUAGE_OF_OBJ$124 a>) then 16 else 17 unkn 17
+                      16: BReturn 1
+                      17: BReturn 0
+                    time         0% fanout         0 input         0 rows
+                      clear: (<V set_ctr$130 i>)
+                    s# 424 134 cluster outer seq start, set no <V set_ctr$130 i>    
+                    save ctx:()
+                    time         0% fanout         0 input         0 rows
+                    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:       1.1 Fanout:         0
+                      clear: (<V t35.O$127 a>)
+                      clear on continue: (<V t35.O$127 a>)$437 (126 ) 
+                    s# 433 126 from DB.DBA.RDF_QUAD by RDF_QUAD        1.1 rows   
+                    Key RDF_QUAD  ASC  (<V t35.O$127 a>)
+                     inlined  P =  IRI_ID"...direct/P18"  ,  S = <v k_t33.S$437 Set439 rn>
+                    vector param casts: <r t33.S$119 via  Set424 Set416>-> <v k_t33.S$437 Set439 rn>
+                    
+                    time         0% fanout         0 input         0 rows
+                    $130 (126 134 ) 
+                    s# 447 129 end of outer seq <r set_ctr$130 via  Set433 Set439>
+                     out: (<V t35.O$127 a>)
+                     shadow: ( <none> )
+                    time         0% fanout         0 input         0 rows
+                    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:        12 Fanout:         0
+                      clear: (<V t32.O$140 an>)
+                      clear on continue: (<V t32.O$140 an>)$104 (129 126 134 411 118 115 111 106 ) $459 (139 ) 
+                    s# 455 139 from DB.DBA.RDF_QUAD by RDF_QUAD         12 rows   
+                    Key RDF_QUAD  ASC  (<V t32.O$140 an>)
+                     inlined  P =  IRI_ID"...label"  ,  S = <v k_t31.S$459 Set461 rn>
+                    vector param casts: <r t31.S$104 via  Set447 Set416 Set396 Set402 Set382 Set388 Set368 Set374 Set357>-> <v k_t31.S$459 Set461 rn>
+                    
+                    time         0% fanout         0 input         0 rows
+                      clear: (<V DB.DBA.RDF_LANGUAGE_OF_OBJ$144 a>, <V __ro2sq$142 a>, <V valLabel$45 a>, <V propLabel$44 a>, <V valUrl$43 r>, <V propUrl$42 a>, <V picture$41 a>)$140 () $112 (139 129 126 134 411 118 115 ) $119 (139 129 126 134 411 ) $120 (139 129 126 134 411 ) $127 (139 129 ) 
+                    s# 474 469 END Node
+                    After test:
+                      0: <V __ro2sq$142 a> := Call __ro2sq (<V t32.O$140 an>)
+                      5: <V DB.DBA.RDF_LANGUAGE_OF_OBJ$144 a> := Call DB.DBA.RDF_LANGUAGE_OF_OBJ (<V __ro2sq$142 a>)
+                      12: if (<c en> = <V DB.DBA.RDF_LANGUAGE_OF_OBJ$144 a>) then 16 else 17 unkn 17
+                      16: BReturn 1
+                      17: BReturn 0
+                    After code:
+                      0: <V picture$41 a> :=  := artm <r t35.O$127 via  Set474 Set455 Set461>
+                      4: <V propUrl$42 a> :=  := artm <r t30.O$112 via  Set474 Set455 Set461 Set447 Set416 Set396 Set402 Set382 Set388>
+                      8: <V valUrl$43 r> :=  := artm <r t33.S$119 via  Set474 Set455 Set461 Set447 Set416>
+                      12: <V propLabel$44 a> :=  := artm <r t32.O$140 via  Set474>
+                      16: <V valLabel$45 a> :=  := artm <r t33.O$120 via  Set474 Set455 Set461 Set447 Set416>
+                      20: BReturn 0
+                    time         0% fanout         0 input         0 rows
+                    Precode:
+                      0: <V __rdf_sqlval_of_obj$154 a> := Call __rdf_sqlval_of_obj (<V propUrl$42 a>)
+                      5: <V __id2in$156 a> := Call __id2in (<V valUrl$43 r>)
+                      10: BReturn 0
+                      clear: (<V __id2in$156 a>, <V __rdf_sqlval_of_obj$154 a>)$42 (469 ) $43 (469 ) 
+                    s# 482 159 Sort (HASH) set no <r set_no$39 via  Set474 Set455 Set461 Set447 Set416 Set396 Set402 Set382 Set388 Set368 Set374 Set357 Set347 Set338>(TOP  200  ) (<V __rdf_sqlval_of_obj$154 a>, <V __id2in$156 a>) -> (<V propLabel$44 a>, <V valLabel$45 a>, <V picture$41 a>)
+                    
+                  }
+              }
+            
+        }
+        time       5.4% fanout         0 input         1 rows
+          clear: (<V picture$41 a>, <V valLabel$45 a>, <V __id2in$156 a>, <V propLabel$44 a>, <V __rdf_sqlval_of_obj$154 a>, <V picture$38 a>, <V valLabel$37 a>, <V valUrl$36 a>, <V propLabel$35 a>, <V propUrl$34 a>, <V __ro2sq$183 a>, <V __ro2sq$181 a>, <V __ro2sq$179 a>)
+          clear on continue: (<V picture$41 a>, <V valLabel$45 a>, <V __id2in$156 a>, <V propLabel$44 a>, <V __rdf_sqlval_of_obj$154 a>, <V picture$38 a>, <V valLabel$37 a>, <V valUrl$36 a>, <V propLabel$35 a>, <V propUrl$34 a>, <V __ro2sq$183 a>, <V __ro2sq$181 a>, <V __ro2sq$179 a>)
+        s# 496 164 top order by node (<V __rdf_sqlval_of_obj$154 a>, <V propLabel$44 a>, <V __id2in$156 a>, <V valLabel$45 a>, <V picture$41 a>)
+        set no <V set_no$39 i>
+        After code:
+          0: <V __ro2sq$179 a> := Call __ro2sq (<V picture$41 a>)
+          5: <V __ro2sq$181 a> := Call __ro2sq (<V valLabel$45 a>)
+          10: <V __ro2sq$183 a> := Call __ro2sq (<V propLabel$44 a>)
+          15: <V propUrl$34 a> :=  := artm <V __rdf_sqlval_of_obj$154 a>
+          19: <V propLabel$35 a> :=  := artm <V __ro2sq$183 a>
+          23: <V valUrl$36 a> :=  := artm <V __id2in$156 a>
+          27: <V valLabel$37 a> :=  := artm <V __ro2sq$181 a>
+          31: <V picture$38 a> :=  := artm <V __ro2sq$179 a>
+          35: BReturn 0
+        time         0% fanout         0 input         0 rows
+        
+        s# 220 185 Subquery Select(<V propUrl$34 a>, <V propLabel$35 a>, <V valUrl$36 a>, <V valLabel$37 a>, <V picture$38 a>)
+          set no: <r set_no$39 via  Set496>
+      }
+    
+    After code:
+      0: <V propUrl$192 a> := Call __ro2sq (<V propUrl$34 a>)
+      5: <V propLabel$194 a> := Call __ro2sq (<V propLabel$35 a>)
+      10: <V valUrl$196 a> := Call __ro2sq (<V valUrl$36 a>)
+      15: <V valLabel$198 a> := Call __ro2sq (<V valLabel$37 a>)
+      20: <V picture$200 a> := Call __ro2sq (<V picture$38 a>)
+      25: BReturn 0
+    time         0% fanout         0 input         0 rows
+    $208 (33 209 ) $192 (33 ) $194 (33 ) $196 (33 ) $198 (33 ) $200 (33 ) 
+    s# 518 202 Select (<V propUrl$192 a>, <V propLabel$194 a>, <V valUrl$196 a>, <V valLabel$198 a>, <V picture$200 a>)
+      set no: <r set_ctr$208 via  Set220>
+  }
+Warning: You might have a Cartesian product.
+
+Warning: You might have a Cartesian product.
+
+Warning: You might have a Cartesian product.
+
+Warning: You might have a Cartesian product.
+
+Warning: You might have a Cartesian product.
+
+Warning: You might have a Cartesian product.
+
+
+
+ 0 msec 0% cpu,         2 rnd         0 seq         0% same seg         0% same pg 
+Compilation: 141 msec 42 reads    25.382% read 0 messages         0% clw

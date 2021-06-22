@@ -1,0 +1,23 @@
+ DB.DBA.RDF_DICT_OF_TRIPLES_TO_THREE_COLS ((SELECT TOP 1  DB.DBA.SPARQL_CONSTRUCT (
+      vector (
+        vector (
+         1,
+         0,
+         3,
+         __i2id ( UNAME'http://www.w3.org/1999/02/22-rdf-syntax-ns#type' ),
+         3,
+         __i2id ( UNAME'http://learningsparql.com/ns/demo#Place' ))),
+      vector (
+       "s_16_6"."locationURI"),
+      vector (),
+     1) AS "callret-0"
+FROM (
+   SELECT "s_16_5_t1"."S" AS "item",
+      "s_16_5_t1"."O" AS "locationValue",
+      case when ( is_named_iri_id ( "s_16_5_t1"."O")) then ( __ro2lo ( "s_16_5_t1"."O")) else ( __i2idn ( rdf_concat_impl ( 'http://learningsparql.com/ns/data#' ,  rdf_encode_for_uri_impl ( __ro2sq ( "s_16_5_t1"."O"))))) end AS "locationURI"
+    FROM DB.DBA.RDF_QUAD AS "s_16_5_t1"
+    WHERE
+      "s_16_5_t1"."P" = __i2idn ( __bft( 'http://learningsparql.com/ns/demo#location' , 1))
+OPTION (QUIETCAST)
+    ) AS "s_16_6"
+OPTION (QUIETCAST)))

@@ -1,0 +1,43 @@
+Marshall	Updating Data with SPARQL	
+Mutt	Updating Data with SPARQL	
+Ellis	Updating Data with SPARQL	
+Mutt	Updating Data with SPARQL	
+Ellis	Updating Data with SPARQL	
+Marshall	Updating Data with SPARQL	
+Perry	Updating Data with SPARQL	
+Duncan	Updating Data with SPARQL	
+Marshall	Using SPARQL with non-RDF Data	
+Mutt	Using SPARQL with non-RDF Data	
+Ellis	Using SPARQL with non-RDF Data	
+Mutt	Using SPARQL with non-RDF Data	
+Ellis	Using SPARQL with non-RDF Data	
+Marshall	Using SPARQL with non-RDF Data	
+Perry	Using SPARQL with non-RDF Data	
+Duncan	Using SPARQL with non-RDF Data	
+Marshall	Combining Public and Private RDF Data	
+Mutt	Combining Public and Private RDF Data	
+Ellis	Combining Public and Private RDF Data	
+Mutt	Combining Public and Private RDF Data	
+
+  { 
+    time       1.2% fanout         1 input         1 rows
+    time        18% fanout         6 input         1 rows
+    RDF_QUAD         6 rows(t8.O$28)
+     inlined  P =  IRI_ID"...courseTitle" 
+    time        81% fanout         8 input         6 rows
+    Precode:
+      0: courseName$30 := Call __ro2sq (t8.O$28)
+      5: BReturn 0
+    RDF_QUAD         8 rows(t6.O$33)
+     inlined  P =  IRI_ID"...lastName" 
+    
+    After code:
+    0: lastName$35 := Call __ro2sq (t6.O$33)
+    5: BReturn 0
+    time      0.18% fanout         0 input        48 rows
+    Select (lastName$35, courseName$30)
+  }
+
+
+ 0 msec 16% cpu,        61 rnd        47 seq   8.06452% same seg    16.129% same pg 
+Compilation: 2 msec 0 reads         0% read 0 messages         0% clw

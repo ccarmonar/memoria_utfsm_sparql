@@ -1,0 +1,76 @@
+ SELECT  __ro2sq ("s_49_30_rbc"."item") AS "item", __ro2sq ("s_49_30_rbc"."title") AS "title", __ro2sq ("s_49_30_rbc"."seats") AS "seats", __ro2sq ("s_49_30_rbc"."jurisdiction") AS "jurisdiction", __ro2sq ("s_49_30_rbc"."start") AS "start", __ro2sq ("s_49_30_rbc"."end") AS "end" FROM (SELECT DISTINCT TOP 600 __id2in ( "s_38_3_t0"."S") AS "item",
+    __ro2sq ( "s_47_29"."title") AS "title",
+    __ro2sq ( "s_40_15"."seats") AS "seats",
+    __ro2sq ( "s_44_20"."jurisdiction") AS "jurisdiction",
+    rdf_year_impl ( "s_45_23"."inception") AS "start",
+    rdf_year_impl ( "s_46_26"."dissolution") AS "end"
+  FROM DB.DBA.RDF_QUAD AS "s_38_3_t0"
+    INNER JOIN (
+     SELECT TRANSITIVE T_OUT(2) T_IN(1) T_MIN( 0) T_NO_CYCLES "s_38_9_t1"."S" AS "_::trans_subj_38_5",
+        "s_38_9_t1"."O" AS "_::trans_obj_38_6"
+      FROM DB.DBA.RDF_QUAD AS "s_38_9_t1"
+      WHERE
+        "s_38_9_t1"."P" = __i2idn ( __bft( 'http://www.wikidata.org/prop/direct/P279' , 1))
+OPTION (QUIETCAST)
+      ) AS "s_38_12"
+    ON (
+      "s_38_3_t0"."O" = "s_38_12"."_::trans_subj_38_5")
+    LEFT OUTER JOIN (
+      SELECT "s_40_15_t2"."S" AS "item",
+        "s_40_15_t2"."O" AS "seats"
+      FROM DB.DBA.RDF_QUAD AS "s_40_15_t2"
+      WHERE
+        "s_40_15_t2"."P" = __i2idn ( __bft( 'http://www.wikidata.org/prop/direct/P1342' , 1))) AS "s_40_15"
+    ON (
+      "s_38_3_t0"."S" = "s_40_15"."item")
+    LEFT OUTER JOIN (
+      SELECT "s_44_20_t3"."S" AS "item",
+        "s_44_20_t4"."O" AS "jurisdiction"
+      FROM DB.DBA.RDF_QUAD AS "s_44_20_t3"
+        INNER JOIN DB.DBA.RDF_QUAD AS "s_44_20_t4"
+        ON (
+          "s_44_20_t3"."O" = "s_44_20_t4"."S")
+      WHERE
+        "s_44_20_t3"."P" = __i2idn ( __bft( 'http://www.wikidata.org/prop/direct/P1001' , 1))
+        AND 
+        "s_44_20_t4"."P" = __i2idn ( __bft( 'http://www.w3.org/2000/01/rdf-schema#label' , 1))
+        AND 
+       ( 'en'  =  DB.DBA.RDF_LANGUAGE_OF_OBJ (__ro2sq ( "s_44_20_t4"."O")))) AS "s_44_20"
+    ON (
+      "s_38_3_t0"."S" = "s_44_20"."item")
+    LEFT OUTER JOIN (
+      SELECT "s_45_23_t5"."S" AS "item",
+        "s_45_23_t5"."O" AS "inception"
+      FROM DB.DBA.RDF_QUAD AS "s_45_23_t5"
+      WHERE
+        "s_45_23_t5"."P" = __i2idn ( __bft( 'http://www.wikidata.org/prop/direct/P571' , 1))) AS "s_45_23"
+    ON (
+      "s_38_3_t0"."S" = "s_45_23"."item")
+    LEFT OUTER JOIN (
+      SELECT "s_46_26_t6"."S" AS "item",
+        "s_46_26_t6"."O" AS "dissolution"
+      FROM DB.DBA.RDF_QUAD AS "s_46_26_t6"
+      WHERE
+        "s_46_26_t6"."P" = __i2idn ( __bft( 'http://www.wikidata.org/prop/direct/P576' , 1))) AS "s_46_26"
+    ON (
+      "s_38_3_t0"."S" = "s_46_26"."item")
+    LEFT OUTER JOIN (
+      SELECT "s_47_29_t7"."S" AS "item",
+        "s_47_29_t7"."O" AS "title"
+      FROM DB.DBA.RDF_QUAD AS "s_47_29_t7"
+      WHERE
+        "s_47_29_t7"."P" = __i2idn ( __bft( 'http://www.w3.org/2000/01/rdf-schema#label' , 1))
+        AND 
+       ( 'en'  =  DB.DBA.RDF_LANGUAGE_OF_OBJ (__ro2sq ( "s_47_29_t7"."O")))) AS "s_47_29"
+    ON (
+      "s_38_3_t0"."S" = "s_47_29"."item")
+  WHERE
+    "s_38_3_t0"."P" = __i2idn ( __bft( 'http://www.wikidata.org/prop/direct/P31' , 1))
+    AND 
+    isiri_id ( "s_38_3_t0"."O")
+    AND 
+   ( "s_38_12"."_::trans_obj_38_6" =  __i2idn ( __bft( 'http://www.wikidata.org/entity/Q1752346' , 1)))
+    AND 
+    1
+  ORDER BY __ro2sq ( "s_40_15"."seats") DESC, __ro2sq ( "s_47_29"."title") ASC
+OPTION (QUIETCAST)) AS "s_49_30_rbc"

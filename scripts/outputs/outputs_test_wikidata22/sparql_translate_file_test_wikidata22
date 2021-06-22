@@ -1,0 +1,36 @@
+ SELECT  __ro2sq ("s_42_17_rbc"."country") AS "country", __ro2sq ("s_42_17_rbc"."maxPopulation") AS "maxPopulation" FROM (SELECT TOP 600 __ro2sq ( "s_42_17_t2"."O") AS "country",
+     MAX (
+       "s_42_17_t3"."O") AS "maxPopulation"
+  FROM DB.DBA.RDF_QUAD AS "s_38_3_t0"
+    INNER JOIN (
+     SELECT TRANSITIVE T_OUT(2) T_IN(1) T_MIN( 0) T_NO_CYCLES "s_38_9_t1"."S" AS "_::trans_subj_38_5",
+        "s_38_9_t1"."O" AS "_::trans_obj_38_6"
+      FROM DB.DBA.RDF_QUAD AS "s_38_9_t1"
+      WHERE
+        "s_38_9_t1"."P" = __i2idn ( __bft( 'http://www.wikidata.org/prop/direct/P279' , 1))
+OPTION (QUIETCAST)
+      ) AS "s_38_12"
+    ON (
+      "s_38_3_t0"."O" = "s_38_12"."_::trans_subj_38_5")
+    INNER JOIN DB.DBA.RDF_QUAD AS "s_42_17_t2"
+    ON (
+      "s_42_17_t2"."S" = "s_38_3_t0"."S")
+    INNER JOIN DB.DBA.RDF_QUAD AS "s_42_17_t3"
+    ON (
+      "s_42_17_t2"."S" = "s_42_17_t3"."S"
+      AND 
+      "s_42_17_t3"."S" = "s_38_3_t0"."S")
+  WHERE
+    "s_38_3_t0"."P" = __i2idn ( __bft( 'http://www.wikidata.org/prop/direct/P31' , 1))
+    AND 
+    isiri_id ( "s_38_3_t0"."O")
+    AND 
+    "s_42_17_t2"."P" = __i2idn ( __bft( 'http://www.wikidata.org/prop/direct/P17' , 1))
+    AND 
+    "s_42_17_t3"."P" = __i2idn ( __bft( 'http://www.wikidata.org/prop/direct/P1082' , 1))
+    AND 
+   ( "s_38_12"."_::trans_obj_38_6" =  __i2idn ( __bft( 'http://www.wikidata.org/entity/Q515' , 1)))
+    AND 
+    1
+  GROUP BY "s_42_17_t2"."O"
+OPTION (QUIETCAST)) AS "s_42_17_rbc"

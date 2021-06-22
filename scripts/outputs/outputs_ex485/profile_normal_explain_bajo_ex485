@@ -1,0 +1,75 @@
+http://creativecommons.org/ns#license	
+http://example.org/ns#discount	
+http://example.org/ns#price	
+http://learningsparql.com/ns/addressbook#address	
+http://learningsparql.com/ns/addressbook#city	
+http://learningsparql.com/ns/addressbook#courseTitle	
+http://learningsparql.com/ns/addressbook#email	
+http://learningsparql.com/ns/addressbook#firstName	
+http://learningsparql.com/ns/addressbook#gender	
+http://learningsparql.com/ns/addressbook#hasParent	
+http://learningsparql.com/ns/addressbook#homeTel	
+http://learningsparql.com/ns/addressbook#instrument	
+http://learningsparql.com/ns/addressbook#lastName	
+http://learningsparql.com/ns/addressbook#nick	
+http://learningsparql.com/ns/addressbook#postalCode	
+http://learningsparql.com/ns/addressbook#region	
+http://learningsparql.com/ns/addressbook#streetAddress	
+http://learningsparql.com/ns/addressbook#takingCourse	
+http://learningsparql.com/ns/addressbook#workTel	
+http://learningsparql.com/ns/citations#cites	
+
+  { 
+    time   0.00012% fanout         1 input         1 rows
+    Subquery 27 
+      { 
+        time   7.6e-05% fanout         1 input         1 rows
+        fork {
+            time       2.9% fanout 1.90501e+07 input         1 rows
+            RDF_QUAD     5e+06 rows(s_9_6_t1.P$31)
+            
+            time        36% fanout  0.804928 input 1.90501e+07 rows
+            END Node
+            After test:
+            0: if (  { 
+                time       4.6% fanout         1 input 1.90501e+07 rows
+                time        29% fanout  0.195098 input 1.90501e+07 rows
+                RDF_QUAD         1 rows()
+                 inlined  P =  IRI_ID"...type"  ,  S = k_s_9_6_t1.P$133
+                time      0.58% fanout         0 input 3.71664e+06 rows
+                Subquery Select( <none> )
+              }
+            ) then 5 else 4 unkn 5
+            4: BReturn 1
+            5: BReturn 0
+            time        24% fanout 0.000425656 input 1.5334e+07 rows
+            Distinct (s_9_6_t1.P$31)
+            time         2% fanout         0 input      6527 rows
+            Precode:
+              0: __id2in$54 := Call __id2in (s_9_6_t1.P$31)
+              5: BReturn 0
+            Sort (__id2in$54)
+          }
+        time    0.0026% fanout      1000 input         1 rows
+        Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:         0 Fanout:     1e+03
+        Key from temp (__id2in$54)
+        
+        
+        After code:
+        0: p$28 :=  := artm __id2in$54
+        4: BReturn 0
+        time   1.3e-05% fanout         0 input      1000 rows
+        Subquery Select(p$28)
+      }
+    
+    After code:
+    0: p$76 := Call __ro2sq (p$28)
+    5: BReturn 0
+    time   2.2e-05% fanout         0 input      1000 rows
+    Select (p$76)
+  }
+
+
+ 1428 msec 99% cpu, 1.90555e+07 rnd 1.90338e+07 seq   98.5121% same seg   1.34908% same pg 
+2 disk reads, 0 read ahead, 0.00170027% wait
+Compilation: 1 msec 0 reads         0% read 0 messages         0% clw

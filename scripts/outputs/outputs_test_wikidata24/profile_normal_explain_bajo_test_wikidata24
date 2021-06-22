@@ -1,0 +1,185 @@
+
+  { 
+    time       5.7% fanout         1 input         1 rows
+    Precode:
+      0: __rdflit$27  := Call __rdflit (rdflit1424)
+      5: DB.DBA.RDF_MAKE_LONG_OF_SQLVAL$29  := Call DB.DBA.RDF_MAKE_LONG_OF_SQLVAL (<c N/A>)
+      12: __rdflit$31  := Call __rdflit (rdflit1425)
+      17: BReturn 0
+    Subquery 33 
+      { 
+        time       3.6% fanout         1 input         1 rows
+        fork {
+            Subquery 40 
+              { 
+                Union
+                  { 
+                    time        63% fanout         0 input         1 rows
+                    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:     2e-06 Fanout:         0
+                    RDF_QUAD_POGS     2e-06 rows()
+                     inlined  P =  IRI_ID"...optimizer"  ,  O = rdflit1424 ,  S =  IRI_ID"...Query" 
+                    time         0% fanout         0 input         0 rows
+                    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:   1.5e+02 Fanout:         0
+                    RDF_QUAD   1.5e+02 rows(t17.O$51)
+                     inlined  P =  IRI_ID"...label"  ,  S =  IRI_ID"...Q42" 
+                    time         0% fanout         0 input         0 rows
+                    END Node
+                    After test:
+                    0: __ro2sq$53 := Call __ro2sq (t17.O$51)
+                    5: DB.DBA.RDF_LANGUAGE_OF_OBJ$55 := Call DB.DBA.RDF_LANGUAGE_OF_OBJ (__ro2sq$53)
+                    12: if (<c en> = DB.DBA.RDF_LANGUAGE_OF_OBJ$55) then 16 else 17 unkn 17
+                    16: BReturn 1
+                    17: BReturn 0
+                    Subquery 57 
+                      { 
+                        time         0% fanout         0 input         0 rows
+                        Precode:
+                          0: __stub$58 :=  := artm  1 
+                          4: BReturn 0
+                        END Node
+                        time         0% fanout         0 input         0 rows
+                        Subquery Select(__stub$58)
+                      }
+                    time         0% fanout         0 input         0 rows
+                    outer {
+                        Subquery 68 
+                          { 
+                            time         0% fanout         0 input         0 rows
+                            Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:         2 Fanout:         0
+                            RDF_QUAD         2 rows(t19.G$75, t19.O$74)
+                             inlined  P =  IRI_ID"...direct/P18"  ,  S =  IRI_ID"...Q42" 
+                            
+                            After code:
+                            0: _::default_54_21$69 :=  := artm t19.G$75
+                            4: valUrl$70 :=  := artm <tag 182 flag 1 c http://www.wikidata.org/entity/Q42>
+                            8: picture$71 :=  := artm t19.O$74
+                            12: BReturn 0
+                            time         0% fanout         0 input         0 rows
+                            Subquery Select(_::default_54_21$69, valUrl$70, picture$71)
+                          }
+                        time         0% fanout         0 input         0 rows
+                      } /* end of outer */
+                    set_ctr$85
+                     out: (set_no$72, _::default_54_21$69, picture$71, valUrl$70)
+                     shadow: ( <none> ,  <none> ,  <none> ,  <none> )
+                    
+                    After code:
+                    0: picture$41 :=  := artm picture$71
+                    4: propUrl$42 :=  := artm DB.DBA.RDF_MAKE_LONG_OF_SQLVAL$29 
+                    8: valUrl$43 :=  := artm  IRI_ID"...Q42" 
+                    12: propLabel$44 :=  := artm __rdflit$31 
+                    16: valLabel$45 :=  := artm t17.O$51
+                    20: BReturn 0
+                    time         0% fanout         0 input         0 rows
+                    Precode:
+                      0: __rdf_sqlval_of_obj$154 := Call __rdf_sqlval_of_obj (propUrl$42)
+                      5: __id2in$156 := Call __id2in (valUrl$43)
+                      10: BReturn 0
+                    Sort (__rdf_sqlval_of_obj$154, __id2in$156) -> (propLabel$44, valLabel$45, picture$41)
+                    
+                  }
+                  { 
+                    time        22% fanout         0 input         1 rows
+                    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:     2e-06 Fanout:         0
+                    RDF_QUAD_POGS     2e-06 rows()
+                     inlined  P =  IRI_ID"...optimizer"  ,  O = rdflit1424 ,  S =  IRI_ID"...Query" 
+                    time         0% fanout         0 input         0 rows
+                    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:       0.3 Fanout:         0
+                    RDF_QUAD_POGS       0.3 rows(t31.S$104)
+                     P =  IRI_ID"...type"  ,  O =  IRI_ID"...Property" 
+                    time         0% fanout         0 input         0 rows
+                    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:        13 Fanout:         0
+                    RDF_QUAD_SP        13 rows(t30.S$108, t30.P$107)
+                     inlined  S = t31.S$104
+                    time         0% fanout         0 input         0 rows
+                    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:       1.2 Fanout:         0
+                    RDF_QUAD       1.2 rows(t30.O$112)
+                     inlined  P = t30.P$107 ,  S = k_t31.S$372
+                    time         0% fanout         0 input         0 rows
+                    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:      0.69 Fanout:         0
+                    RDF_QUAD      0.69 rows(t29.O$116)
+                     inlined  P = cast$386 ,  S =  IRI_ID"...Q42" 
+                    time         0% fanout         0 input         0 rows
+                    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:        12 Fanout:         0
+                    RDF_QUAD        12 rows(t33.O$120, t33.S$119)
+                     inlined  P =  IRI_ID"...label"  ,  S = cast$400
+                    time         0% fanout         0 input         0 rows
+                    END Node
+                    After test:
+                    0: __ro2sq$122 := Call __ro2sq (t33.O$120)
+                    5: DB.DBA.RDF_LANGUAGE_OF_OBJ$124 := Call DB.DBA.RDF_LANGUAGE_OF_OBJ (__ro2sq$122)
+                    12: if (<c en> = DB.DBA.RDF_LANGUAGE_OF_OBJ$124) then 16 else 17 unkn 17
+                    16: BReturn 1
+                    17: BReturn 0
+                    time         0% fanout         0 input         0 rows
+                    outer {
+                        time         0% fanout         0 input         0 rows
+                        Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:       1.1 Fanout:         0
+                        RDF_QUAD       1.1 rows(t35.O$127)
+                         inlined  P =  IRI_ID"...direct/P18"  ,  S = k_t33.S$437
+                        time         0% fanout         0 input         0 rows
+                      } /* end of outer */
+                    set_ctr$130
+                     out: (t35.O$127)
+                     shadow: ( <none> )
+                    time         0% fanout         0 input         0 rows
+                    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:        12 Fanout:         0
+                    RDF_QUAD        12 rows(t32.O$140)
+                     inlined  P =  IRI_ID"...label"  ,  S = k_t31.S$459
+                    time         0% fanout         0 input         0 rows
+                    END Node
+                    After test:
+                    0: __ro2sq$142 := Call __ro2sq (t32.O$140)
+                    5: DB.DBA.RDF_LANGUAGE_OF_OBJ$144 := Call DB.DBA.RDF_LANGUAGE_OF_OBJ (__ro2sq$142)
+                    12: if (<c en> = DB.DBA.RDF_LANGUAGE_OF_OBJ$144) then 16 else 17 unkn 17
+                    16: BReturn 1
+                    17: BReturn 0
+                    
+                    After code:
+                    0: picture$41 :=  := artm t35.O$127
+                    4: propUrl$42 :=  := artm t30.O$112
+                    8: valUrl$43 :=  := artm t33.S$119
+                    12: propLabel$44 :=  := artm t32.O$140
+                    16: valLabel$45 :=  := artm t33.O$120
+                    20: BReturn 0
+                    time         0% fanout         0 input         0 rows
+                    Precode:
+                      0: __rdf_sqlval_of_obj$154 := Call __rdf_sqlval_of_obj (propUrl$42)
+                      5: __id2in$156 := Call __id2in (valUrl$43)
+                      10: BReturn 0
+                    Sort (__rdf_sqlval_of_obj$154, __id2in$156) -> (propLabel$44, valLabel$45, picture$41)
+                    
+                  }
+              }
+          }
+        time       5.4% fanout         0 input         1 rows
+        top order by read (__rdf_sqlval_of_obj$154, propLabel$44, __id2in$156, valLabel$45, picture$41)
+        
+        After code:
+        0: __ro2sq$179 := Call __ro2sq (picture$41)
+        5: __ro2sq$181 := Call __ro2sq (valLabel$45)
+        10: __ro2sq$183 := Call __ro2sq (propLabel$44)
+        15: propUrl$34 :=  := artm __rdf_sqlval_of_obj$154
+        19: propLabel$35 :=  := artm __ro2sq$183
+        23: valUrl$36 :=  := artm __id2in$156
+        27: valLabel$37 :=  := artm __ro2sq$181
+        31: picture$38 :=  := artm __ro2sq$179
+        35: BReturn 0
+        time         0% fanout         0 input         0 rows
+        Subquery Select(propUrl$34, propLabel$35, valUrl$36, valLabel$37, picture$38)
+      }
+    
+    After code:
+    0: propUrl$192 := Call __ro2sq (propUrl$34)
+    5: propLabel$194 := Call __ro2sq (propLabel$35)
+    10: valUrl$196 := Call __ro2sq (valUrl$36)
+    15: valLabel$198 := Call __ro2sq (valLabel$37)
+    20: picture$200 := Call __ro2sq (picture$38)
+    25: BReturn 0
+    time         0% fanout         0 input         0 rows
+    Select (propUrl$192, propLabel$194, valUrl$196, valLabel$198, picture$200)
+  }
+
+
+ 0 msec 0% cpu,         2 rnd         0 seq         0% same seg         0% same pg 
+Compilation: 11 msec 0 reads         0% read 0 messages         0% clw

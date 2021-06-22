@@ -1,0 +1,20 @@
+ SELECT  __ro2sq ("s_13_6_rbc"."description") AS "description", __ro2sq ("s_13_6_rbc"."date") AS "date", __ro2sq ("s_13_6_rbc"."amount") AS "amount" FROM (SELECT __ro2sq ( "s_13_6_t0"."O") AS "description",
+    __ro2sq ( "s_13_6_t1"."O") AS "date",
+    __ro2sq ( "s_13_6_t2"."O") AS "amount"
+  FROM DB.DBA.RDF_QUAD AS "s_13_6_t0"
+    INNER JOIN DB.DBA.RDF_QUAD AS "s_13_6_t1"
+    ON (
+      "s_13_6_t0"."S" = "s_13_6_t1"."S")
+    INNER JOIN DB.DBA.RDF_QUAD AS "s_13_6_t2"
+    ON (
+      "s_13_6_t0"."S" = "s_13_6_t2"."S"
+      AND 
+      "s_13_6_t1"."S" = "s_13_6_t2"."S")
+  WHERE
+    "s_13_6_t0"."P" = __i2idn ( __bft( 'http://learningsparql.com/ns/expenses#description' , 1))
+    AND 
+    "s_13_6_t1"."P" = __i2idn ( __bft( 'http://learningsparql.com/ns/expenses#date' , 1))
+    AND 
+    "s_13_6_t2"."P" = __i2idn ( __bft( 'http://learningsparql.com/ns/expenses#amount' , 1))
+  ORDER BY __ro2sq ( "s_13_6_t2"."O") ASC
+OPTION (QUIETCAST)) AS "s_13_6_rbc"

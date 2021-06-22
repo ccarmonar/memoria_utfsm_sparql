@@ -1,0 +1,26 @@
+John	Smith	John Smith	
+Heidi	Smith	Heidi Smith	
+Francis	Jones	Francis Jones	
+Jane	Berger	Jane Berger	
+
+  { 
+    time       1.5% fanout         1 input         1 rows
+    time        26% fanout         4 input         1 rows
+    RDF_QUAD         4 rows(t3.S$29, t3.O$28)
+     inlined  P =  IRI_ID"...family-name" 
+    time        73% fanout         1 input         4 rows
+    RDF_QUAD         1 rows(t2.O$32)
+     inlined  P =  IRI_ID"...given-name"  ,  S = t3.S$29
+    
+    After code:
+    0: familyName$34 := Call __ro2sq (t3.O$28)
+    5: givenName$36 := Call __ro2sq (t2.O$32)
+    10: fullName$38 := Call rdf_concat_impl (givenName$36, <c  >, familyName$34)
+    15: BReturn 0
+    time      0.17% fanout         0 input         4 rows
+    Select (givenName$36, familyName$34, fullName$38)
+  }
+
+
+ 0 msec 12% cpu,        13 rnd         3 seq   21.4286% same seg   42.8571% same pg 
+Compilation: 1 msec 0 reads         0% read 0 messages         0% clw

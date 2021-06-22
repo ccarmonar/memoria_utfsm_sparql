@@ -1,0 +1,24 @@
+SELECT __ro2sq ( "s_9_3_t0"."O") AS "artist",
+  __id2in ( "s_9_3_t0"."S") AS "artwork",
+  __ro2sq ( "s_9_3_t1"."O") AS "museum",
+  __ro2sq ( "s_9_3_t2"."O") AS "director"
+FROM DB.DBA.RDF_QUAD AS "s_9_3_t0"
+  INNER JOIN DB.DBA.RDF_QUAD AS "s_9_3_t1"
+  ON (
+    "s_9_3_t0"."S" = "s_9_3_t1"."S")
+  INNER JOIN DB.DBA.RDF_QUAD AS "s_9_3_t2"
+  ON (
+    "s_9_3_t1"."O" = "s_9_3_t2"."S")
+WHERE
+  "s_9_3_t0"."G" = __i2idn ( __bft( 'http://dbpedia.org' , 1))
+  AND 
+  "s_9_3_t0"."P" = __i2idn ( __bft( 'http://dbpedia.org/property/artist' , 1))
+  AND 
+  "s_9_3_t1"."G" = __i2idn ( __bft( 'http://dbpedia.org' , 1))
+  AND 
+  "s_9_3_t1"."P" = __i2idn ( __bft( 'http://dbpedia.org/property/museum' , 1))
+  AND 
+  "s_9_3_t2"."G" = __i2idn ( __bft( 'http://dbpedia.org' , 1))
+  AND 
+  "s_9_3_t2"."P" = __i2idn ( __bft( 'http://dbpedia.org/property/director' , 1))
+OPTION (QUIETCAST)

@@ -1,0 +1,47 @@
+
+  { 
+    time       9.4% fanout         1 input         1 rows
+    time        91% fanout         0 input         1 rows
+    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:     2e-06 Fanout:         0
+    RDF_QUAD_POGS     2e-06 rows(s_44_14_t6.S$29, s_44_14_t6.O$28)
+     inlined  P =  IRI_ID"...representation" 
+    time         0% fanout         0 input         0 rows
+    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:     2e-06 Fanout:         0
+    RDF_QUAD_POGS     2e-06 rows(s_44_14_t4.S$32)
+     inlined  P =  IRI_ID"...grammaticalFeature"  ,  O =  IRI_ID"...Q499327"  ,  S = s_44_14_t6.S$29
+    time         0% fanout         0 input         0 rows
+    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:   9.8e-13 Fanout:         0
+    RDF_QUAD   9.8e-13 rows(s_44_14_t3.O$36, s_44_14_t3.S$35)
+     inlined  P =  IRI_ID"...lexicalForm"  O = k_s_44_14_t4.S$104
+    time         0% fanout         0 input         0 rows
+    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:     2e-06 Fanout:         0
+    RDF_QUAD     2e-06 rows(s_44_14_t2.S$40, s_44_14_t2.O$39)
+     inlined  P =  IRI_ID"...lemma"  ,  S = s_44_14_t3.S$35
+    time         0% fanout         0 input         0 rows
+    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:     2e-06 Fanout:         0
+    RDF_QUAD_POGS     2e-06 rows(s_44_14_t1.S$43)
+     inlined  P =  IRI_ID"...lexicalCategory"  ,  O =  IRI_ID"...Q1084"  ,  S = s_44_14_t2.S$40
+    time         0% fanout         0 input         0 rows
+    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:     2e-06 Fanout:         0
+    RDF_QUAD_POGS     2e-06 rows()
+     inlined  P =  IRI_ID"...grammaticalFeature"  ,  O =  IRI_ID"...Q1775415"  ,  S = k_s_44_14_t3.O$140
+    time         0% fanout         0 input         0 rows
+    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:     2e-06 Fanout:         0
+    RDF_QUAD_POGS     2e-06 rows(s_44_14_t0.S$48)
+     inlined  P =  IRI_ID"...language"  ,  O =  IRI_ID"...Q9288"  ,  S = k_s_44_14_t1.S$153
+    time         0% fanout         0 input         0 rows
+    skip node  1500  <none> set_ctr$64
+    
+    After code:
+    0: word$50 := Call __ro2sq (s_44_14_t6.O$28)
+    5: form$52 := Call __ro2sq (s_44_14_t3.O$36)
+    10: lemma$54 := Call __ro2sq (s_44_14_t2.O$39)
+    15: lexemeId$56 := Call __id2in (s_44_14_t0.S$48)
+    20: BReturn 0
+    time         0% fanout         0 input         0 rows
+    Select (lexemeId$56, lemma$54, form$52, word$50)
+  }
+
+
+ 0 msec 1% cpu,         1 rnd         0 seq         0% same seg         0% same pg 
+Compilation: 4 msec 0 reads         0% read 0 messages         0% clw

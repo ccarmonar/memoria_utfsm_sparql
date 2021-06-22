@@ -1,0 +1,20 @@
+SELECT __id2in ( "s_10_5"."item") AS "item",
+  __ro2sq ( "s_10_5"."quantity") AS "quantity",
+  __ro2sq ( "s_10_5"."cost") AS "cost",
+  "s_10_5"."total" AS "total"
+FROM (
+   SELECT "s_10_4_t0"."S" AS "item",
+      "s_10_4_t0"."O" AS "quantity",
+      "s_10_4_t1"."O" AS "cost",
+      ( "s_10_4_t0"."O" *  "s_10_4_t1"."O") AS "total"
+    FROM DB.DBA.RDF_QUAD AS "s_10_4_t0"
+      INNER JOIN DB.DBA.RDF_QUAD AS "s_10_4_t1"
+      ON (
+        "s_10_4_t0"."S" = "s_10_4_t1"."S")
+    WHERE
+      "s_10_4_t0"."P" = __i2idn ( __bft( 'http://learningsparql.com/ns/demo#quantity' , 1))
+      AND 
+      "s_10_4_t1"."P" = __i2idn ( __bft( 'http://learningsparql.com/ns/demo#costPerItem' , 1))
+OPTION (QUIETCAST)
+    ) AS "s_10_5"
+OPTION (QUIETCAST)

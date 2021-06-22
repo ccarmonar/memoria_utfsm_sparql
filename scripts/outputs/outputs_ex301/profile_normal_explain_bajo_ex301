@@ -1,0 +1,19 @@
+Error: 22007: Function rdf_timezone_impl needs a datetime with some timezone set as its argument
+  { 
+    time     1e+02% fanout         1 input         1 rows
+    time         0% fanout         0 input         1 rows
+    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:         2 Fanout:         0
+    RDF_QUAD         2 rows(t2.O$28)
+     inlined  P =  IRI_ID"...starts" 
+    
+    After code:
+    0: timezoneTest$30 := Call DB.DBA.rdf_timezone_impl (t2.O$28)
+    7: tzTest$32 := Call DB.DBA.rdf_tz_impl (t2.O$28)
+    14: BReturn 0
+    time         0% fanout         0 input         0 rows
+    Select (timezoneTest$30, tzTest$32)
+  }
+
+
+ 0 msec 10% cpu,         1 rnd         1 seq         0% same seg         0% same pg 
+Compilation: 1 msec 0 reads         0% read 0 messages         0% clw

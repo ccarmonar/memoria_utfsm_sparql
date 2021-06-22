@@ -1,0 +1,32 @@
+http://learningsparql.com/ns/data#item693	Heidelberg	
+http://learningsparql.com/ns/data#id1	nodeID://b10004	
+http://learningsparql.com/ns/data#id1	nodeID://b10005	
+http://learningsparql.com/ns/data#id1	nodeID://b10014	
+http://learningsparql.com/ns/data#id1	nodeID://b10015	
+http://learningsparql.com/ns/data#id4	nodeID://b10006	
+http://learningsparql.com/ns/data#id4	nodeID://b10016	
+
+  { 
+    time       1.3% fanout         1 input         1 rows
+    time        21% fanout        12 input         1 rows
+    RDF_QUAD       5.5 rows(s_10_2_t0.O$29, s_10_2_t0.S$28)
+     inlined  P =  IRI_ID"...location" 
+    time        77% fanout  0.583333 input        12 rows
+    END Node
+    After test:
+    0: is_named_iri_id$31 := Call is_named_iri_id (s_10_2_t0.O$29)
+    5: if ( 0  = is_named_iri_id$31) then 9 else 10 unkn 10
+    9: BReturn 1
+    10: BReturn 0
+    
+    After code:
+    0: s$33 := Call __id2in (s_10_2_t0.S$28)
+    5: city$35 := Call __ro2sq (s_10_2_t0.O$29)
+    10: BReturn 0
+    time      0.24% fanout         0 input         7 rows
+    Select (s$33, city$35)
+  }
+
+
+ 0 msec 23% cpu,         2 rnd        11 seq         0% same seg         0% same pg 
+Compilation: 1 msec 0 reads         0% read 0 messages         0% clw

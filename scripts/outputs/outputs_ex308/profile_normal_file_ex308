@@ -1,0 +1,49 @@
+Error: 42001: SR185: Undefined procedure DB.DBA.http://jena.hpl.hp.com/ARQ/function#localname.
+  { 
+    time        82% fanout         1 input         1 rows
+      clear: (<V set_ctr$64 in>)
+    s# 67 65 cluster outer seq start, set no <V set_ctr$64 in>    
+    save ctx:()
+    time        18% fanout         1 input         1 rows
+      clear: (<V set_no$31 i>)
+    s# 76 55 cluster outer seq start, set no <V set_no$31 i>    
+    save ctx:()
+    time         0% fanout         0 input         1 rows
+    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:     5e+06 Fanout:         0
+      clear: (<V t3.S$33 rn>, <V DB.DBA.http://jena.hpl.hp.com/ARQ/function#namespace$40 x>, <V DB.DBA.http://jena.hpl.hp.com/ARQ/function#localname$38 x>, <V __id2in$36 a>)
+      clear on continue: (<V t3.S$33 rn>, <V DB.DBA.http://jena.hpl.hp.com/ARQ/function#namespace$40 x>, <V DB.DBA.http://jena.hpl.hp.com/ARQ/function#localname$38 x>, <V __id2in$36 a>)
+    s# 85 32 from DB.DBA.RDF_QUAD by RDF_QUAD      5e+06 rows   
+    Key RDF_QUAD  ASC  (<V t3.S$33 rn>)
+    
+    
+    After code:
+      0: <V __id2in$36 a> := Call __id2in (<V t3.S$33 rn>)
+      5: <V DB.DBA.http://jena.hpl.hp.com/ARQ/function#localname$38 x> := Call DB.DBA.http://jena.hpl.hp.com/ARQ/function#localname (<V __id2in$36 a>)
+      12: <V DB.DBA.http://jena.hpl.hp.com/ARQ/function#namespace$40 x> := Call DB.DBA.http://jena.hpl.hp.com/ARQ/function#namespace (<V __id2in$36 a>)
+      19: BReturn 0
+    time         0% fanout         0 input         0 rows
+      clear: (<V sNamespace$30 x>, <V sLocalname$29 x>, <V s$28 rn>)$33 () $38 () $40 () 
+    s# 95 42 Distinct (HASH) set no <r set_no$31 via  Set85>(<V t3.S$33 rn>, <V DB.DBA.http://jena.hpl.hp.com/ARQ/function#localname$38 x>, <V DB.DBA.http://jena.hpl.hp.com/ARQ/function#namespace$40 x>)
+    After code:
+      0: <V s$28 rn> :=  := artm <r t3.S$33 via  Set95>
+      4: <V sLocalname$29 x> :=  := artm <r DB.DBA.http://jena.hpl.hp.com/ARQ/function#localname$38 via  Set95>
+      8: <V sNamespace$30 x> :=  := artm <r DB.DBA.http://jena.hpl.hp.com/ARQ/function#namespace$40 via  Set95>
+      12: BReturn 0
+    time         0% fanout         0 input         0 rows
+      clear: (<V s$56 a>)$31 (42 32 55 ) $28 (42 ) 
+    s# 106 48 Subquery Select(<V s$28 rn>, <V sLocalname$29 x>, <V sNamespace$30 x>)
+      set no: <r set_no$31 via  Set95 Set85>
+    After code:
+      0: <V s$56 a> := Call __ro2sq (<V s$28 rn>)
+      5: BReturn 0
+    time         0% fanout         0 input         0 rows
+    $64 (48 42 32 55 65 ) $56 (48 ) $29 (48 42 ) $30 (48 42 ) 
+    s# 113 58 Select (<V s$56 a>, <V sLocalname$29 x>, <V sNamespace$30 x>)
+      set no: <r set_ctr$64 via  Set106>
+  }
+Warning: You might have a Cartesian product.
+
+
+
+ 4 msec 64% cpu,         5 rnd       998 seq         0% same seg   33.3333% same pg 
+Compilation: 1 msec 0 reads         0% read 0 messages         0% clw

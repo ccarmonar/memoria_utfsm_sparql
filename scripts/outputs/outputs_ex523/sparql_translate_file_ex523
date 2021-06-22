@@ -1,0 +1,37 @@
+ DB.DBA.RDF_DICT_OF_TRIPLES_TO_THREE_COLS ((SELECT TOP 1  DB.DBA.SPARQL_CONSTRUCT (
+      vector (
+        vector (
+         1,
+         0,
+         3,
+         __i2id ( UNAME'http://learningsparql.com/ns/addressbook#hasAunt' ),
+         1,
+         1)),
+      vector (
+       "s_17_11_t1"."S",
+       "s_17_11_t3"."S"),
+      vector (),
+     1) AS "callret-0"
+FROM DB.DBA.RDF_QUAD AS "s_17_11_t1"
+  INNER JOIN DB.DBA.RDF_QUAD AS "s_17_11_t2"
+  ON (
+    "s_17_11_t1"."O" = "s_17_11_t2"."S")
+  INNER JOIN DB.DBA.RDF_QUAD AS "s_17_11_t3"
+  ON (
+    "s_17_11_t2"."O" = "s_17_11_t3"."O")
+  INNER JOIN DB.DBA.RDF_QUAD AS "s_17_11_t4"
+  ON (
+    "s_17_11_t3"."S" = "s_17_11_t4"."S")
+WHERE
+  "s_17_11_t1"."P" = __i2idn ( __bft( 'http://learningsparql.com/ns/addressbook#hasParent' , 1))
+  AND 
+  "s_17_11_t2"."P" = __i2idn ( __bft( 'http://learningsparql.com/ns/addressbook#hasParent' , 1))
+  AND 
+  "s_17_11_t3"."P" = __i2idn ( __bft( 'http://learningsparql.com/ns/addressbook#hasParent' , 1))
+  AND 
+  "s_17_11_t4"."P" = __i2idn ( __bft( 'http://learningsparql.com/ns/addressbook#gender' , 1))
+  AND 
+  "s_17_11_t4"."O" = __i2idn ( __bft( 'http://learningsparql.com/ns/data#female' , 1))
+  AND 
+  not (( "s_17_11_t1"."O" =  "s_17_11_t3"."S"))
+OPTION (QUIETCAST)))

@@ -1,0 +1,72 @@
+nodeID://b43137	http://www.w3.org/2000/01/rdf-schema#comment	Location value must be a URI	
+nodeID://b43140	http://spinrdf.org/spin#violationRoot	http://learningsparql.com/ns/data#id1	
+nodeID://b43142	http://www.w3.org/1999/02/22-rdf-syntax-ns#type	http://spinrdf.org/spin#ConstraintViolation	
+nodeID://b43142	http://spinrdf.org/spin#violationRoot	http://learningsparql.com/ns/data#id4	
+nodeID://b43142	http://www.w3.org/2000/01/rdf-schema#comment	Location value must be a URI	
+nodeID://b43143	http://www.w3.org/1999/02/22-rdf-syntax-ns#type	http://spinrdf.org/spin#ConstraintViolation	
+nodeID://b43143	http://spinrdf.org/spin#violationRoot	http://learningsparql.com/ns/data#id4	
+nodeID://b43143	http://www.w3.org/2000/01/rdf-schema#comment	Location value must be a URI	
+nodeID://b43140	http://www.w3.org/1999/02/22-rdf-syntax-ns#type	http://spinrdf.org/spin#ConstraintViolation	
+nodeID://b43137	http://spinrdf.org/spin#violationRoot	http://learningsparql.com/ns/data#item693	
+nodeID://b43140	http://www.w3.org/2000/01/rdf-schema#comment	Location value must be a URI	
+nodeID://b43141	http://www.w3.org/1999/02/22-rdf-syntax-ns#type	http://spinrdf.org/spin#ConstraintViolation	
+nodeID://b43138	http://www.w3.org/1999/02/22-rdf-syntax-ns#type	http://spinrdf.org/spin#ConstraintViolation	
+nodeID://b43141	http://www.w3.org/2000/01/rdf-schema#comment	Location value must be a URI	
+nodeID://b43138	http://www.w3.org/2000/01/rdf-schema#comment	Location value must be a URI	
+nodeID://b43139	http://www.w3.org/1999/02/22-rdf-syntax-ns#type	http://spinrdf.org/spin#ConstraintViolation	
+nodeID://b43139	http://spinrdf.org/spin#violationRoot	http://learningsparql.com/ns/data#id1	
+nodeID://b43139	http://www.w3.org/2000/01/rdf-schema#comment	Location value must be a URI	
+nodeID://b43138	http://spinrdf.org/spin#violationRoot	http://learningsparql.com/ns/data#id1	
+nodeID://b43137	http://www.w3.org/1999/02/22-rdf-syntax-ns#type	http://spinrdf.org/spin#ConstraintViolation	
+
+  { 
+    Precode:
+      0:   { 
+          time      0.58% fanout         1 input         1 rows
+          time         8% fanout         1 input         1 rows
+          Precode:
+            0: vector$27 := Call vector ( 2 ,  0 ,  3 ,  IRI_ID"...type" ,  3 ,  IRI_ID"...ConstraintViolation" )
+            5: DB.DBA.RDF_MAKE_LONG_OF_SQLVAL$29 := Call DB.DBA.RDF_MAKE_LONG_OF_SQLVAL (<c Location value must be a URI>)
+            12: vector$31 := Call vector ( 2 ,  0 ,  3 ,  IRI_ID"...comment" ,  3 , DB.DBA.RDF_MAKE_LONG_OF_SQLVAL$29)
+            17: vector$33 := Call vector ( 2 ,  0 ,  3 ,  IRI_ID"...violationRoot" ,  1 ,  0 )
+            22: vector$35 := Call vector (vector$27, vector$31, vector$33)
+            27: vector$37 := Call vector ()
+            32: BReturn 0
+          fork {
+              time        16% fanout        12 input         1 rows
+              RDF_QUAD       5.5 rows(s_18_9_t3.O$41, s_18_9_t3.S$40)
+               inlined  P =  IRI_ID"...location" 
+              time        74% fanout         0 input        12 rows
+              END Node
+              After test:
+              0: is_named_iri_id$43 := Call is_named_iri_id (s_18_9_t3.O$41)
+              5: if ( 0  = is_named_iri_id$43) then 9 else 10 unkn 10
+              9: BReturn 1
+              10: BReturn 0
+              
+              After code:
+              0: vector$45 := Call vector (s_18_9_t3.S$40)
+              5: if (user_aggr_notfirst$50  =  1 ) then 20 else 9 unkn 9
+              9: user_aggr_notfirst$50  :=  := artm  1 
+              13: user_aggr_ret$52 := Call DB.DBA.SPARQL_CONSTRUCT_INIT (user_aggr_env$51 )
+              20: user_aggr_ret$52 := Call DB.DBA.SPARQL_CONSTRUCT_ACC (user_aggr_env$51 , vector$35, vector$45, vector$37,  1 )
+              27: BReturn 0
+            }
+          time       1.6% fanout         1 input         1 rows
+          skip node  1  <none> set_ctr$47
+          
+          After code:
+          0: callret-0$53 := Call DB.DBA.SPARQL_CONSTRUCT_FIN (user_aggr_env$51 )
+          7: BReturn 0
+          time      0.25% fanout         0 input         1 rows
+          Subquery Select(callret-0$53)
+        }
+      
+      8:  <none>  := Call DB.DBA.RDF_DICT_OF_TRIPLES_TO_THREE_COLS (scalar$126 )
+      15: BReturn 0
+    END Node
+  }
+
+
+ 1 msec 37% cpu,         1 rnd        11 seq         0% same seg         0% same pg 
+Compilation: 1 msec 0 reads         0% read 0 messages         0% clw

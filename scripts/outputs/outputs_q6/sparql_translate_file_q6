@@ -1,0 +1,22 @@
+SELECT __ro2sq ( "s_10_8_t3"."O") AS "givenName",
+  __ro2sq ( "s_10_8_t4"."O") AS "familyName",
+  __ro2sq ( "s_10_6"."oDate") AS "oDate"
+FROM DB.DBA.RDF_QUAD AS "s_10_8_t3"
+  INNER JOIN DB.DBA.RDF_QUAD AS "s_10_8_t4"
+  ON (
+    "s_10_8_t4"."S" = "s_10_8_t3"."S")
+  LEFT OUTER JOIN (
+    SELECT "s_10_6_t0"."S" AS "person",
+      "s_10_6_t0"."O" AS "oDate"
+    FROM DB.DBA.RDF_QUAD AS "s_10_6_t0"
+    WHERE
+      "s_10_6_t0"."P" = __i2idn ( __bft( 'http://www.snee.com/hr/completedOrientation' , 1))) AS "s_10_6"
+  ON (
+    "s_10_8_t4"."S" = "s_10_6"."person"
+    AND 
+    "s_10_8_t3"."S" = "s_10_6"."person")
+WHERE
+  "s_10_8_t3"."P" = __i2idn ( __bft( 'http://www.w3.org/2006/vcard/ns#given-name' , 1))
+  AND 
+  "s_10_8_t4"."P" = __i2idn ( __bft( 'http://www.w3.org/2006/vcard/ns#family-name' , 1))
+OPTION (QUIETCAST)

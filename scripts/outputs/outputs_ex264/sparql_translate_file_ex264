@@ -1,0 +1,11 @@
+SELECT __ro2sq ( "s_11_3"."o") AS "o",
+  __rdf_sqlval_of_obj /*l*/ ( "s_11_3"."decimalTest") AS "decimalTest"
+FROM (
+   SELECT "s_11_2_t0"."S" AS "s",
+      "s_11_2_t0"."P" AS "p",
+      "s_11_2_t0"."O" AS "o",
+      DB.DBA.rdf_strdt_impl ( __rdf_strsqlval ( "s_11_2_t0"."O", 0),  __bft ( __bft( 'http://www.w3.org/2001/XMLSchema#decimal' , 1), 1)) AS "decimalTest"
+    FROM DB.DBA.RDF_QUAD AS "s_11_2_t0"
+OPTION (QUIETCAST)
+    ) AS "s_11_3"
+OPTION (QUIETCAST)

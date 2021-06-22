@@ -1,0 +1,18 @@
+SELECT __ro2sq ( "s_13_3"."label") AS "label",
+  "s_13_3"."startsTest" AS "startsTest",
+  "s_13_3"."endsTest" AS "endsTest",
+  "s_13_3"."containsTest" AS "containsTest",
+  "s_13_3"."regexTest" AS "regexTest"
+FROM (
+   SELECT "s_13_2_t0"."S" AS "s",
+      "s_13_2_t0"."O" AS "label",
+      rdf_strstarts_impl ( __ro2lo ( "s_13_2_t0"."O"),  DB.DBA.RDF_MAKE_LONG_OF_SQLVAL ( '12' )) AS "startsTest",
+      rdf_strends_impl ( __ro2lo ( "s_13_2_t0"."O"),  DB.DBA.RDF_MAKE_LONG_OF_SQLVAL ( 'ing' )) AS "endsTest",
+      rdf_contains_impl ( __ro2lo ( "s_13_2_t0"."O"),  DB.DBA.RDF_MAKE_LONG_OF_SQLVAL ( ' ' )) AS "containsTest",
+      rdf_regex_impl ( __ro2sq ( "s_13_2_t0"."O"),  '\\d{3}' ) AS "regexTest"
+    FROM DB.DBA.RDF_QUAD AS "s_13_2_t0"
+    WHERE
+      "s_13_2_t0"."P" = __i2idn ( __bft( 'http://www.w3.org/2000/01/rdf-schemalabel' , 1))
+OPTION (QUIETCAST)
+    ) AS "s_13_3"
+OPTION (QUIETCAST)

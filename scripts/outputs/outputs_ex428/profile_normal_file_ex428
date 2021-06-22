@@ -1,0 +1,62 @@
+http://learningsparql.com/ns/data#m2	http://www.w3.org/1999/02/22-rdf-syntax-ns#type	http://learningsparql.com/ns/demo#TexasGuitarPlayer	
+http://learningsparql.com/ns/data#m6	http://www.w3.org/1999/02/22-rdf-syntax-ns#type	http://learningsparql.com/ns/demo#TexasGuitarPlayer	
+
+  { 
+    Precode:
+      0:   { 
+          time       1.3% fanout         1 input         1 rows
+            clear: (<V ext_sets$59 i>, <V set_ctr$41 in>)
+          s# 60 42 cluster outer seq start, set no <V set_ctr$41 in>    
+          save ctx:()
+          time       4.5% fanout         1 input         1 rows
+          Precode:
+            0: <V vector$27 x> := Call vector ( 1 ,  0 ,  3 ,  IRI_ID"...type" ,  3 ,  IRI_ID"...TexasGuitarPlayer" )
+            5: <V vector$29 x> := Call vector (<V vector$27 x>)
+            10: <V vector$31 x> := Call vector ()
+            15: BReturn 0
+            clear: (<V vector$31 x>, <V vector$29 x>, <V vector$27 x>)$27 (43 ) 
+          s# 93 43 Fork 43 {  
+              time        22% fanout         3 input         1 rows
+                clear: (<V s_12_7_t2.S$34 rn>)
+                clear on continue: (<V s_12_7_t2.S$34 rn>)
+              s# 71 33 from DB.DBA.RDF_QUAD by RDF_QUAD_POGS          3 rows   
+              Key RDF_QUAD_POGS  ASC  (<V s_12_7_t2.S$34 rn>)
+               P =  IRI_ID"...plays"  ,  O =  IRI_ID"...Guitar" 
+              
+              time        68% fanout         0 input         3 rows
+              Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:      0.67 Fanout:         0
+                clear: (<V s_12_7_t1.S$37 rn>, <V user_aggr_ret$46 x>, <V vector$39 x>)
+                clear on continue: (<V s_12_7_t1.S$37 rn>, <V user_aggr_ret$46 x>, <V vector$39 x>)$34 () 
+              s# 81 36 from DB.DBA.RDF_QUAD by RDF_QUAD       0.67 rows   
+              Key RDF_QUAD  ASC  (<V s_12_7_t1.S$37 rn>)
+               inlined  P =  IRI_ID"...stateOfBirth"  ,  S = <V s_12_7_t2.S$34 rn> ,  O =  IRI_ID"...TX" 
+              
+              After code:
+                0: <V vector$39 x> := Call vector (<V s_12_7_t1.S$37 rn>)
+                5: if (user_aggr_notfirst$44  =  1 ) then 20 else 9 unkn 9
+                9: user_aggr_notfirst$44  :=  := artm  1 
+                13: <V user_aggr_ret$46 x> := Call DB.DBA.SPARQL_CONSTRUCT_INIT (user_aggr_env$45 )
+                20: <V user_aggr_ret$46 x> := Call DB.DBA.SPARQL_CONSTRUCT_ACC (user_aggr_env$45 , <r vector$29 via  Set81 Set71>, <V vector$39 x>, <r vector$31 via  Set81 Set71>,  1 )
+                27: BReturn 0
+          }
+          time       4.1% fanout         1 input         1 rows
+            clear: (<V callret-0$47 x>)
+          s# 100 57 skip node  1  <none> <V set_ctr$41 in>
+          After code:
+            0: <V callret-0$47 x> := Call DB.DBA.SPARQL_CONSTRUCT_FIN (user_aggr_env$45 )
+            7: BReturn 0
+          time       0.6% fanout         0 input         1 rows
+          $41 (57 43 42 ) $47 (57 ) $59 (57 43 42 ) 
+          s# 108 49 Subquery Select(<V callret-0$47 x>)
+            set no: <r set_ctr$41 via  Set100>
+        }
+      
+      8:  <none>  := Call DB.DBA.RDF_DICT_OF_TRIPLES_TO_THREE_COLS (scalar$116 )
+      15: BReturn 0
+    
+    END Node
+  }
+
+
+ 0 msec 19% cpu,         6 rnd         2 seq   28.5714% same seg   14.2857% same pg 
+Compilation: 2 msec 0 reads         0% read 0 messages         0% clw

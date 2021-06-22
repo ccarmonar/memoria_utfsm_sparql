@@ -1,0 +1,43 @@
+
+  { 
+    time       7.8% fanout         1 input         1 rows
+    time        92% fanout         0 input         1 rows
+    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:     2e-06 Fanout:         0
+    Precode:
+      0: __rdflit$27 := Call __rdflit (rdflit1422)
+      5: BReturn 0
+    RDF_QUAD_POGS     2e-06 rows(s_52_12_t3.S$30)
+     P =  IRI_ID"...inLanguage"  ,  O = rdflit1422
+    time         0% fanout         0 input         0 rows
+    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:         1 Fanout:         0
+    RDF_QUAD         1 rows(s_52_12_t2.O$33)
+     inlined  P =  IRI_ID"...about"  ,  S = s_52_12_t3.S$30
+    time         0% fanout         0 input         0 rows
+    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:       0.3 Fanout:         0
+    RDF_QUAD       0.3 rows(s_55_15_t5.S$36)
+     inlined  P =  IRI_ID"...direct/P31"  ,  S = k_s_52_12_t2.O$93 ,  O =  IRI_ID"...Q5" 
+    time         0% fanout         0 input         0 rows
+    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:   0.00078 Fanout:         0
+    RDF_QUAD_POGS   0.00078 rows(s_46_4_t0.S$39)
+     inlined  P =  IRI_ID"...direct/P27"  ,  O =  IRI_ID"...Q843"  ,  S = k_s_52_12_t2.O$107
+    time         0% fanout         0 input         0 rows
+    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:      0.18 Fanout:         0
+    RDF_QUAD_POGS      0.18 rows(s_55_15_t4.S$42)
+     inlined  P =  IRI_ID"...direct/P21"  ,  O =  IRI_ID"...Q6581072"  ,  S = s_46_4_t0.S$39
+    time         0% fanout         0 input         0 rows
+    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:     0.077 Fanout:         0
+    RDF_QUAD_POGS     0.077 rows()
+     inlined  P =  IRI_ID"...direct/P106"  ,  O =  IRI_ID"...Q33999"  ,  S = s_55_15_t4.S$42
+    time         0% fanout         0 input         0 rows
+    skip node  5000  <none> set_ctr$54
+    
+    After code:
+    0: sitelink$46 := Call __id2in (s_52_12_t3.S$30)
+    5: BReturn 0
+    time         0% fanout         0 input         0 rows
+    Select (sitelink$46)
+  }
+
+
+ 0 msec 0% cpu,         1 rnd         0 seq         0% same seg         0% same pg 
+Compilation: 8 msec 0 reads         0% read 0 messages         0% clw
