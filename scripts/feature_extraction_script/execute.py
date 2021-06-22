@@ -10,7 +10,7 @@ if not os.path.exists(os.getcwd()+'/scripts/feature_extraction_script/returns/')
 	os.makedirs(os.getcwd()+'/scripts/feature_extraction_script/returns/')
 
 
-def execute(profile_sparql,profile_low_explain):
+def execute(profile_sparql, profile_low_explain):
 	operators = MainCurlyBrackets(profile_sparql)
 	operators_low_explain = MainCurlyBrackets(profile_low_explain)
 	operators = GroupOperators(operators, operators_low_explain)
@@ -49,6 +49,7 @@ def test_print():
 for i in path_profiles:
 	if os.path.isdir(os.getcwd()+"/scripts/outputs/"+i):
 		filename = "_".join(i.split("_")[1:])
+		print("filename: ",filename)
 		profile_normal = open(os.getcwd()+"/scripts/outputs/outputs_"+filename+"/profile_normal_file_"+filename, 'r', encoding = 'latin-1').read()
 		profile_explain_bajo = open(os.getcwd() + "/scripts/outputs/outputs_" + filename + "/profile_normal_explain_bajo_" + filename, 'r', encoding = 'latin-1').read()
 		operators, predicates_list = execute(profile_normal, profile_explain_bajo)
