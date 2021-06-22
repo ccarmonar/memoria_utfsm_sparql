@@ -9,12 +9,12 @@
     Subquery 33 
       { 
         time        90% fanout         0 input         1 rows
-        Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:     2e-06 Fanout:         0
-        RDF_QUAD_POGS     2e-06 rows(t17.O$43, t17.S$42)
+        Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:   2.9e-06 Fanout:         0
+        RDF_QUAD_POGS   2.9e-06 rows(t17.O$43, t17.S$42)
          inlined  P =  IRI_ID"...prop/P36" 
         time         0% fanout         0 input         0 rows
-        Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:   7.4e-12 Fanout:         0
-        RDF_QUAD_POGS   7.4e-12 rows(t18.O$47, t18.S$46)
+        Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:   2.9e-11 Fanout:         0
+        RDF_QUAD_POGS   2.9e-11 rows(t18.O$47, t18.S$46)
          inlined  P =  IRI_ID"...statement/P36"  S = cast$193
         time         0% fanout         0 input         0 rows
         Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:       1.1 Fanout:         0
@@ -30,7 +30,7 @@
           16: param_row$66 :=  := artm vector$31 
           20: expected_vars$68 :=  := artm vector$29 
           24: proc_ctr$54 :=  := artm  0 
-          28:  <none>  := Call __reset_temp ( 139746102239120 )
+          28:  <none>  := Call __reset_temp ( 139717169408112 )
           33:  <proc table>  := Call DB.DBA.SPARQL_SINV_IMP (<tag 182 flag 1 c http://wikiba.se/ontology#label>, vector$27 , <c  SELECT ?stubvar28
            WHERE {  <http://www.bigdata.com/rdf#serviceParam> <http://wikiba.se/ontology#language> "en" . }>, <tag 225 c >, vector$31 , vector$29 )
           40: BReturn 0
@@ -47,8 +47,8 @@
             time         0% fanout         0 input         0 rows
           } /* end of outer */
         set_ctr$83
-         out: (in_iter$76, t20.O$80)
-         shadow: (in_iter$270,  <none> )
+         out: (t20.O$80, in_iter$76)
+         shadow: ( <none> , in_iter$270)
         time         0% fanout         0 input         0 rows
         outer {
             time         0% fanout         0 input         0 rows
@@ -126,7 +126,7 @@
         time         0% fanout         0 input         0 rows
         Distinct (t17.S$42, t19.S$51, t19.O$50, DB.DBA.RDF_OBJ_OF_LONG$130)
         time         0% fanout         0 input         0 rows
-        skip node  1000  <none> set_no$40
+        skip node  300  <none> set_no$40
         
         After code:
         0: country$34 :=  := artm t17.S$42
@@ -152,4 +152,4 @@
 
 
  0 msec 1% cpu,         1 rnd         0 seq         0% same seg         0% same pg 
-Compilation: 5 msec 0 reads         0% read 0 messages         0% clw
+Compilation: 6 msec 0 reads         0% read 0 messages         0% clw

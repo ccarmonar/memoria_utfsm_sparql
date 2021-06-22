@@ -1,26 +1,26 @@
 http://www.openlinksw.com/schemas/virtrdf#QuadMapFormat	
 http://www.openlinksw.com/schemas/virtrdf#QuadStorage	
-http://www.openlinksw.com/schemas/virtrdf#array-of-QuadMapFormat	
+http://www.openlinksw.com/schemas/virtrdf#array-of-QuadMap	
 http://www.openlinksw.com/schemas/virtrdf#QuadMap	
+http://www.openlinksw.com/schemas/virtrdf#array-of-QuadMapFormat	
 http://www.openlinksw.com/schemas/virtrdf#QuadMapValue	
+http://www.openlinksw.com/schemas/virtrdf#array-of-QuadMapATable	
 http://www.openlinksw.com/schemas/virtrdf#array-of-QuadMapColumn	
 http://www.openlinksw.com/schemas/virtrdf#QuadMapColumn	
-http://www.openlinksw.com/schemas/virtrdf#array-of-QuadMapATable	
-http://www.openlinksw.com/schemas/virtrdf#QuadMapATable	
 http://www.openlinksw.com/schemas/virtrdf#QuadMapFText	
+http://www.openlinksw.com/schemas/virtrdf#QuadMapATable	
 http://www.openlinksw.com/schemas/virtrdf#array-of-string	
-http://www.openlinksw.com/schemas/virtrdf#array-of-QuadMap	
-http://www.w3.org/2002/07/owl#SymmetricProperty	
-http://www.w3.org/2002/07/owl#FunctionalProperty	
 http://www.w3.org/1999/02/22-rdf-syntax-ns#Property	
+http://www.w3.org/2000/01/rdf-schema#Class	
+http://www.w3.org/ns/sparql-service-description#Service	
+http://www.w3.org/2002/07/owl#AnnotationProperty	
 http://www.w3.org/2002/07/owl#Class	
 http://www.w3.org/2002/07/owl#Ontology	
-http://www.w3.org/2000/01/rdf-schema#Class	
 http://www.w3.org/2002/07/owl#OntologyProperty	
-http://www.w3.org/2002/07/owl#AnnotationProperty	
+http://learningsparql.com/ns/addressbook#Musician	
 
   { 
-    time       1.3% fanout         1 input         1 rows
+    time       1.4% fanout         1 input         1 rows
       clear: (<V set_ctr$57 in>)
     s# 60 58 cluster outer seq start, set no <V set_ctr$57 in>    
     save ctx:()
@@ -28,24 +28,24 @@ http://www.w3.org/2002/07/owl#AnnotationProperty
     s# 69 27 Subquery 27 
       multistate set no = <V set_no$29 i>
       { 
-        time        21% fanout      1000 input         1 rows
+        time        18% fanout      1000 input         1 rows
         Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:   2.5e+05 Fanout:     1e+03
           clear: (<V s_15_3_t0.O$31 an>)
           clear on continue: (<V s_15_3_t0.O$31 an>)
-        s# 73 30 from DB.DBA.RDF_QUAD by RDF_QUAD_POGS    2.5e+05 rows   
-        Key RDF_QUAD_POGS  ASC  (<V s_15_3_t0.O$31 an>)
+        s# 73 30 from DB.DBA.RDF_QUAD by RDF_QUAD    2.5e+05 rows   
+        Key RDF_QUAD  ASC  (<V s_15_3_t0.O$31 an>)
          inlined  P =  IRI_ID"...type" 
         
-        time        75% fanout      0.09 input      1000 rows
+        time        77% fanout     0.034 input      1000 rows
         
         s# 83 33 Distinct (HASH) set no <r set_no$29 via  Set73>(<V s_15_3_t0.O$31 an>)
-        time       2.4% fanout         1 input        90 rows
+        time       2.2% fanout         1 input        34 rows
           clear: (<V Concept$28 an>)$31 (33 ) 
         s# 91 47 skip node  100  <none> <r set_no$29 via  Set83 Set73>
         After code:
           0: <V Concept$28 an> :=  := artm <r s_15_3_t0.O$31 via  Set91 Set83>
           4: BReturn 0
-        time      0.38% fanout         0 input        90 rows
+        time      0.39% fanout         0 input        34 rows
         
         s# 69 39 Subquery Select(<V Concept$28 an>)
           set no: <r set_no$29 via  Set91 Set83 Set73>
@@ -54,7 +54,7 @@ http://www.w3.org/2002/07/owl#AnnotationProperty
     After code:
       0: <V Concept$49 a> := Call __ro2sq (<V Concept$28 an>)
       5: BReturn 0
-    time      0.36% fanout         0 input        90 rows
+    time      0.32% fanout         0 input        34 rows
     $49 (27 ) $57 (27 58 ) 
     s# 107 51 Select (<V Concept$49 a>)
       set no: <r set_ctr$57 via  Set69>
@@ -63,5 +63,5 @@ Warning: You might have a Cartesian product.
 
 
 
- 1 msec 45% cpu,        50 rnd       998 seq         0% same seg   43.1373% same pg 
-Compilation: 0 msec 0 reads         0% read 0 messages         0% clw
+ 1 msec 36% cpu,        18 rnd       998 seq         0% same seg   57.8947% same pg 
+Compilation: 1 msec 0 reads         0% read 0 messages         0% clw

@@ -1,30 +1,30 @@
-http://www.wikidata.org/entity/Q54540		131017			
-http://www.wikidata.org/entity/Q54670		236427			
-http://www.wikidata.org/entity/Q55163		76751			
-http://www.wikidata.org/entity/Q55415		146072			
-http://www.wikidata.org/entity/Q55733		113595			
-http://www.wikidata.org/entity/Q55915		89487			
-http://www.wikidata.org/entity/Q55924		138314			
-http://www.wikidata.org/entity/Q56220		229007			
-http://www.wikidata.org/entity/Q56660		154365			
-http://www.wikidata.org/entity/Q57085		100373			
-http://www.wikidata.org/entity/Q57160		140613			
-http://www.wikidata.org/entity/Q57168		1671337			
-http://www.wikidata.org/entity/Q57187		257301			
-http://www.wikidata.org/entity/Q57249		143089			
-http://www.wikidata.org/entity/Q57274		135215			
-http://www.wikidata.org/entity/Q57279		80238			
-http://www.wikidata.org/entity/Q57288		151828			
-http://www.wikidata.org/entity/Q57298		75134			
-http://www.wikidata.org/entity/Q57298		75135			
-http://www.wikidata.org/entity/Q57306		159752			
+http://www.wikidata.org/entity/Q1149		100796			
+http://www.wikidata.org/entity/Q1149		100796			
+http://www.wikidata.org/entity/Q298649		105612			
+http://www.wikidata.org/entity/Q827397		117058			
+http://www.wikidata.org/entity/Q368		139602			
+http://www.wikidata.org/entity/Q368		139602			
+http://www.wikidata.org/entity/Q859		142162			
+http://www.wikidata.org/entity/Q859		142162			
+http://www.wikidata.org/entity/Q1228		149682			
+http://www.wikidata.org/entity/Q1228		149682			
+http://www.wikidata.org/entity/Q997		149784			
+http://www.wikidata.org/entity/Q997		149784			
+http://www.wikidata.org/entity/Q873		158564			
+http://www.wikidata.org/entity/Q873		158564			
+http://www.wikidata.org/entity/Q853		159951			
+http://www.wikidata.org/entity/Q853		159951			
+http://www.wikidata.org/entity/Q297		163925			
+http://www.wikidata.org/entity/Q297		163925			
+http://www.wikidata.org/entity/Q501		1670866			
+http://www.wikidata.org/entity/Q501		1670866			
 
   { 
-    time   1.1e-07% fanout         1 input         1 rows
+    time   5.8e-08% fanout         1 input         1 rows
       clear: (<V set_ctr$106 in>)
     s# 112 107 cluster outer seq start, set no <V set_ctr$106 in>    
     save ctx:()
-    time   1.6e-05% fanout      1000 input         1 rows
+    time     9e-07% fanout      1000 input         1 rows
     Precode:
       0: vector$27  := Call vector (<DB_NULL>, <DB_NULL>, <DB_NULL>, <DB_NULL>)
       5: vector$29  := Call vector (<c stubvar15>)
@@ -32,11 +32,11 @@ http://www.wikidata.org/entity/Q57306		159752
       15: BReturn 0
       clear: (<V s_44_14_t5.O$34 an>, <V s_44_14_t5.S$35 rn>)
       clear on continue: (<V s_44_14_t5.O$34 an>, <V s_44_14_t5.S$35 rn>)
-    s# 121 33 from DB.DBA.RDF_QUAD by RDF_QUAD    2.2e+03 rows   
-    Key RDF_QUAD  ASC  (<V s_44_14_t5.S$35 rn>, <V s_44_14_t5.O$34 an>)
+    s# 121 33 from DB.DBA.RDF_QUAD by RDF_QUAD_POGS    2.2e+03 rows   
+    Key RDF_QUAD_POGS  ASC  (<V s_44_14_t5.S$35 rn>, <V s_44_14_t5.O$34 an>)
      inlined  P =  IRI_ID"...direct/P1741" 
     
-    time   0.00073% fanout         1 input      1000 rows
+    time   0.00065% fanout         1 input      1000 rows
     Precode:
       0: <V item$37 a> := Call __id2in (<V s_44_14_t5.S$35 rn>)
       5: <V gtaa$39 a> := Call __ro2sq (<V s_44_14_t5.O$34 an>)
@@ -48,8 +48,8 @@ http://www.wikidata.org/entity/Q57306		159752
     s# 141 41 Subquery 41 
       multistate set no = <V set_no$45 i>
       { 
-        time   2.4e-05% fanout     1.013 input      1000 rows
-        Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:        62 Fanout:         1
+        time   4.2e-05% fanout     1.186 input      1000 rows
+        Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:        62 Fanout:       1.2
           clear: (<V s_43_10_t0.O$47 an>, <V s_43_10_t0.S$48 rn>)
           clear on continue: (<V s_43_10_t0.S$48 rn>, <V s_43_10_t0.O$47 an>)$35 (69 ) 
         s# 145 46 from DB.DBA.RDF_QUAD by RDF_QUAD_POGS         62 rows   
@@ -58,10 +58,10 @@ http://www.wikidata.org/entity/Q57306		159752
         row specs:  O LIKE <c Tó>
         vector param casts: <r s_44_14_t5.S$35 via  Set132>-> <v k_s_44_14_t5.S$149 Set151 an>
         
-        time   3.8e-05% fanout         0 input      1013 rows
-        Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:     2e-06 Fanout:         0
+        time   1.1e-05% fanout         0 input      1186 rows
+        Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:   2.9e-06 Fanout:         0
         
-        s# 160 50 from DB.DBA.RDF_QUAD by RDF_QUAD_POGS      2e-06 rows   
+        s# 160 50 from DB.DBA.RDF_QUAD by RDF_QUAD_POGS    2.9e-06 rows   
         Key RDF_QUAD_POGS  ASC  ()
          inlined  P =  IRI_ID"...isPartOf"  ,  O =  IRI_ID"..."  ,  S = <V s_43_10_t0.S$48 rn>
         
@@ -76,10 +76,10 @@ http://www.wikidata.org/entity/Q57306		159752
         vector param casts: <r s_43_10_t0.O$47 via  Set160>-> <v k_s_43_10_t0.O$173 Set175 an>
         
         time         0% fanout         0 input         0 rows
-        Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:     2e-06 Fanout:         0
+        Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:   2.9e-06 Fanout:         0
           clear: (<V _articleNL$44 r>, <V item$43 a>, <V _articleEN$42 r>)
           clear on continue: (<V _articleNL$44 r>, <V item$43 a>, <V _articleEN$42 r>)$47 (52 50 ) $48 (52 50 ) $53 () 
-        s# 183 55 from DB.DBA.RDF_QUAD by RDF_QUAD_POGS      2e-06 rows   
+        s# 183 55 from DB.DBA.RDF_QUAD by RDF_QUAD_POGS    2.9e-06 rows   
         Key RDF_QUAD_POGS  ASC  ()
          inlined  P =  IRI_ID"...isPartOf"  ,  O =  IRI_ID"..."  ,  S = <V s_43_10_t1.S$53 rn>
         
@@ -97,7 +97,7 @@ http://www.wikidata.org/entity/Q57306		159752
     time         0% fanout         0 input         0 rows
     $65 (41 69 ) $43 (41 ) $45 (41 ) 
     s# 202 64 end of outer seq <r set_ctr$65 via  Set141>
-     out: (<V item$43 a>, <V _articleNL$44 r>, <V _articleEN$42 r>, <V set_no$45 i>)
+     out: (<V item$43 a>, <V _articleEN$42 r>, <V set_no$45 i>, <V _articleNL$44 r>)
      shadow: ( <none> ,  <none> ,  <none> ,  <none> )
     time     1e+02% fanout         1 input      1000 rows
     Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:         0 Fanout:         1
@@ -112,7 +112,7 @@ http://www.wikidata.org/entity/Q57306		159752
       26: <V param_row$91 x> :=  := artm vector$27 
       30: <V expected_vars$93 x> :=  := artm vector$29 
       34: <V proc_ctr$79 i> :=  := artm  0 
-      38:  <none>  := Call __reset_temp ( 139746107612176 )
+      38:  <none>  := Call __reset_temp ( 139717169074816 )
       43:  <proc table>  := Call DB.DBA.SPARQL_SINV_IMP (<tag 182 flag 1 c http://wikiba.se/ontology#label>, vector$31 , <c  SELECT ?stubvar15
        WHERE {  <http://www.bigdata.com/rdf#serviceParam> <http://wikiba.se/ontology#language> "[AUTO_LANGUAGE],en,nl" . }>, <tag 225 c >, vector$27 , vector$29 )
       50: BReturn 0
@@ -121,10 +121,10 @@ http://www.wikidata.org/entity/Q57306		159752
     s# 210 78 Key from temp (<V proc_ctr$79 i>, <V RSET$81 a>)
     
     
-    time   1.7e-07% fanout      0.03 input      1000 rows
+    time   4.1e-07% fanout       0.7 input      1000 rows
     
-    s# 219 110 skip node  30  <none> <r set_ctr$106 via  Set210 Set202 Set121>
-    time   1.5e-07% fanout         0 input        30 rows
+    s# 219 110 skip node  700  <none> <r set_ctr$106 via  Set210 Set202 Set121>
+    time   1.5e-07% fanout         0 input       700 rows
     $37 (110 78 64 41 69 ) $39 (110 78 64 41 69 ) $74 (110 78 ) $106 (110 78 64 41 69 33 107 ) $76 (110 78 ) 
     s# 227 100 Select (<r item$37 via  Set219 Set210 Set202>, <DB_NULL>, <r gtaa$39 via  Set219 Set210 Set202>, <r _articleEN$74 via  Set219 Set210>, <r _articleNL$76 via  Set219 Set210>)
       set no: <r set_ctr$106 via  Set219 Set210 Set202 Set121>
@@ -139,6 +139,6 @@ Warning: You might have a Cartesian product.
 
 
 
- 3110863 msec 0% cpu,      5021 rnd      1012 seq   39.9243% same seg   26.7822% same pg 
-1078 disk reads, 2102 read ahead, 0.000429635% wait
-Compilation: 3 msec 1 reads 9.72371e-07% read 0 messages         0% clw
+ 3175433 msec 0% cpu,      5189 rnd      1185 seq   41.8882% same seg   24.1618% same pg 
+1335 disk reads, 2903 read ahead, 0.000416705% wait
+Compilation: 46 msec 20 reads 0.00111889% read 0 messages         0% clw

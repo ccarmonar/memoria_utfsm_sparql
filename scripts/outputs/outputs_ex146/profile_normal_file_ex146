@@ -15,7 +15,7 @@ dinner	2011-10-14	28.3
 dinner	2011-10-15	31.45	
 
   { 
-    time      0.83% fanout         1 input         1 rows
+    time      0.91% fanout         1 input         1 rows
       clear: (<V set_ctr$90 in>)
     s# 93 91 cluster outer seq start, set no <V set_ctr$90 in>    
     save ctx:()
@@ -23,13 +23,13 @@ dinner	2011-10-15	31.45
     s# 102 27 Subquery 27 
       multistate set no = <V set_no$31 i>
       { 
-        time      0.47% fanout         1 input         1 rows
+        time      0.58% fanout         1 input         1 rows
         
         s# 147 47 Fork 47 {  
                 
             save ctx:()
               set no = <V set_no$31 i> array  <none>  save: 
-            time        13% fanout         9 input         1 rows
+            time        15% fanout         9 input         1 rows
               clear: (<V s_13_6_t2.O$33 an>, <V s_13_6_t2.S$34 rn>)
               clear on continue: (<V s_13_6_t2.O$33 an>, <V s_13_6_t2.S$34 rn>)
             s# 107 32 from DB.DBA.RDF_QUAD by RDF_QUAD          9 rows Parallel, tail cost   1.7e+03   
@@ -37,7 +37,7 @@ dinner	2011-10-15	31.45
              inlined  P =  IRI_ID"...amount" 
             copy on branch $31 $0 $0 $0 sets: 93 
             
-            time       7.2% fanout         1 input         9 rows
+            time       8.4% fanout         1 input         9 rows
               clear: (<V s_13_6_t0.O$37 an>, <V s_13_6_t0.S$38 rn>)
               clear on continue: (<V s_13_6_t0.O$37 an>, <V s_13_6_t0.S$38 rn>)$34 () 
             s# 118 36 from DB.DBA.RDF_QUAD by RDF_QUAD          1 rows Parallel, tail cost        27   
@@ -45,7 +45,7 @@ dinner	2011-10-15	31.45
              inlined  P =  IRI_ID"...description"  ,  S = <V s_13_6_t2.S$34 rn>
             copy on branch $34 $33 $31 $0 sets: 93 107 
             
-            time        27% fanout   1.66667 input         9 rows
+            time        25% fanout   1.66667 input         9 rows
             Precode:
               0: <V __ro2sq$40 a> := Call __ro2sq (<r s_13_6_t2.O$33 via  Set118>)
               5: <V __ro2sq$42 a> := Call __ro2sq (<V s_13_6_t0.O$37 an>)
@@ -57,7 +57,7 @@ dinner	2011-10-15	31.45
              inlined  P =  IRI_ID"...date"  ,  S = <V s_13_6_t0.S$38 rn>
             copy on branch $38 $40 $31 $42 sets: 93 107 118 
             
-            time        34% fanout         0 input        15 rows
+            time        32% fanout         0 input        15 rows
             
             s# 139 48 Sort (HASH) set no <r set_no$31 via  Set129 Set118 Set107>(<r __ro2sq$40 via  Set129>) -> (<r __ro2sq$42 via  Set129>, <V s_13_6_t1.O$45 an>)
             
@@ -75,7 +75,7 @@ dinner	2011-10-15	31.45
           9: <V date$29 a> :=  := artm <V __ro2sq$69 a>
           13: <V amount$30 a> :=  := artm <V __ro2sq$40 a>
           17: BReturn 0
-        time      0.26% fanout         0 input        15 rows
+        time      0.32% fanout         0 input        15 rows
         
         s# 102 71 Subquery Select(<V description$28 a>, <V date$29 a>, <V amount$30 a>)
           set no: <r set_no$31 via  Set154>
@@ -86,12 +86,12 @@ dinner	2011-10-15	31.45
       5: <V date$80 a> := Call __ro2sq (<V date$29 a>)
       10: <V amount$82 a> := Call __ro2sq (<V amount$30 a>)
       15: BReturn 0
-    time     0.077% fanout         0 input        15 rows
+    time     0.064% fanout         0 input        15 rows
     $78 (27 ) $80 (27 ) $82 (27 ) $90 (27 91 ) 
     s# 173 84 Select (<V description$78 a>, <V date$80 a>, <V amount$82 a>)
       set no: <r set_ctr$90 via  Set102>
   }
 
 
- 0 msec 17% cpu,        62 rnd        28 seq   25.3968% same seg   12.6984% same pg 
-Compilation: 2 msec 0 reads         0% read 0 messages         0% clw
+ 1 msec 0% cpu,        62 rnd        28 seq   25.3968% same seg   12.6984% same pg 
+Compilation: 77 msec 0 reads         0% read 0 messages         0% clw

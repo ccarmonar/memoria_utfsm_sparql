@@ -15,25 +15,25 @@ dinner	2011-10-14	28.3
 dinner	2011-10-15	31.45	
 
   { 
-    time      0.76% fanout         1 input         1 rows
+    time      0.84% fanout         1 input         1 rows
     Subquery 27 
       { 
         time      0.51% fanout         1 input         1 rows
         fork {
-            time        17% fanout         9 input         1 rows
+            time        13% fanout         9 input         1 rows
             RDF_QUAD         9 rows(s_13_6_t2.S$34, s_13_6_t2.O$33)
              inlined  P =  IRI_ID"...amount" 
-            time       6.8% fanout         1 input         9 rows
+            time       7.1% fanout         1 input         9 rows
             RDF_QUAD         1 rows(s_13_6_t0.S$38, s_13_6_t0.O$37)
              inlined  P =  IRI_ID"...description"  ,  S = s_13_6_t2.S$34
-            time        25% fanout   1.66667 input         9 rows
+            time        26% fanout   1.66667 input         9 rows
             Precode:
               0: __ro2sq$40 := Call __ro2sq (s_13_6_t2.O$33)
               5: __ro2sq$42 := Call __ro2sq (s_13_6_t0.O$37)
               10: BReturn 0
             RDF_QUAD       1.7 rows(s_13_6_t1.O$45)
              inlined  P =  IRI_ID"...date"  ,  S = s_13_6_t0.S$38
-            time        33% fanout         0 input        15 rows
+            time        35% fanout         0 input        15 rows
             Sort (__ro2sq$40) -> (__ro2sq$42, s_13_6_t1.O$45)
             
           }
@@ -48,7 +48,7 @@ dinner	2011-10-15	31.45
         9: date$29 :=  := artm __ro2sq$69
         13: amount$30 :=  := artm __ro2sq$40
         17: BReturn 0
-        time      0.26% fanout         0 input        15 rows
+        time      0.28% fanout         0 input        15 rows
         Subquery Select(description$28, date$29, amount$30)
       }
     
@@ -57,10 +57,10 @@ dinner	2011-10-15	31.45
     5: date$80 := Call __ro2sq (date$29)
     10: amount$82 := Call __ro2sq (amount$30)
     15: BReturn 0
-    time     0.084% fanout         0 input        15 rows
+    time     0.088% fanout         0 input        15 rows
     Select (description$78, date$80, amount$82)
   }
 
 
- 0 msec 19% cpu,        62 rnd        28 seq   25.3968% same seg   12.6984% same pg 
-Compilation: 1 msec 0 reads         0% read 0 messages         0% clw
+ 1 msec 19% cpu,        62 rnd        28 seq   25.3968% same seg   12.6984% same pg 
+Compilation: 2 msec 0 reads         0% read 0 messages         0% clw

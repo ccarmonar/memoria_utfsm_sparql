@@ -1,6 +1,6 @@
 
   { 
-    time      0.24% fanout         1 input         1 rows
+    time       0.5% fanout         1 input         1 rows
     Precode:
       0: vector$27 := Call vector (<DB_NULL>, <DB_NULL>, <DB_NULL>)
       5: vector$29 := Call vector (<c stubvar10>)
@@ -8,17 +8,17 @@
       15: BReturn 0
     Subquery 33 
       { 
-        time       3.2% fanout        26 input         1 rows
+        time       8.1% fanout        26 input         1 rows
         RDF_QUAD_OP        20 rows(s_43_9_t2.P$39)
          inlined  O =  IRI_ID"...Q31" 
-        time        28% fanout   33.6923 input        26 rows
+        time        63% fanout   33.6923 input        26 rows
         Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:       1.2 Fanout:        34
         RDF_QUAD_POGS       1.2 rows(s_43_9_t2.S$43)
          P = s_43_9_t2.P$39 ,  O =  IRI_ID"...Q31" 
-        time        68% fanout         0 input       876 rows
+        time        29% fanout         0 input       876 rows
         Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:    0.0017 Fanout:         0
-        RDF_QUAD    0.0017 rows(s_43_9_t1.S$47)
-         inlined  P =  IRI_ID"...direct/P31"  ,  S = s_43_9_t2.S$43 ,  O =  IRI_ID"...Q1248784" 
+        RDF_QUAD_POGS    0.0017 rows(s_43_9_t1.S$47)
+         inlined  P =  IRI_ID"...direct/P31"  ,  O =  IRI_ID"...Q1248784"  ,  S = s_43_9_t2.S$43
         time         0% fanout         0 input         0 rows
         Precode:
           0: ws_endpoint$54 :=  := artm <tag 182 flag 1 c http://wikiba.se/ontology#label>
@@ -29,7 +29,7 @@
           16: param_row$62 :=  := artm vector$27
           20: expected_vars$64 :=  := artm vector$29
           24: proc_ctr$50 :=  := artm  0 
-          28:  <none>  := Call __reset_temp ( 139746092762192 )
+          28:  <none>  := Call __reset_temp ( 139717169074816 )
           33:  <proc table>  := Call DB.DBA.SPARQL_SINV_IMP (<tag 182 flag 1 c http://wikiba.se/ontology#label>, vector$31, <c  SELECT ?stubvar10
            WHERE {  <http://www.bigdata.com/rdf#serviceParam> <http://wikiba.se/ontology#language> "[AUTO_LANGUAGE],en" . }>, <tag 225 c >, vector$27, vector$29)
           40: BReturn 0
@@ -42,7 +42,7 @@
         time         0% fanout         0 input         0 rows
         Distinct (s_43_9_t1.S$47, s_43_9_t3.O$72)
         time         0% fanout         0 input         0 rows
-        skip node  200  <none> set_no$37
+        skip node  800  <none> set_no$37
         
         After code:
         0: airport$34 :=  := artm s_43_9_t1.S$47
@@ -62,5 +62,5 @@
   }
 
 
- 2 msec 35% cpu,       903 rnd       875 seq   95.1327% same seg   2.76549% same pg 
-Compilation: 3 msec 0 reads         0% read 0 messages         0% clw
+ 0 msec 19% cpu,       903 rnd       875 seq    96.792% same seg   1.32743% same pg 
+Compilation: 2 msec 0 reads         0% read 0 messages         0% clw

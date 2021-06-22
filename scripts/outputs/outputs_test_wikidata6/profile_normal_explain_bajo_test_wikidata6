@@ -1,18 +1,18 @@
 
   { 
-    time        10% fanout         1 input         1 rows
+    time       9.5% fanout         1 input         1 rows
     Precode:
       0: __all_eq$27 := Call __all_eq ( IRI_ID"...Q3624078" )
       5: BReturn 0
     Subquery 29 
       { 
         time        90% fanout         0 input         1 rows
-        Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:     2e-06 Fanout:         0
-        RDF_QUAD_POGS     2e-06 rows(s_44_30_t4.O$34, s_44_30_t4.S$33)
+        Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:   2.9e-06 Fanout:         0
+        RDF_QUAD_POGS   2.9e-06 rows(s_43_30_t4.O$34, s_43_30_t4.S$33)
          inlined  P =  IRI_ID"...P463" 
         time         0% fanout         0 input         0 rows
-        Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:     2e-06 Fanout:         0
-        RDF_QUAD_POGS     2e-06 rows(s_44_30_t6.S$37)
+        Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:   2.9e-06 Fanout:         0
+        RDF_QUAD_POGS   2.9e-06 rows(s_43_30_t6.S$37)
          inlined  P =  IRI_ID"...statement/P463"  ,  O =  IRI_ID"...Q1065"  ,  S = cast$186
         time         0% fanout         0 input         0 rows
         END Node
@@ -20,9 +20,9 @@
         0: if (  { 
             time         0% fanout         0 input         0 rows
             time         0% fanout         0 input         0 rows
-            Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:     2e-06 Fanout:         0
-            RDF_QUAD     2e-06 rows()
-             inlined  P =  IRI_ID"...qualifier/P582"  ,  S = k_s_44_30_t6.S$218
+            Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:   2.9e-06 Fanout:         0
+            RDF_QUAD   2.9e-06 rows()
+             inlined  P =  IRI_ID"...qualifier/P582"  ,  S = k_s_43_30_t6.S$218
             time         0% fanout         0 input         0 rows
             Subquery Select( <none> )
           }
@@ -32,7 +32,7 @@
         time         0% fanout         0 input         0 rows
         Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:       1.1 Fanout:         0
         RDF_QUAD       1.1 rows(s_37_3_t0.S$55, s_37_3_t0.O$54)
-         inlined  P =  IRI_ID"...direct/P31"  ,  S = k_s_44_30_t4.S$243 O LIKE <c Tó>
+         inlined  P =  IRI_ID"...direct/P31"  ,  S = k_s_43_30_t4.S$243 O LIKE <c Tó>
         time         0% fanout         0 input         0 rows
         END Node
         After test:
@@ -41,8 +41,8 @@
             time         0% fanout         0 input         0 rows
             in iterates in_iter$58  over ( IRI_ID"...direct/P576" ,  IRI_ID"...direct/P582" )
             time         0% fanout         0 input         0 rows
-            Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:    0.0082 Fanout:         0
-            RDF_QUAD    0.0082 rows()
+            Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:     0.022 Fanout:         0
+            RDF_QUAD     0.022 rows()
              inlined  P = k_in_iter$289 ,  S = k_s_37_3_t0.S$293
             time         0% fanout         0 input         0 rows
             Subquery Select( <none> )
@@ -95,14 +95,14 @@
         time         0% fanout         0 input         0 rows
         Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:       0.8 Fanout:         0
         RDF_QUAD_POGS       0.8 rows()
-         inlined  P =  IRI_ID"...type"  ,  O =  IRI_ID"...BestRank"  ,  S = k_s_44_30_t4.O$392
+         inlined  P =  IRI_ID"...type"  ,  O =  IRI_ID"...BestRank"  ,  S = k_s_43_30_t4.O$392
         time         0% fanout         0 input         0 rows
-        Distinct (s_44_30_t4.S$33)
+        Distinct (s_43_30_t4.S$33)
         time         0% fanout         0 input         0 rows
-        skip node  1500  <none> set_no$31
+        skip node  3000  <none> set_no$31
         
         After code:
-        0: state$30 :=  := artm s_44_30_t4.S$33
+        0: state$30 :=  := artm s_43_30_t4.S$33
         4: BReturn 0
         time         0% fanout         0 input         0 rows
         Subquery Select(state$30)
@@ -117,4 +117,4 @@
 
 
  0 msec 1% cpu,         1 rnd         0 seq         0% same seg         0% same pg 
-Compilation: 6 msec 0 reads         0% read 0 messages         0% clw
+Compilation: 4 msec 0 reads         0% read 0 messages         0% clw

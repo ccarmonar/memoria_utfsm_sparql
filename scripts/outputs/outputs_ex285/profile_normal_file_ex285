@@ -1,20 +1,20 @@
-dog	3		DOG	dog	
-My String	9	St	MY STRING	my string	
 cat	3		CAT	cat	
-123456	6	45	123456	123456	
-http://www.learnsparql.com/cgi/func1&amp;color=red	46	p:	HTTP://WWW.LEARNSPARQL.COM/CGI/FUNC1&amp;COLOR=RED	http://www.learnsparql.com/cgi/func1&amp;color=red	
+dog	3		DOG	dog	
 turtle	6	tl	TURTLE	turtle	
+123456	6	45	123456	123456	
+My String	9	St	MY STRING	my string	
+http://www.learnsparql.com/cgi/func1&amp;color=red	46	p:	HTTP://WWW.LEARNSPARQL.COM/CGI/FUNC1&amp;COLOR=RED	http://www.learnsparql.com/cgi/func1&amp;color=red	
 
   { 
-    time       1.7% fanout         1 input         1 rows
+    time       1.6% fanout         1 input         1 rows
       clear: (<V set_ctr$52 in>)
     s# 55 53 cluster outer seq start, set no <V set_ctr$52 in>    
     save ctx:()
     time        98% fanout         6 input         1 rows
       clear: (<V t2.O$28 an>, <V lcaseTest$44 a>, <V rdf_lcase_impl$42 s>, <V ucaseTest$40 a>, <V rdf_ucase_impl$38 s>, <V substrTest$36 s>, <V __ro2lo$34 a>, <V strlenTest$32 i>, <V label$30 a>)
       clear on continue: (<V t2.O$28 an>, <V lcaseTest$44 a>, <V rdf_lcase_impl$42 s>, <V ucaseTest$40 a>, <V rdf_ucase_impl$38 s>, <V substrTest$36 s>, <V __ro2lo$34 a>, <V strlenTest$32 i>, <V label$30 a>)
-    s# 64 27 from DB.DBA.RDF_QUAD by RDF_QUAD          6 rows   
-    Key RDF_QUAD  ASC  (<V t2.O$28 an>)
+    s# 64 27 from DB.DBA.RDF_QUAD by RDF_QUAD_POGS          6 rows   
+    Key RDF_QUAD_POGS  ASC  (<V t2.O$28 an>)
      inlined  P =  IRI_ID"...rdf-schemalabel" 
     
     After code:
@@ -27,7 +27,7 @@ turtle	6	tl	TURTLE	turtle
       30: <V rdf_lcase_impl$42 s> := Call rdf_lcase_impl (<V __ro2lo$34 a>)
       35: <V lcaseTest$44 a> := Call __rdf_sqlval_of_obj (<V rdf_lcase_impl$42 s>)
       40: BReturn 0
-    time      0.21% fanout         0 input         6 rows
+    time      0.18% fanout         0 input         6 rows
     $32 () $36 () $40 () $44 () $52 (27 53 ) $30 () 
     s# 74 46 Select (<V label$30 a>, <V strlenTest$32 i>, <V substrTest$36 s>, <V ucaseTest$40 a>, <V lcaseTest$44 a>)
       set no: <r set_ctr$52 via  Set64>
@@ -36,5 +36,5 @@ Warning: You might have a Cartesian product.
 
 
 
- 0 msec 14% cpu,        13 rnd         5 seq         0% same seg   71.4286% same pg 
+ 0 msec 12% cpu,        13 rnd         5 seq         0% same seg   71.4286% same pg 
 Compilation: 1 msec 0 reads         0% read 0 messages         0% clw

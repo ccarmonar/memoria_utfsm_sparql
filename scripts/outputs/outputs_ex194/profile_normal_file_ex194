@@ -22,11 +22,11 @@ http://learningsparql.com/ns/data#i8301	http://www.w3.org/2006/vcard/ns#email	cr
   { 
     Precode:
       0:   { 
-          time      0.32% fanout         1 input         1 rows
+          time      0.35% fanout         1 input         1 rows
             clear: (<V ext_sets$92 i>, <V set_ctr$58 in>)
           s# 93 59 cluster outer seq start, set no <V set_ctr$58 in>    
           save ctx:()
-          time       1.5% fanout         1 input         1 rows
+          time       1.2% fanout         1 input         1 rows
           Precode:
             0: vector$27  := Call vector ( 1 ,  0 ,  3 ,  IRI_ID"...given-name" ,  1 ,  4 )
             5: vector$29  := Call vector ( 1 ,  0 ,  3 ,  IRI_ID"...family-name" ,  1 ,  3 )
@@ -44,7 +44,7 @@ http://learningsparql.com/ns/data#i8301	http://www.w3.org/2006/vcard/ns#email	cr
               Key RDF_QUAD  ASC  (<V t2.S$41 rn>, <V t2.O$40 an>)
                inlined  P =  IRI_ID"...lastName" 
               
-              time       3.6% fanout         1 input         8 rows
+              time       3.4% fanout         1 input         8 rows
                 clear: (<V t1.O$44 an>, <V t1.S$45 rn>)
                 clear on continue: (<V t1.O$44 an>, <V t1.S$45 rn>)
               s# 115 43 from DB.DBA.RDF_QUAD by RDF_QUAD          1 rows   
@@ -67,7 +67,7 @@ http://learningsparql.com/ns/data#i8301	http://www.w3.org/2006/vcard/ns#email	cr
                 clear: (<V set_ctr$61 i>)
               s# 141 65 cluster outer seq start, set no <V set_ctr$61 i>    
               save ctx:()
-              time       2.9% fanout  0.428571 input         7 rows
+              time       3.4% fanout  0.428571 input         7 rows
                 clear: (<V t5.O$56 a>)
                 clear on continue: (<V t5.O$56 a>)$154 (55 ) 
               s# 150 55 from DB.DBA.RDF_QUAD by RDF_QUAD          1 rows   
@@ -90,13 +90,13 @@ http://learningsparql.com/ns/data#i8301	http://www.w3.org/2006/vcard/ns#email	cr
                 30: <V user_aggr_ret$79 x> := Call DB.DBA.SPARQL_CONSTRUCT_ACC (user_aggr_env$78 , vector$35 , <V vector$74 x>, vector$37 ,  1 )
                 37: BReturn 0
           }
-          time       1.2% fanout         1 input         1 rows
+          time      0.98% fanout         1 input         1 rows
             clear: (<V callret-0$80 x>)
           s# 181 90 skip node  1  <none> <V set_ctr$58 in>
           After code:
             0: <V callret-0$80 x> := Call DB.DBA.SPARQL_CONSTRUCT_FIN (user_aggr_env$78 )
             7: BReturn 0
-          time      0.15% fanout         0 input         1 rows
+          time      0.16% fanout         0 input         1 rows
           $80 (90 ) $58 (90 76 59 ) $92 (90 76 59 ) 
           s# 189 82 Subquery Select(<V callret-0$80 x>)
             set no: <r set_ctr$58 via  Set181>

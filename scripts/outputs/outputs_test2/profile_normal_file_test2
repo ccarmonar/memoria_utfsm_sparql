@@ -1,11 +1,11 @@
   { 
     Precode:
       0:   { FOR UPDATE
-          time      0.16% fanout         1 input         1 rows
+          time    0.0015% fanout         1 input         1 rows
             clear: (<V ext_sets$91 i>, <V set_ctr$71 in>)
           s# 92 72 cluster outer seq start, set no <V set_ctr$71 in>    
           save ctx:()
-          time         3% fanout         1 input         1 rows
+          time     0.028% fanout         1 input         1 rows
           Precode:
             0: <V vector$27 x> := Call vector ()
             5: <V DB.DBA.RDF_MAKE_LONG_OF_SQLVAL$29 a> := Call DB.DBA.RDF_MAKE_LONG_OF_SQLVAL (<c SPARQL Tutorial>)
@@ -28,22 +28,22 @@
                   s# 107 50 Subquery 50 
                     multistate set no = <V set_no$52 i>
                     { 
-                      time      0.14% fanout         1 input         1 rows
+                      time    0.0014% fanout         1 input         1 rows
                       Precode:
                         0: <V __stub$51 in> :=  := artm  1 
                         4: BReturn 0
                         clear: (<V __stub$51 in>)
                       s# 112 59 END Node
-                      time     0.068% fanout         0 input         1 rows
+                      time   0.00068% fanout         0 input         1 rows
                       $51 (59 ) 
                       s# 107 53 Subquery Select(<r __stub$51 via  Set112>)
                         set no: <r set_no$52 via  Set112>
                     }
                   
-                  time     0.082% fanout         1 input         1 rows
+                  time    0.0009% fanout         1 input         1 rows
                   
                   s# 126 69 skip node  1  <none> <r set_no$49 via  Set107>
-                  time     0.016% fanout         0 input         1 rows
+                  time   0.00016% fanout         0 input         1 rows
                   
                   s# 103 61 Subquery Select( <none> )
                     set no: <r set_no$49 via  Set126 Set107>
@@ -56,14 +56,14 @@
                 15: <V user_aggr_ret$76 x> := Call DB.DBA.SPARQL_CONSTRUCT_ACC (user_aggr_env$75 , <r vector$27 via  Set103>, <r vector$27 via  Set103>, <r vector$45 via  Set103>,  0 )
                 22: BReturn 0
           }
-          time        96% fanout         1 input         1 rows
+          time     1e+02% fanout         1 input         1 rows
             clear: (<V callret-0$79 a>, <V DB.DBA.SPARQL_CONSTRUCT_FIN$77 x>)
           s# 151 89 skip node  1  <none> <V set_ctr$71 in>
           After code:
             0: <V DB.DBA.SPARQL_CONSTRUCT_FIN$77 x> := Call DB.DBA.SPARQL_CONSTRUCT_FIN (user_aggr_env$75 )
             7: <V callret-0$79 a> := Call DB.DBA.SPARQL_INSERT_DICT_CONTENT (<tag 182 flag 1 c urn:sparql:bind:tests>, <V DB.DBA.SPARQL_CONSTRUCT_FIN$77 x>,  0 , <DB_NULL>,  0 )
             14: BReturn 0
-          time     0.057% fanout         0 input         1 rows
+          time   0.00063% fanout         0 input         1 rows
           $71 (89 73 72 ) $79 (89 ) $91 (89 73 72 ) 
           s# 159 81 Subquery Select(<V callret-0$79 a>)
             set no: <r set_ctr$71 via  Set151>
@@ -78,6 +78,6 @@
   }
 
 
- 2 msec 18% cpu,        13 rnd         0 seq         0% same seg         0% same pg 
-47 disk reads, 0 read ahead,   12.9459% wait
+ 145 msec 98% cpu,        13 rnd         0 seq         0% same seg         0% same pg 
+44 disk reads, 0 read ahead,   97.0496% wait
 Compilation: 2 msec 0 reads         0% read 0 messages         0% clw

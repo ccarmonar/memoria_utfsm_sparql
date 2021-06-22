@@ -1,10 +1,10 @@
 
   { 
-    time      0.83% fanout         1 input         1 rows
+    time      0.81% fanout         1 input         1 rows
       clear: (<V set_ctr$50 in>)
     s# 53 51 cluster outer seq start, set no <V set_ctr$50 in>    
     save ctx:()
-    time        17% fanout        15 input         1 rows
+    time        21% fanout        15 input         1 rows
     Precode:
       0: <V DB.DBA.RDF_MAKE_LONG_OF_SQLVAL$27 a> := Call DB.DBA.RDF_MAKE_LONG_OF_SQLVAL (<c price>)
       7: BReturn 0
@@ -14,7 +14,7 @@
     Key RDF_QUAD_POGS  ASC  (<V s_10_2_t0.S$30 rn>)
      P =  IRI_ID"...type"  ,  O =  IRI_ID"...Class" 
     
-    time        82% fanout         0 input        15 rows
+    time        78% fanout         0 input        15 rows
       clear: (<V rdf_contains_impl$40 i>, <V rdf_lcase_impl$38 s>, <V DB.DBA.RDF_LONG_OF_SQLVAL$36 a>, <V __bft$34 x>, <V __id2in$32 a>, <V s$42 a>)$27 (29 ) $30 () 
     s# 77 72 END Node
     After test:
@@ -38,5 +38,5 @@ Warning: You might have a Cartesian product.
 
 
 
- 0 msec 26% cpu,         8 rnd        14 seq         0% same seg   55.5556% same pg 
+ 1 msec 25% cpu,         6 rnd        14 seq         0% same seg   42.8571% same pg 
 Compilation: 1 msec 0 reads         0% read 0 messages         0% clw

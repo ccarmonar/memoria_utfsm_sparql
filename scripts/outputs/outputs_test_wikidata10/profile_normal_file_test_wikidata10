@@ -1,7 +1,7 @@
 	220	
 
   { 
-    time   0.00011% fanout         1 input         1 rows
+    time   7.2e-05% fanout         1 input         1 rows
       clear: (<V set_ctr$108 in>)
     s# 111 109 cluster outer seq start, set no <V set_ctr$108 in>    
     save ctx:()
@@ -24,7 +24,7 @@
           16: <V param_row$50 x> :=  := artm <V vector$27 x>
           20: <V expected_vars$52 x> :=  := artm <V vector$29 x>
           24: <V proc_ctr$38 i> :=  := artm  0 
-          28:  <none>  := Call __reset_temp ( 139746096506384 )
+          28:  <none>  := Call __reset_temp ( 139717170219040 )
           33:  <proc table>  := Call DB.DBA.SPARQL_SINV_IMP (<tag 182 flag 1 c http://wikiba.se/ontology#label>, <V vector$31 x>, <c  SELECT ?stubvar8
            WHERE {  <http://www.bigdata.com/rdf#serviceParam> <http://wikiba.se/ontology#language> "[AUTO_LANGUAGE],en" . }>, <tag 225 c >, <V vector$27 x>, <V vector$29 x>)
           40: BReturn 0
@@ -33,49 +33,49 @@
                 
             save ctx:()
               set no = <V set_no$36 i> array  <none>  save: 
-            time   0.00097% fanout         1 input         1 rows
+            time   0.00062% fanout         1 input         1 rows
             Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:         0 Fanout:         1
               clear: (<V RSET$40 a>, <V proc_ctr$38 i>)
               clear on continue: (<V RSET$40 a>, <V proc_ctr$38 i>)
             s# 125 37 Key from temp (<V proc_ctr$38 i>, <V RSET$40 a>)
             
             
-            time    0.0015% fanout       221 input         1 rows
+            time    0.0016% fanout       221 input         1 rows
               clear: (<V s_46_7_t2.S$60 rn>)
               clear on continue: (<V s_46_7_t2.S$60 rn>)
-            s# 134 59 from DB.DBA.RDF_QUAD by RDF_QUAD    2.2e+02 rows   
-            Key RDF_QUAD  ASC  (<V s_46_7_t2.S$60 rn>)
+            s# 134 59 from DB.DBA.RDF_QUAD by RDF_QUAD_POGS    2.2e+02 rows   
+            Key RDF_QUAD_POGS  ASC  (<V s_46_7_t2.S$60 rn>)
              inlined  P =  IRI_ID"...direct/P1340" 
             
-            time     0.051% fanout  0.995475 input       221 rows
+            time     0.035% fanout  0.995475 input       221 rows
               clear: (<V s_46_7_t1.S$63 rn>, <V $69 x>, <V isnotnull$65 in>)
               clear on continue: (<V s_46_7_t1.S$63 rn>, <V $69 x>, <V isnotnull$65 in>)$60 () 
-            s# 144 62 from DB.DBA.RDF_QUAD by RDF_QUAD        0.3 rows   
-            Key RDF_QUAD  ASC  (<V s_46_7_t1.S$63 rn>)
-             inlined  P =  IRI_ID"...direct/P31"  ,  S = <V s_46_7_t2.S$60 rn> ,  O =  IRI_ID"...Q5" 
+            s# 144 62 from DB.DBA.RDF_QUAD by RDF_QUAD_POGS        0.3 rows   
+            Key RDF_QUAD_POGS  ASC  (<V s_46_7_t1.S$63 rn>)
+             inlined  P =  IRI_ID"...direct/P31"  ,  O =  IRI_ID"...Q5"  ,  S = <V s_46_7_t2.S$60 rn>
             
             After code:
               0: <V isnotnull$65 in> := Call isnotnull (<V s_46_7_t1.S$63 rn>)
               5: <V $69 x> :=  := artm <DB_NULL>
               9: BReturn 0
-            time    0.0048% fanout         0 input       220 rows
+            time    0.0043% fanout         0 input       220 rows
             $65 () 
             s# 155 68 Sort (HASH) set no <r set_no$36 via  Set144 Set134 Set125>(<V $69 x>) -> (<V isnotnull$65 in>) up to         1 distinct
             
         }
-        time    0.0028% fanout         1 input         1 rows
+        time    0.0026% fanout         1 input         1 rows
           clear: (<V aggregate$70 in>, <V $69 x>)
           clear on continue: (<V aggregate$70 in>, <V $69 x>)
         s# 170 76 group by read node  
         (<V $69 x>, <V aggregate$70 in>)
-        time   0.00018% fanout         1 input         1 rows
+        time   0.00015% fanout         1 input         1 rows
           clear: (<V count$35 in>, <V eyeColorLabel$34 x>)$69 () $70 () 
-        s# 180 96 skip node  8000  <none> <r set_no$36 via  Set170>
+        s# 180 96 skip node  400  <none> <r set_no$36 via  Set170>
         After code:
           0: <V eyeColorLabel$34 x> :=  := artm <r $69 via  Set180>
           4: <V count$35 in> :=  := artm <r aggregate$70 via  Set180>
           8: BReturn 0
-        time     4e-05% fanout         0 input         1 rows
+        time   3.8e-05% fanout         0 input         1 rows
         
         s# 120 88 Subquery Select(<V eyeColorLabel$34 x>, <V count$35 in>)
           set no: <r set_no$36 via  Set180 Set170>
@@ -85,7 +85,7 @@
       0: <V eyeColorLabel$98 a> := Call __ro2sq (<V eyeColorLabel$34 x>)
       5: <V count$100 a> := Call __ro2sq (<V count$35 in>)
       10: BReturn 0
-    time   3.6e-05% fanout         0 input         1 rows
+    time   2.8e-05% fanout         0 input         1 rows
     $98 (33 ) $100 (33 ) $108 (33 109 ) 
     s# 197 102 Select (<V eyeColorLabel$98 a>, <V count$100 a>)
       set no: <r set_ctr$108 via  Set120>
@@ -94,6 +94,6 @@ Warning: You might have a Cartesian product.
 
 
 
- 3082 msec 0% cpu,       300 rnd       232 seq   68.4385% same seg   3.98671% same pg 
-76 disk reads, 0 read ahead, 0.0189261% wait
-Compilation: 3 msec 3 reads 0.00241133% read 0 messages         0% clw
+ 3330 msec 0% cpu,       299 rnd       231 seq   72.6667% same seg  0.666667% same pg 
+89 disk reads, 0 read ahead, 0.0186745% wait
+Compilation: 122 msec 63 reads  0.472933% read 0 messages         0% clw

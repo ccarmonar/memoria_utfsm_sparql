@@ -4,25 +4,25 @@ Francis	Jones	2015-02-13
 Jane	Berger	2015-03-10	
 
   { 
-    time       1.5% fanout         1 input         1 rows
+    time       2.1% fanout         1 input         1 rows
       clear: (<V set_ctr$50 in>)
     s# 53 51 cluster outer seq start, set no <V set_ctr$50 in>    
     save ctx:()
-    time        22% fanout         4 input         1 rows
+    time        20% fanout         4 input         1 rows
       clear: (<V s_10_6_t2.O$28 an>, <V s_10_6_t2.S$29 rn>)
       clear on continue: (<V s_10_6_t2.O$28 an>, <V s_10_6_t2.S$29 rn>)
     s# 62 27 from DB.DBA.RDF_QUAD by RDF_QUAD          4 rows   
     Key RDF_QUAD  ASC  (<V s_10_6_t2.S$29 rn>, <V s_10_6_t2.O$28 an>)
      inlined  P =  IRI_ID"...hireDate" 
     
-    time        12% fanout         1 input         4 rows
+    time        11% fanout         1 input         4 rows
       clear: (<V s_10_6_t0.O$32 an>, <V s_10_6_t0.S$33 rn>)
       clear on continue: (<V s_10_6_t0.O$32 an>, <V s_10_6_t0.S$33 rn>)$29 () 
     s# 73 31 from DB.DBA.RDF_QUAD by RDF_QUAD          1 rows   
     Key RDF_QUAD  ASC  (<V s_10_6_t0.S$33 rn>, <V s_10_6_t0.O$32 an>)
      inlined  P =  IRI_ID"...given-name"  ,  S = <V s_10_6_t2.S$29 rn>
     
-    time        64% fanout         1 input         4 rows
+    time        67% fanout         1 input         4 rows
       clear: (<V s_10_6_t1.O$36 an>, <V familyName$42 a>, <V givenName$40 a>, <V hireDate$38 a>)
       clear on continue: (<V s_10_6_t1.O$36 an>, <V familyName$42 a>, <V givenName$40 a>, <V hireDate$38 a>)$32 () $33 () $28 (31 ) 
     s# 84 35 from DB.DBA.RDF_QUAD by RDF_QUAD          1 rows   
@@ -43,5 +43,5 @@ Warning: You might have a Cartesian product.
 
 
 
- 0 msec 12% cpu,        21 rnd         3 seq   27.2727% same seg   40.9091% same pg 
-Compilation: 1 msec 0 reads         0% read 0 messages         0% clw
+ 0 msec 0% cpu,        21 rnd         3 seq   27.2727% same seg   40.9091% same pg 
+Compilation: 82 msec 0 reads         0% read 0 messages         0% clw

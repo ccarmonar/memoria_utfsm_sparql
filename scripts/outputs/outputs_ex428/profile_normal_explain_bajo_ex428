@@ -4,21 +4,21 @@ http://learningsparql.com/ns/data#m6	http://www.w3.org/1999/02/22-rdf-syntax-ns#
   { 
     Precode:
       0:   { 
-          time       1.3% fanout         1 input         1 rows
-          time         4% fanout         1 input         1 rows
+          time       1.5% fanout         1 input         1 rows
+          time       4.5% fanout         1 input         1 rows
           Precode:
             0: vector$27 := Call vector ( 1 ,  0 ,  3 ,  IRI_ID"...type" ,  3 ,  IRI_ID"...TexasGuitarPlayer" )
             5: vector$29 := Call vector (vector$27)
             10: vector$31 := Call vector ()
             15: BReturn 0
           fork {
-              time        23% fanout         3 input         1 rows
+              time        26% fanout         3 input         1 rows
               RDF_QUAD_POGS         3 rows(s_12_7_t2.S$34)
                P =  IRI_ID"...plays"  ,  O =  IRI_ID"...Guitar" 
-              time        67% fanout         0 input         3 rows
+              time        63% fanout         0 input         3 rows
               Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:      0.67 Fanout:         0
-              RDF_QUAD      0.67 rows(s_12_7_t1.S$37)
-               inlined  P =  IRI_ID"...stateOfBirth"  ,  S = s_12_7_t2.S$34 ,  O =  IRI_ID"...TX" 
+              RDF_QUAD_POGS      0.67 rows(s_12_7_t1.S$37)
+               inlined  P =  IRI_ID"...stateOfBirth"  ,  O =  IRI_ID"...TX"  ,  S = s_12_7_t2.S$34
               
               After code:
               0: vector$39 := Call vector (s_12_7_t1.S$37)
@@ -28,13 +28,13 @@ http://learningsparql.com/ns/data#m6	http://www.w3.org/1999/02/22-rdf-syntax-ns#
               20: user_aggr_ret$46 := Call DB.DBA.SPARQL_CONSTRUCT_ACC (user_aggr_env$45 , vector$29, vector$39, vector$31,  1 )
               27: BReturn 0
             }
-          time         4% fanout         1 input         1 rows
+          time       4.5% fanout         1 input         1 rows
           skip node  1  <none> set_ctr$41
           
           After code:
           0: callret-0$47 := Call DB.DBA.SPARQL_CONSTRUCT_FIN (user_aggr_env$45 )
           7: BReturn 0
-          time      0.61% fanout         0 input         1 rows
+          time      0.64% fanout         0 input         1 rows
           Subquery Select(callret-0$47)
         }
       
@@ -44,5 +44,5 @@ http://learningsparql.com/ns/data#m6	http://www.w3.org/1999/02/22-rdf-syntax-ns#
   }
 
 
- 0 msec 19% cpu,         4 rnd         2 seq        40% same seg         0% same pg 
-Compilation: 2 msec 0 reads         0% read 0 messages         0% clw
+ 0 msec 17% cpu,         4 rnd         2 seq        40% same seg         0% same pg 
+Compilation: 1 msec 0 reads         0% read 0 messages         0% clw

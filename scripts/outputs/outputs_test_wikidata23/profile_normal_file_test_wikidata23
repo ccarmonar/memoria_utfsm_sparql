@@ -1,6 +1,6 @@
 
   { 
-    time   0.00084% fanout         1 input         1 rows
+    time     0.012% fanout         1 input         1 rows
       clear: (<V set_ctr$100 in>)
     s# 103 101 cluster outer seq start, set no <V set_ctr$100 in>    
     save ctx:()
@@ -13,14 +13,14 @@
     s# 112 33 Subquery 33 
       multistate set no = <V set_no$37 i>
       { 
-        time       5.7% fanout        26 input         1 rows
+        time        82% fanout        26 input         1 rows
           clear: (<V s_43_9_t2.P$39 rn>)
           clear on continue: (<V s_43_9_t2.P$39 rn>)
         s# 116 38 from DB.DBA.RDF_QUAD by RDF_QUAD_OP         20 rows   
         Key RDF_QUAD_OP  ASC  (<V s_43_9_t2.P$39 rn>)
          inlined  O =  IRI_ID"...Q31" 
         
-        time        94% fanout   33.6923 input        26 rows
+        time        16% fanout   33.6923 input        26 rows
         Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:       1.2 Fanout:        34
           clear: (<V s_43_9_t2.S$43 rn>)
           clear on continue: (<V s_43_9_t2.S$43 rn>)$39 () 
@@ -28,13 +28,13 @@
         Key RDF_QUAD_POGS  ASC  (<V s_43_9_t2.S$43 rn>)
          P = <V s_43_9_t2.P$39 rn> ,  O =  IRI_ID"...Q31" 
         
-        time      0.44% fanout         0 input       876 rows
+        time       1.4% fanout         0 input       876 rows
         Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:    0.0017 Fanout:         0
           clear: (<V s_43_9_t1.S$47 rn>)
           clear on continue: (<V s_43_9_t1.S$47 rn>)$43 () 
-        s# 136 46 from DB.DBA.RDF_QUAD by RDF_QUAD     0.0017 rows   
-        Key RDF_QUAD  ASC  (<V s_43_9_t1.S$47 rn>)
-         inlined  P =  IRI_ID"...direct/P31"  ,  S = <V s_43_9_t2.S$43 rn> ,  O =  IRI_ID"...Q1248784" 
+        s# 136 46 from DB.DBA.RDF_QUAD by RDF_QUAD_POGS     0.0017 rows   
+        Key RDF_QUAD_POGS  ASC  (<V s_43_9_t1.S$47 rn>)
+         inlined  P =  IRI_ID"...direct/P31"  ,  O =  IRI_ID"...Q1248784"  ,  S = <V s_43_9_t2.S$43 rn>
         
         time         0% fanout         0 input         0 rows
         Precode:
@@ -46,7 +46,7 @@
           16: <V param_row$62 x> :=  := artm <r vector$27 via  Set136 Set126 Set116>
           20: <V expected_vars$64 x> :=  := artm <r vector$29 via  Set136 Set126 Set116>
           24: <V proc_ctr$50 i> :=  := artm  0 
-          28:  <none>  := Call __reset_temp ( 139746093521648 )
+          28:  <none>  := Call __reset_temp ( 139717168924208 )
           33:  <proc table>  := Call DB.DBA.SPARQL_SINV_IMP (<tag 182 flag 1 c http://wikiba.se/ontology#label>, <r vector$31 via  Set136 Set126 Set116>, <c  SELECT ?stubvar10
            WHERE {  <http://www.bigdata.com/rdf#serviceParam> <http://wikiba.se/ontology#language> "[AUTO_LANGUAGE],en" . }>, <tag 225 c >, <r vector$27 via  Set136 Set126 Set116>, <r vector$29 via  Set136 Set126 Set116>)
           40: BReturn 0
@@ -69,7 +69,7 @@
         s# 169 74 Distinct (HASH) set no <r set_no$37 via  Set155 Set161 Set146 Set136 Set126 Set116>(<r s_43_9_t1.S$47 via  Set155 Set161 Set146>, <V s_43_9_t3.O$72 an>)
         time         0% fanout         0 input         0 rows
           clear: (<V coor$36 an>, <V airportLabel$35 x>, <V airport$34 rn>)$72 (74 ) $47 (74 71 49 ) 
-        s# 177 88 skip node  200  <none> <r set_no$37 via  Set169 Set155 Set161 Set146 Set136 Set126 Set116>
+        s# 177 88 skip node  800  <none> <r set_no$37 via  Set169 Set155 Set161 Set146 Set136 Set126 Set116>
         After code:
           0: <V airport$34 rn> :=  := artm <r s_43_9_t1.S$47 via  Set177 Set169 Set155 Set161 Set146>
           4: <V airportLabel$35 x> :=  := artm <DB_NULL>
@@ -98,6 +98,6 @@ Warning: You might have a Cartesian product.
 
 
 
- 280 msec 90% cpu,       903 rnd       875 seq   95.1327% same seg   2.76549% same pg 
-2458 disk reads, 1709 read ahead,   88.7447% wait
-Compilation: 27 msec 4 reads   8.10151% read 0 messages         0% clw
+ 19 msec 45% cpu,       903 rnd       875 seq    96.792% same seg   1.32743% same pg 
+175 disk reads, 210 read ahead,   41.5406% wait
+Compilation: 23 msec 4 reads   47.9329% read 0 messages         0% clw

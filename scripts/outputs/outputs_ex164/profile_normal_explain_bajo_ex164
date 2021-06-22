@@ -5,22 +5,22 @@ dinner	84.8
     time       1.4% fanout         1 input         1 rows
     Subquery 27 
       { 
-        time        15% fanout         1 input         1 rows
+        time        16% fanout         1 input         1 rows
         fork {
             time        21% fanout         9 input         1 rows
             RDF_QUAD         9 rows(s_12_4_t1.S$33, s_12_4_t1.O$32)
              inlined  P =  IRI_ID"...amount" 
-            time        12% fanout         1 input         9 rows
+            time        11% fanout         1 input         9 rows
             RDF_QUAD         1 rows(s_12_4_t0.O$36)
              inlined  P =  IRI_ID"...description"  ,  S = s_12_4_t1.S$33
-            time        18% fanout         0 input         9 rows
+            time        17% fanout         0 input         9 rows
             Sort (s_12_4_t0.O$36) -> (s_12_4_t1.O$32)
             
           }
-        time       4.4% fanout         3 input         1 rows
+        time       4.6% fanout         3 input         1 rows
         group by read node  
         (s_12_4_t0.O$36, aggregate$40)
-        time        28% fanout  0.666667 input         3 rows
+        time        29% fanout  0.666667 input         3 rows
         Precode:
           0: __ro2sq$64 := Call __ro2sq (s_12_4_t0.O$36)
           5: BReturn 0
@@ -34,7 +34,7 @@ dinner	84.8
         0: description$28 :=  := artm __ro2sq$64
         4: mealTotal$29 :=  := artm aggregate$40
         8: BReturn 0
-        time      0.48% fanout         0 input         2 rows
+        time      0.39% fanout         0 input         2 rows
         Subquery Select(description$28, mealTotal$29)
       }
     
@@ -42,10 +42,10 @@ dinner	84.8
     0: description$74 := Call __ro2sq (description$28)
     5: mealTotal$76 := Call __ro2sq (mealTotal$29)
     10: BReturn 0
-    time      0.18% fanout         0 input         2 rows
+    time      0.14% fanout         0 input         2 rows
     Select (description$74, mealTotal$76)
   }
 
 
- 1 msec 10% cpu,        13 rnd         8 seq   57.1429% same seg   14.2857% same pg 
+ 0 msec 10% cpu,        13 rnd         8 seq   57.1429% same seg   14.2857% same pg 
 Compilation: 2 msec 0 reads         0% read 0 messages         0% clw

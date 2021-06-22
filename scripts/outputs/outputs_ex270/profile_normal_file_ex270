@@ -20,22 +20,22 @@ Nothing
 Nothing	
 
   { 
-    time      0.11% fanout         1 input         1 rows
+    time     0.057% fanout         1 input         1 rows
       clear: (<V set_ctr$38 in>)
     s# 41 39 cluster outer seq start, set no <V set_ctr$38 in>    
     save ctx:()
     time     1e+02% fanout      1000 input         1 rows
-    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:   2.5e+06 Fanout:     1e+03
+    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:   2.2e+06 Fanout:     1e+03
       clear: (<V s_6_2_t0.O$28 an>, <V label$30 a>)
       clear on continue: (<V s_6_2_t0.O$28 an>, <V label$30 a>)
-    s# 50 27 from DB.DBA.RDF_QUAD by RDF_QUAD    2.5e+06 rows   
+    s# 50 27 from DB.DBA.RDF_QUAD by RDF_QUAD    2.2e+06 rows   
     Key RDF_QUAD  ASC  (<V s_6_2_t0.O$28 an>)
      inlined  P =  IRI_ID"...label" 
     
     After code:
       0: <V label$30 a> := Call __ro2sq (<V s_6_2_t0.O$28 an>)
       5: BReturn 0
-    time     0.035% fanout         0 input      1000 rows
+    time     0.015% fanout         0 input      1000 rows
     $38 (27 39 ) $30 () 
     s# 60 32 Select (<V label$30 a>)
       set no: <r set_ctr$38 via  Set50>
@@ -44,6 +44,6 @@ Warning: You might have a Cartesian product.
 
 
 
- 3 msec 76% cpu,      1001 rnd       997 seq         0% same seg   84.6307% same pg 
-12 disk reads, 0 read ahead,   6.67912% wait
+ 6 msec 84% cpu,      1001 rnd       997 seq         0% same seg   84.6307% same pg 
+204 disk reads, 0 read ahead,   32.6049% wait
 Compilation: 1 msec 0 reads         0% read 0 messages         0% clw

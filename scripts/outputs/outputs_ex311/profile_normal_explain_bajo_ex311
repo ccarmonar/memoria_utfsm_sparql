@@ -20,10 +20,10 @@ http://www.openlinksw.com/virtrdf-data-formats#sql-longvarchar	http://www.w3.org
 http://www.openlinksw.com/virtrdf-data-formats#sql-longvarchar-nullable	http://www.w3.org/1999/02/22-rdf-syntax-ns#type	http://www.openlinksw.com/schemas/virtrdf#QuadMapFormat	
 
   { 
-    time      0.04% fanout         1 input         1 rows
+    time     0.047% fanout         1 input         1 rows
     time     1e+02% fanout      1000 input         1 rows
-    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:     5e+06 Fanout:     1e+03
-    RDF_QUAD     5e+06 rows(s_5_2_t0.S$30, s_5_2_t0.P$29, s_5_2_t0.O$28)
+    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:   3.4e+06 Fanout:     1e+03
+    RDF_QUAD_POGS   3.4e+06 rows(s_5_2_t0.S$30, s_5_2_t0.P$29, s_5_2_t0.O$28)
     
     
     After code:
@@ -31,10 +31,10 @@ http://www.openlinksw.com/virtrdf-data-formats#sql-longvarchar-nullable	http://w
     5: p$35 := Call __id2in (s_5_2_t0.P$29)
     10: o$37 := Call __ro2sq (s_5_2_t0.O$28)
     15: BReturn 0
-    time     0.017% fanout         0 input      1000 rows
+    time     0.016% fanout         0 input      1000 rows
     Select (s$33, p$35, o$37)
   }
 
 
- 9 msec 91% cpu,         1 rnd       998 seq         0% same seg         0% same pg 
-Compilation: 0 msec 0 reads         0% read 0 messages         0% clw
+ 6 msec 90% cpu,         1 rnd       998 seq         0% same seg         0% same pg 
+Compilation: 1 msec 0 reads         0% read 0 messages         0% clw

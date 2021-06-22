@@ -21,7 +21,7 @@ http://learningsparql.com/ns/data#i8301	http://xmlns.com/foaf/0.1/mbox_sha1sum	3
   { 
     Precode:
       0:   { 
-          time      0.36% fanout         1 input         1 rows
+          time      0.47% fanout         1 input         1 rows
           time       1.5% fanout         1 input         1 rows
           Precode:
             0: vector$27 := Call vector ( 1 ,  0 ,  3 ,  IRI_ID"...givenName" ,  1 ,  3 )
@@ -31,10 +31,10 @@ http://learningsparql.com/ns/data#i8301	http://xmlns.com/foaf/0.1/mbox_sha1sum	3
             20: vector$35 := Call vector ()
             25: BReturn 0
           fork {
-              time         8% fanout         8 input         1 rows
+              time       8.3% fanout         8 input         1 rows
               RDF_QUAD         8 rows(t3.S$39, t3.O$38)
                inlined  P =  IRI_ID"...lastName" 
-              time         4% fanout         1 input         8 rows
+              time       3.8% fanout         1 input         8 rows
               RDF_QUAD         1 rows(t2.S$43, t2.O$42)
                inlined  P =  IRI_ID"...firstName"  ,  S = t3.S$39
               time        85% fanout         0 input         8 rows
@@ -57,7 +57,7 @@ http://learningsparql.com/ns/data#i8301	http://xmlns.com/foaf/0.1/mbox_sha1sum	3
               37: user_aggr_ret$65 := Call DB.DBA.SPARQL_CONSTRUCT_ACC (user_aggr_env$64 , vector$33, vector$58, vector$35,  1 )
               44: BReturn 0
             }
-          time       1.2% fanout         1 input         1 rows
+          time       1.1% fanout         1 input         1 rows
           skip node  1  <none> set_ctr$60
           
           After code:
@@ -73,5 +73,5 @@ http://learningsparql.com/ns/data#i8301	http://xmlns.com/foaf/0.1/mbox_sha1sum	3
   }
 
 
- 1 msec 26% cpu,        40 rnd         8 seq   34.1463% same seg   36.5854% same pg 
-Compilation: 2 msec 0 reads         0% read 0 messages         0% clw
+ 0 msec 25% cpu,        40 rnd         8 seq   34.1463% same seg   36.5854% same pg 
+Compilation: 3 msec 0 reads         0% read 0 messages         0% clw

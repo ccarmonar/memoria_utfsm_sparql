@@ -1,8 +1,8 @@
 {
   "OP1": {
-    "profile_text": "    time      0.74% fanout         1 input         1 rows\n      clear: (<V set_ctr$45 in>)\n    s# 48 46 cluster outer seq start, set no <V set_ctr$45 in>    \n    save ctx:()",
-    "profile_text_low_explain": "\n    time      0.93% fanout         1 input         1 rows",
-    "time": 0.74,
+    "profile_text": "    time      0.83% fanout         1 input         1 rows\n      clear: (<V set_ctr$45 in>)\n    s# 48 46 cluster outer seq start, set no <V set_ctr$45 in>    \n    save ctx:()",
+    "profile_text_low_explain": "\n    time       0.9% fanout         1 input         1 rows",
+    "time": 0.83,
     "fanout": 1,
     "input_rows": 1,
     "cardinality_estimate": 0,
@@ -35,9 +35,9 @@
     "subquery_select?": 0
   },
   "OP2": {
-    "profile_text": "    time        75% fanout         1 input         1 rows\n    Precode:\n      0: <V DB.DBA.RDF_MAKE_OBJ_OF_TYPEDSQLVAL$27 x> := Call DB.DBA.RDF_MAKE_OBJ_OF_TYPEDSQLVAL (<c two>,  IRI_ID\"...string\" , <DB_NULL>)\n      7: BReturn 0\n      clear: (<V s_8_2_t0.P$30 rn>, <V DB.DBA.RDF_MAKE_OBJ_OF_TYPEDSQLVAL$27 x>)\n      clear on continue: (<V s_8_2_t0.P$30 rn>)$61 (29 ) \n    s# 57 29 from DB.DBA.RDF_QUAD by RDF_QUAD_OP        2.3 rows   \n    Key RDF_QUAD_OP  ASC  (<V s_8_2_t0.P$30 rn>)\n     inlined  O = <v k_DB.DBA.RDF_MAKE_OBJ_OF_TYPEDSQLVAL$61 Set63 an>\n    vector param casts: <V DB.DBA.RDF_MAKE_OBJ_OF_TYPEDSQLVAL$27 x>-> <v k_DB.DBA.RDF_MAKE_OBJ_OF_TYPEDSQLVAL$61 Set63 an>\n    ",
-    "profile_text_low_explain": "\n    time        77% fanout         1 input         1 rows\n    Precode:\n      0: DB.DBA.RDF_MAKE_OBJ_OF_TYPEDSQLVAL$27 := Call DB.DBA.RDF_MAKE_OBJ_OF_TYPEDSQLVAL (<c two>,  IRI_ID\"...string\" , <DB_NULL>)\n      7: BReturn 0\n    RDF_QUAD_OP       2.3 rows(s_8_2_t0.P$30)\n     inlined  O = k_DB.DBA.RDF_MAKE_OBJ_OF_TYPEDSQLVAL$61",
-    "time": 75,
+    "profile_text": "    time        72% fanout         1 input         1 rows\n    Precode:\n      0: <V DB.DBA.RDF_MAKE_OBJ_OF_TYPEDSQLVAL$27 x> := Call DB.DBA.RDF_MAKE_OBJ_OF_TYPEDSQLVAL (<c two>,  IRI_ID\"...string\" , <DB_NULL>)\n      7: BReturn 0\n      clear: (<V s_8_2_t0.P$30 rn>, <V DB.DBA.RDF_MAKE_OBJ_OF_TYPEDSQLVAL$27 x>)\n      clear on continue: (<V s_8_2_t0.P$30 rn>)$61 (29 ) \n    s# 57 29 from DB.DBA.RDF_QUAD by RDF_QUAD_OP        2.2 rows   \n    Key RDF_QUAD_OP  ASC  (<V s_8_2_t0.P$30 rn>)\n     inlined  O = <v k_DB.DBA.RDF_MAKE_OBJ_OF_TYPEDSQLVAL$61 Set63 an>\n    vector param casts: <V DB.DBA.RDF_MAKE_OBJ_OF_TYPEDSQLVAL$27 x>-> <v k_DB.DBA.RDF_MAKE_OBJ_OF_TYPEDSQLVAL$61 Set63 an>\n    ",
+    "profile_text_low_explain": "\n    time        77% fanout         1 input         1 rows\n    Precode:\n      0: DB.DBA.RDF_MAKE_OBJ_OF_TYPEDSQLVAL$27 := Call DB.DBA.RDF_MAKE_OBJ_OF_TYPEDSQLVAL (<c two>,  IRI_ID\"...string\" , <DB_NULL>)\n      7: BReturn 0\n    RDF_QUAD_OP       2.2 rows(s_8_2_t0.P$30)\n     inlined  O = k_DB.DBA.RDF_MAKE_OBJ_OF_TYPEDSQLVAL$61",
+    "time": 72,
     "fanout": 1,
     "input_rows": 1,
     "cardinality_estimate": 0,
@@ -71,9 +71,9 @@
     "subquery_select?": 0
   },
   "OP3": {
-    "profile_text": "    time        24% fanout         1 input         1 rows\n      clear: (<V s_8_2_t0.S$34 rn>, <V s$37 a>)\n      clear on continue: (<V s$37 a>, <V s_8_2_t0.S$34 rn>)$75 (33 ) $79 (33 ) $27 (29 ) $30 () \n    s# 71 33 from DB.DBA.RDF_QUAD by RDF_QUAD_POGS        1.2 rows   \n    Key RDF_QUAD_POGS  ASC  (<V s_8_2_t0.S$34 rn>)\n     P = <v k_s_8_2_t0.P$75 Set77 rn> ,  O = <V k_DB.DBA.RDF_MAKE_OBJ_OF_TYPEDSQLVAL$79 an>\n    vector param casts: <V s_8_2_t0.P$30 rn>-> <v k_s_8_2_t0.P$75 Set77 rn>, <r DB.DBA.RDF_MAKE_OBJ_OF_TYPEDSQLVAL$27 via  Set57 Set63>-> <V k_DB.DBA.RDF_MAKE_OBJ_OF_TYPEDSQLVAL$79 an>\n    \n    After code:\n      0: <V s$37 a> := Call __id2in (<V s_8_2_t0.S$34 rn>)\n      5: BReturn 0",
+    "profile_text": "    time        27% fanout         1 input         1 rows\n      clear: (<V s_8_2_t0.S$34 rn>, <V s$37 a>)\n      clear on continue: (<V s$37 a>, <V s_8_2_t0.S$34 rn>)$75 (33 ) $79 (33 ) $27 (29 ) $30 () \n    s# 71 33 from DB.DBA.RDF_QUAD by RDF_QUAD_POGS        1.2 rows   \n    Key RDF_QUAD_POGS  ASC  (<V s_8_2_t0.S$34 rn>)\n     P = <v k_s_8_2_t0.P$75 Set77 rn> ,  O = <V k_DB.DBA.RDF_MAKE_OBJ_OF_TYPEDSQLVAL$79 an>\n    vector param casts: <V s_8_2_t0.P$30 rn>-> <v k_s_8_2_t0.P$75 Set77 rn>, <r DB.DBA.RDF_MAKE_OBJ_OF_TYPEDSQLVAL$27 via  Set57 Set63>-> <V k_DB.DBA.RDF_MAKE_OBJ_OF_TYPEDSQLVAL$79 an>\n    \n    After code:\n      0: <V s$37 a> := Call __id2in (<V s_8_2_t0.S$34 rn>)\n      5: BReturn 0",
     "profile_text_low_explain": "\n    time        22% fanout         1 input         1 rows\n    RDF_QUAD_POGS       1.2 rows(s_8_2_t0.S$34)\n     P = k_s_8_2_t0.P$75 ,  O = k_DB.DBA.RDF_MAKE_OBJ_OF_TYPEDSQLVAL$79\n    \n    After code:\n    0: s$37 := Call __id2in (s_8_2_t0.S$34)\n    5: BReturn 0",
-    "time": 24,
+    "time": 27,
     "fanout": 1,
     "input_rows": 1,
     "cardinality_estimate": 0,
@@ -111,9 +111,9 @@
     "subquery_select?": 0
   },
   "OP4": {
-    "profile_text": "    time      0.16% fanout         0 input         1 rows\n    $37 () $45 (33 29 46 ) \n    s# 87 39 Select (<V s$37 a>)\n      set no: <r set_ctr$45 via  Set71 Set77 Set57 Set63>\n  ",
-    "profile_text_low_explain": "\n    time      0.27% fanout         0 input         1 rows\n    Select (s$37)\n  ",
-    "time": 0.16,
+    "profile_text": "    time      0.19% fanout         0 input         1 rows\n    $37 () $45 (33 29 46 ) \n    s# 87 39 Select (<V s$37 a>)\n      set no: <r set_ctr$45 via  Set71 Set77 Set57 Set63>\n  ",
+    "profile_text_low_explain": "\n    time      0.24% fanout         0 input         1 rows\n    Select (s$37)\n  ",
+    "time": 0.19,
     "fanout": 0,
     "input_rows": 1,
     "cardinality_estimate": 0,

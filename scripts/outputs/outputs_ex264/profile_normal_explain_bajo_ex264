@@ -20,10 +20,10 @@ http://www.openlinksw.com/schemas/virtrdf#QuadMapFormat	http://www.openlinksw.co
 http://www.openlinksw.com/schemas/virtrdf#QuadMapFormat	http://www.openlinksw.com/schemas/virtrdf#QuadMapFormat	
 
   { 
-    time     0.016% fanout         1 input         1 rows
+    time     0.012% fanout         1 input         1 rows
     time     1e+02% fanout      1000 input         1 rows
-    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:     5e+06 Fanout:     1e+03
-    RDF_QUAD     5e+06 rows(t2.O$28)
+    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:   3.4e+06 Fanout:     1e+03
+    RDF_QUAD_POGS   3.4e+06 rows(t2.O$28)
     
     
     After code:
@@ -32,10 +32,10 @@ http://www.openlinksw.com/schemas/virtrdf#QuadMapFormat	http://www.openlinksw.co
     10: DB.DBA.rdf_strdt_impl$35 := Call DB.DBA.rdf_strdt_impl (__rdf_strsqlval$33, <tag 182 flag 1 c http://www.w3.org/2001/XMLSchema#decimal>)
     17: decimalTest$37 := Call __rdf_sqlval_of_obj (DB.DBA.rdf_strdt_impl$35)
     22: BReturn 0
-    time    0.0056% fanout         0 input      1000 rows
+    time    0.0049% fanout         0 input      1000 rows
     Select (o$31, decimalTest$37)
   }
 
 
- 19 msec 94% cpu,         1 rnd       998 seq         0% same seg         0% same pg 
+ 15 msec 95% cpu,         1 rnd       998 seq         0% same seg         0% same pg 
 Compilation: 1 msec 0 reads         0% read 0 messages         0% clw

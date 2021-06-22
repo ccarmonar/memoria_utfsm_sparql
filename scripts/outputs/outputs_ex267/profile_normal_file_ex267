@@ -5,7 +5,7 @@ http://learningsparql.com/ns/data#item3	http://learningsparql.com/ns/demo#amount
   { 
     Precode:
       0:   { 
-          time      0.42% fanout         1 input         1 rows
+          time      0.49% fanout         1 input         1 rows
             clear: (<V ext_sets$73 i>, <V set_ctr$55 in>)
           s# 74 56 cluster outer seq start, set no <V set_ctr$55 in>    
           save ctx:()
@@ -17,21 +17,21 @@ http://learningsparql.com/ns/data#item3	http://learningsparql.com/ns/demo#amount
             15: BReturn 0
             clear: (<V vector$31 x>, <V vector$29 x>, <V vector$27 x>)$27 (57 ) 
           s# 122 57 Fork 57 {  
-              time       8.1% fanout         3 input         1 rows
+              time       6.6% fanout         3 input         1 rows
                 clear: (<V t4.O$34 an>, <V t4.S$35 rn>)
                 clear on continue: (<V t4.O$34 an>, <V t4.S$35 rn>)
               s# 85 33 from DB.DBA.RDF_QUAD by RDF_QUAD          3 rows   
               Key RDF_QUAD  ASC  (<V t4.S$35 rn>, <V t4.O$34 an>)
                inlined  P =  IRI_ID"...units" 
               
-              time       3.5% fanout         1 input         3 rows
+              time       2.9% fanout         1 input         3 rows
                 clear: (<V t2.S$38 rn>)
                 clear on continue: (<V t2.S$38 rn>)
               s# 96 37 from DB.DBA.RDF_QUAD by RDF_QUAD          1 rows   
               Key RDF_QUAD  ASC  (<V t2.S$38 rn>)
                inlined  P =  IRI_ID"...product"  ,  S = <V t4.S$35 rn>
               
-              time        85% fanout         0 input         3 rows
+              time        87% fanout         0 input         3 rows
               Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:         1 Fanout:         0
                 clear: (<V t3.O$41 an>, <V user_aggr_ret$60 x>, <V vector$53 x>, <V DB.DBA.rdf_strdt_impl$51 x>, <V __rdf_strsqlval$49 s>, <V rdf_concat_impl$47 s>, <V __ro2sq$45 a>, <V __ro2sq$43 a>)
                 clear on continue: (<V __ro2sq$43 a>, <V __ro2sq$45 a>, <V rdf_concat_impl$47 s>, <V __rdf_strsqlval$49 s>, <V DB.DBA.rdf_strdt_impl$51 x>, <V vector$53 x>, <V user_aggr_ret$60 x>, <V t3.O$41 an>)$34 (37 ) $35 (37 ) $38 () $110 (40 ) 
@@ -59,7 +59,7 @@ http://learningsparql.com/ns/data#item3	http://learningsparql.com/ns/demo#amount
           After code:
             0: <V callret-0$61 x> := Call DB.DBA.SPARQL_CONSTRUCT_FIN (user_aggr_env$59 )
             7: BReturn 0
-          time      0.22% fanout         0 input         1 rows
+          time      0.24% fanout         0 input         1 rows
           $73 (71 57 56 ) $55 (71 57 56 ) $61 (71 ) 
           s# 137 63 Subquery Select(<V callret-0$61 x>)
             set no: <r set_ctr$55 via  Set129>
@@ -74,6 +74,6 @@ Warning: You might have a Cartesian product.
 
 
 
- 1 msec 21% cpu,        22 rnd         2 seq   17.3913% same seg    26.087% same pg 
-2 disk reads, 0 read ahead,    1.0789% wait
-Compilation: 2 msec 0 reads         0% read 0 messages         0% clw
+ 0 msec 0% cpu,        22 rnd         2 seq   17.3913% same seg    26.087% same pg 
+2 disk reads, 0 read ahead, 0.0100757% wait
+Compilation: 226 msec 0 reads         0% read 0 messages         0% clw

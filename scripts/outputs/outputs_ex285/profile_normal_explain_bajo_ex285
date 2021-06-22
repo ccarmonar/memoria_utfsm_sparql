@@ -1,14 +1,14 @@
-dog	3		DOG	dog	
-My String	9	St	MY STRING	my string	
 cat	3		CAT	cat	
-123456	6	45	123456	123456	
-http://www.learnsparql.com/cgi/func1&amp;color=red	46	p:	HTTP://WWW.LEARNSPARQL.COM/CGI/FUNC1&amp;COLOR=RED	http://www.learnsparql.com/cgi/func1&amp;color=red	
+dog	3		DOG	dog	
 turtle	6	tl	TURTLE	turtle	
+123456	6	45	123456	123456	
+My String	9	St	MY STRING	my string	
+http://www.learnsparql.com/cgi/func1&amp;color=red	46	p:	HTTP://WWW.LEARNSPARQL.COM/CGI/FUNC1&amp;COLOR=RED	http://www.learnsparql.com/cgi/func1&amp;color=red	
 
   { 
     time       1.7% fanout         1 input         1 rows
     time        98% fanout         6 input         1 rows
-    RDF_QUAD         6 rows(t2.O$28)
+    RDF_QUAD_POGS         6 rows(t2.O$28)
      inlined  P =  IRI_ID"...rdf-schemalabel" 
     
     After code:
@@ -21,10 +21,10 @@ turtle	6	tl	TURTLE	turtle
     30: rdf_lcase_impl$42 := Call rdf_lcase_impl (__ro2lo$34)
     35: lcaseTest$44 := Call __rdf_sqlval_of_obj (rdf_lcase_impl$42)
     40: BReturn 0
-    time      0.18% fanout         0 input         6 rows
+    time       0.2% fanout         0 input         6 rows
     Select (label$30, strlenTest$32, substrTest$36, ucaseTest$40, lcaseTest$44)
   }
 
 
- 0 msec 13% cpu,        13 rnd         5 seq         0% same seg   71.4286% same pg 
-Compilation: 0 msec 0 reads         0% read 0 messages         0% clw
+ 1 msec 13% cpu,        13 rnd         5 seq         0% same seg   71.4286% same pg 
+Compilation: 1 msec 0 reads         0% read 0 messages         0% clw

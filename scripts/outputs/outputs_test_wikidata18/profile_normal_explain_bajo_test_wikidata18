@@ -6,7 +6,7 @@ Error: 22007: DT001: Function year needs a datetime, date or time as argument 1,
       5: BReturn 0
     Subquery 29 
       { 
-        time      0.36% fanout         0 input         1 rows
+        time      0.33% fanout         0 input         1 rows
         fork {
             Transitive dt dir 2, input: (__all_eq$27)
               input shadow: (__all_eq$238)
@@ -20,7 +20,7 @@ Error: 22007: DT001: Function year needs a datetime, date or time as argument 1,
                 0: _::trans_subj_38_5$38 :=  := artm t4.S$45
                 4: _::trans_obj_38_6$39 :=  := artm t4.O$44
                 8: BReturn 0
-                time      0.33% fanout         0 input         1 rows
+                time      0.34% fanout         0 input         1 rows
                 Subquery Select(_::trans_subj_38_5$38, _::trans_obj_38_6$39)
               }
             time        16% fanout         1 input         2 rows
@@ -34,7 +34,7 @@ Error: 22007: DT001: Function year needs a datetime, date or time as argument 1,
             outer {
                 Subquery 69 
                   { 
-                    time         7% fanout         0 input         2 rows
+                    time       7.3% fanout         0 input         2 rows
                     Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:       1.1 Fanout:         0
                     RDF_QUAD       1.1 rows(t8.O$75, t8.S$74)
                      inlined  P =  IRI_ID"...direct/P1001"  ,  S = k_t2.S$295
@@ -61,90 +61,88 @@ Error: 22007: DT001: Function year needs a datetime, date or time as argument 1,
                 time         0% fanout         0 input         0 rows
               } /* end of outer */
             set_ctr$92
-             out: (item$70, jurisdiction$71, set_no$72)
+             out: (jurisdiction$71, item$70, set_no$72)
              shadow: ( <none> ,  <none> ,  <none> )
-            time         1% fanout         1 input         2 rows
-            Precode:
-              0: __ro2sq$101 := Call __ro2sq (jurisdiction$71)
-              5: BReturn 0
+            time      0.28% fanout         1 input         2 rows
             outer {
-                time       3.4% fanout         0 input         2 rows
+                time       3.3% fanout         0 input         2 rows
                 Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:         1 Fanout:         0
-                RDF_QUAD         1 rows(t6.O$104)
+                RDF_QUAD         1 rows(t6.O$102)
                  inlined  P =  IRI_ID"...direct/P1342"  ,  S = k_t2.S$363
                 time         0% fanout         0 input         0 rows
               } /* end of outer */
-            set_ctr$107
-             out: (t6.O$104)
+            set_ctr$105
+             out: (t6.O$102)
              shadow: ( <none> )
-            time      0.27% fanout         1 input         2 rows
+            time      0.24% fanout         1 input         2 rows
             outer {
-                time       6.1% fanout         0 input         2 rows
+                time       6.3% fanout         0 input         2 rows
                 Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:       1.1 Fanout:         0
-                RDF_QUAD       1.1 rows(t11.O$117)
+                RDF_QUAD       1.1 rows(t11.O$115)
                  inlined  P =  IRI_ID"...direct/P571"  ,  S = k_t2.S$394
                 time         0% fanout         0 input         0 rows
               } /* end of outer */
-            set_ctr$120
-             out: (t11.O$117)
+            set_ctr$118
+             out: (t11.O$115)
              shadow: ( <none> )
             time         0% fanout         0 input         2 rows
             Precode:
-              0: rdf_year_impl$129 := Call rdf_year_impl (t11.O$117)
+              0: rdf_year_impl$127 := Call rdf_year_impl (t11.O$115)
               5: BReturn 0
             outer {
                 time         0% fanout         0 input         0 rows
                 Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:       1.1 Fanout:         0
-                RDF_QUAD       1.1 rows(t13.O$132)
+                RDF_QUAD       1.1 rows(t13.O$130)
                  inlined  P =  IRI_ID"...direct/P576"  ,  S = k_t2.S$425
                 time         0% fanout         0 input         0 rows
               } /* end of outer */
-            set_ctr$135
-             out: (t13.O$132)
+            set_ctr$133
+             out: (t13.O$130)
              shadow: ( <none> )
             time         0% fanout         0 input         0 rows
             Precode:
-              0: rdf_year_impl$144 := Call rdf_year_impl (t13.O$132)
+              0: rdf_year_impl$142 := Call rdf_year_impl (t13.O$130)
               5: BReturn 0
             outer {
                 time         0% fanout         0 input         0 rows
                 Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:        12 Fanout:         0
-                RDF_QUAD        12 rows(t15.O$147)
+                RDF_QUAD        12 rows(t15.O$145)
                  inlined  P =  IRI_ID"...label"  ,  S = k_t2.S$456
                 time         0% fanout         0 input         0 rows
                 END Node
                 After test:
-                0: __ro2sq$149 := Call __ro2sq (t15.O$147)
-                5: DB.DBA.RDF_LANGUAGE_OF_OBJ$151 := Call DB.DBA.RDF_LANGUAGE_OF_OBJ (__ro2sq$149)
-                12: if (<c en> = DB.DBA.RDF_LANGUAGE_OF_OBJ$151) then 16 else 17 unkn 17
+                0: __ro2sq$147 := Call __ro2sq (t15.O$145)
+                5: DB.DBA.RDF_LANGUAGE_OF_OBJ$149 := Call DB.DBA.RDF_LANGUAGE_OF_OBJ (__ro2sq$147)
+                12: if (<c en> = DB.DBA.RDF_LANGUAGE_OF_OBJ$149) then 16 else 17 unkn 17
                 16: BReturn 1
                 17: BReturn 0
                 time         0% fanout         0 input         0 rows
               } /* end of outer */
-            set_ctr$154
-             out: (__ro2sq$149, DB.DBA.RDF_LANGUAGE_OF_OBJ$151, t15.O$147)
+            set_ctr$152
+             out: (DB.DBA.RDF_LANGUAGE_OF_OBJ$149, __ro2sq$147, t15.O$145)
              shadow: ( <none> ,  <none> , t15.O$483)
             time         0% fanout         0 input         0 rows
-            Distinct (t2.S$65, t15.O$483, t6.O$104, jurisdiction$71, rdf_year_impl$129, rdf_year_impl$144)
+            Distinct (t2.S$65, t15.O$483, t6.O$102, jurisdiction$71, rdf_year_impl$127, rdf_year_impl$142)
             time         0% fanout         0 input         0 rows
             Precode:
-              0: __ro2sq$169 := Call __ro2sq (t6.O$104)
-              5: __ro2sq$171 := Call __ro2sq (t15.O$147)
+              0: __ro2sq$167 := Call __ro2sq (t6.O$102)
+              5: __ro2sq$169 := Call __ro2sq (t15.O$145)
               10: BReturn 0
-            Sort (__ro2sq$169, __ro2sq$171) -> (__id2in$67, __ro2sq$101, rdf_year_impl$129, rdf_year_impl$144)
+            Sort (__ro2sq$167, __ro2sq$169) -> (__id2in$67, jurisdiction$71, rdf_year_impl$127, rdf_year_impl$142)
             
           }
         time         0% fanout         0 input         0 rows
-        top order by read (__id2in$67, __ro2sq$171, __ro2sq$169, __ro2sq$101, rdf_year_impl$129, rdf_year_impl$144)
+        top order by read (__id2in$67, __ro2sq$169, __ro2sq$167, jurisdiction$71, rdf_year_impl$127, rdf_year_impl$142)
         
         After code:
-        0: item$30 :=  := artm __id2in$67
-        4: title$31 :=  := artm __ro2sq$171
-        8: seats$32 :=  := artm __ro2sq$169
-        12: jurisdiction$33 :=  := artm __ro2sq$101
-        16: start$34 :=  := artm rdf_year_impl$129
-        20: end$35 :=  := artm rdf_year_impl$144
-        24: BReturn 0
+        0: __ro2sq$190 := Call __ro2sq (jurisdiction$71)
+        5: item$30 :=  := artm __id2in$67
+        9: title$31 :=  := artm __ro2sq$169
+        13: seats$32 :=  := artm __ro2sq$167
+        17: jurisdiction$33 :=  := artm __ro2sq$190
+        21: start$34 :=  := artm rdf_year_impl$127
+        25: end$35 :=  := artm rdf_year_impl$142
+        29: BReturn 0
         time         0% fanout         0 input         0 rows
         Subquery Select(item$30, title$31, seats$32, jurisdiction$33, start$34, end$35)
       }

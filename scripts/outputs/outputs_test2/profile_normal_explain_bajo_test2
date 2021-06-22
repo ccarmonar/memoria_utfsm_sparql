@@ -1,8 +1,8 @@
   { 
     Precode:
       0:   { FOR UPDATE
-          time      0.26% fanout         1 input         1 rows
-          time       4.5% fanout         1 input         1 rows
+          time      0.28% fanout         1 input         1 rows
+          time       4.8% fanout         1 input         1 rows
           Precode:
             0: vector$27 := Call vector ()
             5: DB.DBA.RDF_MAKE_LONG_OF_SQLVAL$29 := Call DB.DBA.RDF_MAKE_LONG_OF_SQLVAL (<c SPARQL Tutorial>)
@@ -20,17 +20,17 @@
                 { 
                   Subquery 50 
                     { 
-                      time       0.2% fanout         1 input         1 rows
+                      time      0.21% fanout         1 input         1 rows
                       Precode:
                         0: __stub$51 :=  := artm  1 
                         4: BReturn 0
                       END Node
-                      time      0.15% fanout         0 input         1 rows
+                      time      0.13% fanout         0 input         1 rows
                       Subquery Select(__stub$51)
                     }
-                  time      0.13% fanout         1 input         1 rows
+                  time      0.15% fanout         1 input         1 rows
                   skip node  1  <none> set_no$49
-                  time     0.024% fanout         0 input         1 rows
+                  time     0.031% fanout         0 input         1 rows
                   Subquery Select( <none> )
                 }
               
@@ -41,14 +41,14 @@
               15: user_aggr_ret$76 := Call DB.DBA.SPARQL_CONSTRUCT_ACC (user_aggr_env$75 , vector$27, vector$27, vector$45,  0 )
               22: BReturn 0
             }
-          time        95% fanout         1 input         1 rows
+          time        94% fanout         1 input         1 rows
           skip node  1  <none> set_ctr$71
           
           After code:
           0: DB.DBA.SPARQL_CONSTRUCT_FIN$77 := Call DB.DBA.SPARQL_CONSTRUCT_FIN (user_aggr_env$75 )
           7: callret-0$79 := Call DB.DBA.SPARQL_INSERT_DICT_CONTENT (<tag 182 flag 1 c urn:sparql:bind:tests>, DB.DBA.SPARQL_CONSTRUCT_FIN$77,  0 , <DB_NULL>,  0 )
           14: BReturn 0
-          time     0.086% fanout         0 input         1 rows
+          time       0.1% fanout         0 input         1 rows
           Subquery Select(callret-0$79)
         }
       
@@ -60,5 +60,5 @@
   }
 
 
- 1 msec 16% cpu,        12 rnd         0 seq         0% same seg         0% same pg 
-Compilation: 2 msec 0 reads         0% read 0 messages         0% clw
+ 1 msec 17% cpu,        12 rnd         0 seq         0% same seg         0% same pg 
+Compilation: 1 msec 0 reads         0% read 0 messages         0% clw

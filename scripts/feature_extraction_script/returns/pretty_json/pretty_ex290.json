@@ -1,8 +1,8 @@
 {
   "OP1": {
-    "profile_text": "    time         2% fanout         1 input         1 rows\n      clear: (<V set_ctr$40 in>)\n    s# 43 41 cluster outer seq start, set no <V set_ctr$40 in>    \n    save ctx:()",
-    "profile_text_low_explain": "\n    time       1.9% fanout         1 input         1 rows",
-    "time": 2,
+    "profile_text": "    time       2.2% fanout         1 input         1 rows\n      clear: (<V set_ctr$40 in>)\n    s# 43 41 cluster outer seq start, set no <V set_ctr$40 in>    \n    save ctx:()",
+    "profile_text_low_explain": "\n    time       2.2% fanout         1 input         1 rows",
+    "time": 2.2,
     "fanout": 1,
     "input_rows": 1,
     "cardinality_estimate": 0,
@@ -35,8 +35,8 @@
     "subquery_select?": 0
   },
   "OP2": {
-    "profile_text": "    time        98% fanout         6 input         1 rows\n      clear: (<V t2.O$28 an>, <V encodeTest$32 s>, <V __ro2sq$30 a>)\n      clear on continue: (<V t2.O$28 an>, <V encodeTest$32 s>, <V __ro2sq$30 a>)\n    s# 52 27 from DB.DBA.RDF_QUAD by RDF_QUAD          6 rows   \n    Key RDF_QUAD  ASC  (<V t2.O$28 an>)\n     inlined  P =  IRI_ID\"...rdf-schemalabel\" \n    \n    After code:\n      0: <V __ro2sq$30 a> := Call __ro2sq (<V t2.O$28 an>)\n      5: <V encodeTest$32 s> := Call rdf_encode_for_uri_impl (<V __ro2sq$30 a>)\n      10: BReturn 0",
-    "profile_text_low_explain": "\n    time        98% fanout         6 input         1 rows\n    RDF_QUAD         6 rows(t2.O$28)\n     inlined  P =  IRI_ID\"...rdf-schemalabel\" \n    \n    After code:\n    0: __ro2sq$30 := Call __ro2sq (t2.O$28)\n    5: encodeTest$32 := Call rdf_encode_for_uri_impl (__ro2sq$30)\n    10: BReturn 0",
+    "profile_text": "    time        98% fanout         6 input         1 rows\n      clear: (<V t2.O$28 an>, <V encodeTest$32 s>, <V __ro2sq$30 a>)\n      clear on continue: (<V t2.O$28 an>, <V encodeTest$32 s>, <V __ro2sq$30 a>)\n    s# 52 27 from DB.DBA.RDF_QUAD by RDF_QUAD_POGS          6 rows   \n    Key RDF_QUAD_POGS  ASC  (<V t2.O$28 an>)\n     inlined  P =  IRI_ID\"...rdf-schemalabel\" \n    \n    After code:\n      0: <V __ro2sq$30 a> := Call __ro2sq (<V t2.O$28 an>)\n      5: <V encodeTest$32 s> := Call rdf_encode_for_uri_impl (<V __ro2sq$30 a>)\n      10: BReturn 0",
+    "profile_text_low_explain": "\n    time        98% fanout         6 input         1 rows\n    RDF_QUAD_POGS         6 rows(t2.O$28)\n     inlined  P =  IRI_ID\"...rdf-schemalabel\" \n    \n    After code:\n    0: __ro2sq$30 := Call __ro2sq (t2.O$28)\n    5: encodeTest$32 := Call rdf_encode_for_uri_impl (__ro2sq$30)\n    10: BReturn 0",
     "time": 98,
     "fanout": 6,
     "input_rows": 1,
@@ -73,9 +73,9 @@
     "subquery_select?": 0
   },
   "OP3": {
-    "profile_text": "    time      0.26% fanout         0 input         6 rows\n    $32 () $40 (27 41 ) \n    s# 62 34 Select (<V encodeTest$32 s>)\n      set no: <r set_ctr$40 via  Set52>\n  ",
-    "profile_text_low_explain": "\n    time      0.28% fanout         0 input         6 rows\n    Select (encodeTest$32)\n  ",
-    "time": 0.26,
+    "profile_text": "    time       0.3% fanout         0 input         6 rows\n    $32 () $40 (27 41 ) \n    s# 62 34 Select (<V encodeTest$32 s>)\n      set no: <r set_ctr$40 via  Set52>\n  ",
+    "profile_text_low_explain": "\n    time      0.29% fanout         0 input         6 rows\n    Select (encodeTest$32)\n  ",
+    "time": 0.3,
     "fanout": 0,
     "input_rows": 6,
     "cardinality_estimate": 0,

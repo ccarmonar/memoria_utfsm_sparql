@@ -2,7 +2,7 @@ http://www.wikidata.org/entity/Q995315
 http://www.wikidata.org/entity/Q995315	
 
   { 
-    time      0.35% fanout         1 input         1 rows
+    time      0.42% fanout         1 input         1 rows
     Precode:
       0: __rdflit$27  := Call __rdflit (rdflit1423)
       5: __all_eq$29 := Call __all_eq ( IRI_ID"...Q25" )
@@ -13,28 +13,28 @@ http://www.wikidata.org/entity/Q995315
           { 
             Subquery 35 
               { 
-                time       6.6% fanout         5 input         1 rows
+                time       7.4% fanout         5 input         1 rows
                 RDF_QUAD_POGS         5 rows(s_46_4_t0-c5-c17.S$39)
                  P =  IRI_ID"...direct/P19"  ,  O =  IRI_ID"...Q25" 
-                time        15% fanout         1 input         5 rows
-                RDF_QUAD       0.3 rows(s_57_24_t7.S$42)
-                 inlined  P =  IRI_ID"...direct/P31"  ,  S = s_46_4_t0-c5-c17.S$39 ,  O =  IRI_ID"...Q5" 
-                time       6.5% fanout       0.2 input         5 rows
-                RDF_QUAD      0.18 rows(s_57_25_t6-c17.S$45)
-                 inlined  P =  IRI_ID"...direct/P21"  ,  S = k_s_46_4_t0-c5-c17.S$245 ,  O =  IRI_ID"...Q6581072" 
-                time      0.49% fanout         1 input         1 rows
+                time        12% fanout         1 input         5 rows
+                RDF_QUAD_POGS       0.3 rows(s_57_24_t7.S$42)
+                 inlined  P =  IRI_ID"...direct/P31"  ,  O =  IRI_ID"...Q5"  ,  S = s_46_4_t0-c5-c17.S$39
+                time       4.9% fanout       0.2 input         5 rows
+                RDF_QUAD_POGS      0.18 rows(s_57_25_t6-c17.S$45)
+                 inlined  P =  IRI_ID"...direct/P21"  ,  O =  IRI_ID"...Q6581072"  ,  S = k_s_46_4_t0-c5-c17.S$245
+                time      0.58% fanout         1 input         1 rows
                 Precode:
                   0: __all_eq$47 := Call __all_eq (s_57_25_t6-c17.S$45, s_46_4_t0-c5-c17.S$39)
                   5: BReturn 0
                 outer {
                     Subquery 49 
                       { 
-                        time       4.4% fanout         1 input         1 rows
+                        time       4.7% fanout         1 input         1 rows
                         RDF_QUAD_POGS         1 rows(s_51_21_t3-c19.S$58, s_51_21_t3-c19.G$57, s_51_21_t3-c19.O$56)
                          P =  IRI_ID"...about"  ,  O = k___all_eq$272 O LIKE <c Tó>
-                        time       2.1% fanout         0 input         1 rows
-                        Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:     2e-06 Fanout:         0
-                        RDF_QUAD_POGS     2e-06 rows(s_51_21_t4-c19.S$62, s_51_21_t4-c19.G$61)
+                        time       2.2% fanout         0 input         1 rows
+                        Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:   2.9e-06 Fanout:         0
+                        RDF_QUAD_POGS   2.9e-06 rows(s_51_21_t4-c19.S$62, s_51_21_t4-c19.G$61)
                          inlined  P =  IRI_ID"...inLanguage"  ,  O = rdflit1423 ,  S = s_51_21_t3-c19.S$58
                         
                         After code:
@@ -49,28 +49,28 @@ http://www.wikidata.org/entity/Q995315
                     time         0% fanout         0 input         0 rows
                   } /* end of outer */
                 set_ctr$72
-                 out: (item$52, _::default_49_19$53, set_no$54, _::default_49_17$50, sitelink$51)
+                 out: (_::default_49_19$53, set_no$54, item$52, _::default_49_17$50, sitelink$51)
                  shadow: ( <none> ,  <none> ,  <none> ,  <none> ,  <none> )
-                time      0.34% fanout         1 input         1 rows
+                time      0.38% fanout         1 input         1 rows
                 END Node
                 After test:
                 0: if (sitelink$51  IS NULL   0 ) then 4 else 5 unkn 5
                 4: BReturn 1
                 5: BReturn 0
-                time      0.35% fanout         1 input         1 rows
+                time      0.34% fanout         1 input         1 rows
                 skip node  5000  <none> set_no$37
                 
                 After code:
                 0: item$36 :=  := artm s_57_24_t7.S$42
                 4: BReturn 0
-                time      0.11% fanout         0 input         1 rows
+                time      0.12% fanout         0 input         1 rows
                 Subquery Select(item$36)
               }
             
             After code:
             0: item$32 :=  := artm item$36
             4: BReturn 0
-            time     0.035% fanout         0 input         1 rows
+            time     0.055% fanout         0 input         1 rows
             Subquery Select(item$32)
           }
           { 
@@ -80,7 +80,7 @@ http://www.wikidata.org/entity/Q995315
                   input shadow: (__all_eq$359)
                   output: (_::trans_subj_46_7$102)
                   { 
-                    time        14% fanout         1 input        12 rows
+                    time        15% fanout         1 input        12 rows
                     RDF_QUAD_POGS       2.7 rows(t15.S$109, t15.O$108)
                      P =  IRI_ID"...direct/P131"  ,  O = k___all_eq$365
                     
@@ -88,28 +88,28 @@ http://www.wikidata.org/entity/Q995315
                     0: _::trans_subj_46_7$102 :=  := artm t15.S$109
                     4: _::trans_obj_46_8$103 :=  := artm t15.O$108
                     8: BReturn 0
-                    time     0.065% fanout         0 input        12 rows
+                    time     0.088% fanout         0 input        12 rows
                     Subquery Select(_::trans_subj_46_7$102, _::trans_obj_46_8$103)
                   }
-                time        10% fanout  0.461538 input        13 rows
+                time        11% fanout  0.461538 input        13 rows
                 RDF_QUAD_POGS       2.3 rows(t13.S$129)
                  P =  IRI_ID"...direct/P19"  ,  O = cast$389 O LIKE <c Tó>
-                time       7.9% fanout  0.166667 input         6 rows
-                RDF_QUAD      0.18 rows(t12.S$132)
-                 inlined  P =  IRI_ID"...direct/P21"  ,  S = t13.S$129 ,  O =  IRI_ID"...Q6581072" 
-                time       2.2% fanout         1 input         1 rows
-                RDF_QUAD       0.3 rows(t19.S$135)
-                 inlined  P =  IRI_ID"...direct/P31"  ,  S = t12.S$132 ,  O =  IRI_ID"...Q5" 
-                time      0.18% fanout         1 input         1 rows
+                time       4.1% fanout  0.166667 input         6 rows
+                RDF_QUAD_POGS      0.18 rows(t12.S$132)
+                 inlined  P =  IRI_ID"...direct/P21"  ,  O =  IRI_ID"...Q6581072"  ,  S = t13.S$129
+                time       4.1% fanout         1 input         1 rows
+                RDF_QUAD_POGS       0.3 rows(t19.S$135)
+                 inlined  P =  IRI_ID"...direct/P31"  ,  O =  IRI_ID"...Q5"  ,  S = t12.S$132
+                time      0.16% fanout         1 input         1 rows
                 outer {
                     Subquery 137 
                       { 
-                        time       3.6% fanout         1 input         1 rows
+                        time       3.5% fanout         1 input         1 rows
                         RDF_QUAD_POGS       3.5 rows(t17.S$146, t17.G$145, t17.O$144)
                          P =  IRI_ID"...about"  ,  O = k_t12.S$436 O LIKE <c Tó>
-                        time       1.7% fanout         0 input         1 rows
-                        Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:     2e-06 Fanout:         0
-                        RDF_QUAD_POGS     2e-06 rows(t18.S$150, t18.G$149)
+                        time       1.6% fanout         0 input         1 rows
+                        Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:   2.9e-06 Fanout:         0
+                        RDF_QUAD_POGS   2.9e-06 rows(t18.S$150, t18.G$149)
                          inlined  P =  IRI_ID"...inLanguage"  ,  O = rdflit1423 ,  S = t17.S$146
                         
                         After code:
@@ -124,9 +124,9 @@ http://www.wikidata.org/entity/Q995315
                     time         0% fanout         0 input         0 rows
                   } /* end of outer */
                 set_ctr$160
-                 out: (item$140, sitelink$139, set_no$142, _::default_49_17$138, _::default_49_19$141)
+                 out: (_::default_49_19$141, sitelink$139, _::default_49_17$138, set_no$142, item$140)
                  shadow: ( <none> ,  <none> ,  <none> ,  <none> ,  <none> )
-                time      0.24% fanout         1 input         1 rows
+                time      0.28% fanout         1 input         1 rows
                 END Node
                 After test:
                 0: if (sitelink$139  IS NULL   0 ) then 4 else 5 unkn 5
@@ -138,27 +138,27 @@ http://www.wikidata.org/entity/Q995315
                 After code:
                 0: item$99 :=  := artm t19.S$135
                 4: BReturn 0
-                time     0.058% fanout         0 input         1 rows
+                time      0.05% fanout         0 input         1 rows
                 Subquery Select(item$99)
               }
             
             After code:
             0: item$32 :=  := artm item$99
             4: BReturn 0
-            time     0.028% fanout         0 input         1 rows
+            time     0.031% fanout         0 input         1 rows
             Subquery Select(item$32)
           }
       }
-    time       9.8% fanout         1 input         2 rows
+    time        11% fanout         1 input         2 rows
     skip node  5000  <none> set_ctr$195
     
     After code:
     0: item$187 := Call __id2in (item$32)
     5: BReturn 0
-    time      0.15% fanout         0 input         2 rows
+    time      0.18% fanout         0 input         2 rows
     Select (item$187)
   }
 
 
- 1 msec 10% cpu,        47 rnd        19 seq        50% same seg     18.75% same pg 
-Compilation: 8 msec 0 reads         0% read 0 messages         0% clw
+ 1 msec 9% cpu,        47 rnd        19 seq   58.3333% same seg      12.5% same pg 
+Compilation: 7 msec 0 reads         0% read 0 messages         0% clw

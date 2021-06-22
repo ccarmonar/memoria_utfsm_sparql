@@ -32,11 +32,11 @@
         s# 92 33 Union
           { 
             time        96% fanout      1000 input         1 rows
-            Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:     5e+06 Fanout:     1e+03
+            Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:   3.4e+06 Fanout:     1e+03
               clear: (<V s_7_2_t0-u8.O$35 an>, <V s_7_2_t0-u8.P$36 rn>, <V s_7_2_t0-u8.S$37 rn>, <V g$31 a>, <V o$30 a>, <V p$29 rn>, <V s$28 rn>)
               clear on continue: (<V s_7_2_t0-u8.O$35 an>, <V s_7_2_t0-u8.P$36 rn>, <V s_7_2_t0-u8.S$37 rn>, <V g$31 a>, <V o$30 a>, <V p$29 rn>, <V s$28 rn>)
-            s# 95 34 from DB.DBA.RDF_QUAD by RDF_QUAD      5e+06 rows   
-            Key RDF_QUAD  ASC  (<V s_7_2_t0-u8.S$37 rn>, <V s_7_2_t0-u8.P$36 rn>, <V s_7_2_t0-u8.O$35 an>)
+            s# 95 34 from DB.DBA.RDF_QUAD by RDF_QUAD_POGS    3.4e+06 rows   
+            Key RDF_QUAD_POGS  ASC  (<V s_7_2_t0-u8.S$37 rn>, <V s_7_2_t0-u8.P$36 rn>, <V s_7_2_t0-u8.O$35 an>)
             
             
             After code:
@@ -45,18 +45,18 @@
               8: <V o$30 a> :=  := artm <V s_7_2_t0-u8.O$35 an>
               12: <V g$31 a> :=  := artm <DB_NULL>
               16: BReturn 0
-            time      0.72% fanout         0 input      1000 rows
+            time       0.8% fanout         0 input      1000 rows
             
             s# 88 40 Subquery Select(<V s$28 rn>, <V p$29 rn>, <V o$30 a>, <V g$31 a>)
               set no: <r set_no$32 via  Set95>
           }
           { 
             time         0% fanout         0 input         0 rows
-            Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:     5e+06 Fanout:         0
+            Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:   3.4e+06 Fanout:         0
               clear: (<V s_8_4_t1.G$48 rn>, <V s_8_4_t1.O$49 an>, <V s_8_4_t1.P$50 rn>, <V s_8_4_t1.S$51 rn>, <V g$31 a>, <V o$30 a>, <V p$29 rn>, <V s$28 rn>)
               clear on continue: (<V s_8_4_t1.G$48 rn>, <V s_8_4_t1.O$49 an>, <V s_8_4_t1.P$50 rn>, <V s_8_4_t1.S$51 rn>, <V g$31 a>, <V o$30 a>, <V p$29 rn>, <V s$28 rn>)
-            s# 118 47 from DB.DBA.RDF_QUAD by RDF_QUAD      5e+06 rows   
-            Key RDF_QUAD  ASC  (<V s_8_4_t1.S$51 rn>, <V s_8_4_t1.P$50 rn>, <V s_8_4_t1.O$49 an>, <V s_8_4_t1.G$48 rn>)
+            s# 118 47 from DB.DBA.RDF_QUAD by RDF_QUAD_POGS    3.4e+06 rows   
+            Key RDF_QUAD_POGS  ASC  (<V s_8_4_t1.S$51 rn>, <V s_8_4_t1.P$50 rn>, <V s_8_4_t1.O$49 an>, <V s_8_4_t1.G$48 rn>)
             
             
             After code:
@@ -78,7 +78,7 @@
       10: <V p$66 a> := Call __id2in (<V p$29 rn>)
       15: <V o$68 a> := Call __ro2sq (<V o$30 a>)
       20: BReturn 0
-    time      0.71% fanout         0 input      1000 rows
+    time      0.43% fanout         0 input      1000 rows
     $62 (27 ) $64 (27 ) $66 (27 ) $68 (27 ) $76 (27 77 ) 
     s# 138 70 Select (<V g$62 a>, <V s$64 a>, <V p$66 a>, <V o$68 a>)
       set no: <r set_ctr$76 via  Set88>
@@ -89,5 +89,5 @@ Warning: You might have a Cartesian product.
 
 
 
- 9 msec 85% cpu,         2 rnd       998 seq         0% same seg         0% same pg 
+ 9 msec 85% cpu,         1 rnd       998 seq         0% same seg         0% same pg 
 Compilation: 1 msec 0 reads         0% read 0 messages         0% clw

@@ -8,7 +8,7 @@ lunch	2011-10-16	10
 dinner	2011-10-16	25.05	
 
   { 
-    time      0.46% fanout         1 input         1 rows
+    time      0.56% fanout         1 input         1 rows
     time        12% fanout         9 input         1 rows
     Precode:
       0: DB.DBA.RDF_MAKE_LONG_OF_SQLVAL$27 := Call DB.DBA.RDF_MAKE_LONG_OF_SQLVAL (<c lunch>)
@@ -19,10 +19,10 @@ dinner	2011-10-16	25.05
       29: BReturn 0
     RDF_QUAD         9 rows(s_17_7_t2.S$39, s_17_7_t2.O$38)
      inlined  P =  IRI_ID"...amount" 
-    time       4.2% fanout         1 input         9 rows
+    time       4.1% fanout         1 input         9 rows
     RDF_QUAD         1 rows(s_17_7_t0.S$43, s_17_7_t0.O$42)
      inlined  P =  IRI_ID"...description"  ,  S = s_17_7_t2.S$39
-    time        19% fanout   1.66667 input         9 rows
+    time        20% fanout   1.66667 input         9 rows
     Precode:
       0: amount$45 := Call __ro2sq (s_17_7_t2.O$38)
       5: __ro2lo$47 := Call __ro2lo (s_17_7_t0.O$42)
@@ -30,14 +30,14 @@ dinner	2011-10-16	25.05
       15: BReturn 0
     RDF_QUAD       1.7 rows(s_17_7_t1.O$52)
      inlined  P =  IRI_ID"...date"  ,  S = s_17_7_t0.S$43
-    time        64% fanout  0.533333 input        15 rows
+    time        63% fanout  0.533333 input        15 rows
     Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:         0 Fanout:      0.53
     Precode:
       0: __ro2lo$54 := Call __ro2lo (s_17_7_t1.O$52)
       5: date$56 := Call __ro2sq (s_17_7_t1.O$52)
       10: dta$65 :=  := artm vector$35
       14: proc_ctr$59 :=  := artm  0 
-      18:  <none>  := Call __reset_temp ( 139746097646960 )
+      18:  <none>  := Call __reset_temp ( 139717169631888 )
       23:  <proc table>  := Call DB.DBA.SPARQL_BINDINGS_VIEW_C_2_IMP (vector$35)
       30: BReturn 0
     Key from temp (proc_ctr$59, BND0$61, BND1$63)
@@ -49,10 +49,10 @@ dinner	2011-10-16	25.05
     12: if (__ro2lo$47 = BND1$63) then 16 else 17 unkn 17
     16: BReturn 1
     17: BReturn 0
-    time     0.084% fanout         0 input         8 rows
+    time     0.088% fanout         0 input         8 rows
     Select (description$49, date$56, amount$45)
   }
 
 
- 1 msec 23% cpu,        61 rnd        14 seq   25.8065% same seg   25.8065% same pg 
+ 0 msec 22% cpu,        61 rnd        14 seq   25.8065% same seg   25.8065% same pg 
 Compilation: 2 msec 0 reads         0% read 0 messages         0% clw

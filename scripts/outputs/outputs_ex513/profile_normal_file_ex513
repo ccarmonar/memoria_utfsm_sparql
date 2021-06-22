@@ -1,17 +1,17 @@
 
   { 
-    time       1.1% fanout         1 input         1 rows
+    time        12% fanout         1 input         1 rows
       clear: (<V set_ctr$49 in>)
     s# 52 50 cluster outer seq start, set no <V set_ctr$49 in>    
     save ctx:()
-    time        99% fanout         0 input         1 rows
-    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:     2e-06 Fanout:         0
+    time        88% fanout         0 input         1 rows
+    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:   2.9e-06 Fanout:         0
     Precode:
       0: <V __rdflit$27 x> := Call __rdflit (rdflit1043)
       5: BReturn 0
       clear: (<V s_11_6_t2.O$30 an>, <V s_11_6_t2.S$31 rn>, <V __rdflit$27 x>)
       clear on continue: (<V s_11_6_t2.S$31 rn>, <V s_11_6_t2.O$30 an>)
-    s# 61 29 from DB.DBA.RDF_QUAD by RDF_QUAD_POGS      2e-06 rows   
+    s# 61 29 from DB.DBA.RDF_QUAD by RDF_QUAD_POGS    2.9e-06 rows   
     Key RDF_QUAD_POGS  ASC  (<V s_11_6_t2.S$31 rn>, <V s_11_6_t2.O$30 an>)
      inlined  P =  IRI_ID"...lastname" 
     
@@ -19,9 +19,9 @@
     Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:       0.5 Fanout:         0
       clear: (<V s_11_6_t0.S$34 rn>)
       clear on continue: (<V s_11_6_t0.S$34 rn>)$31 () 
-    s# 72 33 from DB.DBA.RDF_QUAD by RDF_QUAD        0.5 rows   
-    Key RDF_QUAD  ASC  (<V s_11_6_t0.S$34 rn>)
-     inlined  P =  IRI_ID"...homeTel"  ,  S = <V s_11_6_t2.S$31 rn> ,  O = rdflit1043
+    s# 72 33 from DB.DBA.RDF_QUAD by RDF_QUAD_POGS        0.5 rows   
+    Key RDF_QUAD_POGS  ASC  (<V s_11_6_t0.S$34 rn>)
+     inlined  P =  IRI_ID"...homeTel"  ,  O = rdflit1043 ,  S = <V s_11_6_t2.S$31 rn>
     
     time         0% fanout         0 input         0 rows
     Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:         1 Fanout:         0
@@ -44,6 +44,5 @@ Warning: You might have a Cartesian product.
 
 
 
- 1 msec 15% cpu,         1 rnd         0 seq         0% same seg         0% same pg 
-20 disk reads, 0 read ahead,   4.87693% wait
-Compilation: 1 msec 2 reads   2.16874% read 0 messages         0% clw
+ 0 msec 0% cpu,         1 rnd         0 seq         0% same seg         0% same pg 
+Compilation: 18 msec 2 reads  0.410771% read 0 messages         0% clw

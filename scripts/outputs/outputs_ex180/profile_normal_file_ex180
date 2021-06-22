@@ -1,11 +1,11 @@
   { 
     Precode:
       0:   { 
-          time       3.4% fanout         1 input         1 rows
+          time       3.6% fanout         1 input         1 rows
             clear: (<V ext_sets$59 i>, <V set_ctr$41 in>)
           s# 60 42 cluster outer seq start, set no <V set_ctr$41 in>    
           save ctx:()
-          time        11% fanout         1 input         1 rows
+          time        10% fanout         1 input         1 rows
           Precode:
             0: <V vector$27 x> := Call vector ( 1 ,  0 ,  3 ,  IRI_ID"...courseTitle" ,  1 ,  1 )
             5: <V vector$29 x> := Call vector (<V vector$27 x>)
@@ -17,8 +17,8 @@
               Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:         6 Fanout:         0
                 clear: (<V s_12_4_t1.O$34 an>, <V s_12_4_t1.S$35 rn>, <V user_aggr_ret$46 x>, <V vector$39 x>, <V __ro2lo$37 a>)
                 clear on continue: (<V s_12_4_t1.O$34 an>, <V s_12_4_t1.S$35 rn>, <V user_aggr_ret$46 x>, <V vector$39 x>, <V __ro2lo$37 a>)$31 (33 ) $29 (33 ) 
-              s# 71 33 from DB.DBA.RDF_QUAD by RDF_QUAD          6 rows   
-              Key RDF_QUAD  ASC  (<V s_12_4_t1.S$35 rn>, <V s_12_4_t1.O$34 an>)
+              s# 71 33 from DB.DBA.RDF_QUAD by RDF_QUAD_POGS          6 rows   
+              Key RDF_QUAD_POGS  ASC  (<V s_12_4_t1.S$35 rn>, <V s_12_4_t1.O$34 an>)
                inlined  P =  IRI_ID"...courseTitle" 
               row specs:  G =  IRI_ID"...ex125.ttl" 
               
@@ -37,7 +37,7 @@
           After code:
             0: <V callret-0$47 x> := Call DB.DBA.SPARQL_CONSTRUCT_FIN (user_aggr_env$45 )
             7: BReturn 0
-          time       1.5% fanout         0 input         1 rows
+          time       1.7% fanout         0 input         1 rows
           $41 (57 43 42 ) $47 (57 ) $59 (57 43 42 ) 
           s# 99 49 Subquery Select(<V callret-0$47 x>)
             set no: <r set_ctr$41 via  Set91>

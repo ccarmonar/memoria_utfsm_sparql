@@ -5,7 +5,7 @@ http://learningsparql.com/ns/data#item3	http://learningsparql.com/ns/demo#amount
   { 
     Precode:
       0:   { 
-          time      0.58% fanout         1 input         1 rows
+          time      0.54% fanout         1 input         1 rows
           time       1.7% fanout         1 input         1 rows
           Precode:
             0: vector$27 := Call vector ( 1 ,  0 ,  3 ,  IRI_ID"...amount" ,  1 ,  1 )
@@ -16,7 +16,7 @@ http://learningsparql.com/ns/data#item3	http://learningsparql.com/ns/demo#amount
               time        11% fanout         3 input         1 rows
               RDF_QUAD         3 rows(t4.S$35, t4.O$34)
                inlined  P =  IRI_ID"...units" 
-              time       4.6% fanout         1 input         3 rows
+              time       4.3% fanout         1 input         3 rows
               RDF_QUAD         1 rows(t2.S$38)
                inlined  P =  IRI_ID"...product"  ,  S = t4.S$35
               time        80% fanout         0 input         3 rows
@@ -43,7 +43,7 @@ http://learningsparql.com/ns/data#item3	http://learningsparql.com/ns/demo#amount
           After code:
           0: callret-0$61 := Call DB.DBA.SPARQL_CONSTRUCT_FIN (user_aggr_env$59 )
           7: BReturn 0
-          time      0.29% fanout         0 input         1 rows
+          time      0.25% fanout         0 input         1 rows
           Subquery Select(callret-0$61)
         }
       
@@ -53,5 +53,5 @@ http://learningsparql.com/ns/data#item3	http://learningsparql.com/ns/demo#amount
   }
 
 
- 1 msec 19% cpu,        13 rnd         2 seq   28.5714% same seg   28.5714% same pg 
+ 0 msec 19% cpu,        13 rnd         2 seq   28.5714% same seg   28.5714% same pg 
 Compilation: 2 msec 0 reads         0% read 0 messages         0% clw

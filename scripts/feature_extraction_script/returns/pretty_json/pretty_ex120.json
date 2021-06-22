@@ -1,8 +1,8 @@
 {
   "OP1": {
-    "profile_text": "    time         2% fanout         1 input         1 rows\n      clear: (<V set_ctr$38 in>)\n    s# 44 39 cluster outer seq start, set no <V set_ctr$38 in>    \n    save ctx:()",
-    "profile_text_low_explain": "\n    time         2% fanout         1 input         1 rows",
-    "time": 2,
+    "profile_text": "    time       2.1% fanout         1 input         1 rows\n      clear: (<V set_ctr$38 in>)\n    s# 44 39 cluster outer seq start, set no <V set_ctr$38 in>    \n    save ctx:()",
+    "profile_text_low_explain": "\n    time       2.2% fanout         1 input         1 rows",
+    "time": 2.1,
     "fanout": 1,
     "input_rows": 1,
     "cardinality_estimate": 0,
@@ -35,12 +35,12 @@
     "subquery_select?": 0
   },
   "OP2": {
-    "profile_text": "    time        61% fanout      1000 input         1 rows\n    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:   2.5e+06 Fanout:     1e+03\n      clear: (<V s_9_2_t0.O$28 an>)\n      clear on continue: (<V s_9_2_t0.O$28 an>)\n    s# 53 27 from DB.DBA.RDF_QUAD by RDF_QUAD    2.5e+06 rows   \n    Key RDF_QUAD  ASC  (<V s_9_2_t0.O$28 an>)\n     inlined  P =  IRI_ID\"...label\" \n    ",
-    "profile_text_low_explain": "\n    time        60% fanout      1000 input         1 rows\n    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:   2.5e+06 Fanout:     1e+03\n    RDF_QUAD   2.5e+06 rows(s_9_2_t0.O$28)\n     inlined  P =  IRI_ID\"...label\" ",
-    "time": 61,
+    "profile_text": "    time        62% fanout      1000 input         1 rows\n    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:   2.2e+06 Fanout:     1e+03\n      clear: (<V s_9_2_t0.O$28 an>)\n      clear on continue: (<V s_9_2_t0.O$28 an>)\n    s# 53 27 from DB.DBA.RDF_QUAD by RDF_QUAD    2.2e+06 rows   \n    Key RDF_QUAD  ASC  (<V s_9_2_t0.O$28 an>)\n     inlined  P =  IRI_ID\"...label\" \n    ",
+    "profile_text_low_explain": "\n    time        61% fanout      1000 input         1 rows\n    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:   2.2e+06 Fanout:     1e+03\n    RDF_QUAD   2.2e+06 rows(s_9_2_t0.O$28)\n     inlined  P =  IRI_ID\"...label\" ",
+    "time": 62,
     "fanout": 1000,
     "input_rows": 1,
-    "cardinality_estimate": 2500000,
+    "cardinality_estimate": 2200000,
     "cardinality_fanout": 1000,
     "operator_type": 1,
     "precode_bool": 0,
@@ -72,9 +72,9 @@
     "subquery_select?": 0
   },
   "OP3": {
-    "profile_text": "    time        37% fanout     0.001 input      1000 rows\n      clear: (<V label$30 a>)$28 () \n    s# 63 42 skip node  1  3 <r set_ctr$38 via  Set53>\n    After code:\n      0: <V label$30 a> := Call __ro2sq (<r s_9_2_t0.O$28 via  Set63>)\n      5: BReturn 0",
-    "profile_text_low_explain": "\n    time        37% fanout     0.001 input      1000 rows\n    skip node  1  3 set_ctr$38\n    \n    After code:\n    0: label$30 := Call __ro2sq (s_9_2_t0.O$28)\n    5: BReturn 0",
-    "time": 37,
+    "profile_text": "    time        36% fanout     0.001 input      1000 rows\n      clear: (<V label$30 a>)$28 () \n    s# 63 42 skip node  1  3 <r set_ctr$38 via  Set53>\n    After code:\n      0: <V label$30 a> := Call __ro2sq (<r s_9_2_t0.O$28 via  Set63>)\n      5: BReturn 0",
+    "profile_text_low_explain": "\n    time        36% fanout     0.001 input      1000 rows\n    skip node  1  3 set_ctr$38\n    \n    After code:\n    0: label$30 := Call __ro2sq (s_9_2_t0.O$28)\n    5: BReturn 0",
+    "time": 36,
     "fanout": 0.001,
     "input_rows": 1000,
     "cardinality_estimate": 0,
@@ -108,9 +108,9 @@
     "subquery_select?": 0
   },
   "OP4": {
-    "profile_text": "    time      0.24% fanout         0 input         1 rows\n    $38 (42 27 39 ) $30 (42 ) \n    s# 71 32 Select (<V label$30 a>)\n      set no: <r set_ctr$38 via  Set63 Set53>\n  ",
-    "profile_text_low_explain": "\n    time      0.23% fanout         0 input         1 rows\n    Select (label$30)\n  ",
-    "time": 0.24,
+    "profile_text": "    time      0.18% fanout         0 input         1 rows\n    $38 (42 27 39 ) $30 (42 ) \n    s# 71 32 Select (<V label$30 a>)\n      set no: <r set_ctr$38 via  Set63 Set53>\n  ",
+    "profile_text_low_explain": "\n    time      0.21% fanout         0 input         1 rows\n    Select (label$30)\n  ",
+    "time": 0.18,
     "fanout": 0,
     "input_rows": 1,
     "cardinality_estimate": 0,

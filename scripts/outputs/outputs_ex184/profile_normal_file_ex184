@@ -3,11 +3,11 @@ http://learningsparql.com/ns/data/book312	http://purl.org/dc/elements/1.1/title	
   { 
     Precode:
       0:   { 
-          time       5.3% fanout         1 input         1 rows
+          time      0.82% fanout         1 input         1 rows
             clear: (<V ext_sets$64 i>, <V set_ctr$46 in>)
           s# 65 47 cluster outer seq start, set no <V set_ctr$46 in>    
           save ctx:()
-          time        69% fanout         1 input         1 rows
+          time        96% fanout         1 input         1 rows
           Precode:
             0: <V vector$27 x> := Call vector ()
             5: <V DB.DBA.RDF_MAKE_LONG_OF_SQLVAL$29 a> := Call DB.DBA.RDF_MAKE_LONG_OF_SQLVAL (<c Jabez Easterbrook>)
@@ -20,13 +20,13 @@ http://learningsparql.com/ns/data/book312	http://purl.org/dc/elements/1.1/title	
               s# 76 35 Subquery 35 
                 multistate set no = <V set_no$37 i>
                 { 
-                  time       4.9% fanout         1 input         1 rows
+                  time      0.71% fanout         1 input         1 rows
                   Precode:
                     0: <V __stub$36 in> :=  := artm  1 
                     4: BReturn 0
                     clear: (<V __stub$36 in>)
                   s# 81 44 END Node
-                  time       2.4% fanout         0 input         1 rows
+                  time      0.32% fanout         0 input         1 rows
                   $36 (44 ) 
                   s# 76 38 Subquery Select(<r __stub$36 via  Set81>)
                     set no: <r set_no$37 via  Set81>
@@ -39,13 +39,13 @@ http://learningsparql.com/ns/data/book312	http://purl.org/dc/elements/1.1/title	
                 15: <V user_aggr_ret$51 x> := Call DB.DBA.SPARQL_CONSTRUCT_ACC (user_aggr_env$50 , <r vector$27 via  Set76>, <r vector$27 via  Set76>, <r vector$33 via  Set76>,  1 )
                 22: BReturn 0
           }
-          time        18% fanout         1 input         1 rows
+          time       2.4% fanout         1 input         1 rows
             clear: (<V callret-0$52 x>)
           s# 104 62 skip node  1  <none> <V set_ctr$46 in>
           After code:
             0: <V callret-0$52 x> := Call DB.DBA.SPARQL_CONSTRUCT_FIN (user_aggr_env$50 )
             7: BReturn 0
-          time       1.2% fanout         0 input         1 rows
+          time      0.17% fanout         0 input         1 rows
           $64 (62 48 47 ) $46 (62 48 47 ) $52 (62 ) 
           s# 112 54 Subquery Select(<V callret-0$52 x>)
             set no: <r set_ctr$46 via  Set104>
@@ -58,5 +58,5 @@ http://learningsparql.com/ns/data/book312	http://purl.org/dc/elements/1.1/title	
   }
 
 
- 0 msec 18% cpu,         0 rnd         0 seq         0% same seg         0% same pg 
+ 1 msec 30% cpu,         0 rnd         0 seq         0% same seg         0% same pg 
 Compilation: 1 msec 0 reads         0% read 0 messages         0% clw

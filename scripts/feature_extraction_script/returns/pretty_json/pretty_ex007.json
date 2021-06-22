@@ -1,8 +1,8 @@
 {
   "OP1": {
-    "profile_text": "    time       7.5% fanout         1 input         1 rows\n      clear: (<V set_ctr$38 in>)\n    s# 41 39 cluster outer seq start, set no <V set_ctr$38 in>    \n    save ctx:()",
-    "profile_text_low_explain": "\n    time        19% fanout         1 input         1 rows",
-    "time": 7.5,
+    "profile_text": "    time       7.1% fanout         1 input         1 rows\n      clear: (<V set_ctr$38 in>)\n    s# 41 39 cluster outer seq start, set no <V set_ctr$38 in>    \n    save ctx:()",
+    "profile_text_low_explain": "\n    time       7.1% fanout         1 input         1 rows",
+    "time": 7.1,
     "fanout": 1,
     "input_rows": 1,
     "cardinality_estimate": 0,
@@ -36,7 +36,7 @@
   },
   "OP2": {
     "profile_text": "    time        93% fanout         0 input         1 rows\n    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:         2 Fanout:         0\n      clear: (<V s_6_1_t0.O$28 an>, <V craigEmail$30 a>)\n      clear on continue: (<V s_6_1_t0.O$28 an>, <V craigEmail$30 a>)\n    s# 50 27 from DB.DBA.RDF_QUAD by RDF_QUAD          2 rows   \n    Key RDF_QUAD  ASC  (<V s_6_1_t0.O$28 an>)\n     inlined  P =  IRI_ID\"...email\"  ,  S =  IRI_ID\"...craig\" \n    row specs:  G =  IRI_ID\"...ex002.ttl\" \n    \n    After code:\n      0: <V craigEmail$30 a> := Call __ro2sq (<V s_6_1_t0.O$28 an>)\n      5: BReturn 0",
-    "profile_text_low_explain": "\n    time        81% fanout         0 input         1 rows\n    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:         2 Fanout:         0\n    RDF_QUAD         2 rows(s_6_1_t0.O$28)\n     inlined  P =  IRI_ID\"...email\"  ,  S =  IRI_ID\"...craig\"  G =  IRI_ID\"...ex002.ttl\" \n    \n    After code:\n    0: craigEmail$30 := Call __ro2sq (s_6_1_t0.O$28)\n    5: BReturn 0",
+    "profile_text_low_explain": "\n    time        93% fanout         0 input         1 rows\n    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:         2 Fanout:         0\n    RDF_QUAD         2 rows(s_6_1_t0.O$28)\n     inlined  P =  IRI_ID\"...email\"  ,  S =  IRI_ID\"...craig\"  G =  IRI_ID\"...ex002.ttl\" \n    \n    After code:\n    0: craigEmail$30 := Call __ro2sq (s_6_1_t0.O$28)\n    5: BReturn 0",
     "time": 93,
     "fanout": 0,
     "input_rows": 1,

@@ -3,7 +3,7 @@ Richard	Mutt	(229) 276-5135
 Richard	Mutt	(229) 276-5135	
 
   { 
-    time       1.1% fanout         1 input         1 rows
+    time      0.85% fanout         1 input         1 rows
       clear: (<V set_ctr$114 in>)
     s# 117 115 cluster outer seq start, set no <V set_ctr$114 in>    
     save ctx:()
@@ -14,7 +14,7 @@ Richard	Mutt	(229) 276-5135
     s# 126 29 Subquery 29 
       multistate set no = <V set_no$33 i>
       { 
-        time      0.73% fanout         1 input         1 rows
+        time      0.51% fanout         1 input         1 rows
         
         s# 223 72 Fork 72 {  
                 
@@ -24,35 +24,35 @@ Richard	Mutt	(229) 276-5135
             s# 131 34 Subquery 34 
               multistate set no = <V set_no$36 i>
               { 
-                time      0.45% fanout         1 input         1 rows
+                time      0.37% fanout         1 input         1 rows
                 Precode:
                   0: __stub$35  :=  := artm  1 
                   4: BReturn 0
                 
                 s# 135 43 END Node
-                time      0.33% fanout         0 input         1 rows
+                time      0.26% fanout         0 input         1 rows
                 
                 s# 131 37 Subquery Select(__stub$35 )
                   set no: <r set_no$36 via  Set135>
               }
             
-            time      0.63% fanout         1 input         1 rows
+            time      0.51% fanout         1 input         1 rows
               clear: (<V set_ctr$50 i>)
             s# 149 54 cluster outer seq start, set no <V set_ctr$50 i>    
             save ctx:()
-            time        16% fanout         6 input         1 rows
+            time        27% fanout         6 input         1 rows
               clear: (<V t4.O$46 a>, <V t4.S$47 r>)
               clear on continue: (<V t4.O$46 a>, <V t4.S$47 r>)
             s# 158 45 from DB.DBA.RDF_QUAD by RDF_QUAD          6 rows   
             Key RDF_QUAD  ASC  (<V t4.S$47 r>, <V t4.O$46 a>)
              inlined  P =  IRI_ID"...homeTel" 
             
-            time      0.57% fanout         1 input         6 rows
+            time      0.56% fanout         1 input         6 rows
             $50 (45 54 ) 
             s# 169 49 end of outer seq <r set_ctr$50 via  Set158>
-             out: (<V t4.O$46 a>, <V t4.S$47 r>)
+             out: (<V t4.S$47 r>, <V t4.O$46 a>)
              shadow: ( <none> ,  <none> )
-            time        10% fanout       0.5 input         6 rows
+            time       8.7% fanout       0.5 input         6 rows
               clear: (<V t5.O$60 an>, <V t5.S$61 rn>)
               clear on continue: (<V t5.S$61 rn>, <V t5.O$60 an>)$47 (49 ) $181 (59 ) 
             s# 177 59 from DB.DBA.RDF_QUAD by RDF_QUAD          1 rows Parallel, tail cost        36   
@@ -61,7 +61,7 @@ Richard	Mutt	(229) 276-5135
             vector param casts: <V t4.S$47 r>-> <v k_t4.S$181 Set183 rn>
             copy on branch $181 $27 $33 $46 sets: 117 131 169 
             
-            time       4.7% fanout         1 input         3 rows
+            time       3.8% fanout         1 input         3 rows
               clear: (<V t6.O$64 an>)
               clear on continue: (<V t6.O$64 an>)$61 () 
             s# 192 63 from DB.DBA.RDF_QUAD by RDF_QUAD       0.99 rows Parallel, tail cost        34   
@@ -69,7 +69,7 @@ Richard	Mutt	(229) 276-5135
              inlined  P =  IRI_ID"...lastName"  ,  S = <V t5.S$61 rn>
             copy on branch $61 $27 $33 $60 $46 $0 $0 $0 sets: 117 131 169 183 177 
             
-            time        21% fanout         1 input         3 rows
+            time        18% fanout         1 input         3 rows
               clear: (<V rdf_contains_impl$68 i>, <V __ro2lo$66 a>)
             s# 207 202 END Node
             After test:
@@ -78,7 +78,7 @@ Richard	Mutt	(229) 276-5135
               10: if ( 0  = <V rdf_contains_impl$68 i>) then 15 else 14 unkn 15
               14: BReturn 1
               15: BReturn 0
-            time        25% fanout         0 input         3 rows
+            time        22% fanout         0 input         3 rows
             Precode:
               0: <V __ro2sq$70 a> := Call __ro2sq (<r t6.O$64 via  Set207>)
               5: BReturn 0
@@ -86,7 +86,7 @@ Richard	Mutt	(229) 276-5135
             s# 215 73 Sort (HASH) set no <r set_no$33 via  Set207 Set192 Set177 Set183 Set169 Set131>(<V __ro2sq$70 a>) -> (<r t5.O$60 via  Set207 Set192>, <r t4.O$46 via  Set207 Set192 Set177 Set183>)
             
         }
-        time        19% fanout         3 input         1 rows
+        time        17% fanout         3 input         1 rows
         Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:         0 Fanout:         3
           clear: (<V t4.O$46 a>, <V __ro2sq$70 a>, <V t5.O$60 an>, <V homeTel$32 a>, <V last$31 a>, <V first$30 a>, <V __ro2sq$93 a>, <V __ro2sq$91 a>)
           clear on continue: (<V t4.O$46 a>, <V __ro2sq$70 a>, <V t5.O$60 an>, <V homeTel$32 a>, <V last$31 a>, <V first$30 a>, <V __ro2sq$93 a>, <V __ro2sq$91 a>)
@@ -100,7 +100,7 @@ Richard	Mutt	(229) 276-5135
           14: <V last$31 a> :=  := artm <V __ro2sq$70 a>
           18: <V homeTel$32 a> :=  := artm <V __ro2sq$91 a>
           22: BReturn 0
-        time      0.14% fanout         0 input         3 rows
+        time      0.16% fanout         0 input         3 rows
         
         s# 126 95 Subquery Select(<V first$30 a>, <V last$31 a>, <V homeTel$32 a>)
           set no: <r set_no$33 via  Set230>

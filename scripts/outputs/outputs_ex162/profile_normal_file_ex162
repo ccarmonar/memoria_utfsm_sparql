@@ -1,12 +1,12 @@
-http://www.wikidata.org/prop/direct/P5541	9	
-http://www.wikidata.org/prop/direct-normalized/P5417	24	
-http://www.wikidata.org/prop/direct/P2533	136	
-http://www.wikidata.org/prop/direct/P9613	132	
-http://www.wikidata.org/prop/direct/P167	13	
-http://www.wikidata.org/prop/direct/P8140	102	
-http://www.wikidata.org/prop/direct/P3959	144	
-http://www.wikidata.org/prop/direct/P3628	39	
-http://www.wikidata.org/prop/direct/P564	252	
+http://www.wikidata.org/prop/direct/P5464	4	
+http://www.wikidata.org/prop/direct/P1079	9	
+http://www.wikidata.org/prop/direct/P3363	25	
+http://www.wikidata.org/prop/direct-normalized/P8424	9	
+http://www.wikidata.org/prop/direct/P2451	13	
+http://www.wikidata.org/prop/direct/P7687	24	
+http://www.wikidata.org/prop/direct/P2203	23	
+http://www.wikidata.org/prop/direct/P6743	1	
+http://www.wikidata.org/prop/direct/P3677	17	
 http://www.wikidata.org/prop/direct/P4392	10	
 http://www.wikidata.org/prop/direct/P2324	3	
 http://www.wikidata.org/prop/direct/P5316	1	
@@ -20,7 +20,7 @@ http://www.wikidata.org/prop/direct/P2457	1
 http://www.wikidata.org/prop/direct/P2568	6	
 
   { 
-    time   0.00029% fanout         1 input         1 rows
+    time   0.00026% fanout         1 input         1 rows
       clear: (<V set_ctr$79 in>)
     s# 82 80 cluster outer seq start, set no <V set_ctr$79 in>    
     save ctx:()
@@ -28,29 +28,29 @@ http://www.wikidata.org/prop/direct/P2568	6
     s# 91 27 Subquery 27 
       multistate set no = <V set_no$30 i>
       { 
-        time   0.00016% fanout         1 input         1 rows
+        time   0.00015% fanout         1 input         1 rows
         
         s# 114 37 Fork 37 {  
                 
             save ctx:()
               set no = <V set_no$30 i> array  <none>  save: 
-            time        19% fanout 1.90501e+07 input         1 rows
+            time        23% fanout 1.90501e+07 input         1 rows
               clear: (<V s_6_2_t0.P$32 rn>, <V isnotnull$35 in>)
               clear on continue: (<V s_6_2_t0.P$32 rn>, <V isnotnull$35 in>)
-            s# 96 31 from DB.DBA.RDF_QUAD by RDF_QUAD      5e+06 rows Parallel, tail cost   1.5e+06   
-            Key RDF_QUAD  ASC  (<V s_6_2_t0.P$32 rn>)
+            s# 96 31 from DB.DBA.RDF_QUAD by RDF_QUAD_POGS    3.4e+06 rows Parallel, tail cost     1e+06   
+            Key RDF_QUAD_POGS  ASC  (<V s_6_2_t0.P$32 rn>)
             
             copy on branch $30 $0 $0 $0 sets: 82 
             
             After code:
               0: <V isnotnull$35 in> := Call isnotnull (<V s_6_2_t0.P$32 rn>)
               5: BReturn 0
-            time        79% fanout         0 input 1.90501e+07 rows
+            time        72% fanout         0 input 1.90501e+07 rows
             $35 () 
-            s# 106 38 Sort (HASH) set no <r set_no$30 via  Set96>(<V s_6_2_t0.P$32 rn>) -> (<V isnotnull$35 in>) up to        27 distinct
+            s# 106 38 Sort (HASH) set no <r set_no$30 via  Set96>(<V s_6_2_t0.P$32 rn>) -> (<V isnotnull$35 in>) up to        25 distinct
             
         }
-        time       1.7% fanout      1000 input         1 rows
+        time       4.7% fanout      1000 input         1 rows
           clear: (<V aggregate$39 in>, <V s_6_2_t0.P$32 rn>, <V pTotal$29 in>, <V p$28 a>, <V __id2in$60 a>)
           clear on continue: (<V aggregate$39 in>, <V s_6_2_t0.P$32 rn>, <V pTotal$29 in>, <V p$28 a>, <V __id2in$60 a>)
         s# 121 45 group by read node  
@@ -60,7 +60,7 @@ http://www.wikidata.org/prop/direct/P2568	6
           5: <V p$28 a> :=  := artm <V __id2in$60 a>
           9: <V pTotal$29 in> :=  := artm <V aggregate$39 in>
           13: BReturn 0
-        time   2.2e-05% fanout         0 input      1000 rows
+        time   4.6e-05% fanout         0 input      1000 rows
         
         s# 91 62 Subquery Select(<V p$28 a>, <V pTotal$29 in>)
           set no: <r set_no$30 via  Set121>
@@ -70,13 +70,13 @@ http://www.wikidata.org/prop/direct/P2568	6
       0: <V p$69 a> := Call __ro2sq (<V p$28 a>)
       5: <V pTotal$71 a> := Call __ro2sq (<V pTotal$29 in>)
       10: BReturn 0
-    time   6.2e-05% fanout         0 input      1000 rows
+    time   7.6e-05% fanout         0 input      1000 rows
     $69 (27 ) $71 (27 ) $79 (27 80 ) 
     s# 140 73 Select (<V p$69 a>, <V pTotal$71 a>)
       set no: <r set_ctr$79 via  Set91>
   }
 
 
- 218 msec 443% cpu,       282 rnd 1.90298e+07 seq         0% same seg   68.1979% same pg 
-1609 disk reads, 1867 read ahead,    7.6451% wait
-Compilation: 1 msec 0 reads         0% read 0 messages         0% clw
+ 256 msec 434% cpu,       961 rnd 1.90296e+07 seq         0% same seg   85.7588% same pg 
+1277 disk reads, 1376 read ahead,   52.7848% wait
+Compilation: 2 msec 0 reads         0% read 0 messages         0% clw

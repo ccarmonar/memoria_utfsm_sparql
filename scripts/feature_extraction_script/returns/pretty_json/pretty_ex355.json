@@ -1,8 +1,8 @@
 {
   "OP1": {
-    "profile_text": "    time      0.97% fanout         1 input         1 rows\n      clear: (<V set_ctr$38 in>)\n    s# 41 39 cluster outer seq start, set no <V set_ctr$38 in>    \n    save ctx:()",
-    "profile_text_low_explain": "\n    time       8.7% fanout         1 input         1 rows",
-    "time": 0.97,
+    "profile_text": "    time        14% fanout         1 input         1 rows\n      clear: (<V set_ctr$38 in>)\n    s# 41 39 cluster outer seq start, set no <V set_ctr$38 in>    \n    save ctx:()",
+    "profile_text_low_explain": "\n    time         8% fanout         1 input         1 rows",
+    "time": 14,
     "fanout": 1,
     "input_rows": 1,
     "cardinality_estimate": 0,
@@ -35,12 +35,12 @@
     "subquery_select?": 0
   },
   "OP2": {
-    "profile_text": "    time        99% fanout         0 input         1 rows\n    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:     2e-06 Fanout:         0\n      clear: (<V s_5_2_t0.O$28 an>, <V elvisbday$30 a>)\n      clear on continue: (<V s_5_2_t0.O$28 an>, <V elvisbday$30 a>)\n    s# 50 27 from DB.DBA.RDF_QUAD by RDF_QUAD      2e-06 rows   \n    Key RDF_QUAD  ASC  (<V s_5_2_t0.O$28 an>)\n     inlined  P =  IRI_ID\"...dateOfBirth\"  ,  S =  IRI_ID\"...Elvis_Presley\" \n    \n    After code:\n      0: <V elvisbday$30 a> := Call __ro2sq (<V s_5_2_t0.O$28 an>)\n      5: BReturn 0",
-    "profile_text_low_explain": "\n    time        91% fanout         0 input         1 rows\n    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:     2e-06 Fanout:         0\n    RDF_QUAD     2e-06 rows(s_5_2_t0.O$28)\n     inlined  P =  IRI_ID\"...dateOfBirth\"  ,  S =  IRI_ID\"...Elvis_Presley\" \n    \n    After code:\n    0: elvisbday$30 := Call __ro2sq (s_5_2_t0.O$28)\n    5: BReturn 0",
-    "time": 99,
+    "profile_text": "    time        86% fanout         0 input         1 rows\n    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:   2.9e-06 Fanout:         0\n      clear: (<V s_5_2_t0.O$28 an>, <V elvisbday$30 a>)\n      clear on continue: (<V s_5_2_t0.O$28 an>, <V elvisbday$30 a>)\n    s# 50 27 from DB.DBA.RDF_QUAD by RDF_QUAD    2.9e-06 rows   \n    Key RDF_QUAD  ASC  (<V s_5_2_t0.O$28 an>)\n     inlined  P =  IRI_ID\"...dateOfBirth\"  ,  S =  IRI_ID\"...Elvis_Presley\" \n    \n    After code:\n      0: <V elvisbday$30 a> := Call __ro2sq (<V s_5_2_t0.O$28 an>)\n      5: BReturn 0",
+    "profile_text_low_explain": "\n    time        92% fanout         0 input         1 rows\n    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:   2.9e-06 Fanout:         0\n    RDF_QUAD   2.9e-06 rows(s_5_2_t0.O$28)\n     inlined  P =  IRI_ID\"...dateOfBirth\"  ,  S =  IRI_ID\"...Elvis_Presley\" \n    \n    After code:\n    0: elvisbday$30 := Call __ro2sq (s_5_2_t0.O$28)\n    5: BReturn 0",
+    "time": 86,
     "fanout": 0,
     "input_rows": 1,
-    "cardinality_estimate": 2e-06,
+    "cardinality_estimate": 2.9e-06,
     "cardinality_fanout": 0,
     "operator_type": 1,
     "precode_bool": 0,

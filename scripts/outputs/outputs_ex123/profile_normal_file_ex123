@@ -1,17 +1,17 @@
 
   { 
-    time       1.2% fanout         1 input         1 rows
+    time       6.1% fanout         1 input         1 rows
       clear: (<V set_ctr$41 in>)
     s# 44 42 cluster outer seq start, set no <V set_ctr$41 in>    
     save ctx:()
-    time        92% fanout        11 input         1 rows
+    time        76% fanout        11 input         1 rows
       clear: (<V s_9_2_t0.G$28 rn>, <V s_9_2_t0.O$29 an>)
       clear on continue: (<V s_9_2_t0.G$28 rn>, <V s_9_2_t0.O$29 an>)
-    s# 53 27 from DB.DBA.RDF_QUAD by RDF_QUAD         12 rows   
-    Key RDF_QUAD  ASC  (<V s_9_2_t0.O$29 an>, <V s_9_2_t0.G$28 rn>)
+    s# 53 27 from DB.DBA.RDF_QUAD by RDF_QUAD_POGS         22 rows   
+    Key RDF_QUAD_POGS  ASC  (<V s_9_2_t0.O$29 an>, <V s_9_2_t0.G$28 rn>)
      inlined  P =  IRI_ID"...email" 
     
-    time       6.6% fanout         0 input        11 rows
+    time        18% fanout         0 input        11 rows
       clear: (<V one_of_these$31 i>, <V email$33 a>)$28 () $29 () 
     s# 69 64 END Node
     After test:
@@ -31,6 +31,5 @@ Warning: You might have a Cartesian product.
 
 
 
- 0 msec 21% cpu,         1 rnd        10 seq         0% same seg         0% same pg 
-1 disk reads, 0 read ahead,    12.952% wait
-Compilation: 1 msec 3 reads   3.27235% read 0 messages         0% clw
+ 0 msec 6% cpu,         1 rnd        10 seq         0% same seg         0% same pg 
+Compilation: 0 msec 2 reads   3.73852% read 0 messages         0% clw

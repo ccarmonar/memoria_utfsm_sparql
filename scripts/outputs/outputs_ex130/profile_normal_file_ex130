@@ -1,6 +1,6 @@
 
   { 
-    time       4.4% fanout         1 input         1 rows
+    time       3.1% fanout         1 input         1 rows
       clear: (<V set_ctr$63 in>)
     s# 66 64 cluster outer seq start, set no <V set_ctr$63 in>    
     save ctx:()
@@ -11,12 +11,12 @@
         
         s# 79 30 Union
           { 
-            time        55% fanout         0 input         1 rows
+            time        26% fanout         0 input         1 rows
             Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:         6 Fanout:         0
               clear: (<V s_13_1_t0-u7.O$32 an>, <V courseName$28 a>)
               clear on continue: (<V s_13_1_t0-u7.O$32 an>, <V courseName$28 a>)
-            s# 82 31 from DB.DBA.RDF_QUAD by RDF_QUAD          6 rows   
-            Key RDF_QUAD  ASC  (<V s_13_1_t0-u7.O$32 an>)
+            s# 82 31 from DB.DBA.RDF_QUAD by RDF_QUAD_POGS          6 rows   
+            Key RDF_QUAD_POGS  ASC  (<V s_13_1_t0-u7.O$32 an>)
              inlined  P =  IRI_ID"...courseTitle" 
             row specs:  G =  IRI_ID"...ex069.ttl" 
             
@@ -29,14 +29,14 @@
               set no: <r set_no$29 via  Set82>
           }
           { 
-            time        28% fanout         6 input         1 rows
+            time        62% fanout         6 input         1 rows
               clear: (<V s_15_3_t1.G$42 rn>, <V s_15_3_t1.O$43 an>)
               clear on continue: (<V s_15_3_t1.G$42 rn>, <V s_15_3_t1.O$43 an>)
-            s# 100 41 from DB.DBA.RDF_QUAD by RDF_QUAD        6.5 rows   
-            Key RDF_QUAD  ASC  (<V s_15_3_t1.O$43 an>, <V s_15_3_t1.G$42 rn>)
+            s# 100 41 from DB.DBA.RDF_QUAD by RDF_QUAD_POGS         12 rows   
+            Key RDF_QUAD_POGS  ASC  (<V s_15_3_t1.O$43 an>, <V s_15_3_t1.G$42 rn>)
              inlined  P =  IRI_ID"...courseTitle" 
             
-            time        12% fanout         0 input         6 rows
+            time       8.6% fanout         0 input         6 rows
               clear: (<V one_of_these$45 i>, <V courseName$28 a>)$42 () $43 () 
             s# 116 111 END Node
             After test:
@@ -68,5 +68,5 @@ Warning: You might have a Cartesian product.
 
 
 
- 0 msec 5% cpu,         2 rnd         5 seq         0% same seg         0% same pg 
+ 0 msec 7% cpu,         2 rnd         5 seq         0% same seg         0% same pg 
 Compilation: 1 msec 0 reads         0% read 0 messages         0% clw

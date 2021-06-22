@@ -20,13 +20,13 @@ http://www.wikidata.org/entity/Q1011	http://www.wikidata.org/entity/Q495547	7046
 http://www.wikidata.org/entity/Q1019	http://www.wikidata.org/entity/Q218954	15000	
 
   { 
-    time     0.035% fanout         1 input         1 rows
+    time     0.037% fanout         1 input         1 rows
     Precode:
       0: __all_eq$27 := Call __all_eq ( IRI_ID"...Q515" )
       5: BReturn 0
     Subquery 29 
       { 
-        time     0.016% fanout         1 input         1 rows
+        time     0.015% fanout         1 input         1 rows
         fork {
             Transitive dt dir 2, input: (__all_eq$27)
               input shadow: (__all_eq$146)
@@ -40,28 +40,28 @@ http://www.wikidata.org/entity/Q1019	http://www.wikidata.org/entity/Q218954	1500
                 0: _::trans_subj_38_5$35 :=  := artm s_38_9_t1.S$42
                 4: _::trans_obj_38_6$36 :=  := artm s_38_9_t1.O$41
                 8: BReturn 0
-                time     0.012% fanout         0 input         1 rows
+                time     0.013% fanout         0 input         1 rows
                 Subquery Select(_::trans_subj_38_5$35, _::trans_obj_38_6$36)
               }
-            time      0.78% fanout       301 input         2 rows
+            time      0.75% fanout       301 input         2 rows
             Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:        12 Fanout:     3e+02
             RDF_QUAD_POGS        12 rows(s_38_3_t0.S$62)
              P =  IRI_ID"...direct/P31"  ,  O = cast$176 O LIKE <c Tó>
             time       5.3% fanout   1.17774 input       602 rows
             RDF_QUAD       1.2 rows(s_42_17_t3.S$66, s_42_17_t3.O$65)
              inlined  P =  IRI_ID"...direct/P1082"  ,  S = s_38_3_t0.S$62
-            time        34% fanout   1.34274 input       709 rows
+            time        32% fanout   1.34274 input       709 rows
             RDF_QUAD       1.1 rows(s_42_17_t2.O$70, s_42_17_t2.S$69)
              inlined  P =  IRI_ID"...direct/P17"  ,  S = k_s_38_3_t0.S$201
             
             After code:
             0: __ro2sq$72 := Call __ro2sq (s_42_17_t2.O$70)
             5: BReturn 0
-            time        44% fanout         0 input       952 rows
+            time        54% fanout         0 input       952 rows
             Sort (__ro2sq$72) -> (s_42_17_t2.S$69, s_42_17_t3.O$65)
             
           }
-        time        14% fanout       952 input         1 rows
+        time       5.4% fanout       300 input         1 rows
         top order by read (__ro2sq$72, s_42_17_t2.S$69, s_42_17_t3.O$65)
         
         After code:
@@ -71,7 +71,7 @@ http://www.wikidata.org/entity/Q1019	http://www.wikidata.org/entity/Q218954	1500
         14: city$31 :=  := artm __id2in$104
         18: population$32 :=  := artm __ro2sq$102
         22: BReturn 0
-        time    0.0029% fanout         0 input       952 rows
+        time    0.0023% fanout         0 input       300 rows
         Subquery Select(country$30, city$31, population$32)
       }
     
@@ -80,10 +80,10 @@ http://www.wikidata.org/entity/Q1019	http://www.wikidata.org/entity/Q218954	1500
     5: city$115 := Call __ro2sq (city$31)
     10: population$117 := Call __ro2sq (population$32)
     15: BReturn 0
-    time    0.0044% fanout         0 input       952 rows
+    time    0.0044% fanout         0 input       300 rows
     Select (country$113, city$115, population$117)
   }
 
 
- 11 msec 69% cpu,      1395 rnd      1118 seq   93.1948% same seg  0.859599% same pg 
-Compilation: 4 msec 0 reads         0% read 0 messages         0% clw
+ 9 msec 69% cpu,      1326 rnd      1118 seq   98.0407% same seg  0.828937% same pg 
+Compilation: 3 msec 0 reads         0% read 0 messages         0% clw

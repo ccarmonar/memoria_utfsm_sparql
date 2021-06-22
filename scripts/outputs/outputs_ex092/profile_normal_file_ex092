@@ -20,36 +20,36 @@ http://www.openlinksw.com/schemas/virtrdf#qmfSqlvalOfShortTmpl
 http://www.openlinksw.com/schemas/virtrdf#qmfDatatypeOfShortTmpl	
 
   { 
-    time     0.021% fanout         1 input         1 rows
+    time     0.023% fanout         1 input         1 rows
       clear: (<V set_ctr$56 in>)
     s# 59 57 cluster outer seq start, set no <V set_ctr$56 in>    
     save ctx:()
-    time    0.0049% fanout         1 input         1 rows
+    time    0.0051% fanout         1 input         1 rows
       clear: (<V set_no$29 i>)
     s# 68 47 cluster outer seq start, set no <V set_no$29 i>    
     save ctx:()
-    time       7.9% fanout    256000 input         1 rows
-    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:     5e+06 Fanout:   2.6e+05
+    time         8% fanout    256000 input         1 rows
+    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:   3.4e+06 Fanout:   2.6e+05
       clear: (<V s_5_2_t0.P$31 rn>)
       clear on continue: (<V s_5_2_t0.P$31 rn>)
-    s# 77 30 from DB.DBA.RDF_QUAD by RDF_QUAD      5e+06 rows   
-    Key RDF_QUAD  ASC  (<V s_5_2_t0.P$31 rn>)
+    s# 77 30 from DB.DBA.RDF_QUAD by RDF_QUAD_POGS    3.4e+06 rows   
+    Key RDF_QUAD_POGS  ASC  (<V s_5_2_t0.P$31 rn>)
     
     
-    time        91% fanout 0.000164062 input    256000 rows
+    time        90% fanout 0.000164062 input    256000 rows
       clear: (<V p$28 rn>)$31 () 
     s# 87 34 Distinct (HASH) set no <r set_no$29 via  Set77>(<V s_5_2_t0.P$31 rn>)
     After code:
       0: <V p$28 rn> :=  := artm <r s_5_2_t0.P$31 via  Set87>
       4: BReturn 0
-    time       1.3% fanout         1 input        42 rows
+    time       1.5% fanout         1 input        42 rows
       clear: (<V p$48 a>)$28 (34 ) $29 (34 30 47 ) 
     s# 96 40 Subquery Select(<V p$28 rn>)
       set no: <r set_no$29 via  Set87 Set77>
     After code:
       0: <V p$48 a> := Call __ro2sq (<V p$28 rn>)
       5: BReturn 0
-    time    0.0089% fanout         0 input        42 rows
+    time    0.0092% fanout         0 input        42 rows
     $48 (40 ) $56 (40 34 30 47 57 ) 
     s# 103 50 Select (<V p$48 a>)
       set no: <r set_ctr$56 via  Set96>
@@ -58,5 +58,5 @@ Warning: You might have a Cartesian product.
 
 
 
- 15 msec 94% cpu,        15 rnd    255699 seq         0% same seg        75% same pg 
+ 16 msec 95% cpu,         2 rnd    255728 seq         0% same seg         0% same pg 
 Compilation: 1 msec 0 reads         0% read 0 messages         0% clw

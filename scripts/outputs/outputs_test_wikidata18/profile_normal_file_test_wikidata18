@@ -1,6 +1,6 @@
 Error: 22007: DT001: Function year needs a datetime, date or time as argument 1, not an arg of type DB_NULL (204)
   { 
-    time      0.38% fanout         1 input         1 rows
+    time       0.6% fanout         1 input         1 rows
       clear: (<V set_ctr$217 in>)
     s# 220 218 cluster outer seq start, set no <V set_ctr$217 in>    
     save ctx:()
@@ -11,9 +11,9 @@ Error: 22007: DT001: Function year needs a datetime, date or time as argument 1,
     s# 229 29 Subquery 29 
       multistate set no = <V set_no$36 i>
       { 
-        time      0.15% fanout         0 input         1 rows
+        time      0.25% fanout         0 input         1 rows
         
-        s# 505 173 Fork 173 {  
+        s# 505 171 Fork 171 {  
                 
             save ctx:()
               set no = <V set_no$36 i> array  <none>  save: 
@@ -23,7 +23,7 @@ Error: 22007: DT001: Function year needs a datetime, date or time as argument 1,
               input shadow: (<V __all_eq$238 x>)
               output: (<V _::trans_subj_38_5$38 rn>)
               { 
-                time       7.1% fanout       0.5 input         2 rows
+                time       9.9% fanout       0.5 input         2 rows
                   clear: (<V t4.O$44 an>, <V t4.S$45 rn>, <V _::trans_obj_38_6$39 an>, <V _::trans_subj_38_5$38 rn>)
                   clear on continue: (<V _::trans_subj_38_5$38 rn>, <V _::trans_obj_38_6$39 an>, <V t4.S$45 rn>, <V t4.O$44 an>)$238 (43 ) $244 (43 ) 
                 s# 240 43 from DB.DBA.RDF_QUAD by RDF_QUAD_POGS        1.6 rows   
@@ -35,12 +35,12 @@ Error: 22007: DT001: Function year needs a datetime, date or time as argument 1,
                   0: <V _::trans_subj_38_5$38 rn> :=  := artm <V t4.S$45 rn>
                   4: <V _::trans_obj_38_6$39 an> :=  := artm <V t4.O$44 an>
                   8: BReturn 0
-                time      0.16% fanout         0 input         1 rows
+                time      0.22% fanout         0 input         1 rows
                 $39 () 
                 s# 257 47 Subquery Select(<V _::trans_subj_38_5$38 rn>, <V _::trans_obj_38_6$39 an>)
                   set no: <r step_set$40 via  Set240 Set246>
               }
-            time        62% fanout         1 input         2 rows
+            time        49% fanout         1 input         2 rows
             Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:        12 Fanout:         1
               clear: (<V t2.S$65 rn>)
               clear on continue: (<V t2.S$65 rn>)$268 (64 ) $38 () 
@@ -50,7 +50,7 @@ Error: 22007: DT001: Function year needs a datetime, date or time as argument 1,
             row specs:  O LIKE <c Tó>
             vector param casts: <V _::trans_subj_38_5$38 rn>-> <v cast$268 Set270 an>
             
-            time        17% fanout         1 input         2 rows
+            time        22% fanout         1 input         2 rows
             Precode:
               0: <V __id2in$67 a> := Call __id2in (<V t2.S$65 rn>)
               5: BReturn 0
@@ -61,7 +61,7 @@ Error: 22007: DT001: Function year needs a datetime, date or time as argument 1,
             s# 287 69 Subquery 69 
               multistate set no = <V set_no$72 i>
               { 
-                time       2.4% fanout         0 input         2 rows
+                time       3.4% fanout         0 input         2 rows
                 Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:       1.1 Fanout:         0
                   clear: (<V t8.S$74 rn>, <V t8.O$75 an>)
                   clear on continue: (<V t8.O$75 an>, <V t8.S$74 rn>)
@@ -101,123 +101,121 @@ Error: 22007: DT001: Function year needs a datetime, date or time as argument 1,
             time         0% fanout         0 input         0 rows
             $70 (69 ) $72 (69 ) $92 (69 96 ) 
             s# 342 91 end of outer seq <r set_ctr$92 via  Set287>
-             out: (<V jurisdiction$71 a>, <V item$70 r>, <V set_no$72 i>)
+             out: (<V jurisdiction$71 a>, <V set_no$72 i>, <V item$70 r>)
              shadow: ( <none> ,  <none> ,  <none> )
-            time      0.32% fanout         1 input         2 rows
-            Precode:
-              0: <V __ro2sq$101 a> := Call __ro2sq (<V jurisdiction$71 a>)
-              5: BReturn 0
-              clear: (<V set_ctr$107 i>, <V __ro2sq$101 a>)
-            s# 350 111 cluster outer seq start, set no <V set_ctr$107 i>    
+            time      0.14% fanout         1 input         2 rows
+              clear: (<V set_ctr$105 i>)
+            s# 350 109 cluster outer seq start, set no <V set_ctr$105 i>    
             save ctx:()
-            time       1.1% fanout         0 input         2 rows
+            time       1.3% fanout         0 input         2 rows
             Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:         1 Fanout:         0
-              clear: (<V t6.O$104 a>)
-              clear on continue: (<V t6.O$104 a>)$363 (103 ) 
-            s# 359 103 from DB.DBA.RDF_QUAD by RDF_QUAD          1 rows   
-            Key RDF_QUAD  ASC  (<V t6.O$104 a>)
+              clear: (<V t6.O$102 a>)
+              clear on continue: (<V t6.O$102 a>)$363 (101 ) 
+            s# 359 101 from DB.DBA.RDF_QUAD by RDF_QUAD          1 rows   
+            Key RDF_QUAD  ASC  (<V t6.O$102 a>)
              inlined  P =  IRI_ID"...direct/P1342"  ,  S = <v k_t2.S$363 Set365 rn>
             vector param casts: <r t2.S$65 via  Set350 Set342>-> <v k_t2.S$363 Set365 rn>
             
             time         0% fanout         0 input         0 rows
-            $107 (103 111 ) 
-            s# 373 106 end of outer seq <r set_ctr$107 via  Set359 Set365>
-             out: (<V t6.O$104 a>)
+            $105 (101 109 ) 
+            s# 373 104 end of outer seq <r set_ctr$105 via  Set359 Set365>
+             out: (<V t6.O$102 a>)
              shadow: ( <none> )
-            time     0.095% fanout         1 input         2 rows
-              clear: (<V set_ctr$120 i>)
-            s# 381 124 cluster outer seq start, set no <V set_ctr$120 i>    
+            time     0.097% fanout         1 input         2 rows
+              clear: (<V set_ctr$118 i>)
+            s# 381 122 cluster outer seq start, set no <V set_ctr$118 i>    
             save ctx:()
-            time       2.1% fanout         0 input         2 rows
+            time       2.5% fanout         0 input         2 rows
             Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:       1.1 Fanout:         0
-              clear: (<V t11.O$117 a>)
-              clear on continue: (<V t11.O$117 a>)$394 (116 ) 
-            s# 390 116 from DB.DBA.RDF_QUAD by RDF_QUAD        1.1 rows   
-            Key RDF_QUAD  ASC  (<V t11.O$117 a>)
+              clear: (<V t11.O$115 a>)
+              clear on continue: (<V t11.O$115 a>)$394 (114 ) 
+            s# 390 114 from DB.DBA.RDF_QUAD by RDF_QUAD        1.1 rows   
+            Key RDF_QUAD  ASC  (<V t11.O$115 a>)
              inlined  P =  IRI_ID"...direct/P571"  ,  S = <v k_t2.S$394 Set396 rn>
             vector param casts: <r t2.S$65 via  Set381 Set373 Set342>-> <v k_t2.S$394 Set396 rn>
             
             time         0% fanout         0 input         0 rows
-            $120 (116 124 ) 
-            s# 404 119 end of outer seq <r set_ctr$120 via  Set390 Set396>
-             out: (<V t11.O$117 a>)
+            $118 (114 122 ) 
+            s# 404 117 end of outer seq <r set_ctr$118 via  Set390 Set396>
+             out: (<V t11.O$115 a>)
              shadow: ( <none> )
             time         0% fanout         0 input         2 rows
             Precode:
-              0: <V rdf_year_impl$129 i> := Call rdf_year_impl (<V t11.O$117 a>)
+              0: <V rdf_year_impl$127 i> := Call rdf_year_impl (<V t11.O$115 a>)
               5: BReturn 0
-              clear: (<V set_ctr$135 i>, <V rdf_year_impl$129 i>)$117 (119 ) 
-            s# 412 139 cluster outer seq start, set no <V set_ctr$135 i>    
+              clear: (<V set_ctr$133 i>, <V rdf_year_impl$127 i>)$115 (117 ) 
+            s# 412 137 cluster outer seq start, set no <V set_ctr$133 i>    
             save ctx:()
             time         0% fanout         0 input         0 rows
             Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:       1.1 Fanout:         0
-              clear: (<V t13.O$132 a>)
-              clear on continue: (<V t13.O$132 a>)$425 (131 ) 
-            s# 421 131 from DB.DBA.RDF_QUAD by RDF_QUAD        1.1 rows   
-            Key RDF_QUAD  ASC  (<V t13.O$132 a>)
+              clear: (<V t13.O$130 a>)
+              clear on continue: (<V t13.O$130 a>)$425 (129 ) 
+            s# 421 129 from DB.DBA.RDF_QUAD by RDF_QUAD        1.1 rows   
+            Key RDF_QUAD  ASC  (<V t13.O$130 a>)
              inlined  P =  IRI_ID"...direct/P576"  ,  S = <v k_t2.S$425 Set427 rn>
             vector param casts: <r t2.S$65 via  Set412 Set404 Set373 Set342>-> <v k_t2.S$425 Set427 rn>
             
             time         0% fanout         0 input         0 rows
-            $135 (131 139 ) 
-            s# 435 134 end of outer seq <r set_ctr$135 via  Set421 Set427>
-             out: (<V t13.O$132 a>)
+            $133 (129 137 ) 
+            s# 435 132 end of outer seq <r set_ctr$133 via  Set421 Set427>
+             out: (<V t13.O$130 a>)
              shadow: ( <none> )
             time         0% fanout         0 input         0 rows
             Precode:
-              0: <V rdf_year_impl$144 i> := Call rdf_year_impl (<V t13.O$132 a>)
+              0: <V rdf_year_impl$142 i> := Call rdf_year_impl (<V t13.O$130 a>)
               5: BReturn 0
-              clear: (<V set_ctr$154 i>, <V rdf_year_impl$144 i>)$132 (134 ) 
-            s# 443 158 cluster outer seq start, set no <V set_ctr$154 i>    
+              clear: (<V set_ctr$152 i>, <V rdf_year_impl$142 i>)$130 (132 ) 
+            s# 443 156 cluster outer seq start, set no <V set_ctr$152 i>    
             save ctx:()
             time         0% fanout         0 input         0 rows
             Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:        12 Fanout:         0
-              clear: (<V t15.O$147 a>)
-              clear on continue: (<V t15.O$147 a>)$456 (146 ) 
-            s# 452 146 from DB.DBA.RDF_QUAD by RDF_QUAD         12 rows   
-            Key RDF_QUAD  ASC  (<V t15.O$147 a>)
+              clear: (<V t15.O$145 a>)
+              clear on continue: (<V t15.O$145 a>)$456 (144 ) 
+            s# 452 144 from DB.DBA.RDF_QUAD by RDF_QUAD         12 rows   
+            Key RDF_QUAD  ASC  (<V t15.O$145 a>)
              inlined  P =  IRI_ID"...label"  ,  S = <v k_t2.S$456 Set458 rn>
             vector param casts: <r t2.S$65 via  Set443 Set435 Set404 Set373 Set342>-> <v k_t2.S$456 Set458 rn>
             
             time         0% fanout         0 input         0 rows
-              clear: (<V DB.DBA.RDF_LANGUAGE_OF_OBJ$151 a>, <V __ro2sq$149 a>)
+              clear: (<V DB.DBA.RDF_LANGUAGE_OF_OBJ$149 a>, <V __ro2sq$147 a>)
             s# 471 466 END Node
             After test:
-              0: <V __ro2sq$149 a> := Call __ro2sq (<V t15.O$147 a>)
-              5: <V DB.DBA.RDF_LANGUAGE_OF_OBJ$151 a> := Call DB.DBA.RDF_LANGUAGE_OF_OBJ (<V __ro2sq$149 a>)
-              12: if (<c en> = <V DB.DBA.RDF_LANGUAGE_OF_OBJ$151 a>) then 16 else 17 unkn 17
+              0: <V __ro2sq$147 a> := Call __ro2sq (<V t15.O$145 a>)
+              5: <V DB.DBA.RDF_LANGUAGE_OF_OBJ$149 a> := Call DB.DBA.RDF_LANGUAGE_OF_OBJ (<V __ro2sq$147 a>)
+              12: if (<c en> = <V DB.DBA.RDF_LANGUAGE_OF_OBJ$149 a>) then 16 else 17 unkn 17
               16: BReturn 1
               17: BReturn 0
             time         0% fanout         0 input         0 rows
-              clear: (<V t15.O$483 a>)$147 (466 ) $149 (466 ) $151 (466 ) $154 (466 146 158 ) 
-            s# 479 153 end of outer seq <r set_ctr$154 via  Set471 Set452 Set458>
-             out: (<r t15.O$147 via  Set471>, <V DB.DBA.RDF_LANGUAGE_OF_OBJ$151 a>, <V __ro2sq$149 a>)
-             shadow: (<V t15.O$483 a>,  <none> ,  <none> )
+              clear: (<V t15.O$483 a>)$145 (466 ) $147 (466 ) $149 (466 ) $152 (466 144 156 ) 
+            s# 479 151 end of outer seq <r set_ctr$152 via  Set471 Set452 Set458>
+             out: (<V DB.DBA.RDF_LANGUAGE_OF_OBJ$149 a>, <r t15.O$145 via  Set471>, <V __ro2sq$147 a>)
+             shadow: ( <none> , <V t15.O$483 a>,  <none> )
             time         0% fanout         0 input         0 rows
-            $71 (153 466 146 158 134 131 139 119 116 124 106 103 111 91 69 ) $65 (153 466 146 158 134 131 139 119 116 124 106 103 111 91 69 96 ) 
-            s# 489 163 Distinct (HASH) set no <r set_no$36 via  Set479 Set435 Set404 Set373 Set342 Set264 Set270 Set234>(<r t2.S$65 via  Set479 Set435 Set404 Set373 Set342>, <V t15.O$483 a>, <r t6.O$104 via  Set479 Set435 Set404>, <r jurisdiction$71 via  Set479 Set435 Set404 Set373>, <r rdf_year_impl$129 via  Set479 Set435>, <r rdf_year_impl$144 via  Set479>)
+            $65 (151 466 144 156 132 129 137 117 114 122 104 101 109 91 69 96 ) 
+            s# 489 161 Distinct (HASH) set no <r set_no$36 via  Set479 Set435 Set404 Set373 Set342 Set264 Set270 Set234>(<r t2.S$65 via  Set479 Set435 Set404 Set373 Set342>, <V t15.O$483 a>, <r t6.O$102 via  Set479 Set435 Set404>, <r jurisdiction$71 via  Set479 Set435 Set404 Set373>, <r rdf_year_impl$127 via  Set479 Set435>, <r rdf_year_impl$142 via  Set479>)
             time         0% fanout         0 input         0 rows
             Precode:
-              0: <V __ro2sq$169 a> := Call __ro2sq (<r t6.O$104 via  Set489 Set479 Set435 Set404>)
-              5: <V __ro2sq$171 a> := Call __ro2sq (<r t15.O$483 via  Set489>)
+              0: <V __ro2sq$167 a> := Call __ro2sq (<r t6.O$102 via  Set489 Set479 Set435 Set404>)
+              5: <V __ro2sq$169 a> := Call __ro2sq (<r t15.O$483 via  Set489>)
               10: BReturn 0
-              clear: (<V __ro2sq$171 a>, <V __ro2sq$169 a>)$483 (163 153 ) $104 (163 153 466 146 158 134 131 139 119 116 124 106 ) 
-            s# 497 174 Sort (HASH) set no <r set_no$36 via  Set489 Set479 Set435 Set404 Set373 Set342 Set264 Set270 Set234>(TOP  600  ) (<V __ro2sq$169 a>, <V __ro2sq$171 a>) -> (<r __id2in$67 via  Set489 Set479 Set435 Set404 Set373 Set342>, <r __ro2sq$101 via  Set489 Set479 Set435 Set404 Set373>, <r rdf_year_impl$129 via  Set489 Set479 Set435>, <r rdf_year_impl$144 via  Set489 Set479>)
+              clear: (<V __ro2sq$169 a>, <V __ro2sq$167 a>)$483 (161 151 ) $102 (161 151 466 144 156 132 129 137 117 114 122 104 ) 
+            s# 497 172 Sort (HASH) set no <r set_no$36 via  Set489 Set479 Set435 Set404 Set373 Set342 Set264 Set270 Set234>(TOP  100  ) (<V __ro2sq$167 a>, <V __ro2sq$169 a>) -> (<r __id2in$67 via  Set489 Set479 Set435 Set404 Set373 Set342>, <r jurisdiction$71 via  Set489 Set479 Set435 Set404 Set373>, <r rdf_year_impl$127 via  Set489 Set479 Set435>, <r rdf_year_impl$142 via  Set489 Set479>)
             
         }
         time         0% fanout         0 input         0 rows
-          clear: (<V rdf_year_impl$144 i>, <V rdf_year_impl$129 i>, <V __ro2sq$101 a>, <V __ro2sq$169 a>, <V __ro2sq$171 a>, <V __id2in$67 a>, <V end$35 i>, <V start$34 i>, <V jurisdiction$33 a>, <V seats$32 a>, <V title$31 a>, <V item$30 a>)
-          clear on continue: (<V rdf_year_impl$144 i>, <V rdf_year_impl$129 i>, <V __ro2sq$101 a>, <V __ro2sq$169 a>, <V __ro2sq$171 a>, <V __id2in$67 a>, <V end$35 i>, <V start$34 i>, <V jurisdiction$33 a>, <V seats$32 a>, <V title$31 a>, <V item$30 a>)
-        s# 512 179 top order by node (<V __id2in$67 a>, <V __ro2sq$171 a>, <V __ro2sq$169 a>, <V __ro2sq$101 a>, <V rdf_year_impl$129 i>, <V rdf_year_impl$144 i>)
+          clear: (<V rdf_year_impl$142 i>, <V rdf_year_impl$127 i>, <V jurisdiction$71 a>, <V __ro2sq$167 a>, <V __ro2sq$169 a>, <V __id2in$67 a>, <V end$35 i>, <V start$34 i>, <V jurisdiction$33 a>, <V seats$32 a>, <V title$31 a>, <V item$30 a>, <V __ro2sq$190 a>)
+          clear on continue: (<V rdf_year_impl$142 i>, <V rdf_year_impl$127 i>, <V jurisdiction$71 a>, <V __ro2sq$167 a>, <V __ro2sq$169 a>, <V __id2in$67 a>, <V end$35 i>, <V start$34 i>, <V jurisdiction$33 a>, <V seats$32 a>, <V title$31 a>, <V item$30 a>, <V __ro2sq$190 a>)
+        s# 512 177 top order by node (<V __id2in$67 a>, <V __ro2sq$169 a>, <V __ro2sq$167 a>, <V jurisdiction$71 a>, <V rdf_year_impl$127 i>, <V rdf_year_impl$142 i>)
         set no <V set_no$36 i>
         After code:
-          0: <V item$30 a> :=  := artm <V __id2in$67 a>
-          4: <V title$31 a> :=  := artm <V __ro2sq$171 a>
-          8: <V seats$32 a> :=  := artm <V __ro2sq$169 a>
-          12: <V jurisdiction$33 a> :=  := artm <V __ro2sq$101 a>
-          16: <V start$34 i> :=  := artm <V rdf_year_impl$129 i>
-          20: <V end$35 i> :=  := artm <V rdf_year_impl$144 i>
-          24: BReturn 0
+          0: <V __ro2sq$190 a> := Call __ro2sq (<V jurisdiction$71 a>)
+          5: <V item$30 a> :=  := artm <V __id2in$67 a>
+          9: <V title$31 a> :=  := artm <V __ro2sq$169 a>
+          13: <V seats$32 a> :=  := artm <V __ro2sq$167 a>
+          17: <V jurisdiction$33 a> :=  := artm <V __ro2sq$190 a>
+          21: <V start$34 i> :=  := artm <V rdf_year_impl$127 i>
+          25: <V end$35 i> :=  := artm <V rdf_year_impl$142 i>
+          29: BReturn 0
         time         0% fanout         0 input         0 rows
         
         s# 229 192 Subquery Select(<V item$30 a>, <V title$31 a>, <V seats$32 a>, <V jurisdiction$33 a>, <V start$34 i>, <V end$35 i>)
@@ -252,5 +250,5 @@ Warning: You might have a Cartesian product.
 
 
  1 msec 0% cpu,        12 rnd         1 seq   15.3846% same seg   7.69231% same pg 
-11 disk reads, 0 read ahead,  0.232991% wait
-Compilation: 94 msec 67 reads   27.8849% read 0 messages         0% clw
+5 disk reads, 0 read ahead, 0.0913186% wait
+Compilation: 125 msec 71 reads   51.0399% read 0 messages         0% clw

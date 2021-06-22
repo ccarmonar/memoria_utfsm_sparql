@@ -1,11 +1,11 @@
   { 
     Precode:
       0:   { 
-          time         4% fanout         1 input         1 rows
+          time       5.5% fanout         1 input         1 rows
             clear: (<V ext_sets$67 i>, <V set_ctr$49 in>)
           s# 68 50 cluster outer seq start, set no <V set_ctr$49 in>    
           save ctx:()
-          time        11% fanout         1 input         1 rows
+          time        13% fanout         1 input         1 rows
           Precode:
             0: <V vector$27 x> := Call vector ( 1 ,  0 ,  1 ,  1 ,  1 ,  2 )
             5: <V vector$29 x> := Call vector (<V vector$27 x>)
@@ -13,7 +13,7 @@
             15: BReturn 0
             clear: (<V vector$31 x>, <V vector$29 x>, <V vector$27 x>)$27 (51 ) 
           s# 117 51 Fork 51 {  
-              time        53% fanout         0 input         1 rows
+              time        44% fanout         0 input         1 rows
               Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:      0.27 Fanout:         0
                 clear: (<V s_7_4_t1.S$34 rn>)
                 clear on continue: (<V s_7_4_t1.S$34 rn>)
@@ -22,18 +22,18 @@
                inlined  G =  IRI_ID"...en.joseph_hocking" 
               
               time         0% fanout         0 input         0 rows
-              Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:        13 Fanout:         0
+              Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:        30 Fanout:         0
                 clear: (<V s_7_4_t1.P$38 rn>)
                 clear on continue: (<V s_7_4_t1.P$38 rn>)
-              s# 89 37 from DB.DBA.RDF_QUAD by RDF_QUAD_SP         13 rows   
+              s# 89 37 from DB.DBA.RDF_QUAD by RDF_QUAD_SP         30 rows   
               Key RDF_QUAD_SP  ASC  (<V s_7_4_t1.P$38 rn>)
                inlined  S = <V s_7_4_t1.S$34 rn>
               
               time         0% fanout         0 input         0 rows
-              Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:      0.23 Fanout:         0
+              Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:      0.22 Fanout:         0
                 clear: (<V s_7_4_t1.O$42 an>, <V user_aggr_ret$54 x>, <V vector$47 x>, <V __ro2lo$45 a>)
                 clear on continue: (<V __ro2lo$45 a>, <V vector$47 x>, <V user_aggr_ret$54 x>, <V s_7_4_t1.O$42 an>)$34 (37 ) $38 () $103 (41 ) $107 (41 ) 
-              s# 99 41 from DB.DBA.RDF_QUAD by RDF_QUAD       0.23 rows   
+              s# 99 41 from DB.DBA.RDF_QUAD by RDF_QUAD       0.22 rows   
               Key RDF_QUAD  ASC  (<V s_7_4_t1.O$42 an>)
                inlined  P = <v k_s_7_4_t1.P$103 Set105 rn> ,  S = <V k_s_7_4_t1.S$107 rn>
               row specs:  G =  IRI_ID"...en.joseph_hocking" 
@@ -48,13 +48,13 @@
                 25: <V user_aggr_ret$54 x> := Call DB.DBA.SPARQL_CONSTRUCT_ACC (user_aggr_env$53 , <r vector$29 via  Set99 Set105 Set89 Set79>, <V vector$47 x>, <r vector$31 via  Set99 Set105 Set89 Set79>,  1 )
                 32: BReturn 0
           }
-          time        31% fanout         1 input         1 rows
+          time        35% fanout         1 input         1 rows
             clear: (<V callret-0$55 x>)
           s# 124 65 skip node  1  <none> <V set_ctr$49 in>
           After code:
             0: <V callret-0$55 x> := Call DB.DBA.SPARQL_CONSTRUCT_FIN (user_aggr_env$53 )
             7: BReturn 0
-          time         2% fanout         0 input         1 rows
+          time       2.5% fanout         0 input         1 rows
           $67 (65 51 50 ) $49 (65 51 50 ) $55 (65 ) 
           s# 132 57 Subquery Select(<V callret-0$55 x>)
             set no: <r set_ctr$49 via  Set124>
@@ -67,5 +67,5 @@
   }
 
 
- 0 msec 7% cpu,         1 rnd         0 seq         0% same seg         0% same pg 
+ 0 msec 6% cpu,         1 rnd         0 seq         0% same seg         0% same pg 
 Compilation: 1 msec 0 reads         0% read 0 messages         0% clw

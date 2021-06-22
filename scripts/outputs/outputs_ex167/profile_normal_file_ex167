@@ -20,7 +20,7 @@ http://www.w3.org/1999/02/22-rdf-syntax-ns#type	http://dbpedia.org/class/yago/Le
 http://www.w3.org/1999/02/22-rdf-syntax-ns#type	http://dbpedia.org/class/yago/LivingThing100004258	
 
   { 
-    time   0.00019% fanout         1 input         1 rows
+    time   0.00011% fanout         1 input         1 rows
       clear: (<V set_ctr$78 in>)
     s# 81 79 cluster outer seq start, set no <V set_ctr$78 in>    
     save ctx:()
@@ -32,13 +32,13 @@ http://www.w3.org/1999/02/22-rdf-syntax-ns#type	http://dbpedia.org/class/yago/Li
     s# 90 31 Subquery 31 
       multistate set no = <V set_no$33 i>
       { 
-        time   0.00015% fanout         1 input         1 rows
+        time   7.5e-05% fanout         1 input         1 rows
         Precode:
           0: <V __stub$32 in> :=  := artm  1 
           4: BReturn 0
           clear: (<V __stub$32 in>)
         s# 95 40 END Node
-        time   6.4e-05% fanout         0 input         1 rows
+        time   3.6e-05% fanout         0 input         1 rows
         $32 (40 ) 
         s# 90 34 Subquery Select(<r __stub$32 via  Set95>)
           set no: <r set_no$33 via  Set95>
@@ -56,7 +56,7 @@ http://www.w3.org/1999/02/22-rdf-syntax-ns#type	http://dbpedia.org/class/yago/Li
       16: <V param_row$55 x> :=  := artm <r vector$27 via  Set90>
       20: <V expected_vars$57 x> :=  := artm <r vector$29 via  Set90>
       24: <V proc_ctr$43 i> :=  := artm  0 
-      28:  <none>  := Call __reset_temp ( 139746098343296 )
+      28:  <none>  := Call __reset_temp ( 139717165242480 )
       33:  <proc table>  := Call DB.DBA.SPARQL_SINV_IMP (<tag 182 flag 1 c http://DBpedia.org/sparql>, <r vector$27 via  Set90>, <c SELECT  ?p
        ?o
        WHERE {  <http://dbpedia.org/resource/Joseph_Hocking> ?p ?o . }>, <tag 225 c >, <r vector$27 via  Set90>, <r vector$29 via  Set90>)
@@ -72,7 +72,7 @@ http://www.w3.org/1999/02/22-rdf-syntax-ns#type	http://dbpedia.org/class/yago/Li
       10: <V aref$68 x> := Call aref (<V RSET$45 a>,  1 )
       15: <V o$70 a> := Call __ro2sq (<V aref$68 x>)
       20: BReturn 0
-    time   3.2e-05% fanout         0 input        98 rows
+    time   1.6e-05% fanout         0 input        98 rows
     $66 () $70 () $78 (42 31 79 ) 
     s# 118 72 Select (<V p$66 a>, <V o$70 a>)
       set no: <r set_ctr$78 via  Set109 Set90>
@@ -81,6 +81,6 @@ Warning: You might have a Cartesian product.
 
 
 
- 1612 msec 0% cpu,        38 rnd         6 seq         0% same seg   12.8205% same pg 
-18 disk reads, 0 read ahead, 0.0196268% wait
-Compilation: 2 msec 0 reads         0% read 0 messages         0% clw
+ 2071 msec 18% cpu,       118 rnd         6 seq         0% same seg   4.20168% same pg 
+27 disk reads, 0 read ahead,   15.8227% wait
+Compilation: 0 msec 0 reads         0% read 0 messages         0% clw

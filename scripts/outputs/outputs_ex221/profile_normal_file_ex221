@@ -1,22 +1,22 @@
 http://learningsparql.com/ns/data#item2b	
 
   { 
-    time      0.74% fanout         1 input         1 rows
+    time      0.83% fanout         1 input         1 rows
       clear: (<V set_ctr$45 in>)
     s# 48 46 cluster outer seq start, set no <V set_ctr$45 in>    
     save ctx:()
-    time        75% fanout         1 input         1 rows
+    time        72% fanout         1 input         1 rows
     Precode:
       0: <V DB.DBA.RDF_MAKE_OBJ_OF_TYPEDSQLVAL$27 x> := Call DB.DBA.RDF_MAKE_OBJ_OF_TYPEDSQLVAL (<c two>,  IRI_ID"...string" , <DB_NULL>)
       7: BReturn 0
       clear: (<V s_8_2_t0.P$30 rn>, <V DB.DBA.RDF_MAKE_OBJ_OF_TYPEDSQLVAL$27 x>)
       clear on continue: (<V s_8_2_t0.P$30 rn>)$61 (29 ) 
-    s# 57 29 from DB.DBA.RDF_QUAD by RDF_QUAD_OP        2.3 rows   
+    s# 57 29 from DB.DBA.RDF_QUAD by RDF_QUAD_OP        2.2 rows   
     Key RDF_QUAD_OP  ASC  (<V s_8_2_t0.P$30 rn>)
      inlined  O = <v k_DB.DBA.RDF_MAKE_OBJ_OF_TYPEDSQLVAL$61 Set63 an>
     vector param casts: <V DB.DBA.RDF_MAKE_OBJ_OF_TYPEDSQLVAL$27 x>-> <v k_DB.DBA.RDF_MAKE_OBJ_OF_TYPEDSQLVAL$61 Set63 an>
     
-    time        24% fanout         1 input         1 rows
+    time        27% fanout         1 input         1 rows
       clear: (<V s_8_2_t0.S$34 rn>, <V s$37 a>)
       clear on continue: (<V s$37 a>, <V s_8_2_t0.S$34 rn>)$75 (33 ) $79 (33 ) $27 (29 ) $30 () 
     s# 71 33 from DB.DBA.RDF_QUAD by RDF_QUAD_POGS        1.2 rows   
@@ -27,7 +27,7 @@ http://learningsparql.com/ns/data#item2b
     After code:
       0: <V s$37 a> := Call __id2in (<V s_8_2_t0.S$34 rn>)
       5: BReturn 0
-    time      0.16% fanout         0 input         1 rows
+    time      0.19% fanout         0 input         1 rows
     $37 () $45 (33 29 46 ) 
     s# 87 39 Select (<V s$37 a>)
       set no: <r set_ctr$45 via  Set71 Set77 Set57 Set63>
@@ -36,5 +36,5 @@ Warning: You might have a Cartesian product.
 
 
 
- 1 msec 29% cpu,         5 rnd         1 seq         0% same seg         0% same pg 
-Compilation: 1 msec 4 reads   4.03837% read 0 messages         0% clw
+ 1 msec 28% cpu,         5 rnd         1 seq         0% same seg         0% same pg 
+Compilation: 1 msec 0 reads         0% read 0 messages         0% clw

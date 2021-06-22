@@ -1,8 +1,8 @@
 {
   "OP1": {
-    "profile_text": "    time    0.0014% fanout         1 input         1 rows\n      clear: (<V set_ctr$45 in>)\n    s# 48 46 cluster outer seq start, set no <V set_ctr$45 in>    \n    save ctx:()",
-    "profile_text_low_explain": "\n    time    0.0015% fanout         1 input         1 rows",
-    "time": 0.0014,
+    "profile_text": "    time   0.00081% fanout         1 input         1 rows\n      clear: (<V set_ctr$45 in>)\n    s# 48 46 cluster outer seq start, set no <V set_ctr$45 in>    \n    save ctx:()",
+    "profile_text_low_explain": "\n    time    0.0011% fanout         1 input         1 rows",
+    "time": 0.00081,
     "fanout": 1,
     "input_rows": 1,
     "cardinality_estimate": 0,
@@ -35,12 +35,12 @@
     "subquery_select?": 0
   },
   "OP2": {
-    "profile_text": "    time      0.92% fanout    257000 input         1 rows\n    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:     5e+06 Fanout:   2.6e+05\n      clear: (<V s_11_4_t0.O$28 an>, <V s_11_4_t0.P$29 rn>)\n      clear on continue: (<V s_11_4_t0.O$28 an>, <V s_11_4_t0.P$29 rn>)\n    s# 57 27 from DB.DBA.RDF_QUAD by RDF_QUAD      5e+06 rows   \n    Key RDF_QUAD  ASC  (<V s_11_4_t0.P$29 rn>, <V s_11_4_t0.O$28 an>)\n    \n    ",
-    "profile_text_low_explain": "\n    time      0.75% fanout    257000 input         1 rows\n    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:     5e+06 Fanout:   2.6e+05\n    RDF_QUAD     5e+06 rows(s_11_4_t0.P$29, s_11_4_t0.O$28)\n    ",
-    "time": 0.92,
+    "profile_text": "    time      0.78% fanout    257000 input         1 rows\n    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:   3.4e+06 Fanout:   2.6e+05\n      clear: (<V s_11_4_t0.O$28 an>, <V s_11_4_t0.P$29 rn>)\n      clear on continue: (<V s_11_4_t0.O$28 an>, <V s_11_4_t0.P$29 rn>)\n    s# 57 27 from DB.DBA.RDF_QUAD by RDF_QUAD_POGS    3.4e+06 rows   \n    Key RDF_QUAD_POGS  ASC  (<V s_11_4_t0.P$29 rn>, <V s_11_4_t0.O$28 an>)\n    \n    ",
+    "profile_text_low_explain": "\n    time      0.71% fanout    257000 input         1 rows\n    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:   3.4e+06 Fanout:   2.6e+05\n    RDF_QUAD_POGS   3.4e+06 rows(s_11_4_t0.P$29, s_11_4_t0.O$28)\n    ",
+    "time": 0.78,
     "fanout": 257000,
     "input_rows": 1,
-    "cardinality_estimate": 5000000,
+    "cardinality_estimate": 3400000,
     "cardinality_fanout": 260000,
     "operator_type": 0,
     "precode_bool": 0,
@@ -111,9 +111,9 @@
     "subquery_select?": 0
   },
   "OP4": {
-    "profile_text": "    time   5.9e-05% fanout         0 input        42 rows\n    $32 (34 ) $37 () $45 (34 27 46 ) \n    s# 78 39 Select (<V propertyLabel$37 a>, <r value$32 via  Set68>)\n      set no: <r set_ctr$45 via  Set68 Set57>\n  ",
-    "profile_text_low_explain": "\n    time   0.00013% fanout         0 input        42 rows\n    Select (propertyLabel$37, value$32)\n  ",
-    "time": 5.9e-05,
+    "profile_text": "    time   5.6e-05% fanout         0 input        42 rows\n    $32 (34 ) $37 () $45 (34 27 46 ) \n    s# 78 39 Select (<V propertyLabel$37 a>, <r value$32 via  Set68>)\n      set no: <r set_ctr$45 via  Set68 Set57>\n  ",
+    "profile_text_low_explain": "\n    time   9.5e-05% fanout         0 input        42 rows\n    Select (propertyLabel$37, value$32)\n  ",
+    "time": 5.6e-05,
     "fanout": 0,
     "input_rows": 42,
     "cardinality_estimate": 0,

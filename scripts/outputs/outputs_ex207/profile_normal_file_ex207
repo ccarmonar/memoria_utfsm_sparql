@@ -5,7 +5,7 @@ http://learningsparql.com/ns/data#item201	http://learningsparql.com/ns/demo#prob
   { 
     Precode:
       0:   { 
-          time      0.81% fanout         1 input         1 rows
+          time      0.77% fanout         1 input         1 rows
             clear: (<V ext_sets$98 i>, <V set_ctr$80 in>)
           s# 99 81 cluster outer seq start, set no <V set_ctr$80 in>    
           save ctx:()
@@ -26,14 +26,14 @@ http://learningsparql.com/ns/data#item201	http://learningsparql.com/ns/demo#prob
               Key RDF_QUAD  ASC  (<V t2.S$39 rn>, <V t2.O$38 an>)
                inlined  P =  IRI_ID"...cost" 
               
-              time       8.4% fanout         1 input         8 rows
+              time       8.2% fanout         1 input         8 rows
                 clear: (<V t3.S$42 rn>, <V t3.O$43 an>)
                 clear on continue: (<V t3.S$42 rn>, <V t3.O$43 an>)
               s# 121 41 from DB.DBA.RDF_QUAD by RDF_QUAD       0.96 rows   
               Key RDF_QUAD  ASC  (<V t3.O$43 an>, <V t3.S$42 rn>)
                inlined  P =  IRI_ID"...amount"  ,  S = <V t2.S$39 rn>
               
-              time       9.4% fanout       0.5 input         8 rows
+              time       9.5% fanout       0.5 input         8 rows
                 clear: (<V temp$45 an>)$38 (41 ) $43 () 
               s# 137 132 END Node
               After test:
@@ -41,7 +41,7 @@ http://learningsparql.com/ns/data#item201	http://learningsparql.com/ns/demo#prob
                 4: if (<V temp$45 an> >  100 ) then 8 else 9 unkn 9
                 8: BReturn 1
                 9: BReturn 0
-              time       8.7% fanout         1 input         4 rows
+              time       8.4% fanout         1 input         4 rows
               Precode:
                 0: <V __all_eq$47 x> := Call __all_eq (<r t2.S$39 via  Set137 Set121>, <r t3.S$42 via  Set137>)
                 5: BReturn 0
@@ -52,7 +52,7 @@ http://learningsparql.com/ns/data#item201	http://learningsparql.com/ns/demo#prob
               s# 154 49 Subquery 49 
                 multistate set no = <V set_no$53 i>
                 { 
-                  time       7.6% fanout      0.75 input         4 rows
+                  time       7.9% fanout      0.75 input         4 rows
                     clear: (<V t5.S$55 rn>, <V t5.O$56 an>)
                     clear on continue: (<V t5.O$56 an>, <V t5.S$55 rn>)$47 (73 ) 
                   s# 158 54 from DB.DBA.RDF_QUAD by RDF_QUAD          1 rows   
@@ -60,7 +60,7 @@ http://learningsparql.com/ns/data#item201	http://learningsparql.com/ns/demo#prob
                    inlined  P =  IRI_ID"...approval"  ,  S = <v k___all_eq$162 Set164 rn>
                   vector param casts: <r __all_eq$47 via  Set145>-> <v k___all_eq$162 Set164 rn>
                   
-                  time       6.5% fanout         1 input         3 rows
+                  time       6.2% fanout         1 input         3 rows
                     clear: (<V t6.O$59 an>, <V grade$52 a>, <V approvingEmployee$51 a>, <V item$50 r>)
                     clear on continue: (<V item$50 r>, <V approvingEmployee$51 a>, <V grade$52 a>, <V t6.O$59 an>)$177 (58 ) $55 () $56 () 
                   s# 173 58 from DB.DBA.RDF_QUAD by RDF_QUAD          1 rows   
@@ -73,16 +73,16 @@ http://learningsparql.com/ns/data#item201	http://learningsparql.com/ns/demo#prob
                     4: <V approvingEmployee$51 a> :=  := artm <r t5.O$56 via  Set173 Set179>
                     8: <V grade$52 a> :=  := artm <V t6.O$59 an>
                     12: BReturn 0
-                  time      0.38% fanout         0 input         3 rows
+                  time      0.37% fanout         0 input         3 rows
                   
                   s# 154 61 Subquery Select(<V item$50 r>, <V approvingEmployee$51 a>, <V grade$52 a>)
                     set no: <r set_no$53 via  Set173 Set179 Set158 Set164>
                 }
               
-              time      0.42% fanout   1.33333 input         3 rows
+              time      0.38% fanout   1.33333 input         3 rows
               $69 (49 73 ) $50 (49 ) $51 (49 ) $53 (49 ) 
               s# 197 68 end of outer seq <r set_ctr$69 via  Set154>
-               out: (<V grade$52 a>, <V set_no$53 i>, <V approvingEmployee$51 a>, <V item$50 r>)
+               out: (<V approvingEmployee$51 a>, <V item$50 r>, <V grade$52 a>, <V set_no$53 i>)
                shadow: ( <none> ,  <none> ,  <none> ,  <none> )
               time        32% fanout         0 input         4 rows
                 clear: (<V user_aggr_ret$85 x>, <V vector$78 x>)$42 (68 49 73 132 ) $52 (68 49 ) 
@@ -100,7 +100,7 @@ http://learningsparql.com/ns/data#item201	http://learningsparql.com/ns/demo#prob
                 20: <V user_aggr_ret$85 x> := Call DB.DBA.SPARQL_CONSTRUCT_ACC (user_aggr_env$84 , vector$29 , <V vector$78 x>, vector$35 ,  1 )
                 27: BReturn 0
           }
-          time       2.4% fanout         1 input         1 rows
+          time       2.2% fanout         1 input         1 rows
             clear: (<V callret-0$86 x>)
           s# 228 96 skip node  1  <none> <V set_ctr$80 in>
           After code:

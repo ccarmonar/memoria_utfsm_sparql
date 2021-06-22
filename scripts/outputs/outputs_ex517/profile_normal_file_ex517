@@ -1,6 +1,6 @@
 
   { 
-    time      0.87% fanout         1 input         1 rows
+    time        12% fanout         1 input         1 rows
       clear: (<V set_ctr$114 in>)
     s# 117 115 cluster outer seq start, set no <V set_ctr$114 in>    
     save ctx:()
@@ -11,26 +11,26 @@
     s# 126 29 Subquery 29 
       multistate set no = <V set_no$33 i>
       { 
-        time       0.7% fanout         1 input         1 rows
+        time       7.1% fanout         1 input         1 rows
         
         s# 233 72 Fork 72 {  
                 
             save ctx:()
               set no = <V set_no$33 i> array  <none>  save: 
-            time        95% fanout         0 input         1 rows
-            Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:     2e-06 Fanout:         0
+            time        74% fanout         0 input         1 rows
+            Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:   2.9e-06 Fanout:         0
               clear: (<V t5.O$35 an>, <V t5.S$36 rn>)
               clear on continue: (<V t5.O$35 an>, <V t5.S$36 rn>)
-            s# 131 34 from DB.DBA.RDF_QUAD by RDF_QUAD_POGS      2e-06 rows Parallel, tail cost         7   
+            s# 131 34 from DB.DBA.RDF_QUAD by RDF_QUAD_POGS    2.9e-06 rows Parallel, tail cost       6.8   
             Key RDF_QUAD_POGS  ASC  (<V t5.S$36 rn>, <V t5.O$35 an>)
              inlined  P =  IRI_ID"...firstName" 
             copy on branch $27 $33 $0 $0 sets: 117 
             
             time         0% fanout         0 input         0 rows
-            Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:     2e-06 Fanout:         0
+            Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:   2.9e-06 Fanout:         0
               clear: (<V t6.O$39 an>)
               clear on continue: (<V t6.O$39 an>)
-            s# 142 38 from DB.DBA.RDF_QUAD by RDF_QUAD      2e-06 rows Parallel, tail cost         7   
+            s# 142 38 from DB.DBA.RDF_QUAD by RDF_QUAD    2.9e-06 rows Parallel, tail cost       6.9   
             Key RDF_QUAD  ASC  (<V t6.O$39 an>)
              inlined  P =  IRI_ID"...lastName"  ,  S = <V t5.S$36 rn>
             copy on branch $36 $27 $33 $35 sets: 117 131 
@@ -75,7 +75,7 @@
             time         0% fanout         0 input         0 rows
             $61 (56 65 ) 
             s# 204 60 end of outer seq <r set_ctr$61 via  Set193>
-             out: (<V t4.S$58 r>, <V t4.O$57 a>)
+             out: (<V t4.O$57 a>, <V t4.S$58 r>)
              shadow: ( <none> ,  <none> )
             time         0% fanout         0 input         0 rows
             $36 (60 56 65 45 152 38 ) $58 (60 ) 
@@ -92,7 +92,7 @@
             s# 225 73 Sort (HASH) set no <r set_no$33 via  Set217 Set204 Set165 Set157 Set142 Set131>(<V __ro2sq$70 a>) -> (<r t5.O$35 via  Set217 Set204 Set165 Set157 Set142>, <r t4.O$57 via  Set217>)
             
         }
-        time       3.8% fanout         0 input         1 rows
+        time       7.4% fanout         0 input         1 rows
           clear: (<V t4.O$57 a>, <V __ro2sq$70 a>, <V t5.O$35 an>, <V homeTel$32 a>, <V last$31 a>, <V first$30 a>, <V __ro2sq$93 a>, <V __ro2sq$91 a>)
           clear on continue: (<V t4.O$57 a>, <V __ro2sq$70 a>, <V t5.O$35 an>, <V homeTel$32 a>, <V last$31 a>, <V first$30 a>, <V __ro2sq$93 a>, <V __ro2sq$91 a>)
         s# 240 78 Key from temp (<V t5.O$35 an>, <V __ro2sq$70 a>, <V t4.O$57 a>)
@@ -125,6 +125,5 @@ Warning: You might have a Cartesian product.
 
 
 
- 0 msec 11% cpu,         1 rnd         0 seq         0% same seg         0% same pg 
-16 disk reads, 0 read ahead,   7.33942% wait
-Compilation: 2 msec 0 reads         0% read 0 messages         0% clw
+ 0 msec 0% cpu,         1 rnd         0 seq         0% same seg         0% same pg 
+Compilation: 111 msec 4 reads 0.0817119% read 0 messages         0% clw

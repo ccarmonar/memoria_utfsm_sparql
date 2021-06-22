@@ -4,18 +4,18 @@ Francis	Jones	Francis Jones
 Jane	Berger	Jane Berger	
 
   { 
-    time      0.69% fanout         1 input         1 rows
+    time       2.2% fanout         1 input         1 rows
       clear: (<V set_ctr$46 in>)
     s# 49 47 cluster outer seq start, set no <V set_ctr$46 in>    
     save ctx:()
-    time        50% fanout         4 input         1 rows
+    time        20% fanout         4 input         1 rows
       clear: (<V t3.O$28 an>, <V t3.S$29 rn>)
       clear on continue: (<V t3.O$28 an>, <V t3.S$29 rn>)
     s# 58 27 from DB.DBA.RDF_QUAD by RDF_QUAD          4 rows   
     Key RDF_QUAD  ASC  (<V t3.S$29 rn>, <V t3.O$28 an>)
      inlined  P =  IRI_ID"...family-name" 
     
-    time        49% fanout         1 input         4 rows
+    time        78% fanout         1 input         4 rows
       clear: (<V t2.O$32 an>, <V fullName$38 s>, <V givenName$36 a>, <V familyName$34 a>)
       clear on continue: (<V t2.O$32 an>, <V fullName$38 s>, <V givenName$36 a>, <V familyName$34 a>)$28 () $29 () 
     s# 69 31 from DB.DBA.RDF_QUAD by RDF_QUAD          1 rows   
@@ -27,7 +27,7 @@ Jane	Berger	Jane Berger
       5: <V givenName$36 a> := Call __ro2sq (<V t2.O$32 an>)
       10: <V fullName$38 s> := Call rdf_concat_impl (<V givenName$36 a>, <c  >, <V familyName$34 a>)
       15: BReturn 0
-    time      0.15% fanout         0 input         4 rows
+    time      0.18% fanout         0 input         4 rows
     $34 () $36 () $38 () $46 (31 27 47 ) 
     s# 79 40 Select (<V givenName$36 a>, <V familyName$34 a>, <V fullName$38 s>)
       set no: <r set_ctr$46 via  Set69 Set58>
@@ -36,6 +36,5 @@ Warning: You might have a Cartesian product.
 
 
 
- 0 msec 22% cpu,        13 rnd         3 seq   21.4286% same seg   42.8571% same pg 
-9 disk reads, 0 read ahead,    6.0006% wait
-Compilation: 1 msec 0 reads         0% read 0 messages         0% clw
+ 0 msec 0% cpu,        13 rnd         3 seq   21.4286% same seg   42.8571% same pg 
+Compilation: 123 msec 30 reads   21.5096% read 0 messages         0% clw

@@ -20,7 +20,7 @@ http://www.wikidata.org/prop/novalue/P735	17
 http://www.wikidata.org/prop/novalue/P300	17	
 
   { 
-    time     0.011% fanout         1 input         1 rows
+    time     0.014% fanout         1 input         1 rows
       clear: (<V set_ctr$92 in>)
     s# 95 93 cluster outer seq start, set no <V set_ctr$92 in>    
     save ctx:()
@@ -28,45 +28,45 @@ http://www.wikidata.org/prop/novalue/P300	17
     s# 104 27 Subquery 27 
       multistate set no = <V set_no$30 i>
       { 
-        time    0.0056% fanout         1 input         1 rows
+        time    0.0071% fanout         1 input         1 rows
         
         s# 154 60 Fork 60 {  
                 
             save ctx:()
               set no = <V set_no$30 i> array  <none>  save: 
-            time    0.0036% fanout         1 input         1 rows
+            time     0.006% fanout         1 input         1 rows
             
             s# 129 37 Fork 37 {  
                     
                 save ctx:()
                   set no = <V set_no$30 i> array  <none>  save: 
-                time        41% fanout    254296 input         1 rows
+                time        29% fanout    254296 input         1 rows
                   clear: (<V s_7_2_t0.S$32 rn>, <V s_7_2_t0.O$33 an>, <V isnotnull$35 in>)
                   clear on continue: (<V s_7_2_t0.S$32 rn>, <V s_7_2_t0.O$33 an>, <V isnotnull$35 in>)
-                s# 110 31 from DB.DBA.RDF_QUAD by RDF_QUAD_POGS    2.5e+05 rows Parallel, tail cost   7.8e+04   
-                Key RDF_QUAD_POGS  ASC  (<V s_7_2_t0.O$33 an>, <V s_7_2_t0.S$32 rn>)
+                s# 110 31 from DB.DBA.RDF_QUAD by RDF_QUAD    2.5e+05 rows Parallel, tail cost   3.8e+04   
+                Key RDF_QUAD  ASC  (<V s_7_2_t0.O$33 an>, <V s_7_2_t0.S$32 rn>)
                  inlined  P =  IRI_ID"...type" 
                 copy on branch $30 $0 $0 $0 sets: 95 
                 
                 After code:
                   0: <V isnotnull$35 in> := Call isnotnull (<V s_7_2_t0.S$32 rn>)
                   5: BReturn 0
-                time        57% fanout         0 input    254296 rows
+                time        66% fanout         0 input    254296 rows
                 $35 () 
-                s# 121 38 Sort (HASH) set no <r set_no$30 via  Set110>(<V s_7_2_t0.O$33 an>) -> (<V isnotnull$35 in>) up to   4.6e+02 distinct
+                s# 121 38 Sort (HASH) set no <r set_no$30 via  Set110>(<V s_7_2_t0.O$33 an>) -> (<V isnotnull$35 in>) up to   5.6e+02 distinct
                 
             }
-            time      0.21% fanout       203 input         1 rows
+            time      0.33% fanout       203 input         1 rows
               clear: (<V aggregate$39 in>, <V s_7_2_t0.O$33 an>)
               clear on continue: (<V aggregate$39 in>, <V s_7_2_t0.O$33 an>)
             s# 136 45 group by read node  
             (<V s_7_2_t0.O$33 an>, <V aggregate$39 in>)
-            time      0.77% fanout         0 input       203 rows
+            time       1.6% fanout         0 input       203 rows
             
             s# 146 61 Sort (HASH) set no <r set_no$30 via  Set136>(<V aggregate$39 in>) -> (<V s_7_2_t0.O$33 an>)
             
         }
-        time       1.8% fanout       203 input         1 rows
+        time         3% fanout       203 input         1 rows
         Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:         0 Fanout:     2e+02
           clear: (<V aggregate$39 in>, <V s_7_2_t0.O$33 an>, <V instanceTotal$29 in>, <V class$28 a>, <V __ro2sq$73 a>)
           clear on continue: (<V aggregate$39 in>, <V s_7_2_t0.O$33 an>, <V instanceTotal$29 in>, <V class$28 a>, <V __ro2sq$73 a>)
@@ -78,7 +78,7 @@ http://www.wikidata.org/prop/novalue/P300	17
           5: <V class$28 a> :=  := artm <V __ro2sq$73 a>
           9: <V instanceTotal$29 in> :=  := artm <V aggregate$39 in>
           13: BReturn 0
-        time    0.0013% fanout         0 input       203 rows
+        time    0.0014% fanout         0 input       203 rows
         
         s# 104 75 Subquery Select(<V class$28 a>, <V instanceTotal$29 in>)
           set no: <r set_no$30 via  Set161>
@@ -88,13 +88,13 @@ http://www.wikidata.org/prop/novalue/P300	17
       0: <V class$82 a> := Call __ro2sq (<V class$28 a>)
       5: <V instanceTotal$84 a> := Call __ro2sq (<V instanceTotal$29 in>)
       10: BReturn 0
-    time    0.0014% fanout         0 input       203 rows
+    time    0.0023% fanout         0 input       203 rows
     $82 (27 ) $84 (27 ) $92 (27 93 ) 
     s# 179 86 Select (<V class$82 a>, <V instanceTotal$84 a>)
       set no: <r set_ctr$92 via  Set104>
   }
 
 
- 15 msec 128% cpu,       400 rnd    254229 seq         0% same seg  0.997506% same pg 
-135 disk reads, 0 read ahead,    2.9376% wait
-Compilation: 2 msec 0 reads         0% read 0 messages         0% clw
+ 15 msec 93% cpu,       396 rnd    254199 seq         0% same seg   1.25945% same pg 
+43 disk reads, 0 read ahead,  0.729896% wait
+Compilation: 0 msec 0 reads         0% read 0 messages         0% clw

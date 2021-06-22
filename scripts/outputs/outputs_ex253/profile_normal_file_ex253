@@ -26,7 +26,7 @@ http://www.openlinksw.com/virtrdf-data-formats#sql-varchar-uri	http://www.w3.org
             clear: (<V ext_sets$78 i>, <V set_ctr$60 in>)
           s# 79 61 cluster outer seq start, set no <V set_ctr$60 in>    
           save ctx:()
-          time       1.2% fanout         1 input         1 rows
+          time       1.1% fanout         1 input         1 rows
           Precode:
             0: <V vector$27 x> := Call vector ( 1 ,  0 ,  1 ,  1 ,  1 ,  2 )
             5: <V vector$29 x> := Call vector (<V vector$27 x>)
@@ -38,15 +38,15 @@ http://www.openlinksw.com/virtrdf-data-formats#sql-varchar-uri	http://www.w3.org
               s# 90 33 Subquery 33 
                 multistate set no = <V set_no$35 i>
                 { 
-                  time        11% fanout      1000 input         1 rows
-                  Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:     5e+06 Fanout:     1e+03
+                  time        13% fanout      1000 input         1 rows
+                  Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:   3.4e+06 Fanout:     1e+03
                     clear: (<V t3.O$37 an>, <V t3.P$38 rn>, <V t3.S$39 rn>)
                     clear on continue: (<V t3.O$37 an>, <V t3.P$38 rn>, <V t3.S$39 rn>)
-                  s# 94 36 from DB.DBA.RDF_QUAD by RDF_QUAD      5e+06 rows   
-                  Key RDF_QUAD  ASC  (<V t3.S$39 rn>, <V t3.P$38 rn>, <V t3.O$37 an>)
+                  s# 94 36 from DB.DBA.RDF_QUAD by RDF_QUAD_POGS    3.4e+06 rows   
+                  Key RDF_QUAD_POGS  ASC  (<V t3.S$39 rn>, <V t3.P$38 rn>, <V t3.O$37 an>)
                   
                   
-                  time        86% fanout      0.05 input      1000 rows
+                  time        84% fanout      0.05 input      1000 rows
                     clear: (<V ctor-1$34 x>, <V vector$48 x>, <V __i2idn$46 r>, <V rdf_encode_for_uri_impl$44 s>, <V __rdf_strsqlval$42 s>)$37 () $38 () $39 () 
                   s# 106 58 skip node  50  <none> <r set_no$35 via  Set94>
                   After code:
@@ -56,7 +56,7 @@ http://www.openlinksw.com/virtrdf-data-formats#sql-varchar-uri	http://www.w3.org
                     15: <V vector$48 x> := Call vector (<r t3.S$39 via  Set106>, <r t3.P$38 via  Set106>, <V __i2idn$46 r>)
                     20: <V ctor-1$34 x> :=  := artm <V vector$48 x>
                     24: BReturn 0
-                  time      0.18% fanout         0 input        50 rows
+                  time      0.16% fanout         0 input        50 rows
                   
                   s# 90 50 Subquery Select(<V ctor-1$34 x>)
                     set no: <r set_no$35 via  Set106 Set94>
@@ -69,13 +69,13 @@ http://www.openlinksw.com/virtrdf-data-formats#sql-varchar-uri	http://www.w3.org
                 15: <V user_aggr_ret$65 x> := Call DB.DBA.SPARQL_CONSTRUCT_ACC (user_aggr_env$64 , <r vector$29 via  Set90>, <V ctor-1$34 x>, <r vector$31 via  Set90>,  1 )
                 22: BReturn 0
           }
-          time       1.2% fanout         1 input         1 rows
+          time       1.1% fanout         1 input         1 rows
             clear: (<V callret-0$66 x>)
           s# 131 76 skip node  1  <none> <V set_ctr$60 in>
           After code:
             0: <V callret-0$66 x> := Call DB.DBA.SPARQL_CONSTRUCT_FIN (user_aggr_env$64 )
             7: BReturn 0
-          time     0.092% fanout         0 input         1 rows
+          time     0.085% fanout         0 input         1 rows
           $66 (76 ) $78 (76 62 61 ) $60 (76 62 61 ) 
           s# 139 68 Subquery Select(<V callret-0$66 x>)
             set no: <r set_ctr$60 via  Set131>
@@ -88,5 +88,5 @@ http://www.openlinksw.com/virtrdf-data-formats#sql-varchar-uri	http://www.w3.org
   }
 
 
- 2 msec 56% cpu,         1 rnd       998 seq         0% same seg         0% same pg 
+ 2 msec 54% cpu,         1 rnd       998 seq         0% same seg         0% same pg 
 Compilation: 2 msec 0 reads         0% read 0 messages         0% clw

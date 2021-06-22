@@ -1,6 +1,6 @@
 
   { 
-    time       1.1% fanout         1 input         1 rows
+    time       2.7% fanout         1 input         1 rows
       clear: (<V set_ctr$310 in>)
     s# 313 311 cluster outer seq start, set no <V set_ctr$310 in>    
     save ctx:()
@@ -13,7 +13,7 @@
     s# 322 33 Subquery 33 
       multistate set no = <V set_no$43 i>
       { 
-        time      0.74% fanout         1 input         1 rows
+        time       1.6% fanout         1 input         1 rows
         
         s# 786 241 Fork 241 {  
                 
@@ -26,28 +26,28 @@
                 
                 s# 331 51 Union
                   { 
-                    time        12% fanout         3 input         1 rows
+                    time        26% fanout         3 input         1 rows
                       clear: (<V t3.S$53 rn>)
                       clear on continue: (<V t3.S$53 rn>)
                     s# 334 52 from DB.DBA.RDF_QUAD by RDF_QUAD_POGS          3 rows   
                     Key RDF_QUAD_POGS  ASC  (<V t3.S$53 rn>)
                      P =  IRI_ID"...direct/P136"  ,  O =  IRI_ID"...Q1164267" 
                     
-                    time       9.9% fanout         1 input         3 rows
+                    time        16% fanout         1 input         3 rows
                     
                     s# 349 344 END Node
                     After test:
                       0: if (  { 
-                          time      0.17% fanout         1 input         3 rows
+                          time      0.46% fanout         1 input         3 rows
                             clear: (<V set_ctr$63 in>)
                           s# 353 64 cluster outer seq start, set no <V set_ctr$63 in>    
                           save ctx:()
-                          time       8.4% fanout         0 input         3 rows
+                          time        12% fanout         0 input         3 rows
                           Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:   0.00022 Fanout:         0
                           $366 (55 ) 
-                          s# 362 55 from DB.DBA.RDF_QUAD by RDF_QUAD    0.00022 rows Parallel, tail cost        10   max 1
-                          Key RDF_QUAD  ASC  ()
-                           inlined  P =  IRI_ID"...direct/P840"  ,  S = <v k_t3.S$366 Set368 rn> ,  O =  IRI_ID"...Q933" 
+                          s# 362 55 from DB.DBA.RDF_QUAD by RDF_QUAD_POGS    0.00022 rows Parallel, tail cost        10   max 1
+                          Key RDF_QUAD_POGS  ASC  ()
+                           inlined  P =  IRI_ID"...direct/P840"  ,  O =  IRI_ID"...Q933"  ,  S = <v k_t3.S$366 Set368 rn>
                           vector param casts: <r t3.S$53 via  Set353>-> <v k_t3.S$366 Set368 rn>
                           copy on branch $366 $63 $0 $0 sets: 313 334 353 
                           
@@ -59,13 +59,13 @@
                       ) then 5 else 4 unkn 5
                       4: BReturn 1
                       5: BReturn 0
-                    time        19% fanout         0 input         3 rows
+                    time        14% fanout         0 input         3 rows
                     Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:   8.3e-06 Fanout:         0
                       clear: (<V t4.S$70 rn>)
                       clear on continue: (<V t4.S$70 rn>)$53 (344 ) $391 (69 ) 
-                    s# 387 69 from DB.DBA.RDF_QUAD by RDF_QUAD    8.3e-06 rows   
-                    Key RDF_QUAD  ASC  (<V t4.S$70 rn>)
-                     inlined  P =  IRI_ID"...direct/P31"  ,  S = <v k_t3.S$391 Set393 rn> ,  O =  IRI_ID"...Q571" 
+                    s# 387 69 from DB.DBA.RDF_QUAD by RDF_QUAD_POGS    8.3e-06 rows   
+                    Key RDF_QUAD_POGS  ASC  (<V t4.S$70 rn>)
+                     inlined  P =  IRI_ID"...direct/P31"  ,  O =  IRI_ID"...Q571"  ,  S = <v k_t3.S$391 Set393 rn>
                     vector param casts: <r t3.S$53 via  Set349>-> <v k_t3.S$391 Set393 rn>
                     
                     time         0% fanout         0 input         0 rows
@@ -95,7 +95,7 @@
                       16: <V param_row$92 x> :=  := artm vector$27 
                       20: <V expected_vars$94 x> :=  := artm vector$29 
                       24: <V proc_ctr$80 i> :=  := artm  0 
-                      28:  <none>  := Call __reset_temp ( 139746102129184 )
+                      28:  <none>  := Call __reset_temp ( 139717179118352 )
                       33:  <proc table>  := Call DB.DBA.SPARQL_SINV_IMP (<tag 182 flag 1 c http://wikiba.se/ontology#label>, vector$27 , <c  SELECT ?stubvar40
                        WHERE {  <http://www.bigdata.com/rdf#serviceParam> <http://wikiba.se/ontology#language> "[AUTO_LANGUAGE],fr" . }>, <tag 225 c >, vector$27 , vector$29 )
                       40: BReturn 0
@@ -182,33 +182,33 @@
                       17: <V $246 x> :=  := artm <DB_NULL>
                       21: BReturn 0
                       clear: (<V $246 x>, <V $245 x>, <V $244 x>, <V $243 x>, <V __ro2sq$239 a>)
-                    s# 548 242 Sort (HASH) set no <r set_no$43 via  Set536 Set529 Set510 Set516 Set502 Set466 Set472 Set458 Set426 Set411 Set417 Set401 Set387 Set393 Set349 Set334>(TOP  700  ) (<V __ro2sq$239 a>) -> (<r item$48 via  Set536 Set529>, <V $243 x>, <r ed$45 via  Set536 Set529>, <V $244 x>, <V $245 x>, <r rdf_year_impl$231 via  Set536>, <V $246 x>, <r coord$49 via  Set536 Set529>, <r lien$46 via  Set536 Set529>)
+                    s# 548 242 Sort (HASH) set no <r set_no$43 via  Set536 Set529 Set510 Set516 Set502 Set466 Set472 Set458 Set426 Set411 Set417 Set401 Set387 Set393 Set349 Set334>(TOP  100  ) (<V __ro2sq$239 a>) -> (<r item$48 via  Set536 Set529>, <V $243 x>, <r ed$45 via  Set536 Set529>, <V $244 x>, <V $245 x>, <r rdf_year_impl$231 via  Set536>, <V $246 x>, <r coord$49 via  Set536 Set529>, <r lien$46 via  Set536 Set529>)
                     
                   }
                   { 
-                    time       4.2% fanout        62 input         1 rows
+                    time       8.8% fanout        62 input         1 rows
                       clear: (<V t37.S$140 rn>, <V t37.O$141 an>)
                       clear on continue: (<V t37.S$140 rn>, <V t37.O$141 an>)
                     s# 556 139 from DB.DBA.RDF_QUAD by RDF_QUAD_POGS         62 rows   
                     Key RDF_QUAD_POGS  ASC  (<V t37.O$141 an>, <V t37.S$140 rn>)
                      inlined  P =  IRI_ID"...direct/P629" 
                     
-                    time        44% fanout         0 input        62 rows
+                    time        16% fanout         0 input        62 rows
                     Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:   8.3e-06 Fanout:         0
                       clear: (<V t30.S$144 rn>)
                       clear on continue: (<V t30.S$144 rn>)$141 () $571 (143 ) 
-                    s# 567 143 from DB.DBA.RDF_QUAD by RDF_QUAD    8.3e-06 rows   
-                    Key RDF_QUAD  ASC  (<V t30.S$144 rn>)
-                     inlined  P =  IRI_ID"...direct/P31"  ,  S = <v cast$571 Set573 rn> ,  O =  IRI_ID"...Q571" 
+                    s# 567 143 from DB.DBA.RDF_QUAD by RDF_QUAD_POGS    8.3e-06 rows   
+                    Key RDF_QUAD_POGS  ASC  (<V t30.S$144 rn>)
+                     inlined  P =  IRI_ID"...direct/P31"  ,  O =  IRI_ID"...Q571"  ,  S = <v cast$571 Set573 rn>
                     vector param casts: <V t37.O$141 an>-> <v cast$571 Set573 rn>
                     
                     time         0% fanout         0 input         0 rows
                     Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:     0.063 Fanout:         0
                       clear: (<V t39.S$147 rn>)
                       clear on continue: (<V t39.S$147 rn>)$585 (146 ) 
-                    s# 581 146 from DB.DBA.RDF_QUAD by RDF_QUAD      0.063 rows   
-                    Key RDF_QUAD  ASC  (<V t39.S$147 rn>)
-                     inlined  P =  IRI_ID"...direct/P407"  ,  S = <v k_t37.S$585 Set587 rn> ,  O =  IRI_ID"...Q150" 
+                    s# 581 146 from DB.DBA.RDF_QUAD by RDF_QUAD_POGS      0.063 rows   
+                    Key RDF_QUAD_POGS  ASC  (<V t39.S$147 rn>)
+                     inlined  P =  IRI_ID"...direct/P407"  ,  O =  IRI_ID"...Q150"  ,  S = <v k_t37.S$585 Set587 rn>
                     vector param casts: <r t37.S$140 via  Set567 Set573>-> <v k_t37.S$585 Set587 rn>
                     
                     time         0% fanout         0 input         0 rows
@@ -224,9 +224,9 @@
                     Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:   0.00034 Fanout:         0
                       clear: (<V t29.S$154 rn>)
                       clear on continue: (<V t29.S$154 rn>)$614 (153 ) 
-                    s# 610 153 from DB.DBA.RDF_QUAD by RDF_QUAD    0.00034 rows   
-                    Key RDF_QUAD  ASC  (<V t29.S$154 rn>)
-                     inlined  P =  IRI_ID"...direct/P136"  ,  S = <v k_t30.S$614 Set616 rn> ,  O =  IRI_ID"...Q1164267" 
+                    s# 610 153 from DB.DBA.RDF_QUAD by RDF_QUAD_POGS    0.00034 rows   
+                    Key RDF_QUAD_POGS  ASC  (<V t29.S$154 rn>)
+                     inlined  P =  IRI_ID"...direct/P136"  ,  O =  IRI_ID"...Q1164267"  ,  S = <v k_t30.S$614 Set616 rn>
                     vector param casts: <r t30.S$144 via  Set595 Set601 Set581 Set587>-> <v k_t30.S$614 Set616 rn>
                     
                     time         0% fanout         0 input         0 rows
@@ -241,9 +241,9 @@
                           time         0% fanout         0 input         0 rows
                           Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:   0.00022 Fanout:         0
                           $154 (165 ) $646 (156 ) 
-                          s# 642 156 from DB.DBA.RDF_QUAD by RDF_QUAD    0.00022 rows Parallel, tail cost        10   max 1
-                          Key RDF_QUAD  ASC  ()
-                           inlined  P =  IRI_ID"...direct/P840"  ,  S = <v k_t29.S$646 Set648 rn> ,  O =  IRI_ID"...Q933" 
+                          s# 642 156 from DB.DBA.RDF_QUAD by RDF_QUAD_POGS    0.00022 rows Parallel, tail cost        10   max 1
+                          Key RDF_QUAD_POGS  ASC  ()
+                           inlined  P =  IRI_ID"...direct/P840"  ,  O =  IRI_ID"...Q933"  ,  S = <v k_t29.S$646 Set648 rn>
                           vector param casts: <r t29.S$154 via  Set633>-> <v k_t29.S$646 Set648 rn>
                           copy on branch $646 $164 $0 $0 sets: 313 556 573 567 587 581 601 595 616 610 633 
                           
@@ -265,7 +265,7 @@
                       16: <V param_row$183 x> :=  := artm vector$27 
                       20: <V expected_vars$185 x> :=  := artm vector$31 
                       24: <V proc_ctr$171 i> :=  := artm  0 
-                      28:  <none>  := Call __reset_temp ( 139746095732384 )
+                      28:  <none>  := Call __reset_temp ( 139717168930688 )
                       33:  <proc table>  := Call DB.DBA.SPARQL_SINV_IMP (<tag 182 flag 1 c http://wikiba.se/ontology#label>, vector$27 , <c  SELECT ?stubvar41
                        WHERE {  <http://www.bigdata.com/rdf#serviceParam> <http://wikiba.se/ontology#language> "[AUTO_LANGUAGE],fr" . }>, <tag 225 c >, vector$27 , vector$31 )
                       40: BReturn 0
@@ -352,13 +352,13 @@
                       17: <V $246 x> :=  := artm <DB_NULL>
                       21: BReturn 0
                       clear: (<V $246 x>, <V $245 x>, <V $244 x>, <V $243 x>, <V __ro2sq$239 a>)$47 (233 260 ) $239 (242 ) 
-                    s# 779 242 Sort (HASH) set no <r set_no$43 via  Set772 Set765 Set751 Set757 Set743 Set707 Set713 Set699 Set667 Set629 Set610 Set616 Set595 Set601 Set581 Set587 Set567 Set573 Set556>(TOP  700  ) (<V __ro2sq$239 a>) -> (<r item$48 via  Set772 Set765>, <V $243 x>, <r ed$45 via  Set772 Set765>, <V $244 x>, <V $245 x>, <r rdf_year_impl$231 via  Set772>, <V $246 x>, <r coord$49 via  Set772 Set765>, <r lien$46 via  Set772 Set765>)
+                    s# 779 242 Sort (HASH) set no <r set_no$43 via  Set772 Set765 Set751 Set757 Set743 Set707 Set713 Set699 Set667 Set629 Set610 Set616 Set595 Set601 Set581 Set587 Set567 Set573 Set556>(TOP  100  ) (<V __ro2sq$239 a>) -> (<r item$48 via  Set772 Set765>, <V $243 x>, <r ed$45 via  Set772 Set765>, <V $244 x>, <V $245 x>, <r rdf_year_impl$231 via  Set772>, <V $246 x>, <r coord$49 via  Set772 Set765>, <r lien$46 via  Set772 Set765>)
                     
                   }
               }
             
         }
-        time       1.2% fanout         0 input         1 rows
+        time       2.3% fanout         0 input         1 rows
           clear: (<V lien$46 a>, <V coord$49 a>, <V $246 x>, <V rdf_year_impl$231 i>, <V $245 x>, <V $244 x>, <V ed$45 a>, <V $243 x>, <V item$48 rn>, <V lien$42 a>, <V coord$41 a>, <V lieuLabel$40 x>, <V AnneeCreation$39 i>, <V auteurLabel$38 x>, <V edLabel$37 x>, <V ed$36 a>, <V itemLabel$35 x>, <V item$34 a>, <V __id2in$277 a>, <V __id2in$275 a>, <V __ro2sq$273 a>, <V __ro2sq$271 a>)
           clear on continue: (<V lien$46 a>, <V coord$49 a>, <V $246 x>, <V rdf_year_impl$231 i>, <V $245 x>, <V $244 x>, <V ed$45 a>, <V $243 x>, <V item$48 rn>, <V lien$42 a>, <V coord$41 a>, <V lieuLabel$40 x>, <V AnneeCreation$39 i>, <V auteurLabel$38 x>, <V edLabel$37 x>, <V ed$36 a>, <V itemLabel$35 x>, <V item$34 a>, <V __id2in$277 a>, <V __id2in$275 a>, <V __ro2sq$273 a>, <V __ro2sq$271 a>)
         s# 793 251 top order by node (<V item$48 rn>, <V $243 x>, <V ed$45 a>, <V $244 x>, <V $245 x>, <V rdf_year_impl$231 i>, <V $246 x>, <V coord$49 a>, <V lien$46 a>)
@@ -438,5 +438,5 @@ Warning: You might have a Cartesian product.
 
 
 
- 0 msec 0% cpu,        70 rnd        63 seq   77.4648% same seg   11.2676% same pg 
-Compilation: 249 msec 39 reads     21.77% read 0 messages         0% clw
+ 1 msec 0% cpu,        70 rnd        63 seq   91.5493% same seg         0% same pg 
+Compilation: 290 msec 41 reads   35.6758% read 0 messages         0% clw

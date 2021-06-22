@@ -1,8 +1,8 @@
 {
   "OP1": {
-    "profile_text": "    time       1.3% fanout         1 input         1 rows\n      clear: (<V set_ctr$57 in>)\n    s# 60 58 cluster outer seq start, set no <V set_ctr$57 in>    \n    save ctx:()\n      clear: (<V Concept$28 an>, <V set_no$29 i>, <V Concept$49 a>)\n    s# 69 27 Subquery 27 \n      multistate set no = <V set_no$29 i>\n      { ",
+    "profile_text": "    time       1.4% fanout         1 input         1 rows\n      clear: (<V set_ctr$57 in>)\n    s# 60 58 cluster outer seq start, set no <V set_ctr$57 in>    \n    save ctx:()\n      clear: (<V Concept$28 an>, <V set_no$29 i>, <V Concept$49 a>)\n    s# 69 27 Subquery 27 \n      multistate set no = <V set_no$29 i>\n      { ",
     "profile_text_low_explain": "\n    time       1.3% fanout         1 input         1 rows\n    Subquery 27 \n      { ",
-    "time": 1.3,
+    "time": 1.4,
     "fanout": 1,
     "input_rows": 1,
     "cardinality_estimate": 0,
@@ -35,9 +35,9 @@
     "subquery_select?": 0
   },
   "OP2": {
-    "profile_text": "        time        21% fanout      1000 input         1 rows\n        Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:   2.5e+05 Fanout:     1e+03\n          clear: (<V s_15_3_t0.O$31 an>)\n          clear on continue: (<V s_15_3_t0.O$31 an>)\n        s# 73 30 from DB.DBA.RDF_QUAD by RDF_QUAD_POGS    2.5e+05 rows   \n        Key RDF_QUAD_POGS  ASC  (<V s_15_3_t0.O$31 an>)\n         inlined  P =  IRI_ID\"...type\" \n        ",
-    "profile_text_low_explain": "\n        time        21% fanout      1000 input         1 rows\n        Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:   2.5e+05 Fanout:     1e+03\n        RDF_QUAD_POGS   2.5e+05 rows(s_15_3_t0.O$31)\n         inlined  P =  IRI_ID\"...type\" ",
-    "time": 21,
+    "profile_text": "        time        18% fanout      1000 input         1 rows\n        Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:   2.5e+05 Fanout:     1e+03\n          clear: (<V s_15_3_t0.O$31 an>)\n          clear on continue: (<V s_15_3_t0.O$31 an>)\n        s# 73 30 from DB.DBA.RDF_QUAD by RDF_QUAD    2.5e+05 rows   \n        Key RDF_QUAD  ASC  (<V s_15_3_t0.O$31 an>)\n         inlined  P =  IRI_ID\"...type\" \n        ",
+    "profile_text_low_explain": "\n        time        19% fanout      1000 input         1 rows\n        Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:   2.5e+05 Fanout:     1e+03\n        RDF_QUAD   2.5e+05 rows(s_15_3_t0.O$31)\n         inlined  P =  IRI_ID\"...type\" ",
+    "time": 18,
     "fanout": 1000,
     "input_rows": 1,
     "cardinality_estimate": 250000,
@@ -72,10 +72,10 @@
     "subquery_select?": 0
   },
   "OP3": {
-    "profile_text": "        time        75% fanout      0.09 input      1000 rows\n        \n        s# 83 33 Distinct (HASH) set no <r set_no$29 via  Set73>(<V s_15_3_t0.O$31 an>)",
-    "profile_text_low_explain": "\n        time        74% fanout      0.09 input      1000 rows\n        Distinct (s_15_3_t0.O$31)",
-    "time": 75,
-    "fanout": 0.09,
+    "profile_text": "        time        77% fanout     0.034 input      1000 rows\n        \n        s# 83 33 Distinct (HASH) set no <r set_no$29 via  Set73>(<V s_15_3_t0.O$31 an>)",
+    "profile_text_low_explain": "\n        time        77% fanout     0.034 input      1000 rows\n        Distinct (s_15_3_t0.O$31)",
+    "time": 77,
+    "fanout": 0.034,
     "input_rows": 1000,
     "cardinality_estimate": 0,
     "cardinality_fanout": 0,
@@ -107,11 +107,11 @@
     "subquery_select?": 0
   },
   "OP4": {
-    "profile_text": "        time       2.4% fanout         1 input        90 rows\n          clear: (<V Concept$28 an>)$31 (33 ) \n        s# 91 47 skip node  100  <none> <r set_no$29 via  Set83 Set73>\n        After code:\n          0: <V Concept$28 an> :=  := artm <r s_15_3_t0.O$31 via  Set91 Set83>\n          4: BReturn 0",
-    "profile_text_low_explain": "\n        time       2.6% fanout         1 input        90 rows\n        skip node  100  <none> set_no$29\n        \n        After code:\n        0: Concept$28 :=  := artm s_15_3_t0.O$31\n        4: BReturn 0",
-    "time": 2.4,
+    "profile_text": "        time       2.2% fanout         1 input        34 rows\n          clear: (<V Concept$28 an>)$31 (33 ) \n        s# 91 47 skip node  100  <none> <r set_no$29 via  Set83 Set73>\n        After code:\n          0: <V Concept$28 an> :=  := artm <r s_15_3_t0.O$31 via  Set91 Set83>\n          4: BReturn 0",
+    "profile_text_low_explain": "\n        time       2.3% fanout         1 input        34 rows\n        skip node  100  <none> set_no$29\n        \n        After code:\n        0: Concept$28 :=  := artm s_15_3_t0.O$31\n        4: BReturn 0",
+    "time": 2.2,
     "fanout": 1,
-    "input_rows": 90,
+    "input_rows": 34,
     "cardinality_estimate": 0,
     "cardinality_fanout": 0,
     "operator_type": 0,
@@ -143,11 +143,11 @@
     "subquery_select?": 0
   },
   "OP5": {
-    "profile_text": "        time      0.38% fanout         0 input        90 rows\n        \n        s# 69 39 Subquery Select(<V Concept$28 an>)\n          set no: <r set_no$29 via  Set91 Set83 Set73>\n      }\n    \n    After code:\n      0: <V Concept$49 a> := Call __ro2sq (<V Concept$28 an>)\n      5: BReturn 0",
-    "profile_text_low_explain": "\n        time      0.44% fanout         0 input        90 rows\n        Subquery Select(Concept$28)\n      }\n    \n    After code:\n    0: Concept$49 := Call __ro2sq (Concept$28)\n    5: BReturn 0",
-    "time": 0.38,
+    "profile_text": "        time      0.39% fanout         0 input        34 rows\n        \n        s# 69 39 Subquery Select(<V Concept$28 an>)\n          set no: <r set_no$29 via  Set91 Set83 Set73>\n      }\n    \n    After code:\n      0: <V Concept$49 a> := Call __ro2sq (<V Concept$28 an>)\n      5: BReturn 0",
+    "profile_text_low_explain": "\n        time      0.38% fanout         0 input        34 rows\n        Subquery Select(Concept$28)\n      }\n    \n    After code:\n    0: Concept$49 := Call __ro2sq (Concept$28)\n    5: BReturn 0",
+    "time": 0.39,
     "fanout": 0,
-    "input_rows": 90,
+    "input_rows": 34,
     "cardinality_estimate": 0,
     "cardinality_fanout": 0,
     "operator_type": 0,
@@ -179,11 +179,11 @@
     "subquery_select?": 1
   },
   "OP6": {
-    "profile_text": "    time      0.36% fanout         0 input        90 rows\n    $49 (27 ) $57 (27 58 ) \n    s# 107 51 Select (<V Concept$49 a>)\n      set no: <r set_ctr$57 via  Set69>\n  ",
-    "profile_text_low_explain": "\n    time      0.44% fanout         0 input        90 rows\n    Select (Concept$49)\n  ",
-    "time": 0.36,
+    "profile_text": "    time      0.32% fanout         0 input        34 rows\n    $49 (27 ) $57 (27 58 ) \n    s# 107 51 Select (<V Concept$49 a>)\n      set no: <r set_ctr$57 via  Set69>\n  ",
+    "profile_text_low_explain": "\n    time      0.34% fanout         0 input        34 rows\n    Select (Concept$49)\n  ",
+    "time": 0.32,
     "fanout": 0,
-    "input_rows": 90,
+    "input_rows": 34,
     "cardinality_estimate": 0,
     "cardinality_fanout": 0,
     "operator_type": 0,

@@ -20,32 +20,32 @@ http://www.wikidata.org/prop/direct-normalized/P214	41605
 http://www.wikidata.org/prop/direct/P214	41605	
 
   { 
-    time   0.00023% fanout         1 input         1 rows
+    time   0.00014% fanout         1 input         1 rows
     Subquery 27 
       { 
-        time   0.00011% fanout         1 input         1 rows
+        time   9.8e-05% fanout         1 input         1 rows
         fork {
-            time   9.5e-05% fanout         1 input         1 rows
+            time   7.3e-05% fanout         1 input         1 rows
             fork {
-                time        19% fanout 1.90501e+07 input         1 rows
-                RDF_QUAD     5e+06 rows(s_7_2_t0.P$32)
+                time        18% fanout 1.90501e+07 input         1 rows
+                RDF_QUAD_POGS   3.4e+06 rows(s_7_2_t0.P$32)
                 
                 
                 After code:
                 0: isnotnull$35 := Call isnotnull (s_7_2_t0.P$32)
                 5: BReturn 0
-                time        80% fanout         0 input 1.90501e+07 rows
+                time        81% fanout         0 input 1.90501e+07 rows
                 Sort (s_7_2_t0.P$32) -> (isnotnull$35)
                 
               }
-            time     0.023% fanout      6548 input         1 rows
+            time     0.024% fanout      6548 input         1 rows
             group by read node  
             (s_7_2_t0.P$32, aggregate$39)
-            time      0.69% fanout         0 input      6548 rows
+            time      0.66% fanout         0 input      6548 rows
             Sort (aggregate$39) -> (s_7_2_t0.P$32)
             
           }
-        time      0.14% fanout      1000 input         1 rows
+        time      0.12% fanout      1000 input         1 rows
         Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:         0 Fanout:     1e+03
         Key from temp (s_7_2_t0.P$32, aggregate$39)
         
@@ -55,7 +55,7 @@ http://www.wikidata.org/prop/direct/P214	41605
         5: p$28 :=  := artm __id2in$73
         9: pTotal$29 :=  := artm aggregate$39
         13: BReturn 0
-        time   2.8e-05% fanout         0 input      1000 rows
+        time   2.4e-05% fanout         0 input      1000 rows
         Subquery Select(p$28, pTotal$29)
       }
     
@@ -63,10 +63,10 @@ http://www.wikidata.org/prop/direct/P214	41605
     0: p$82 := Call __ro2sq (p$28)
     5: pTotal$84 := Call __ro2sq (pTotal$29)
     10: BReturn 0
-    time   5.1e-05% fanout         0 input      1000 rows
+    time   4.6e-05% fanout         0 input      1000 rows
     Select (p$82, pTotal$84)
   }
 
 
- 202 msec 470% cpu,     12114 rnd 1.90308e+07 seq         0% same seg  0.396203% same pg 
+ 181 msec 553% cpu,     12116 rnd 1.90306e+07 seq         0% same seg  0.379632% same pg 
 Compilation: 1 msec 0 reads         0% read 0 messages         0% clw

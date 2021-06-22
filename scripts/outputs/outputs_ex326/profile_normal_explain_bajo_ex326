@@ -13,7 +13,7 @@ http://learningsparql.com/ns/data#i9771	http://xmlns.com/foaf/0.1/mbox	cindym@gm
   { 
     Precode:
       0:   { 
-          time      0.59% fanout         1 input         1 rows
+          time      0.66% fanout         1 input         1 rows
           time         2% fanout         1 input         1 rows
           Precode:
             0: vector$27 := Call vector ( 1 ,  0 ,  3 ,  IRI_ID"...mbox" ,  1 ,  1 )
@@ -23,7 +23,7 @@ http://learningsparql.com/ns/data#i9771	http://xmlns.com/foaf/0.1/mbox	cindym@gm
           fork {
               time        95% fanout         0 input         1 rows
               Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:        11 Fanout:         0
-              RDF_QUAD        11 rows(s_9_5_t1.S$35, s_9_5_t1.O$34)
+              RDF_QUAD_POGS        11 rows(s_9_5_t1.S$35, s_9_5_t1.O$34)
                inlined  P =  IRI_ID"...email" 
               
               After code:
@@ -35,7 +35,7 @@ http://learningsparql.com/ns/data#i9771	http://xmlns.com/foaf/0.1/mbox	cindym@gm
               25: user_aggr_ret$46 := Call DB.DBA.SPARQL_CONSTRUCT_ACC (user_aggr_env$45 , vector$29, vector$39, vector$31,  1 )
               32: BReturn 0
             }
-          time       1.9% fanout         1 input         1 rows
+          time         2% fanout         1 input         1 rows
           skip node  1  <none> set_ctr$41
           
           After code:
@@ -51,5 +51,5 @@ http://learningsparql.com/ns/data#i9771	http://xmlns.com/foaf/0.1/mbox	cindym@gm
   }
 
 
- 0 msec 32% cpu,        12 rnd        10 seq         0% same seg   46.1538% same pg 
+ 1 msec 34% cpu,        12 rnd        10 seq         0% same seg   46.1538% same pg 
 Compilation: 1 msec 0 reads         0% read 0 messages         0% clw

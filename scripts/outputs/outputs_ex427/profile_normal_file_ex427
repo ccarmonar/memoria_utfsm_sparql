@@ -3,11 +3,11 @@ http://learningsparql.com/ns/addressbook#i9771	http://learningsparql.com/ns/addr
   { 
     Precode:
       0:   { 
-          time      0.49% fanout         1 input         1 rows
+          time       1.2% fanout         1 input         1 rows
             clear: (<V ext_sets$63 i>, <V set_ctr$45 in>)
           s# 64 46 cluster outer seq start, set no <V set_ctr$45 in>    
           save ctx:()
-          time       1.7% fanout         1 input         1 rows
+          time       3.4% fanout         1 input         1 rows
           Precode:
             0: <V vector$27 x> := Call vector ( 1 ,  0 ,  1 ,  1 ,  1 ,  2 )
             5: <V vector$29 x> := Call vector (<V vector$27 x>)
@@ -15,19 +15,19 @@ http://learningsparql.com/ns/addressbook#i9771	http://learningsparql.com/ns/addr
             15: BReturn 0
             clear: (<V vector$31 x>, <V vector$29 x>, <V vector$27 x>)$27 (47 ) 
           s# 103 47 Fork 47 {  
-              time        68% fanout         1 input         1 rows
+              time        24% fanout         1 input         1 rows
                 clear: (<V s_11_7_t1.S$34 rn>, <V s_11_7_t1.O$35 an>)
                 clear on continue: (<V s_11_7_t1.S$34 rn>, <V s_11_7_t1.O$35 an>)
               s# 75 33 from DB.DBA.RDF_QUAD by RDF_QUAD_POGS          1 rows   
               Key RDF_QUAD_POGS  ASC  (<V s_11_7_t1.O$35 an>, <V s_11_7_t1.S$34 rn>)
                inlined  P =  IRI_ID"...inverseOf" 
               
-              time        27% fanout         0 input         1 rows
-              Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:   1.8e+05 Fanout:         0
+              time        68% fanout         0 input         1 rows
+              Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:   1.4e+05 Fanout:         0
                 clear: (<V s_11_7_t2.S$38 rn>, <V s_11_7_t2.O$39 an>, <V user_aggr_ret$50 x>, <V vector$43 x>, <V __ro2lo$41 a>)
                 clear on continue: (<V __ro2lo$41 a>, <V vector$43 x>, <V user_aggr_ret$50 x>, <V s_11_7_t2.O$39 an>, <V s_11_7_t2.S$38 rn>)$34 () $35 () $90 (37 ) 
-              s# 86 37 from DB.DBA.RDF_QUAD by RDF_QUAD    1.8e+05 rows   
-              Key RDF_QUAD  ASC  (<V s_11_7_t2.O$39 an>, <V s_11_7_t2.S$38 rn>)
+              s# 86 37 from DB.DBA.RDF_QUAD by RDF_QUAD_POGS    1.4e+05 rows   
+              Key RDF_QUAD_POGS  ASC  (<V s_11_7_t2.O$39 an>, <V s_11_7_t2.S$38 rn>)
                inlined  P = <v k_s_11_7_t1.O$90 Set92 rn>
               vector param casts: <V s_11_7_t1.O$35 an>-> <v k_s_11_7_t1.O$90 Set92 rn>
               
@@ -40,13 +40,13 @@ http://learningsparql.com/ns/addressbook#i9771	http://learningsparql.com/ns/addr
                 25: <V user_aggr_ret$50 x> := Call DB.DBA.SPARQL_CONSTRUCT_ACC (user_aggr_env$49 , <r vector$29 via  Set86 Set92 Set75>, <V vector$43 x>, <r vector$31 via  Set86 Set92 Set75>,  1 )
                 32: BReturn 0
           }
-          time       1.8% fanout         1 input         1 rows
+          time       3.3% fanout         1 input         1 rows
             clear: (<V callret-0$51 x>)
           s# 110 61 skip node  1  <none> <V set_ctr$45 in>
           After code:
             0: <V callret-0$51 x> := Call DB.DBA.SPARQL_CONSTRUCT_FIN (user_aggr_env$49 )
             7: BReturn 0
-          time      0.26% fanout         0 input         1 rows
+          time       0.4% fanout         0 input         1 rows
           $63 (61 47 46 ) $45 (61 47 46 ) $51 (61 ) 
           s# 118 53 Subquery Select(<V callret-0$51 x>)
             set no: <r set_ctr$45 via  Set110>
@@ -59,6 +59,5 @@ http://learningsparql.com/ns/addressbook#i9771	http://learningsparql.com/ns/addr
   }
 
 
- 0 msec 26% cpu,         2 rnd         0 seq         0% same seg         0% same pg 
-7 disk reads, 0 read ahead,   8.57529% wait
-Compilation: 2 msec 0 reads         0% read 0 messages         0% clw
+ 0 msec 19% cpu,         2 rnd         0 seq         0% same seg         0% same pg 
+Compilation: 1 msec 0 reads         0% read 0 messages         0% clw

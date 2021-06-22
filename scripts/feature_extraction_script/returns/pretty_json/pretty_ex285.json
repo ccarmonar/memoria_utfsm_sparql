@@ -1,8 +1,8 @@
 {
   "OP1": {
-    "profile_text": "    time       1.7% fanout         1 input         1 rows\n      clear: (<V set_ctr$52 in>)\n    s# 55 53 cluster outer seq start, set no <V set_ctr$52 in>    \n    save ctx:()",
+    "profile_text": "    time       1.6% fanout         1 input         1 rows\n      clear: (<V set_ctr$52 in>)\n    s# 55 53 cluster outer seq start, set no <V set_ctr$52 in>    \n    save ctx:()",
     "profile_text_low_explain": "\n    time       1.7% fanout         1 input         1 rows",
-    "time": 1.7,
+    "time": 1.6,
     "fanout": 1,
     "input_rows": 1,
     "cardinality_estimate": 0,
@@ -35,8 +35,8 @@
     "subquery_select?": 0
   },
   "OP2": {
-    "profile_text": "    time        98% fanout         6 input         1 rows\n      clear: (<V t2.O$28 an>, <V lcaseTest$44 a>, <V rdf_lcase_impl$42 s>, <V ucaseTest$40 a>, <V rdf_ucase_impl$38 s>, <V substrTest$36 s>, <V __ro2lo$34 a>, <V strlenTest$32 i>, <V label$30 a>)\n      clear on continue: (<V t2.O$28 an>, <V lcaseTest$44 a>, <V rdf_lcase_impl$42 s>, <V ucaseTest$40 a>, <V rdf_ucase_impl$38 s>, <V substrTest$36 s>, <V __ro2lo$34 a>, <V strlenTest$32 i>, <V label$30 a>)\n    s# 64 27 from DB.DBA.RDF_QUAD by RDF_QUAD          6 rows   \n    Key RDF_QUAD  ASC  (<V t2.O$28 an>)\n     inlined  P =  IRI_ID\"...rdf-schemalabel\" \n    \n    After code:\n      0: <V label$30 a> := Call __ro2sq (<V t2.O$28 an>)\n      5: <V strlenTest$32 i> := Call rdf_strlen_impl (<V label$30 a>)\n      10: <V __ro2lo$34 a> := Call __ro2lo (<V t2.O$28 an>)\n      15: <V substrTest$36 s> := Call rdf_substr_impl (<V __ro2lo$34 a>,  4 ,  2 )\n      20: <V rdf_ucase_impl$38 s> := Call rdf_ucase_impl (<V __ro2lo$34 a>)\n      25: <V ucaseTest$40 a> := Call __rdf_sqlval_of_obj (<V rdf_ucase_impl$38 s>)\n      30: <V rdf_lcase_impl$42 s> := Call rdf_lcase_impl (<V __ro2lo$34 a>)\n      35: <V lcaseTest$44 a> := Call __rdf_sqlval_of_obj (<V rdf_lcase_impl$42 s>)\n      40: BReturn 0",
-    "profile_text_low_explain": "\n    time        98% fanout         6 input         1 rows\n    RDF_QUAD         6 rows(t2.O$28)\n     inlined  P =  IRI_ID\"...rdf-schemalabel\" \n    \n    After code:\n    0: label$30 := Call __ro2sq (t2.O$28)\n    5: strlenTest$32 := Call rdf_strlen_impl (label$30)\n    10: __ro2lo$34 := Call __ro2lo (t2.O$28)\n    15: substrTest$36 := Call rdf_substr_impl (__ro2lo$34,  4 ,  2 )\n    20: rdf_ucase_impl$38 := Call rdf_ucase_impl (__ro2lo$34)\n    25: ucaseTest$40 := Call __rdf_sqlval_of_obj (rdf_ucase_impl$38)\n    30: rdf_lcase_impl$42 := Call rdf_lcase_impl (__ro2lo$34)\n    35: lcaseTest$44 := Call __rdf_sqlval_of_obj (rdf_lcase_impl$42)\n    40: BReturn 0",
+    "profile_text": "    time        98% fanout         6 input         1 rows\n      clear: (<V t2.O$28 an>, <V lcaseTest$44 a>, <V rdf_lcase_impl$42 s>, <V ucaseTest$40 a>, <V rdf_ucase_impl$38 s>, <V substrTest$36 s>, <V __ro2lo$34 a>, <V strlenTest$32 i>, <V label$30 a>)\n      clear on continue: (<V t2.O$28 an>, <V lcaseTest$44 a>, <V rdf_lcase_impl$42 s>, <V ucaseTest$40 a>, <V rdf_ucase_impl$38 s>, <V substrTest$36 s>, <V __ro2lo$34 a>, <V strlenTest$32 i>, <V label$30 a>)\n    s# 64 27 from DB.DBA.RDF_QUAD by RDF_QUAD_POGS          6 rows   \n    Key RDF_QUAD_POGS  ASC  (<V t2.O$28 an>)\n     inlined  P =  IRI_ID\"...rdf-schemalabel\" \n    \n    After code:\n      0: <V label$30 a> := Call __ro2sq (<V t2.O$28 an>)\n      5: <V strlenTest$32 i> := Call rdf_strlen_impl (<V label$30 a>)\n      10: <V __ro2lo$34 a> := Call __ro2lo (<V t2.O$28 an>)\n      15: <V substrTest$36 s> := Call rdf_substr_impl (<V __ro2lo$34 a>,  4 ,  2 )\n      20: <V rdf_ucase_impl$38 s> := Call rdf_ucase_impl (<V __ro2lo$34 a>)\n      25: <V ucaseTest$40 a> := Call __rdf_sqlval_of_obj (<V rdf_ucase_impl$38 s>)\n      30: <V rdf_lcase_impl$42 s> := Call rdf_lcase_impl (<V __ro2lo$34 a>)\n      35: <V lcaseTest$44 a> := Call __rdf_sqlval_of_obj (<V rdf_lcase_impl$42 s>)\n      40: BReturn 0",
+    "profile_text_low_explain": "\n    time        98% fanout         6 input         1 rows\n    RDF_QUAD_POGS         6 rows(t2.O$28)\n     inlined  P =  IRI_ID\"...rdf-schemalabel\" \n    \n    After code:\n    0: label$30 := Call __ro2sq (t2.O$28)\n    5: strlenTest$32 := Call rdf_strlen_impl (label$30)\n    10: __ro2lo$34 := Call __ro2lo (t2.O$28)\n    15: substrTest$36 := Call rdf_substr_impl (__ro2lo$34,  4 ,  2 )\n    20: rdf_ucase_impl$38 := Call rdf_ucase_impl (__ro2lo$34)\n    25: ucaseTest$40 := Call __rdf_sqlval_of_obj (rdf_ucase_impl$38)\n    30: rdf_lcase_impl$42 := Call rdf_lcase_impl (__ro2lo$34)\n    35: lcaseTest$44 := Call __rdf_sqlval_of_obj (rdf_lcase_impl$42)\n    40: BReturn 0",
     "time": 98,
     "fanout": 6,
     "input_rows": 1,
@@ -73,9 +73,9 @@
     "subquery_select?": 0
   },
   "OP3": {
-    "profile_text": "    time      0.21% fanout         0 input         6 rows\n    $32 () $36 () $40 () $44 () $52 (27 53 ) $30 () \n    s# 74 46 Select (<V label$30 a>, <V strlenTest$32 i>, <V substrTest$36 s>, <V ucaseTest$40 a>, <V lcaseTest$44 a>)\n      set no: <r set_ctr$52 via  Set64>\n  ",
-    "profile_text_low_explain": "\n    time      0.18% fanout         0 input         6 rows\n    Select (label$30, strlenTest$32, substrTest$36, ucaseTest$40, lcaseTest$44)\n  ",
-    "time": 0.21,
+    "profile_text": "    time      0.18% fanout         0 input         6 rows\n    $32 () $36 () $40 () $44 () $52 (27 53 ) $30 () \n    s# 74 46 Select (<V label$30 a>, <V strlenTest$32 i>, <V substrTest$36 s>, <V ucaseTest$40 a>, <V lcaseTest$44 a>)\n      set no: <r set_ctr$52 via  Set64>\n  ",
+    "profile_text_low_explain": "\n    time       0.2% fanout         0 input         6 rows\n    Select (label$30, strlenTest$32, substrTest$36, ucaseTest$40, lcaseTest$44)\n  ",
+    "time": 0.18,
     "fanout": 0,
     "input_rows": 6,
     "cardinality_estimate": 0,

@@ -10,11 +10,11 @@ http://learningsparql.com/ns/addressbook#i0432	http://www.w3.org/1999/02/22-rdf-
   { 
     Precode:
       0:   { 
-          time         1% fanout         1 input         1 rows
+          time       1.1% fanout         1 input         1 rows
             clear: (<V ext_sets$58 i>, <V set_ctr$40 in>)
           s# 59 41 cluster outer seq start, set no <V set_ctr$40 in>    
           save ctx:()
-          time       3.1% fanout         1 input         1 rows
+          time       3.2% fanout         1 input         1 rows
           Precode:
             0: <V vector$27 x> := Call vector ( 1 ,  0 ,  3 ,  IRI_ID"...type" ,  3 ,  IRI_ID"...Person" )
             5: <V vector$29 x> := Call vector (<V vector$27 x>)
@@ -22,14 +22,14 @@ http://learningsparql.com/ns/addressbook#i0432	http://www.w3.org/1999/02/22-rdf-
             15: BReturn 0
             clear: (<V vector$31 x>, <V vector$29 x>, <V vector$27 x>)$27 (42 ) 
           s# 91 42 Fork 42 {  
-              time        16% fanout         8 input         1 rows
+              time        20% fanout         8 input         1 rows
                 clear: (<V s_11_7_t1.S$34 rn>)
                 clear on continue: (<V s_11_7_t1.S$34 rn>)
               s# 70 33 from DB.DBA.RDF_QUAD by RDF_QUAD          8 rows   
               Key RDF_QUAD  ASC  (<V s_11_7_t1.S$34 rn>)
                inlined  P =  IRI_ID"...firstName" 
               
-              time        76% fanout         0 input         8 rows
+              time        72% fanout         0 input         8 rows
               Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:         1 Fanout:         0
                 clear: (<V user_aggr_ret$45 x>, <V vector$38 x>)
                 clear on continue: (<V user_aggr_ret$45 x>, <V vector$38 x>)$34 () 
@@ -51,7 +51,7 @@ http://learningsparql.com/ns/addressbook#i0432	http://www.w3.org/1999/02/22-rdf-
           After code:
             0: <V callret-0$46 x> := Call DB.DBA.SPARQL_CONSTRUCT_FIN (user_aggr_env$44 )
             7: BReturn 0
-          time      0.47% fanout         0 input         1 rows
+          time       0.5% fanout         0 input         1 rows
           $40 (56 42 41 ) $46 (56 ) $58 (56 42 41 ) 
           s# 106 48 Subquery Select(<V callret-0$46 x>)
             set no: <r set_ctr$40 via  Set98>
@@ -65,4 +65,4 @@ http://learningsparql.com/ns/addressbook#i0432	http://www.w3.org/1999/02/22-rdf-
 
 
  1 msec 27% cpu,        11 rnd         7 seq   58.3333% same seg   8.33333% same pg 
-Compilation: 1 msec 0 reads         0% read 0 messages         0% clw
+Compilation: 0 msec 0 reads         0% read 0 messages         0% clw

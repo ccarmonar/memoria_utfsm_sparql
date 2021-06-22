@@ -4,7 +4,7 @@ http://learningsparql.com/ns/data#jane	http://learningsparql.com/ns/addressbook#
   { 
     Precode:
       0:   { 
-          time       1.1% fanout         1 input         1 rows
+          time       1.3% fanout         1 input         1 rows
             clear: (<V ext_sets$67 i>, <V set_ctr$49 in>)
           s# 68 50 cluster outer seq start, set no <V set_ctr$49 in>    
           save ctx:()
@@ -16,21 +16,21 @@ http://learningsparql.com/ns/data#jane	http://learningsparql.com/ns/addressbook#
             15: BReturn 0
             clear: (<V vector$31 x>, <V vector$29 x>, <V vector$27 x>)$27 (51 ) 
           s# 144 51 Fork 51 {  
-              time        20% fanout         2 input         1 rows
+              time        25% fanout         2 input         1 rows
                 clear: (<V s_17_11_t4.S$34 rn>)
                 clear on continue: (<V s_17_11_t4.S$34 rn>)
               s# 79 33 from DB.DBA.RDF_QUAD by RDF_QUAD_POGS          2 rows   
               Key RDF_QUAD_POGS  ASC  (<V s_17_11_t4.S$34 rn>)
                P =  IRI_ID"...gender"  ,  O =  IRI_ID"...female" 
               
-              time        14% fanout         1 input         2 rows
+              time        12% fanout         1 input         2 rows
                 clear: (<V s_17_11_t3.S$37 rn>, <V s_17_11_t3.O$38 an>)
                 clear on continue: (<V s_17_11_t3.S$37 rn>, <V s_17_11_t3.O$38 an>)$34 () 
               s# 89 36 from DB.DBA.RDF_QUAD by RDF_QUAD          1 rows   
               Key RDF_QUAD  ASC  (<V s_17_11_t3.O$38 an>, <V s_17_11_t3.S$37 rn>)
                inlined  P =  IRI_ID"...hasParent"  ,  S = <V s_17_11_t4.S$34 rn>
               
-              time       8.8% fanout         2 input         2 rows
+              time       7.4% fanout         2 input         2 rows
                 clear: (<V s_17_11_t2.S$41 rn>)
                 clear on continue: (<V s_17_11_t2.S$41 rn>)$38 () $104 (40 ) 
               s# 100 40 from DB.DBA.RDF_QUAD by RDF_QUAD_POGS        1.3 rows   
@@ -38,7 +38,7 @@ http://learningsparql.com/ns/data#jane	http://learningsparql.com/ns/addressbook#
                P =  IRI_ID"...hasParent"  ,  O = <v cast$104 Set106 an>
               vector param casts: <V s_17_11_t3.O$38 an>-> <v cast$104 Set106 an>
               
-              time       8.3% fanout         1 input         4 rows
+              time         7% fanout         1 input         4 rows
                 clear: (<V s_17_11_t1.S$44 rn>, <V s_17_11_t1.O$45 an>)
                 clear on continue: (<V s_17_11_t1.S$44 rn>, <V s_17_11_t1.O$45 an>)$41 () $118 (43 ) 
               s# 114 43 from DB.DBA.RDF_QUAD by RDF_QUAD_POGS        1.3 rows   
@@ -46,7 +46,7 @@ http://learningsparql.com/ns/data#jane	http://learningsparql.com/ns/addressbook#
                P =  IRI_ID"...hasParent"  ,  O = <v cast$118 Set120 an>
               vector param casts: <V s_17_11_t2.S$41 rn>-> <v cast$118 Set120 an>
               
-              time        41% fanout         0 input         4 rows
+              time        35% fanout         0 input         4 rows
                 clear: (<V user_aggr_ret$54 x>, <V vector$47 x>)$37 (43 40 ) $44 () $45 () 
               s# 134 129 END Node
               After test:
@@ -61,13 +61,13 @@ http://learningsparql.com/ns/data#jane	http://learningsparql.com/ns/addressbook#
                 20: <V user_aggr_ret$54 x> := Call DB.DBA.SPARQL_CONSTRUCT_ACC (user_aggr_env$53 , <r vector$29 via  Set134 Set114 Set120 Set100 Set106 Set89 Set79>, <V vector$47 x>, <r vector$31 via  Set134 Set114 Set120 Set100 Set106 Set89 Set79>,  1 )
                 27: BReturn 0
           }
-          time       3.3% fanout         1 input         1 rows
+          time       8.8% fanout         1 input         1 rows
             clear: (<V callret-0$55 x>)
           s# 151 65 skip node  1  <none> <V set_ctr$49 in>
           After code:
             0: <V callret-0$55 x> := Call DB.DBA.SPARQL_CONSTRUCT_FIN (user_aggr_env$53 )
             7: BReturn 0
-          time      0.46% fanout         0 input         1 rows
+          time      0.75% fanout         0 input         1 rows
           $67 (65 51 50 ) $49 (65 51 50 ) $55 (65 ) 
           s# 159 57 Subquery Select(<V callret-0$55 x>)
             set no: <r set_ctr$49 via  Set151>
@@ -80,5 +80,5 @@ http://learningsparql.com/ns/data#jane	http://learningsparql.com/ns/addressbook#
   }
 
 
- 1 msec 14% cpu,        13 rnd         3 seq   35.7143% same seg   14.2857% same pg 
-Compilation: 2 msec 0 reads         0% read 0 messages         0% clw
+ 0 msec 14% cpu,        13 rnd         3 seq   35.7143% same seg   14.2857% same pg 
+Compilation: 3 msec 0 reads         0% read 0 messages         0% clw

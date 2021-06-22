@@ -11,7 +11,7 @@
 	
 
   { 
-    time   4.2e-05% fanout         1 input         1 rows
+    time   0.00012% fanout         1 input         1 rows
     time     1e+02% fanout         1 input         1 rows
     Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:         0 Fanout:         1
     Precode:
@@ -26,28 +26,28 @@
       31: param_row$46 :=  := artm vector$27
       35: expected_vars$48 :=  := artm vector$29
       39: proc_ctr$34 :=  := artm  0 
-      43:  <none>  := Call __reset_temp ( 139746094782896 )
+      43:  <none>  := Call __reset_temp ( 139717168954656 )
       48:  <proc table>  := Call DB.DBA.SPARQL_SINV_IMP (<tag 182 flag 1 c http://wikiba.se/ontology#label>, vector$31, <c  SELECT ?stubvar9
        WHERE {  <http://www.bigdata.com/rdf#serviceParam> <http://wikiba.se/ontology#language> "en" . }>, <tag 225 c >, vector$27, vector$29)
       55: BReturn 0
     Key from temp (proc_ctr$34, RSET$36)
     
-    time   3.6e-05% fanout         1 input         1 rows
-    time   0.00082% fanout       908 input         1 rows
-    RDF_QUAD   9.1e+02 rows(s_45_3_t0.O$59)
+    time    0.0001% fanout         1 input         1 rows
+    time    0.0021% fanout       908 input         1 rows
+    RDF_QUAD_POGS   9.1e+02 rows(s_45_3_t0.O$59)
      inlined  P =  IRI_ID"...direct/P30" 
-    time    0.0025% fanout 0.0121145 input       908 rows
+    time    0.0072% fanout 0.0121145 input       908 rows
     Distinct (set_no$57, s_45_3_t0.O$59)
     
     After code:
     0: continent$56 :=  := artm s_45_3_t0.O$59
     4: BReturn 0
-    time   2.3e-05% fanout         1 input        11 rows
+    time   6.7e-05% fanout         1 input        11 rows
     Subquery Select(continent$56)
-    time   1.6e-05% fanout         0 input        11 rows
-    Select (TOP  800 ) (<DB_NULL>)
+    time   4.3e-05% fanout         0 input        11 rows
+    Select (TOP  500 ) (<DB_NULL>)
   }
 
 
- 8702 msec 0% cpu,         2 rnd       907 seq         0% same seg         0% same pg 
-Compilation: 1 msec 0 reads         0% read 0 messages         0% clw
+ 3016 msec 0% cpu,         2 rnd       906 seq         0% same seg         0% same pg 
+Compilation: 2 msec 0 reads         0% read 0 messages         0% clw

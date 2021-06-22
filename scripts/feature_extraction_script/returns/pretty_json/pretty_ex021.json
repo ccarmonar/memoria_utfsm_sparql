@@ -1,8 +1,8 @@
 {
   "OP1": {
-    "profile_text": "    time   6.9e-05% fanout         1 input         1 rows\n      clear: (<V set_ctr$49 in>)\n    s# 55 50 cluster outer seq start, set no <V set_ctr$49 in>    \n    save ctx:()",
-    "profile_text_low_explain": "\n    time   6.3e-05% fanout         1 input         1 rows",
-    "time": 6.9e-05,
+    "profile_text": "    time   2.6e-05% fanout         1 input         1 rows\n      clear: (<V set_ctr$49 in>)\n    s# 55 50 cluster outer seq start, set no <V set_ctr$49 in>    \n    save ctx:()",
+    "profile_text_low_explain": "\n    time     7e-05% fanout         1 input         1 rows",
+    "time": 2.6e-05,
     "fanout": 1,
     "input_rows": 1,
     "cardinality_estimate": 0,
@@ -34,9 +34,9 @@
     "subquery_select?": 0
   },
   "OP2": {
-    "profile_text": "    time       2.1% fanout 3.387e+06 input         1 rows\n      clear: (<V s_11_2_t0.P$28 rn>, <V s_11_2_t0.S$29 rn>, <V s_11_2_t0.O$30 an>)\n      clear on continue: (<V s_11_2_t0.P$28 rn>, <V s_11_2_t0.S$29 rn>, <V s_11_2_t0.O$30 an>)\n    s# 64 27 from DB.DBA.RDF_QUAD by RDF_QUAD      5e+06 rows   \n    Key RDF_QUAD  ASC  (<V s_11_2_t0.O$30 an>, <V s_11_2_t0.S$29 rn>, <V s_11_2_t0.P$28 rn>)\n    \n    ",
-    "profile_text_low_explain": "\n    time       2.1% fanout 3.387e+06 input         1 rows\n    RDF_QUAD     5e+06 rows(s_11_2_t0.O$30, s_11_2_t0.S$29, s_11_2_t0.P$28)\n    ",
-    "time": 2.1,
+    "profile_text": "    time       2.4% fanout 3.387e+06 input         1 rows\n      clear: (<V s_11_2_t0.P$28 rn>, <V s_11_2_t0.S$29 rn>, <V s_11_2_t0.O$30 an>)\n      clear on continue: (<V s_11_2_t0.P$28 rn>, <V s_11_2_t0.S$29 rn>, <V s_11_2_t0.O$30 an>)\n    s# 64 27 from DB.DBA.RDF_QUAD by RDF_QUAD    3.4e+06 rows   \n    Key RDF_QUAD  ASC  (<V s_11_2_t0.O$30 an>, <V s_11_2_t0.S$29 rn>, <V s_11_2_t0.P$28 rn>)\n    \n    ",
+    "profile_text_low_explain": "\n    time         2% fanout 3.387e+06 input         1 rows\n    RDF_QUAD   3.4e+06 rows(s_11_2_t0.O$30, s_11_2_t0.S$29, s_11_2_t0.P$28)\n    ",
+    "time": 2.4,
     "fanout": 3387000,
     "input_rows": 1,
     "cardinality_estimate": 0,
@@ -102,9 +102,9 @@
     "subquery_select?": 0
   },
   "OP4": {
-    "profile_text": "    time    0.0091% fanout         1 input        29 rows\n      clear: (<V o$41 a>, <V p$39 a>, <V s$37 a>)$28 (76 ) $29 (76 ) $30 (76 ) \n    s# 89 53 skip node  50  <none> <r set_ctr$49 via  Set81 Set64>\n    After code:\n      0: <V s$37 a> := Call __id2in (<r s_11_2_t0.S$29 via  Set89 Set81>)\n      5: <V p$39 a> := Call __id2in (<r s_11_2_t0.P$28 via  Set89 Set81>)\n      10: <V o$41 a> := Call __ro2sq (<r s_11_2_t0.O$30 via  Set89 Set81>)\n      15: BReturn 0",
-    "profile_text_low_explain": "\n    time    0.0072% fanout         1 input        29 rows\n    skip node  50  <none> set_ctr$49\n    \n    After code:\n    0: s$37 := Call __id2in (s_11_2_t0.S$29)\n    5: p$39 := Call __id2in (s_11_2_t0.P$28)\n    10: o$41 := Call __ro2sq (s_11_2_t0.O$30)\n    15: BReturn 0",
-    "time": 0.0091,
+    "profile_text": "    time     0.003% fanout         1 input        29 rows\n      clear: (<V o$41 a>, <V p$39 a>, <V s$37 a>)$28 (76 ) $29 (76 ) $30 (76 ) \n    s# 89 53 skip node  50  <none> <r set_ctr$49 via  Set81 Set64>\n    After code:\n      0: <V s$37 a> := Call __id2in (<r s_11_2_t0.S$29 via  Set89 Set81>)\n      5: <V p$39 a> := Call __id2in (<r s_11_2_t0.P$28 via  Set89 Set81>)\n      10: <V o$41 a> := Call __ro2sq (<r s_11_2_t0.O$30 via  Set89 Set81>)\n      15: BReturn 0",
+    "profile_text_low_explain": "\n    time    0.0062% fanout         1 input        29 rows\n    skip node  50  <none> set_ctr$49\n    \n    After code:\n    0: s$37 := Call __id2in (s_11_2_t0.S$29)\n    5: p$39 := Call __id2in (s_11_2_t0.P$28)\n    10: o$41 := Call __ro2sq (s_11_2_t0.O$30)\n    15: BReturn 0",
+    "time": 0.003,
     "fanout": 1,
     "input_rows": 29,
     "cardinality_estimate": 0,
@@ -137,9 +137,9 @@
     "subquery_select?": 0
   },
   "OP5": {
-    "profile_text": "    time   1.5e-05% fanout         0 input        29 rows\n    $37 (53 ) $39 (53 ) $41 (53 ) $49 (53 76 27 50 ) \n    s# 97 43 Select (<V s$37 a>, <V p$39 a>, <V o$41 a>)\n      set no: <r set_ctr$49 via  Set89 Set81 Set64>\n  ",
-    "profile_text_low_explain": "\n    time   1.8e-05% fanout         0 input        29 rows\n    Select (s$37, p$39, o$41)\n  ",
-    "time": 1.5e-05,
+    "profile_text": "    time   7.4e-06% fanout         0 input        29 rows\n    $37 (53 ) $39 (53 ) $41 (53 ) $49 (53 76 27 50 ) \n    s# 97 43 Select (<V s$37 a>, <V p$39 a>, <V o$41 a>)\n      set no: <r set_ctr$49 via  Set89 Set81 Set64>\n  ",
+    "profile_text_low_explain": "\n    time   1.2e-05% fanout         0 input        29 rows\n    Select (s$37, p$39, o$41)\n  ",
+    "time": 7.4e-06,
     "fanout": 0,
     "input_rows": 29,
     "cardinality_estimate": 0,

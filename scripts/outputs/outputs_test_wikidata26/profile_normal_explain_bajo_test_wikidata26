@@ -1,6 +1,6 @@
 
   { 
-    time       8.9% fanout         1 input         1 rows
+    time       8.5% fanout         1 input         1 rows
     Precode:
       0: vector$27 := Call vector (<DB_NULL>, <DB_NULL>)
       5: vector$29 := Call vector (<c stubvar22>)
@@ -8,24 +8,24 @@
       15: BReturn 0
     Subquery 33 
       { 
-        time       5.4% fanout         1 input         1 rows
+        time       4.9% fanout         1 input         1 rows
         fork {
-            time        80% fanout         0 input         1 rows
-            Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:     2e-06 Fanout:         0
-            RDF_QUAD_POGS     2e-06 rows(s_42_14_t2.S$39, s_42_14_t2.O$38)
+            time        81% fanout         0 input         1 rows
+            Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:   2.9e-06 Fanout:         0
+            RDF_QUAD_POGS   2.9e-06 rows(s_42_14_t2.S$39, s_42_14_t2.O$38)
              inlined  P =  IRI_ID"...quantityAmount" 
             time         0% fanout         0 input         0 rows
-            Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:   9.8e-13 Fanout:         0
-            RDF_QUAD   9.8e-13 rows(s_42_10_t1.S$42)
+            Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:   2.2e-12 Fanout:         0
+            RDF_QUAD   2.2e-12 rows(s_42_10_t1.S$42)
              inlined  P =  IRI_ID"...value-normalized/P2067"  O = k_s_42_14_t2.S$157
             time         0% fanout         0 input         0 rows
-            Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:     2e-06 Fanout:         0
-            RDF_QUAD_POGS     2e-06 rows(s_42_5_t0.S$45)
+            Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:   2.9e-06 Fanout:         0
+            RDF_QUAD_POGS   2.9e-06 rows(s_42_5_t0.S$45)
              P =  IRI_ID"...P2067"  ,  O = cast$171
             time         0% fanout         0 input         0 rows
             Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:       0.3 Fanout:         0
-            RDF_QUAD       0.3 rows(s_47_16_t3.S$48)
-             inlined  P =  IRI_ID"...direct/P31"  ,  S = s_42_5_t0.S$45 ,  O =  IRI_ID"...Q5" 
+            RDF_QUAD_POGS       0.3 rows(s_47_16_t3.S$48)
+             inlined  P =  IRI_ID"...direct/P31"  ,  O =  IRI_ID"...Q5"  ,  S = s_42_5_t0.S$45
             
             After code:
             0: __ro2sq$50 := Call __ro2sq (s_42_14_t2.O$38)
@@ -34,7 +34,7 @@
             Sort (__ro2sq$50) -> (s_47_16_t3.S$48, s_42_14_t2.O$38)
             
           }
-        time       5.3% fanout         0 input         1 rows
+        time       5.6% fanout         0 input         1 rows
         top order by read (s_47_16_t3.S$48, s_42_14_t2.O$38)
         
         After code:
@@ -56,14 +56,14 @@
       26: param_row$107 :=  := artm vector$27
       30: expected_vars$109 :=  := artm vector$29
       34: proc_ctr$95 :=  := artm  0 
-      38:  <none>  := Call __reset_temp ( 139746092847744 )
+      38:  <none>  := Call __reset_temp ( 139717168954656 )
       43:  <proc table>  := Call DB.DBA.SPARQL_SINV_IMP (<tag 182 flag 1 c http://wikiba.se/ontology#label>, vector$31, <c  SELECT ?stubvar22
        WHERE {  <http://www.bigdata.com/rdf#serviceParam> <http://wikiba.se/ontology#language> "[AUTO_LANGUAGE],en,es,fr,de" . }>, <tag 225 c >, vector$27, vector$29)
       50: BReturn 0
     Key from temp (proc_ctr$95, RSET$97)
     
     time         0% fanout         0 input         0 rows
-    skip node  1500  <none> set_ctr$122
+    skip node  100  <none> set_ctr$122
     time         0% fanout         0 input         0 rows
     Select (item$90, <DB_NULL>, mass$92)
   }

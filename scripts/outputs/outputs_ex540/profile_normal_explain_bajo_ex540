@@ -1,7 +1,7 @@
   { 
     Precode:
       0:   { 
-          time       4.5% fanout         1 input         1 rows
+          time       3.9% fanout         1 input         1 rows
           time        13% fanout         1 input         1 rows
           Precode:
             0: vector$27 := Call vector ( 1 ,  0 ,  1 ,  1 ,  1 ,  2 ,  3 ,  IRI_ID"...en.joseph_hocking" )
@@ -9,17 +9,17 @@
             10: vector$31 := Call vector ()
             15: BReturn 0
           fork {
-              time        52% fanout         0 input         1 rows
+              time        53% fanout         0 input         1 rows
               Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:      0.27 Fanout:         0
               RDF_QUAD_GS      0.27 rows(s_6_1_t0.S$34)
                inlined  G =  IRI_ID"...en.joseph_hocking" 
               time         0% fanout         0 input         0 rows
-              Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:        13 Fanout:         0
-              RDF_QUAD_SP        13 rows(s_6_1_t0.P$38)
+              Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:        30 Fanout:         0
+              RDF_QUAD_SP        30 rows(s_6_1_t0.P$38)
                inlined  S = s_6_1_t0.S$34
               time         0% fanout         0 input         0 rows
-              Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:      0.23 Fanout:         0
-              RDF_QUAD      0.23 rows(s_6_1_t0.O$42)
+              Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:      0.22 Fanout:         0
+              RDF_QUAD      0.22 rows(s_6_1_t0.O$42)
                inlined  P = k_s_6_1_t0.P$103 ,  S = k_s_6_1_t0.S$107 G =  IRI_ID"...en.joseph_hocking" 
               
               After code:
@@ -31,13 +31,13 @@
               25: user_aggr_ret$54 := Call DB.DBA.SPARQL_CONSTRUCT_ACC (user_aggr_env$53 , vector$29, vector$47, vector$31,  1 )
               32: BReturn 0
             }
-          time        29% fanout         1 input         1 rows
+          time        28% fanout         1 input         1 rows
           skip node  1  <none> set_ctr$49
           
           After code:
           0: callret-0$55 := Call DB.DBA.SPARQL_CONSTRUCT_FIN (user_aggr_env$53 )
           7: BReturn 0
-          time       1.7% fanout         0 input         1 rows
+          time       2.3% fanout         0 input         1 rows
           Subquery Select(callret-0$55)
         }
       

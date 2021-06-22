@@ -1,8 +1,8 @@
 {
   "OP1": {
-    "profile_text": "    time       1.9% fanout         1 input         1 rows\n      clear: (<V set_ctr$47 in>)\n    s# 50 48 cluster outer seq start, set no <V set_ctr$47 in>    \n    save ctx:()",
-    "profile_text_low_explain": "\n    time       1.9% fanout         1 input         1 rows",
-    "time": 1.9,
+    "profile_text": "    time      0.79% fanout         1 input         1 rows\n      clear: (<V set_ctr$47 in>)\n    s# 50 48 cluster outer seq start, set no <V set_ctr$47 in>    \n    save ctx:()",
+    "profile_text_low_explain": "\n    time       1.8% fanout         1 input         1 rows",
+    "time": 0.79,
     "fanout": 1,
     "input_rows": 1,
     "cardinality_estimate": 0,
@@ -37,9 +37,9 @@
     "subquery_select?": 0
   },
   "OP2": {
-    "profile_text": "    time        28% fanout         8 input         1 rows\n      clear: (<V s_11_6_t2.O$28 an>, <V s_11_6_t2.S$29 rn>)\n      clear on continue: (<V s_11_6_t2.O$28 an>, <V s_11_6_t2.S$29 rn>)\n    s# 59 27 from DB.DBA.RDF_QUAD by RDF_QUAD          8 rows   \n    Key RDF_QUAD  ASC  (<V s_11_6_t2.S$29 rn>, <V s_11_6_t2.O$28 an>)\n     inlined  P =  IRI_ID\"...lastName\" \n    ",
-    "profile_text_low_explain": "\n    time        29% fanout         8 input         1 rows\n    RDF_QUAD         8 rows(s_11_6_t2.S$29, s_11_6_t2.O$28)\n     inlined  P =  IRI_ID\"...lastName\" ",
-    "time": 28,
+    "profile_text": "    time       9.5% fanout         8 input         1 rows\n      clear: (<V s_11_6_t2.O$28 an>, <V s_11_6_t2.S$29 rn>)\n      clear on continue: (<V s_11_6_t2.O$28 an>, <V s_11_6_t2.S$29 rn>)\n    s# 59 27 from DB.DBA.RDF_QUAD by RDF_QUAD          8 rows   \n    Key RDF_QUAD  ASC  (<V s_11_6_t2.S$29 rn>, <V s_11_6_t2.O$28 an>)\n     inlined  P =  IRI_ID\"...lastName\" \n    ",
+    "profile_text_low_explain": "\n    time        40% fanout         8 input         1 rows\n    RDF_QUAD         8 rows(s_11_6_t2.S$29, s_11_6_t2.O$28)\n     inlined  P =  IRI_ID\"...lastName\" ",
+    "time": 9.5,
     "fanout": 8,
     "input_rows": 1,
     "cardinality_estimate": 0,
@@ -76,9 +76,9 @@
     "subquery_select?": 0
   },
   "OP3": {
-    "profile_text": "    time        18% fanout     0.125 input         8 rows\n      clear: (<V s_11_6_t0.S$32 rn>)\n      clear on continue: (<V s_11_6_t0.S$32 rn>)$29 () \n    s# 70 31 from DB.DBA.RDF_QUAD by RDF_QUAD        0.8 rows   \n    Key RDF_QUAD  ASC  (<V s_11_6_t0.S$32 rn>)\n     inlined  P =  IRI_ID\"...type\"  ,  S = <V s_11_6_t2.S$29 rn> ,  O =  IRI_ID\"...Musician\" \n    ",
-    "profile_text_low_explain": "\n    time        18% fanout     0.125 input         8 rows\n    RDF_QUAD       0.8 rows(s_11_6_t0.S$32)\n     inlined  P =  IRI_ID\"...type\"  ,  S = s_11_6_t2.S$29 ,  O =  IRI_ID\"...Musician\" ",
-    "time": 18,
+    "profile_text": "    time        62% fanout     0.125 input         8 rows\n      clear: (<V s_11_6_t0.S$32 rn>)\n      clear on continue: (<V s_11_6_t0.S$32 rn>)$29 () \n    s# 70 31 from DB.DBA.RDF_QUAD by RDF_QUAD        0.8 rows   \n    Key RDF_QUAD  ASC  (<V s_11_6_t0.S$32 rn>)\n     inlined  P =  IRI_ID\"...type\"  ,  S = <V s_11_6_t2.S$29 rn> ,  O =  IRI_ID\"...Musician\" \n    ",
+    "profile_text_low_explain": "\n    time        15% fanout     0.125 input         8 rows\n    RDF_QUAD       0.8 rows(s_11_6_t0.S$32)\n     inlined  P =  IRI_ID\"...type\"  ,  S = s_11_6_t2.S$29 ,  O =  IRI_ID\"...Musician\" ",
+    "time": 62,
     "fanout": 0.125,
     "input_rows": 8,
     "cardinality_estimate": 0,
@@ -119,9 +119,9 @@
     "subquery_select?": 0
   },
   "OP4": {
-    "profile_text": "    time        51% fanout         1 input         1 rows\n      clear: (<V s_11_6_t1.O$35 an>, <V firstName$39 a>, <V lastName$37 a>)\n      clear on continue: (<V s_11_6_t1.O$35 an>, <V firstName$39 a>, <V lastName$37 a>)$32 () $28 (31 ) \n    s# 80 34 from DB.DBA.RDF_QUAD by RDF_QUAD          1 rows   \n    Key RDF_QUAD  ASC  (<V s_11_6_t1.O$35 an>)\n     inlined  P =  IRI_ID\"...firstName\"  ,  S = <V s_11_6_t0.S$32 rn>\n    \n    After code:\n      0: <V lastName$37 a> := Call __ro2sq (<r s_11_6_t2.O$28 via  Set80 Set70>)\n      5: <V firstName$39 a> := Call __ro2sq (<V s_11_6_t1.O$35 an>)\n      10: BReturn 0",
-    "profile_text_low_explain": "\n    time        51% fanout         1 input         1 rows\n    RDF_QUAD         1 rows(s_11_6_t1.O$35)\n     inlined  P =  IRI_ID\"...firstName\"  ,  S = s_11_6_t0.S$32\n    \n    After code:\n    0: lastName$37 := Call __ro2sq (s_11_6_t2.O$28)\n    5: firstName$39 := Call __ro2sq (s_11_6_t1.O$35)\n    10: BReturn 0",
-    "time": 51,
+    "profile_text": "    time        27% fanout         1 input         1 rows\n      clear: (<V s_11_6_t1.O$35 an>, <V firstName$39 a>, <V lastName$37 a>)\n      clear on continue: (<V s_11_6_t1.O$35 an>, <V firstName$39 a>, <V lastName$37 a>)$32 () $28 (31 ) \n    s# 80 34 from DB.DBA.RDF_QUAD by RDF_QUAD          1 rows   \n    Key RDF_QUAD  ASC  (<V s_11_6_t1.O$35 an>)\n     inlined  P =  IRI_ID\"...firstName\"  ,  S = <V s_11_6_t0.S$32 rn>\n    \n    After code:\n      0: <V lastName$37 a> := Call __ro2sq (<r s_11_6_t2.O$28 via  Set80 Set70>)\n      5: <V firstName$39 a> := Call __ro2sq (<V s_11_6_t1.O$35 an>)\n      10: BReturn 0",
+    "profile_text_low_explain": "\n    time        44% fanout         1 input         1 rows\n    RDF_QUAD         1 rows(s_11_6_t1.O$35)\n     inlined  P =  IRI_ID\"...firstName\"  ,  S = s_11_6_t0.S$32\n    \n    After code:\n    0: lastName$37 := Call __ro2sq (s_11_6_t2.O$28)\n    5: firstName$39 := Call __ro2sq (s_11_6_t1.O$35)\n    10: BReturn 0",
+    "time": 27,
     "fanout": 1,
     "input_rows": 1,
     "cardinality_estimate": 0,
@@ -161,9 +161,9 @@
     "subquery_select?": 0
   },
   "OP5": {
-    "profile_text": "    time      0.18% fanout         0 input         1 rows\n    $37 () $39 () $47 (34 31 27 48 ) \n    s# 90 41 Select (<V firstName$39 a>, <V lastName$37 a>)\n      set no: <r set_ctr$47 via  Set80 Set70 Set59>\n  ",
-    "profile_text_low_explain": "\n    time      0.15% fanout         0 input         1 rows\n    Select (firstName$39, lastName$37)\n  ",
-    "time": 0.18,
+    "profile_text": "    time     0.063% fanout         0 input         1 rows\n    $37 () $39 () $47 (34 31 27 48 ) \n    s# 90 41 Select (<V firstName$39 a>, <V lastName$37 a>)\n      set no: <r set_ctr$47 via  Set80 Set70 Set59>\n  ",
+    "profile_text_low_explain": "\n    time      0.12% fanout         0 input         1 rows\n    Select (firstName$39, lastName$37)\n  ",
+    "time": 0.063,
     "fanout": 0,
     "input_rows": 1,
     "cardinality_estimate": 0,

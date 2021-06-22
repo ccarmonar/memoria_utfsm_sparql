@@ -2,8 +2,8 @@ Error: 22023: SR007: Function rdf_encode_for_uri needs a string or UNAME or NULL
   { 
     Precode:
       0:   { 
-          time        29% fanout         1 input         1 rows
-          time        71% fanout         0 input         1 rows
+          time        28% fanout         1 input         1 rows
+          time        72% fanout         0 input         1 rows
           Precode:
             0: vector$27 := Call vector ( 1 ,  0 ,  1 ,  1 ,  1 ,  2 )
             5: vector$29 := Call vector (vector$27)
@@ -11,8 +11,8 @@ Error: 22023: SR007: Function rdf_encode_for_uri needs a string or UNAME or NULL
             15: BReturn 0
           fork {
               time         0% fanout         0 input         1 rows
-              Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:     5e+06 Fanout:         0
-              RDF_QUAD     5e+06 rows(t2.S$36, t2.P$35, t2.O$34)
+              Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:   3.4e+06 Fanout:         0
+              RDF_QUAD_POGS   3.4e+06 rows(t2.S$36, t2.P$35, t2.O$34)
               
               
               After code:
@@ -42,5 +42,5 @@ Error: 22023: SR007: Function rdf_encode_for_uri needs a string or UNAME or NULL
   }
 
 
- 2094 msec 99% cpu,      1279 rnd    255699 seq         0% same seg   32.1094% same pg 
-Compilation: 1 msec 0 reads         0% read 0 messages         0% clw
+ 2018 msec 99% cpu,      1198 rnd    255728 seq         0% same seg    34.362% same pg 
+Compilation: 2 msec 0 reads         0% read 0 messages         0% clw

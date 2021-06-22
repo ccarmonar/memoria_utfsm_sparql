@@ -9,40 +9,40 @@ LUN	10
 DIN	25.05	
 
   { 
-    time       1.3% fanout         1 input         1 rows
+    time      0.81% fanout         1 input         1 rows
       clear: (<V set_ctr$52 in>)
     s# 55 53 cluster outer seq start, set no <V set_ctr$52 in>    
     save ctx:()
-    time        22% fanout         9 input         1 rows
-      clear: (<V s_12_4_t0.O$28 an>, <V s_12_4_t0.S$29 rn>)
-      clear on continue: (<V s_12_4_t0.O$28 an>, <V s_12_4_t0.S$29 rn>)
+    time       7.5% fanout         9 input         1 rows
+      clear: (<V s_12_4_t1.O$28 an>, <V s_12_4_t1.S$29 rn>)
+      clear on continue: (<V s_12_4_t1.O$28 an>, <V s_12_4_t1.S$29 rn>)
     s# 64 27 from DB.DBA.RDF_QUAD by RDF_QUAD          9 rows   
-    Key RDF_QUAD  ASC  (<V s_12_4_t0.S$29 rn>, <V s_12_4_t0.O$28 an>)
-     inlined  P =  IRI_ID"...description" 
+    Key RDF_QUAD  ASC  (<V s_12_4_t1.S$29 rn>, <V s_12_4_t1.O$28 an>)
+     inlined  P =  IRI_ID"...amount" 
     
-    time        76% fanout         1 input         9 rows
-      clear: (<V s_12_4_t1.O$32 an>, <V amount$44 a>, <V mealCode$42 a>, <V rdf_ucase_impl$40 s>, <V DB.DBA.RDF_LONG_OF_SQLVAL$38 a>, <V rdf_substr_impl$36 s>, <V __ro2lo$34 a>)
-      clear on continue: (<V s_12_4_t1.O$32 an>, <V amount$44 a>, <V mealCode$42 a>, <V rdf_ucase_impl$40 s>, <V DB.DBA.RDF_LONG_OF_SQLVAL$38 a>, <V rdf_substr_impl$36 s>, <V __ro2lo$34 a>)$28 () $29 () 
+    time        92% fanout         1 input         9 rows
+      clear: (<V s_12_4_t0.O$32 an>, <V mealCode$44 a>, <V rdf_ucase_impl$42 s>, <V DB.DBA.RDF_LONG_OF_SQLVAL$40 a>, <V rdf_substr_impl$38 s>, <V __ro2lo$36 a>, <V amount$34 a>)
+      clear on continue: (<V s_12_4_t0.O$32 an>, <V mealCode$44 a>, <V rdf_ucase_impl$42 s>, <V DB.DBA.RDF_LONG_OF_SQLVAL$40 a>, <V rdf_substr_impl$38 s>, <V __ro2lo$36 a>, <V amount$34 a>)$28 () $29 () 
     s# 75 31 from DB.DBA.RDF_QUAD by RDF_QUAD          1 rows   
-    Key RDF_QUAD  ASC  (<V s_12_4_t1.O$32 an>)
-     inlined  P =  IRI_ID"...amount"  ,  S = <V s_12_4_t0.S$29 rn>
+    Key RDF_QUAD  ASC  (<V s_12_4_t0.O$32 an>)
+     inlined  P =  IRI_ID"...description"  ,  S = <V s_12_4_t1.S$29 rn>
     
     After code:
-      0: <V __ro2lo$34 a> := Call __ro2lo (<r s_12_4_t0.O$28 via  Set75>)
-      5: <V rdf_substr_impl$36 s> := Call rdf_substr_impl (<V __ro2lo$34 a>,  1 ,  3 )
-      10: <V DB.DBA.RDF_LONG_OF_SQLVAL$38 a> := Call DB.DBA.RDF_LONG_OF_SQLVAL (<V rdf_substr_impl$36 s>)
-      17: <V rdf_ucase_impl$40 s> := Call rdf_ucase_impl (<V DB.DBA.RDF_LONG_OF_SQLVAL$38 a>)
-      22: <V mealCode$42 a> := Call __rdf_sqlval_of_obj (<V rdf_ucase_impl$40 s>)
-      27: <V amount$44 a> := Call __ro2sq (<V s_12_4_t1.O$32 an>)
+      0: <V amount$34 a> := Call __ro2sq (<r s_12_4_t1.O$28 via  Set75>)
+      5: <V __ro2lo$36 a> := Call __ro2lo (<V s_12_4_t0.O$32 an>)
+      10: <V rdf_substr_impl$38 s> := Call rdf_substr_impl (<V __ro2lo$36 a>,  1 ,  3 )
+      15: <V DB.DBA.RDF_LONG_OF_SQLVAL$40 a> := Call DB.DBA.RDF_LONG_OF_SQLVAL (<V rdf_substr_impl$38 s>)
+      22: <V rdf_ucase_impl$42 s> := Call rdf_ucase_impl (<V DB.DBA.RDF_LONG_OF_SQLVAL$40 a>)
+      27: <V mealCode$44 a> := Call __rdf_sqlval_of_obj (<V rdf_ucase_impl$42 s>)
       32: BReturn 0
-    time      0.19% fanout         0 input         9 rows
-    $42 () $44 () $52 (31 27 53 ) 
-    s# 85 46 Select (<V mealCode$42 a>, <V amount$44 a>)
+    time      0.12% fanout         0 input         9 rows
+    $34 () $44 () $52 (31 27 53 ) 
+    s# 85 46 Select (<V mealCode$44 a>, <V amount$34 a>)
       set no: <r set_ctr$52 via  Set75 Set64>
   }
 Warning: You might have a Cartesian product.
 
 
 
- 0 msec 16% cpu,        19 rnd         8 seq        40% same seg        15% same pg 
-Compilation: 1 msec 0 reads         0% read 0 messages         0% clw
+ 0 msec 0% cpu,        19 rnd         8 seq        40% same seg        15% same pg 
+Compilation: 139 msec 0 reads         0% read 0 messages         0% clw

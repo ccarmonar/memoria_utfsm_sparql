@@ -1,17 +1,17 @@
   { 
     Precode:
       0:   { 
-          time       3.2% fanout         1 input         1 rows
-          time        11% fanout         1 input         1 rows
+          time         4% fanout         1 input         1 rows
+          time        10% fanout         1 input         1 rows
           Precode:
             0: vector$27 := Call vector ( 1 ,  0 ,  3 ,  IRI_ID"...courseTitle" ,  1 ,  1 )
             5: vector$29 := Call vector (vector$27)
             10: vector$31 := Call vector ()
             15: BReturn 0
           fork {
-              time        61% fanout         0 input         1 rows
+              time        59% fanout         0 input         1 rows
               Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:         6 Fanout:         0
-              RDF_QUAD         6 rows(s_12_4_t1.S$35, s_12_4_t1.O$34)
+              RDF_QUAD_POGS         6 rows(s_12_4_t1.S$35, s_12_4_t1.O$34)
                inlined  P =  IRI_ID"...courseTitle"  G =  IRI_ID"...ex125.ttl" 
               
               After code:
@@ -23,13 +23,13 @@
               25: user_aggr_ret$46 := Call DB.DBA.SPARQL_CONSTRUCT_ACC (user_aggr_env$45 , vector$29, vector$39, vector$31,  1 )
               32: BReturn 0
             }
-          time        24% fanout         1 input         1 rows
+          time        25% fanout         1 input         1 rows
           skip node  1  <none> set_ctr$41
           
           After code:
           0: callret-0$47 := Call DB.DBA.SPARQL_CONSTRUCT_FIN (user_aggr_env$45 )
           7: BReturn 0
-          time       1.4% fanout         0 input         1 rows
+          time       1.7% fanout         0 input         1 rows
           Subquery Select(callret-0$47)
         }
       

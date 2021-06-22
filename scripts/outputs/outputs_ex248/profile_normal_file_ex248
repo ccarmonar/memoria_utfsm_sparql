@@ -15,11 +15,11 @@ Error: 22023: SR007: Function rdf_encode_for_uri needs a string or UNAME or NULL
             clear: (<V vector$31 x>, <V vector$29 x>, <V vector$27 x>)$27 (49 ) 
           s# 91 49 Fork 49 {  
               time         0% fanout         0 input         1 rows
-              Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:     5e+06 Fanout:         0
+              Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:   3.4e+06 Fanout:         0
                 clear: (<V t2.O$34 an>, <V t2.P$35 rn>, <V t2.S$36 rn>, <V user_aggr_ret$52 x>, <V vector$45 x>, <V __i2idn$43 r>, <V rdf_encode_for_uri_impl$41 s>, <V __ro2sq$39 a>)
                 clear on continue: (<V t2.O$34 an>, <V t2.P$35 rn>, <V t2.S$36 rn>, <V user_aggr_ret$52 x>, <V vector$45 x>, <V __i2idn$43 r>, <V rdf_encode_for_uri_impl$41 s>, <V __ro2sq$39 a>)$31 (33 ) $29 (33 ) 
-              s# 77 33 from DB.DBA.RDF_QUAD by RDF_QUAD      5e+06 rows   
-              Key RDF_QUAD  ASC  (<V t2.S$36 rn>, <V t2.P$35 rn>, <V t2.O$34 an>)
+              s# 77 33 from DB.DBA.RDF_QUAD by RDF_QUAD_POGS    3.4e+06 rows   
+              Key RDF_QUAD_POGS  ASC  (<V t2.S$36 rn>, <V t2.P$35 rn>, <V t2.O$34 an>)
               
               
               After code:
@@ -52,6 +52,6 @@ Error: 22023: SR007: Function rdf_encode_for_uri needs a string or UNAME or NULL
   }
 
 
- 2086 msec 99% cpu,      2040 rnd    255699 seq         0% same seg    22.293% same pg 
-2140 disk reads, 2800 read ahead,  0.131127% wait
+ 2468 msec 99% cpu,      4571 rnd    255728 seq         0% same seg   10.3456% same pg 
+448 disk reads, 509 read ahead,   18.5442% wait
 Compilation: 1 msec 0 reads         0% read 0 messages         0% clw

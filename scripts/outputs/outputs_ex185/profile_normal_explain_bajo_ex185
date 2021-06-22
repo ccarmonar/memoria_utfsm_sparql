@@ -22,8 +22,8 @@ http://learningsparql.com/ns/addressbook#i0432	http://learningsparql.com/ns/addr
   { 
     Precode:
       0:   { 
-          time      0.18% fanout         1 input         1 rows
-          time      0.69% fanout         1 input         1 rows
+          time      0.19% fanout         1 input         1 rows
+          time      0.64% fanout         1 input         1 rows
           Precode:
             0: vector$27 := Call vector ( 1 ,  0 ,  1 ,  2 ,  1 ,  3 )
             5: vector$29 := Call vector ( 1 ,  0 ,  3 ,  IRI_ID"...areaCode" ,  1 ,  1 )
@@ -31,18 +31,18 @@ http://learningsparql.com/ns/addressbook#i0432	http://learningsparql.com/ns/addr
             15: vector$33 := Call vector ()
             20: BReturn 0
           fork {
-              time       3.6% fanout         6 input         1 rows
-              RDF_QUAD         6 rows(t2.S$37, t2.O$36)
+              time       3.7% fanout         6 input         1 rows
+              RDF_QUAD_POGS         6 rows(t2.S$37, t2.O$36)
                inlined  P =  IRI_ID"...homeTel" 
-              time        10% fanout         5 input         6 rows
+              time        11% fanout         5 input         6 rows
               Precode:
                 0: __ro2lo$39 := Call __ro2lo (t2.O$36)
                 5: rdf_substr_impl$41 := Call rdf_substr_impl (__ro2lo$39,  2 ,  3 )
                 10: DB.DBA.RDF_LONG_OF_SQLVAL$43 := Call DB.DBA.RDF_LONG_OF_SQLVAL (rdf_substr_impl$41)
                 17: BReturn 0
-              RDF_QUAD_SP        13 rows(t3.P$46)
+              RDF_QUAD_SP        20 rows(t3.P$46)
                inlined  S = t2.S$37
-              time        85% fanout         0 input        30 rows
+              time        84% fanout         0 input        30 rows
               Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:       1.2 Fanout:         0
               RDF_QUAD       1.2 rows(t3.O$50)
                inlined  P = t3.P$46 ,  S = k_t2.S$112
@@ -56,13 +56,13 @@ http://learningsparql.com/ns/addressbook#i0432	http://learningsparql.com/ns/addr
               25: user_aggr_ret$62 := Call DB.DBA.SPARQL_CONSTRUCT_ACC (user_aggr_env$61 , vector$31, vector$55, vector$33,  1 )
               32: BReturn 0
             }
-          time       0.6% fanout         1 input         1 rows
+          time      0.67% fanout         1 input         1 rows
           skip node  1  <none> set_ctr$57
           
           After code:
           0: callret-0$63 := Call DB.DBA.SPARQL_CONSTRUCT_FIN (user_aggr_env$61 )
           7: BReturn 0
-          time       0.1% fanout         0 input         1 rows
+          time     0.087% fanout         0 input         1 rows
           Subquery Select(callret-0$63)
         }
       
@@ -72,5 +72,5 @@ http://learningsparql.com/ns/addressbook#i0432	http://learningsparql.com/ns/addr
   }
 
 
- 2 msec 47% cpu,        70 rnd        34 seq   46.4789% same seg   30.9859% same pg 
-Compilation: 1 msec 0 reads         0% read 0 messages         0% clw
+ 2 msec 44% cpu,        70 rnd        34 seq   46.4789% same seg   30.9859% same pg 
+Compilation: 2 msec 0 reads         0% read 0 messages         0% clw

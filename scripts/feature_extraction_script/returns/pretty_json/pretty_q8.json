@@ -1,8 +1,8 @@
 {
   "OP1": {
-    "profile_text": "    time       1.8% fanout         1 input         1 rows\n      clear: (<V set_ctr$44 in>)\n    s# 47 45 cluster outer seq start, set no <V set_ctr$44 in>    \n    save ctx:()",
-    "profile_text_low_explain": "\n    time       1.8% fanout         1 input         1 rows",
-    "time": 1.8,
+    "profile_text": "    time         2% fanout         1 input         1 rows\n      clear: (<V set_ctr$44 in>)\n    s# 47 45 cluster outer seq start, set no <V set_ctr$44 in>    \n    save ctx:()",
+    "profile_text_low_explain": "\n    time         2% fanout         1 input         1 rows",
+    "time": 2,
     "fanout": 1,
     "input_rows": 1,
     "cardinality_estimate": 0,
@@ -74,9 +74,9 @@
     "subquery_select?": 0
   },
   "OP3": {
-    "profile_text": "    time        70% fanout         1 input         4 rows\n      clear: (<V t2.O$32 an>, <V givenName$36 a>, <V familyName$34 a>)\n      clear on continue: (<V t2.O$32 an>, <V givenName$36 a>, <V familyName$34 a>)$28 () $29 () \n    s# 67 31 from DB.DBA.RDF_QUAD by RDF_QUAD          1 rows   \n    Key RDF_QUAD  ASC  (<V t2.O$32 an>)\n     inlined  P =  IRI_ID\"...given-name\"  ,  S = <V t3.S$29 rn>\n    \n    After code:\n      0: <V familyName$34 a> := Call __ro2sq (<r t3.O$28 via  Set67>)\n      5: <V givenName$36 a> := Call __ro2sq (<V t2.O$32 an>)\n      10: BReturn 0",
+    "profile_text": "    time        69% fanout         1 input         4 rows\n      clear: (<V t2.O$32 an>, <V givenName$36 a>, <V familyName$34 a>)\n      clear on continue: (<V t2.O$32 an>, <V givenName$36 a>, <V familyName$34 a>)$28 () $29 () \n    s# 67 31 from DB.DBA.RDF_QUAD by RDF_QUAD          1 rows   \n    Key RDF_QUAD  ASC  (<V t2.O$32 an>)\n     inlined  P =  IRI_ID\"...given-name\"  ,  S = <V t3.S$29 rn>\n    \n    After code:\n      0: <V familyName$34 a> := Call __ro2sq (<r t3.O$28 via  Set67>)\n      5: <V givenName$36 a> := Call __ro2sq (<V t2.O$32 an>)\n      10: BReturn 0",
     "profile_text_low_explain": "\n    time        69% fanout         1 input         4 rows\n    RDF_QUAD         1 rows(t2.O$32)\n     inlined  P =  IRI_ID\"...given-name\"  ,  S = t3.S$29\n    \n    After code:\n    0: familyName$34 := Call __ro2sq (t3.O$28)\n    5: givenName$36 := Call __ro2sq (t2.O$32)\n    10: BReturn 0",
-    "time": 70,
+    "time": 69,
     "fanout": 1,
     "input_rows": 4,
     "cardinality_estimate": 0,
@@ -115,9 +115,9 @@
     "subquery_select?": 0
   },
   "OP4": {
-    "profile_text": "    time      0.21% fanout         0 input         4 rows\n    $34 () $36 () $44 (31 27 45 ) \n    s# 77 38 Select (<V givenName$36 a>, <V familyName$34 a>, <c some value>)\n      set no: <r set_ctr$44 via  Set67 Set56>\n  ",
-    "profile_text_low_explain": "\n    time      0.22% fanout         0 input         4 rows\n    Select (givenName$36, familyName$34, <c some value>)\n  ",
-    "time": 0.21,
+    "profile_text": "    time       0.2% fanout         0 input         4 rows\n    $34 () $36 () $44 (31 27 45 ) \n    s# 77 38 Select (<V givenName$36 a>, <V familyName$34 a>, <c some value>)\n      set no: <r set_ctr$44 via  Set67 Set56>\n  ",
+    "profile_text_low_explain": "\n    time       0.2% fanout         0 input         4 rows\n    Select (givenName$36, familyName$34, <c some value>)\n  ",
+    "time": 0.2,
     "fanout": 0,
     "input_rows": 4,
     "cardinality_estimate": 0,

@@ -8,24 +8,24 @@ Bradley	Perry
 Katherine	Duncan			
 
   { 
-    time       1.9% fanout         1 input         1 rows
+    time       1.8% fanout         1 input         1 rows
     time        26% fanout         8 input         1 rows
     RDF_QUAD         8 rows(t2.S$29, t2.O$28)
      inlined  P =  IRI_ID"...lastName" 
     time        13% fanout         1 input         8 rows
     RDF_QUAD         1 rows(t1.S$33, t1.O$32)
      inlined  P =  IRI_ID"...firstName"  ,  S = t2.S$29
-    time       0.7% fanout         1 input         8 rows
+    time      0.71% fanout         1 input         8 rows
     outer {
         time        10% fanout     0.125 input         8 rows
         RDF_QUAD         1 rows(t6.O$36)
          inlined  P =  IRI_ID"...nick"  ,  S = k_t2.S$122
-        time      0.83% fanout         8 input         1 rows
+        time      0.87% fanout         8 input         1 rows
       } /* end of outer */
     set_ctr$41
      out: (t6.O$36)
      shadow: ( <none> )
-    time      0.93% fanout         1 input         8 rows
+    time       1.1% fanout         1 input         8 rows
     outer {
         time        17% fanout     0.125 input         8 rows
         RDF_QUAD         1 rows(t4.O$51)
@@ -42,10 +42,10 @@ Katherine	Duncan
     10: first$67 := Call __ro2sq (t1.O$32)
     15: workTel$69 := Call __ro2sq (t4.O$51)
     20: BReturn 0
-    time      0.47% fanout         0 input         8 rows
+    time      0.51% fanout         0 input         8 rows
     Select (first$67, last$65, workTel$69, nick$63)
   }
 
 
- 0 msec 16% cpu,        43 rnd         7 seq   45.4545% same seg   20.4545% same pg 
+ 0 msec 15% cpu,        43 rnd         7 seq   45.4545% same seg   20.4545% same pg 
 Compilation: 2 msec 0 reads         0% read 0 messages         0% clw

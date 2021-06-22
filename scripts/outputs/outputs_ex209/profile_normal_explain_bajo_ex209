@@ -18,8 +18,8 @@ http://learningsparql.com/ns/data#item432	http://learningsparql.com/ns/demo#prob
   { 
     Precode:
       0:   { 
-          time       0.2% fanout         1 input         1 rows
-          time       3.6% fanout         1 input         1 rows
+          time      0.22% fanout         1 input         1 rows
+          time       3.5% fanout         1 input         1 rows
           Precode:
             0: vector$27  := Call vector ( 1 ,  2 ,  3 ,  IRI_ID"...problem" ,  3 ,  IRI_ID"...prob32" )
             5: vector$29  := Call vector ( 1 ,  1 ,  3 ,  IRI_ID"...problem" ,  3 ,  IRI_ID"...prob29" )
@@ -40,10 +40,10 @@ http://learningsparql.com/ns/data#item432	http://learningsparql.com/ns/demo#prob
                 { 
                   Union
                     { 
-                      time       4.1% fanout        18 input         1 rows
-                      RDF_QUAD        18 rows(s_28_17_t7-u36.O$61, s_28_17_t7-u36.S$60)
+                      time       4.8% fanout        18 input         1 rows
+                      RDF_QUAD_POGS        18 rows(s_28_17_t7-u36.O$61, s_28_17_t7-u36.S$60)
                        inlined  P =  IRI_ID"...amount" 
-                      time        24% fanout  0.444444 input        18 rows
+                      time        25% fanout  0.444444 input        18 rows
                       END Node
                       After test:
                       0: __ro2sq$63 := Call __ro2sq (s_28_17_t7-u36.O$61)
@@ -68,10 +68,10 @@ http://learningsparql.com/ns/data#item432	http://learningsparql.com/ns/demo#prob
                       END Node
                     }
                     { 
-                      time       2.3% fanout        12 input         1 rows
-                      RDF_QUAD       5.5 rows(s_35_20_t8.O$76, s_35_20_t8.S$75)
+                      time       2.1% fanout        12 input         1 rows
+                      RDF_QUAD_POGS       5.5 rows(s_35_20_t8.O$76, s_35_20_t8.S$75)
                        inlined  P =  IRI_ID"...location" 
-                      time      0.64% fanout  0.583333 input        12 rows
+                      time      0.55% fanout  0.583333 input        12 rows
                       END Node
                       After test:
                       0: is_named_iri_id$78 := Call is_named_iri_id (s_35_20_t8.O$76)
@@ -84,7 +84,7 @@ http://learningsparql.com/ns/data#item432	http://learningsparql.com/ns/demo#prob
                       4: prob29item$55 :=  := artm s_35_20_t8.S$75
                       8: prob44item$56 :=  := artm <DB_NULL>
                       12: BReturn 0
-                      time        18% fanout         0 input         7 rows
+                      time        17% fanout         0 input         7 rows
                       Precode:
                         0: vector$135 := Call vector (prob44item$56, prob29item$55, prob32item$54)
                         5: if (user_aggr_notfirst$140  =  1 ) then 20 else 9 unkn 9
@@ -95,16 +95,16 @@ http://learningsparql.com/ns/data#item432	http://learningsparql.com/ns/demo#prob
                       END Node
                     }
                     { 
-                      time     0.022% fanout         1 input         1 rows
+                      time     0.031% fanout         1 input         1 rows
                       END Node
                       time      0.16% fanout         1 input         1 rows
                       outer {
                           Subquery 87 
                             { 
-                              time       1.8% fanout         2 input         1 rows
+                              time       1.5% fanout         2 input         1 rows
                               RDF_QUAD_POGS         2 rows(t12.O$94, t12.S$93)
                                inlined  P =  IRI_ID"...approval" 
-                              time       2.4% fanout       0.5 input         2 rows
+                              time       3.1% fanout       0.5 input         2 rows
                               RDF_QUAD      0.67 rows(t13.O$97)
                                P =  IRI_ID"...jobGrade"  ,  S = k_t12.O$281 ,  O <  5  O <  5 
                               
@@ -113,21 +113,21 @@ http://learningsparql.com/ns/data#item432	http://learningsparql.com/ns/demo#prob
                               4: approvingEmployee$89 :=  := artm t12.O$94
                               8: grade$90 :=  := artm t13.O$97
                               12: BReturn 0
-                              time     0.035% fanout         0 input         1 rows
+                              time     0.032% fanout         0 input         1 rows
                               Subquery Select(item$88, approvingEmployee$89, grade$90)
                             }
-                          time      0.11% fanout         1 input         1 rows
+                          time      0.12% fanout         1 input         1 rows
                         } /* end of outer */
                       set_ctr$108
-                       out: (grade$90, item$88, approvingEmployee$89, set_no$91)
+                       out: (approvingEmployee$89, set_no$91, item$88, grade$90)
                        shadow: ( <none> ,  <none> ,  <none> ,  <none> )
-                      time       1.2% fanout         8 input         1 rows
-                      RDF_QUAD         8 rows(t9.S$119, t9.O$118)
+                      time         1% fanout         8 input         1 rows
+                      RDF_QUAD_POGS         8 rows(t9.S$119, t9.O$118)
                        inlined  P =  IRI_ID"...cost" 
-                      time       1.6% fanout         1 input         8 rows
+                      time       1.7% fanout         1 input         8 rows
                       RDF_QUAD      0.96 rows(t10.O$123, t10.S$122)
                        inlined  P =  IRI_ID"...amount"  ,  S = t9.S$119
-                      time       1.9% fanout       0.5 input         8 rows
+                      time         2% fanout       0.5 input         8 rows
                       END Node
                       After test:
                       0: temp$125 := artm t9.O$118 * t10.O$123
@@ -140,7 +140,7 @@ http://learningsparql.com/ns/data#item432	http://learningsparql.com/ns/demo#prob
                       4: prob29item$55 :=  := artm <DB_NULL>
                       8: prob44item$56 :=  := artm t10.S$122
                       12: BReturn 0
-                      time        11% fanout         0 input         4 rows
+                      time        10% fanout         0 input         4 rows
                       Precode:
                         0: vector$135 := Call vector (prob44item$56, prob29item$55, prob32item$54)
                         5: if (user_aggr_notfirst$140  =  1 ) then 20 else 9 unkn 9
@@ -161,13 +161,13 @@ http://learningsparql.com/ns/data#item432	http://learningsparql.com/ns/demo#prob
                 27: BReturn 0
               END Node
             }
-          time      0.56% fanout         1 input         1 rows
+          time      0.74% fanout         1 input         1 rows
           skip node  1  <none> set_ctr$137
           
           After code:
           0: callret-0$147 := Call DB.DBA.SPARQL_CONSTRUCT_FIN (user_aggr_env$141 )
           7: BReturn 0
-          time     0.056% fanout         0 input         1 rows
+          time     0.068% fanout         0 input         1 rows
           Subquery Select(callret-0$147)
         }
       
@@ -177,5 +177,5 @@ http://learningsparql.com/ns/data#item432	http://learningsparql.com/ns/demo#prob
   }
 
 
- 2 msec 22% cpu,        18 rnd        36 seq   42.1053% same seg   5.26316% same pg 
-Compilation: 4 msec 0 reads         0% read 0 messages         0% clw
+ 1 msec 22% cpu,        18 rnd        36 seq   42.1053% same seg   5.26316% same pg 
+Compilation: 3 msec 0 reads         0% read 0 messages         0% clw

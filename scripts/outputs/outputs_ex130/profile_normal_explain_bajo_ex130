@@ -1,13 +1,13 @@
 
   { 
-    time       4.3% fanout         1 input         1 rows
+    time       4.7% fanout         1 input         1 rows
     Subquery 27 
       { 
         Union
           { 
             time        55% fanout         0 input         1 rows
             Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:         6 Fanout:         0
-            RDF_QUAD         6 rows(s_13_1_t0-u7.O$32)
+            RDF_QUAD_POGS         6 rows(s_13_1_t0-u7.O$32)
              inlined  P =  IRI_ID"...courseTitle"  G =  IRI_ID"...ex069.ttl" 
             
             After code:
@@ -17,10 +17,10 @@
             Subquery Select(courseName$28)
           }
           { 
-            time        29% fanout         6 input         1 rows
-            RDF_QUAD       6.5 rows(s_15_3_t1.O$43, s_15_3_t1.G$42)
+            time        26% fanout         6 input         1 rows
+            RDF_QUAD_POGS        12 rows(s_15_3_t1.O$43, s_15_3_t1.G$42)
              inlined  P =  IRI_ID"...courseTitle" 
-            time        12% fanout         0 input         6 rows
+            time        15% fanout         0 input         6 rows
             END Node
             After test:
             0: one_of_these$45 := Call one_of_these (s_15_3_t1.G$42,  IRI_ID"...ex125.ttl" ,  IRI_ID"...ex122.ttl" )

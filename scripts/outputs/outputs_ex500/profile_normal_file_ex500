@@ -12,7 +12,7 @@ dinner	2011-10-16	25.05
       clear: (<V set_ctr$78 in>)
     s# 81 79 cluster outer seq start, set no <V set_ctr$78 in>    
     save ctx:()
-    time        11% fanout         9 input         1 rows
+    time        13% fanout         9 input         1 rows
     Precode:
       0: <V DB.DBA.RDF_MAKE_LONG_OF_SQLVAL$27 a> := Call DB.DBA.RDF_MAKE_LONG_OF_SQLVAL (<c lunch>)
       7: <V vector$29 x> := Call vector (<DB_NULL>, <V DB.DBA.RDF_MAKE_LONG_OF_SQLVAL$27 a>)
@@ -26,14 +26,14 @@ dinner	2011-10-16	25.05
     Key RDF_QUAD  ASC  (<V s_17_7_t2.S$39 rn>, <V s_17_7_t2.O$38 an>)
      inlined  P =  IRI_ID"...amount" 
     
-    time         4% fanout         1 input         9 rows
+    time       3.6% fanout         1 input         9 rows
       clear: (<V s_17_7_t0.O$42 an>, <V s_17_7_t0.S$43 rn>)
       clear on continue: (<V s_17_7_t0.O$42 an>, <V s_17_7_t0.S$43 rn>)$39 () 
     s# 101 41 from DB.DBA.RDF_QUAD by RDF_QUAD          1 rows   
     Key RDF_QUAD  ASC  (<V s_17_7_t0.S$43 rn>, <V s_17_7_t0.O$42 an>)
      inlined  P =  IRI_ID"...description"  ,  S = <V s_17_7_t2.S$39 rn>
     
-    time        18% fanout   1.66667 input         9 rows
+    time        23% fanout   1.66667 input         9 rows
     Precode:
       0: <V amount$45 a> := Call __ro2sq (<r s_17_7_t2.O$38 via  Set101>)
       5: <V __ro2lo$47 a> := Call __ro2lo (<V s_17_7_t0.O$42 an>)
@@ -45,14 +45,14 @@ dinner	2011-10-16	25.05
     Key RDF_QUAD  ASC  (<V s_17_7_t1.O$52 an>)
      inlined  P =  IRI_ID"...date"  ,  S = <V s_17_7_t0.S$43 rn>
     
-    time        66% fanout  0.533333 input        15 rows
+    time        60% fanout  0.533333 input        15 rows
     Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:         0 Fanout:      0.53
     Precode:
       0: <V __ro2lo$54 a> := Call __ro2lo (<V s_17_7_t1.O$52 an>)
       5: <V date$56 a> := Call __ro2sq (<V s_17_7_t1.O$52 an>)
       10: <V dta$65 x> :=  := artm <r vector$35 via  Set112 Set101 Set90>
       14: <V proc_ctr$59 i> :=  := artm  0 
-      18:  <none>  := Call __reset_temp ( 139746095853216 )
+      18:  <none>  := Call __reset_temp ( 139717168782880 )
       23:  <proc table>  := Call DB.DBA.SPARQL_BINDINGS_VIEW_C_2_IMP (<r vector$35 via  Set112 Set101 Set90>)
       30: BReturn 0
       clear: (<V BND1$63 a>, <V BND0$61 a>, <V proc_ctr$59 i>, <V dta$65 x>, <V date$56 a>, <V __ro2lo$54 a>)
@@ -67,7 +67,7 @@ dinner	2011-10-16	25.05
     16: BReturn 1
     17: BReturn 0
     
-    time     0.098% fanout         0 input         8 rows
+    time     0.077% fanout         0 input         8 rows
     $45 (58 51 ) $78 (58 51 41 37 79 ) $49 (58 51 ) $56 (58 ) 
     s# 135 72 Select (<r description$49 via  Set122 Set112>, <r date$56 via  Set122>, <r amount$45 via  Set122 Set112>)
       set no: <r set_ctr$78 via  Set122 Set112 Set101 Set90>

@@ -28,17 +28,17 @@ http://learningsparql.com/ns/citations#cites
     s# 96 27 Subquery 27 
       multistate set no = <V set_no$29 i>
       { 
-        time   8.8e-05% fanout         1 input         1 rows
+        time   7.9e-05% fanout         1 input         1 rows
         
         s# 170 56 Fork 56 {  
                 
             save ctx:()
               set no = <V set_no$29 i> array  <none>  save: 
-            time       2.8% fanout 1.90501e+07 input         1 rows
+            time       2.9% fanout 1.90501e+07 input         1 rows
               clear: (<V s_9_6_t1.P$31 rn>)
               clear on continue: (<V s_9_6_t1.P$31 rn>)
-            s# 101 30 from DB.DBA.RDF_QUAD by RDF_QUAD      5e+06 rows   
-            Key RDF_QUAD  ASC  (<V s_9_6_t1.P$31 rn>)
+            s# 101 30 from DB.DBA.RDF_QUAD by RDF_QUAD_POGS    3.4e+06 rows   
+            Key RDF_QUAD_POGS  ASC  (<V s_9_6_t1.P$31 rn>)
             
             
             time        36% fanout  0.804928 input 1.90501e+07 rows
@@ -69,14 +69,14 @@ http://learningsparql.com/ns/citations#cites
             time        24% fanout 0.000425656 input 1.5334e+07 rows
             
             s# 154 48 Distinct (HASH) set no <r set_no$29 via  Set116 Set101>(<r s_9_6_t1.P$31 via  Set116>)
-            time       2.6% fanout         0 input      6527 rows
+            time       2.9% fanout         0 input      6527 rows
             Precode:
               0: <V __id2in$54 a> := Call __id2in (<r s_9_6_t1.P$31 via  Set154 Set116>)
               5: BReturn 0
               clear: (<V __id2in$54 a>)$31 (48 111 ) 
             s# 162 57 Sort (HASH) set no <r set_no$29 via  Set154 Set116 Set101>(<V __id2in$54 a>)
         }
-        time    0.0028% fanout      1000 input         1 rows
+        time    0.0026% fanout      1000 input         1 rows
         Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:         0 Fanout:     1e+03
           clear: (<V __id2in$54 a>, <V p$28 a>)
           clear on continue: (<V __id2in$54 a>, <V p$28 a>)
@@ -86,7 +86,7 @@ http://learningsparql.com/ns/citations#cites
         After code:
           0: <V p$28 a> :=  := artm <V __id2in$54 a>
           4: BReturn 0
-        time   1.4e-05% fanout         0 input      1000 rows
+        time   1.3e-05% fanout         0 input      1000 rows
         
         s# 96 69 Subquery Select(<V p$28 a>)
           set no: <r set_no$29 via  Set177>
@@ -95,7 +95,7 @@ http://learningsparql.com/ns/citations#cites
     After code:
       0: <V p$76 a> := Call __ro2sq (<V p$28 a>)
       5: BReturn 0
-    time   2.4e-05% fanout         0 input      1000 rows
+    time   1.7e-05% fanout         0 input      1000 rows
     $76 (27 ) $84 (27 85 ) 
     s# 194 78 Select (<V p$76 a>)
       set no: <r set_ctr$84 via  Set96>
@@ -104,6 +104,6 @@ Warning: You might have a Cartesian product.
 
 
 
- 1443 msec 99% cpu, 1.90587e+07 rnd 1.90338e+07 seq   98.4954% same seg    1.3654% same pg 
-1401 disk reads, 2543 read ahead,  0.429848% wait
+ 1446 msec 99% cpu, 1.90587e+07 rnd 1.90336e+07 seq   98.4954% same seg   1.36539% same pg 
+1807 disk reads, 3050 read ahead,  0.712871% wait
 Compilation: 1 msec 0 reads         0% read 0 messages         0% clw

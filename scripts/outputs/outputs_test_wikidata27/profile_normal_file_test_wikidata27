@@ -11,7 +11,7 @@
 	
 
   { 
-    time   5.6e-05% fanout         1 input         1 rows
+    time   5.9e-05% fanout         1 input         1 rows
       clear: (<V set_ctr$81 in>)
     s# 85 82 cluster outer seq start, set no <V set_ctr$81 in>    
     save ctx:()
@@ -29,7 +29,7 @@
       31: <V param_row$46 x> :=  := artm <V vector$27 x>
       35: <V expected_vars$48 x> :=  := artm <V vector$29 x>
       39: <V proc_ctr$34 i> :=  := artm  0 
-      43:  <none>  := Call __reset_temp ( 139746111251072 )
+      43:  <none>  := Call __reset_temp ( 139717169052064 )
       48:  <proc table>  := Call DB.DBA.SPARQL_SINV_IMP (<tag 182 flag 1 c http://wikiba.se/ontology#label>, <V vector$31 x>, <c  SELECT ?stubvar9
        WHERE {  <http://www.bigdata.com/rdf#serviceParam> <http://wikiba.se/ontology#language> "en" . }>, <tag 225 c >, <V vector$27 x>, <V vector$29 x>)
       55: BReturn 0
@@ -38,30 +38,30 @@
     s# 94 33 Key from temp (<V proc_ctr$34 i>, <V RSET$36 a>)
     
     
-    time     9e-05% fanout         1 input         1 rows
+    time   9.2e-05% fanout         1 input         1 rows
       clear: (<V set_no$57 i>)
     s# 103 74 cluster outer seq start, set no <V set_no$57 i>    
     save ctx:()
-    time    0.0031% fanout       908 input         1 rows
+    time     0.003% fanout       908 input         1 rows
       clear: (<V s_45_3_t0.O$59 an>)
       clear on continue: (<V s_45_3_t0.O$59 an>)
-    s# 112 58 from DB.DBA.RDF_QUAD by RDF_QUAD    9.1e+02 rows   
-    Key RDF_QUAD  ASC  (<V s_45_3_t0.O$59 an>)
+    s# 112 58 from DB.DBA.RDF_QUAD by RDF_QUAD_POGS    9.1e+02 rows   
+    Key RDF_QUAD_POGS  ASC  (<V s_45_3_t0.O$59 an>)
      inlined  P =  IRI_ID"...direct/P30" 
     
-    time    0.0068% fanout 0.0121145 input       908 rows
+    time     0.007% fanout 0.0121145 input       908 rows
       clear: (<V continent$56 an>)$59 () 
     s# 122 61 Distinct (HASH) set no <r set_no$57 via  Set112>(<r set_no$57 via  Set112>, <V s_45_3_t0.O$59 an>)
     After code:
       0: <V continent$56 an> :=  := artm <r s_45_3_t0.O$59 via  Set122>
       4: BReturn 0
-    time   0.00026% fanout         1 input        11 rows
+    time   0.00027% fanout         1 input        11 rows
     $56 (61 ) $57 (61 58 74 ) 
     s# 131 67 Subquery Select(<V continent$56 an>)
       set no: <r set_no$57 via  Set122 Set112>
-    time   0.00013% fanout         0 input        11 rows
+    time   0.00014% fanout         0 input        11 rows
     $81 (67 61 58 74 33 82 ) 
-    s# 138 75 Select (TOP  800 ) (<DB_NULL>)
+    s# 138 75 Select (TOP  500 ) (<DB_NULL>)
       set no: <r set_ctr$81 via  Set131 Set94>
   }
 Warning: You might have a Cartesian product.
@@ -70,5 +70,5 @@ Warning: You might have a Cartesian product.
 
 
 
- 3234 msec 0% cpu,         5 rnd       907 seq         0% same seg         0% same pg 
-Compilation: 44 msec 4 reads 0.00144941% read 0 messages         0% clw
+ 3071 msec 0% cpu,         8 rnd       906 seq         0% same seg         0% same pg 
+Compilation: 41 msec 0 reads         0% read 0 messages         0% clw

@@ -1,25 +1,25 @@
 1	
 
   { 
-    time       1.9% fanout         1 input         1 rows
+    time       2.8% fanout         1 input         1 rows
       clear: (<V set_ctr$74 in>)
     s# 80 75 cluster outer seq start, set no <V set_ctr$74 in>    
     save ctx:()
-    time        29% fanout         8 input         1 rows
+    time        21% fanout         8 input         1 rows
       clear: (<V t2.O$28 an>, <V t2.S$29 rn>)
       clear on continue: (<V t2.O$28 an>, <V t2.S$29 rn>)
     s# 89 27 from DB.DBA.RDF_QUAD by RDF_QUAD          8 rows   
     Key RDF_QUAD  ASC  (<V t2.S$29 rn>, <V t2.O$28 an>)
      inlined  P =  IRI_ID"...cost" 
     
-    time        16% fanout         1 input         8 rows
+    time        13% fanout         1 input         8 rows
       clear: (<V t3.S$32 rn>, <V t3.O$33 an>)
       clear on continue: (<V t3.S$32 rn>, <V t3.O$33 an>)
     s# 100 31 from DB.DBA.RDF_QUAD by RDF_QUAD       0.96 rows   
     Key RDF_QUAD  ASC  (<V t3.O$33 an>, <V t3.S$32 rn>)
      inlined  P =  IRI_ID"...amount"  ,  S = <V t2.S$29 rn>
     
-    time        18% fanout       0.5 input         8 rows
+    time        19% fanout       0.5 input         8 rows
       clear: (<V temp$35 an>)$33 () $28 (31 ) 
     s# 116 111 END Node
     After test:
@@ -27,7 +27,7 @@
       4: if (<V temp$35 an> >  100 ) then 8 else 9 unkn 9
       8: BReturn 1
       9: BReturn 0
-    time       2.8% fanout         1 input         4 rows
+    time       2.5% fanout         1 input         4 rows
     Precode:
       0: <V __all_eq$37 x> := Call __all_eq (<r t2.S$29 via  Set116 Set100>, <r t3.S$32 via  Set116>)
       5: BReturn 0
@@ -38,7 +38,7 @@
     s# 133 39 Subquery 39 
       multistate set no = <V set_no$43 i>
       { 
-        time        15% fanout      0.75 input         4 rows
+        time        18% fanout      0.75 input         4 rows
           clear: (<V t5.S$45 rn>, <V t5.O$46 an>)
           clear on continue: (<V t5.O$46 an>, <V t5.S$45 rn>)$37 (63 ) 
         s# 137 44 from DB.DBA.RDF_QUAD by RDF_QUAD          1 rows   
@@ -59,18 +59,18 @@
           4: <V approvingEmployee$41 a> :=  := artm <r t5.O$46 via  Set152 Set158>
           8: <V grade$42 a> :=  := artm <V t6.O$49 an>
           12: BReturn 0
-        time      0.68% fanout         0 input         3 rows
+        time      0.75% fanout         0 input         3 rows
         
         s# 133 51 Subquery Select(<V item$40 r>, <V approvingEmployee$41 a>, <V grade$42 a>)
           set no: <r set_no$43 via  Set152 Set158 Set137 Set143>
       }
     
-    time      0.71% fanout         1 input         3 rows
+    time       1.9% fanout         1 input         3 rows
     $40 (39 ) $41 (39 ) $43 (39 ) $59 (39 63 ) 
     s# 176 58 end of outer seq <r set_ctr$59 via  Set133>
-     out: (<V grade$42 a>, <V set_no$43 i>, <V approvingEmployee$41 a>, <V item$40 r>)
+     out: (<V item$40 r>, <V set_no$43 i>, <V grade$42 a>, <V approvingEmployee$41 a>)
      shadow: ( <none> ,  <none> ,  <none> ,  <none> )
-    time       2.4% fanout  0.333333 input         3 rows
+    time       5.3% fanout  0.333333 input         3 rows
     $42 (58 39 ) 
     s# 189 184 END Node
     After test:
@@ -78,10 +78,10 @@
       4: if (<V grade$42 a> <  5 ) then 8 else 9 unkn 9
       8: BReturn 1
       9: BReturn 0
-    time       1.1% fanout         1 input         1 rows
+    time      0.89% fanout         1 input         1 rows
     
     s# 198 78 skip node  1  <none> <r set_ctr$74 via  Set189 Set176 Set116 Set100 Set89>
-    time      0.49% fanout         0 input         1 rows
+    time       2.3% fanout         0 input         1 rows
     $74 (78 184 58 39 63 111 31 27 75 ) 
     s# 206 68 Select ( 1 )
       set no: <r set_ctr$74 via  Set198 Set189 Set176 Set116 Set100 Set89>
@@ -92,5 +92,5 @@ Warning: You might have a Cartesian product.
 
 
 
- 1 msec 6% cpu,        16 rnd         7 seq   70.5882% same seg         0% same pg 
-Compilation: 2 msec 0 reads         0% read 0 messages         0% clw
+ 0 msec 0% cpu,        16 rnd         7 seq   70.5882% same seg         0% same pg 
+Compilation: 144 msec 0 reads         0% read 0 messages         0% clw

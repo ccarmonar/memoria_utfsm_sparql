@@ -21,7 +21,7 @@ http://learningsparql.com/ns/data#i8301	http://xmlns.com/foaf/0.1/mbox_sha1sum	3
   { 
     Precode:
       0:   { 
-          time      0.31% fanout         1 input         1 rows
+          time      0.39% fanout         1 input         1 rows
             clear: (<V ext_sets$78 i>, <V set_ctr$60 in>)
           s# 79 61 cluster outer seq start, set no <V set_ctr$60 in>    
           save ctx:()
@@ -35,21 +35,21 @@ http://learningsparql.com/ns/data#i8301	http://xmlns.com/foaf/0.1/mbox_sha1sum	3
             25: BReturn 0
             clear: (<V vector$35 x>, <V vector$33 x>, <V vector$31 x>, <V vector$29 x>, <V vector$27 x>)$31 (62 ) $27 (62 ) $29 (62 ) 
           s# 124 62 Fork 62 {  
-              time       6.7% fanout         8 input         1 rows
+              time       7.8% fanout         8 input         1 rows
                 clear: (<V t3.O$38 an>, <V t3.S$39 rn>)
                 clear on continue: (<V t3.O$38 an>, <V t3.S$39 rn>)
               s# 90 37 from DB.DBA.RDF_QUAD by RDF_QUAD          8 rows   
               Key RDF_QUAD  ASC  (<V t3.S$39 rn>, <V t3.O$38 an>)
                inlined  P =  IRI_ID"...lastName" 
               
-              time       8.2% fanout         1 input         8 rows
+              time       3.7% fanout         1 input         8 rows
                 clear: (<V t2.O$42 an>, <V t2.S$43 rn>)
                 clear on continue: (<V t2.O$42 an>, <V t2.S$43 rn>)$39 () 
               s# 101 41 from DB.DBA.RDF_QUAD by RDF_QUAD          1 rows   
               Key RDF_QUAD  ASC  (<V t2.S$43 rn>, <V t2.O$42 an>)
                inlined  P =  IRI_ID"...firstName"  ,  S = <V t3.S$39 rn>
               
-              time        82% fanout         0 input         8 rows
+              time        85% fanout         0 input         8 rows
               Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:       1.2 Fanout:         0
               Precode:
                 0: <V __ro2lo$45 a> := Call __ro2lo (<r t3.O$38 via  Set101>)
@@ -91,5 +91,5 @@ http://learningsparql.com/ns/data#i8301	http://xmlns.com/foaf/0.1/mbox_sha1sum	3
   }
 
 
- 1 msec 27% cpu,        55 rnd         8 seq        25% same seg   35.7143% same pg 
+ 2 msec 28% cpu,        55 rnd         8 seq        25% same seg   35.7143% same pg 
 Compilation: 3 msec 0 reads         0% read 0 messages         0% clw

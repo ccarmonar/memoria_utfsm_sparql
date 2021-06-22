@@ -10,11 +10,11 @@ lunch	2011-10-16	10
 dinner	2011-10-16	25.05	
 
   { 
-    time      0.85% fanout         1 input         1 rows
+    time       1.4% fanout         1 input         1 rows
       clear: (<V set_ctr$62 in>)
     s# 65 63 cluster outer seq start, set no <V set_ctr$62 in>    
     save ctx:()
-    time       2.1% fanout         2 input         1 rows
+    time         4% fanout         2 input         1 rows
     Precode:
       0: <V __rdflit$27 x> := Call __rdflit (rdflit1138)
       5: <V __rdflit$29 x> := Call __rdflit (rdflit1137)
@@ -23,7 +23,7 @@ dinner	2011-10-16	25.05
       clear on continue: (<V in_iter$32 x>)$27 (33 ) $29 (33 ) 
     s# 74 33 in   iterates <V in_iter$32 x>
       over (<V __rdflit$27 x>, <V __rdflit$29 x>)
-    time        47% fanout         3 input         2 rows
+    time        20% fanout         3 input         2 rows
       clear: (<V s_12_7_t0.S$36 rn>, <V s_12_7_t0.O$37 an>)
       clear on continue: (<V s_12_7_t0.O$37 an>, <V s_12_7_t0.S$36 rn>)$32 () $91 (31 ) 
     s# 87 31 from DB.DBA.RDF_QUAD by RDF_QUAD_POGS        5.9 rows   
@@ -31,7 +31,7 @@ dinner	2011-10-16	25.05
      P =  IRI_ID"...description"  ,  O = <v k_in_iter$91 Set93 an>
     vector param casts: <V in_iter$32 x>-> <v k_in_iter$91 Set93 an>
     
-    time       5.2% fanout         1 input         6 rows
+    time       4.6% fanout         1 input         6 rows
       clear: (<V temp$41 i>, <V isiri_id$39 i>)
     s# 107 102 END Node
     After test:
@@ -40,7 +40,7 @@ dinner	2011-10-16	25.05
       9: if ( 0  = <V temp$41 i>) then 14 else 13 unkn 14
       13: BReturn 1
       14: BReturn 0
-    time        11% fanout         1 input         6 rows
+    time        14% fanout         1 input         6 rows
       clear: (<V s_12_7_t2.O$44 an>, <V s_12_7_t2.S$45 rn>)
       clear on continue: (<V s_12_7_t2.S$45 rn>, <V s_12_7_t2.O$44 an>)$119 (43 ) 
     s# 115 43 from DB.DBA.RDF_QUAD by RDF_QUAD          1 rows   
@@ -48,7 +48,7 @@ dinner	2011-10-16	25.05
      inlined  P =  IRI_ID"...amount"  ,  S = <v k_s_12_7_t0.S$119 Set121 rn>
     vector param casts: <r s_12_7_t0.S$36 via  Set107>-> <v k_s_12_7_t0.S$119 Set121 rn>
     
-    time        34% fanout   1.66667 input         6 rows
+    time        56% fanout   1.66667 input         6 rows
     Precode:
       0: <V description$47 a> := Call __ro2sq (<r s_12_7_t0.O$37 via  Set115 Set121 Set107>)
       5: <V amount$49 a> := Call __ro2sq (<V s_12_7_t2.O$44 an>)
@@ -63,7 +63,7 @@ dinner	2011-10-16	25.05
     After code:
       0: <V date$54 a> := Call __ro2sq (<V s_12_7_t1.O$52 an>)
       5: BReturn 0
-    time      0.08% fanout         0 input        10 rows
+    time      0.13% fanout         0 input        10 rows
     $62 (51 43 102 31 33 63 ) $47 (51 ) $49 (51 ) $54 () 
     s# 144 56 Select (<r description$47 via  Set130 Set136>, <V date$54 a>, <r amount$49 via  Set130 Set136>)
       set no: <r set_ctr$62 via  Set130 Set136 Set115 Set121 Set107 Set87 Set93 Set74>
@@ -76,6 +76,5 @@ Warning: You might have a Cartesian product.
 
 
 
- 1 msec 14% cpu,        28 rnd         8 seq    37.931% same seg   20.6897% same pg 
-2 disk reads, 0 read ahead,   2.88733% wait
-Compilation: 2 msec 4 reads    2.3989% read 0 messages         0% clw
+ 1 msec 0% cpu,        28 rnd         8 seq    37.931% same seg   20.6897% same pg 
+Compilation: 66 msec 4 reads   97.9208% read 0 messages         0% clw
