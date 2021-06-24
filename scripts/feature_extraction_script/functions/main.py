@@ -121,7 +121,7 @@ def IdentifyGroupBy(operator):
 	if "group by read" in operator['profile_text']:
 		operator['group_by_read_bool'] = 1
 	else:
-		operator['group_by_read'] = 0
+		operator['group_by_read_bool'] = 0
 	return operator
 
 

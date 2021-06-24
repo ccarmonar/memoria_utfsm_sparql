@@ -98,4 +98,4 @@ def CountCurlyBrackets(operator):
 
 
 def SubstractStrings(a, b):
-    return "".join(a.rsplit(b))
+	return "".join(a.rsplit(b))
