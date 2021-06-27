@@ -1,9 +1,9 @@
-import json, os, hashlib
+import json, os, hashlib, numpy as np, pandas as pd
 print(os.path.abspath(os.curdir))
 os.chdir("..")
 print(os.path.abspath(os.curdir))
 # Opening JSON file
-example = 'test_wikidata1'
+example = 'test_wikidata17'
 with open('returns/'+example+'.json') as json_file:
     operators = json.load(json_file)
 
@@ -55,16 +55,48 @@ def MatrixFormat(operators):
 
 
 def MatrixNumpyFormat(operators):
-    matrix_np_format = operators
+    matrix_np_format = np.array(MatrixFormat(operators))
     return matrix_np_format
 
+def DataFrameFormat(operators):
+    columns = [
+        'time',
+        'fanout',
+        'input_rows',
+        'cardinality_estimate',
+        'cardinality_fanout',
+        'operator_type',
+        'precode_bool',
+        'after_code_bool',
+        'group_by_read_bool',
+        'distinct_bool',
+        'TOP_bool',
+        'TOP_num',
+        'top_order_by_bool',
+        'skip_node_bool',
+        'skip_node_num',
+        'start_optional',
+        'end_optional',
+        'optional_section?',
+        'after_test_1op?',
+        'after_test_lvl',
+        'target_bracket',
+        'transitive_bracket',
+        'union_sort_lvl',
+        'sort_lvl',
+        'union_sub_lvl',
+        'subquerie_lvl',
+        'subquery_select?',
+        'select?'
+    ]
+    df_format = pd.DataFrame(MatrixFormat(operators), index=operators.keys(), columns=columns)
+    return df_format
 
-def DataframeFormat(operators):
-    df_operators = operators
-    return df_operators
 
+#x = MatrixFormat(operators)
+x = DataFrameFormat(operators)
 
-x = MatrixFormat(operators)
-for i in x:
-    print(i)
+print(x)
+#for i in x:
+#    print(i)
 
