@@ -80,7 +80,7 @@ def GetOperatorExecutionFeatures(operator):
 
 #Función que identifica si el operador es SCAN, SUBQUERY, u otro.
 def IdentifyOperatorType(operator):
-	if all(element in operator['profile_text'] for element in ["P =  ", "RDF_QUAD"]):
+	if all(element in operator['profile_text'] for element in ["DB.DBA.RDF","Key"]):
 		operator['operator_type'] = 1
 	else:
 		operator['operator_type'] = 0

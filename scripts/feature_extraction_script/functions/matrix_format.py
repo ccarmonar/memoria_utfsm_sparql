@@ -5,7 +5,7 @@ print(os.path.abspath(os.curdir))
 os.chdir("..")
 print(os.path.abspath(os.curdir))
 # Opening JSON file
-example = 'test_wikidata17'
+example = 'q2'
 with open('returns/'+example+'.json') as json_file:
     operators = json.load(json_file)
 
@@ -22,7 +22,7 @@ def MatrixFormat(operators):
     for k in operators.keys():
         #time, fanout, input_rows, cardinality_estimate,cardinality_fanout, operator_type, precode_bool, after_code_bool, group_by_read, distinct_bool, TOP_bool,
         # TOP_num, top_order_by_bool, skip_node_bool, skip_node_num, start_optional, end_optional, optional_section, after_test_1op, after_test_lvl, target_bracket,
-        # transitive_bracket, union_sort_lvl, sort_lvl, union_sub_lvl, subquerie_lvl, subquery_select?, select?
+        # transitive_bracket, union_sort_lvl+union_sub_lvl, sort_lvl, subquerie_lvl, subquery_select?, select?
         matrix_format.append([
             operators[k]['time'],
             operators[k]['fanout'],
@@ -46,9 +46,8 @@ def MatrixFormat(operators):
             operators[k]['after_test_lvl'],
             operators[k]['target_bracket'],
             operators[k]['transitive_bracket'],
-            operators[k]['union_sort_lvl'],
+            operators[k]['union_sort_lvl'] + operators[k]['union_sub_lvl'],
             operators[k]['sort_lvl'],
-            operators[k]['union_sub_lvl'],
             operators[k]['subquerie_lvl'],
             operators[k]['subquery_select?'],
             operators[k]['select?'],
@@ -85,9 +84,8 @@ def DataFrameFormat(operators):
         'after_test_lvl',
         'target_bracket',
         'transitive_bracket',
-        'union_sort_lvl',
+        'union_lvl',
         'sort_lvl',
-        'union_sub_lvl',
         'subquerie_lvl',
         'subquery_select?',
         'select?'
@@ -99,9 +97,9 @@ def DataFrameFormat(operators):
 
 
 #x = MatrixFormat(operators)
-x = DataFrameFormat(operators)
+#x = DataFrameFormat(operators)
 
-print(x)
+#print(x)
 #for i in x:
 #    print(i)
 

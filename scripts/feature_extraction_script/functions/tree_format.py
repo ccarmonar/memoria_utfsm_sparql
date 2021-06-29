@@ -1,11 +1,11 @@
 import json, os, hashlib, numpy as np, pandas as pd
+from matrix_format import MatrixFormat
+os.chdir("/home/ccarmona/Memoria/memoria_utfsm_sparql/scripts/feature_extraction_script")
 
 
-print(os.path.abspath(os.curdir))
-os.chdir("..")
-print(os.path.abspath(os.curdir))
+
 # Opening JSON file
-example = 'test_wikidata18'
+example = 'ex047'
 with open('returns/'+example+'.json') as json_file:
     operators = json.load(json_file)
 
@@ -56,6 +56,10 @@ def OnlyScans(operators):
 def IterateBuildTree(prearmed, binary_tree_format):
     if len(prearmed) == 0:
         return binary_tree_format,prearmed
+    if len(prearmed) == 1:
+        binary_tree_format = prearmed
+        prearmed = []
+        return binary_tree_format,prearmed
     else:
         if len(binary_tree_format) == 0:
             aux = [prearmed[2],prearmed[0], prearmed[1]]
@@ -66,34 +70,39 @@ def IterateBuildTree(prearmed, binary_tree_format):
             prearmed = prearmed[2::]
             return IterateBuildTree(prearmed, aux)
 
-def BinaryTreeFormat(operators):
+
+def BinaryTreeFormat(operators, matrix_format):
     list_op = list(operators.keys())
+
     prearmed = []
     j = 0
     for k in range(0, len(list_op)):
         if operators[list_op[k]]['operator_type'] == 1:
             if j == 0  and operators[list_op[k-1]]['start_optional'] == 0:
-                prearmed.append(operators[list_op[k]])
-                #prearmed.append("SCAN")
+                prearmed.append(matrix_format[k])
                 j = 1
             elif j == 0 and  operators[list_op[k - 1]]['start_optional'] == 0:
-                prearmed.append(operators[list_op[k]])
-                #prearmed.append("SCAN")
+                prearmed.append(matrix_format[k])
                 j = 1
             elif j == 1 and operators[list_op[k-1]]['start_optional'] == 1:
-                prearmed.append(operators[list_op[k]])
-                #prearmed.append("SCAN")
+                prearmed.append(matrix_format[k])
                 prearmed.append("LOJ")
             elif j == 1 and operators[list_op[k-1]]['start_optional'] == 0:
-                prearmed.append(operators[list_op[k]])
-                #prearmed.append("SCAN")
+                prearmed.append(matrix_format[k])
                 prearmed.append("IJ")
 
     binary_tree_format = []
+
     binary_tree_format, prearmed = IterateBuildTree(prearmed, binary_tree_format)
 
 
     return binary_tree_format
 
 
-print(BinaryTreeFormat(operators))
+matrix_format = MatrixFormat(operators)
+for k,v in operators.items():
+    if operators[k]['operator_type'] == 1:
+        print(v)
+print("++++")
+print(BinaryTreeFormat(operators, matrix_format))
+
