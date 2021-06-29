@@ -362,9 +362,6 @@ def GetIRI_ID(sparql_query, triple_component):
 	return main_selection
 
 
-def AddJoinType(operators):
-	return 0
-
 
 def SetSorts(operators):
 	sort_lvl = 0
