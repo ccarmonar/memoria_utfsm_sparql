@@ -1,4 +1,6 @@
 import json, os, hashlib, numpy as np, pandas as pd
+
+
 print(os.path.abspath(os.curdir))
 os.chdir("..")
 print(os.path.abspath(os.curdir))
@@ -58,6 +60,7 @@ def MatrixNumpyFormat(operators):
     matrix_np_format = np.array(MatrixFormat(operators))
     return matrix_np_format
 
+
 def DataFrameFormat(operators):
     columns = [
         'time',
@@ -91,6 +94,8 @@ def DataFrameFormat(operators):
     ]
     df_format = pd.DataFrame(MatrixFormat(operators), index=operators.keys(), columns=columns)
     return df_format
+
+
 
 
 #x = MatrixFormat(operators)
