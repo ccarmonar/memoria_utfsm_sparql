@@ -1,7 +1,7 @@
 import json, os, hashlib, re, numpy as np, pandas as pd
 from aux import MainCurlyBrackets
 
-filename = "test_wikidata27"
+filename = "ex415"
 
 profile_normal = open('/home/ccarmona/Memoria/memoria_utfsm_sparql/scripts/outputs/outputs_' + filename + '/profile_normal_file_' + filename, 'r', encoding = 'latin-1').read()
 with open('/home/ccarmona/Memoria/memoria_utfsm_sparql/scripts/feature_extraction_script/returns/'+filename+'.json') as json_file:
@@ -9,7 +9,14 @@ with open('/home/ccarmona/Memoria/memoria_utfsm_sparql/scripts/feature_extractio
 
 
 def GeneralFeaturesFromProfileFile(profile_file,operators):
+     ## IDENTIFICAR LIMIT
+    limit = 0
+    for k in operators.keys():
+        if operators[k]['skip_node_bool'] == 1 or operators[k]['TOP_bool'] == 1:
+            limit = operators[k]['TOP_num'] + operators[k]['skip_node_num']
+    # CREAR LLAVE DE GENERAL_FEATURES
     operators['GENERAL_FEATURES'] = {
+        'LIMIT' : limit,
         'precompiled' : {
             'ql_rt_msec': '0',
             'ql_rt_clocks': '0',
@@ -29,12 +36,15 @@ def GeneralFeaturesFromProfileFile(profile_file,operators):
             'ql_c_cl_wait': '0'
         }
     }
+
+
+
     replace_string = profile_file.replace(MainCurlyBrackets(profile_normal),'').replace('Warning: You might have a Cartesian product.','').split('{}')
     general_features_string = replace_string[1].strip().split('Compilation:')
     precompilation_list = general_features_string[0].strip().split()
     compilation_list = general_features_string[1].strip().split()
-    print(precompilation_list)
-    print(compilation_list)
+    #print(precompilation_list)
+    #print(compilation_list)
 
 
     #ALL FEATURE WAS COMPUTED
@@ -91,8 +101,6 @@ def GeneralFeaturesFromProfileFile(profile_file,operators):
 
     return operators
 
-
-
 operators = GeneralFeaturesFromProfileFile(profile_normal,operators)
 for k,v in operators['GENERAL_FEATURES'].items():
-    print(k,v)
+    print(str(k)+" : "+str(v))

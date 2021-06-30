@@ -99,3 +99,12 @@ def CountCurlyBrackets(operator):
 
 def SubstractStrings(a, b):
 	return "".join(a.rsplit(b))
+
+
+#Función que retorna todos los predicados leidos en un query profile
+def GetAllPredicatesFromProfile(operators):
+	set_predicates = set(())
+	for k in operators.keys():
+		if 'P' in operators[k].keys():
+			set_predicates.add(operators[k]['P'])
+	return list(set_predicates)

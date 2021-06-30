@@ -1,11 +1,11 @@
 import json, os, hashlib, numpy as np, pandas as pd
-
+from aux import GetAllPredicatesFromProfile
 
 print(os.path.abspath(os.curdir))
 os.chdir("..")
 print(os.path.abspath(os.curdir))
 # Opening JSON file
-example = 'q2'
+example = 'test_wikidata14'
 with open('returns/'+example+'.json') as json_file:
     operators = json.load(json_file)
 
@@ -17,13 +17,16 @@ def HashStringId(string):
     return sha_return
 
 
-def MatrixFormat(operators):
+def MatrixFormat(operators, predicates):
     matrix_format = []
     for k in operators.keys():
+        aux = []
+        aux2 = []
         #time, fanout, input_rows, cardinality_estimate,cardinality_fanout, operator_type, precode_bool, after_code_bool, group_by_read, distinct_bool, TOP_bool,
         # TOP_num, top_order_by_bool, skip_node_bool, skip_node_num, start_optional, end_optional, optional_section, after_test_1op, after_test_lvl, target_bracket,
         # transitive_bracket, union_sort_lvl+union_sub_lvl, sort_lvl, subquerie_lvl, subquery_select?, select?
-        matrix_format.append([
+
+        aux.extend([
             operators[k]['time'],
             operators[k]['fanout'],
             operators[k]['input_rows'],
@@ -50,18 +53,25 @@ def MatrixFormat(operators):
             operators[k]['sort_lvl'],
             operators[k]['subquerie_lvl'],
             operators[k]['subquery_select?'],
-            operators[k]['select?'],
+            operators[k]['select?']
         ])
+        for p in predicates:
+            aux.append(operators[k][p])
+
+        matrix_format.append(aux)
+
+
     return matrix_format
 
 
-def MatrixNumpyFormat(operators):
-    matrix_np_format = np.array(MatrixFormat(operators))
+def MatrixNumpyFormat(operators,predicates):
+    matrix_np_format = np.array(MatrixFormat(operators,predicates))
     return matrix_np_format
 
 
-def DataFrameFormat(operators):
-    columns = [
+def DataFrameFormat(operators,predicates):
+    columns = []
+    columns_general = [
         'time',
         'fanout',
         'input_rows',
@@ -90,16 +100,27 @@ def DataFrameFormat(operators):
         'subquery_select?',
         'select?'
     ]
-    df_format = pd.DataFrame(MatrixFormat(operators), index=operators.keys(), columns=columns)
+    columns_predicates = []
+    for p in predicates:
+        columns_predicates.append(p)
+
+    columns.extend(columns_general)
+    columns.extend(columns_predicates)
+
+    df_format = pd.DataFrame(MatrixFormat(operators, predicates), index=operators.keys(), columns=columns)
     return df_format
 
 
 
+predicates = GetAllPredicatesFromProfile(operators)
+x = MatrixFormat(operators,predicates)
+df = DataFrameFormat(operators,predicates)
 
-#x = MatrixFormat(operators)
-#x = DataFrameFormat(operators)
+print(x)
+for i in x:
+    print(i)
 
-#print(x)
-#for i in x:
-#    print(i)
 
+print("----------------------")
+pd.set_option('display.max_columns', None)
+print(df)

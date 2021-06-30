@@ -1,5 +1,7 @@
 import json, os, hashlib, numpy as np, pandas as pd
 from matrix_format import MatrixFormat
+from aux import GetAllPredicatesFromProfile
+
 os.chdir("/home/ccarmona/Memoria/memoria_utfsm_sparql/scripts/feature_extraction_script")
 
 
@@ -98,8 +100,8 @@ def BinaryTreeFormat(operators, matrix_format):
 
     return binary_tree_format
 
-
-matrix_format = MatrixFormat(operators)
+predicates = GetAllPredicatesFromProfile(operators)
+matrix_format = MatrixFormat(operators, predicates)
 for k,v in operators.items():
     if operators[k]['operator_type'] == 1:
         print(v)
