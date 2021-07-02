@@ -2,14 +2,15 @@ import json, os, hashlib, numpy as np, pandas as pd
 from matrix_format import MatrixFormat
 from aux import GetAllPredicatesFromProfile
 
-os.chdir("/home/ccarmona/Memoria/memoria_utfsm_sparql/scripts/feature_extraction_script")
+
+#os.chdir("/home/ccarmona/Memoria/memoria_utfsm_sparql/scripts/feature_extraction_script")
 
 
 
 # Opening JSON file
-example = 'ex047'
-with open('returns/'+example+'.json') as json_file:
-    operators = json.load(json_file)
+#example = 'ex047'
+#with open('returns/'+example+'.json') as json_file:
+#    operators = json.load(json_file)
 
 #operators[k]['time'],
 #operators[k]['fanout'],
@@ -100,11 +101,11 @@ def BinaryTreeFormat(operators, matrix_format):
 
     return binary_tree_format
 
-predicates = GetAllPredicatesFromProfile(operators)
-matrix_format = MatrixFormat(operators, predicates)
-for k,v in operators.items():
-    if operators[k]['operator_type'] == 1:
-        print(v)
-print("++++")
-print(BinaryTreeFormat(operators, matrix_format))
+#predicates = GetAllPredicatesFromProfile(operators)
+#matrix_format = MatrixFormat(operators, predicates)
+#for k,v in operators.items():
+#    if operators[k]['operator_type'] == 1:
+#        print(v)
+#print("++++")
+#print(BinaryTreeFormat(operators, matrix_format))
 

@@ -1,11 +1,10 @@
 import json, os, hashlib, re, numpy as np, pandas as pd
 from aux import MainCurlyBrackets
 
-filename = "ex415"
-
-profile_normal = open('/home/ccarmona/Memoria/memoria_utfsm_sparql/scripts/outputs/outputs_' + filename + '/profile_normal_file_' + filename, 'r', encoding = 'latin-1').read()
-with open('/home/ccarmona/Memoria/memoria_utfsm_sparql/scripts/feature_extraction_script/returns/'+filename+'.json') as json_file:
-    operators = json.load(json_file)
+#filename = "test_wikidata5"
+#profile_normal = open('/home/ccarmona/Memoria/memoria_utfsm_sparql/scripts/outputs/outputs_' + filename + '/profile_normal_file_' + filename, 'r', encoding = 'latin-1').read()
+#with open('/home/ccarmona/Memoria/memoria_utfsm_sparql/scripts/feature_extraction_script/returns/'+filename+'.json') as json_file:
+#    operators = json.load(json_file)
 
 
 def GeneralFeaturesFromProfileFile(profile_file,operators):
@@ -39,7 +38,7 @@ def GeneralFeaturesFromProfileFile(profile_file,operators):
 
 
 
-    replace_string = profile_file.replace(MainCurlyBrackets(profile_normal),'').replace('Warning: You might have a Cartesian product.','').split('{}')
+    replace_string = profile_file.replace(MainCurlyBrackets(profile_file),'').replace('Warning: You might have a Cartesian product.','').split('{}')
     general_features_string = replace_string[1].strip().split('Compilation:')
     precompilation_list = general_features_string[0].strip().split()
     compilation_list = general_features_string[1].strip().split()
@@ -101,6 +100,6 @@ def GeneralFeaturesFromProfileFile(profile_file,operators):
 
     return operators
 
-operators = GeneralFeaturesFromProfileFile(profile_normal,operators)
-for k,v in operators['GENERAL_FEATURES'].items():
-    print(str(k)+" : "+str(v))
+#operators = GeneralFeaturesFromProfileFile(profile_normal,operators)
+#for k,v in operators['GENERAL_FEATURES'].items():
+#    print(str(k)+" : "+str(v))

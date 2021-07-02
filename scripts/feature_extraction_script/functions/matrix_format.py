@@ -5,9 +5,9 @@ print(os.path.abspath(os.curdir))
 os.chdir("..")
 print(os.path.abspath(os.curdir))
 # Opening JSON file
-example = 'test_wikidata14'
-with open('returns/'+example+'.json') as json_file:
-    operators = json.load(json_file)
+#example = 'test_wikidata14'
+#with open('returns/'+example+'.json') as json_file:
+#    operators = json.load(json_file)
 
 
 def HashStringId(string):
@@ -112,15 +112,15 @@ def DataFrameFormat(operators,predicates):
 
 
 
-predicates = GetAllPredicatesFromProfile(operators)
-x = MatrixFormat(operators,predicates)
-df = DataFrameFormat(operators,predicates)
+#predicates = GetAllPredicatesFromProfile(operators)
+#x = MatrixFormat(operators,predicates)
+#df = DataFrameFormat(operators,predicates)
 
-print(x)
-for i in x:
+#print(x)
+#for i in x:
     print(i)
 
 
-print("----------------------")
-pd.set_option('display.max_columns', None)
-print(df)
+#print("----------------------")
+#pd.set_option('display.max_columns', None)
+#print(df)

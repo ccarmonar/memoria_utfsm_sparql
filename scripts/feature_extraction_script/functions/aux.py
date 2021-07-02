@@ -1,4 +1,4 @@
-import re, time, os
+import re, time, os, hashlib
 
 
 def GetSubstring(string_text,pattern1,pattern2,dotall = True):
@@ -108,3 +108,10 @@ def GetAllPredicatesFromProfile(operators):
 		if 'P' in operators[k].keys():
 			set_predicates.add(operators[k]['P'])
 	return list(set_predicates)
+
+
+def HashStringId(string):
+	sha = hashlib.sha256()
+	sha.update(string.encode())
+	sha_return = sha.hexdigest()
+	return sha_return
