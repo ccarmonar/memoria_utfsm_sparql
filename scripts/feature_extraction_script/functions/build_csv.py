@@ -1,14 +1,11 @@
-import json, os, re, numpy as np, pandas as pd
-from general_features import GeneralFeaturesFromProfileFile
-from matrix_format import MatrixFormat, MatrixNumpyFormat, DataFrameFormat
-from tree_format import IdentifyJoinType, OnlyScans, IterateBuildTree, BinaryTreeFormat
-from aux import HashStringId, GetAllPredicatesFromProfile
-
-os.chdir("/home/ccarmona/Memoria/memoria_utfsm_sparql/scripts/feature_extraction_script")
+import pandas as pd
+from functions.general_features import GeneralFeaturesFromProfileFile
+from functions.matrix_format import MatrixFormat, MatrixNumpyFormat, DataFrameFormat
+from functions.tree_format import IdentifyJoinType, OnlyScans, IterateBuildTree, BinaryTreeFormat
+from functions.aux import HashStringId
 
 
-def AllData(operators, profile):
-    predicates = GetAllPredicatesFromProfile(operators)
+def AllData(operators, profile, predicates, filename, sparql_file):
     matrix_format = MatrixFormat(operators, predicates)
     binary_tree = BinaryTreeFormat(operators, matrix_format)
     general_features = GeneralFeaturesFromProfileFile(profile, operators)
@@ -16,7 +13,7 @@ def AllData(operators, profile):
     limit = general_features['GENERAL_FEATURES']['LIMIT']
     precompiled_list = list(general_features['GENERAL_FEATURES']['precompiled'].values())
     compiled_list = list(general_features['GENERAL_FEATURES']['compiled'].values())
-    all_data = [unique_id,limit] + precompiled_list + compiled_list
+    all_data = [unique_id, filename, sparql_file, profile, limit] + precompiled_list + compiled_list
     all_data.append(str(matrix_format))
     all_data.append(str(binary_tree))
     return all_data
@@ -24,6 +21,9 @@ def AllData(operators, profile):
 def FullDataframe(list_of_features):
     columns= [
         'unique_id',
+        'filename',
+        'sparql_file',
+        'profile',
         'limit',
         'ql_rt_msec',
         'ql_rt_clocks',
@@ -49,28 +49,4 @@ def ExportToCSV():
     return 0
 
 
-
-# Opening JSON file
-filename1 = 'test_wikidata5'
-with open('returns/'+filename1+'.json') as json_file:
-    operators1 = json.load(json_file)
-profile_normal1 = open('/home/ccarmona/Memoria/memoria_utfsm_sparql/scripts/outputs/outputs_' + filename1 + '/profile_normal_file_' + filename1, 'r', encoding = 'latin-1').read()
-
-filename2 = 'test_wikidata2'
-with open('returns/'+filename2+'.json') as json_file:
-    operators2 = json.load(json_file)
-profile_normal2 = open('/home/ccarmona/Memoria/memoria_utfsm_sparql/scripts/outputs/outputs_' + filename2 + '/profile_normal_file_' + filename2, 'r', encoding = 'latin-1').read()
-
-
-ex1 = AllData(operators1,profile_normal1)
-ex2 = AllData(operators2,profile_normal2)
-
-examples = []
-examples.append(ex1)
-examples.append(ex2)
-
-
-df = FullDataframe(examples)
-print(df)
-print(df.to_csv('test.csv', index=False))
 

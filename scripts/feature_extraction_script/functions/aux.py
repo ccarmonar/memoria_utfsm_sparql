@@ -1,4 +1,4 @@
-import re, time, os, hashlib
+import re, hashlib
 
 
 def GetSubstring(string_text,pattern1,pattern2,dotall = True):

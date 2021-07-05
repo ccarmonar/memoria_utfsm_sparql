@@ -1,5 +1,4 @@
-import re, time, os
-from functions.aux import GetSubstring,ParseNestedBracket,CleanOperators,GetPrefixes,VectorString, CleanSalts, SubstractStrings
+from functions.aux import GetSubstring, ParseNestedBracket, CleanOperators, GetPrefixes, VectorString, CleanSalts, SubstractStrings
 
 
 #Funcion que guarda los resultados finales:

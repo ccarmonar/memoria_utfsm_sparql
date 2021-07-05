@@ -1,11 +1,4 @@
-import json, os, hashlib, re, numpy as np, pandas as pd
-from aux import MainCurlyBrackets
-
-#filename = "test_wikidata5"
-#profile_normal = open('/home/ccarmona/Memoria/memoria_utfsm_sparql/scripts/outputs/outputs_' + filename + '/profile_normal_file_' + filename, 'r', encoding = 'latin-1').read()
-#with open('/home/ccarmona/Memoria/memoria_utfsm_sparql/scripts/feature_extraction_script/returns/'+filename+'.json') as json_file:
-#    operators = json.load(json_file)
-
+from functions.aux import MainCurlyBrackets
 
 def GeneralFeaturesFromProfileFile(profile_file,operators):
      ## IDENTIFICAR LIMIT
@@ -99,7 +92,3 @@ def GeneralFeaturesFromProfileFile(profile_file,operators):
             operators['GENERAL_FEATURES']['compiled']['ql_c_cl_wait'] = compilation_list[i - 1]
 
     return operators
-
-#operators = GeneralFeaturesFromProfileFile(profile_normal,operators)
-#for k,v in operators['GENERAL_FEATURES'].items():
-#    print(str(k)+" : "+str(v))

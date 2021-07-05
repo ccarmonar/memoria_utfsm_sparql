@@ -10,9 +10,11 @@ isql_host="1111";
 isql_username="dba";
 isql_password="dba";
 
-arr=("af ag ah ai aj")
+arr=("aa ab")
 for i in ${arr[@]}
 do
 	echo "$i"
 	./iterate_insert_wikidata.sh "$i"
 done
+
+shutdown 5

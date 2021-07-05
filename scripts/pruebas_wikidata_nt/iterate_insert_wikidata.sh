@@ -32,10 +32,10 @@ for file in $current_path/*'.nt'; do
 	done
 		
 	if [ $iterar == 1 ]; then
-		echo "Initial Clean en $1,$subsplit"
-		./clean_data.sh $1 $subsplit
-		#echo "inster en wikidata en $1,$subsplit"
-		#./insert_wikidata_split.sh $1 $subsplit
+		#echo "Initial Clean en $1,$subsplit"
+		#./clean_data.sh $1 $subsplit
+		echo "inster en wikidata en $1,$subsplit"
+		./insert_wikidata_split.sh $1 $subsplit
 	fi	
 
 

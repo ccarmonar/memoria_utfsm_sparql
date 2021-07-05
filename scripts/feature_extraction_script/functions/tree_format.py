@@ -1,47 +1,3 @@
-import json, os, hashlib, numpy as np, pandas as pd
-from matrix_format import MatrixFormat
-from aux import GetAllPredicatesFromProfile
-
-
-#os.chdir("/home/ccarmona/Memoria/memoria_utfsm_sparql/scripts/feature_extraction_script")
-
-
-
-# Opening JSON file
-#example = 'ex047'
-#with open('returns/'+example+'.json') as json_file:
-#    operators = json.load(json_file)
-
-#operators[k]['time'],
-#operators[k]['fanout'],
-#operators[k]['input_rows'],
-#operators[k]['cardinality_estimate'],
-#operators[k]['cardinality_fanout'],
-#operators[k]['operator_type'],
-#operators[k]['precode_bool'],
-#operators[k]['after_code_bool'],
-#operators[k]['group_by_read_bool'],
-#operators[k]['distinct_bool'],
-#operators[k]['TOP_bool'],
-#operators[k]['TOP_num'],
-#operators[k]['top_order_by_bool'],
-#operators[k]['skip_node_bool'],
-#operators[k]['skip_node_num'],
-#operators[k]['start_optional'],
-#operators[k]['end_optional'],
-#operators[k]['optional_section?'],
-#operators[k]['after_test_1op?'],
-#operators[k]['after_test_lvl'],
-#operators[k]['target_bracket'],
-#operators[k]['transitive_bracket'],
-#operators[k]['union_sort_lvl'],
-#operators[k]['sort_lvl'],
-#operators[k]['union_sub_lvl'],
-#operators[k]['subquerie_lvl'],
-#operators[k]['subquery_select?'],
-#operators[k]['select?'],
-
-
 def IdentifyJoinType(operator):
     print(operator[''])
     join_type = 0
@@ -100,12 +56,3 @@ def BinaryTreeFormat(operators, matrix_format):
 
 
     return binary_tree_format
-
-#predicates = GetAllPredicatesFromProfile(operators)
-#matrix_format = MatrixFormat(operators, predicates)
-#for k,v in operators.items():
-#    if operators[k]['operator_type'] == 1:
-#        print(v)
-#print("++++")
-#print(BinaryTreeFormat(operators, matrix_format))
-
