@@ -1,0 +1,62 @@
+http://learningsparql.com/ns/data/book312	http://purl.org/dc/elements/1.1/title	Jabez Easterbrook	
+
+  { 
+    Precode:
+      0:   { 
+          time       4.9% fanout         1 input         1 rows
+            clear: (<V ext_sets$64 i>, <V set_ctr$46 in>)
+          s# 65 47 cluster outer seq start, set no <V set_ctr$46 in>    
+          save ctx:()
+          time        68% fanout         1 input         1 rows
+          Precode:
+            0: <V vector$27 x> := Call vector ()
+            5: <V DB.DBA.RDF_MAKE_LONG_OF_SQLVAL$29 a> := Call DB.DBA.RDF_MAKE_LONG_OF_SQLVAL (<c Jabez Easterbrook>)
+            12: <V vector$31 x> := Call vector ( 3 ,  IRI_ID"...book312" ,  3 ,  IRI_ID"...1.1/title" ,  3 , <V DB.DBA.RDF_MAKE_LONG_OF_SQLVAL$29 a>)
+            17: <V vector$33 x> := Call vector (<V vector$31 x>)
+            22: BReturn 0
+            clear: (<V vector$33 x>, <V vector$31 x>, <V DB.DBA.RDF_MAKE_LONG_OF_SQLVAL$29 a>, <V vector$27 x>)$31 (48 ) $29 (48 ) 
+          s# 97 48 Fork 48 {  
+                clear: (<V __stub$36 in>, <V set_no$37 i>, <V user_aggr_ret$51 x>)$33 (35 ) $27 (35 ) 
+              s# 76 35 Subquery 35 
+                multistate set no = <V set_no$37 i>
+                { 
+                  time       4.6% fanout         1 input         1 rows
+                  Precode:
+                    0: <V __stub$36 in> :=  := artm  1 
+                    4: BReturn 0
+                    clear: (<V __stub$36 in>)
+                  s# 81 44 END Node
+                  time       2.6% fanout         0 input         1 rows
+                  $36 (44 ) 
+                  s# 76 38 Subquery Select(<r __stub$36 via  Set81>)
+                    set no: <r set_no$37 via  Set81>
+                }
+              
+              After code:
+                0: if (user_aggr_notfirst$49  =  1 ) then 15 else 4 unkn 4
+                4: user_aggr_notfirst$49  :=  := artm  1 
+                8: <V user_aggr_ret$51 x> := Call DB.DBA.SPARQL_CONSTRUCT_INIT (user_aggr_env$50 )
+                15: <V user_aggr_ret$51 x> := Call DB.DBA.SPARQL_CONSTRUCT_ACC (user_aggr_env$50 , <r vector$27 via  Set76>, <r vector$27 via  Set76>, <r vector$33 via  Set76>,  1 )
+                22: BReturn 0
+          }
+          time        18% fanout         1 input         1 rows
+            clear: (<V callret-0$52 x>)
+          s# 104 62 skip node  1  <none> <V set_ctr$46 in>
+          After code:
+            0: <V callret-0$52 x> := Call DB.DBA.SPARQL_CONSTRUCT_FIN (user_aggr_env$50 )
+            7: BReturn 0
+          time       1.2% fanout         0 input         1 rows
+          $64 (62 48 47 ) $46 (62 48 47 ) $52 (62 ) 
+          s# 112 54 Subquery Select(<V callret-0$52 x>)
+            set no: <r set_ctr$46 via  Set104>
+        }
+      
+      8:  <none>  := Call DB.DBA.RDF_DICT_OF_TRIPLES_TO_THREE_COLS (scalar$120 )
+      15: BReturn 0
+    
+    END Node
+  }
+
+
+ 1 msec 18% cpu,         0 rnd         0 seq         0% same seg         0% same pg 
+Compilation: 1 msec 0 reads         0% read 0 messages         0% clw

@@ -1,0 +1,60 @@
+http://www.wikidata.org/entity/Q3760996		http://www.wikidata.org/entity/Q182955	
+http://www.wikidata.org/entity/Q3960012		http://www.wikidata.org/entity/Q182955	
+http://www.wikidata.org/entity/Q3802366		http://www.wikidata.org/entity/Q182955	
+http://www.wikidata.org/entity/Q4023582		http://www.wikidata.org/entity/Q182955	
+http://www.wikidata.org/entity/Q4009316		http://www.wikidata.org/entity/Q2943	
+
+  { 
+    time      0.02% fanout         1 input         1 rows
+    Subquery 27 
+      { 
+        time     0.013% fanout         1 input         1 rows
+        fork {
+            time      0.41% fanout         5 input         1 rows
+            RDF_QUAD_POGS         5 rows(t2.S$33)
+             P =  IRI_ID"...direct/P276"  ,  O =  IRI_ID"...Q2943" 
+            time     0.016% fanout         1 input         5 rows
+            outer {
+                time      0.59% fanout         1 input         5 rows
+                RDF_QUAD       1.1 rows(t4.O$36)
+                 inlined  P =  IRI_ID"...direct/P195"  ,  S = k_t2.S$128
+                time     0.012% fanout         1 input         5 rows
+              } /* end of outer */
+            set_ctr$39
+             out: (t4.O$36)
+             shadow: ( <none> )
+            time        99% fanout         0 input         5 rows
+            Precode:
+              0: __ro2sq$48 := Call __ro2sq (t4.O$36)
+              5: $52 :=  := artm <DB_NULL>
+              9: BReturn 0
+            Sort (__ro2sq$48) -> (t2.S$33, $52)
+            
+          }
+        time      0.41% fanout         5 input         1 rows
+        Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:         0 Fanout:         5
+        Key from temp (t2.S$33, $52, __ro2sq$48)
+        
+        
+        After code:
+        0: __id2in$67 := Call __id2in (t2.S$33)
+        5: var1$28 :=  := artm __id2in$67
+        9: var2Label$29 :=  := artm <DB_NULL>
+        13: var3$30 :=  := artm __ro2sq$48
+        17: BReturn 0
+        time    0.0045% fanout         0 input         5 rows
+        Subquery Select(var1$28, var2Label$29, var3$30)
+      }
+    
+    After code:
+    0: var1$76 := Call __ro2sq (var1$28)
+    5: var2Label$78 := Call __ro2sq (var2Label$29)
+    10: var3$80 := Call __ro2sq (var3$30)
+    15: BReturn 0
+    time    0.0065% fanout         0 input         5 rows
+    Select (var1$76, var2Label$78, var3$80)
+  }
+
+
+ 16 msec 90% cpu,        15 rnd         8 seq     18.75% same seg      6.25% same pg 
+Compilation: 2 msec 0 reads         0% read 0 messages         0% clw

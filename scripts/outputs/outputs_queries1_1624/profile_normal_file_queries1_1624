@@ -1,0 +1,70 @@
+http://www.wikidata.org/entity/Q12054569			
+http://www.wikidata.org/entity/Q11773736			
+http://www.wikidata.org/entity/Q11895260			
+http://www.wikidata.org/entity/Q15712683			
+http://www.wikidata.org/entity/Q10296026			
+http://www.wikidata.org/entity/Q10296140			
+http://www.wikidata.org/entity/Q27891647			
+http://www.wikidata.org/entity/Q12029904			
+http://www.wikidata.org/entity/Q12033395			
+http://www.wikidata.org/entity/Q12034746			
+http://www.wikidata.org/entity/Q16556655			
+http://www.wikidata.org/entity/Q8548581			
+
+  { 
+    time    0.0011% fanout         1 input         1 rows
+      clear: (<V set_ctr$62 in>)
+    s# 65 63 cluster outer seq start, set no <V set_ctr$62 in>    
+    save ctx:()
+    time   0.00019% fanout         1 input         1 rows
+      clear: (<V set_no$31 i>)
+    s# 74 53 cluster outer seq start, set no <V set_no$31 i>    
+    save ctx:()
+    time     0.017% fanout       216 input         1 rows
+      clear: (<V s_37_6_t1.S$33 rn>)
+      clear on continue: (<V s_37_6_t1.S$33 rn>)
+    s# 83 32 from DB.DBA.RDF_QUAD by RDF_QUAD_POGS    2.2e+02 rows   
+    Key RDF_QUAD_POGS  ASC  (<V s_37_6_t1.S$33 rn>)
+     P =  IRI_ID"...direct/P31"  ,  O =  IRI_ID"...Q15893266" 
+    
+    time      0.77% fanout 0.0555556 input       216 rows
+    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:   0.00012 Fanout:     0.056
+      clear: (<V s_37_6_t0.S$36 rn>)
+      clear on continue: (<V s_37_6_t0.S$36 rn>)$33 () 
+    s# 93 35 from DB.DBA.RDF_QUAD by RDF_QUAD    0.00012 rows   
+    Key RDF_QUAD  ASC  (<V s_37_6_t0.S$36 rn>)
+     inlined  P =  IRI_ID"...direct/P31"  ,  S = <V s_37_6_t1.S$33 rn> ,  O =  IRI_ID"...Q811534" 
+    
+    time     0.028% fanout         1 input        12 rows
+    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:     0.015 Fanout:         1
+    
+    s# 103 38 from DB.DBA.RDF_QUAD by RDF_QUAD_POGS      0.015 rows   
+    Key RDF_QUAD_POGS  ASC  ()
+     inlined  P =  IRI_ID"...direct/P17"  ,  O =  IRI_ID"...Q213"  ,  S = <V s_37_6_t0.S$36 rn>
+    
+    time     0.046% fanout         1 input        12 rows
+      clear: (<V var2$30 x>, <V var1Label$29 x>, <V var1$28 rn>)$36 (38 ) 
+    s# 112 40 Distinct (HASH) set no <r set_no$31 via  Set103 Set93 Set83>(<r s_37_6_t0.S$36 via  Set103>)
+    After code:
+      0: <V var1$28 rn> :=  := artm <r s_37_6_t0.S$36 via  Set112 Set103>
+      4: <V var1Label$29 x> :=  := artm <DB_NULL>
+      8: <V var2$30 x> :=  := artm <DB_NULL>
+      12: BReturn 0
+    time        99% fanout         1 input        12 rows
+      clear: (<V var1$54 a>)$31 (40 38 35 32 53 ) $28 (40 ) 
+    s# 123 46 Subquery Select(<V var1$28 rn>, <V var1Label$29 x>, <V var2$30 x>)
+      set no: <r set_no$31 via  Set112 Set103 Set93 Set83>
+    After code:
+      0: <V var1$54 a> := Call __ro2sq (<V var1$28 rn>)
+      5: BReturn 0
+    time   0.00061% fanout         0 input        12 rows
+    $62 (46 40 38 35 32 53 63 ) $54 (46 ) $29 (46 40 ) $30 (46 40 ) 
+    s# 130 56 Select (<V var1$54 a>, <V var1Label$29 x>, <V var2$30 x>)
+      set no: <r set_ctr$62 via  Set123>
+  }
+Warning: You might have a Cartesian product.
+
+
+
+ 160 msec 93% cpu,       241 rnd       215 seq    53.719% same seg   38.0165% same pg 
+Compilation: 11 msec 0 reads         0% read 0 messages         0% clw

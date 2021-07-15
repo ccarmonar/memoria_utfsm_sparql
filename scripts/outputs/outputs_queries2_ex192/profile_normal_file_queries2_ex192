@@ -1,0 +1,93 @@
+http://learningsparql.com/ns/data#joan	http://www.w3.org/1999/02/22-rdf-syntax-ns#type	http://learningsparql.com/ns/addressbook#Aunt	
+http://learningsparql.com/ns/data#mike	http://learningsparql.com/ns/addressbook#hasAunt	http://learningsparql.com/ns/data#gene	
+http://learningsparql.com/ns/data#gene	http://www.w3.org/1999/02/22-rdf-syntax-ns#type	http://learningsparql.com/ns/addressbook#Aunt	
+http://learningsparql.com/ns/data#jane	http://learningsparql.com/ns/addressbook#hasAunt	http://learningsparql.com/ns/data#joan	
+
+  { 
+    Precode:
+      0:   { 
+          time       0.9% fanout         1 input         1 rows
+            clear: (<V ext_sets$67 i>, <V set_ctr$49 in>)
+          s# 68 50 cluster outer seq start, set no <V set_ctr$49 in>    
+          save ctx:()
+          time       3.5% fanout         1 input         1 rows
+          Precode:
+            0: <V vector$27 x> := Call vector ( 1 ,  1 ,  3 ,  IRI_ID"...type" ,  3 ,  IRI_ID"...Aunt" )
+            5: <V vector$29 x> := Call vector ( 1 ,  0 ,  3 ,  IRI_ID"...hasAunt" ,  1 ,  1 )
+            10: <V vector$31 x> := Call vector (<V vector$27 x>, <V vector$29 x>)
+            15: <V vector$33 x> := Call vector ()
+            20: BReturn 0
+            clear: (<V vector$33 x>, <V vector$31 x>, <V vector$29 x>, <V vector$27 x>)$27 (51 ) $29 (51 ) 
+          s# 146 51 Fork 51 {  
+              time        18% fanout         4 input         1 rows
+                clear: (<V s_21_13_t2.S$36 rn>, <V s_21_13_t2.O$37 an>)
+                clear on continue: (<V s_21_13_t2.S$36 rn>, <V s_21_13_t2.O$37 an>)
+              s# 79 35 from DB.DBA.RDF_QUAD by RDF_QUAD          4 rows   
+              Key RDF_QUAD  ASC  (<V s_21_13_t2.O$37 an>, <V s_21_13_t2.S$36 rn>)
+               inlined  P =  IRI_ID"...hasParent" 
+              
+              time       8.7% fanout       0.5 input         4 rows
+                clear: (<V s_21_13_t3.O$40 an>)
+                clear on continue: (<V s_21_13_t3.O$40 an>)$94 (39 ) 
+              s# 90 39 from DB.DBA.RDF_QUAD by RDF_QUAD          1 rows   
+              Key RDF_QUAD  ASC  (<V s_21_13_t3.O$40 an>)
+               inlined  P =  IRI_ID"...hasParent"  ,  S = <v k_s_21_13_t2.O$94 Set96 rn>
+              vector param casts: <V s_21_13_t2.O$37 an>-> <v k_s_21_13_t2.O$94 Set96 rn>
+              
+              time        12% fanout         2 input         2 rows
+                clear: (<V s_21_13_t4.S$43 rn>)
+                clear on continue: (<V s_21_13_t4.S$43 rn>)$40 () $108 (42 ) 
+              s# 104 42 from DB.DBA.RDF_QUAD by RDF_QUAD_POGS        2.7 rows   
+              Key RDF_QUAD_POGS  ASC  (<V s_21_13_t4.S$43 rn>)
+               P =  IRI_ID"...hasParent"  ,  O = <v cast$108 Set110 an>
+              vector param casts: <V s_21_13_t3.O$40 an>-> <v cast$108 Set110 an>
+              
+              time       2.4% fanout       0.5 input         4 rows
+              $37 (42 39 ) 
+              s# 123 118 END Node
+              After test:
+                0: if (<r s_21_13_t2.O$37 via  Set104 Set110 Set90 Set96> = <V s_21_13_t4.S$43 rn>) then 5 else 4 unkn 5
+                4: BReturn 1
+                5: BReturn 0
+              time        51% fanout         0 input         2 rows
+              Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:       1.3 Fanout:         0
+              Precode:
+                0: <V vector$45 x> := Call vector (<r s_21_13_t2.S$36 via  Set123 Set104 Set110 Set90 Set96>, <r s_21_13_t4.S$43 via  Set123>)
+                5: BReturn 0
+                clear: (<V vector$45 x>, <V user_aggr_ret$54 x>)
+                clear on continue: (<V user_aggr_ret$54 x>)$36 (118 42 39 ) $135 (47 ) $43 (118 ) $45 (47 ) 
+              s# 131 47 from DB.DBA.RDF_QUAD by RDF_QUAD        1.3 rows   
+              Key RDF_QUAD  ASC  ()
+               inlined  P =  IRI_ID"...gender"  ,  S = <v k_s_21_13_t4.S$135 Set137 rn> ,  O =  IRI_ID"...female" 
+              vector param casts: <r s_21_13_t4.S$43 via  Set123>-> <v k_s_21_13_t4.S$135 Set137 rn>
+              
+              After code:
+                0: if (user_aggr_notfirst$52  =  1 ) then 15 else 4 unkn 4
+                4: user_aggr_notfirst$52  :=  := artm  1 
+                8: <V user_aggr_ret$54 x> := Call DB.DBA.SPARQL_CONSTRUCT_INIT (user_aggr_env$53 )
+                15: <V user_aggr_ret$54 x> := Call DB.DBA.SPARQL_CONSTRUCT_ACC (user_aggr_env$53 , <r vector$31 via  Set131 Set137 Set123 Set104 Set110 Set90 Set96 Set79>, <r vector$45 via  Set131 Set137>, <r vector$33 via  Set131 Set137 Set123 Set104 Set110 Set90 Set96 Set79>,  1 )
+                22: BReturn 0
+          }
+          time       3.3% fanout         1 input         1 rows
+            clear: (<V callret-0$55 x>)
+          s# 153 65 skip node  1  <none> <V set_ctr$49 in>
+          After code:
+            0: <V callret-0$55 x> := Call DB.DBA.SPARQL_CONSTRUCT_FIN (user_aggr_env$53 )
+            7: BReturn 0
+          time      0.51% fanout         0 input         1 rows
+          $67 (65 51 50 ) $49 (65 51 50 ) $55 (65 ) 
+          s# 161 57 Subquery Select(<V callret-0$55 x>)
+            set no: <r set_ctr$49 via  Set153>
+        }
+      
+      8:  <none>  := Call DB.DBA.RDF_DICT_OF_TRIPLES_TO_THREE_COLS (scalar$169 )
+      15: BReturn 0
+    
+    END Node
+  }
+Warning: You might have a Cartesian product.
+
+
+
+ 0 msec 14% cpu,         9 rnd         5 seq        50% same seg         0% same pg 
+Compilation: 3 msec 0 reads         0% read 0 messages         0% clw

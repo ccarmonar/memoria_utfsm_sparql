@@ -1,0 +1,62 @@
+http://www.wikidata.org/entity/Q868165	http://www.w3.org/2000/01/rdf-schema#label	Correo Yahoo!	
+http://www.wikidata.org/entity/Q868165	http://www.w3.org/2000/01/rdf-schema#label	Yahoo Mail	
+http://www.wikidata.org/entity/Q868165	http://www.w3.org/2000/01/rdf-schema#label	Yahoo Mail	
+http://www.wikidata.org/entity/Q868165	http://www.w3.org/2000/01/rdf-schema#label	Yahoo! Mail	
+http://www.wikidata.org/entity/Q868165	http://www.w3.org/2000/01/rdf-schema#label	Yahoo! Mail	
+http://www.wikidata.org/entity/Q868165	http://www.w3.org/2000/01/rdf-schema#label	Yahoo! Mail	
+http://www.wikidata.org/entity/Q868165	http://www.w3.org/2000/01/rdf-schema#label	Yahoo! Mail	
+http://www.wikidata.org/entity/Q868165	http://www.w3.org/2000/01/rdf-schema#label	Yahoo! Mail	
+http://www.wikidata.org/entity/Q868165	http://www.w3.org/2000/01/rdf-schema#label	Yahoo! Mail	
+http://www.wikidata.org/entity/Q868165	http://www.w3.org/2000/01/rdf-schema#label	Yahoo! Mail	
+http://www.wikidata.org/entity/Q868165	http://www.w3.org/2000/01/rdf-schema#label	Yahoo! Mail	
+http://www.wikidata.org/entity/Q868165	http://www.w3.org/2000/01/rdf-schema#label	Yahoo! Mail	
+http://www.wikidata.org/entity/Q868165	http://www.w3.org/2000/01/rdf-schema#label	Yahoo! Mail	
+http://www.wikidata.org/entity/Q868165	http://www.w3.org/2000/01/rdf-schema#label	Yahoo! Mail	
+http://www.wikidata.org/entity/Q868165	http://www.w3.org/2000/01/rdf-schema#label	Yahoo! Mail	
+http://www.wikidata.org/entity/Q868165	http://www.w3.org/2000/01/rdf-schema#label	Yahoo! Mail	
+http://www.wikidata.org/entity/Q868165	http://www.w3.org/2000/01/rdf-schema#label	Yahoo! Mail	
+http://www.wikidata.org/entity/Q868165	http://www.w3.org/2000/01/rdf-schema#label	Yahoo! Mail	
+http://www.wikidata.org/entity/Q868165	http://www.w3.org/2000/01/rdf-schema#label	Yahoo! Mail	
+http://www.wikidata.org/entity/Q868165	http://www.w3.org/2000/01/rdf-schema#label	Yahoo! Mail	
+
+  { 
+    time     5e-06% fanout         1 input         1 rows
+      clear: (<V set_ctr$49 in>)
+    s# 55 50 cluster outer seq start, set no <V set_ctr$49 in>    
+    save ctx:()
+    time      0.86% fanout 1.5569e+07 input         1 rows
+      clear: (<V s_11_2_t0.P$28 rn>, <V s_11_2_t0.S$29 rn>, <V s_11_2_t0.O$30 an>)
+      clear on continue: (<V s_11_2_t0.P$28 rn>, <V s_11_2_t0.S$29 rn>, <V s_11_2_t0.O$30 an>)
+    s# 64 27 from DB.DBA.RDF_QUAD by RDF_QUAD_POGS    9.4e+07 rows   
+    Key RDF_QUAD_POGS  ASC  (<V s_11_2_t0.O$30 an>, <V s_11_2_t0.S$29 rn>, <V s_11_2_t0.P$28 rn>)
+    
+    
+    time        99% fanout 1.60576e-06 input 1.5569e+07 rows
+      clear: (<V rdf_regex_impl$35 i>, <V __ro2sq$33 a>)
+    s# 81 76 END Node
+    After test:
+      0: <V __ro2sq$33 a> := Call __ro2sq (<V s_11_2_t0.O$30 an>)
+      5: <V rdf_regex_impl$35 i> := Call rdf_regex_impl (<V __ro2sq$33 a>, <c yahoo>, <c i>)
+      10: if ( 0  = <V rdf_regex_impl$35 i>) then 15 else 14 unkn 15
+      14: BReturn 1
+      15: BReturn 0
+    time   0.00053% fanout         1 input        25 rows
+      clear: (<V o$41 a>, <V p$39 a>, <V s$37 a>)$28 (76 ) $29 (76 ) $30 (76 ) 
+    s# 89 53 skip node  50  <none> <r set_ctr$49 via  Set81 Set64>
+    After code:
+      0: <V s$37 a> := Call __id2in (<r s_11_2_t0.S$29 via  Set89 Set81>)
+      5: <V p$39 a> := Call __id2in (<r s_11_2_t0.P$28 via  Set89 Set81>)
+      10: <V o$41 a> := Call __ro2sq (<r s_11_2_t0.O$30 via  Set89 Set81>)
+      15: BReturn 0
+    time   9.7e-07% fanout         0 input        25 rows
+    $37 (53 ) $39 (53 ) $41 (53 ) $49 (53 76 27 50 ) 
+    s# 97 43 Select (<V s$37 a>, <V p$39 a>, <V o$41 a>)
+      set no: <r set_ctr$49 via  Set89 Set81 Set64>
+  }
+Warning: You might have a Cartesian product.
+
+
+
+ 42566 msec 99% cpu, 3.38504e+06 rnd 1.55524e+07 seq         0% same seg   87.8712% same pg 
+1377 disk reads, 0 read ahead,   34.6637% wait
+Compilation: 9 msec 0 reads         0% read 0 messages         0% clw

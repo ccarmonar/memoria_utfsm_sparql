@@ -1,0 +1,69 @@
+http://www.wikidata.org/entity/Q3327506	1978-01-01 00:00:00Z	
+http://www.wikidata.org/entity/Q3178153	1888-01-01 00:00:00Z	
+http://www.wikidata.org/entity/Q3176156	1902-01-01 00:00:00Z	
+http://www.wikidata.org/entity/Q628594	1991-01-01 00:00:00Z	
+http://www.wikidata.org/entity/Q1086907	1941-02-02 00:00:00Z	
+http://www.wikidata.org/entity/Q1469596	1999-10-02 00:00:00Z	
+http://www.wikidata.org/entity/Q1951112	1993-05-02 00:00:00Z	
+http://www.wikidata.org/entity/Q3550410	1939-01-01 00:00:00Z	
+http://www.wikidata.org/entity/Q9003283	1974-01-01 00:00:00Z	
+http://www.wikidata.org/entity/Q3366676	1977-05-20 00:00:00Z	
+
+  { 
+    time      0.22% fanout         1 input         1 rows
+      clear: (<V set_ctr$38 in>)
+    s# 62 39 cluster outer seq start, set no <V set_ctr$38 in>    
+    save ctx:()
+    time       3.7% fanout      1000 input         1 rows
+      clear: (<V t1.S$28 rn>)
+      clear on continue: (<V t1.S$28 rn>)
+    s# 71 27 from DB.DBA.RDF_QUAD by RDF_QUAD_POGS    1.9e+03 rows   
+    Key RDF_QUAD_POGS  ASC  (<V t1.S$28 rn>)
+     P =  IRI_ID"...direct/P31"  ,  O =  IRI_ID"...Q7278" 
+    
+    time        64% fanout     0.032 input      1000 rows
+      clear: (<V t2.S$31 rn>)
+      clear on continue: (<V t2.S$31 rn>)$28 () 
+    s# 81 30 from DB.DBA.RDF_QUAD by RDF_QUAD      0.036 rows   
+    Key RDF_QUAD  ASC  (<V t2.S$31 rn>)
+     inlined  P =  IRI_ID"...direct/P17"  ,  S = <V t1.S$28 rn> ,  O =  IRI_ID"...Q142" 
+    
+    time        22% fanout         1 input        32 rows
+    Precode:
+      0: <V var1$33 a> := Call __id2in (<V t2.S$31 rn>)
+      5: BReturn 0
+      clear: (<V set_ctr$41 i>, <V var1$33 a>)
+    s# 91 45 cluster outer seq start, set no <V set_ctr$41 i>    
+    save ctx:()
+    time        10% fanout    0.8125 input        32 rows
+      clear: (<V t4.O$36 a>)
+      clear on continue: (<V t4.O$36 a>)$31 (45 ) $104 (35 ) 
+    s# 100 35 from DB.DBA.RDF_QUAD by RDF_QUAD          1 rows   
+    Key RDF_QUAD  ASC  (<V t4.O$36 a>)
+     inlined  P =  IRI_ID"...direct/P571"  ,  S = <v k_t2.S$104 Set106 rn>
+    vector param casts: <r t2.S$31 via  Set91>-> <v k_t2.S$104 Set106 rn>
+    
+    time      0.15% fanout         1 input        26 rows
+    $41 (35 45 ) 
+    s# 114 40 end of outer seq <r set_ctr$41 via  Set100 Set106>
+     out: (<V t4.O$36 a>)
+     shadow: ( <none> )
+    time      0.28% fanout  0.384615 input        26 rows
+      clear: (<V var2$50 a>)$36 (40 ) 
+    s# 122 60 skip node  10  <none> <r set_ctr$38 via  Set114 Set81 Set71>
+    After code:
+      0: <V var2$50 a> := Call __ro2sq (<r t4.O$36 via  Set122>)
+      5: BReturn 0
+    time      0.05% fanout         0 input        10 rows
+    $33 (60 40 35 45 ) $38 (60 40 35 45 30 27 39 ) $50 (60 ) 
+    s# 130 52 Select (<r var1$33 via  Set122 Set114>, <V var2$50 a>)
+      set no: <r set_ctr$38 via  Set122 Set114 Set81 Set71>
+  }
+Warning: You might have a Cartesian product.
+
+Warning: You might have a Cartesian product.
+
+
+
+ 1 msec 4% cpu,      1055 rnd       997 seq   93.9394% same seg   4.07197% same pg 
+Compilation: 21 msec 1 reads   87.3659% read 0 messages         0% clw

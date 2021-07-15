@@ -1,0 +1,25 @@
+
+  { 
+    time      0.49% fanout         1 input         1 rows
+    time       9.6% fanout        73 input         1 rows
+    RDF_QUAD_POGS        73 rows(s_37_6_t1.S$28)
+     P =  IRI_ID"...direct/P20"  ,  O =  IRI_ID"...Q142" 
+    time        85% fanout 0.0136986 input        73 rows
+    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:   0.00011 Fanout:     0.014
+    RDF_QUAD   0.00011 rows(s_37_6_t2.S$31)
+     inlined  P =  IRI_ID"...direct/P19"  ,  S = s_37_6_t1.S$28 ,  O =  IRI_ID"...Q29" 
+    time       5.1% fanout         0 input         1 rows
+    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:     0.039 Fanout:         0
+    RDF_QUAD     0.039 rows(s_37_6_t0.S$34)
+     inlined  P =  IRI_ID"...direct/P106"  ,  S = k_s_37_6_t1.S$80 ,  O =  IRI_ID"...Q36180" 
+    
+    After code:
+    0: var1$36 := Call __id2in (s_37_6_t0.S$34)
+    5: BReturn 0
+    time         0% fanout         0 input         0 rows
+    Select (var1$36)
+  }
+
+
+ 1 msec 28% cpu,        75 rnd        72 seq   59.2105% same seg   26.3158% same pg 
+Compilation: 2 msec 0 reads         0% read 0 messages         0% clw

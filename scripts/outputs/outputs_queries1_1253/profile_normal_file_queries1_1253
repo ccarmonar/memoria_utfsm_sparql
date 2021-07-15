@@ -1,0 +1,83 @@
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+
+  { 
+    time      0.31% fanout         1 input         1 rows
+      clear: (<V set_ctr$35 in>)
+    s# 57 36 cluster outer seq start, set no <V set_ctr$35 in>    
+    save ctx:()
+    time        12% fanout      3000 input         1 rows
+    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:   5.3e+05 Fanout:     3e+03
+      clear: (<V t2.S$28 rn>)
+      clear on continue: (<V t2.S$28 rn>)
+    s# 66 27 from DB.DBA.RDF_QUAD by RDF_QUAD_POGS    5.3e+05 rows   
+    Key RDF_QUAD_POGS  ASC  (<V t2.S$28 rn>)
+     P =  IRI_ID"...direct/P31"  ,  O =  IRI_ID"...Q5" 
+    
+    time        54% fanout     0.284 input      3000 rows
+    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:    0.0075 Fanout:      0.28
+    $80 (30 ) 
+    s# 76 30 from DB.DBA.RDF_QUAD by RDF_QUAD     0.0075 rows   
+    Key RDF_QUAD  ASC  ()
+     P =  IRI_ID"...direct/P569"  ,  S = <v k_t2.S$80 Set82 rn> ,  O < <tag 211 c 1880-01-01 00:00:00Z>
+    row specs:  O < <tag 211 c 1880-01-01 00:00:00Z>
+    vector param casts: <V t2.S$28 rn>-> <v k_t2.S$80 Set82 rn>
+    
+    time      0.95% fanout         1 input       852 rows
+      clear: (<V set_ctr$38 i>)
+    s# 89 42 cluster outer seq start, set no <V set_ctr$38 i>    
+    save ctx:()
+    time        28% fanout   1.01995 input       852 rows
+      clear: (<V t5.O$33 a>)
+      clear on continue: (<V t5.O$33 a>)$102 (32 ) $28 (42 30 ) 
+    s# 98 32 from DB.DBA.RDF_QUAD by RDF_QUAD          1 rows   
+    Key RDF_QUAD  ASC  (<V t5.O$33 a>)
+     inlined  P =  IRI_ID"...direct/P570"  ,  S = <v k_t2.S$102 Set104 rn>
+    vector param casts: <r t2.S$28 via  Set89 Set76 Set82>-> <v k_t2.S$102 Set104 rn>
+    
+    time       1.1% fanout   1.03567 input       869 rows
+    $38 (32 42 ) 
+    s# 112 37 end of outer seq <r set_ctr$38 via  Set98 Set104>
+     out: (<V t5.O$33 a>)
+     shadow: ( <none> )
+    time       3.3% fanout 0.0344444 input       900 rows
+    $33 (37 ) 
+    s# 125 120 END Node
+    After test:
+      0: if (<V t5.O$33 a>  IS NULL   0 ) then 4 else 5 unkn 5
+      4: BReturn 1
+      5: BReturn 0
+    time      0.19% fanout         1 input        31 rows
+    
+    s# 133 55 skip node  100  <none> <r set_ctr$35 via  Set125 Set112 Set76 Set82 Set66>
+    time      0.16% fanout         0 input        31 rows
+    $35 (55 120 37 32 42 30 27 36 ) 
+    s# 141 47 Select (<DB_NULL>, <DB_NULL>)
+      set no: <r set_ctr$35 via  Set133 Set125 Set112 Set76 Set82 Set66>
+  }
+Warning: You might have a Cartesian product.
+
+Warning: You might have a Cartesian product.
+
+
+
+ 1 msec 1% cpu,      3852 rnd      3121 seq   99.7405% same seg 0.0519076% same pg 
+Compilation: 47 msec 0 reads         0% read 0 messages         0% clw

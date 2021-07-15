@@ -1,0 +1,16 @@
+SELECT 1 AS "var1"
+FROM (
+   SELECT "s_37_5_t1"."S" AS "var2"
+    FROM DB.DBA.RDF_QUAD AS "s_37_5_t0"
+      INNER JOIN DB.DBA.RDF_QUAD AS "s_37_5_t1"
+      ON (
+        "s_37_5_t0"."S" = "s_37_5_t1"."O")
+    WHERE
+      "s_37_5_t0"."P" = __i2idn ( __bft( 'http://www.wikidata.org/prop/statement/P161' , 1))
+      AND 
+      "s_37_5_t1"."P" = __i2idn ( __bft( 'http://www.wikidata.org/prop/P161' , 1))
+      AND 
+      "s_37_5_t0"."O" = __i2idn ( __bft( 'http://www.wikidata.org/entity/Q38111' , 1))
+OPTION (QUIETCAST)
+    ) AS "s_37_6"
+OPTION (QUIETCAST)

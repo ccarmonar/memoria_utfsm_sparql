@@ -1,0 +1,49 @@
+http://www.wikidata.org/entity/Q10281306			
+http://www.wikidata.org/entity/Q16330194			
+http://www.wikidata.org/entity/Q18749168			
+http://www.wikidata.org/entity/Q2607437			
+http://www.wikidata.org/entity/Q2607446			
+http://www.wikidata.org/entity/Q2607536			
+http://www.wikidata.org/entity/Q2607632			
+http://www.wikidata.org/entity/Q2607635			
+http://www.wikidata.org/entity/Q2607662			
+http://www.wikidata.org/entity/Q2607672			
+http://www.wikidata.org/entity/Q2607699			
+http://www.wikidata.org/entity/Q2607900			
+http://www.wikidata.org/entity/Q2608002			
+http://www.wikidata.org/entity/Q2608164			
+http://www.wikidata.org/entity/Q2608358			
+http://www.wikidata.org/entity/Q2608366			
+http://www.wikidata.org/entity/Q2608403			
+http://www.wikidata.org/entity/Q2608414			
+http://www.wikidata.org/entity/Q2608739			
+http://www.wikidata.org/entity/Q2608795			
+
+  { 
+    time     0.089% fanout         1 input         1 rows
+    time      0.02% fanout         1 input         1 rows
+    time       2.9% fanout      1000 input         1 rows
+    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:   5.3e+05 Fanout:     1e+03
+    RDF_QUAD_POGS   5.3e+05 rows(t3.S$33)
+     P =  IRI_ID"...direct/P31"  ,  O =  IRI_ID"...Q5" 
+    time        10% fanout         1 input      1000 rows
+    Distinct (t3.S$33)
+    
+    After code:
+    0: var1$28 :=  := artm t3.S$33
+    4: var1Label$29 :=  := artm <DB_NULL>
+    8: var2$30 :=  := artm <DB_NULL>
+    12: BReturn 0
+    time        87% fanout         1 input      1000 rows
+    Subquery Select(var1$28, var1Label$29, var2$30)
+    
+    After code:
+    0: var1$49 := Call __ro2sq (var1$28)
+    5: BReturn 0
+    time     0.028% fanout         0 input      1000 rows
+    Select (var1$49, var1Label$29, var2$30)
+  }
+
+
+ 4 msec 70% cpu,         1 rnd       998 seq         0% same seg         0% same pg 
+Compilation: 1 msec 0 reads         0% read 0 messages         0% clw

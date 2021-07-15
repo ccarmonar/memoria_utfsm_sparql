@@ -1,0 +1,183 @@
+http://www.wikidata.org/entity/Q5362806	
+http://www.wikidata.org/entity/Q20558342	
+http://www.wikidata.org/entity/Q5053948	
+http://www.wikidata.org/entity/Q42313714	
+http://www.wikidata.org/entity/Q13129300	
+http://www.wikidata.org/entity/Q995315	
+http://www.wikidata.org/entity/Q4763163	
+http://www.wikidata.org/entity/Q5362806	
+http://www.wikidata.org/entity/Q20558342	
+http://www.wikidata.org/entity/Q5053948	
+http://www.wikidata.org/entity/Q42313714	
+http://www.wikidata.org/entity/Q13129300	
+http://www.wikidata.org/entity/Q995315	
+http://www.wikidata.org/entity/Q450826	
+http://www.wikidata.org/entity/Q236309	
+http://www.wikidata.org/entity/Q26727497	
+http://www.wikidata.org/entity/Q4763163	
+http://www.wikidata.org/entity/Q24558760	
+
+  { 
+    time     0.054% fanout         1 input         1 rows
+    Precode:
+      0: __rdflit$27  := Call __rdflit (rdflit1423)
+      5: __all_eq$29 := Call __all_eq ( IRI_ID"...Q25" )
+      10: BReturn 0
+    Subquery 31 
+      { 
+        Union
+          { 
+            Subquery 35 
+              { 
+                time       1.1% fanout       104 input         1 rows
+                RDF_QUAD_POGS     1e+02 rows(s_49_4_t0-c5-c17.S$39)
+                 P =  IRI_ID"...direct/P19"  ,  O =  IRI_ID"...Q25" 
+                time        29% fanout         1 input       104 rows
+                Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:     0.091 Fanout:         1
+                RDF_QUAD     0.091 rows(s_60_24_t7.S$42)
+                 inlined  P =  IRI_ID"...direct/P31"  ,  S = s_49_4_t0-c5-c17.S$39 ,  O =  IRI_ID"...Q5" 
+                time       9.3% fanout 0.0673077 input       104 rows
+                RDF_QUAD      0.17 rows(s_60_25_t6-c17.S$45)
+                 inlined  P =  IRI_ID"...direct/P21"  ,  S = k_s_49_4_t0-c5-c17.S$245 ,  O =  IRI_ID"...Q6581072" 
+                time      0.14% fanout         1 input         7 rows
+                Precode:
+                  0: __all_eq$47 := Call __all_eq (s_60_25_t6-c17.S$45, s_49_4_t0-c5-c17.S$39)
+                  5: BReturn 0
+                outer {
+                    Subquery 49 
+                      { 
+                        time       2.6% fanout         1 input         7 rows
+                        RDF_QUAD_POGS         1 rows(s_54_21_t3-c19.S$58, s_54_21_t3-c19.G$57, s_54_21_t3-c19.O$56)
+                         P =  IRI_ID"...about"  ,  O = k___all_eq$272 O LIKE <c Tó>
+                        time      0.47% fanout         0 input         7 rows
+                        Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:   1.1e-07 Fanout:         0
+                        RDF_QUAD_POGS   1.1e-07 rows(s_54_21_t4-c19.S$62, s_54_21_t4-c19.G$61)
+                         inlined  P =  IRI_ID"...inLanguage"  ,  O = rdflit1423 ,  S = s_54_21_t3-c19.S$58
+                        
+                        After code:
+                        0: _::default_52_17$50 :=  := artm s_54_21_t3-c19.G$57
+                        4: sitelink$51 :=  := artm s_54_21_t4-c19.S$62
+                        8: item$52 :=  := artm s_54_21_t3-c19.O$56
+                        12: _::default_52_19$53 :=  := artm s_54_21_t4-c19.G$61
+                        16: BReturn 0
+                        time         0% fanout         0 input         0 rows
+                        Subquery Select(_::default_52_17$50, sitelink$51, item$52, _::default_52_19$53)
+                      }
+                    time         0% fanout         0 input         0 rows
+                  } /* end of outer */
+                set_ctr$72
+                 out: (item$52, set_no$54, sitelink$51, _::default_52_17$50, _::default_52_19$53)
+                 shadow: ( <none> ,  <none> ,  <none> ,  <none> ,  <none> )
+                time     0.056% fanout         1 input         7 rows
+                END Node
+                After test:
+                0: if (sitelink$51  IS NULL   0 ) then 4 else 5 unkn 5
+                4: BReturn 1
+                5: BReturn 0
+                time     0.052% fanout         1 input         7 rows
+                skip node  5000  <none> set_no$37
+                
+                After code:
+                0: item$36 :=  := artm s_60_24_t7.S$42
+                4: BReturn 0
+                time     0.015% fanout         0 input         7 rows
+                Subquery Select(item$36)
+              }
+            
+            After code:
+            0: item$32 :=  := artm item$36
+            4: BReturn 0
+            time    0.0078% fanout         0 input         7 rows
+            Subquery Select(item$32)
+          }
+          { 
+            Subquery 98 
+              { 
+                Transitive dt dir 2, input: (__all_eq$29)
+                  input shadow: (__all_eq$359)
+                  output: (_::trans_subj_49_7$102)
+                  { 
+                    time        15% fanout   1.00521 input       192 rows
+                    RDF_QUAD_POGS       9.6 rows(t15.S$109, t15.O$108)
+                     P =  IRI_ID"...direct/P131"  ,  O = k___all_eq$365
+                    
+                    After code:
+                    0: _::trans_subj_49_7$102 :=  := artm t15.S$109
+                    4: _::trans_obj_49_8$103 :=  := artm t15.O$108
+                    8: BReturn 0
+                    time     0.025% fanout         0 input       193 rows
+                    Subquery Select(_::trans_subj_49_7$102, _::trans_obj_49_8$103)
+                  }
+                time       7.5% fanout  0.603093 input       194 rows
+                RDF_QUAD_POGS       4.1 rows(t13.S$129)
+                 P =  IRI_ID"...direct/P19"  ,  O = cast$389 O LIKE <c Tó>
+                time       8.8% fanout 0.0940171 input       117 rows
+                RDF_QUAD      0.17 rows(t12.S$132)
+                 inlined  P =  IRI_ID"...direct/P21"  ,  S = t13.S$129 ,  O =  IRI_ID"...Q6581072" 
+                time       5.2% fanout         1 input        11 rows
+                Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:     0.091 Fanout:         1
+                RDF_QUAD     0.091 rows(t19.S$135)
+                 inlined  P =  IRI_ID"...direct/P31"  ,  S = t12.S$132 ,  O =  IRI_ID"...Q5" 
+                time     0.035% fanout         1 input        11 rows
+                outer {
+                    Subquery 137 
+                      { 
+                        time       3.4% fanout         1 input        11 rows
+                        Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:        15 Fanout:         1
+                        RDF_QUAD_POGS        15 rows(t17.S$146, t17.G$145, t17.O$144)
+                         P =  IRI_ID"...about"  ,  O = k_t12.S$436 O LIKE <c Tó>
+                        time       0.4% fanout         0 input        11 rows
+                        Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:   1.1e-07 Fanout:         0
+                        RDF_QUAD_POGS   1.1e-07 rows(t18.S$150, t18.G$149)
+                         inlined  P =  IRI_ID"...inLanguage"  ,  O = rdflit1423 ,  S = t17.S$146
+                        
+                        After code:
+                        0: _::default_52_17$138 :=  := artm t17.G$145
+                        4: sitelink$139 :=  := artm t18.S$150
+                        8: item$140 :=  := artm t17.O$144
+                        12: _::default_52_19$141 :=  := artm t18.G$149
+                        16: BReturn 0
+                        time         0% fanout         0 input         0 rows
+                        Subquery Select(_::default_52_17$138, sitelink$139, item$140, _::default_52_19$141)
+                      }
+                    time         0% fanout         0 input         0 rows
+                  } /* end of outer */
+                set_ctr$160
+                 out: (item$140, set_no$142, sitelink$139, _::default_52_19$141, _::default_52_17$138)
+                 shadow: ( <none> ,  <none> ,  <none> ,  <none> ,  <none> )
+                time     0.046% fanout         1 input        11 rows
+                END Node
+                After test:
+                0: if (sitelink$139  IS NULL   0 ) then 4 else 5 unkn 5
+                4: BReturn 1
+                5: BReturn 0
+                time      0.04% fanout         1 input        11 rows
+                skip node  5000  <none> set_no$100
+                
+                After code:
+                0: item$99 :=  := artm t19.S$135
+                4: BReturn 0
+                time     0.007% fanout         0 input        11 rows
+                Subquery Select(item$99)
+              }
+            
+            After code:
+            0: item$32 :=  := artm item$99
+            4: BReturn 0
+            time    0.0041% fanout         0 input        11 rows
+            Subquery Select(item$32)
+          }
+      }
+    time       2.4% fanout         1 input        18 rows
+    skip node  5000  <none> set_ctr$195
+    
+    After code:
+    0: item$187 := Call __id2in (item$32)
+    5: BReturn 0
+    time     0.024% fanout         0 input        18 rows
+    Select (item$187)
+  }
+
+
+ 5 msec 41% cpu,       760 rnd       392 seq   71.6163% same seg   23.2589% same pg 
+Compilation: 6 msec 0 reads         0% read 0 messages         0% clw

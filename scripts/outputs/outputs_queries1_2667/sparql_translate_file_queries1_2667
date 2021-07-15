@@ -1,0 +1,13 @@
+SELECT  COUNT ( DISTINCT
+     "s_37_5_t1"."S") AS "var2"
+FROM DB.DBA.RDF_QUAD AS "s_37_2_t0"
+  INNER JOIN DB.DBA.RDF_QUAD AS "s_37_5_t1"
+  ON (
+    "s_37_5_t1"."S" = "s_37_2_t0"."S")
+WHERE
+  "s_37_2_t0"."P" = __i2idn ( __bft( 'http://www.wikidata.org/prop/direct/P27' , 1))
+  AND 
+  "s_37_2_t0"."O" = __i2idn ( __bft( 'http://www.wikidata.org/entity/Q183' , 1))
+  AND 
+  "s_37_5_t1"."P" = __i2idn ( __bft( 'http://www.wikidata.org/prop/direct/P18' , 1))
+OPTION (QUIETCAST)

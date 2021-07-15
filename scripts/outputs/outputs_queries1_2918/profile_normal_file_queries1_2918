@@ -1,0 +1,70 @@
+http://www.wikidata.org/entity/Q3488144	Association d&#39;auteurs	
+http://www.wikidata.org/entity/Q2862691	Marlier	
+http://www.wikidata.org/entity/Q2910678	Quartier de Bordeaux, France	
+http://www.wikidata.org/entity/Q2925284	Service de police judiciaire français	
+http://www.wikidata.org/entity/Q2986710	Commission chargée d’examiner les demandes individuelles présentées par les victimes ou par leurs ayants droit pour la réparation des préjudices consécutifs aux spoliations de biens	
+http://www.wikidata.org/entity/Q2993072	Région naturelle de France	
+http://www.wikidata.org/entity/Q3060491	Centre commercial français	
+http://www.wikidata.org/entity/Q3113669	Club français de handball basé à Nancy	
+http://www.wikidata.org/entity/Q3113703	Sommet du massif du Vignemale, Pyrénées	
+http://www.wikidata.org/entity/Q3114642	Festival du voyage d&#39;Albertville	
+http://www.wikidata.org/entity/Q3125186	Banque européenne	
+http://www.wikidata.org/entity/Q3240039	BHNS reliant la gare RER de Sucy-Bonneuil au Carrefour de la Résistance à Thiais	
+http://www.wikidata.org/entity/Q3240177	Reseau de transport en commun niçois	
+http://www.wikidata.org/entity/Q4065200	Conflit naval	
+http://www.wikidata.org/entity/Q921944	Editeur de jeux vidéo	
+http://www.wikidata.org/entity/Q308705	Magazine sportif français	
+http://www.wikidata.org/entity/Q3398465	Port dans le Pas-de-Calais, France	
+http://www.wikidata.org/entity/Q3410684	Site remarquable	
+http://www.wikidata.org/entity/Q3416570	Station de radio bretonne	
+http://www.wikidata.org/entity/Q15133262	Sous-marin Saphir (Q44)	
+
+  { 
+    time   0.00034% fanout         1 input         1 rows
+      clear: (<V set_ctr$49 in>)
+    s# 52 50 cluster outer seq start, set no <V set_ctr$49 in>    
+    save ctx:()
+    time     0.014% fanout      2000 input         1 rows
+    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:   5.8e+04 Fanout:     2e+03
+      clear: (<V s_37_4_t0.S$28 rn>)
+      clear on continue: (<V s_37_4_t0.S$28 rn>)
+    s# 61 27 from DB.DBA.RDF_QUAD by RDF_QUAD_POGS    5.8e+04 rows   
+    Key RDF_QUAD_POGS  ASC  (<V s_37_4_t0.S$28 rn>)
+     P =  IRI_ID"...direct/P17"  ,  O =  IRI_ID"...Q142" 
+    
+    time       1.7% fanout     6.508 input      2000 rows
+    Precode:
+      0: <V var1$30 a> := Call __id2in (<V s_37_4_t0.S$28 rn>)
+      5: BReturn 0
+      clear: (<V s_37_4_t1.O$33 an>, <V var1$30 a>)
+      clear on continue: (<V s_37_4_t1.O$33 an>)$28 () 
+    s# 71 32 from DB.DBA.RDF_QUAD by RDF_QUAD         14 rows   
+    Key RDF_QUAD  ASC  (<V s_37_4_t1.O$33 an>)
+     inlined  P =  IRI_ID"...description"  ,  S = <V s_37_4_t0.S$28 rn>
+    
+    time        98% fanout 0.0016134 input     13016 rows
+      clear: (<V DB.DBA.RDF_LANGUAGE_OF_OBJ$39 a>, <V rdf_regex_impl$37 i>, <V __ro2sq$35 a>, <V var1Label$41 a>)$33 () 
+    s# 86 81 END Node
+    After test:
+      0: <V __ro2sq$35 a> := Call __ro2sq (<V s_37_4_t1.O$33 an>)
+      5: <V rdf_regex_impl$37 i> := Call rdf_regex_impl (<V __ro2sq$35 a>, <c ^[A-Z]>)
+      10: if ( 0  = <V rdf_regex_impl$37 i>) then 26 else 14 unkn 26
+      14: <V DB.DBA.RDF_LANGUAGE_OF_OBJ$39 a> := Call DB.DBA.RDF_LANGUAGE_OF_OBJ (<V __ro2sq$35 a>)
+      21: if (<c fr> = <V DB.DBA.RDF_LANGUAGE_OF_OBJ$39 a>) then 25 else 26 unkn 26
+      25: BReturn 1
+      26: BReturn 0
+    After code:
+      0: <V var1Label$41 a> := Call __ro2sq (<r s_37_4_t1.O$33 via  Set86>)
+      5: BReturn 0
+    time   0.00041% fanout         0 input        21 rows
+    $41 (81 ) $49 (81 32 27 50 ) $30 (81 32 ) 
+    s# 95 43 Select (<r var1$30 via  Set86 Set71>, <V var1Label$41 a>)
+      set no: <r set_ctr$49 via  Set86 Set71 Set61>
+  }
+Warning: You might have a Cartesian product.
+
+
+
+ 615 msec 99% cpu,     18207 rnd     13286 seq   9.96815% same seg   20.8095% same pg 
+10 disk reads, 0 read ahead,   14.6912% wait
+Compilation: 2 msec 0 reads         0% read 0 messages         0% clw

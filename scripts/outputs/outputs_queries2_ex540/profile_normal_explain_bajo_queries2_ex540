@@ -1,0 +1,51 @@
+  { 
+    Precode:
+      0:   { 
+          time       3.5% fanout         1 input         1 rows
+          time        12% fanout         1 input         1 rows
+          Precode:
+            0: vector$27 := Call vector ( 1 ,  0 ,  1 ,  1 ,  1 ,  2 ,  3 ,  IRI_ID"...en.joseph_hocking" )
+            5: vector$29 := Call vector (vector$27)
+            10: vector$31 := Call vector ()
+            15: BReturn 0
+          fork {
+              time        55% fanout         0 input         1 rows
+              Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:      0.23 Fanout:         0
+              RDF_QUAD_GS      0.23 rows(s_6_1_t0.S$34)
+               inlined  G =  IRI_ID"...en.joseph_hocking" 
+              time         0% fanout         0 input         0 rows
+              Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:       9.2 Fanout:         0
+              RDF_QUAD_SP       9.2 rows(s_6_1_t0.P$38)
+               inlined  S = s_6_1_t0.S$34
+              time         0% fanout         0 input         0 rows
+              Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:      0.21 Fanout:         0
+              RDF_QUAD      0.21 rows(s_6_1_t0.O$42)
+               inlined  P = k_s_6_1_t0.P$103 ,  S = k_s_6_1_t0.S$107 G =  IRI_ID"...en.joseph_hocking" 
+              
+              After code:
+              0: __ro2lo$45 := Call __ro2lo (s_6_1_t0.O$42)
+              5: vector$47 := Call vector (s_6_1_t0.S$34, s_6_1_t0.P$38, __ro2lo$45)
+              10: if (user_aggr_notfirst$52  =  1 ) then 25 else 14 unkn 14
+              14: user_aggr_notfirst$52  :=  := artm  1 
+              18: user_aggr_ret$54 := Call DB.DBA.SPARQL_CONSTRUCT_INIT (user_aggr_env$53 )
+              25: user_aggr_ret$54 := Call DB.DBA.SPARQL_CONSTRUCT_ACC (user_aggr_env$53 , vector$29, vector$47, vector$31,  1 )
+              32: BReturn 0
+            }
+          time        27% fanout         1 input         1 rows
+          skip node  1  <none> set_ctr$49
+          
+          After code:
+          0: callret-0$55 := Call DB.DBA.SPARQL_CONSTRUCT_FIN (user_aggr_env$53 )
+          7: BReturn 0
+          time       1.7% fanout         0 input         1 rows
+          Subquery Select(callret-0$55)
+        }
+      
+      8:  <none>  := Call DB.DBA.RDF_DICT_OF_TRIPLES_TO_THREE_COLS (scalar$140 )
+      15: BReturn 0
+    END Node
+  }
+
+
+ 0 msec 7% cpu,         1 rnd         0 seq         0% same seg         0% same pg 
+Compilation: 1 msec 0 reads         0% read 0 messages         0% clw

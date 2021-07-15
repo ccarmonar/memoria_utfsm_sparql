@@ -1,0 +1,48 @@
+http://learningsparql.com/ns/demo#i594	http://purl.org/dc/terms/dateCopyrighted	2013	
+http://learningsparql.com/ns/demo#i591	http://purl.org/dc/terms/dateCopyrighted	2013	
+http://learningsparql.com/ns/demo#i592	http://purl.org/dc/terms/dateCopyrighted	2013	
+
+  { 
+    Precode:
+      0:   { 
+          time       1.2% fanout         1 input         1 rows
+          time        15% fanout         1 input         1 rows
+          Precode:
+            0: __rdflit$27 := Call __rdflit (rdflit1204)
+            5: DB.DBA.RDF_MAKE_LONG_OF_SQLVAL$29 := Call DB.DBA.RDF_MAKE_LONG_OF_SQLVAL (<c 2013>)
+            12: vector$31 := Call vector ( 1 ,  0 ,  3 ,  IRI_ID"...dateCopyrighted" ,  3 , DB.DBA.RDF_MAKE_LONG_OF_SQLVAL$29)
+            17: vector$33 := Call vector (vector$31)
+            22: vector$35 := Call vector ()
+            27: BReturn 0
+          fork {
+              time        79% fanout         0 input         1 rows
+              Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:         3 Fanout:         0
+              RDF_QUAD_POGS         3 rows(s_8_5_t1.S$38)
+               P =  IRI_ID"...dateCopyrighted"  ,  O = rdflit1204
+              
+              After code:
+              0: vector$40 := Call vector (s_8_5_t1.S$38)
+              5: if (user_aggr_notfirst$45  =  1 ) then 20 else 9 unkn 9
+              9: user_aggr_notfirst$45  :=  := artm  1 
+              13: user_aggr_ret$47 := Call DB.DBA.SPARQL_CONSTRUCT_INIT (user_aggr_env$46 )
+              20: user_aggr_ret$47 := Call DB.DBA.SPARQL_CONSTRUCT_ACC (user_aggr_env$46 , vector$33, vector$40, vector$35,  1 )
+              27: BReturn 0
+            }
+          time       3.8% fanout         1 input         1 rows
+          skip node  1  <none> set_ctr$42
+          
+          After code:
+          0: callret-0$48 := Call DB.DBA.SPARQL_CONSTRUCT_FIN (user_aggr_env$46 )
+          7: BReturn 0
+          time      0.56% fanout         0 input         1 rows
+          Subquery Select(callret-0$48)
+        }
+      
+      8:  <none>  := Call DB.DBA.RDF_DICT_OF_TRIPLES_TO_THREE_COLS (scalar$107 )
+      15: BReturn 0
+    END Node
+  }
+
+
+ 0 msec 21% cpu,         1 rnd         2 seq         0% same seg         0% same pg 
+Compilation: 1 msec 0 reads         0% read 0 messages         0% clw

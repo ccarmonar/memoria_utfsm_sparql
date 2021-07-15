@@ -1,0 +1,38 @@
+
+  { 
+    time       2.3% fanout         1 input         1 rows
+      clear: (<V set_ctr$44 in>)
+    s# 47 45 cluster outer seq start, set no <V set_ctr$44 in>    
+    save ctx:()
+    time        38% fanout         4 input         1 rows
+      clear: (<V s_11_4_t0.O$28 an>, <V s_11_4_t0.S$29 rn>)
+      clear on continue: (<V s_11_4_t0.O$28 an>, <V s_11_4_t0.S$29 rn>)
+    s# 56 27 from DB.DBA.RDF_QUAD by RDF_QUAD          4 rows   
+    Key RDF_QUAD  ASC  (<V s_11_4_t0.S$29 rn>, <V s_11_4_t0.O$28 an>)
+     inlined  P =  IRI_ID"...fileName" 
+    
+    time        60% fanout         0 input         4 rows
+    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:       1.8 Fanout:         0
+    Precode:
+      0: <V filename$31 a> := Call __ro2sq (<V s_11_4_t0.O$28 an>)
+      5: BReturn 0
+      clear: (<V s_11_4_t1.O$34 an>, <V filename$31 a>, <V creator$36 a>)
+      clear on continue: (<V creator$36 a>, <V s_11_4_t1.O$34 an>)$28 () $29 () 
+    s# 67 33 from DB.DBA.RDF_QUAD by RDF_QUAD        1.8 rows   
+    Key RDF_QUAD  ASC  (<V s_11_4_t1.O$34 an>)
+     inlined  P =  IRI_ID"...1.1/creator"  ,  S = <V s_11_4_t0.S$29 rn>
+    
+    After code:
+      0: <V creator$36 a> := Call __ro2sq (<V s_11_4_t1.O$34 an>)
+      5: BReturn 0
+    time         0% fanout         0 input         0 rows
+    $31 (33 ) $36 () $44 (33 27 45 ) 
+    s# 77 38 Select (<r filename$31 via  Set67>, <V creator$36 a>)
+      set no: <r set_ctr$44 via  Set67 Set56>
+  }
+Warning: You might have a Cartesian product.
+
+
+
+ 0 msec 0% cpu,         9 rnd         3 seq        30% same seg        30% same pg 
+Compilation: 57 msec 1 reads    51.069% read 0 messages         0% clw

@@ -1,0 +1,88 @@
+
+  { 
+    time      0.44% fanout         1 input         1 rows
+      clear: (<V set_ctr$94 in>)
+    s# 97 95 cluster outer seq start, set no <V set_ctr$94 in>    
+    save ctx:()
+    time         8% fanout         1 input         1 rows
+    Precode:
+      0: <V __all_eq$27 x> := Call __all_eq ( IRI_ID"...Q6256" )
+      5: BReturn 0
+      clear: (<V s_37_10_t1.S$30 rn>, <V __all_eq$27 x>)
+      clear on continue: (<V s_37_10_t1.S$30 rn>)
+    s# 106 29 from DB.DBA.RDF_QUAD by RDF_QUAD_POGS          1 rows   
+    Key RDF_QUAD_POGS  ASC  (<V s_37_10_t1.S$30 rn>)
+     P =  IRI_ID"...direct/P31"  ,  O =  IRI_ID"...Q185441" 
+    
+    Precode:
+      0: <V __all_eq$32 x> := Call __all_eq (<V s_37_10_t1.S$30 rn>)
+      5: <V var1$34 a> := Call __id2in (<V s_37_10_t1.S$30 rn>)
+      10: BReturn 0
+      clear: (<V _::trans_obj_37_1$38 an>, <V _::trans_subj_37_0$37 rn>, <V var1$34 a>, <V __all_eq$32 x>)
+      clear on continue: (<V _::trans_subj_37_0$37 rn>, <V _::trans_obj_37_1$38 an>)$27 (29 ) $30 () 
+    s# 116 36 Transitive dt dir 2, input: (<r __all_eq$27 via  Set106>)
+      input shadow: (<V __all_eq$120 x>)
+      output: (<V _::trans_subj_37_0$37 rn>)
+     Target:  (<V __all_eq$32 x>)
+      { 
+        time        20% fanout   1.89474 input        19 rows
+        Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:     1e+02 Fanout:       1.9
+          clear: (<V t2.O$43 an>, <V t2.S$44 rn>, <V _::trans_obj_37_1$38 an>, <V _::trans_subj_37_0$37 rn>)
+          clear on continue: (<V _::trans_subj_37_0$37 rn>, <V _::trans_obj_37_1$38 an>, <V t2.S$44 rn>, <V t2.O$43 an>)$126 (42 ) $120 (42 ) 
+        s# 122 42 from DB.DBA.RDF_QUAD by RDF_QUAD_POGS      1e+02 rows   
+        Key RDF_QUAD_POGS  ASC  (<V t2.S$44 rn>, <V t2.O$43 an>)
+         P =  IRI_ID"...direct/P31"  ,  O = <v k___all_eq$126 Set128 an>
+        vector param casts: <V __all_eq$120 x>-> <v k___all_eq$126 Set128 an>
+        
+        After code:
+          0: <V _::trans_subj_37_0$37 rn> :=  := artm <V t2.S$44 rn>
+          4: <V _::trans_obj_37_1$38 an> :=  := artm <V t2.O$43 an>
+          8: BReturn 0
+        time      0.15% fanout         0 input        36 rows
+        
+        s# 139 46 Subquery Select(<V _::trans_subj_37_0$37 rn>, <V _::trans_obj_37_1$38 an>)
+          set no: <r step_set$39 via  Set122 Set128>
+      }
+    Reverse transitive node, input: (<V __all_eq$32 x>)
+      output: (<V _::trans_obj_37_1$38 an>)
+     Target:  (<V __all_eq$27 x>)
+      { 
+        time        11% fanout       0.5 input         2 rows
+          clear: (<V t2.O$68 an>, <V t2.S$69 rn>, <V _::trans_obj_37_1$38 an>, <V _::trans_subj_37_0$37 rn>)
+          clear on continue: (<V _::trans_subj_37_0$37 rn>, <V _::trans_obj_37_1$38 an>, <V t2.S$69 rn>, <V t2.O$68 an>)$156 (67 ) $150 (67 ) 
+        s# 152 67 from DB.DBA.RDF_QUAD by RDF_QUAD        1.1 rows   
+        Key RDF_QUAD  ASC  (<V t2.S$69 rn>, <V t2.O$68 an>)
+         inlined  P =  IRI_ID"...direct/P31"  ,  S = <v k___all_eq$156 Set158 rn>
+        vector param casts: <V __all_eq$150 x>-> <v k___all_eq$156 Set158 rn>
+        
+        After code:
+          0: <V _::trans_subj_37_0$37 rn> :=  := artm <V t2.S$69 rn>
+          4: <V _::trans_obj_37_1$38 an> :=  := artm <V t2.O$68 an>
+          8: BReturn 0
+        time     0.084% fanout         0 input         1 rows
+        $37 () 
+        s# 167 71 Subquery Select(<V _::trans_subj_37_0$37 rn>, <V _::trans_obj_37_1$38 an>)
+          set no: <r step_set$64 via  Set152 Set158>
+      }
+    time         0% fanout         0 input         0 rows
+    $38 () 
+    s# 184 179 END Node
+    After test:
+      0: if (<V _::trans_obj_37_1$38 an> =  IRI_ID"...Q6256" ) then 4 else 5 unkn 5
+      4: BReturn 1
+      5: BReturn 0
+    time         0% fanout         0 input         0 rows
+    $94 (179 36 29 95 ) $34 (179 36 ) 
+    s# 192 88 Select (<r var1$34 via  Set184 Set116>)
+      set no: <r set_ctr$94 via  Set184 Set116 Set106>
+  }
+Warning: You might have a Cartesian product.
+
+Warning: You might have a Cartesian product.
+
+Warning: You might have a Cartesian product.
+
+
+
+ 1 msec 21% cpu,        22 rnd        35 seq   43.4783% same seg    26.087% same pg 
+Compilation: 2 msec 0 reads         0% read 0 messages         0% clw

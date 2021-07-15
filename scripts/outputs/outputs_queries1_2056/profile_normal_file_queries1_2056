@@ -1,0 +1,68 @@
+http://www.wikidata.org/entity/Q1369108	1953-10-09 00:00:00Z	http://www.wikidata.org/entity/Q1183	
+http://www.wikidata.org/entity/Q1369108	1953-10-09 00:00:00Z	http://www.wikidata.org/entity/Q1183	
+http://www.wikidata.org/entity/Q1364255	1931-10-05 00:00:00Z	http://www.wikidata.org/entity/Q1183	
+http://www.wikidata.org/entity/Q1364255	1931-10-05 00:00:00Z	http://www.wikidata.org/entity/Q1183	
+http://www.wikidata.org/entity/Q5205393	1972-04-07 00:00:00Z	http://www.wikidata.org/entity/Q1183	
+http://www.wikidata.org/entity/Q5205393	1972-04-07 00:00:00Z	http://www.wikidata.org/entity/Q1183	
+http://www.wikidata.org/entity/Q18224151	1979-10-28 00:00:00Z	http://www.wikidata.org/entity/Q1183	
+http://www.wikidata.org/entity/Q18224151	1979-10-28 00:00:00Z	http://www.wikidata.org/entity/Q1183	
+http://www.wikidata.org/entity/Q20642057	1999-08-19 00:00:00Z	http://www.wikidata.org/entity/Q1183	
+http://www.wikidata.org/entity/Q20642057	1999-08-19 00:00:00Z	http://www.wikidata.org/entity/Q1183	
+http://www.wikidata.org/entity/Q2504700	1978-09-04 00:00:00Z	http://www.wikidata.org/entity/Q1183	
+http://www.wikidata.org/entity/Q2504700	1978-09-04 00:00:00Z	http://www.wikidata.org/entity/Q1183	
+http://www.wikidata.org/entity/Q5765922	1935-01-21 00:00:00Z	http://www.wikidata.org/entity/Q1183	
+http://www.wikidata.org/entity/Q5765922	1935-01-21 00:00:00Z	http://www.wikidata.org/entity/Q1183	
+
+  { 
+    time    0.0004% fanout         1 input         1 rows
+      clear: (<V set_ctr$52 in>)
+    s# 55 53 cluster outer seq start, set no <V set_ctr$52 in>    
+    save ctx:()
+    time     0.006% fanout         7 input         1 rows
+      clear: (<V s_37_8_t3.S$28 rn>)
+      clear on continue: (<V s_37_8_t3.S$28 rn>)
+    s# 64 27 from DB.DBA.RDF_QUAD by RDF_QUAD_POGS          7 rows   
+    Key RDF_QUAD_POGS  ASC  (<V s_37_8_t3.S$28 rn>)
+     P =  IRI_ID"...direct/P706"  ,  O =  IRI_ID"...Q664609" 
+    
+    time     0.011% fanout   42.2857 input         7 rows
+      clear: (<V s_37_8_t2.O$31 an>, <V s_37_8_t2.S$32 rn>)
+      clear on continue: (<V s_37_8_t2.O$31 an>, <V s_37_8_t2.S$32 rn>)$78 (30 ) $28 () 
+    s# 74 30 from DB.DBA.RDF_QUAD by RDF_QUAD_POGS         91 rows   
+    Key RDF_QUAD_POGS  ASC  (<V s_37_8_t2.S$32 rn>, <V s_37_8_t2.O$31 an>)
+     P =  IRI_ID"...direct/P27"  ,  O = <v cast$78 Set80 an>
+    vector param casts: <V s_37_8_t3.S$28 rn>-> <v cast$78 Set80 an>
+    
+    time     0.021% fanout 0.0472973 input       296 rows
+      clear: (<V s_37_8_t0.S$35 rn>)
+      clear on continue: (<V s_37_8_t0.S$35 rn>)$32 () 
+    s# 89 34 from DB.DBA.RDF_QUAD by RDF_QUAD_POGS      0.013 rows   
+    Key RDF_QUAD_POGS  ASC  (<V s_37_8_t0.S$35 rn>)
+     inlined  P =  IRI_ID"...direct/P106"  ,  O =  IRI_ID"...Q36834"  ,  S = <V s_37_8_t2.S$32 rn>
+    
+    time     1e+02% fanout         1 input        14 rows
+    Precode:
+      0: <V var3$37 a> := Call __ro2sq (<r s_37_8_t2.O$31 via  Set89>)
+      5: <V var1$39 a> := Call __id2in (<V s_37_8_t0.S$35 rn>)
+      10: BReturn 0
+      clear: (<V s_37_8_t1.O$42 an>, <V var1$39 a>, <V var3$37 a>, <V var2$44 a>)
+      clear on continue: (<V var2$44 a>, <V s_37_8_t1.O$42 an>)$31 (34 ) $35 () 
+    s# 99 41 from DB.DBA.RDF_QUAD by RDF_QUAD          1 rows   
+    Key RDF_QUAD  ASC  (<V s_37_8_t1.O$42 an>)
+     inlined  P =  IRI_ID"...direct/P569"  ,  S = <V s_37_8_t0.S$35 rn>
+    
+    After code:
+      0: <V var2$44 a> := Call __ro2sq (<V s_37_8_t1.O$42 an>)
+      5: BReturn 0
+    time   0.00028% fanout         0 input        14 rows
+    $37 (41 ) $39 (41 ) $44 () $52 (41 34 30 27 53 ) 
+    s# 109 46 Select (<r var1$39 via  Set99>, <V var2$44 a>, <r var3$37 via  Set99>)
+      set no: <r set_ctr$52 via  Set99 Set89 Set74 Set80 Set64>
+  }
+Warning: You might have a Cartesian product.
+
+
+
+ 810 msec 99% cpu,       328 rnd       297 seq   93.0091% same seg   2.73556% same pg 
+69 disk reads, 0 read ahead,   99.4607% wait
+Compilation: 3 msec 0 reads         0% read 0 messages         0% clw

@@ -1,0 +1,136 @@
+
+  { 
+    time       9.4% fanout         1 input         1 rows
+      clear: (<V set_ctr$116 in>)
+    s# 119 117 cluster outer seq start, set no <V set_ctr$116 in>    
+    save ctx:()
+    Precode:
+      0: <V entity/Q18975796$27 r> := Call __i2id (<tag 217 c http://www.wikidata.org/entity/Q18975796>)
+      5: <V vector$29 x> := Call vector (<V entity/Q18975796$27 r>)
+      10: <V vector$31 x> := Call vector ( IRI_ID"...Q123" )
+      15: <V vector$33 x> := Call vector (<V vector$29 x>, <V vector$31 x>, <V vector$29 x>)
+      20: BReturn 0
+      clear: (<V var2$37 in>, <V var1$36 a>, <V set_no$38 i>, <V vector$33 x>, <V vector$31 x>, <V vector$29 x>, <V entity/Q18975796$27 r>, <V var2$108 a>, <V var1$106 a>)$31 (35 ) $27 (35 ) $29 (35 ) 
+    s# 129 35 Subquery 35 
+      multistate set no = <V set_no$38 i>
+      { 
+        time       6.5% fanout         1 input         1 rows
+        
+        s# 238 78 Fork 78 {  
+                
+            save ctx:()
+              set no = <V set_no$38 i> array  <none>  save: 
+            time        80% fanout         0 input         1 rows
+            Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:   1.1e-07 Fanout:         0
+              clear: (<V s_37_7_t1.S$40 rn>)
+              clear on continue: (<V s_37_7_t1.S$40 rn>)
+            s# 134 39 from DB.DBA.RDF_QUAD by RDF_QUAD_POGS    1.1e-07 rows   
+            Key RDF_QUAD_POGS  ASC  (<V s_37_7_t1.S$40 rn>)
+             inlined  P =  IRI_ID"...rank" 
+            
+            time         0% fanout         0 input         0 rows
+            Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:       2.8 Fanout:         0
+              clear: (<V s_37_7_t0.P$43 rn>, <V s_37_7_t0.O$44 an>)
+              clear on continue: (<V s_37_7_t0.P$43 rn>, <V s_37_7_t0.O$44 an>)$148 (42 ) 
+            s# 144 42 from DB.DBA.RDF_QUAD by RDF_QUAD_OP        2.8 rows   
+            Key RDF_QUAD_OP  ASC  (<V s_37_7_t0.O$44 an>, <V s_37_7_t0.P$43 rn>)
+             inlined  O = <v cast$148 Set150 an>
+            vector param casts: <V s_37_7_t1.S$40 rn>-> <v cast$148 Set150 an>
+            
+            time         0% fanout         0 input         0 rows
+            Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:      0.57 Fanout:         0
+              clear: (<V s_37_7_t0.S$48 rn>)
+              clear on continue: (<V s_37_7_t0.S$48 rn>)$163 (47 ) $43 () 
+            s# 159 47 from DB.DBA.RDF_QUAD by RDF_QUAD_POGS       0.57 rows   
+            Key RDF_QUAD_POGS  ASC  (<V s_37_7_t0.S$48 rn>)
+             P = <V s_37_7_t0.P$43 rn> ,  O = <v k_s_37_7_t1.S$163 Set165 an> ,  S <  IRI_ID"...nodeID://b0" 
+            row specs:  S <  IRI_ID"...nodeID://b0" 
+            vector param casts: <r s_37_7_t1.S$40 via  Set144 Set150>-> <v k_s_37_7_t1.S$163 Set165 an>
+            
+            time         0% fanout         0 input         0 rows
+            Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:       9.2 Fanout:         0
+            Precode:
+              0: <V __id2in$51 a> := Call __id2in (<V s_37_7_t0.S$48 rn>)
+              5: BReturn 0
+              clear: (<V s_37_7_t2.P$54 rn>, <V __id2in$51 a>)
+              clear on continue: (<V s_37_7_t2.P$54 rn>)$177 (53 ) $181 (53 ) 
+            s# 173 53 from DB.DBA.RDF_QUAD by RDF_QUAD_SP        9.2 rows   
+            Key RDF_QUAD_SP  ASC  (<V s_37_7_t2.P$54 rn>)
+             inlined  S = <v k_s_37_7_t0.O$177 Set179 rn>
+            row specs:  S = <V k_s_37_7_t1.S$181 rn>
+            vector param casts: <r s_37_7_t0.O$44 via  Set159 Set165>-> <v k_s_37_7_t0.O$177 Set179 rn>, <r s_37_7_t1.S$40 via  Set159 Set165 Set144 Set150>-> <V k_s_37_7_t1.S$181 rn>
+            
+            time         0% fanout         0 input         0 rows
+              clear: (<V _cvt$61 s>, <V __bft$59 x>, <V __id2in$57 a>)
+            s# 194 189 END Node
+            After test:
+              0: <V __id2in$57 a> := Call __id2in (<V s_37_7_t2.P$54 rn>)
+              5: <V __bft$59 x> := Call __bft (<V __id2in$57 a>,  2 )
+              10: <V _cvt$61 s> := Call _cvt (<tag 193 flag 0>, <V __bft$59 x>)
+              15: if (<V _cvt$61 s>  LIKE  <c %string1%>) then 19 else 20 unkn 20
+              19: BReturn 1
+              20: BReturn 0
+            time         0% fanout         0 input         0 rows
+            Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:       1.2 Fanout:         0
+            $40 (189 53 47 42 ) $44 (189 53 47 ) $206 (63 ) $54 (189 ) $210 (63 ) $212 (63 ) 
+            s# 202 63 from DB.DBA.RDF_QUAD by RDF_QUAD        1.2 rows   
+            Key RDF_QUAD  ASC  ()
+             inlined  P = <v k_s_37_7_t2.P$206 Set208 rn> ,  S = <V k_s_37_7_t0.O$210 rn>
+            row specs:  S = <V k_s_37_7_t1.S$212 rn>
+            vector param casts: <r s_37_7_t2.P$54 via  Set194>-> <v k_s_37_7_t2.P$206 Set208 rn>, <r s_37_7_t0.O$44 via  Set194 Set173 Set179 Set159 Set165>-> <V k_s_37_7_t0.O$210 rn>, <r s_37_7_t1.S$40 via  Set194 Set173 Set179 Set159 Set165 Set144 Set150>-> <V k_s_37_7_t1.S$212 rn>
+            
+            time         0% fanout         0 input         0 rows
+            Precode:
+              0: <V dta$71 x> :=  := artm <r vector$33 via  Set202 Set208 Set194 Set173 Set179 Set159 Set165 Set144 Set150 Set134>
+              4: <V proc_ctr$67 i> :=  := artm  0 
+              8:  <none>  := Call __reset_temp ( 139973148837472 )
+              13:  <proc table>  := Call DB.DBA.SPARQL_BINDINGS_VIEW_C_1_IMP (<r vector$33 via  Set202 Set208 Set194 Set173 Set179 Set159 Set165 Set144 Set150 Set134>)
+              20: BReturn 0
+              clear: (<V BND0$69 a>, <V proc_ctr$67 i>, <V dta$71 x>)
+              clear on continue: (<V proc_ctr$67 i>, <V BND0$69 a>)
+            s# 219 66 Key from temp (<V proc_ctr$67 i>, <V BND0$69 a>)
+            
+             Local Test
+            0: if (<r s_37_7_t0.S$48 via  Set219 Set202 Set208 Set194 Set173 Set179> = <V BND0$69 a>) then 4 else 5 unkn 5
+            4: BReturn 1
+            5: BReturn 0
+            
+            time         0% fanout         0 input         0 rows
+            $48 (66 63 189 53 ) 
+            s# 229 79 Sort (HASH) set no <r set_no$38 via  Set219 Set202 Set208 Set194 Set173 Set179 Set159 Set165 Set144 Set150 Set134>(<r s_37_7_t0.S$48 via  Set219 Set202 Set208 Set194 Set173 Set179>) -> (<V inc$82 i>, <r __id2in$51 via  Set219 Set202 Set208 Set194 Set173 Set179>) up to   8.3e+06 distinct
+            
+        }
+        time         4% fanout         0 input         1 rows
+          clear: (<V __id2in$51 a>, <V aggregate$80 in>, <V s_37_7_t0.S$48 rn>, <V var2$37 in>, <V var1$36 a>)
+          clear on continue: (<V __id2in$51 a>, <V aggregate$80 in>, <V s_37_7_t0.S$48 rn>, <V var2$37 in>, <V var1$36 a>)
+        s# 245 87 group by read node  
+        (<V s_37_7_t0.S$48 rn>, <V aggregate$80 in>, <V __id2in$51 a>)
+        After code:
+          0: <V var1$36 a> :=  := artm <V __id2in$51 a>
+          4: <V var2$37 in> :=  := artm <V aggregate$80 in>
+          8: BReturn 0
+        time         0% fanout         0 input         0 rows
+        
+        s# 129 99 Subquery Select(<V var1$36 a>, <V var2$37 in>)
+          set no: <r set_no$38 via  Set245>
+      }
+    
+    After code:
+      0: <V var1$106 a> := Call __ro2sq (<V var1$36 a>)
+      5: <V var2$108 a> := Call __ro2sq (<V var2$37 in>)
+      10: BReturn 0
+    time         0% fanout         0 input         0 rows
+    $106 (35 ) $108 (35 ) $116 (35 117 ) 
+    s# 264 110 Select (<V var1$106 a>, <V var2$108 a>)
+      set no: <r set_ctr$116 via  Set129>
+  }
+Warning: You might have a Cartesian product.
+
+Warning: You might have a Cartesian product.
+
+Warning: You might have a Cartesian product.
+
+
+
+ 0 msec 0% cpu,         4 rnd         0 seq         0% same seg         0% same pg 
+Compilation: 621 msec 35 reads    69.522% read 0 messages         0% clw

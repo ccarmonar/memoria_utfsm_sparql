@@ -1,0 +1,120 @@
+
+  { 
+    time       6.3% fanout         1 input         1 rows
+      clear: (<V set_ctr$102 in>)
+    s# 105 103 cluster outer seq start, set no <V set_ctr$102 in>    
+    save ctx:()
+    Precode:
+      0: <V __rdflit$27 x> := Call __rdflit (rdflit1421)
+      5: BReturn 0
+      clear: (<V wikisourceLanguage$32 a>, <V wikisourceSitelink$31 a>, <V item$30 a>, <V set_no$33 i>, <V __rdflit$27 x>, <V wikisourceLanguage$94 a>, <V wikisourceSitelink$92 a>, <V item$90 a>)
+    s# 114 29 Subquery 29 
+      multistate set no = <V set_no$33 i>
+      { 
+        time       3.8% fanout         1 input         1 rows
+        
+        s# 211 64 Fork 64 {  
+                
+            save ctx:()
+              set no = <V set_no$33 i> array  <none>  save: 
+            time        85% fanout         0 input         1 rows
+            Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:   1.1e-07 Fanout:         0
+              clear: (<V s_48_13_t1.S$35 rn>, <V s_48_13_t1.O$36 an>)
+              clear on continue: (<V s_48_13_t1.S$35 rn>, <V s_48_13_t1.O$36 an>)
+            s# 119 34 from DB.DBA.RDF_QUAD by RDF_QUAD_POGS    1.1e-07 rows   
+            Key RDF_QUAD_POGS  ASC  (<V s_48_13_t1.O$36 an>, <V s_48_13_t1.S$35 rn>)
+             inlined  P =  IRI_ID"...isPartOf" 
+            
+            time         0% fanout         0 input         0 rows
+            Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:   1.1e-07 Fanout:         0
+            $36 () $134 (38 ) 
+            s# 130 38 from DB.DBA.RDF_QUAD by RDF_QUAD_POGS    1.1e-07 rows   
+            Key RDF_QUAD_POGS  ASC  ()
+             inlined  P =  IRI_ID"...wikiGroup"  ,  O = rdflit1421 ,  S = <v cast$134 Set136 rn>
+            vector param casts: <V s_48_13_t1.O$36 an>-> <v cast$134 Set136 rn>
+            
+            time         0% fanout         0 input         0 rows
+            Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:         1 Fanout:         0
+              clear: (<V s_48_13_t3.O$41 an>, <V s_48_13_t3.S$42 rn>)
+              clear on continue: (<V s_48_13_t3.S$42 rn>, <V s_48_13_t3.O$41 an>)$147 (40 ) 
+            s# 143 40 from DB.DBA.RDF_QUAD by RDF_QUAD          1 rows   
+            Key RDF_QUAD  ASC  (<V s_48_13_t3.S$42 rn>, <V s_48_13_t3.O$41 an>)
+             inlined  P =  IRI_ID"...about"  ,  S = <v k_s_48_13_t1.S$147 Set149 rn>
+            vector param casts: <r s_48_13_t1.S$35 via  Set130 Set136>-> <v k_s_48_13_t1.S$147 Set149 rn>
+            
+            time         0% fanout         0 input         0 rows
+            Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:   1.1e-07 Fanout:         0
+              clear: (<V s_48_13_t2.O$45 an>)
+              clear on continue: (<V s_48_13_t2.O$45 an>)$162 (44 ) 
+            s# 158 44 from DB.DBA.RDF_QUAD by RDF_QUAD    1.1e-07 rows   
+            Key RDF_QUAD  ASC  (<V s_48_13_t2.O$45 an>)
+             inlined  P =  IRI_ID"...inLanguage"  ,  S = <v k_s_48_13_t1.S$162 Set164 rn>
+            vector param casts: <r s_48_13_t1.S$35 via  Set143 Set149 Set130 Set136>-> <v k_s_48_13_t1.S$162 Set164 rn>
+            
+            time         0% fanout         0 input         0 rows
+            Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:       5.1 Fanout:         0
+            Precode:
+              0: <V __id2in$47 a> := Call __id2in (<r s_48_13_t1.S$35 via  Set158 Set164 Set143 Set149 Set130 Set136>)
+              5: <V __ro2sq$49 a> := Call __ro2sq (<r s_48_13_t3.O$41 via  Set158 Set164>)
+              10: BReturn 0
+              clear: (<V s_48_13_t5.S$52 rn>, <V __ro2sq$49 a>, <V __id2in$47 a>)
+              clear on continue: (<V s_48_13_t5.S$52 rn>)$176 (51 ) 
+            s# 172 51 from DB.DBA.RDF_QUAD by RDF_QUAD_POGS        5.1 rows   
+            Key RDF_QUAD_POGS  ASC  (<V s_48_13_t5.S$52 rn>)
+             P =  IRI_ID"...direct/P50"  ,  O = <v k_s_48_13_t3.O$176 Set178 an>
+            vector param casts: <r s_48_13_t3.O$41 via  Set158 Set164>-> <v k_s_48_13_t3.O$176 Set178 an>
+            
+            time         0% fanout         0 input         0 rows
+            Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:      0.38 Fanout:         0
+            $52 () 
+            s# 186 54 from DB.DBA.RDF_QUAD by RDF_QUAD       0.38 rows   
+            Key RDF_QUAD  ASC  ()
+             inlined  P =  IRI_ID"...direct/P31"  ,  S = <V s_48_13_t5.S$52 rn> ,  O =  IRI_ID"...Q13442814" 
+            
+            time         0% fanout         0 input         0 rows
+            $35 (54 51 44 40 38 ) $41 (54 51 44 ) 
+            s# 195 56 Distinct (HASH) set no <r set_no$33 via  Set186 Set172 Set178 Set158 Set164 Set143 Set149 Set130 Set136 Set119>(<r s_48_13_t3.O$41 via  Set186 Set172 Set178 Set158 Set164>, <r s_48_13_t1.S$35 via  Set186 Set172 Set178 Set158 Set164 Set143 Set149 Set130 Set136>, <r s_48_13_t2.O$45 via  Set186 Set172 Set178>)
+            time         0% fanout         0 input         0 rows
+            Precode:
+              0: <V __ro2sq$62 a> := Call __ro2sq (<r s_48_13_t2.O$45 via  Set195 Set186 Set172 Set178>)
+              5: BReturn 0
+              clear: (<V __ro2sq$62 a>)$45 (56 54 51 ) 
+            s# 203 65 Sort (HASH) set no <r set_no$33 via  Set195 Set186 Set172 Set178 Set158 Set164 Set143 Set149 Set130 Set136 Set119>(TOP  300  ) (<V __ro2sq$62 a>) -> (<r __ro2sq$49 via  Set195 Set186 Set172 Set178>, <r __id2in$47 via  Set195 Set186 Set172 Set178>)
+            
+        }
+        time       4.7% fanout         0 input         1 rows
+          clear: (<V __ro2sq$62 a>, <V __id2in$47 a>, <V __ro2sq$49 a>, <V wikisourceLanguage$32 a>, <V wikisourceSitelink$31 a>, <V item$30 a>)
+          clear on continue: (<V __ro2sq$62 a>, <V __id2in$47 a>, <V __ro2sq$49 a>, <V wikisourceLanguage$32 a>, <V wikisourceSitelink$31 a>, <V item$30 a>)
+        s# 218 70 top order by node (<V __ro2sq$49 a>, <V __id2in$47 a>, <V __ro2sq$62 a>)
+        set no <V set_no$33 i>
+        After code:
+          0: <V item$30 a> :=  := artm <V __ro2sq$49 a>
+          4: <V wikisourceSitelink$31 a> :=  := artm <V __id2in$47 a>
+          8: <V wikisourceLanguage$32 a> :=  := artm <V __ro2sq$62 a>
+          12: BReturn 0
+        time         0% fanout         0 input         0 rows
+        
+        s# 114 83 Subquery Select(<V item$30 a>, <V wikisourceSitelink$31 a>, <V wikisourceLanguage$32 a>)
+          set no: <r set_no$33 via  Set218>
+      }
+    
+    After code:
+      0: <V item$90 a> := Call __ro2sq (<V item$30 a>)
+      5: <V wikisourceSitelink$92 a> := Call __ro2sq (<V wikisourceSitelink$31 a>)
+      10: <V wikisourceLanguage$94 a> := Call __ro2sq (<V wikisourceLanguage$32 a>)
+      15: BReturn 0
+    time         0% fanout         0 input         0 rows
+    $94 (29 ) $102 (29 103 ) $90 (29 ) $92 (29 ) 
+    s# 238 96 Select (<V item$90 a>, <V wikisourceSitelink$92 a>, <V wikisourceLanguage$94 a>)
+      set no: <r set_ctr$102 via  Set114>
+  }
+Warning: You might have a Cartesian product.
+
+Warning: You might have a Cartesian product.
+
+Warning: You might have a Cartesian product.
+
+
+
+ 0 msec 0% cpu,         1 rnd         0 seq         0% same seg         0% same pg 
+Compilation: 87 msec 0 reads         0% read 0 messages         0% clw

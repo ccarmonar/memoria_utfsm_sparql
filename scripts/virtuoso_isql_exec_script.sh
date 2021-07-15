@@ -20,7 +20,7 @@ if [ "$2" == "wd" ]; then
     if [[ ! -f "sparql_files/$1" ]] ; then
         echo 'File is not there, aborting.'
         exit
-    fi
+    fi$str_sparq
 
 fi
 
@@ -39,7 +39,7 @@ if [ "$2" == "wd" ]; then
     str_prefixes_file=$(<sparql_files/wikidata_queries/wikidata_prefixes)
     str_sparql=$(<sparql_files/wikidata_queries/$1)
     str_sparql=$str_prefixes_file$str_sparql
-    cp "$current_path/scripts/sparql_files/wikidata_queries/$1" "outputs/outputs_$filena  me"
+    cp "$current_path/scripts/sparql_files/wikidata_queries/$1" "outputs/outputs_$filename"
     cat "sparql_files/wikidata_queries/wikidata_prefixes" "sparql_files/wikidata_queries/$1" > "outputs/outputs_$filename/$filename-prex.rq"
 
     else

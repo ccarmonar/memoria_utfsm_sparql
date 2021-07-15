@@ -1,0 +1,82 @@
+lunch	2011-10-14 13:19:00	11.13	
+lunch	2011-10-14T13:19	11.13	
+lunch	2011-10-14	11.13	
+lunch	2011-10-15	9.45	
+breakfast	2011-10-16	6.65	
+lunch	2011-10-16	10	
+lunch	2011-10-16	10	
+dinner	2011-10-16	25.05	
+
+  { 
+    time      0.42% fanout         1 input         1 rows
+      clear: (<V set_ctr$78 in>)
+    s# 81 79 cluster outer seq start, set no <V set_ctr$78 in>    
+    save ctx:()
+    time        12% fanout         9 input         1 rows
+    Precode:
+      0: <V DB.DBA.RDF_MAKE_LONG_OF_SQLVAL$27 a> := Call DB.DBA.RDF_MAKE_LONG_OF_SQLVAL (<c lunch>)
+      7: <V vector$29 x> := Call vector (<DB_NULL>, <V DB.DBA.RDF_MAKE_LONG_OF_SQLVAL$27 a>)
+      12: <V DB.DBA.RDF_MAKE_LONG_OF_SQLVAL$31 a> := Call DB.DBA.RDF_MAKE_LONG_OF_SQLVAL (<c 2011-10-16>)
+      19: <V vector$33 x> := Call vector (<V DB.DBA.RDF_MAKE_LONG_OF_SQLVAL$31 a>, <DB_NULL>)
+      24: <V vector$35 x> := Call vector (<V vector$29 x>, <V vector$33 x>)
+      29: BReturn 0
+      clear: (<V s_17_7_t2.O$38 an>, <V s_17_7_t2.S$39 rn>, <V vector$35 x>, <V vector$33 x>, <V DB.DBA.RDF_MAKE_LONG_OF_SQLVAL$31 a>, <V vector$29 x>, <V DB.DBA.RDF_MAKE_LONG_OF_SQLVAL$27 a>)
+      clear on continue: (<V s_17_7_t2.S$39 rn>, <V s_17_7_t2.O$38 an>)$31 (37 ) $33 (37 ) $27 (37 ) $29 (37 ) 
+    s# 90 37 from DB.DBA.RDF_QUAD by RDF_QUAD          9 rows   
+    Key RDF_QUAD  ASC  (<V s_17_7_t2.S$39 rn>, <V s_17_7_t2.O$38 an>)
+     inlined  P =  IRI_ID"...amount" 
+    
+    time       4.4% fanout         1 input         9 rows
+      clear: (<V s_17_7_t0.O$42 an>, <V s_17_7_t0.S$43 rn>)
+      clear on continue: (<V s_17_7_t0.O$42 an>, <V s_17_7_t0.S$43 rn>)$39 () 
+    s# 101 41 from DB.DBA.RDF_QUAD by RDF_QUAD          1 rows   
+    Key RDF_QUAD  ASC  (<V s_17_7_t0.S$43 rn>, <V s_17_7_t0.O$42 an>)
+     inlined  P =  IRI_ID"...description"  ,  S = <V s_17_7_t2.S$39 rn>
+    
+    time        19% fanout   1.66667 input         9 rows
+    Precode:
+      0: <V amount$45 a> := Call __ro2sq (<r s_17_7_t2.O$38 via  Set101>)
+      5: <V __ro2lo$47 a> := Call __ro2lo (<V s_17_7_t0.O$42 an>)
+      10: <V description$49 a> := Call __ro2sq (<V s_17_7_t0.O$42 an>)
+      15: BReturn 0
+      clear: (<V s_17_7_t1.O$52 an>, <V description$49 a>, <V __ro2lo$47 a>, <V amount$45 a>)
+      clear on continue: (<V s_17_7_t1.O$52 an>)$38 (41 ) $42 () $43 () 
+    s# 112 51 from DB.DBA.RDF_QUAD by RDF_QUAD        1.7 rows   
+    Key RDF_QUAD  ASC  (<V s_17_7_t1.O$52 an>)
+     inlined  P =  IRI_ID"...date"  ,  S = <V s_17_7_t0.S$43 rn>
+    
+    time        64% fanout  0.533333 input        15 rows
+    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:         0 Fanout:      0.53
+    Precode:
+      0: <V __ro2lo$54 a> := Call __ro2lo (<V s_17_7_t1.O$52 an>)
+      5: <V date$56 a> := Call __ro2sq (<V s_17_7_t1.O$52 an>)
+      10: <V dta$65 x> :=  := artm <r vector$35 via  Set112 Set101 Set90>
+      14: <V proc_ctr$59 i> :=  := artm  0 
+      18:  <none>  := Call __reset_temp ( 139973149722496 )
+      23:  <proc table>  := Call DB.DBA.SPARQL_BINDINGS_VIEW_C_2_IMP (<r vector$35 via  Set112 Set101 Set90>)
+      30: BReturn 0
+      clear: (<V BND1$63 a>, <V BND0$61 a>, <V proc_ctr$59 i>, <V dta$65 x>, <V date$56 a>, <V __ro2lo$54 a>)
+      clear on continue: (<V proc_ctr$59 i>, <V BND0$61 a>, <V BND1$63 a>)$35 (51 41 37 ) $47 (51 ) $52 () $54 (58 ) 
+    s# 122 58 Key from temp (<V proc_ctr$59 i>, <V BND0$61 a>, <V BND1$63 a>)
+    
+     Local Test
+    0: if (<V BND0$61 a>  IS NULL   0 ) then 8 else 4 unkn 4
+    4: if (<r __ro2lo$54 via  Set122> = <V BND0$61 a>) then 8 else 17 unkn 17
+    8: if (<V BND1$63 a>  IS NULL   0 ) then 16 else 12 unkn 12
+    12: if (<r __ro2lo$47 via  Set122 Set112> = <V BND1$63 a>) then 16 else 17 unkn 17
+    16: BReturn 1
+    17: BReturn 0
+    
+    time     0.082% fanout         0 input         8 rows
+    $45 (58 51 ) $78 (58 51 41 37 79 ) $49 (58 51 ) $56 (58 ) 
+    s# 135 72 Select (<r description$49 via  Set122 Set112>, <r date$56 via  Set122>, <r amount$45 via  Set122 Set112>)
+      set no: <r set_ctr$78 via  Set122 Set112 Set101 Set90>
+  }
+Warning: You might have a Cartesian product.
+
+Warning: You might have a Cartesian product.
+
+
+
+ 1 msec 23% cpu,        61 rnd        14 seq   25.8065% same seg   25.8065% same pg 
+Compilation: 2 msec 0 reads         0% read 0 messages         0% clw

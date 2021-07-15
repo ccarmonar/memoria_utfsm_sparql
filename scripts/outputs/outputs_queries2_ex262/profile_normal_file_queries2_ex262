@@ -1,0 +1,29 @@
+Error: 22007: DT006: Cannot convert http://www.openlinksw.com/schemas/virtrdf#QuadMapFormat to datetime : Incorrect year delimiter
+  { 
+    time     1e+02% fanout         1 input         1 rows
+      clear: (<V set_ctr$41 in>)
+    s# 44 42 cluster outer seq start, set no <V set_ctr$41 in>    
+    save ctx:()
+    time         0% fanout         0 input         1 rows
+    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:   9.4e+07 Fanout:         0
+      clear: (<V t2.O$28 an>, <V dateTimeTest$33 t>, <V o$31 a>)
+      clear on continue: (<V t2.O$28 an>, <V dateTimeTest$33 t>, <V o$31 a>)
+    s# 53 27 from DB.DBA.RDF_QUAD by RDF_QUAD_POGS    9.4e+07 rows   
+    Key RDF_QUAD_POGS  ASC  (<V t2.O$28 an>)
+    
+    
+    After code:
+      0: <V o$31 a> := Call __ro2sq (<V t2.O$28 an>)
+      5: <V dateTimeTest$33 t> := Call _cvt (<tag 193 flag 0>, <V o$31 a>)
+      10: BReturn 0
+    time         0% fanout         0 input         0 rows
+    $31 () $33 () $41 (27 42 ) 
+    s# 63 35 Select (<V o$31 a>, <V dateTimeTest$33 t>)
+      set no: <r set_ctr$41 via  Set53>
+  }
+Warning: You might have a Cartesian product.
+
+
+
+ 2 msec 66% cpu,         1 rnd       998 seq         0% same seg         0% same pg 
+Compilation: 1 msec 0 reads         0% read 0 messages         0% clw

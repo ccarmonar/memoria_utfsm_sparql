@@ -1,0 +1,39 @@
+
+  { 
+    time     0.048% fanout         1 input         1 rows
+      clear: (<V set_ctr$44 in>)
+    s# 50 45 cluster outer seq start, set no <V set_ctr$44 in>    
+    save ctx:()
+    time       5.4% fanout      2782 input         1 rows
+      clear: (<V s_37_4_t1.O$28 an>, <V s_37_4_t1.S$29 rn>)
+      clear on continue: (<V s_37_4_t1.O$28 an>, <V s_37_4_t1.S$29 rn>)
+    s# 59 27 from DB.DBA.RDF_QUAD by RDF_QUAD    2.8e+03 rows   
+    Key RDF_QUAD  ASC  (<V s_37_4_t1.S$29 rn>, <V s_37_4_t1.O$28 an>)
+     inlined  P =  IRI_ID"...direct/P350" 
+    
+    time        95% fanout         0 input      2782 rows
+    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:     0.052 Fanout:         0
+      clear: (<V s_37_4_t0.S$32 rn>)
+      clear on continue: (<V s_37_4_t0.S$32 rn>)$29 () 
+    s# 70 31 from DB.DBA.RDF_QUAD by RDF_QUAD      0.052 rows   
+    Key RDF_QUAD  ASC  (<V s_37_4_t0.S$32 rn>)
+     inlined  P =  IRI_ID"...direct/P31"  ,  S = <V s_37_4_t1.S$29 rn> ,  O =  IRI_ID"...Q16521" 
+    
+    time         0% fanout         0 input         0 rows
+      clear: (<V var1$36 a>, <V var2$34 a>)$32 () $28 (31 ) 
+    s# 80 48 skip node  10  <none> <r set_ctr$44 via  Set70 Set59>
+    After code:
+      0: <V var2$34 a> := Call __ro2sq (<r s_37_4_t1.O$28 via  Set80 Set70>)
+      5: <V var1$36 a> := Call __id2in (<r s_37_4_t0.S$32 via  Set80>)
+      10: BReturn 0
+    time         0% fanout         0 input         0 rows
+    $34 (48 ) $36 (48 ) $44 (48 31 27 45 ) 
+    s# 88 38 Select (<V var1$36 a>, <V var2$34 a>)
+      set no: <r set_ctr$44 via  Set80 Set70 Set59>
+  }
+Warning: You might have a Cartesian product.
+
+
+
+ 8 msec 82% cpu,      2783 rnd      2779 seq   92.3491% same seg   7.18391% same pg 
+Compilation: 1 msec 0 reads         0% read 0 messages         0% clw

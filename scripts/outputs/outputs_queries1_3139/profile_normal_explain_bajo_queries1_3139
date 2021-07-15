@@ -1,0 +1,51 @@
+http://schema.org/about	
+http://www.wikidata.org/prop/direct/P4044	
+http://www.wikidata.org/prop/direct/P1050	
+http://www.wikidata.org/prop/direct/P509	
+http://www.wikidata.org/prop/direct/P921	
+http://www.wikidata.org/prop/direct/P2293	
+http://www.wikidata.org/prop/direct/P780	
+
+  { 
+    time     0.011% fanout         1 input         1 rows
+    time    0.0028% fanout         1 input         1 rows
+    time      0.24% fanout       835 input         1 rows
+    RDF_QUAD   8.4e+02 rows(s_37_6_t0.O$31)
+     inlined  P =  IRI_ID"...direct/P2175" 
+    time       8.2% fanout   3.90778 input       835 rows
+    RDF_QUAD_OP       2.8 rows(s_37_6_t1.P$35, s_37_6_t1.O$34)
+     inlined  O = cast$100
+    time       1.2% fanout  0.744101 input      3263 rows
+    END Node
+    After test:
+    0: if (s_37_6_t1.P$35 =  IRI_ID"...direct/P4342" ) then 9 else 4 unkn 9
+    4: if (s_37_6_t1.P$35 =  IRI_ID"...direct/P2175" ) then 9 else 8 unkn 9
+    8: BReturn 1
+    9: BReturn 0
+    time        22% fanout   108.061 input      2428 rows
+    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:       1.2 Fanout:   1.1e+02
+    RDF_QUAD_POGS       1.2 rows()
+     P = k_s_37_6_t1.P$129 ,  O = k_s_37_6_t0.O$133
+    time        64% fanout 0.0839117 input    262371 rows
+    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:         1 Fanout:     0.084
+    RDF_QUAD         1 rows()
+     inlined  P =  IRI_ID"...direct/P4342"  ,  S = k_s_37_6_t0.O$144
+    time       3.5% fanout 0.000317951 input     22016 rows
+    Distinct (s_37_6_t1.P$35)
+    
+    After code:
+    0: p2$28 :=  := artm s_37_6_t1.P$35
+    4: BReturn 0
+    time      0.45% fanout         1 input         7 rows
+    Subquery Select(p2$28)
+    
+    After code:
+    0: p2$57 := Call __ro2sq (p2$28)
+    5: BReturn 0
+    time    0.0054% fanout         0 input         7 rows
+    Select (p2$57)
+  }
+
+
+ 25 msec 93% cpu,    265566 rnd    262953 seq   99.7289% same seg  0.126522% same pg 
+Compilation: 1 msec 0 reads         0% read 0 messages         0% clw

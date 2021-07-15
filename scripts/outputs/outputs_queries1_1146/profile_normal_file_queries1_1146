@@ -1,0 +1,64 @@
+http://www.wikidata.org/entity/Q14830963		
+http://www.wikidata.org/entity/Q15887375		
+http://www.wikidata.org/entity/Q18584583		
+http://www.wikidata.org/entity/Q18590035		
+http://www.wikidata.org/entity/Q18607044		
+http://www.wikidata.org/entity/Q2607418		
+http://www.wikidata.org/entity/Q2607467		
+http://www.wikidata.org/entity/Q2607473		
+http://www.wikidata.org/entity/Q2607507		
+http://www.wikidata.org/entity/Q2607535		
+
+  { 
+    time    0.0012% fanout         1 input         1 rows
+      clear: (<V set_ctr$35 in>)
+    s# 59 36 cluster outer seq start, set no <V set_ctr$35 in>    
+    save ctx:()
+    time      0.03% fanout      1000 input         1 rows
+    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:     3e+05 Fanout:     1e+03
+      clear: (<V t1.S$28 rn>)
+      clear on continue: (<V t1.S$28 rn>)
+    s# 68 27 from DB.DBA.RDF_QUAD by RDF_QUAD_POGS      3e+05 rows   
+    Key RDF_QUAD_POGS  ASC  (<V t1.S$28 rn>)
+     P =  IRI_ID"...direct/P31"  ,  O =  IRI_ID"...Q16521" 
+    
+    time     1e+02% fanout         1 input      1000 rows
+    Precode:
+      0: <V var1$30 a> := Call __id2in (<V t1.S$28 rn>)
+      5: BReturn 0
+      clear: (<V set_ctr$38 i>, <V var1$30 a>)
+    s# 78 42 cluster outer seq start, set no <V set_ctr$38 i>    
+    save ctx:()
+    time     0.095% fanout         0 input      1000 rows
+    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:         1 Fanout:         0
+      clear: (<V t3.O$33 a>)
+      clear on continue: (<V t3.O$33 a>)$28 (42 ) $91 (32 ) 
+    s# 87 32 from DB.DBA.RDF_QUAD by RDF_QUAD          1 rows   
+    Key RDF_QUAD  ASC  (<V t3.O$33 a>)
+     inlined  P =  IRI_ID"...direct/P350"  ,  S = <v k_t1.S$91 Set93 rn>
+    vector param casts: <r t1.S$28 via  Set78>-> <v k_t1.S$91 Set93 rn>
+    
+    time         0% fanout         0 input         0 rows
+    $38 (32 42 ) 
+    s# 101 37 end of outer seq <r set_ctr$38 via  Set87 Set93>
+     out: (<V t3.O$33 a>)
+     shadow: ( <none> )
+    time    0.0029% fanout      0.01 input      1000 rows
+      clear: (<V var2$47 a>)$33 (37 ) 
+    s# 109 57 skip node  10  <none> <r set_ctr$35 via  Set101 Set68>
+    After code:
+      0: <V var2$47 a> := Call __ro2sq (<r t3.O$33 via  Set109>)
+      5: BReturn 0
+    time   0.00047% fanout         0 input        10 rows
+    $35 (57 37 32 42 27 36 ) $47 (57 ) $30 (57 37 32 42 ) 
+    s# 117 49 Select (<r var1$30 via  Set109 Set101>, <V var2$47 a>)
+      set no: <r set_ctr$35 via  Set109 Set101 Set68>
+  }
+Warning: You might have a Cartesian product.
+
+Warning: You might have a Cartesian product.
+
+
+
+ 154 msec 83% cpu,      2001 rnd       998 seq   49.9001% same seg   49.3007% same pg 
+Compilation: 30 msec 0 reads         0% read 0 messages         0% clw

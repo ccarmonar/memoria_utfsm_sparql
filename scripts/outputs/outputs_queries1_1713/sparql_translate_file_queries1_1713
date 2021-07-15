@@ -1,0 +1,26 @@
+SELECT  COUNT ( DISTINCT
+     "s_0_13"."var1") AS "var2"
+FROM (
+    SELECT "s_37_10_t2-u14"."S" AS "var1"
+    FROM DB.DBA.RDF_QUAD AS "s_37_2_t0-c5-u14"
+      INNER JOIN DB.DBA.RDF_QUAD AS "s_37_10_t2-u14"
+      ON (
+        "s_37_10_t2-u14"."S" = "s_37_2_t0-c5-u14"."S")
+    WHERE
+      "s_37_2_t0-c5-u14"."P" = __i2idn ( __bft( 'http://www.wikidata.org/prop/direct/P17' , 1))
+      AND 
+      "s_37_2_t0-c5-u14"."O" = __i2idn ( __bft( 'http://www.wikidata.org/entity/Q1049' , 1))
+      AND 
+      "s_37_10_t2-u14"."P" = __i2idn ( __bft( 'http://www.wikidata.org/prop/direct/P18' , 1))
+    UNION ALL SELECT "s_37_10_t2"."S" AS "var1"
+    FROM DB.DBA.RDF_QUAD AS "s_37_5_t1-c11"
+      INNER JOIN DB.DBA.RDF_QUAD AS "s_37_10_t2"
+      ON (
+        "s_37_10_t2"."S" = "s_37_5_t1-c11"."S")
+    WHERE
+      "s_37_5_t1-c11"."P" = __i2idn ( __bft( 'http://www.wikidata.org/prop/direct/P131' , 1))
+      AND 
+      "s_37_5_t1-c11"."O" = __i2idn ( __bft( 'http://www.wikidata.org/entity/Q1049' , 1))
+      AND 
+      "s_37_10_t2"."P" = __i2idn ( __bft( 'http://www.wikidata.org/prop/direct/P18' , 1))) AS "s_0_13"
+OPTION (QUIETCAST)

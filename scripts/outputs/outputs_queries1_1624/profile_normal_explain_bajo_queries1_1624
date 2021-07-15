@@ -1,0 +1,48 @@
+http://www.wikidata.org/entity/Q12054569			
+http://www.wikidata.org/entity/Q11773736			
+http://www.wikidata.org/entity/Q11895260			
+http://www.wikidata.org/entity/Q15712683			
+http://www.wikidata.org/entity/Q10296026			
+http://www.wikidata.org/entity/Q10296140			
+http://www.wikidata.org/entity/Q27891647			
+http://www.wikidata.org/entity/Q12029904			
+http://www.wikidata.org/entity/Q12033395			
+http://www.wikidata.org/entity/Q12034746			
+http://www.wikidata.org/entity/Q16556655			
+http://www.wikidata.org/entity/Q8548581			
+
+  { 
+    time      0.11% fanout         1 input         1 rows
+    time     0.026% fanout         1 input         1 rows
+    time       2.2% fanout       216 input         1 rows
+    RDF_QUAD_POGS   2.2e+02 rows(s_37_6_t1.S$33)
+     P =  IRI_ID"...direct/P31"  ,  O =  IRI_ID"...Q15893266" 
+    time        88% fanout 0.0555556 input       216 rows
+    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:   0.00012 Fanout:     0.056
+    RDF_QUAD   0.00012 rows(s_37_6_t0.S$36)
+     inlined  P =  IRI_ID"...direct/P31"  ,  S = s_37_6_t1.S$33 ,  O =  IRI_ID"...Q811534" 
+    time       2.9% fanout         1 input        12 rows
+    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:     0.015 Fanout:         1
+    RDF_QUAD_POGS     0.015 rows()
+     inlined  P =  IRI_ID"...direct/P17"  ,  O =  IRI_ID"...Q213"  ,  S = s_37_6_t0.S$36
+    time       3.8% fanout         1 input        12 rows
+    Distinct (s_37_6_t0.S$36)
+    
+    After code:
+    0: var1$28 :=  := artm s_37_6_t0.S$36
+    4: var1Label$29 :=  := artm <DB_NULL>
+    8: var2$30 :=  := artm <DB_NULL>
+    12: BReturn 0
+    time       3.4% fanout         1 input        12 rows
+    Subquery Select(var1$28, var1Label$29, var2$30)
+    
+    After code:
+    0: var1$54 := Call __ro2sq (var1$28)
+    5: BReturn 0
+    time     0.024% fanout         0 input        12 rows
+    Select (var1$54, var1Label$29, var2$30)
+  }
+
+
+ 3 msec 58% cpu,       229 rnd       215 seq   56.5217% same seg   39.1304% same pg 
+Compilation: 2 msec 0 reads         0% read 0 messages         0% clw

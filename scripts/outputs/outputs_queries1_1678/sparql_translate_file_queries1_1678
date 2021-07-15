@@ -1,0 +1,37 @@
+SELECT __id2in ( "s_37_18_t6"."S") AS "var1",
+  __ro2sq ( "s_37_16"."var2") AS "var2"
+FROM DB.DBA.RDF_QUAD AS "s_37_18_t5"
+  INNER JOIN DB.DBA.RDF_QUAD AS "s_37_18_t6"
+  ON (
+    "s_37_18_t6"."S" = "s_37_18_t5"."S")
+  LEFT OUTER JOIN (
+    SELECT "s_37_16_t2"."O" AS "var2",
+      "s_37_7_t0"."S" AS "var1"
+    FROM DB.DBA.RDF_QUAD AS "s_37_7_t0"
+      INNER JOIN DB.DBA.RDF_QUAD AS "s_37_12_t1"
+      ON (
+        "s_37_12_t1"."S" = "s_37_7_t0"."O")
+      INNER JOIN DB.DBA.RDF_QUAD AS "s_37_16_t2"
+      ON (
+        "s_37_16_t2"."S" = "s_37_12_t1"."O")
+    WHERE
+      "s_37_16_t2"."P" = __i2idn ( __bft( 'http://wikiba.se/ontology#quantityAmount' , 1))
+      AND 
+      ( "s_37_7_t0"."P" in ( __i2idn ( __bft ( __bft( 'http://www.wikidata.org/prop/P2048' , 1), 1)),  __i2idn ( __bft ( __bft( 'http://www.wikidata.org/prop/P2049' , 1), 1))))
+      AND 
+      ( "s_37_12_t1"."P" in ( __i2idn ( __bft ( __bft( 'http://www.wikidata.org/prop/statement/value/P2048' , 1), 1)),  __i2idn ( __bft ( __bft( 'http://www.wikidata.org/prop/statement/value/P2049' , 1), 1))))) AS "s_37_16"
+  ON (
+    "s_37_18_t6"."S" = "s_37_16"."var1"
+    AND 
+    "s_37_18_t5"."S" = "s_37_16"."var1")
+WHERE
+  "s_37_18_t5"."P" = __i2idn ( __bft( 'http://www.wikidata.org/prop/direct/P31' , 1))
+  AND 
+  "s_37_18_t5"."O" = __i2idn ( __bft( 'http://www.wikidata.org/entity/Q11060274' , 1))
+  AND 
+  "s_37_18_t6"."P" = __i2idn ( __bft( 'http://www.wikidata.org/prop/direct/P361' , 1))
+  AND 
+  "s_37_18_t6"."O" = __i2idn ( __bft( 'http://www.wikidata.org/entity/Q21542493' , 1))
+  AND 
+  not ( ( "s_37_16"."var2" is not null))
+OPTION (QUIETCAST)

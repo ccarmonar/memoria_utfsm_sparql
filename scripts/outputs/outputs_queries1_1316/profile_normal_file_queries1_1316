@@ -1,0 +1,50 @@
+
+  { 
+    time       2.2% fanout         1 input         1 rows
+      clear: (<V set_ctr$48 in>)
+    s# 51 49 cluster outer seq start, set no <V set_ctr$48 in>    
+    save ctx:()
+    time        98% fanout         0 input         1 rows
+    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:   1.1e-07 Fanout:         0
+    Precode:
+      0: <V prop/direct/p69$27 r> := Call __i2idn (<tag 182 flag 1 c http://www.wikidata.org/prop/direct/p69>)
+      5: BReturn 0
+      clear: (<V s_37_6_t2.S$30 rn>, <V s_37_6_t2.O$31 an>, <V prop/direct/p69$27 r>)
+      clear on continue: (<V s_37_6_t2.O$31 an>, <V s_37_6_t2.S$30 rn>)$64 (29 ) $27 (29 ) 
+    s# 60 29 from DB.DBA.RDF_QUAD by RDF_QUAD_POGS    1.1e-07 rows   
+    Key RDF_QUAD_POGS  ASC  (<V s_37_6_t2.O$31 an>, <V s_37_6_t2.S$30 rn>)
+     inlined  P = <v k_prop/direct/p69$64 Set66 rn>
+    vector param casts: <V prop/direct/p69$27 r>-> <v k_prop/direct/p69$64 Set66 rn>
+    
+    time         0% fanout         0 input         0 rows
+    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:   0.00028 Fanout:         0
+      clear: (<V s_37_6_t0.S$34 rn>)
+      clear on continue: (<V s_37_6_t0.S$34 rn>)$31 () $79 (33 ) 
+    s# 75 33 from DB.DBA.RDF_QUAD by RDF_QUAD_POGS    0.00028 rows   
+    Key RDF_QUAD_POGS  ASC  (<V s_37_6_t0.S$34 rn>)
+     inlined  P =  IRI_ID"...direct/P31"  ,  O =  IRI_ID"...Q3918"  ,  S = <v k_s_37_6_t2.O$79 Set81 rn>
+    vector param casts: <V s_37_6_t2.O$31 an>-> <v k_s_37_6_t2.O$79 Set81 rn>
+    
+    time         0% fanout         0 input         0 rows
+    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:     0.003 Fanout:         0
+      clear: (<V var1$40 a>, <V var2$38 a>)
+      clear on continue: (<V var1$40 a>, <V var2$38 a>)$34 () $30 (33 ) 
+    s# 89 36 from DB.DBA.RDF_QUAD by RDF_QUAD_POGS      0.003 rows   
+    Key RDF_QUAD_POGS  ASC  ()
+     inlined  P =  IRI_ID"...direct/P17"  ,  O =  IRI_ID"...Q298"  ,  S = <V s_37_6_t0.S$34 rn>
+    
+    After code:
+      0: <V var2$38 a> := Call __id2in (<r s_37_6_t0.S$34 via  Set89>)
+      5: <V var1$40 a> := Call __id2in (<r s_37_6_t2.S$30 via  Set89 Set75 Set81>)
+      10: BReturn 0
+    time         0% fanout         0 input         0 rows
+    $38 () $40 () $48 (36 33 29 49 ) 
+    s# 98 42 Select (<V var1$40 a>, <V var2$38 a>)
+      set no: <r set_ctr$48 via  Set89 Set75 Set81 Set60 Set66>
+  }
+Warning: You might have a Cartesian product.
+
+
+
+ 1 msec 0% cpu,         4 rnd         0 seq         0% same seg         0% same pg 
+Compilation: 32 msec 0 reads         0% read 0 messages         0% clw

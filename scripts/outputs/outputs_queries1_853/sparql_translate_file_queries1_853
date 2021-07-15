@@ -1,0 +1,56 @@
+ SELECT  __ro2sq ("s_37_14_rbc"."var1") AS "var1", __ro2sq ("s_37_14_rbc"."var3") AS "var3", __ro2sq ("s_37_14_rbc"."var5") AS "var5", __ro2sq ("s_37_14_rbc"."var7") AS "var7", __ro2sq ("s_37_14_rbc"."var9") AS "var9" FROM (SELECT TOP 10000 'disease'  AS "var1",
+    __id2in ( "s_37_15_t9"."S") AS "var3",
+     DB.DBA.GROUP_CONCAT_DISTINCT (
+       __ro2sq ( "s_37_15_t7"."O")) AS "var5",
+     DB.DBA.GROUP_CONCAT_DISTINCT (
+       __ro2sq ( "s_37_10"."var6")) AS "var7",
+     DB.DBA.GROUP_CONCAT_DISTINCT (
+       __ro2sq ( "s_37_13"."var8")) AS "var9"
+  FROM DB.DBA.RDF_QUAD AS "s_37_15_t6"
+    INNER JOIN DB.DBA.RDF_QUAD AS "s_37_15_t7"
+    ON (
+      "s_37_15_t7"."O" = "s_37_15_t6"."S")
+    INNER JOIN DB.DBA.RDF_QUAD AS "s_37_15_t8"
+    ON (
+      "s_37_15_t8"."S" = "s_37_15_t7"."S")
+    INNER JOIN DB.DBA.RDF_QUAD AS "s_37_15_t9"
+    ON (
+      "s_37_15_t9"."S" = "s_37_15_t8"."S"
+      AND 
+      "s_37_15_t9"."S" = "s_37_15_t7"."S")
+    LEFT OUTER JOIN (
+      SELECT "s_37_10_t0"."S" AS "var4",
+        "s_37_10_t0"."O" AS "var6"
+      FROM DB.DBA.RDF_QUAD AS "s_37_10_t0"
+      WHERE
+        "s_37_10_t0"."P" = __i2idn ( __bft( 'http://www.wikidata.org/prop/direct/P494' , 1))) AS "s_37_10"
+    ON (
+      "s_37_15_t7"."O" = "s_37_10"."var4"
+      AND 
+      "s_37_15_t6"."S" = "s_37_10"."var4")
+    LEFT OUTER JOIN (
+      SELECT "s_37_13_t1"."S" AS "var4",
+        "s_37_13_t1"."O" AS "var8"
+      FROM DB.DBA.RDF_QUAD AS "s_37_13_t1"
+      WHERE
+        "s_37_13_t1"."P" = __i2idn ( __bft( 'http://www.wikidata.org/prop/direct/P2892' , 1))) AS "s_37_13"
+    ON (
+      "s_37_15_t7"."O" = "s_37_13"."var4"
+      AND 
+      "s_37_15_t6"."S" = "s_37_13"."var4")
+  WHERE
+    "s_37_15_t6"."P" = __i2idn ( __bft( 'http://www.wikidata.org/prop/direct/P31' , 1))
+    AND 
+    "s_37_15_t6"."O" = __i2idn ( __bft( 'http://www.wikidata.org/entity/Q12136' , 1))
+    AND 
+    "s_37_15_t7"."P" = __i2idn ( __bft( 'http://schema.org/about' , 1))
+    AND 
+    "s_37_15_t8"."P" = __i2idn ( __bft( 'http://schema.org/inLanguage' , 1))
+    AND 
+    "s_37_15_t8"."O" = DB.DBA.RDF_OBJ_OF_SQLVAL ( 'en' )
+    AND 
+    "s_37_15_t9"."P" = __i2idn ( __bft( 'http://schema.org/isPartOf' , 1))
+    AND 
+    "s_37_15_t9"."O" = __i2idn ( __bft( 'https://de.wikipedia.org/' , 1))
+  GROUP BY "s_37_15_t9"."S"
+OPTION (QUIETCAST)) AS "s_37_14_rbc"

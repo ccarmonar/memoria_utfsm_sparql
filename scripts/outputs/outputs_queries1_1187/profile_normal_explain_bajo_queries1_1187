@@ -1,0 +1,37 @@
+http://www.wikidata.org/entity/Q17859635	http://www.wikidata.org/entity/Q20747295	958	
+http://www.wikidata.org/entity/Q18034959	http://www.wikidata.org/entity/Q20747295	10019	
+http://www.wikidata.org/entity/Q18035049	http://www.wikidata.org/entity/Q20747295	10125	
+http://www.wikidata.org/entity/Q18040602	http://www.wikidata.org/entity/Q20747295	53335	
+http://www.wikidata.org/entity/Q18041137	http://www.wikidata.org/entity/Q20747295	54622	
+http://www.wikidata.org/entity/Q18041520	http://www.wikidata.org/entity/Q20747295	55068	
+http://www.wikidata.org/entity/Q18041733	http://www.wikidata.org/entity/Q20747295	55289	
+http://www.wikidata.org/entity/Q18049490	http://www.wikidata.org/entity/Q20747295	122618	
+http://www.wikidata.org/entity/Q18052491	http://www.wikidata.org/entity/Q20747295	161357	
+http://www.wikidata.org/entity/Q18053373	http://www.wikidata.org/entity/Q20747295	219790	
+
+  { 
+    time     0.069% fanout         1 input         1 rows
+    time       3.3% fanout      1000 input         1 rows
+    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:   1.1e+05 Fanout:     1e+03
+    RDF_QUAD   1.1e+05 rows(s_37_4_t1.S$29, s_37_4_t1.O$28)
+     inlined  P =  IRI_ID"...direct/P351" 
+    time        94% fanout      0.67 input      1000 rows
+    Precode:
+      0: var3$31 := Call __ro2sq (s_37_4_t1.O$28)
+      5: BReturn 0
+    RDF_QUAD       1.4 rows(s_37_4_t0.S$35, s_37_4_t0.O$34)
+     inlined  P =  IRI_ID"...direct/P279"  ,  S = s_37_4_t1.S$29
+    time         3% fanout 0.0149254 input       670 rows
+    skip node  10  <none> set_ctr$47
+    
+    After code:
+    0: var1$37 := Call __id2in (s_37_4_t0.S$35)
+    5: var2$39 := Call __ro2sq (s_37_4_t0.O$34)
+    10: BReturn 0
+    time     0.012% fanout         0 input        10 rows
+    Select (var1$37, var2$39, var3$31)
+  }
+
+
+ 5 msec 77% cpu,      2001 rnd       999 seq   49.8501% same seg    18.032% same pg 
+Compilation: 1 msec 0 reads         0% read 0 messages         0% clw

@@ -1,0 +1,76 @@
+
+  { 
+    time    0.0078% fanout         1 input         1 rows
+      clear: (<V set_ctr$71 in>)
+    s# 74 72 cluster outer seq start, set no <V set_ctr$71 in>    
+    save ctx:()
+    time      0.31% fanout         1 input         1 rows
+    Precode:
+      0: <V prop/direct/P794$27 r> := Call __i2idn (<tag 182 flag 1 c http://www.wikidata.org/prop/direct/P794>)
+      5: <V entity/Q22283033$29 r> := Call __i2idn (<tag 182 flag 1 c http://www.wikidata.org/entity/Q22283033>)
+      10: BReturn 0
+      clear: (<V set_no$34 i>, <V entity/Q22283033$29 r>, <V prop/direct/P794$27 r>)
+    s# 83 60 cluster outer seq start, set no <V set_no$34 i>    
+    save ctx:()
+    time     1e+02% fanout         0 input         1 rows
+    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:   1.1e-07 Fanout:         0
+      clear: (<V s_37_8_t1.S$36 rn>)
+      clear on continue: (<V s_37_8_t1.S$36 rn>)$96 (35 ) $100 (35 ) $27 (60 ) $29 (60 ) 
+    s# 92 35 from DB.DBA.RDF_QUAD by RDF_QUAD_POGS    1.1e-07 rows   
+    Key RDF_QUAD_POGS  ASC  (<V s_37_8_t1.S$36 rn>)
+     P = <v k_prop/direct/P794$96 Set98 rn> ,  O = <V k_entity/Q22283033$100 an>
+    vector param casts: <r prop/direct/P794$27 via  Set83>-> <v k_prop/direct/P794$96 Set98 rn>, <r entity/Q22283033$29 via  Set83>-> <V k_entity/Q22283033$100 an>
+    
+    time         0% fanout         0 input         0 rows
+    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:       1.4 Fanout:         0
+      clear: (<V s_37_8_t0.O$39 an>, <V s_37_8_t0.S$40 rn>)
+      clear on continue: (<V s_37_8_t0.O$39 an>, <V s_37_8_t0.S$40 rn>)$36 () $112 (38 ) 
+    s# 108 38 from DB.DBA.RDF_QUAD by RDF_QUAD_POGS        1.4 rows   
+    Key RDF_QUAD_POGS  ASC  (<V s_37_8_t0.S$40 rn>, <V s_37_8_t0.O$39 an>)
+     P =  IRI_ID"...direct/P424"  ,  O = <v cast$112 Set114 an>
+    vector param casts: <V s_37_8_t1.S$36 rn>-> <v cast$112 Set114 an>
+    
+    time         0% fanout         0 input         0 rows
+    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:       1.1 Fanout:         0
+      clear: (<V s_37_8_t3.O$43 an>)
+      clear on continue: (<V s_37_8_t3.O$43 an>)
+    s# 123 42 from DB.DBA.RDF_QUAD by RDF_QUAD        1.1 rows   
+    Key RDF_QUAD  ASC  (<V s_37_8_t3.O$43 an>)
+     inlined  P =  IRI_ID"...direct/P424"  ,  S = <V s_37_8_t0.S$40 rn>
+    
+    time         0% fanout         0 input         0 rows
+    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:       1.1 Fanout:         0
+    $39 (42 ) $137 (45 ) 
+    s# 133 45 from DB.DBA.RDF_QUAD by RDF_QUAD        1.1 rows   
+    Key RDF_QUAD  ASC  ()
+     inlined  P =  IRI_ID"...direct/P424"  ,  S = <v k_s_37_8_t0.O$137 Set139 rn>
+    vector param casts: <r s_37_8_t0.O$39 via  Set123>-> <v k_s_37_8_t0.O$137 Set139 rn>
+    
+    time         0% fanout         0 input         0 rows
+      clear: (<V var2$33 an>, <V var1$32 rn>)$40 (45 42 ) $43 (45 ) 
+    s# 146 47 Distinct (HASH) set no <r set_no$34 via  Set133 Set139 Set123 Set108 Set114 Set92 Set98>(<r s_37_8_t0.S$40 via  Set133 Set139 Set123>, <r s_37_8_t3.O$43 via  Set133 Set139>)
+    After code:
+      0: <V var1$32 rn> :=  := artm <r s_37_8_t0.S$40 via  Set146 Set133 Set139 Set123>
+      4: <V var2$33 an> :=  := artm <r s_37_8_t3.O$43 via  Set146 Set133 Set139>
+      8: BReturn 0
+    time         0% fanout         0 input         0 rows
+      clear: (<V var2$63 a>, <V var1$61 a>)$32 (47 ) $33 (47 ) $34 (47 45 42 38 35 60 ) 
+    s# 156 53 Subquery Select(<V var1$32 rn>, <V var2$33 an>)
+      set no: <r set_no$34 via  Set146 Set133 Set139 Set123 Set108 Set114 Set92 Set98>
+    After code:
+      0: <V var1$61 a> := Call __ro2sq (<V var1$32 rn>)
+      5: <V var2$63 a> := Call __ro2sq (<V var2$33 an>)
+      10: BReturn 0
+    time         0% fanout         0 input         0 rows
+    $63 (53 ) $71 (53 47 45 42 38 35 60 72 ) $61 (53 ) 
+    s# 163 65 Select (<V var1$61 a>, <V var2$63 a>)
+      set no: <r set_ctr$71 via  Set156>
+  }
+Warning: You might have a Cartesian product.
+
+Warning: You might have a Cartesian product.
+
+
+
+ 29 msec 24% cpu,         7 rnd         0 seq         0% same seg         0% same pg 
+Compilation: 88 msec 256 reads   27.8555% read 0 messages         0% clw

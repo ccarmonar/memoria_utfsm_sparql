@@ -1,0 +1,52 @@
+grid.479924.5	http://www.wikidata.org/entity/Q2793172	
+grid.503194.a	http://www.wikidata.org/entity/Q2852691	
+grid.463398.3	http://www.wikidata.org/entity/Q2986599	
+grid.490007.a	http://www.wikidata.org/entity/Q3058475	
+grid.437415.0	http://www.wikidata.org/entity/Q3454986	
+grid.490559.4	http://www.wikidata.org/entity/Q15891741	
+grid.510462.4	http://www.wikidata.org/entity/Q15916735	
+grid.509014.9	http://www.wikidata.org/entity/Q16427839	
+grid.445883.6	http://www.wikidata.org/entity/Q56828	
+grid.493124.9	http://www.wikidata.org/entity/Q590631	
+grid.418221.c	http://www.wikidata.org/entity/Q75706	
+grid.458240.f	http://www.wikidata.org/entity/Q76812	
+grid.466436.5	http://www.wikidata.org/entity/Q183213	
+grid.484842.6	http://www.wikidata.org/entity/Q185620	
+grid.451658.b	http://www.wikidata.org/entity/Q30338277	
+grid.473440.0	http://www.wikidata.org/entity/Q260740	
+grid.428840.2	http://www.wikidata.org/entity/Q486362	
+grid.445848.1	http://www.wikidata.org/entity/Q4271075	
+grid.467349.b	http://www.wikidata.org/entity/Q497860	
+grid.467069.a	http://www.wikidata.org/entity/Q501053	
+
+  { 
+    time     0.088% fanout         1 input         1 rows
+    time       3.7% fanout      1000 input         1 rows
+    RDF_QUAD   9.1e+03 rows(s_37_6_t1.S$29, s_37_6_t1.O$28)
+     inlined  P =  IRI_ID"...direct/P2427" 
+    time        86% fanout     0.322 input      1000 rows
+    END Node
+    After test:
+    0: if (  { 
+        time      0.34% fanout         1 input      1000 rows
+        time       9.5% fanout     0.701 input      1000 rows
+        RDF_QUAD         1 rows()
+         inlined  P =  IRI_ID"...direct/P213"  ,  S = k_s_37_6_t1.S$100
+        time      0.21% fanout         0 input       701 rows
+        Subquery Select( <none> )
+      }
+    ) then 5 else 4 unkn 5
+    4: BReturn 1
+    5: BReturn 0
+    
+    After code:
+    0: var1$45 := Call __ro2sq (s_37_6_t1.O$28)
+    5: var2$47 := Call __id2in (s_37_6_t1.S$29)
+    10: BReturn 0
+    time     0.023% fanout         0 input       322 rows
+    Select (var1$45, var2$47)
+  }
+
+
+ 3 msec 68% cpu,      1323 rnd      1021 seq   75.3776% same seg   15.4079% same pg 
+Compilation: 1 msec 0 reads         0% read 0 messages         0% clw

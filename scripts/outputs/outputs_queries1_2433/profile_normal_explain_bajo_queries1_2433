@@ -1,0 +1,40 @@
+
+  { 
+    time   0.00047% fanout         1 input         1 rows
+    time     0.019% fanout         1 input         1 rows
+    Precode:
+      0: DB.DBA.RDF_MAKE_LONG_OF_TYPEDSQLVAL_STRINGS$27 := Call DB.DBA.RDF_MAKE_LONG_OF_TYPEDSQLVAL_STRINGS (<c 0-01-01T00:00:00Z>, <tag 217 c http://www.w3.org/2001/XMLSchema#dateTime>, <DB_NULL>)
+      7: DB.DBA.RDF_MAKE_LONG_OF_TYPEDSQLVAL_STRINGS$29 := Call DB.DBA.RDF_MAKE_LONG_OF_TYPEDSQLVAL_STRINGS (<c 0-12-31T23:59:59Z>, <tag 217 c http://www.w3.org/2001/XMLSchema#dateTime>, <DB_NULL>)
+      14: BReturn 0
+    time       1.9% fanout    428961 input         1 rows
+    RDF_QUAD_POGS   2.6e+05 rows(s_37_2_t0.O$36, s_37_2_t0.S$35)
+     inlined  P =  IRI_ID"...direct/P569" 
+    time        98% fanout         0 input    428961 rows
+    END Node
+    After test:
+    0: __ro2lo$38 := Call __ro2lo (s_37_2_t0.O$36)
+    5: DB.DBA.RDF_LONG_CMP$40 := Call DB.DBA.RDF_LONG_CMP (__ro2lo$38, DB.DBA.RDF_MAKE_LONG_OF_TYPEDSQLVAL_STRINGS$27)
+    12: if (DB.DBA.RDF_LONG_CMP$40 >=  0 ) then 16 else 28 unkn 28
+    16: DB.DBA.RDF_LONG_CMP$42 := Call DB.DBA.RDF_LONG_CMP (__ro2lo$38, DB.DBA.RDF_MAKE_LONG_OF_TYPEDSQLVAL_STRINGS$29)
+    23: if (DB.DBA.RDF_LONG_CMP$42 <=  0 ) then 27 else 28 unkn 28
+    27: BReturn 1
+    28: BReturn 0
+    time         0% fanout         0 input         0 rows
+    Distinct (s_37_2_t0.S$35)
+    
+    After code:
+    0: var1$32 :=  := artm s_37_2_t0.S$35
+    4: BReturn 0
+    time         0% fanout         0 input         0 rows
+    Subquery Select(var1$32)
+    
+    After code:
+    0: var1$58 := Call __ro2sq (var1$32)
+    5: BReturn 0
+    time         0% fanout         0 input         0 rows
+    Select (var1$58)
+  }
+
+
+ 611 msec 99% cpu,         3 rnd    428493 seq         0% same seg         0% same pg 
+Compilation: 1 msec 0 reads         0% read 0 messages         0% clw

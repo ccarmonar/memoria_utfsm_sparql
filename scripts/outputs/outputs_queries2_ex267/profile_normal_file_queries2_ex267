@@ -1,0 +1,78 @@
+http://learningsparql.com/ns/data#item1	http://learningsparql.com/ns/demo#amount	14	
+http://learningsparql.com/ns/data#item2	http://learningsparql.com/ns/demo#amount	10	
+http://learningsparql.com/ns/data#item3	http://learningsparql.com/ns/demo#amount	30	
+
+  { 
+    Precode:
+      0:   { 
+          time    0.0049% fanout         1 input         1 rows
+            clear: (<V ext_sets$73 i>, <V set_ctr$55 in>)
+          s# 74 56 cluster outer seq start, set no <V set_ctr$55 in>    
+          save ctx:()
+          time     0.016% fanout         1 input         1 rows
+          Precode:
+            0: <V vector$27 x> := Call vector ( 1 ,  0 ,  3 ,  IRI_ID"...amount" ,  1 ,  1 )
+            5: <V vector$29 x> := Call vector (<V vector$27 x>)
+            10: <V vector$31 x> := Call vector ()
+            15: BReturn 0
+            clear: (<V vector$31 x>, <V vector$29 x>, <V vector$27 x>)$27 (57 ) 
+          s# 122 57 Fork 57 {  
+              time      0.12% fanout         3 input         1 rows
+                clear: (<V t4.O$34 an>, <V t4.S$35 rn>)
+                clear on continue: (<V t4.O$34 an>, <V t4.S$35 rn>)
+              s# 85 33 from DB.DBA.RDF_QUAD by RDF_QUAD          3 rows   
+              Key RDF_QUAD  ASC  (<V t4.S$35 rn>, <V t4.O$34 an>)
+               inlined  P =  IRI_ID"...units" 
+              
+              time     0.043% fanout         1 input         3 rows
+                clear: (<V t2.S$38 rn>)
+                clear on continue: (<V t2.S$38 rn>)
+              s# 96 37 from DB.DBA.RDF_QUAD by RDF_QUAD          1 rows   
+              Key RDF_QUAD  ASC  (<V t2.S$38 rn>)
+               inlined  P =  IRI_ID"...product"  ,  S = <V t4.S$35 rn>
+              
+              time     1e+02% fanout         0 input         3 rows
+              Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:         1 Fanout:         0
+                clear: (<V t3.O$41 an>, <V user_aggr_ret$60 x>, <V vector$53 x>, <V DB.DBA.rdf_strdt_impl$51 x>, <V __rdf_strsqlval$49 s>, <V rdf_concat_impl$47 s>, <V __ro2sq$45 a>, <V __ro2sq$43 a>)
+                clear on continue: (<V __ro2sq$43 a>, <V __ro2sq$45 a>, <V rdf_concat_impl$47 s>, <V __rdf_strsqlval$49 s>, <V DB.DBA.rdf_strdt_impl$51 x>, <V vector$53 x>, <V user_aggr_ret$60 x>, <V t3.O$41 an>)$34 (37 ) $35 (37 ) $38 () $110 (40 ) 
+              s# 106 40 from DB.DBA.RDF_QUAD by RDF_QUAD          1 rows   
+              Key RDF_QUAD  ASC  (<V t3.O$41 an>)
+               inlined  P =  IRI_ID"...amount"  ,  S = <v k_t4.S$110 Set112 rn>
+              vector param casts: <r t4.S$35 via  Set96>-> <v k_t4.S$110 Set112 rn>
+              
+              After code:
+                0: <V __ro2sq$43 a> := Call __ro2sq (<r t4.O$34 via  Set106 Set112 Set96>)
+                5: <V __ro2sq$45 a> := Call __ro2sq (<V t3.O$41 an>)
+                10: <V rdf_concat_impl$47 s> := Call rdf_concat_impl (<c http://learningsparql.com/ns/units#>, <V __ro2sq$43 a>)
+                15: <V __rdf_strsqlval$49 s> := Call __rdf_strsqlval (<V rdf_concat_impl$47 s>,  2 )
+                20: <V DB.DBA.rdf_strdt_impl$51 x> := Call DB.DBA.rdf_strdt_impl (<V __ro2sq$45 a>, <V __rdf_strsqlval$49 s>)
+                27: <V vector$53 x> := Call vector (<r t2.S$38 via  Set106 Set112>, <V DB.DBA.rdf_strdt_impl$51 x>)
+                32: if (user_aggr_notfirst$58  =  1 ) then 47 else 36 unkn 36
+                36: user_aggr_notfirst$58  :=  := artm  1 
+                40: <V user_aggr_ret$60 x> := Call DB.DBA.SPARQL_CONSTRUCT_INIT (user_aggr_env$59 )
+                47: <V user_aggr_ret$60 x> := Call DB.DBA.SPARQL_CONSTRUCT_ACC (user_aggr_env$59 , <r vector$29 via  Set106 Set112 Set96 Set85>, <V vector$53 x>, <r vector$31 via  Set106 Set112 Set96 Set85>,  1 )
+                54: BReturn 0
+          }
+          time     0.026% fanout         1 input         1 rows
+            clear: (<V callret-0$61 x>)
+          s# 129 71 skip node  1  <none> <V set_ctr$55 in>
+          After code:
+            0: <V callret-0$61 x> := Call DB.DBA.SPARQL_CONSTRUCT_FIN (user_aggr_env$59 )
+            7: BReturn 0
+          time     0.002% fanout         0 input         1 rows
+          $73 (71 57 56 ) $55 (71 57 56 ) $61 (71 ) 
+          s# 137 63 Subquery Select(<V callret-0$61 x>)
+            set no: <r set_ctr$55 via  Set129>
+        }
+      
+      8:  <none>  := Call DB.DBA.RDF_DICT_OF_TRIPLES_TO_THREE_COLS (scalar$145 )
+      15: BReturn 0
+    
+    END Node
+  }
+Warning: You might have a Cartesian product.
+
+
+
+ 32 msec 11% cpu,        22 rnd         2 seq   17.3913% same seg    26.087% same pg 
+Compilation: 242 msec 0 reads         0% read 0 messages         0% clw

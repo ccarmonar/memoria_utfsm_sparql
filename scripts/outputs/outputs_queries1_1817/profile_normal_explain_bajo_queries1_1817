@@ -1,0 +1,83 @@
+http://www.wikidata.org/entity/Q2100	
+http://www.wikidata.org/entity/Q586	
+http://www.wikidata.org/entity/Q2119	
+http://www.wikidata.org/entity/Q1711	
+http://www.wikidata.org/entity/Q1724	
+http://www.wikidata.org/entity/Q3874	
+http://www.wikidata.org/entity/Q3936	
+http://www.wikidata.org/entity/Q3955	
+http://www.wikidata.org/entity/Q4190	
+http://www.wikidata.org/entity/Q7036	
+http://www.wikidata.org/entity/Q14957	
+http://www.wikidata.org/entity/Q14903	
+http://www.wikidata.org/entity/Q165380	
+http://www.wikidata.org/entity/Q264620	
+http://www.wikidata.org/entity/Q523394	
+
+  { 
+    time      0.21% fanout         1 input         1 rows
+    Precode:
+      0: __all_eq$27 := Call __all_eq ( IRI_ID"...Q515" )
+      5: BReturn 0
+    Subquery 29 
+      { 
+        time      0.11% fanout         1 input         1 rows
+        fork {
+            time         4% fanout         1 input         1 rows
+            fork {
+                Transitive dt dir 2, input: (__all_eq$27)
+                  input shadow: (__all_eq$155)
+                  output: (_::trans_subj_37_5$33)
+                  { 
+                    time        12% fanout  0.909091 input        11 rows
+                    RDF_QUAD_POGS       3.8 rows(s_37_9_t1.S$40, s_37_9_t1.O$39)
+                     P =  IRI_ID"...direct/P279"  ,  O = k___all_eq$161
+                    
+                    After code:
+                    0: _::trans_subj_37_5$33 :=  := artm s_37_9_t1.S$40
+                    4: _::trans_obj_37_6$34 :=  := artm s_37_9_t1.O$39
+                    8: BReturn 0
+                    time     0.074% fanout         0 input        10 rows
+                    Subquery Select(_::trans_subj_37_5$33, _::trans_obj_37_6$34)
+                  }
+                time        14% fanout   109.273 input        11 rows
+                RDF_QUAD_POGS     1e+02 rows(s_37_3_t0.S$60)
+                 P =  IRI_ID"...direct/P31"  ,  O = cast$185 O LIKE <c Tó>
+                time        33% fanout 0.0557404 input      1202 rows
+                RDF_QUAD_POGS      0.04 rows(s_37_17_t2.S$63)
+                 inlined  P =  IRI_ID"...direct/P17"  ,  O =  IRI_ID"...Q183"  ,  S = s_37_3_t0.S$60
+                time       8.9% fanout   1.61194 input        67 rows
+                RDF_QUAD       1.1 rows(s_37_17_t3.O$66)
+                 inlined  P =  IRI_ID"...direct/P1082"  ,  S = s_37_17_t2.S$63
+                time       4.8% fanout         0 input       108 rows
+                Sort (s_37_17_t2.S$63) -> (s_37_17_t3.O$66)
+                
+              }
+            time      0.64% fanout        15 input         1 rows
+            group by read node  
+            (s_37_17_t2.S$63, aggregate$70)
+            time       2.6% fanout         0 input        15 rows
+            Sort (aggregate$70) -> (s_37_17_t2.S$63)
+            
+          }
+        time       7.4% fanout        15 input         1 rows
+        top order by read (s_37_17_t2.S$63)
+        
+        After code:
+        0: __id2in$116 := Call __id2in (s_37_17_t2.S$63)
+        5: var1$30 :=  := artm __id2in$116
+        9: BReturn 0
+        time     0.035% fanout         0 input        15 rows
+        Subquery Select(var1$30)
+      }
+    
+    After code:
+    0: var1$125 := Call __ro2sq (var1$30)
+    5: BReturn 0
+    time     0.041% fanout         0 input        15 rows
+    Select (var1$125)
+  }
+
+
+ 1 msec 26% cpu,      1291 rnd      1282 seq    97.291% same seg   1.70279% same pg 
+Compilation: 2 msec 0 reads         0% read 0 messages         0% clw

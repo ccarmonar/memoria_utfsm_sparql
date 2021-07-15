@@ -1,0 +1,43 @@
+http://vocab.deri.ie/void#keiale	http://www.w3.org/1999/02/22-rdf-syntax-ns#type	http://xmlns.com/foaf/0.1/Person	
+http://vocab.deri.ie/void#Michael%20Hausenblas	http://www.w3.org/1999/02/22-rdf-syntax-ns#type	http://xmlns.com/foaf/0.1/Person	
+http://vocab.deri.ie/void#cygri	http://www.w3.org/1999/02/22-rdf-syntax-ns#type	http://xmlns.com/foaf/0.1/Person	
+http://vocab.deri.ie/void#junzha	http://www.w3.org/1999/02/22-rdf-syntax-ns#type	http://xmlns.com/foaf/0.1/Person	
+http://vocab.deri.ie/void#keiale	http://xmlns.com/foaf/0.1/mbox	mailto:Keith.Alexander@talis.com	
+http://vocab.deri.ie/void#Michael%20Hausenblas	http://xmlns.com/foaf/0.1/mbox	mailto:michael.hausenblas@deri.org	
+http://vocab.deri.ie/void#cygri	http://xmlns.com/foaf/0.1/mbox	mailto:richard.cyganiak@deri.org	
+http://vocab.deri.ie/void#junzha	http://xmlns.com/foaf/0.1/mbox	mailto:jun.zhao@zoo.ox.ac.uk	
+http://vocab.deri.ie/void#keiale	http://xmlns.com/foaf/0.1/homepage	http://kwijibo.talis.com/	
+http://vocab.deri.ie/void#Michael%20Hausenblas	http://xmlns.com/foaf/0.1/homepage	http://sw-app.org/about.html	
+http://vocab.deri.ie/void#cygri	http://xmlns.com/foaf/0.1/homepage	http://richard.cyganiak.de/	
+http://vocab.deri.ie/void#junzha	http://xmlns.com/foaf/0.1/homepage	http://users.ox.ac.uk/~zool0770/	
+http://vocab.deri.ie/void#keiale	http://xmlns.com/foaf/0.1/name	Keith Alexander	
+http://vocab.deri.ie/void#Michael%20Hausenblas	http://xmlns.com/foaf/0.1/name	Michael Hausenblas	
+http://vocab.deri.ie/void#cygri	http://xmlns.com/foaf/0.1/name	Richard Cyganiak	
+http://vocab.deri.ie/void#junzha	http://xmlns.com/foaf/0.1/name	Jun Zhao	
+
+  { 
+    time      0.63% fanout         1 input         1 rows
+    time        10% fanout         7 input         1 rows
+    RDF_QUAD         7 rows(s_13_4_t0.O$28)
+     inlined  P =  IRI_ID"...1.1/creator" 
+    time        32% fanout   2.28571 input         7 rows
+    Precode:
+      0: creator$30 := Call __ro2sq (s_13_4_t0.O$28)
+      5: BReturn 0
+    RDF_QUAD_SP       9.2 rows(s_13_4_t1.P$33)
+     inlined  S = k_s_13_4_t0.O$76
+    time        57% fanout         1 input        16 rows
+    RDF_QUAD       1.2 rows(s_13_4_t1.O$37)
+     inlined  P = k_s_13_4_t1.P$90 ,  S = k_s_13_4_t0.O$94
+    
+    After code:
+    0: propertyName$40 := Call __id2in (s_13_4_t1.P$33)
+    5: propertyValue$42 := Call __ro2sq (s_13_4_t1.O$37)
+    10: BReturn 0
+    time     0.095% fanout         0 input        16 rows
+    Select (creator$30, propertyName$40, propertyValue$42)
+  }
+
+
+ 0 msec 31% cpu,        28 rnd        18 seq   51.7241% same seg   13.7931% same pg 
+Compilation: 1 msec 0 reads         0% read 0 messages         0% clw

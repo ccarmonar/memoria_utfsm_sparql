@@ -1,0 +1,47 @@
+http://www.wikidata.org/entity/Q20110766	
+
+  { 
+    time      0.77% fanout         1 input         1 rows
+    Subquery 27 
+      { 
+        time      0.62% fanout         1 input         1 rows
+        fork {
+            time        12% fanout         1 input         1 rows
+            RDF_QUAD         1 rows(s_37_8_t3.S$31)
+             inlined  P =  IRI_ID"...direct/P3128" 
+            time        11% fanout         1 input         1 rows
+            Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:    0.0046 Fanout:         1
+            RDF_QUAD    0.0046 rows(s_37_8_t0.S$34)
+             inlined  P =  IRI_ID"...direct/P31"  ,  S = s_37_8_t3.S$31 ,  O =  IRI_ID"...Q11424" 
+            time       8.1% fanout         1 input         1 rows
+            Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:     0.005 Fanout:         1
+            RDF_QUAD     0.005 rows(s_37_8_t1.S$37)
+             inlined  P =  IRI_ID"...direct/P495"  ,  S = s_37_8_t0.S$34 ,  O =  IRI_ID"...Q794" 
+            time       5.8% fanout         1 input         1 rows
+            RDF_QUAD         1 rows()
+             inlined  P =  IRI_ID"...direct/P3139"  ,  S = k_s_37_8_t0.S$139
+            time        27% fanout         0 input         1 rows
+            Sort (s_37_8_t0.S$34)
+          }
+        time        34% fanout         1 input         1 rows
+        group by read node  
+        (s_37_8_t0.S$34)
+        
+        After code:
+        0: __id2in$71 := Call __id2in (s_37_8_t0.S$34)
+        5: var1$28 :=  := artm __id2in$71
+        9: BReturn 0
+        time       0.3% fanout         0 input         1 rows
+        Subquery Select(var1$28)
+      }
+    
+    After code:
+    0: var1$80 := Call __ro2sq (var1$28)
+    5: BReturn 0
+    time      0.17% fanout         0 input         1 rows
+    Select (var1$80)
+  }
+
+
+ 1 msec 15% cpu,         4 rnd         0 seq         0% same seg         0% same pg 
+Compilation: 2 msec 0 reads         0% read 0 messages         0% clw

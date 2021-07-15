@@ -1,0 +1,61 @@
+http://www.wikidata.org/entity/Q14632249	Isoaedes cavaticus	
+http://www.wikidata.org/entity/Q14634788	Kenknightia gaffigani	
+http://www.wikidata.org/entity/Q14634798	Kenknightia wilkersoni	
+http://www.wikidata.org/entity/Q14589360	Hodgesia cyptopous	
+http://www.wikidata.org/entity/Q14586613	Aedimorphus abnormalis	
+http://www.wikidata.org/entity/Q14586636	Aedimorphus bambiotai	
+http://www.wikidata.org/entity/Q14586710	Aedimorphus gibbinsi	
+http://www.wikidata.org/entity/Q14586727	Aedimorphus grjebinei	
+http://www.wikidata.org/entity/Q14586823	Aedimorphus leptolabis	
+http://www.wikidata.org/entity/Q14586846	Aedimorphus leucarthrius	
+http://www.wikidata.org/entity/Q14586964	Aedimorphus mathioti	
+http://www.wikidata.org/entity/Q14586988	Aedimorphus mattinglyi	
+http://www.wikidata.org/entity/Q14587129	Aedimorphus ochraceus	
+http://www.wikidata.org/entity/Q14626743	Dobrotworskyius alboannulatus	
+http://www.wikidata.org/entity/Q13851929	Hodgesia solomonis	
+http://www.wikidata.org/entity/Q13851997	Trichoprosopon compressum	
+
+  { 
+    time      0.27% fanout         1 input         1 rows
+    Precode:
+      0: __all_eq$27 := Call __all_eq ( IRI_ID"...Q7367" )
+      5: BReturn 0
+    Transitive dt dir 2, input: (__all_eq$27)
+      input shadow: (__all_eq$94)
+      output: (_::trans_subj_44_4$30)
+      { 
+        time        24% fanout      0.96 input        25 rows
+        RDF_QUAD_POGS         4 rows(s_44_8_t0.S$37, s_44_8_t0.O$36)
+         P =  IRI_ID"...direct/P171"  ,  O = k___all_eq$100
+        
+        After code:
+        0: _::trans_subj_44_4$30 :=  := artm s_44_8_t0.S$37
+        4: _::trans_obj_44_5$31 :=  := artm s_44_8_t0.O$36
+        8: BReturn 0
+        time      0.12% fanout         0 input        24 rows
+        Subquery Select(_::trans_subj_44_4$30, _::trans_obj_44_5$31)
+      }
+    time        17% fanout      0.96 input        25 rows
+    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:     0.052 Fanout:      0.96
+    RDF_QUAD     0.052 rows(s_46_14_t1.S$57)
+     inlined  P =  IRI_ID"...direct/P31"  ,  S = _::trans_subj_44_4$30 ,  O =  IRI_ID"...Q16521" 
+    time        11% fanout  0.666667 input        24 rows
+    RDF_QUAD_POGS       0.3 rows(s_46_14_t2.S$60)
+     inlined  P =  IRI_ID"...direct/P105"  ,  O =  IRI_ID"...Q7432"  ,  S = s_46_14_t1.S$57
+    time       7.3% fanout         1 input        16 rows
+    RDF_QUAD         1 rows(s_46_14_t3.O$63)
+     inlined  P =  IRI_ID"...direct/P225"  ,  S = k_s_46_14_t1.S$144
+    time        17% fanout         1 input        16 rows
+    skip node  50  <none> set_ctr$75
+    
+    After code:
+    0: item$65 := Call __id2in (s_46_14_t1.S$57)
+    5: taxonname$67 := Call __ro2sq (s_46_14_t3.O$63)
+    10: BReturn 0
+    time     0.032% fanout         0 input        16 rows
+    Select (item$65, taxonname$67)
+  }
+
+
+ 1 msec 21% cpu,       106 rnd        17 seq   60.7477% same seg   23.3645% same pg 
+Compilation: 5 msec 0 reads         0% read 0 messages         0% clw

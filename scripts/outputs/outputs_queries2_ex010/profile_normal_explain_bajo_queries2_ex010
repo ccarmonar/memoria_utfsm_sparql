@@ -1,0 +1,23 @@
+http://learningsparql.com/ns/addressbook#email	cindym@gmail.com	
+http://learningsparql.com/ns/addressbook#homeTel	(245) 646-5488	
+
+  { 
+    time       1.6% fanout         1 input         1 rows
+    time        21% fanout         2 input         1 rows
+    RDF_QUAD_SP         2 rows(s_6_2_t0.P$28)
+     inlined  S =  IRI_ID"...cindy" 
+    time        77% fanout         1 input         2 rows
+    RDF_QUAD       1.2 rows(s_6_2_t0.O$32)
+     inlined  P = s_6_2_t0.P$28 ,  S =  IRI_ID"...cindy" 
+    
+    After code:
+    0: propertyName$35 := Call __id2in (s_6_2_t0.P$28)
+    5: propertyValue$37 := Call __ro2sq (s_6_2_t0.O$32)
+    10: BReturn 0
+    time      0.21% fanout         0 input         2 rows
+    Select (propertyName$35, propertyValue$37)
+  }
+
+
+ 1 msec 18% cpu,         5 rnd         1 seq   16.6667% same seg   16.6667% same pg 
+Compilation: 0 msec 0 reads         0% read 0 messages         0% clw

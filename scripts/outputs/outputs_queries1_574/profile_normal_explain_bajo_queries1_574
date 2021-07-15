@@ -1,0 +1,39 @@
+http://www.wikidata.org/entity/Q25381954	₫	
+http://www.wikidata.org/entity/Q25380448	₭	
+http://www.wikidata.org/entity/Q25379533	₤	
+http://www.wikidata.org/entity/Q25381829	฿	
+http://www.wikidata.org/entity/Q25382511	₾	
+http://www.wikidata.org/entity/Q4419556	𐅂	
+http://www.wikidata.org/entity/Q4419556	𐅻	
+http://www.wikidata.org/entity/Q23055403	₿	
+http://www.wikidata.org/entity/Q25379807		
+
+  { 
+    time       1.1% fanout         1 input         1 rows
+    time        21% fanout         8 input         1 rows
+    RDF_QUAD_POGS         8 rows(t1.S$28)
+     P =  IRI_ID"...direct/P31"  ,  O =  IRI_ID"...Q308229" 
+    time        30% fanout         1 input         8 rows
+    Precode:
+      0: var1$30 := Call __id2in (t1.S$28)
+      5: BReturn 0
+    outer {
+        time        18% fanout         1 input         8 rows
+        RDF_QUAD       1.8 rows(t3.O$33)
+         inlined  P =  IRI_ID"...direct/P487"  ,  S = k_t1.S$88
+        time        30% fanout     1.125 input         8 rows
+      } /* end of outer */
+    set_ctr$38
+     out: (t3.O$33)
+     shadow: ( <none> )
+    
+    After code:
+    0: var2$47 := Call __ro2sq (t3.O$33)
+    5: BReturn 0
+    time      0.28% fanout         0 input         9 rows
+    Select (var1$30, var2$47)
+  }
+
+
+ 0 msec 18% cpu,        17 rnd         8 seq   38.8889% same seg   22.2222% same pg 
+Compilation: 1 msec 0 reads         0% read 0 messages         0% clw

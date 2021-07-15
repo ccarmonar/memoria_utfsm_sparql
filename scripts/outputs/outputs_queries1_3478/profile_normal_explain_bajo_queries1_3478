@@ -1,0 +1,58 @@
+http://www.wikidata.org/entity/Q5460279	
+http://www.wikidata.org/entity/Q16352132	
+http://www.wikidata.org/entity/Q146059	
+http://www.wikidata.org/entity/Q13042877	
+http://www.wikidata.org/entity/Q29628271	
+http://www.wikidata.org/entity/Q17159609	
+http://www.wikidata.org/entity/Q462711	
+http://www.wikidata.org/entity/Q235260	
+http://www.wikidata.org/entity/Q3300595	
+http://www.wikidata.org/entity/Q26207424	
+http://www.wikidata.org/entity/Q19958238	
+http://www.wikidata.org/entity/Q25569080	
+
+  { 
+    time      0.25% fanout         1 input         1 rows
+    time       4.5% fanout        42 input         1 rows
+    Precode:
+      0: __rdflit$27 := Call __rdflit (rdflit32005)
+      5: BReturn 0
+    RDF_QUAD_POGS        42 rows(s_37_12_t3.S$30)
+     P =  IRI_ID"...direct/P27"  ,  O =  IRI_ID"...Q1246" 
+    time        37% fanout  0.285714 input        42 rows
+    RDF_QUAD      0.17 rows(s_37_12_t2.S$33)
+     inlined  P =  IRI_ID"...direct/P21"  ,  S = s_37_12_t3.S$30 ,  O =  IRI_ID"...Q6581072" 
+    time        25% fanout         1 input        12 rows
+    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:        15 Fanout:         1
+    Precode:
+      0: var1$35 := Call __id2in (s_37_12_t2.S$33)
+      5: BReturn 0
+    RDF_QUAD_POGS        15 rows(s_37_12_t4.O$38)
+     P =  IRI_ID"...about"  ,  O = cast$105
+    time        17% fanout         1 input        12 rows
+    END Node
+    After test:
+    0: if (  { 
+        time       0.1% fanout         1 input        12 rows
+        time        14% fanout         1 input        12 rows
+        RDF_QUAD_POGS         1 rows(s_37_10_t0.S$41)
+         P =  IRI_ID"...about"  ,  O = k_s_37_12_t4.O$137
+        time       2.2% fanout         0 input        12 rows
+        Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:   1.1e-07 Fanout:         0
+        RDF_QUAD_POGS   1.1e-07 rows()
+         inlined  P =  IRI_ID"...inLanguage"  ,  O = rdflit32005 ,  S = s_37_10_t0.S$41
+        time         0% fanout         0 input         0 rows
+        Subquery Select( <none> )
+      }
+    ) then 5 else 4 unkn 5
+    4: BReturn 1
+    5: BReturn 0
+    time       0.2% fanout         1 input        12 rows
+    skip node  1000  <none> set_ctr$66
+    time     0.071% fanout         0 input        12 rows
+    Select (var1$35)
+  }
+
+
+ 1 msec 26% cpu,        79 rnd        41 seq        40% same seg      42.5% same pg 
+Compilation: 2 msec 0 reads         0% read 0 messages         0% clw

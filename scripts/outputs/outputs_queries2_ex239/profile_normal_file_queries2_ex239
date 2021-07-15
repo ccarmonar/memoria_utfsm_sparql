@@ -1,0 +1,69 @@
+Dick	Mutt	
+Cindy	Marshall	
+Craig	Ellis	
+Richard	Mutt	
+Craig	Ellis	
+Cindy	Marshall	
+Bradley	Perry	
+Katherine	Duncan	
+
+  { 
+    time       1.5% fanout         1 input         1 rows
+      clear: (<V set_ctr$38 in>)
+    s# 63 39 cluster outer seq start, set no <V set_ctr$38 in>    
+    save ctx:()
+    time        28% fanout         8 input         1 rows
+      clear: (<V t8.O$28 an>, <V t8.S$29 rn>)
+      clear on continue: (<V t8.O$28 an>, <V t8.S$29 rn>)
+    s# 72 27 from DB.DBA.RDF_QUAD by RDF_QUAD          8 rows   
+    Key RDF_QUAD  ASC  (<V t8.S$29 rn>, <V t8.O$28 an>)
+     inlined  P =  IRI_ID"...firstName" 
+    
+    time        17% fanout         1 input         8 rows
+      clear: (<V t7.O$32 an>, <V t7.S$33 rn>)
+      clear on continue: (<V t7.O$32 an>, <V t7.S$33 rn>)
+    s# 83 31 from DB.DBA.RDF_QUAD by RDF_QUAD          1 rows   
+    Key RDF_QUAD  ASC  (<V t7.S$33 rn>, <V t7.O$32 an>)
+     inlined  P =  IRI_ID"...lastName"  ,  S = <V t8.S$29 rn>
+    
+    time      0.63% fanout         1 input         8 rows
+      clear: (<V set_ctr$41 i>)
+    s# 94 45 cluster outer seq start, set no <V set_ctr$41 i>    
+    save ctx:()
+    time        12% fanout     0.125 input         8 rows
+      clear: (<V t9.O$36 a>)
+      clear on continue: (<V t9.O$36 a>)$107 (35 ) $29 (45 31 ) 
+    s# 103 35 from DB.DBA.RDF_QUAD by RDF_QUAD          1 rows   
+    Key RDF_QUAD  ASC  (<V t9.O$36 a>)
+     inlined  P =  IRI_ID"...nick"  ,  S = <v k_t8.S$107 Set109 rn>
+    vector param casts: <r t8.S$29 via  Set94 Set83>-> <v k_t8.S$107 Set109 rn>
+    
+    time        39% fanout         8 input         1 rows
+      clear: (<V firstName$54 a>, <V coalesce_ret$52 a>, <V last$50 a>)$32 (35 45 ) $36 () $41 (35 45 ) $28 (35 45 31 ) 
+    s# 117 40 end of outer seq <r set_ctr$41 via  Set103 Set109>
+     out: (<V t9.O$36 a>)
+     shadow: ( <none> )
+    After code:
+      0: <V last$50 a> := Call __ro2sq (<r t7.O$32 via  Set117>)
+      5: if (<V t9.O$36 a>  IS NULL  <DB_NULL>) then 14 else 9 unkn 14
+      9: <V coalesce_ret$52 a> :=  := artm <V t9.O$36 a>
+      13: Jump 27 (level=0)
+      14: if (<r t8.O$28 via  Set117 Set83>  IS NULL  <DB_NULL>) then 23 else 18 unkn 23
+      18: <V coalesce_ret$52 a> :=  := artm <r t8.O$28 via  Set117 Set83>
+      22: Jump 27 (level=0)
+      23: <V coalesce_ret$52 a> :=  := artm <DB_NULL>
+      27: <V firstName$54 a> := Call __ro2sq (<V coalesce_ret$52 a>)
+      32: BReturn 0
+    time      0.42% fanout         0 input         8 rows
+    $38 (40 35 45 31 27 39 ) $50 (40 ) $54 (40 ) 
+    s# 127 56 Select (<V firstName$54 a>, <V last$50 a>)
+      set no: <r set_ctr$38 via  Set117 Set83 Set72>
+  }
+Warning: You might have a Cartesian product.
+
+Warning: You might have a Cartesian product.
+
+
+
+ 0 msec 11% cpu,        33 rnd         7 seq   41.1765% same seg   29.4118% same pg 
+Compilation: 3 msec 0 reads         0% read 0 messages         0% clw

@@ -1,0 +1,62 @@
+ SELECT  __ro2sq ("s_46_30_rbc"."state") AS "state" FROM (SELECT DISTINCT TOP 3000 "s_46_30_t4"."S" AS "state"
+  FROM DB.DBA.RDF_QUAD AS "s_40_3_t0"
+    INNER JOIN (
+     SELECT TRANSITIVE T_OUT(2) T_IN(1) T_MIN( 0) T_NO_CYCLES "s_40_9_t1"."S" AS "_::trans_subj_40_5",
+        "s_40_9_t1"."O" AS "_::trans_obj_40_6"
+      FROM DB.DBA.RDF_QUAD AS "s_40_9_t1"
+      WHERE
+        "s_40_9_t1"."P" = __i2idn ( __bft( 'http://www.wikidata.org/prop/direct/P279' , 1))
+OPTION (QUIETCAST)
+      ) AS "s_40_12"
+    ON (
+      "s_40_3_t0"."O" = "s_40_12"."_::trans_subj_40_5")
+    INNER JOIN DB.DBA.RDF_QUAD AS "s_46_30_t4"
+    ON (
+      "s_46_30_t4"."S" = "s_40_3_t0"."S")
+    INNER JOIN DB.DBA.RDF_QUAD AS "s_46_30_t5"
+    ON (
+      "s_46_30_t4"."O" = "s_46_30_t5"."S")
+    INNER JOIN DB.DBA.RDF_QUAD AS "s_46_30_t6"
+    ON (
+      "s_46_30_t4"."O" = "s_46_30_t6"."S"
+      AND 
+      "s_46_30_t5"."S" = "s_46_30_t6"."S")
+  WHERE
+    "s_40_3_t0"."P" = __i2idn ( __bft( 'http://www.wikidata.org/prop/direct/P31' , 1))
+    AND 
+    isiri_id ( "s_40_3_t0"."O")
+    AND 
+    "s_46_30_t4"."P" = __i2idn ( __bft( 'http://www.wikidata.org/prop/P463' , 1))
+    AND 
+    "s_46_30_t5"."P" = __i2idn ( __bft( 'http://www.w3.org/1999/02/22-rdf-syntax-ns#type' , 1))
+    AND 
+    "s_46_30_t5"."O" = __i2idn ( __bft( 'http://wikiba.se/ontology#BestRank' , 1))
+    AND 
+    "s_46_30_t6"."P" = __i2idn ( __bft( 'http://www.wikidata.org/prop/statement/P463' , 1))
+    AND 
+    "s_46_30_t6"."O" = __i2idn ( __bft( 'http://www.wikidata.org/entity/Q1065' , 1))
+    AND 
+   ( "s_40_12"."_::trans_obj_40_6" =  __i2idn ( __bft( 'http://www.wikidata.org/entity/Q3624078' , 1)))
+    AND 
+    not ( EXISTS ( (
+       SELECT TOP 1 1 AS __ask_retval
+        FROM DB.DBA.RDF_QUAD AS "s_45_21_t2"
+        WHERE
+          "s_45_21_t2"."P" = __i2idn ( __bft( 'http://www.wikidata.org/prop/qualifier/P582' , 1))
+          AND 
+          "s_45_21_t2"."S" = "s_46_30_t6"."S"
+OPTION (QUIETCAST)
+       )))
+    AND 
+    not ( EXISTS ( (
+       SELECT TOP 1 1 AS __ask_retval
+        FROM DB.DBA.RDF_QUAD AS "s_45_26_t3"
+        WHERE
+          "s_45_26_t3"."S" = "s_40_3_t0"."S"
+          AND 
+          ( "s_45_26_t3"."P" in ( __i2idn ( __bft ( __bft( 'http://www.wikidata.org/prop/direct/P576' , 1), 1)),  __i2idn ( __bft ( __bft( 'http://www.wikidata.org/prop/direct/P582' , 1), 1))))
+OPTION (QUIETCAST)
+       )))
+    AND 
+    1
+OPTION (QUIETCAST)) AS "s_46_30_rbc"

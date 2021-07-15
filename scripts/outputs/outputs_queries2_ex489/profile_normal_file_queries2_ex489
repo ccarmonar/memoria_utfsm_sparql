@@ -1,0 +1,42 @@
+
+  { 
+    time     0.067% fanout         1 input         1 rows
+      clear: (<V set_ctr$50 in>)
+    s# 53 51 cluster outer seq start, set no <V set_ctr$50 in>    
+    save ctx:()
+    time       1.6% fanout       567 input         1 rows
+    Precode:
+      0: <V DB.DBA.RDF_MAKE_LONG_OF_SQLVAL$27 a> := Call DB.DBA.RDF_MAKE_LONG_OF_SQLVAL (<c price>)
+      7: BReturn 0
+      clear: (<V s_10_2_t0.S$30 rn>, <V DB.DBA.RDF_MAKE_LONG_OF_SQLVAL$27 a>)
+      clear on continue: (<V s_10_2_t0.S$30 rn>)
+    s# 62 29 from DB.DBA.RDF_QUAD by RDF_QUAD_POGS    5.6e+02 rows   
+    Key RDF_QUAD_POGS  ASC  (<V s_10_2_t0.S$30 rn>)
+     P =  IRI_ID"...type"  ,  O =  IRI_ID"...Class" 
+    
+    time        98% fanout         0 input       567 rows
+      clear: (<V rdf_contains_impl$40 i>, <V rdf_lcase_impl$38 s>, <V DB.DBA.RDF_LONG_OF_SQLVAL$36 a>, <V __bft$34 x>, <V __id2in$32 a>, <V s$42 a>)$27 (29 ) $30 () 
+    s# 77 72 END Node
+    After test:
+      0: <V __id2in$32 a> := Call __id2in (<V s_10_2_t0.S$30 rn>)
+      5: <V __bft$34 x> := Call __bft (<V __id2in$32 a>,  2 )
+      10: <V DB.DBA.RDF_LONG_OF_SQLVAL$36 a> := Call DB.DBA.RDF_LONG_OF_SQLVAL (<V __bft$34 x>)
+      17: <V rdf_lcase_impl$38 s> := Call rdf_lcase_impl (<V DB.DBA.RDF_LONG_OF_SQLVAL$36 a>)
+      22: <V rdf_contains_impl$40 i> := Call rdf_contains_impl (<V rdf_lcase_impl$38 s>, <r DB.DBA.RDF_MAKE_LONG_OF_SQLVAL$27 via  Set62>)
+      27: if ( 0  = <V rdf_contains_impl$40 i>) then 32 else 31 unkn 32
+      31: BReturn 1
+      32: BReturn 0
+    After code:
+      0: <V s$42 a> := Call __id2in (<r s_10_2_t0.S$30 via  Set77>)
+      5: BReturn 0
+    time         0% fanout         0 input         0 rows
+    $42 (72 ) $50 (72 29 51 ) 
+    s# 85 44 Select (<V s$42 a>)
+      set no: <r set_ctr$50 via  Set77 Set62>
+  }
+Warning: You might have a Cartesian product.
+
+
+
+ 4 msec 82% cpu,        11 rnd       566 seq         0% same seg         0% same pg 
+Compilation: 0 msec 0 reads         0% read 0 messages         0% clw

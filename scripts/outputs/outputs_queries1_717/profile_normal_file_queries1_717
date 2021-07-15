@@ -1,0 +1,52 @@
+
+  { 
+    time       2.1% fanout         1 input         1 rows
+      clear: (<V set_ctr$48 in>)
+    s# 51 49 cluster outer seq start, set no <V set_ctr$48 in>    
+    save ctx:()
+    time        98% fanout         0 input         1 rows
+    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:   1.1e-07 Fanout:         0
+    Precode:
+      0: <V ontology/populationTotal$27 r> := Call __i2idn (<tag 182 flag 1 c http://dbpedia.org/ontology/populationTotal>)
+      5: <V ontology/Country$29 r> := Call __i2idn (<tag 182 flag 1 c http://dbpedia.org/ontology/Country>)
+      10: BReturn 0
+      clear: (<V s_37_6_t1.S$32 rn>, <V ontology/Country$29 r>, <V ontology/populationTotal$27 r>)
+      clear on continue: (<V s_37_6_t1.S$32 rn>)$64 (31 ) $27 (31 ) 
+    s# 60 31 from DB.DBA.RDF_QUAD by RDF_QUAD_POGS    1.1e-07 rows   
+    Key RDF_QUAD_POGS  ASC  (<V s_37_6_t1.S$32 rn>)
+     inlined  P = <v k_ontology/populationTotal$64 Set66 rn>
+    vector param casts: <V ontology/populationTotal$27 r>-> <v k_ontology/populationTotal$64 Set66 rn>
+    
+    time         0% fanout         0 input         0 rows
+    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:   6.2e-06 Fanout:         0
+      clear: (<V s_37_6_t2.S$35 rn>)
+      clear on continue: (<V s_37_6_t2.S$35 rn>)
+    s# 74 34 from DB.DBA.RDF_QUAD by RDF_QUAD    6.2e-06 rows   
+    Key RDF_QUAD  ASC  (<V s_37_6_t2.S$35 rn>)
+     inlined  P =  IRI_ID"...direct/P31"  ,  S = <V s_37_6_t1.S$32 rn> ,  O =  IRI_ID"...Q6256" 
+    
+    time         0% fanout         0 input         0 rows
+    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:       0.8 Fanout:         0
+      clear: (<V s_37_6_t0.S$38 rn>, <V var1$40 a>)
+      clear on continue: (<V var1$40 a>, <V s_37_6_t0.S$38 rn>)$32 (34 ) $88 (37 ) $29 (34 31 ) $92 (37 ) 
+    s# 84 37 from DB.DBA.RDF_QUAD by RDF_QUAD_POGS        0.8 rows   
+    Key RDF_QUAD_POGS  ASC  (<V s_37_6_t0.S$38 rn>)
+     inlined  P =  IRI_ID"...type"  ,  O = <v k_ontology/Country$88 Set90 an> ,  S = <V k_s_37_6_t1.S$92 rn>
+    vector param casts: <r ontology/Country$29 via  Set74 Set60 Set66>-> <v k_ontology/Country$88 Set90 an>, <r s_37_6_t1.S$32 via  Set74>-> <V k_s_37_6_t1.S$92 rn>
+    
+    After code:
+      0: <V var1$40 a> := Call __id2in (<V s_37_6_t0.S$38 rn>)
+      5: BReturn 0
+    time         0% fanout         0 input         0 rows
+    $40 () $48 (37 34 31 49 ) 
+    s# 100 42 Select (<V var1$40 a>)
+      set no: <r set_ctr$48 via  Set84 Set90 Set74 Set60 Set66>
+  }
+Warning: You might have a Cartesian product.
+
+Warning: You might have a Cartesian product.
+
+
+
+ 1 msec 7% cpu,         7 rnd         0 seq         0% same seg         0% same pg 
+Compilation: 2 msec 0 reads         0% read 0 messages         0% clw

@@ -1,0 +1,34 @@
+dog	
+My%20String	
+cat	
+123456	
+http%3A%2F%2Fwww.learnsparql.com%2Fcgi%2Ffunc1%26color%3Dred	
+turtle	
+
+  { 
+    time       1.8% fanout         1 input         1 rows
+      clear: (<V set_ctr$40 in>)
+    s# 43 41 cluster outer seq start, set no <V set_ctr$40 in>    
+    save ctx:()
+    time        98% fanout         6 input         1 rows
+      clear: (<V t2.O$28 an>, <V encodeTest$32 s>, <V __ro2sq$30 a>)
+      clear on continue: (<V t2.O$28 an>, <V encodeTest$32 s>, <V __ro2sq$30 a>)
+    s# 52 27 from DB.DBA.RDF_QUAD by RDF_QUAD          6 rows   
+    Key RDF_QUAD  ASC  (<V t2.O$28 an>)
+     inlined  P =  IRI_ID"...rdf-schemalabel" 
+    
+    After code:
+      0: <V __ro2sq$30 a> := Call __ro2sq (<V t2.O$28 an>)
+      5: <V encodeTest$32 s> := Call rdf_encode_for_uri_impl (<V __ro2sq$30 a>)
+      10: BReturn 0
+    time      0.32% fanout         0 input         6 rows
+    $32 () $40 (27 41 ) 
+    s# 62 34 Select (<V encodeTest$32 s>)
+      set no: <r set_ctr$40 via  Set52>
+  }
+Warning: You might have a Cartesian product.
+
+
+
+ 0 msec 13% cpu,         7 rnd         5 seq         0% same seg      62.5% same pg 
+Compilation: 1 msec 0 reads         0% read 0 messages         0% clw

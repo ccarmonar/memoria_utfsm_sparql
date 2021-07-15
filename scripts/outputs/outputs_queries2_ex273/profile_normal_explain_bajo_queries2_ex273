@@ -1,0 +1,46 @@
+feminine	
+Fernando Correia Dias	
+Swedish Pensions Agency	
+Drhovle Ves	
+Negin Kavir District	
+City status	
+Orkney Islands Council	
+Radomirë	
+Kostren i Vogël	
+Ischioplites	
+Easter − 42 days	
+Cumoechus	
+Qareh Chay District	
+Natalia Rasouli	
+Mimias	
+Xherije	
+friend	
+Les Mouvements de mode expliqués aux parents	
+Protorhynchites	
+Loisettea	
+
+  { 
+    time     0.065% fanout         1 input         1 rows
+    time       2.1% fanout      1000 input         1 rows
+    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:   1.4e+07 Fanout:     1e+03
+    RDF_QUAD   1.4e+07 rows(t2.O$28)
+     inlined  P =  IRI_ID"...label" 
+    time        98% fanout     0.054 input      1000 rows
+    END Node
+    After test:
+    0: __ro2sq$30 := Call __ro2sq (t2.O$28)
+    5: DB.DBA.RDF_LANGUAGE_OF_OBJ$32 := Call DB.DBA.RDF_LANGUAGE_OF_OBJ (__ro2sq$30)
+    12: if (<c en> = DB.DBA.RDF_LANGUAGE_OF_OBJ$32) then 16 else 17 unkn 17
+    16: BReturn 1
+    17: BReturn 0
+    
+    After code:
+    0: strippedLabel$34 := Call __rdf_strsqlval (t2.O$28,  0 )
+    5: BReturn 0
+    time    0.0063% fanout         0 input        54 rows
+    Select (strippedLabel$34)
+  }
+
+
+ 3 msec 79% cpu,      1977 rnd       998 seq         0% same seg   46.2083% same pg 
+Compilation: 1 msec 0 reads         0% read 0 messages         0% clw

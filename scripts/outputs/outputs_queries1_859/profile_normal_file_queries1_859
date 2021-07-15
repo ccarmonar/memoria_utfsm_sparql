@@ -1,0 +1,59 @@
+
+  { 
+    time       2.4% fanout         1 input         1 rows
+      clear: (<V set_ctr$67 in>)
+    s# 70 68 cluster outer seq start, set no <V set_ctr$67 in>    
+    save ctx:()
+    time        98% fanout         0 input         1 rows
+    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:   1.1e-07 Fanout:         0
+    Precode:
+      0: <V vector$27 x> := Call vector ( IRI_ID"...Q8513" )
+      5: <V vector$29 x> := Call vector ( IRI_ID"...Q1789476" )
+      10: <V vector$31 x> := Call vector ( IRI_ID"...Q21538537" )
+      15: <V entity/Q5570651$33 r> := Call __i2id (<tag 217 c http://www.wikidata.org/entity/Q5570651>)
+      20: <V vector$35 x> := Call vector (<V entity/Q5570651$33 r>)
+      25: <V vector$37 x> := Call vector (<V vector$27 x>, <V vector$29 x>, <V vector$31 x>, <V vector$35 x>)
+      30: BReturn 0
+      clear: (<V s_37_5_t1.O$40 an>, <V s_37_5_t1.S$41 rn>, <V vector$37 x>, <V vector$35 x>, <V entity/Q5570651$33 r>, <V vector$31 x>, <V vector$29 x>, <V vector$27 x>)
+      clear on continue: (<V s_37_5_t1.S$41 rn>, <V s_37_5_t1.O$40 an>)$31 (39 ) $33 (39 ) $35 (39 ) $27 (39 ) $29 (39 ) 
+    s# 79 39 from DB.DBA.RDF_QUAD by RDF_QUAD_POGS    1.1e-07 rows   
+    Key RDF_QUAD_POGS  ASC  (<V s_37_5_t1.S$41 rn>, <V s_37_5_t1.O$40 an>)
+     inlined  P =  IRI_ID"...statement/P279" 
+    
+    time         0% fanout         0 input         0 rows
+    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:   1.1e-07 Fanout:         0
+    $94 (43 ) $41 () 
+    s# 90 43 from DB.DBA.RDF_QUAD by RDF_QUAD_POGS    1.1e-07 rows   
+    Key RDF_QUAD_POGS  ASC  ()
+     inlined  P =  IRI_ID"...P279"  ,  O = <v cast$94 Set96 an> ,  S =  IRI_ID"...Q8513" 
+    vector param casts: <V s_37_5_t1.S$41 rn>-> <v cast$94 Set96 an>
+    
+    time         0% fanout         0 input         0 rows
+    Precode:
+      0: <V var2$45 a> := Call __ro2sq (<r s_37_5_t1.O$40 via  Set90 Set96>)
+      5: <V dta$52 x> :=  := artm <r vector$37 via  Set90 Set96 Set79>
+      9: <V proc_ctr$48 i> :=  := artm  0 
+      13:  <none>  := Call __reset_temp ( 139973149621040 )
+      18:  <proc table>  := Call DB.DBA.SPARQL_BINDINGS_VIEW_C_1_IMP (<r vector$37 via  Set90 Set96 Set79>)
+      25: BReturn 0
+      clear: (<V BND0$50 a>, <V proc_ctr$48 i>, <V dta$52 x>, <V var2$45 a>, <V var1$59 a>)
+      clear on continue: (<V var1$59 a>, <V proc_ctr$48 i>, <V BND0$50 a>)$37 (43 39 ) $40 (43 ) 
+    s# 103 47 Key from temp (<V proc_ctr$48 i>, <V BND0$50 a>)
+    
+    
+    After code:
+      0: <V var1$59 a> := Call __id2in (<V BND0$50 a>)
+      5: BReturn 0
+    time         0% fanout         0 input         0 rows
+    $67 (47 43 39 68 ) $45 (47 ) $59 () 
+    s# 112 61 Select (<V var1$59 a>, <r var2$45 via  Set103>)
+      set no: <r set_ctr$67 via  Set103 Set90 Set96 Set79>
+  }
+Warning: You might have a Cartesian product.
+
+Warning: You might have a Cartesian product.
+
+
+
+ 1 msec 0% cpu,         4 rnd         0 seq         0% same seg         0% same pg 
+Compilation: 28 msec 1 reads    94.073% read 0 messages         0% clw

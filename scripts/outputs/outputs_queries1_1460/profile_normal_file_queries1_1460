@@ -1,0 +1,58 @@
+
+  { 
+    time   0.00016% fanout         1 input         1 rows
+      clear: (<V set_ctr$65 in>)
+    s# 68 66 cluster outer seq start, set no <V set_ctr$65 in>    
+    save ctx:()
+    time    0.0072% fanout         1 input         1 rows
+    Precode:
+      0: <V prop/2044$27 r> := Call __i2idn (<tag 182 flag 1 c http://www.wikidata.org/prop/2044>)
+      5: <V label$29 r> := Call __i2idn (<tag 182 flag 1 c http://www.w3.org/1999/02/22-rdf-syntax-ns#label>)
+      10: BReturn 0
+      clear: (<V set_no$33 i>, <V label$29 r>, <V prop/2044$27 r>)
+    s# 77 56 cluster outer seq start, set no <V set_no$33 i>    
+    save ctx:()
+    time     1e+02% fanout         0 input         1 rows
+    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:     1e-07 Fanout:         0
+      clear: (<V s_37_2_t0.O$35 an>)
+      clear on continue: (<V s_37_2_t0.O$35 an>)$94 (34 ) $27 (56 ) $90 (34 ) $29 (56 ) 
+    s# 86 34 from DB.DBA.RDF_QUAD by RDF_QUAD      1e-07 rows   
+    Key RDF_QUAD  ASC  (<V s_37_2_t0.O$35 an>)
+     inlined  P = <v k_label$90 Set92 rn> ,  S = <V k_prop/2044$94 rn>
+    vector param casts: <r label$29 via  Set77>-> <v k_label$90 Set92 rn>, <r prop/2044$27 via  Set77>-> <V k_prop/2044$94 rn>
+    
+    time         0% fanout         0 input         0 rows
+      clear: (<V DB.DBA.RDF_LANGMATCHES$41 x>, <V DB.DBA.RDF_LANGUAGE_OF_OBJ$39 a>, <V __ro2sq$37 a>)
+    s# 107 102 END Node
+    After test:
+      0: <V __ro2sq$37 a> := Call __ro2sq (<V s_37_2_t0.O$35 an>)
+      5: <V DB.DBA.RDF_LANGUAGE_OF_OBJ$39 a> := Call DB.DBA.RDF_LANGUAGE_OF_OBJ (<V __ro2sq$37 a>)
+      12: <V DB.DBA.RDF_LANGMATCHES$41 x> := Call DB.DBA.RDF_LANGMATCHES (<V DB.DBA.RDF_LANGUAGE_OF_OBJ$39 a>, <c ES>)
+      19: if ( 0  = <V DB.DBA.RDF_LANGMATCHES$41 x>) then 24 else 23 unkn 24
+      23: BReturn 1
+      24: BReturn 0
+    time         0% fanout         0 input         0 rows
+      clear: (<V var1Label$32 an>)$35 (102 ) 
+    s# 115 43 Distinct (HASH) set no <r set_no$33 via  Set107 Set86 Set92>(<r s_37_2_t0.O$35 via  Set107>)
+    After code:
+      0: <V var1Label$32 an> :=  := artm <r s_37_2_t0.O$35 via  Set115 Set107>
+      4: BReturn 0
+    time         0% fanout         0 input         0 rows
+      clear: (<V var1Label$57 a>)$32 (43 ) $33 (43 102 34 56 ) 
+    s# 124 49 Subquery Select(<V var1Label$32 an>)
+      set no: <r set_no$33 via  Set115 Set107 Set86 Set92>
+    After code:
+      0: <V var1Label$57 a> := Call __ro2sq (<V var1Label$32 an>)
+      5: BReturn 0
+    time         0% fanout         0 input         0 rows
+    $65 (49 43 102 34 56 66 ) $57 (49 ) 
+    s# 131 59 Select (<V var1Label$57 a>)
+      set no: <r set_ctr$65 via  Set124>
+  }
+Warning: You might have a Cartesian product.
+
+
+
+ 1877 msec 99% cpu,         7 rnd         0 seq         0% same seg         0% same pg 
+716 disk reads, 864 read ahead,   98.9778% wait
+Compilation: 1 msec 0 reads         0% read 0 messages         0% clw

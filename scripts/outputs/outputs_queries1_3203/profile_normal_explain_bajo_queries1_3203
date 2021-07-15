@@ -1,0 +1,46 @@
+http://www.wikidata.org/entity/Q3180992	1943-05-07 00:00:00Z	
+http://www.wikidata.org/entity/Q16003706	1880-12-29 00:00:00Z	
+http://www.wikidata.org/entity/Q16003716	1878-02-21 00:00:00Z	
+http://www.wikidata.org/entity/Q16003847	1912-09-03 00:00:00Z	
+http://www.wikidata.org/entity/Q16006397	1897-04-28 00:00:00Z	
+http://www.wikidata.org/entity/Q16006477	1905-01-22 00:00:00Z	
+http://www.wikidata.org/entity/Q16008097	1892-03-29 00:00:00Z	
+http://www.wikidata.org/entity/Q16008125	1892-06-07 00:00:00Z	
+http://www.wikidata.org/entity/Q16008798	1902-06-06 00:00:00Z	
+http://www.wikidata.org/entity/Q16011046	1911-10-09 00:00:00Z	
+http://www.wikidata.org/entity/Q16011942	1937-12-20 00:00:00Z	
+http://www.wikidata.org/entity/Q16012584	1934-11-06 00:00:00Z	
+http://www.wikidata.org/entity/Q16013155	1919-03-10 00:00:00Z	
+http://www.wikidata.org/entity/Q16013373	1911-02-18 00:00:00Z	
+http://www.wikidata.org/entity/Q16013494	1906-03-29 00:00:00Z	
+http://www.wikidata.org/entity/Q16013647	1908-01-03 00:00:00Z	
+http://www.wikidata.org/entity/Q16014129	1940-11-28 00:00:00Z	
+http://www.wikidata.org/entity/Q16014448	1938-12-28 00:00:00Z	
+http://www.wikidata.org/entity/Q16014449	1942-10-20 00:00:00Z	
+http://www.wikidata.org/entity/Q16015512	1935-12-24 00:00:00Z	
+
+  { 
+    time      0.18% fanout         1 input         1 rows
+    time       4.3% fanout      1000 input         1 rows
+    RDF_QUAD_POGS   5.7e+03 rows(s_37_6_t1.S$28)
+     P =  IRI_ID"...direct/P27"  ,  O =  IRI_ID"...Q408" 
+    time        50% fanout     0.149 input      1000 rows
+    RDF_QUAD     0.092 rows(s_37_6_t0.S$31)
+     inlined  P =  IRI_ID"...direct/P106"  ,  S = s_37_6_t1.S$28 ,  O =  IRI_ID"...Q82955" 
+    time        46% fanout  0.986577 input       149 rows
+    Precode:
+      0: var1$33 := Call __id2in (s_37_6_t0.S$31)
+      5: BReturn 0
+    RDF_QUAD         1 rows(s_37_6_t2.O$36)
+     inlined  P =  IRI_ID"...direct/P569"  ,  S = s_37_6_t0.S$31
+    
+    After code:
+    0: var2$38 := Call __ro2sq (s_37_6_t2.O$36)
+    5: BReturn 0
+    time      0.08% fanout         0 input       147 rows
+    Select (var1$33, var2$38)
+  }
+
+
+ 2 msec 51% cpu,      1150 rnd       998 seq   98.0017% same seg   1.30321% same pg 
+Compilation: 1 msec 0 reads         0% read 0 messages         0% clw

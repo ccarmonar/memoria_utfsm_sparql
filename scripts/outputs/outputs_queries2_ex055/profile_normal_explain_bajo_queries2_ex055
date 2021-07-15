@@ -1,0 +1,26 @@
+Craig	Ellis	(245) 315-5486	
+
+  { 
+    time       1.7% fanout         1 input         1 rows
+    time        29% fanout         1 input         1 rows
+    RDF_QUAD         1 rows(s_11_6_t2.S$29, s_11_6_t2.O$28)
+     inlined  P =  IRI_ID"...workTel" 
+    time        12% fanout         1 input         1 rows
+    RDF_QUAD         1 rows(s_11_6_t0.S$33, s_11_6_t0.O$32)
+     inlined  P =  IRI_ID"...firstName"  ,  S = s_11_6_t2.S$29
+    time        57% fanout         1 input         1 rows
+    RDF_QUAD         1 rows(s_11_6_t1.O$36)
+     inlined  P =  IRI_ID"...lastName"  ,  S = s_11_6_t0.S$33
+    
+    After code:
+    0: workTel$38 := Call __ro2sq (s_11_6_t2.O$28)
+    5: first$40 := Call __ro2sq (s_11_6_t0.O$32)
+    10: last$42 := Call __ro2sq (s_11_6_t1.O$36)
+    15: BReturn 0
+    time       0.2% fanout         0 input         1 rows
+    Select (first$40, last$42, workTel$38)
+  }
+
+
+ 1 msec 12% cpu,         6 rnd         0 seq         0% same seg         0% same pg 
+Compilation: 1 msec 0 reads         0% read 0 messages         0% clw

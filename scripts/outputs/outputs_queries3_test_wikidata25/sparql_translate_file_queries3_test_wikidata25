@@ -1,0 +1,233 @@
+ SELECT  __ro2sq ("s_97_54_rbc"."propNumber") AS "propNumber", __ro2sq ("s_97_54_rbc"."propLabel") AS "propLabel", __ro2sq ("s_97_54_rbc"."val") AS "val" FROM (SELECT TOP 700 "s_95_53"."propNumber" AS "propNumber",
+    __ro2sq ( "s_95_53"."propLabel") AS "propLabel",
+    __ro2sq ( "s_95_53"."val") AS "val"
+  FROM (
+     SELECT "s_0_60"."valUrl" AS "valUrl",
+        "s_0_60"."propUrl" AS "propUrl",
+        "s_0_60"."propLabel" AS "propLabel",
+        "s_0_60"."val" AS "val",
+        "s_0_60"."property" AS "property",
+        "s_0_60"."ref" AS "ref",
+        "s_0_60"."valLabel" AS "valLabel",
+        rdf_substr_impl ( DB.DBA.RDF_LONG_OF_SQLVAL ( __rdf_strsqlval ( "s_0_60"."propUrl", 0)),  38,  250) AS "propNumber"
+      FROM (
+          SELECT DB.DBA.RDF_MAKE_LONG_OF_SQLVAL ( 'N/A' ) AS "propUrl" ANY,
+            __i2idn ( __bft( 'http://www.wikidata.org/entity/Q42' , 1)) AS "valUrl" ANY,
+            NULL AS "property",
+            NULL AS "ref",
+            DB.DBA.RDF_MAKE_OBJ_OF_TYPEDSQLVAL ( 'Name' , __i2id( NULL),  'de' ) AS "propLabel" ANY,
+            "s_60_10_t0-c5"."O" AS "val" ANY,
+            NULL AS "valLabel" ANY
+          FROM DB.DBA.RDF_QUAD AS "s_95_52_t12"
+            INNER JOIN (
+             SELECT __bft( 'http://www.wikidata.org/entity/Q42' , 1) AS "valUrl",
+                'N/A'  AS "propUrl",
+                DB.DBA.RDF_MAKE_LONG_OF_TYPEDSQLVAL_STRINGS ( 'Name' , NULL, 'de' ) AS "propLabel"
+              FROM (
+                 SELECT __bft( 'http://www.wikidata.org/entity/Q42' , 1) AS "valUrl",
+                    'N/A'  AS "propUrl"
+                  FROM (
+                     SELECT __bft ( __bft( 'http://www.wikidata.org/entity/Q42' , 1), 1) AS "valUrl"
+                      FROM
+                        (SELECT 1 as __stub) AS "stub-s_53_2-c5"
+OPTION (QUIETCAST)
+                      ) AS "s_53_3-c5"
+OPTION (QUIETCAST)
+                  ) AS "s_54_5-c5"
+OPTION (QUIETCAST)
+              ) AS "s_55_7-c5"
+            ON (1)
+            INNER JOIN DB.DBA.RDF_QUAD AS "s_60_10_t0-c5"
+            ON (1)
+          WHERE
+            "s_95_52_t12"."S" = __i2idn ( __bft( 'http://www.bigdata.com/queryHints#Query' , 1))
+            AND 
+            "s_95_52_t12"."P" = __i2idn ( __bft( 'http://www.bigdata.com/queryHints#optimizer' , 1))
+            AND 
+            "s_95_52_t12"."O" = DB.DBA.RDF_OBJ_OF_SQLVAL ( 'None' )
+            AND 
+            "s_60_10_t0-c5"."S" = __i2idn ( __bft( 'http://www.wikidata.org/entity/Q42' , 1))
+            AND 
+            "s_60_10_t0-c5"."P" = __i2idn ( __bft( 'http://www.w3.org/2000/01/rdf-schema#label' , 1))
+            AND 
+           ( 'de'  =  DB.DBA.RDF_LANGUAGE_OF_OBJ (__ro2sq ( "s_60_10_t0-c5"."O")))
+          UNION ALL SELECT NULL AS "propUrl",
+            __i2idn ( __bft( 'http://www.wikidata.org/entity/Q42' , 1)) AS "valUrl",
+            NULL AS "property",
+            NULL AS "ref",
+            DB.DBA.RDF_MAKE_OBJ_OF_TYPEDSQLVAL ( 'AltLabel' , __i2id( NULL),  'de' ) AS "propLabel",
+            "s_64_17-c11"."val",
+            NULL AS "valLabel"
+          FROM DB.DBA.RDF_QUAD AS "s_95_52_t12"
+            INNER JOIN (
+             SELECT __bft( 'http://www.wikidata.org/entity/Q42' , 1) AS "valUrl",
+                DB.DBA.RDF_MAKE_LONG_OF_TYPEDSQLVAL_STRINGS ( 'AltLabel' , NULL, 'de' ) AS "propLabel"
+              FROM (
+                 SELECT __bft ( __bft( 'http://www.wikidata.org/entity/Q42' , 1), 1) AS "valUrl"
+                  FROM
+                    (SELECT 1 as __stub) AS "stub-s_61_11-c11"
+OPTION (QUIETCAST)
+                  ) AS "s_61_12-c11"
+OPTION (QUIETCAST)
+              ) AS "s_63_14-c11"
+            ON (1)
+            LEFT OUTER JOIN (
+              SELECT "s_64_17_t1-c11"."O" AS "val"
+              FROM DB.DBA.RDF_QUAD AS "s_64_17_t1-c11"
+              WHERE
+                "s_64_17_t1-c11"."S" = __i2idn ( __bft( 'http://www.wikidata.org/entity/Q42' , 1))
+                AND 
+                "s_64_17_t1-c11"."P" = __i2idn ( __bft( 'http://www.w3.org/2004/02/skos/core#altLabel' , 1))) AS "s_64_17-c11"
+            ON (1)
+          WHERE
+            "s_95_52_t12"."S" = __i2idn ( __bft( 'http://www.bigdata.com/queryHints#Query' , 1))
+            AND 
+            "s_95_52_t12"."P" = __i2idn ( __bft( 'http://www.bigdata.com/queryHints#optimizer' , 1))
+            AND 
+            "s_95_52_t12"."O" = DB.DBA.RDF_OBJ_OF_SQLVAL ( 'None' )
+            AND 
+           ( 'de'  =  DB.DBA.RDF_LANGUAGE_OF_OBJ (__ro2sq ( "s_64_17-c11"."val")))
+          UNION ALL SELECT NULL AS "propUrl",
+            __i2idn ( __bft( 'http://www.wikidata.org/entity/Q42' , 1)) AS "valUrl",
+            NULL AS "property",
+            NULL AS "ref",
+            DB.DBA.RDF_MAKE_OBJ_OF_TYPEDSQLVAL ( 'Beschreibung' , __i2id( NULL),  'de' ) AS "propLabel",
+            "s_71_26-c17"."val",
+            NULL AS "valLabel"
+          FROM DB.DBA.RDF_QUAD AS "s_95_52_t12"
+            INNER JOIN (
+             SELECT __bft( 'http://www.wikidata.org/entity/Q42' , 1) AS "valUrl",
+                DB.DBA.RDF_MAKE_LONG_OF_TYPEDSQLVAL_STRINGS ( 'Beschreibung' , NULL, 'de' ) AS "propLabel"
+              FROM (
+                 SELECT __bft ( __bft( 'http://www.wikidata.org/entity/Q42' , 1), 1) AS "valUrl"
+                  FROM
+                    (SELECT 1 as __stub) AS "stub-s_68_20-c17"
+OPTION (QUIETCAST)
+                  ) AS "s_68_21-c17"
+OPTION (QUIETCAST)
+              ) AS "s_70_23-c17"
+            ON (1)
+            LEFT OUTER JOIN (
+              SELECT "s_71_26_t2-c17"."O" AS "val"
+              FROM DB.DBA.RDF_QUAD AS "s_71_26_t2-c17"
+              WHERE
+                "s_71_26_t2-c17"."S" = __i2idn ( __bft( 'http://www.wikidata.org/entity/Q42' , 1))
+                AND 
+                "s_71_26_t2-c17"."P" = __i2idn ( __bft( 'http://schema.org/description' , 1))) AS "s_71_26-c17"
+            ON (1)
+          WHERE
+            "s_95_52_t12"."S" = __i2idn ( __bft( 'http://www.bigdata.com/queryHints#Query' , 1))
+            AND 
+            "s_95_52_t12"."P" = __i2idn ( __bft( 'http://www.bigdata.com/queryHints#optimizer' , 1))
+            AND 
+            "s_95_52_t12"."O" = DB.DBA.RDF_OBJ_OF_SQLVAL ( 'None' )
+            AND 
+           ( 'de'  =  DB.DBA.RDF_LANGUAGE_OF_OBJ (__ro2sq ( "s_71_26-c17"."val")))
+          UNION ALL SELECT "s_82_37-c23"."propUrl",
+            "s_82_37-c23"."valUrl",
+            "s_82_37-c23"."property",
+            "s_82_37-c23"."ref",
+            "s_82_37-c23"."propLabel",
+            "s_82_37-c23"."val",
+            NULL AS "valLabel"
+          FROM DB.DBA.RDF_QUAD AS "s_95_52_t12"
+            INNER JOIN (
+             SELECT "s_82_36_t4-c23"."O" AS "propUrl",
+                "s_82_36_t3-c23"."O" AS "valUrl",
+                "s_82_36_t6-c23"."S" AS "property",
+                "s_82_36_t4-c23"."P" AS "ref",
+                "s_82_36_t6-c23"."O" AS "propLabel",
+                "s_82_36_t3-c23"."O" AS "val"
+              FROM DB.DBA.RDF_QUAD AS "s_82_36_t3-c23"
+                INNER JOIN DB.DBA.RDF_QUAD AS "s_82_36_t4-c23"
+                ON (
+                  "s_82_36_t4-c23"."O" = "s_82_36_t3-c23"."P")
+                INNER JOIN DB.DBA.RDF_QUAD AS "s_82_36_t5-c23"
+                ON (
+                  "s_82_36_t5-c23"."S" = "s_82_36_t4-c23"."S")
+                INNER JOIN DB.DBA.RDF_QUAD AS "s_82_36_t6-c23"
+                ON (
+                  "s_82_36_t6-c23"."S" = "s_82_36_t5-c23"."S"
+                  AND 
+                  "s_82_36_t6-c23"."S" = "s_82_36_t4-c23"."S")
+              WHERE
+                "s_82_36_t3-c23"."S" = __i2idn ( __bft( 'http://www.wikidata.org/entity/Q42' , 1))
+                AND 
+                "s_82_36_t5-c23"."P" = __i2idn ( __bft( 'http://www.w3.org/1999/02/22-rdf-syntax-ns#type' , 1))
+                AND 
+                "s_82_36_t5-c23"."O" = __i2idn ( __bft( 'http://wikiba.se/ontology#Property' , 1))
+                AND 
+                "s_82_36_t6-c23"."P" = __i2idn ( __bft( 'http://www.w3.org/2000/01/rdf-schema#label' , 1))
+OPTION (QUIETCAST)
+              ) AS "s_82_37-c23"
+            ON (1)
+          WHERE
+            "s_95_52_t12"."S" = __i2idn ( __bft( 'http://www.bigdata.com/queryHints#Query' , 1))
+            AND 
+            "s_95_52_t12"."P" = __i2idn ( __bft( 'http://www.bigdata.com/queryHints#optimizer' , 1))
+            AND 
+            "s_95_52_t12"."O" = DB.DBA.RDF_OBJ_OF_SQLVAL ( 'None' )
+            AND 
+            (1 - isiri_id ( "s_82_37-c23"."valUrl"))
+            AND 
+           ( 'de'  =  DB.DBA.RDF_LANGUAGE_OF_OBJ (__ro2sq ( "s_82_37-c23"."propLabel")))
+          UNION ALL SELECT "s_93_50-c29"."propUrl",
+            "s_93_50-c29"."valUrl",
+            "s_93_50-c29"."property",
+            "s_93_50-c29"."ref",
+            "s_93_50-c29"."propLabel",
+            DB.DBA.RDF_OBJ_OF_SQLVAL ( "s_93_50-c29"."val"),
+            "s_93_50-c29"."valLabel"
+          FROM DB.DBA.RDF_QUAD AS "s_95_52_t12"
+            INNER JOIN (
+             SELECT "s_93_49_t8-c29"."O" AS "propUrl",
+                "s_93_49_t11-c29"."S" AS "valUrl",
+                "s_93_49_t10-c29"."S" AS "property",
+                "s_93_49_t8-c29"."P" AS "ref",
+                "s_93_49_t10-c29"."O" AS "propLabel",
+                "s_93_49_t11-c29"."O" AS "valLabel",
+                rdf_concat_impl ( __ro2sq ( "s_93_49_t11-c29"."O")) AS "val"
+              FROM DB.DBA.RDF_QUAD AS "s_93_49_t7-c29"
+                INNER JOIN DB.DBA.RDF_QUAD AS "s_93_49_t8-c29"
+                ON (
+                  "s_93_49_t8-c29"."O" = "s_93_49_t7-c29"."P")
+                INNER JOIN DB.DBA.RDF_QUAD AS "s_93_49_t9-c29"
+                ON (
+                  "s_93_49_t9-c29"."S" = "s_93_49_t8-c29"."S")
+                INNER JOIN DB.DBA.RDF_QUAD AS "s_93_49_t10-c29"
+                ON (
+                  "s_93_49_t10-c29"."S" = "s_93_49_t9-c29"."S"
+                  AND 
+                  "s_93_49_t10-c29"."S" = "s_93_49_t8-c29"."S")
+                INNER JOIN DB.DBA.RDF_QUAD AS "s_93_49_t11-c29"
+                ON (
+                  "s_93_49_t11-c29"."S" = "s_93_49_t7-c29"."O")
+              WHERE
+                "s_93_49_t7-c29"."S" = __i2idn ( __bft( 'http://www.wikidata.org/entity/Q42' , 1))
+                AND 
+                "s_93_49_t9-c29"."P" = __i2idn ( __bft( 'http://www.w3.org/1999/02/22-rdf-syntax-ns#type' , 1))
+                AND 
+                "s_93_49_t9-c29"."O" = __i2idn ( __bft( 'http://wikiba.se/ontology#Property' , 1))
+                AND 
+                "s_93_49_t10-c29"."P" = __i2idn ( __bft( 'http://www.w3.org/2000/01/rdf-schema#label' , 1))
+                AND 
+                "s_93_49_t11-c29"."P" = __i2idn ( __bft( 'http://www.w3.org/2000/01/rdf-schema#label' , 1))
+OPTION (QUIETCAST)
+              ) AS "s_93_50-c29"
+            ON (1)
+          WHERE
+            "s_95_52_t12"."S" = __i2idn ( __bft( 'http://www.bigdata.com/queryHints#Query' , 1))
+            AND 
+            "s_95_52_t12"."P" = __i2idn ( __bft( 'http://www.bigdata.com/queryHints#optimizer' , 1))
+            AND 
+            "s_95_52_t12"."O" = DB.DBA.RDF_OBJ_OF_SQLVAL ( 'None' )
+            AND 
+            ( "s_93_50-c29"."valUrl" < min_bnode_iri_id ())
+            AND 
+           ( 'de'  =  DB.DBA.RDF_LANGUAGE_OF_OBJ (__ro2sq ( "s_93_50-c29"."propLabel")))
+            AND 
+           ( 'de'  =  DB.DBA.RDF_LANGUAGE_OF_OBJ (__ro2sq ( "s_93_50-c29"."valLabel")))) AS "s_0_60"
+OPTION (QUIETCAST)
+      ) AS "s_95_53"
+  ORDER BY  CAST ( "s_95_53"."propNumber" AS INTEGER) ASC
+OPTION (QUIETCAST)) AS "s_97_54_rbc"

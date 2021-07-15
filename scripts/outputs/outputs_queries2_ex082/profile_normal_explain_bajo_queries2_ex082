@@ -1,0 +1,28 @@
+http://learningsparql.com/ns/papers#paperH	
+http://learningsparql.com/ns/papers#paperI	
+http://learningsparql.com/ns/papers#paperI	
+http://learningsparql.com/ns/papers#paperI	
+http://learningsparql.com/ns/papers#paperI	
+
+  { 
+    time       2.1% fanout         1 input         1 rows
+    time        29% fanout         4 input         1 rows
+    RDF_QUAD_POGS         8 rows(s_7_12_t2.S$28)
+     P =  IRI_ID"...cites"  ,  O =  IRI_ID"...paperA" 
+    time        13% fanout       1.5 input         4 rows
+    RDF_QUAD_POGS       1.7 rows(s_7_8_t1.S$31)
+     P =  IRI_ID"...cites"  ,  O = cast$70
+    time        55% fanout  0.833333 input         6 rows
+    RDF_QUAD_POGS       1.7 rows(s_7_3_t0.S$34)
+     P =  IRI_ID"...cites"  ,  O = cast$84
+    
+    After code:
+    0: s$36 := Call __id2in (s_7_3_t0.S$34)
+    5: BReturn 0
+    time      0.79% fanout         0 input         5 rows
+    Select (s$36)
+  }
+
+
+ 0 msec 9% cpu,        11 rnd         5 seq   66.6667% same seg         0% same pg 
+Compilation: 1 msec 0 reads         0% read 0 messages         0% clw

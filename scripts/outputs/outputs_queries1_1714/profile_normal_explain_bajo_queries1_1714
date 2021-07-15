@@ -1,0 +1,29 @@
+http://www.wikidata.org/entity/Q1228083		http://www.wikidata.org/entity/Q1573501		
+http://www.wikidata.org/entity/Q4888532		http://www.wikidata.org/entity/Q5487007		
+http://www.wikidata.org/entity/Q600393		http://www.wikidata.org/entity/Q5248232		
+
+  { 
+    time      0.21% fanout         1 input         1 rows
+    time       7.4% fanout      1409 input         1 rows
+    RDF_QUAD_POGS   1.4e+03 rows(s_37_6_t2.S$28)
+     P =  IRI_ID"...direct/P39"  ,  O =  IRI_ID"...Q13218630" 
+    time        69% fanout 0.00851668 input      1409 rows
+    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:         1 Fanout:    0.0085
+    RDF_QUAD_POGS         1 rows(s_37_6_t1.S$32, s_37_6_t1.O$31)
+     P =  IRI_ID"...direct/P40"  ,  O = cast$73
+    time        23% fanout      0.25 input        12 rows
+    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:     0.023 Fanout:      0.25
+    RDF_QUAD     0.023 rows(s_37_6_t0.S$35)
+     inlined  P =  IRI_ID"...direct/P39"  ,  S = s_37_6_t1.S$32 ,  O =  IRI_ID"...Q13218630" 
+    
+    After code:
+    0: var2$37 := Call __ro2sq (s_37_6_t1.O$31)
+    5: var1$39 := Call __id2in (s_37_6_t0.S$35)
+    10: BReturn 0
+    time      0.11% fanout         0 input         3 rows
+    Select (var1$39, <DB_NULL>, var2$37, <DB_NULL>)
+  }
+
+
+ 1 msec 43% cpu,      1422 rnd      1409 seq   99.2973% same seg  0.281096% same pg 
+Compilation: 2 msec 0 reads         0% read 0 messages         0% clw

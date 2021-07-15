@@ -1,0 +1,40 @@
+http://www.openlinksw.com/virtrdf-data-formats#default-iid	http://www.w3.org/1999/02/22-rdf-syntax-ns#type	http://www.openlinksw.com/schemas/virtrdf#QuadMapFormat	
+http://www.openlinksw.com/virtrdf-data-formats#default-iid-nullable	http://www.w3.org/1999/02/22-rdf-syntax-ns#type	http://www.openlinksw.com/schemas/virtrdf#QuadMapFormat	
+http://www.openlinksw.com/virtrdf-data-formats#default-iid-nonblank	http://www.w3.org/1999/02/22-rdf-syntax-ns#type	http://www.openlinksw.com/schemas/virtrdf#QuadMapFormat	
+http://www.openlinksw.com/virtrdf-data-formats#default-iid-nonblank-nullable	http://www.w3.org/1999/02/22-rdf-syntax-ns#type	http://www.openlinksw.com/schemas/virtrdf#QuadMapFormat	
+http://www.openlinksw.com/virtrdf-data-formats#default	http://www.w3.org/1999/02/22-rdf-syntax-ns#type	http://www.openlinksw.com/schemas/virtrdf#QuadMapFormat	
+http://www.openlinksw.com/virtrdf-data-formats#default-nullable	http://www.w3.org/1999/02/22-rdf-syntax-ns#type	http://www.openlinksw.com/schemas/virtrdf#QuadMapFormat	
+http://www.openlinksw.com/virtrdf-data-formats#sql-varchar	http://www.w3.org/1999/02/22-rdf-syntax-ns#type	http://www.openlinksw.com/schemas/virtrdf#QuadMapFormat	
+http://www.openlinksw.com/virtrdf-data-formats#sql-varchar-nullable	http://www.w3.org/1999/02/22-rdf-syntax-ns#type	http://www.openlinksw.com/schemas/virtrdf#QuadMapFormat	
+http://www.openlinksw.com/virtrdf-data-formats#sql-varchar-dt	http://www.w3.org/1999/02/22-rdf-syntax-ns#type	http://www.openlinksw.com/schemas/virtrdf#QuadMapFormat	
+http://www.openlinksw.com/virtrdf-data-formats#sql-varchar-dt-nullable	http://www.w3.org/1999/02/22-rdf-syntax-ns#type	http://www.openlinksw.com/schemas/virtrdf#QuadMapFormat	
+http://www.openlinksw.com/virtrdf-data-formats#sql-varchar-lang	http://www.w3.org/1999/02/22-rdf-syntax-ns#type	http://www.openlinksw.com/schemas/virtrdf#QuadMapFormat	
+http://www.openlinksw.com/virtrdf-data-formats#sql-varchar-lang-nullable	http://www.w3.org/1999/02/22-rdf-syntax-ns#type	http://www.openlinksw.com/schemas/virtrdf#QuadMapFormat	
+http://www.openlinksw.com/virtrdf-data-formats#sql-varchar-fixedlang-x-any	http://www.w3.org/1999/02/22-rdf-syntax-ns#type	http://www.openlinksw.com/schemas/virtrdf#QuadMapFormat	
+http://www.openlinksw.com/virtrdf-data-formats#sql-varchar-fixedlang-x-any-nullable	http://www.w3.org/1999/02/22-rdf-syntax-ns#type	http://www.openlinksw.com/schemas/virtrdf#QuadMapFormat	
+http://www.openlinksw.com/virtrdf-data-formats#sql-varchar-uri	http://www.w3.org/1999/02/22-rdf-syntax-ns#type	http://www.openlinksw.com/schemas/virtrdf#QuadMapFormat	
+http://www.openlinksw.com/virtrdf-data-formats#sql-varchar-uri-nullable	http://www.w3.org/1999/02/22-rdf-syntax-ns#type	http://www.openlinksw.com/schemas/virtrdf#QuadMapFormat	
+http://www.openlinksw.com/virtrdf-data-formats#sql-varchar-literal	http://www.w3.org/1999/02/22-rdf-syntax-ns#type	http://www.openlinksw.com/schemas/virtrdf#QuadMapFormat	
+http://www.openlinksw.com/virtrdf-data-formats#sql-varchar-literal-nullable	http://www.w3.org/1999/02/22-rdf-syntax-ns#type	http://www.openlinksw.com/schemas/virtrdf#QuadMapFormat	
+http://www.openlinksw.com/virtrdf-data-formats#sql-longvarchar	http://www.w3.org/1999/02/22-rdf-syntax-ns#type	http://www.openlinksw.com/schemas/virtrdf#QuadMapFormat	
+http://www.openlinksw.com/virtrdf-data-formats#sql-longvarchar-nullable	http://www.w3.org/1999/02/22-rdf-syntax-ns#type	http://www.openlinksw.com/schemas/virtrdf#QuadMapFormat	
+
+  { 
+    time     0.046% fanout         1 input         1 rows
+    time     1e+02% fanout      1000 input         1 rows
+    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:   9.4e+07 Fanout:     1e+03
+    RDF_QUAD_POGS   9.4e+07 rows(s_5_2_t0.S$30, s_5_2_t0.P$29, s_5_2_t0.O$28)
+    
+    
+    After code:
+    0: s$33 := Call __id2in (s_5_2_t0.S$30)
+    5: p$35 := Call __id2in (s_5_2_t0.P$29)
+    10: o$37 := Call __ro2sq (s_5_2_t0.O$28)
+    15: BReturn 0
+    time     0.012% fanout         0 input      1000 rows
+    Select (s$33, p$35, o$37)
+  }
+
+
+ 8 msec 91% cpu,         1 rnd       998 seq         0% same seg         0% same pg 
+Compilation: 0 msec 0 reads         0% read 0 messages         0% clw

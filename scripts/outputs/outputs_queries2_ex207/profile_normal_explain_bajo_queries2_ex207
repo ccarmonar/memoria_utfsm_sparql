@@ -1,0 +1,91 @@
+http://learningsparql.com/ns/demo#prob44	http://www.w3.org/2000/01/rdf-schema#label	Expenditures over 100 require grade 5 approval.	
+http://learningsparql.com/ns/data#item857	http://learningsparql.com/ns/demo#problem	http://learningsparql.com/ns/demo#prob44	
+http://learningsparql.com/ns/data#item201	http://learningsparql.com/ns/demo#problem	http://learningsparql.com/ns/demo#prob44	
+
+  { 
+    Precode:
+      0:   { 
+          time      0.72% fanout         1 input         1 rows
+          time       8.1% fanout         1 input         1 rows
+          Precode:
+            0: vector$27  := Call vector ( 1 ,  0 ,  3 ,  IRI_ID"...problem" ,  3 ,  IRI_ID"...prob44" )
+            5: vector$29  := Call vector (vector$27 )
+            10: DB.DBA.RDF_MAKE_LONG_OF_SQLVAL$31  := Call DB.DBA.RDF_MAKE_LONG_OF_SQLVAL (<c Expenditures over 100 require grade 5 approval.>)
+            17: vector$33  := Call vector ( 3 ,  IRI_ID"...prob44" ,  3 ,  IRI_ID"...label" ,  3 , DB.DBA.RDF_MAKE_LONG_OF_SQLVAL$31 )
+            22: vector$35  := Call vector (vector$33 )
+            27: BReturn 0
+          fork {
+              time        16% fanout         8 input         1 rows
+              RDF_QUAD         8 rows(t2.S$39, t2.O$38)
+               inlined  P =  IRI_ID"...cost" 
+              time       7.9% fanout         1 input         8 rows
+              RDF_QUAD      0.96 rows(t3.O$43, t3.S$42)
+               inlined  P =  IRI_ID"...amount"  ,  S = t2.S$39
+              time       9.9% fanout       0.5 input         8 rows
+              END Node
+              After test:
+              0: temp$45 := artm t2.O$38 * t3.O$43
+              4: if (temp$45 >  100 ) then 8 else 9 unkn 9
+              8: BReturn 1
+              9: BReturn 0
+              time       8.7% fanout         1 input         4 rows
+              Precode:
+                0: __all_eq$47 := Call __all_eq (t2.S$39, t3.S$42)
+                5: BReturn 0
+              outer {
+                  Subquery 49 
+                    { 
+                      time       7.6% fanout      0.75 input         4 rows
+                      RDF_QUAD         1 rows(t5.O$56, t5.S$55)
+                       inlined  P =  IRI_ID"...approval"  ,  S = k___all_eq$162
+                      time       5.9% fanout         1 input         3 rows
+                      RDF_QUAD         1 rows(t6.O$59)
+                       inlined  P =  IRI_ID"...jobGrade"  ,  S = k_t5.O$177
+                      
+                      After code:
+                      0: item$50 :=  := artm t5.S$55
+                      4: approvingEmployee$51 :=  := artm t5.O$56
+                      8: grade$52 :=  := artm t6.O$59
+                      12: BReturn 0
+                      time      0.35% fanout         0 input         3 rows
+                      Subquery Select(item$50, approvingEmployee$51, grade$52)
+                    }
+                  time      0.43% fanout   1.33333 input         3 rows
+                } /* end of outer */
+              set_ctr$69
+               out: (approvingEmployee$51, grade$52, set_no$53, item$50)
+               shadow: ( <none> ,  <none> ,  <none> ,  <none> )
+              time        32% fanout         0 input         4 rows
+              END Node
+              After test:
+              0: if (grade$52  IS NULL   0 ) then 8 else 4 unkn 4
+              4: if (grade$52 <  5 ) then 8 else 9 unkn 9
+              8: BReturn 1
+              9: BReturn 0
+              
+              After code:
+              0: vector$78 := Call vector (t3.S$42)
+              5: if (user_aggr_notfirst$83  =  1 ) then 20 else 9 unkn 9
+              9: user_aggr_notfirst$83  :=  := artm  1 
+              13: user_aggr_ret$85 := Call DB.DBA.SPARQL_CONSTRUCT_INIT (user_aggr_env$84 )
+              20: user_aggr_ret$85 := Call DB.DBA.SPARQL_CONSTRUCT_ACC (user_aggr_env$84 , vector$29 , vector$78, vector$35 ,  1 )
+              27: BReturn 0
+            }
+          time       2.6% fanout         1 input         1 rows
+          skip node  1  <none> set_ctr$80
+          
+          After code:
+          0: callret-0$86 := Call DB.DBA.SPARQL_CONSTRUCT_FIN (user_aggr_env$84 )
+          7: BReturn 0
+          time      0.18% fanout         0 input         1 rows
+          Subquery Select(callret-0$86)
+        }
+      
+      8:  <none>  := Call DB.DBA.RDF_DICT_OF_TRIPLES_TO_THREE_COLS (scalar$244 )
+      15: BReturn 0
+    END Node
+  }
+
+
+ 1 msec 12% cpu,        16 rnd         7 seq   70.5882% same seg         0% same pg 
+Compilation: 3 msec 0 reads         0% read 0 messages         0% clw

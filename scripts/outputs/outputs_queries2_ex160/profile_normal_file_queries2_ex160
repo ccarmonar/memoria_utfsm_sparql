@@ -1,0 +1,69 @@
+breakfast	17.5	
+lunch	30.58	
+dinner	84.8	
+
+  { 
+    time       1.2% fanout         1 input         1 rows
+      clear: (<V set_ctr$83 in>)
+    s# 86 84 cluster outer seq start, set no <V set_ctr$83 in>    
+    save ctx:()
+      clear: (<V mealTotal$29 an>, <V description$28 a>, <V set_no$30 i>, <V mealTotal$75 a>, <V description$73 a>)
+    s# 95 27 Subquery 27 
+      multistate set no = <V set_no$30 i>
+      { 
+        time        14% fanout         1 input         1 rows
+        
+        s# 129 38 Fork 38 {  
+                
+            save ctx:()
+              set no = <V set_no$30 i> array  <none>  save: 
+            time        19% fanout         9 input         1 rows
+              clear: (<V s_11_4_t1.O$32 an>, <V s_11_4_t1.S$33 rn>)
+              clear on continue: (<V s_11_4_t1.O$32 an>, <V s_11_4_t1.S$33 rn>)
+            s# 100 31 from DB.DBA.RDF_QUAD by RDF_QUAD          9 rows Parallel, tail cost        20   
+            Key RDF_QUAD  ASC  (<V s_11_4_t1.S$33 rn>, <V s_11_4_t1.O$32 an>)
+             inlined  P =  IRI_ID"...amount" 
+            copy on branch $30 $0 $0 $0 sets: 86 
+            
+            time       9.1% fanout         1 input         9 rows
+              clear: (<V s_11_4_t0.O$36 an>)
+              clear on continue: (<V s_11_4_t0.O$36 an>)$33 () 
+            s# 111 35 from DB.DBA.RDF_QUAD by RDF_QUAD          1 rows Parallel, tail cost       1.3   
+            Key RDF_QUAD  ASC  (<V s_11_4_t0.O$36 an>)
+             inlined  P =  IRI_ID"...description"  ,  S = <V s_11_4_t1.S$33 rn>
+            copy on branch $33 $30 $32 $0 sets: 86 100 
+            
+            time        15% fanout         0 input         9 rows
+            $32 (35 ) 
+            s# 121 39 Sort (HASH) set no <r set_no$30 via  Set111 Set100>(<V s_11_4_t0.O$36 an>) -> (<r s_11_4_t1.O$32 via  Set111>) up to         3 distinct
+            
+        }
+        time        41% fanout         3 input         1 rows
+          clear: (<V aggregate$40 an>, <V s_11_4_t0.O$36 an>, <V mealTotal$29 an>, <V description$28 a>, <V __ro2sq$64 a>)
+          clear on continue: (<V aggregate$40 an>, <V s_11_4_t0.O$36 an>, <V mealTotal$29 an>, <V description$28 a>, <V __ro2sq$64 a>)
+        s# 136 46 group by read node  
+        (<V s_11_4_t0.O$36 an>, <V aggregate$40 an>)
+        After code:
+          0: <V __ro2sq$64 a> := Call __ro2sq (<V s_11_4_t0.O$36 an>)
+          5: <V description$28 a> :=  := artm <V __ro2sq$64 a>
+          9: <V mealTotal$29 an> :=  := artm <V aggregate$40 an>
+          13: BReturn 0
+        time      0.39% fanout         0 input         3 rows
+        
+        s# 95 66 Subquery Select(<V description$28 a>, <V mealTotal$29 an>)
+          set no: <r set_no$30 via  Set136>
+      }
+    
+    After code:
+      0: <V description$73 a> := Call __ro2sq (<V description$28 a>)
+      5: <V mealTotal$75 a> := Call __ro2sq (<V mealTotal$29 an>)
+      10: BReturn 0
+    time      0.15% fanout         0 input         3 rows
+    $73 (27 ) $75 (27 ) $83 (27 84 ) 
+    s# 155 77 Select (<V description$73 a>, <V mealTotal$75 a>)
+      set no: <r set_ctr$83 via  Set95>
+  }
+
+
+ 0 msec 12% cpu,        13 rnd         8 seq   57.1429% same seg   14.2857% same pg 
+Compilation: 2 msec 0 reads         0% read 0 messages         0% clw

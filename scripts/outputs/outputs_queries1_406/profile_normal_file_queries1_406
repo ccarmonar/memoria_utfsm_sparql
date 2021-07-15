@@ -1,0 +1,45 @@
+
+  { 
+    time       1.5% fanout         1 input         1 rows
+      clear: (<V set_ctr$49 in>)
+    s# 52 50 cluster outer seq start, set no <V set_ctr$49 in>    
+    save ctx:()
+    time        98% fanout         0 input         1 rows
+    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:   1.1e-07 Fanout:         0
+    Precode:
+      0: <V resource/Nile$27 r> := Call __i2idn (<tag 182 flag 1 c http://dbpedia.org/resource/Nile>)
+      5: <V property/length$29 r> := Call __i2idn (<tag 182 flag 1 c http://dbpedia.org/property/length>)
+      10: <V resource/Amazon_River$31 r> := Call __i2idn (<tag 182 flag 1 c http://dbpedia.org/resource/Amazon_River>)
+      15: BReturn 0
+      clear: (<V s_37_4_t1.O$34 an>, <V resource/Amazon_River$31 r>, <V property/length$29 r>, <V resource/Nile$27 r>)
+      clear on continue: (<V s_37_4_t1.O$34 an>)$65 (33 ) $69 (33 ) $27 (33 ) 
+    s# 61 33 from DB.DBA.RDF_QUAD by RDF_QUAD    1.1e-07 rows   
+    Key RDF_QUAD  ASC  (<V s_37_4_t1.O$34 an>)
+     inlined  P = <v k_property/length$65 Set67 rn> ,  S = <V k_resource/Nile$69 rn>
+    vector param casts: <V property/length$29 r>-> <v k_property/length$65 Set67 rn>, <V resource/Nile$27 r>-> <V k_resource/Nile$69 rn>
+    
+    time         0% fanout         0 input         0 rows
+    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:   1.1e-07 Fanout:         0
+      clear: (<V s_37_4_t0.O$37 an>, <V var1$41 a>, <V var2$39 a>)
+      clear on continue: (<V var2$39 a>, <V var1$41 a>, <V s_37_4_t0.O$37 an>)$31 (33 ) $34 () $81 (36 ) $85 (36 ) $87 (36 ) $89 (36 ) $29 (33 ) 
+    s# 77 36 from DB.DBA.RDF_QUAD by RDF_QUAD    1.1e-07 rows   
+    Key RDF_QUAD  ASC  (<V s_37_4_t0.O$37 an>)
+     P = <v k_property/length$81 Set83 rn> ,  S = <V k_resource/Amazon_River$85 rn> ,  O > <V k_s_37_4_t1.O$87 an>
+    row specs:  O > <V k_s_37_4_t1.O$89 an>
+    vector param casts: <r property/length$29 via  Set61 Set67>-> <v k_property/length$81 Set83 rn>, <r resource/Amazon_River$31 via  Set61 Set67>-> <V k_resource/Amazon_River$85 rn>, <V s_37_4_t1.O$34 an>-> <V k_s_37_4_t1.O$87 an>, <V s_37_4_t1.O$34 an>-> <V k_s_37_4_t1.O$89 an>
+    
+    After code:
+      0: <V var2$39 a> := Call __ro2sq (<r s_37_4_t1.O$34 via  Set77 Set83>)
+      5: <V var1$41 a> := Call __ro2sq (<V s_37_4_t0.O$37 an>)
+      10: BReturn 0
+    time         0% fanout         0 input         0 rows
+    $39 () $41 () $49 (36 33 50 ) 
+    s# 97 43 Select (<V var1$41 a>, <V var2$39 a>)
+      set no: <r set_ctr$49 via  Set77 Set83 Set61 Set67>
+  }
+Warning: You might have a Cartesian product.
+
+
+
+ 0 msec 9% cpu,        10 rnd         0 seq         0% same seg         0% same pg 
+Compilation: 2 msec 0 reads         0% read 0 messages         0% clw

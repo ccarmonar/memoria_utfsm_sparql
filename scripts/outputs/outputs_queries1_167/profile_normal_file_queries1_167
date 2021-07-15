@@ -1,0 +1,38 @@
+Error: 23000: SR197: Non unique primary key on DB.DBA.RDF_OBJ.
+  { 
+    time     1e+02% fanout         1 input         1 rows
+      clear: (<V set_ctr$46 in>)
+    s# 49 47 cluster outer seq start, set no <V set_ctr$46 in>    
+    save ctx:()
+    time         0% fanout         0 input         1 rows
+    Precode:
+      0: <V __i2id$27 r> := Call __i2id (<DB_NULL>)
+      5: <V DB.DBA.RDF_MAKE_OBJ_OF_TYPEDSQLVAL$29 x> := Call DB.DBA.RDF_MAKE_OBJ_OF_TYPEDSQLVAL (<c string1>, <V __i2id$27 r>, <c fr>)
+      12: BReturn 0
+      clear: (<V in_iter$32 x>, <V DB.DBA.RDF_MAKE_OBJ_OF_TYPEDSQLVAL$29 x>, <V __i2id$27 r>)
+      clear on continue: (<V in_iter$32 x>)$27 (33 ) 
+    s# 58 33 in   iterates <V in_iter$32 x>
+      over ( IRI_ID"...label" ,  IRI_ID"...altLabel" )
+    time         0% fanout         0 input         0 rows
+    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:   3.9e+07 Fanout:         0
+      clear: (<V s_37_3_t0.S$36 rn>, <V var1$38 a>)
+      clear on continue: (<V var1$38 a>, <V s_37_3_t0.S$36 rn>)$32 () $75 (31 ) $79 (31 ) $29 (33 ) 
+    s# 71 31 from DB.DBA.RDF_QUAD by RDF_QUAD_POGS    3.9e+07 rows   
+    Key RDF_QUAD_POGS  ASC  (<V s_37_3_t0.S$36 rn>)
+     P = <v k_in_iter$75 Set77 rn> ,  O = <V k_DB.DBA.RDF_MAKE_OBJ_OF_TYPEDSQLVAL$79 an>
+    vector param casts: <V in_iter$32 x>-> <v k_in_iter$75 Set77 rn>, <r DB.DBA.RDF_MAKE_OBJ_OF_TYPEDSQLVAL$29 via  Set58>-> <V k_DB.DBA.RDF_MAKE_OBJ_OF_TYPEDSQLVAL$79 an>
+    
+    After code:
+      0: <V var1$38 a> := Call __id2in (<V s_37_3_t0.S$36 rn>)
+      5: BReturn 0
+    time         0% fanout         0 input         0 rows
+    $38 () $46 (31 33 47 ) 
+    s# 87 40 Select (<V var1$38 a>)
+      set no: <r set_ctr$46 via  Set71 Set77 Set58>
+  }
+Warning: You might have a Cartesian product.
+
+
+
+ 0 msec 0% cpu,         3 rnd         0 seq         0% same seg         0% same pg 
+Compilation: 669 msec 0 reads         0% read 0 messages         0% clw

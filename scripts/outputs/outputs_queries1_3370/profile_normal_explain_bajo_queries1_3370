@@ -1,0 +1,46 @@
+http://www.wikidata.org/entity/Q4089901	http://www.wikidata.org/entity/Q2608054	1939-01-01 00:00:00Z	
+http://www.wikidata.org/entity/Q4181413	http://www.wikidata.org/entity/Q2608054	1939-01-01 00:00:00Z	
+http://www.wikidata.org/entity/Q4526128	http://www.wikidata.org/entity/Q2608054	1939-01-01 00:00:00Z	
+http://www.wikidata.org/entity/Q4311937	http://www.wikidata.org/entity/Q2608054	1939-01-01 00:00:00Z	
+http://www.wikidata.org/entity/Q4142058	http://www.wikidata.org/entity/Q2608054	1939-01-01 00:00:00Z	
+http://www.wikidata.org/entity/Q20035933	http://www.wikidata.org/entity/Q2608054	1939-01-01 00:00:00Z	
+http://www.wikidata.org/entity/Q20035945	http://www.wikidata.org/entity/Q2608054	1939-01-01 00:00:00Z	
+http://www.wikidata.org/entity/Q4399246	http://www.wikidata.org/entity/Q2608054	1939-01-01 00:00:00Z	
+http://www.wikidata.org/entity/Q20078043	http://www.wikidata.org/entity/Q2608054	1939-01-01 00:00:00Z	
+http://www.wikidata.org/entity/Q20092125	http://www.wikidata.org/entity/Q2608054	1939-01-01 00:00:00Z	
+http://www.wikidata.org/entity/Q30968145	http://www.wikidata.org/entity/Q2608054	1939-01-01 00:00:00Z	
+http://www.wikidata.org/entity/Q10860265	http://www.wikidata.org/entity/Q2610751	2009-01-01 00:00:00Z	
+http://www.wikidata.org/entity/Q16049308	http://www.wikidata.org/entity/Q2610766	2007-01-01 00:00:00Z	
+http://www.wikidata.org/entity/Q5747399	http://www.wikidata.org/entity/Q2610777	2008-01-01 00:00:00Z	
+http://www.wikidata.org/entity/Q5748015	http://www.wikidata.org/entity/Q2610777	2008-01-01 00:00:00Z	
+http://www.wikidata.org/entity/Q16350511	http://www.wikidata.org/entity/Q2618079	1783-01-01 00:00:00Z	
+http://www.wikidata.org/entity/Q2614203	http://www.wikidata.org/entity/Q2640094	1950-01-01 00:00:00Z	
+http://www.wikidata.org/entity/Q2907472	http://www.wikidata.org/entity/Q2640094	1950-01-01 00:00:00Z	
+http://www.wikidata.org/entity/Q42883366	http://www.wikidata.org/entity/Q2631503	1828-01-01 00:00:00Z	
+http://www.wikidata.org/entity/Q16634988	http://www.wikidata.org/entity/Q2632410	1966-12-08 00:00:00Z	
+
+  { 
+    time      0.21% fanout         1 input         1 rows
+    time       8.2% fanout      1000 input         1 rows
+    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:   1.9e+05 Fanout:     1e+03
+    RDF_QUAD   1.9e+05 rows(s_37_4_t1.S$29, s_37_4_t1.O$28)
+     inlined  P =  IRI_ID"...direct/P571" 
+    time        92% fanout     0.093 input      1000 rows
+    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:       9.6 Fanout:     0.093
+    Precode:
+      0: var3$31 := Call __ro2sq (s_37_4_t1.O$28)
+      5: BReturn 0
+    RDF_QUAD_POGS       9.6 rows(s_37_4_t0.S$35, s_37_4_t0.O$34)
+     P =  IRI_ID"...direct/P131"  ,  O = cast$74
+    
+    After code:
+    0: var1$37 := Call __id2in (s_37_4_t0.S$35)
+    5: var2$39 := Call __ro2sq (s_37_4_t0.O$34)
+    10: BReturn 0
+    time     0.083% fanout         0 input        93 rows
+    Select (var1$37, var2$39, var3$31)
+  }
+
+
+ 1 msec 53% cpu,      1001 rnd      1064 seq   99.6008% same seg 0.0998004% same pg 
+Compilation: 1 msec 0 reads         0% read 0 messages         0% clw

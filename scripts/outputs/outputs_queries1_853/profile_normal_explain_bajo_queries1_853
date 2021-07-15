@@ -1,0 +1,117 @@
+
+  { 
+    time       7.5% fanout         1 input         1 rows
+    Precode:
+      0: __rdflit$27  := Call __rdflit (rdflit32005)
+      5: BReturn 0
+    Subquery 29 
+      { 
+        time       4.3% fanout         1 input         1 rows
+        fork {
+            time        83% fanout         0 input         1 rows
+            Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:   1.1e-07 Fanout:         0
+            RDF_QUAD_POGS   1.1e-07 rows(t5.S$37)
+             P =  IRI_ID"...isPartOf"  ,  O =  IRI_ID"..." 
+            time         0% fanout         0 input         0 rows
+            Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:   1.1e-07 Fanout:         0
+            RDF_QUAD_POGS   1.1e-07 rows(t4.S$40)
+             inlined  P =  IRI_ID"...inLanguage"  ,  O = rdflit32005 ,  S = t5.S$37
+            time         0% fanout         0 input         0 rows
+            Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:         1 Fanout:         0
+            RDF_QUAD         1 rows(t3.O$43)
+             inlined  P =  IRI_ID"...about"  ,  S = t4.S$40
+            time         0% fanout         0 input         0 rows
+            Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:   5.7e-05 Fanout:         0
+            RDF_QUAD   5.7e-05 rows(t2.S$46)
+             inlined  P =  IRI_ID"...direct/P31"  ,  S = cast$192 ,  O =  IRI_ID"...Q12136" 
+            time         0% fanout         0 input         0 rows
+            Precode:
+              0: __id2in$48 := Call __id2in (t5.S$37)
+              5: __ro2sq$50 := Call __ro2sq (t3.O$43)
+              10: BReturn 0
+            outer {
+                time         0% fanout         0 input         0 rows
+                Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:       1.1 Fanout:         0
+                RDF_QUAD       1.1 rows(t9.O$53)
+                 inlined  P =  IRI_ID"...direct/P2892"  ,  S = k_t3.O$215
+                time         0% fanout         0 input         0 rows
+              } /* end of outer */
+            set_ctr$56
+             out: (t9.O$53)
+             shadow: ( <none> )
+            time         0% fanout         0 input         0 rows
+            Precode:
+              0: __ro2sq$65 := Call __ro2sq (t9.O$53)
+              5: BReturn 0
+            outer {
+                time         0% fanout         0 input         0 rows
+                Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:       1.2 Fanout:         0
+                RDF_QUAD       1.2 rows(t7.O$68)
+                 inlined  P =  IRI_ID"...direct/P494"  ,  S = k_t3.O$246
+                time         0% fanout         0 input         0 rows
+              } /* end of outer */
+            set_ctr$71
+             out: (t7.O$68)
+             shadow: ( <none> )
+            time         0% fanout         0 input         0 rows
+            Precode:
+              0: __ro2sq$80 := Call __ro2sq (t7.O$68)
+              5: BReturn 0
+            Sort (t5.S$37) -> (gb_tmp$85 , gb_tmp$88 , gb_tmp$91 , __id2in$48)
+            user aggregate init
+            0: ua_ret$86 := Call DB.DBA.GROUP_CONCAT_DISTINCT_INIT (gb_tmp$85 )
+            7: BReturn 0
+             user aggregate accumulator
+            0: ua_ret$86 := Call DB.DBA.GROUP_CONCAT_DISTINCT_ACC (gb_tmp$85 , __ro2sq$65)
+            7: BReturn 0
+            
+            user aggregate init
+            0: ua_ret$89 := Call DB.DBA.GROUP_CONCAT_DISTINCT_INIT (gb_tmp$88 )
+            7: BReturn 0
+             user aggregate accumulator
+            0: ua_ret$89 := Call DB.DBA.GROUP_CONCAT_DISTINCT_ACC (gb_tmp$88 , __ro2sq$80)
+            7: BReturn 0
+            
+            user aggregate init
+            0: ua_ret$92 := Call DB.DBA.GROUP_CONCAT_DISTINCT_INIT (gb_tmp$91 )
+            7: BReturn 0
+             user aggregate accumulator
+            0: ua_ret$92 := Call DB.DBA.GROUP_CONCAT_DISTINCT_ACC (gb_tmp$91 , __ro2sq$50)
+            7: BReturn 0
+            
+            
+          }
+        time         5% fanout         0 input         1 rows
+        group by read node  
+        (t5.S$37, aggregate$84, aggregate$87, aggregate$90, __id2in$48)
+        time         0% fanout         0 input         0 rows
+        skip node  10000  <none> set_no$35
+        
+        After code:
+        0: DB.DBA.GROUP_CONCAT_DISTINCT_FIN$109 := Call DB.DBA.GROUP_CONCAT_DISTINCT_FIN (aggregate$90)
+        7: DB.DBA.GROUP_CONCAT_DISTINCT_FIN$111 := Call DB.DBA.GROUP_CONCAT_DISTINCT_FIN (aggregate$87)
+        14: DB.DBA.GROUP_CONCAT_DISTINCT_FIN$113 := Call DB.DBA.GROUP_CONCAT_DISTINCT_FIN (aggregate$84)
+        21: var1$30 :=  := artm <c disease>
+        25: var3$31 :=  := artm __id2in$48
+        29: var5$32 :=  := artm DB.DBA.GROUP_CONCAT_DISTINCT_FIN$109
+        33: var7$33 :=  := artm DB.DBA.GROUP_CONCAT_DISTINCT_FIN$111
+        37: var9$34 :=  := artm DB.DBA.GROUP_CONCAT_DISTINCT_FIN$113
+        41: BReturn 0
+        time         0% fanout         0 input         0 rows
+        Subquery Select(var1$30, var3$31, var5$32, var7$33, var9$34)
+      }
+    
+    After code:
+    0: var1$125 := Call __ro2sq (var1$30)
+    5: var3$127 := Call __ro2sq (var3$31)
+    10: var5$129 := Call __ro2sq (var5$32)
+    15: var7$131 := Call __ro2sq (var7$33)
+    20: var9$133 := Call __ro2sq (var9$34)
+    25: BReturn 0
+    time         0% fanout         0 input         0 rows
+    Select (var1$125, var3$127, var5$129, var7$131, var9$133)
+  }
+
+
+ 0 msec 1% cpu,         1 rnd         0 seq         0% same seg         0% same pg 
+Compilation: 4 msec 0 reads         0% read 0 messages         0% clw

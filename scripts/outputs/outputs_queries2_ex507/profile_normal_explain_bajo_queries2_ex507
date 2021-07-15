@@ -1,0 +1,44 @@
+craigellis@yahoo.com		
+
+  { 
+    time       1.9% fanout         1 input         1 rows
+    time        32% fanout         2 input         1 rows
+    Precode:
+      0: __rdflit$27  := Call __rdflit (rdflit1070)
+      5: BReturn 0
+    RDF_QUAD_POGS         2 rows(t2.S$30)
+     P =  IRI_ID"...firstName"  ,  O = rdflit1070
+    time        18% fanout         1 input         2 rows
+    RDF_QUAD      0.84 rows(t3.O$33)
+     inlined  P =  IRI_ID"...email"  ,  S = t2.S$30
+    time        39% fanout       0.5 input         2 rows
+    END Node
+    After test:
+    0: __ro2sq$35 := Call __ro2sq (t3.O$33)
+    5: _cvt$37 := Call _cvt (<tag 193 flag 0>, __ro2sq$35)
+    10: if (_cvt$37  LIKE  <c %yahoo%>) then 14 else 15 unkn 15
+    14: BReturn 1
+    15: BReturn 0
+    time      0.61% fanout         1 input         1 rows
+    outer {
+        time       9.2% fanout         0 input         1 rows
+        Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:         1 Fanout:         0
+        RDF_QUAD         1 rows(t5.O$40)
+         inlined  P =  IRI_ID"...homeTel"  ,  S = k_t2.S$120
+        time         0% fanout         0 input         0 rows
+      } /* end of outer */
+    set_ctr$45
+     out: (t5.O$40)
+     shadow: ( <none> )
+    
+    After code:
+    0: craigEmail$54 := Call __ro2sq (t3.O$33)
+    5: craigTelephone$56 := Call __ro2sq (t5.O$40)
+    10: BReturn 0
+    time      0.18% fanout         0 input         1 rows
+    Select (craigEmail$54, craigTelephone$56)
+  }
+
+
+ 0 msec 11% cpu,         7 rnd         2 seq      12.5% same seg      12.5% same pg 
+Compilation: 1 msec 0 reads         0% read 0 messages         0% clw

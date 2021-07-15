@@ -1,0 +1,46 @@
+http://www.w3.org/1999/02/22-rdf-syntax-ns#type	
+http://www.openlinksw.com/schemas/virtrdf#version	
+http://www.openlinksw.com/schemas/virtrdf#loadAs	
+http://www.openlinksw.com/schemas/virtrdf#item	
+http://www.openlinksw.com/schemas/virtrdf#isSpecialPredicate	
+http://www.openlinksw.com/schemas/virtrdf#isGcResistantType	
+http://www.openlinksw.com/schemas/virtrdf#qmfName	
+http://www.openlinksw.com/schemas/virtrdf#qmfShortTmpl	
+http://www.openlinksw.com/schemas/virtrdf#qmfLongTmpl	
+http://www.openlinksw.com/schemas/virtrdf#qmfSqlvalTmpl	
+http://www.openlinksw.com/schemas/virtrdf#qmfBoolTmpl	
+http://www.openlinksw.com/schemas/virtrdf#qmfIsrefOfShortTmpl	
+http://www.openlinksw.com/schemas/virtrdf#qmfIsuriOfShortTmpl	
+http://www.openlinksw.com/schemas/virtrdf#qmfIsblankOfShortTmpl	
+http://www.openlinksw.com/schemas/virtrdf#qmfIslitOfShortTmpl	
+http://www.openlinksw.com/schemas/virtrdf#qmf01uriOfShortTmpl	
+http://www.openlinksw.com/schemas/virtrdf#qmf01blankOfShortTmpl	
+http://www.openlinksw.com/schemas/virtrdf#qmfLongOfShortTmpl	
+http://www.openlinksw.com/schemas/virtrdf#qmfSqlvalOfShortTmpl	
+http://www.openlinksw.com/schemas/virtrdf#qmfDatatypeOfShortTmpl	
+
+  { 
+    time    0.0007% fanout         1 input         1 rows
+    time   0.00014% fanout         1 input         1 rows
+    time         8% fanout 1.2189e+07 input         1 rows
+    RDF_QUAD_POGS   9.4e+07 rows(s_5_2_t0.P$31)
+    
+    time        92% fanout 3.28165e-06 input 1.2189e+07 rows
+    Distinct (s_5_2_t0.P$31)
+    
+    After code:
+    0: p$28 :=  := artm s_5_2_t0.P$31
+    4: BReturn 0
+    time      0.04% fanout         1 input        40 rows
+    Subquery Select(p$28)
+    
+    After code:
+    0: p$48 := Call __ro2sq (p$28)
+    5: BReturn 0
+    time   0.00035% fanout         0 input        40 rows
+    Select (p$48)
+  }
+
+
+ 445 msec 99% cpu,         1 rnd 1.2176e+07 seq         0% same seg         0% same pg 
+Compilation: 0 msec 0 reads         0% read 0 messages         0% clw

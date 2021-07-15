@@ -1,0 +1,47 @@
+ SELECT  __ro2sq ("s_37_12_rbc"."var1") AS "var1", __ro2sq ("s_37_12_rbc"."var2") AS "var2", __ro2sq ("s_37_12_rbc"."var3") AS "var3" FROM (SELECT __id2in ( "s_37_12_t3"."S") AS "var1",
+    __ro2sq ( "s_37_12_t4"."O") AS "var2",
+    "s_37_7"."var3" AS "var3"
+  FROM DB.DBA.RDF_QUAD AS "s_37_12_t2"
+    INNER JOIN (
+     SELECT "s_37_6_t1"."O" AS "var2",
+         COUNT (
+           "s_37_6_t1"."O") AS "var3"
+      FROM DB.DBA.RDF_QUAD AS "s_37_6_t0"
+        INNER JOIN DB.DBA.RDF_QUAD AS "s_37_6_t1"
+        ON (
+          "s_37_6_t0"."S" = "s_37_6_t1"."S")
+      WHERE
+        "s_37_6_t0"."P" = __i2idn ( __bft( 'http://www.w3.org/1999/02/22-rdf-syntax-ns#type' , 1))
+        AND 
+        "s_37_6_t0"."O" = __i2idn ( __bft( 'http://wikiba.se/ontology#Property' , 1))
+        AND 
+        "s_37_6_t1"."P" = __i2idn ( __bft( 'http://www.w3.org/2004/02/skos/core#altLabel' , 1))
+        AND 
+       ( 'en'  =  DB.DBA.RDF_LANGUAGE_OF_OBJ (__ro2sq ( "s_37_6_t1"."O")))
+      GROUP BY "s_37_6_t1"."O"
+OPTION (QUIETCAST)
+      ) AS "s_37_7"
+    ON (1)
+    INNER JOIN DB.DBA.RDF_QUAD AS "s_37_12_t3"
+    ON (1)
+    INNER JOIN DB.DBA.RDF_QUAD AS "s_37_12_t4"
+    ON (
+      "s_37_12_t3"."S" = "s_37_12_t4"."S"
+      AND 
+      "s_37_12_t4"."O" = "s_37_7"."var2")
+  WHERE
+    "s_37_12_t2"."S" = __i2idn ( __bft( 'http://www.bigdata.com/queryHints#Query' , 1))
+    AND 
+    "s_37_12_t2"."P" = __i2idn ( __bft( 'http://www.bigdata.com/queryHints#optimizer' , 1))
+    AND 
+    "s_37_12_t2"."O" = DB.DBA.RDF_OBJ_OF_SQLVAL ( 'None' )
+    AND 
+    "s_37_12_t3"."P" = __i2idn ( __bft( 'http://www.w3.org/1999/02/22-rdf-syntax-ns#type' , 1))
+    AND 
+    "s_37_12_t3"."O" = __i2idn ( __bft( 'http://wikiba.se/ontology#Property' , 1))
+    AND 
+    "s_37_12_t4"."P" = __i2idn ( __bft( 'http://www.w3.org/2004/02/skos/core#altLabel' , 1))
+    AND 
+   ( "s_37_7"."var3" >  1)
+  ORDER BY __ro2sq ( "s_37_12_t4"."O") ASC
+OPTION (QUIETCAST)) AS "s_37_12_rbc"

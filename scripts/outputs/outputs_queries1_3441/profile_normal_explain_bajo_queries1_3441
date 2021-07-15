@@ -1,0 +1,79 @@
+http://www.wikidata.org/entity/Q282	265	
+http://www.wikidata.org/entity/Q898273	15	
+http://www.wikidata.org/entity/Q2996394	14	
+http://www.wikidata.org/entity/Q18123741	10	
+http://www.wikidata.org/entity/Q427087	8	
+http://www.wikidata.org/entity/Q2095	7	
+http://www.wikidata.org/entity/Q294414	5	
+http://www.wikidata.org/entity/Q35798	5	
+http://www.wikidata.org/entity/Q2155148	5	
+http://www.wikidata.org/entity/Q4164871	4	
+http://www.wikidata.org/entity/Q39546	4	
+http://www.wikidata.org/entity/Q103632	4	
+http://www.wikidata.org/entity/Q37748	3	
+http://www.wikidata.org/entity/Q12136	3	
+http://www.wikidata.org/entity/Q22706	3	
+http://www.wikidata.org/entity/Q4739805	3	
+http://www.wikidata.org/entity/Q1407225	2	
+http://www.wikidata.org/entity/Q49447	2	
+http://www.wikidata.org/entity/Q1408288	2	
+http://www.wikidata.org/entity/Q1167393	2	
+
+  { 
+    time     0.003% fanout         1 input         1 rows
+    Subquery 27 
+      { 
+        time    0.0015% fanout         1 input         1 rows
+        fork {
+            time   0.00098% fanout         1 input         1 rows
+            fork {
+                time        11% fanout    238558 input         1 rows
+                RDF_QUAD   2.4e+05 rows(s_37_6_t0.S$33, s_37_6_t0.O$32)
+                 inlined  P =  IRI_ID"...direct/P279" 
+                time        23% fanout  0.944831 input    238558 rows
+                RDF_QUAD       1.1 rows(s_37_6_t2.O$36)
+                 inlined  P =  IRI_ID"...direct/P31"  ,  S = s_37_6_t0.S$33
+                time        66% fanout 0.00192549 input    225397 rows
+                Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:   2.2e-05 Fanout:    0.0019
+                RDF_QUAD   2.2e-05 rows(s_37_6_t1.O$39)
+                 inlined  P =  IRI_ID"...direct/P279"  ,  S = k_s_37_6_t0.O$147 ,  O = cast$151
+                
+                After code:
+                0: isnotnull$41 := Call isnotnull (s_37_6_t0.S$33)
+                5: BReturn 0
+                time       0.9% fanout         0 input       434 rows
+                Sort (s_37_6_t1.O$39) -> (isnotnull$41)
+                
+              }
+            time     0.047% fanout        81 input         1 rows
+            group by read node  
+            (s_37_6_t1.O$39, aggregate$45)
+            time     0.089% fanout         0 input        81 rows
+            Sort (aggregate$45) -> (s_37_6_t1.O$39)
+            
+          }
+        time      0.15% fanout        81 input         1 rows
+        Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:         0 Fanout:        81
+        Key from temp (s_37_6_t1.O$39, aggregate$45)
+        
+        
+        After code:
+        0: __ro2sq$85 := Call __ro2sq (s_37_6_t1.O$39)
+        5: var1$28 :=  := artm __ro2sq$85
+        9: var3$29 :=  := artm aggregate$45
+        13: BReturn 0
+        time   0.00063% fanout         0 input        81 rows
+        Subquery Select(var1$28, var3$29)
+      }
+    
+    After code:
+    0: var1$94 := Call __ro2sq (var1$28)
+    5: var3$96 := Call __ro2sq (var3$29)
+    10: BReturn 0
+    time   0.00048% fanout         0 input        81 rows
+    Select (var1$94, var3$96)
+  }
+
+
+ 31 msec 289% cpu,    463963 rnd    259521 seq   99.3883% same seg  0.459303% same pg 
+Compilation: 2 msec 0 reads         0% read 0 messages         0% clw

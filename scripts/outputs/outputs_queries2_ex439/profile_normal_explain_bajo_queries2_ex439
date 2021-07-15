@@ -1,0 +1,71 @@
+http://www.w3.org/2002/07/owl#Thing	http://www.w3.org/2002/07/owl#Class	
+http://www.w3.org/2002/07/owl#Thing	http://www.w3.org/2002/07/owl#Class	
+http://www.w3.org/2002/07/owl#Thing	http://www.w3.org/2002/07/owl#Class	
+http://www.w3.org/2002/07/owl#Thing	http://www.w3.org/2002/07/owl#Class	
+http://www.w3.org/2002/07/owl#Nothing	http://www.w3.org/2002/07/owl#Class	
+http://www.w3.org/2002/07/owl#Nothing	http://www.w3.org/2002/07/owl#Class	
+http://www.w3.org/2002/07/owl#Nothing	http://www.w3.org/2002/07/owl#Class	
+http://www.w3.org/2002/07/owl#Nothing	http://www.w3.org/2002/07/owl#Class	
+http://www.wikidata.org/prop/novalue/P1476	http://www.w3.org/2002/07/owl#Class	
+http://www.wikidata.org/prop/novalue/P1081	http://www.w3.org/2002/07/owl#Class	
+http://www.wikidata.org/prop/novalue/P1084	http://www.w3.org/2002/07/owl#Class	
+http://www.wikidata.org/prop/novalue/P1103	http://www.w3.org/2002/07/owl#Class	
+http://www.wikidata.org/prop/novalue/P1161	http://www.w3.org/2002/07/owl#Class	
+http://www.wikidata.org/prop/novalue/P1193	http://www.w3.org/2002/07/owl#Class	
+http://www.wikidata.org/prop/novalue/P1201	http://www.w3.org/2002/07/owl#Class	
+http://www.wikidata.org/prop/novalue/P1204	http://www.w3.org/2002/07/owl#Class	
+http://www.wikidata.org/prop/novalue/P1247	http://www.w3.org/2002/07/owl#Class	
+http://www.wikidata.org/prop/novalue/P4104	http://www.w3.org/2002/07/owl#Class	
+http://www.wikidata.org/prop/novalue/P4251	http://www.w3.org/2002/07/owl#Class	
+http://learningsparql.com/ns/addressbook#MusicalInstrument	http://www.w3.org/2002/07/owl#Class	
+
+  { 
+    time     0.089% fanout         1 input         1 rows
+    Subquery 27 
+      { 
+        Union
+          { 
+            time       1.8% fanout       567 input         1 rows
+            RDF_QUAD_POGS   5.7e+02 rows(s_10_2_t0-c5-u13.S$33)
+             P =  IRI_ID"...type"  ,  O =  IRI_ID"...Class" 
+            time        98% fanout    1.0194 input       567 rows
+            RDF_QUAD         1 rows(s_14_9_t2-u13.S$37, s_14_9_t2-u13.O$36)
+             inlined  P =  IRI_ID"...type"  ,  S = s_10_2_t0-c5-u13.S$33
+            
+            After code:
+            0: class$28 :=  := artm s_14_9_t2-u13.S$37
+            4: classType$29 :=  := artm s_14_9_t2-u13.O$36
+            8: BReturn 0
+            time     0.034% fanout         0 input       578 rows
+            Subquery Select(class$28, classType$29)
+          }
+          { 
+            time         0% fanout         0 input         0 rows
+            Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:        47 Fanout:         0
+            RDF_QUAD_POGS        47 rows(s_13_5_t1-c11.S$47)
+             P =  IRI_ID"...type"  ,  O =  IRI_ID"...Class" 
+            time         0% fanout         0 input         0 rows
+            Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:         1 Fanout:         0
+            RDF_QUAD         1 rows(s_14_9_t2.S$51, s_14_9_t2.O$50)
+             inlined  P =  IRI_ID"...type"  ,  S = s_13_5_t1-c11.S$47
+            
+            After code:
+            0: class$28 :=  := artm s_14_9_t2.S$51
+            4: classType$29 :=  := artm s_14_9_t2.O$50
+            8: BReturn 0
+            time         0% fanout         0 input         0 rows
+            Subquery Select(class$28, classType$29)
+          }
+      }
+    
+    After code:
+    0: class$61 := Call __id2in (class$28)
+    5: classType$63 := Call __ro2sq (classType$29)
+    10: BReturn 0
+    time     0.014% fanout         0 input       578 rows
+    Select (class$61, classType$63)
+  }
+
+
+ 6 msec 75% cpu,       568 rnd       577 seq   52.8998% same seg   44.1125% same pg 
+Compilation: 2 msec 0 reads         0% read 0 messages         0% clw

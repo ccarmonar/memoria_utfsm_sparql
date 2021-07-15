@@ -1,0 +1,2989 @@
+name,query
+queries2_ex007.rq," 
+PREFIX ab: <http://learningsparql.com/ns/addressbook#> 
+
+SELECT ?craigEmail FROM <ex002.ttl>
+WHERE
+{ ab:craig ab:email ?craigEmail . }
+"
+queries2_ex194.rq,"# filename: ex194.rq
+
+PREFIX ab: <http://learningsparql.com/ns/addressbook#> 
+PREFIX v:  <http://www.w3.org/2006/vcard/ns#>
+
+CONSTRUCT
+{
+ ?s v:given-name  ?firstName ;
+    v:family-name ?lastName ;
+    v:email       ?email ;
+    v:homeTel     ?homeTel . 
+}
+WHERE
+{
+ ?s ab:firstName ?firstName ;
+    ab:lastName  ?lastName ;
+    ab:email     ?email .
+    OPTIONAL 
+    { ?s ab:homeTel ?homeTel . }
+}
+"
+queries2_ex178.rq,"# filename: ex178.rq
+
+PREFIX cat:  <http://dbpedia.org/resource/Category:>
+PREFIX foaf: <http://xmlns.com/foaf/0.1/>
+PREFIX gp:   <http://wifo5-04.informatik.uni-mannheim.de/gutendata/resource/people/>
+PREFIX owl:  <http://www.w3.org/2002/07/owl#>
+PREFIX rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+
+CONSTRUCT
+{  
+  <http://dbpedia.org/resource/Joseph_Hocking> ?dbpProperty ?dbpValue .
+  gp:Hocking_Joseph ?gutenProperty ?gutenValue .
+}
+
+
+WHERE
+{
+  SERVICE <http://DBpedia.org/sparql>
+  {
+    <http://dbpedia.org/resource/Joseph_Hocking> ?dbpProperty ?dbpValue .
+  }
+
+  SERVICE <http://wifo5-04.informatik.uni-mannheim.de/gutendata/sparql>
+  {
+    gp:Hocking_Joseph ?gutenProperty ?gutenValue . 
+  }
+
+}
+"
+queries2_ex457.rq,"# filename: ex457.rq
+
+SELECT ?class (COUNT(?s) AS ?instanceTotal)
+WHERE
+{ ?s a ?class. }
+GROUP BY ?class
+ORDER BY DESC(?instanceTotal)
+
+"
+queries2_ex001.rq,"
+PREFIX d: <http://learningsparql.com/ns/demo#> 
+SELECT ?person
+WHERE
+{ ?person d:homeTel ""(229) 276-5135"" . }  
+"
+queries2_ex454.rq,"# filename: ex454.rq
+
+SELECT ?p (COUNT(?p) AS ?pTotal)
+WHERE
+{ ?s ?p ?o . }
+GROUP BY ?p
+ORDER BY DESC(?pTotal)
+
+"
+queries2_ex112.rq,"# filename: ex112.rq
+
+PREFIX dm:  <http://learningsparql.com/ns/demo#>
+PREFIX db: <http://dbpedia.org/resource/>
+
+SELECT ?s ?cost ?location
+WHERE
+{
+  ?s dm:location ?location ;
+     dm:cost ?cost . 
+  FILTER (?location NOT IN (db:Montreal, db:Lisbon)) . 
+}
+
+"
+queries2_ex513.rq,"# filename: ex513.rq
+
+PREFIX ab: <http://learningsparql.com/ns/addressbook#> 
+
+SELECT ?first ?last
+WHERE
+{
+  ?person ab:homeTel ""(229) 276-5135"" . 
+  ?person ab:firstName ?first . 
+  ?person ab:lastname  ?last . 
+}
+
+"
+queries2_ex135.rq,"# filename: ex135.rq
+
+PREFIX ab: <http://learningsparql.com/ns/addressbook#>
+PREFIX dc: <http://purl.org/dc/elements/1.1/> 
+
+SELECT ?graph ?email
+FROM <ex134.ttl> 
+FROM NAMED <ex125.ttl>
+FROM NAMED <ex122.ttl> 
+WHERE
+{
+  ?graph dc:date ""2011-09-24"" . 
+  { GRAPH ?graph { ?s ab:email ?email } }
+}
+
+"
+queries2_ex314.rq,"# filename: ex314.rq
+
+PREFIX ab: <http://learningsparql.com/ns/addressbook#>
+
+CONSTRUCT
+{ ?person a ab:Person . }
+WHERE 
+{
+  ?person ab:firstName ?firstName ;
+          ab:lastName  ?lastName . 
+}
+
+"
+queries2_ex440.rq,"# filename: ex440.rq
+
+PREFIX owl:  <http://www.w3.org/2002/07/owl#>
+
+SELECT * 
+WHERE 
+{ ?class a owl:Class }
+
+"
+queries2_ex225.rq,"# filename: ex225.rq
+
+PREFIX d: <http://learningsparql.com/ns/data#>
+
+SELECT ?s ?o 
+WHERE { ?s ?p ?o }
+
+"
+queries2_ex487.rq,"# filename: ex487.rq
+
+PREFIX dm:   <http://learningsparql.com/ns/demo#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#> 
+
+SELECT ?o 
+WHERE
+{
+  ?s dm:foobar ?o . 
+  FILTER(!(isIRI(?o)))
+}
+
+"
+queries2_ex172.rq,"# filename: ex172.rq
+
+PREFIX cat:  <http://dbpedia.org/resource/Category:>
+PREFIX foaf: <http://xmlns.com/foaf/0.1/>
+PREFIX gp:   <http://wifo5-04.informatik.uni-mannheim.de/gutendata/resource/people/>
+PREFIX owl:  <http://www.w3.org/2002/07/owl#>
+PREFIX rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+
+SELECT ?dbpProperty ?dbpValue ?gutenProperty ?gutenValue 
+WHERE
+{
+  SERVICE <http://DBpedia.org/sparql>
+  {
+    <http://dbpedia.org/resource/Joseph_Hocking> ?dbpProperty ?dbpValue .
+  }
+
+  SERVICE <http://wifo5-04.informatik.uni-mannheim.de/gutendata/sparql>
+  {
+    gp:Hocking_Joseph ?gutenProperty ?gutenValue . 
+  }
+}
+
+
+"
+queries2_ex166.rq,"# filename: ex166.rq
+
+PREFIX dc: <http://purl.org/dc/elements/1.1/>
+
+SELECT ?title
+FROM <http://dig.csail.mit.edu/2008/webdav/timbl/foaf.rdf>
+WHERE { ?s dc:title ?title .}
+
+"
+queries2_ex143.rq,"# filename: ex143.rq
+
+PREFIX e: <http://learningsparql.com/ns/expenses#> 
+
+SELECT ?mealCode ?amount 
+WHERE
+{
+  {
+    SELECT ?meal (UCASE(SUBSTR(?description,1,3)) as ?mealCode)
+    WHERE { ?meal e:description ?description . }
+  }
+
+  {
+    SELECT ?meal ?amount
+    WHERE { ?meal e:amount ?amount . }
+  }
+}
+
+"
+queries2_ex264.rq,"# filename: ex264.rq
+
+PREFIX dbr: <http://dbpedia.org/resource/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+
+SELECT ?o ?decimalTest
+WHERE 
+{
+  ?s ?p ?o . 
+  BIND (STRDT(str(?o),xsd:decimal) as ?decimalTest)
+}
+
+"
+queries2_ex164.rq,"# filename: ex164.rq
+
+PREFIX e: <http://learningsparql.com/ns/expenses#> 
+
+SELECT ?description (SUM(?amount) AS ?mealTotal)
+WHERE
+{
+  ?meal e:description ?description ;
+        e:amount ?amount . 
+}
+GROUP BY ?description
+HAVING (SUM(?amount) > 20)
+
+"
+queries2_ex141.rq,"# filename: ex141.rq
+
+PREFIX e: <http://learningsparql.com/ns/expenses#> 
+
+SELECT (UCASE(SUBSTR(?description,1,3))
+       as ?mealCode) ?amount
+
+WHERE
+{
+  ?meal e:description ?description ;
+        e:amount ?amount . 
+}
+"
+queries2_ex167.rq,"# filename: ex167.rq
+
+PREFIX cat:     <http://dbpedia.org/resource/Category:>
+PREFIX skos:    <http://www.w3.org/2004/02/skos/core#>
+PREFIX rdfs:    <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX owl:     <http://www.w3.org/2002/07/owl#>
+PREFIX foaf:    <http://xmlns.com/foaf/0.1/>
+
+SELECT ?p ?o 
+WHERE
+{
+  SERVICE <http://DBpedia.org/sparql>
+  { SELECT ?p ?o 
+    WHERE { <http://dbpedia.org/resource/Joseph_Hocking> ?p ?o . }
+  }
+}
+
+"
+queries2_ex508.rq,"#filename: ex508.rq
+
+PREFIX db: <http://dbpedia.org/resource/>
+PREFIX dbo: <http://dbpedia.org/ontology/>
+
+SELECT ?pacinoFilm
+WHERE
+{
+  ?pacinoFilm dbo:starring db:Al_Pacino .
+  ?deNiroFilm dbo:starring db:Robert_De_Niro .
+  FILTER(?pacinoFilm = ?deNiroFilm)
+}
+
+"
+queries2_ex533.rq,"# filename: ex533.rq
+
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX gr:   <http://purl.org/goodrelations/v1#>
+
+SELECT ?class
+WHERE 
+{ gr:hasCurrency rdfs:domain ?class }
+
+"
+queries2_ex444.rq,"# filename: ex444.rq 
+
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> 
+
+SELECT  ?property
+WHERE {
+  ?property a rdf:Property .   # could have said rdf:type instead of a
+}
+
+"
+queries2_ex111.rq,"# filename: ex111.rq
+
+PREFIX dm: <http://learningsparql.com/ns/demo#>
+PREFIX db: <http://dbpedia.org/resource/>
+
+SELECT ?s ?cost ?location
+WHERE
+{
+  ?s dm:location ?location ;
+     dm:cost ?cost . 
+  FILTER (?cost IN (8, 12, 10)) . 
+}
+
+
+"
+queries2_test2.rq,"PREFIX :     <http://example.org/book/> 
+PREFIX ns:   <http://example.org/ns#> 
+
+INSERT 
+  { 
+    GRAPH <urn:sparql:bind:tests> 
+      {
+        :book1  <http://purl.org/dc/elements/1.1/title> ""SPARQL Tutorial"" . 
+        :book1  ns:price                                42 . 
+        :book1  ns:discount                             0.2 . 
+        :book2  <http://purl.org/dc/elements/1.1/title> ""The Semantic Web"" . 
+        :book2  ns:price                                23 . 
+        :book2  ns:discount                             0.25 . 
+      }
+  }"
+queries2_ex196.rq,"# filename: ex196.rq
+
+PREFIX cat:  <http://dbpedia.org/resource/Category:>
+PREFIX foaf: <http://xmlns.com/foaf/0.1/>
+PREFIX gp:   <http://wifo5-04.informatik.uni-mannheim.de/gutendata/resource/people/>
+PREFIX owl:  <http://www.w3.org/2002/07/owl#>
+PREFIX rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+PREFIX d:    <http://learningsparql.com/ns/data#>
+CONSTRUCT
+{  
+  d:HockingJoseph ?dbpProperty ?dbpValue ;
+                  ?gutenProperty ?gutenValue .
+
+}
+WHERE
+{
+  SERVICE <http://DBpedia.org/sparql>
+  {
+    <http://dbpedia.org/resource/Joseph_Hocking> ?dbpProperty ?dbpValue .
+  }
+
+  SERVICE <http://wifo5-04.informatik.uni-mannheim.de/gutendata/sparql>
+  {
+    gp:Hocking_Joseph ?gutenProperty ?gutenValue . 
+  }
+
+}
+"
+queries2_ex469.rq,"# filename: ex469.rq
+
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX gr: <http://purl.org/goodrelations/v1#>
+
+SELECT *
+WHERE
+{ gr:hasNext rdfs:range ?rangeValue . }
+
+"
+queries2_ex318.rq,"# filename ex318.rq
+
+SELECT * WHERE 
+{<http://rdf.freebase.com/ns/en.tommy_potter> ?p ?o }
+
+"
+queries2_ex083.rq,"# filename: ex083.rq
+
+PREFIX : <http://learningsparql.com/ns/papers#>
+PREFIX c: <http://learningsparql.com/ns/citations#> 
+
+SELECT ?s
+WHERE { :paperA ^c:cites ?s }
+
+"
+queries2_test4.rq,"PREFIX p: <http://dbpedia.org/property/>
+SELECT ?artist ?artwork ?museum ?director
+FROM <http://dbpedia.org>
+WHERE
+  {
+    ?artwork p:artist ?artist .
+    ?artwork p:museum ?museum .
+    ?museum p:director ?director
+  }
+"
+queries2_ex013.rq,"# filename: ex013.rq
+
+PREFIX ab: <http://learningsparql.com/ns/addressbook#> 
+
+SELECT ?craigEmail
+WHERE
+{
+  ?person ab:firstName ""Craig"" . 
+  ?person ab:email ?craigEmail . 
+}
+"
+queries2_ex540.rq,"# filename: ex540.rq
+
+CONSTRUCT 
+FROM <http://rdf.freebase.com/rdf/en.joseph_hocking>
+WHERE 
+{ ?s ?p ?o }
+
+"
+queries2_ex449.rq,"# filename: ex449.rq
+
+SELECT DISTINCT ?property
+WHERE 
+{ ?s ?property ?o . }
+# LIMIT 50
+
+"
+queries2_ex075.rq,"# filename: ex075.rq
+
+PREFIX dc: <http://purl.org/dc/elements/1.1/> 
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#> 
+PREFIX : <http://learningsparql.com/ns/papers#>
+
+SELECT ?s ?title
+WHERE { ?s (dc:title | rdfs:label) ?title . }
+
+"
+queries2_ex065.rq,"# filename: ex065.rq
+
+PREFIX ab: <http://learningsparql.com/ns/addressbook#> 
+
+SELECT ?first ?last 
+WHERE
+{
+  ?s ab:firstName ?first ;
+     ab:lastName ?last .
+
+  OPTIONAL { ?s ab:workTel ?workNum . }
+  FILTER (!bound(?workNum))
+}
+
+"
+queries2_ex479.rq,"# filename: ex479.rq
+
+PREFIX dcterms: <http://purl.org/dc/terms/> 
+
+#DELETE {?document dcterms:dateCopyrighted ""2013"" . }
+#INSERT {?document dcterms:dateCopyrighted ""2014"" . }
+CONSTRUCT{?document dcterms:dateCopyrighted ""2014"" . }
+WHERE  {?document dcterms:dateCopyrighted ""2013"" . }
+
+"
+queries2_ex305.rq,"# filename: ex305.rq
+
+PREFIX foaf: <http://xmlns.com/foaf/0.1/>
+PREFIX ab: <http://learningsparql.com/ns/addressbook#> 
+
+CONSTRUCT {
+  ?s foaf:givenName ?first ;
+     foaf:familyName ?last ;
+     foaf:mbox_sha1sum ?hashEmail . 
+}
+WHERE 
+{
+  ?s ab:firstName ?first ;
+     ab:lastName ?last ;
+     ab:email ?email . 
+  BIND (SHA1(?email) AS ?hashEmail )
+}
+"
+queries2_ex222.rq,"# filename: ex222.rq
+
+PREFIX d:  <http://learningsparql.com/ns/data#> 
+PREFIX mt: <http://learningsparql.com/ns/mytypesystem#> 
+
+SELECT ?s
+WHERE { ?s ?p ""two""^^mt:potrzebies . } 
+
+"
+queries2_ex461.rq,"# filename: ex461.rq
+
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+
+SELECT DISTINCT ?class
+WHERE
+{
+   ?s rdfs:label ?label ;
+      a ?class . 
+}
+
+"
+queries2_ex517.rq,"# filename: ex517.rq
+
+PREFIX ab: <http://example.org/ab#>
+
+SELECT ?first ?last ?homeTel
+WHERE 
+{
+  OPTIONAL { ?s ab:homeTel ?homeTel .}
+
+  ?s ab:firstName ?first .
+  FILTER(CONTAINS(?last,""M""))
+  ?s ab:lastName ?last . 
+}
+ORDER BY ?last
+
+"
+queries2_ex532.rq,"# filename: ex532.rq
+
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX void: <http://rdfs.org/ns/void#> 
+
+SELECT ?property
+WHERE 
+{ ?property rdfs:domain void:Linkset }
+
+"
+queries2_ex299.rq,"# filename: ex299.rq
+
+PREFIX d: <http://learningsparql.com/ns/data#> 
+PREFIX t: <http://purl.org/tio/ns#> 
+
+SELECT ?mtg ?yearTest ?monthTest ?dayTest ?hoursTest ?minutesTest
+WHERE
+{
+  ?mtg t:starts ?startTime . 
+  BIND (year(?startTime) AS ?yearTest)
+  BIND (month(?startTime) AS ?monthTest)
+  BIND (day(?startTime) AS ?dayTest)
+  BIND (hours(?startTime) AS ?hoursTest)
+  BIND (minutes(?startTime) AS ?minutesTest)
+}
+"
+queries2_ex538.rq,"# filename: ex538.rq
+
+SELECT DISTINCT ?graph ?property
+WHERE 
+{ 
+  { ?s ?property ?o . }
+  UNION
+  { GRAPH ?graph { ?s ?property ?o } }  
+}
+# LIMIT 50
+"
+queries2_ex489.rq,"# filename: ex489.rq
+
+PREFIX owl: <http://www.w3.org/2002/07/owl#>
+
+SELECT *
+WHERE 
+{
+  ?s a owl:Class . 
+  FILTER(CONTAINS(LCASE(str(?s)),""price""))
+}
+
+"
+queries2_ex514.rq,"# filename: ex514.rq
+
+PREFIX ab: <http://learningsparql.com/ns/addressbook#> 
+
+SELECT *
+WHERE
+{
+  ?person ab:homeTel ""(229) 276-5135"" . 
+}
+
+"
+queries2_ex148.rq,"# filename: ex148.rq
+
+PREFIX e: <http://learningsparql.com/ns/expenses#>
+
+SELECT ?description ?date ?amount
+WHERE
+{
+  ?meal e:description ?description ;
+        e:date ?date ;
+        e:amount ?amount . 
+}
+
+ORDER BY DESC(?amount)
+
+"
+queries2_ex237.rq,"# filename: ex237.rq
+
+PREFIX dm:   <http://learningsparql.com/ns/demo#> 
+PREFIX rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+
+CONSTRUCT { ?locationURI rdf:type dm:Place . }
+WHERE 
+{
+  ?item dm:location ?locationValue .
+  BIND (IF(isURI(?locationValue),
+                 ?locationValue,
+                 URI(CONCAT(""http://learningsparql.com/ns/data#"",
+                            ENCODE_FOR_URI(?locationValue)))
+           ) AS ?locationURI
+
+       ) . 
+}
+
+
+"
+queries2_ex137.rq,"# filename: ex137.rq
+
+PREFIX ab: <http://learningsparql.com/ns/addressbook#>
+
+SELECT ?lastName ?courseName 
+WHERE
+{
+  {
+    SELECT ?lastName 
+    WHERE { ?student ab:lastName ?lastName . }
+  }
+
+  {
+    SELECT ?courseName 
+    WHERE { ?course ab:courseTitle ?courseName . }
+  }
+
+}
+"
+queries2_ex118.rq,"# filename: ex118.rq
+
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+
+SELECT ?label 
+WHERE
+{ ?s rdfs:label ?label . }
+OFFSET 3
+
+"
+queries2_ex160.rq,"# filename: ex160.rq
+
+PREFIX e: <http://learningsparql.com/ns/expenses#> 
+
+SELECT ?description (SUM(?amount) AS ?mealTotal)
+WHERE
+{
+  ?meal e:description ?description ;
+        e:amount ?amount . 
+}
+GROUP BY ?description
+
+
+"
+queries2_ex471.rq,"# filename: ex471.rq
+
+PREFIX dc:   <http://purl.org/dc/elements/1.1/>
+PREFIX foaf: <http://xmlns.com/foaf/0.1/>
+PREFIX void: <http://vocab.deri.ie/void#>
+PREFIX rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#> 
+
+SELECT ?creator ?propertyName ?propertyValue 
+WHERE 
+{
+  ?s dc:creator ?creator . 
+  ?creator ?propertyName ?propertyValue . 
+}
+
+"
+queries2_ex355.rq,"# filename: ex355.rq
+SELECT ?elvisbday WHERE {
+  <http://dbpedia.org/resource/Elvis_Presley> 
+  <http://dbpedia.org/property/dateOfBirth> ?elvisbday .
+}
+
+"
+queries2_ex120.rq,"# filename: ex120.rq
+
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+
+SELECT ?label 
+WHERE
+{ ?s rdfs:label ?label . }
+OFFSET 3
+LIMIT 1
+
+"
+queries2_ex539.rq,"# filename: ex539.rq
+
+PREFIX cat:     <http://dbpedia.org/resource/Category:>
+PREFIX skos:    <http://www.w3.org/2004/02/skos/core#>
+PREFIX rdfs:    <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX owl:     <http://www.w3.org/2002/07/owl#>
+PREFIX foaf:    <http://xmlns.com/foaf/0.1/>
+
+SELECT ?p ?o 
+WHERE
+{
+  SERVICE <http://DBpedia.org/sparql>
+  { <http://dbpedia.org/resource/Joseph_Hocking> ?p ?o . }
+}
+
+"
+queries2_ex492.rq,"# filename: ex492.rq
+
+PREFIX dm: <http://learningsparql.com/ns/demo#>
+
+SELECT *
+WHERE { } 
+   VALUES (?color ?direction) {
+   ( dm:red  ""north"" )
+   ( dm:blue  ""west"" )
+}
+
+"
+queries2_ex023.rq,"# filename: ex023.rq
+
+PREFIX ab: <http://learningsparql.com/ns/addressbook#> 
+
+SELECT ?craigEmail ?homeTel
+WHERE
+{
+  ?person ab:firstName ""Craig"" . 
+  ?person ab:lastName  ""Ellis"" . 
+  ?person ab:email ?craigEmail . 
+  ?person ab:homeTel ?homeTel .
+}
+"
+queries2_ex205.rq,"# filename: ex205.rq
+
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX dm:  <http://learningsparql.com/ns/demo#> 
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+
+CONSTRUCT
+{
+  ?item dm:problem dm:prob32 .
+  dm:prob32 rdfs:label ""Amount must be an integer."" . 
+}
+
+WHERE
+{
+  ?item dm:amount ?amount .
+  FILTER ((datatype(?amount)) != xsd:integer) 
+}
+
+"
+queries2_ex003.rq,"
+PREFIX ab: <http://learningsparql.com/ns/addressbook#> 
+
+SELECT ?craigEmail
+WHERE
+{ ab:craig ab:email ?craigEmail . }
+"
+queries2_ex185.rq,"# filename: ex185.rq
+
+PREFIX ab: <http://learningsparql.com/ns/addressbook#> 
+
+CONSTRUCT
+{
+  ?person ?p ?o ;
+          ab:areaCode ?areaCode . 
+}
+WHERE
+{
+  ?person ab:homeTel ?phone ;
+          ?p ?o . 
+  BIND (SUBSTR(?phone,2,3) as ?areaCode)
+}
+"
+queries2_ex098.rq,"# filename: ex098.rq
+
+PREFIX ab: <http://learningsparql.com/ns/addressbook#> 
+PREFIX d:  <http://learningsparql.com/ns/data#> 
+
+SELECT * 
+WHERE
+{
+       { ?person ab:firstName ?first ; ab:lastName ?last . }
+
+       UNION
+
+       { ?course ab:courseTitle ?courseName . }
+
+}
+
+"
+queries2_ex494.rq,"# filename: ex494.rq 
+
+PREFIX e: <http://learningsparql.com/ns/expenses#> 
+
+SELECT ?description ?date ?amount
+WHERE
+{
+  ?meal e:description ?description ;
+        e:date ?date ;
+        e:amount ?amount . 
+}
+
+"
+queries2_ex516.rq,"# filename: ex516.rq
+
+PREFIX ab: <http://learningsparql.com/ns/addressbook#> 
+
+SELECT *      # ?first ?last
+WHERE
+{
+  ?person ab:homeTel ""(229) 276-5135"" . 
+#  ?person ab:firstName ?first .
+#  ?person ab:lastname  ?last . 
+}
+
+"
+queries2_ex253.rq,"# filename: ex253.rq
+
+BASE <http://learningsparql.com/ns/demo#>
+
+CONSTRUCT {?s ?p ?testURI.}
+WHERE 
+{
+  ?s ?p ?o . 
+  BIND (URI(ENCODE_FOR_URI(str(?o))) AS ?testURI)
+} LIMIT 50
+
+"
+queries2_ex520.rq,"# filename: ex520.rq
+
+PREFIX ab: <http://learningsparql.com/ns/addressbook#> 
+SELECT ?first ?last ?homeTel
+WHERE 
+{
+  OPTIONAL { ?s ab:homeTel ?homeTel .}
+  ?s ab:firstName ?first .
+  FILTER(CONTAINS(?last,""M""))
+  ?s ab:lastName ?last . 
+}
+ORDER BY ?last"
+queries2_ex162.rq,"# filename: ex162.rq
+
+SELECT ?p (COUNT(?p) AS ?pTotal)
+WHERE
+{ ?s ?p ?o . }
+GROUP BY ?p
+
+"
+queries2_ex019.rq,"# filename: ex019.rq
+
+PREFIX a: <http://learningsparql.com/ns/addressbook#> 
+
+SELECT ?propertyName ?propertyValue 
+WHERE
+{
+  ?person a:firstName ""Cindy"" . 
+  ?person a:lastName  ""Marshall"" . 
+  ?person ?propertyName ?propertyValue . 
+}
+"
+queries2_ex544.rq,"# filename: ex544.rq
+
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX void: <http://rdfs.org/ns/void#> 
+
+SELECT ?property
+WHERE 
+{ ?property rdfs:domain void:Linkset }
+
+"
+queries2_ex408.rq,"# filename: ex408.rq
+
+SELECT ?s ?o 
+WHERE 
+{ ?s ?p ?o }
+
+"
+queries2_ex107.rq,"# filename: ex107.rq
+
+PREFIX dm: <http://learningsparql.com/ns/demo#> 
+
+SELECT ?s ?city
+WHERE
+{
+  ?s dm:location ?city .
+  FILTER (!(isURI(?city)))
+}
+
+"
+queries2_ex010.rq,"
+PREFIX ab: <http://learningsparql.com/ns/addressbook#> 
+
+SELECT ?propertyName ?propertyValue
+WHERE
+{ ab:cindy ?propertyName ?propertyValue . }
+"
+queries2_ex092.rq,"# filename: ex092.rq
+
+SELECT DISTINCT ?p 
+WHERE
+{ ?s ?p ?o . }
+
+"
+queries2_ex209.rq,"# filename: ex209.rq
+
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX dm:  <http://learningsparql.com/ns/demo#> 
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+
+CONSTRUCT
+{
+  ?prob32item dm:problem dm:prob32 .
+  dm:prob32 rdfs:label ""Amount must be an integer."" . 
+
+  ?prob29item dm:problem dm:prob29 .
+  dm:prob29 rdfs:label ""Location value must be a URI."" . 
+
+  ?prob44item dm:problem dm:prob44 .
+  dm:prob44 rdfs:label ""Expenditures over 100 require grade 5 approval."" . 
+
+  dm:probXX rdfs:label ""This is a dummy problem."" . 
+}
+
+WHERE
+{
+  {
+    ?prob32item dm:amount ?amount .
+    FILTER ((datatype(?amount)) != xsd:integer) 
+  }
+  
+  UNION
+
+  {
+    ?prob29item dm:location ?city .
+    FILTER (!(isURI(?city)))
+  }
+
+  UNION 
+
+  {
+    ?prob44item dm:cost ?cost ;
+                dm:amount ?amount .
+    OPTIONAL 
+    {
+      ?item dm:approval ?approvingEmployee . 
+      ?approvingEmployee dm:jobGrade ?grade . 
+    }
+
+    BIND (?cost * ?amount AS ?totalCost) .
+    FILTER ((?totalCost > 100) &&
+            ( (!(bound(?grade)) || (?grade < 5 ) )))   
+  }
+
+}
+
+"
+queries2_ex082.rq,"# filename: ex082.rq
+
+PREFIX : <http://learningsparql.com/ns/papers#>
+PREFIX c: <http://learningsparql.com/ns/citations#> 
+
+SELECT ?s
+WHERE { ?s c:cites/c:cites/c:cites :paperA . }
+
+"
+queries2_ex116.rq,"# filename: ex116.rq
+
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+
+SELECT ?label 
+WHERE
+{ ?s rdfs:label ?label . }
+LIMIT 2
+
+"
+queries2_ex199.rq,"# filename: ex199.rq
+
+PREFIX dm: <http://learningsparql.com/ns/demo#> 
+
+ASK WHERE
+{
+  ?s dm:location ?city .
+  FILTER (!(isURI(?city)))
+}
+
+"
+queries2_ex211.rq,"# filename: ex211.rq
+
+PREFIX sch: <http://purl.org/net/schemarama#>
+PREFIX dm:  <http://learningsparql.com/ns/demo#> 
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+
+CONSTRUCT
+{
+  [] rdf:type sch:Error;
+        sch:message ""location value should be a URI"";
+        sch:implicated ?s.
+
+} 
+WHERE
+{
+  ?s dm:location ?city .
+  FILTER (!(isURI(?city)))
+}
+
+"
+queries2_ex270.rq,"# filename: ex270.rq
+
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#> 
+
+SELECT ?label 
+WHERE { ?s rdfs:label ?label .}
+
+"
+queries2_q10.rq,"PREFIX vcard: <http://www.w3.org/2006/vcard/ns#> 
+PREFIX sn: <http://www.snee.com/hr/> 
+
+SELECT ?givenName ?familyName ?fullName
+WHERE { 
+  ?person vcard:given-name ?givenName .  
+  ?person vcard:family-name ?familyName .
+BIND(concat(?givenName,"" "",?familyName) AS ?fullName) 
+}
+"
+queries2_ex233.rq,"# filename: ex233.rq
+
+PREFIX dm: <http://learningsparql.com/ns/demo#> 
+PREFIX d:  <http://learningsparql.com/ns/data#>
+SELECT *
+WHERE {
+  ?item dm:quantity ?quantity; 
+        dm:costPerItem ?cost . 
+  BIND ( (?quantity * ?cost) as ?total )
+}
+
+"
+queries2_ex228.rq,"# filename: ex228.rq
+
+PREFIX d:   <http://learningsparql.com/ns/data#>
+PREFIX e:   <http://learningsparql.com/ns/expenses#> 
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> 
+
+SELECT ?s ?p ?o
+WHERE {
+  ?s e:amount ?amount;
+     ?p ?o . 
+  FILTER (?amount < 20) 
+}
+"
+queries2_ex047.rq,"# filename: ex047.rq
+
+PREFIX ab: <http://learningsparql.com/ns/addressbook#> 
+
+SELECT ?doctorFirst ?doctorLast ?spouseFirst ?spouseLast
+WHERE 
+{
+   ?s ab:firstName ""Cindy"" ;
+      ab:lastName ""Marshall"" ;
+      ab:doctor ?doctor ;
+      ab:spouse ?spouse .  
+
+?doctor ab:firstName ?doctorFirst ;
+        ab:lastName ?doctorLast .
+
+?spouse ab:firstName ?spouseFirst ;
+        ab:lastName ?spouseLast .
+}
+
+"
+queries2_ex153.rq,"# filename: ex153.rq
+
+PREFIX e: <http://learningsparql.com/ns/expenses#> 
+
+SELECT (MAX(?amount) as ?maxAmount) 
+WHERE { ?meal e:amount ?amount . }
+
+"
+queries2_ex290.rq,"# filename: ex290.rq
+
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema> 
+
+SELECT ?encodeTest 
+WHERE
+{
+  ?s rdfs:label ?label .
+  BIND (ENCODE_FOR_URI(?label) AS ?encodeTest)
+}
+
+"
+queries2_ex136.rq,"# filename: ex136.rq
+
+SELECT DISTINCT ?g 
+WHERE
+{
+  GRAPH ?g {?s ?p ?o }
+}
+
+"
+queries2_ex332.rq,"# filename: ex332.rq
+
+SELECT ?g ?s ?p ?o
+WHERE
+{
+  { ?s ?p ?o }
+  UNION
+  { GRAPH ?g { ?s ?p ?o } }
+}
+
+"
+queries2_q2.rq,"PREFIX vcard: <http://www.w3.org/2006/vcard/ns#> 
+
+SELECT ?person ?givenName
+WHERE 
+{ 
+   ?person vcard:family-name ""Smith"" . 
+   ?person vcard:given-name ?givenName .
+}
+"
+queries2_ex485.rq,"# filename: ex485.rq
+
+SELECT DISTINCT ?p 
+WHERE
+{
+  ?s ?p ?o .
+  MINUS { ?p a ?someType }
+}
+ORDER BY ?p
+
+"
+queries2_ex130.rq,"# filename: ex130.rq
+
+PREFIX ab: <http://learningsparql.com/ns/addressbook#>
+
+SELECT ?courseName
+FROM <ex069.ttl>
+FROM NAMED <ex125.ttl>
+FROM NAMED <ex122.ttl>
+WHERE
+{
+  { ?course ab:courseTitle ?courseName }
+
+  UNION
+
+  {GRAPH ?g { ?course ab:courseTitle ?courseName } }
+
+}
+
+"
+queries2_ex436.rq,"# filename: ex436.rq
+
+SELECT * 
+WHERE 
+{
+  ?s ?p ?o . 
+}
+#LIMIT 50
+
+"
+queries2_ex273.rq,"# filename: ex273.rq
+
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#> 
+
+SELECT ?strippedLabel 
+WHERE { 
+  ?s rdfs:label ?label .
+  FILTER ( lang(?label) = ""en"" )
+  BIND (str(?label) AS ?strippedLabel)
+}
+
+
+"
+queries2_ex070.rq,"# filename: ex070.rq
+
+PREFIX ab: <http://learningsparql.com/ns/addressbook#> 
+
+SELECT ?last ?first ?courseName 
+WHERE
+{
+  ?s ab:firstName ?first ;
+     ab:lastName ?last ;
+     ab:takingCourse ?course . 
+
+  ?course ab:courseTitle ?courseName . 
+}
+
+"
+queries2_ex474.rq,"# filename: ex474.rq
+
+SELECT ?p ?o 
+WHERE
+{
+  SERVICE <http://DBpedia.org/sparql>
+    { <http://dbpedia.org/resource/Joseph_Hocking> ?p ?o . }
+}
+
+"
+queries2_ex063.rq,"# filename: ex063.rq
+
+PREFIX ab: <http://learningsparql.com/ns/addressbook#> 
+
+SELECT ?first ?last
+WHERE
+{
+  ?s ab:lastName ?last . 
+  OPTIONAL { ?s ab:nick ?first . }
+  OPTIONAL { ?s ab:firstName ?first . }
+}
+
+"
+queries2_ex156.rq,"# filename: ex156.rq
+
+PREFIX e: <http://learningsparql.com/ns/expenses#> 
+
+SELECT (AVG(?amount) as ?avgAmount) 
+WHERE { ?meal e:amount ?amount . }
+
+"
+queries2_ex015.rq,"# filename: ex015.rq
+
+PREFIX ab: <http://learningsparql.com/ns/addressbook#> 
+
+SELECT ?craigEmail
+WHERE
+{
+  ?person ab:firstName ""Craig"" . 
+  ?person ab:lastName  ""Ellis"" . 
+  ?person ab:email ?craigEmail . 
+}
+"
+queries2_ex276.rq,"# filename: ex276.rq
+
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#> 
+
+SELECT ?strippedLabel
+WHERE { 
+  ?s rdfs:label ?label .
+  FILTER ( langMatches(lang(?label),""en"" ))
+  BIND (str(?label) AS ?strippedLabel)
+}
+
+"
+queries2_ex077.rq,"# filename: ex077.rq
+
+PREFIX : <http://learningsparql.com/ns/papers#>
+PREFIX c: <http://learningsparql.com/ns/citations#> 
+
+SELECT ?s
+WHERE { ?s c:cites :paperA . }
+
+"
+queries2_ex257.rq,"# filename: ex257.rq
+
+PREFIX dbr: <http://dbpedia.org/resource/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+
+SELECT ?o ?integerTest ?decimalTest ?floatTest ?doubleTest
+WHERE 
+{
+  ?s ?p ?o . 
+  BIND (xsd:integer(?o) as ?integerTest)
+  BIND (xsd:decimal(?o) as ?decimalTest)
+  BIND (xsd:float(?o) as ?floatTest)
+  BIND (xsd:double(?o) as ?doubleTest)
+}
+
+
+
+"
+queries2_ex221.rq,"# filename: ex221.rq
+
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> 
+PREFIX d: <http://learningsparql.com/ns/data#> 
+PREFIX dm: <http://learningsparql.com/ns/demo#> 
+
+SELECT ?s
+WHERE { ?s ?p ""two""^^xsd:string . } 
+
+"
+queries2_ex511.rq,"# filename: ex511.rq
+
+PREFIX ab: <http://learningsparql.com/ns/addressbook#> 
+
+SELECT *
+WHERE
+{
+  ?s ?p ?o . 
+  FILTER (STRENDS(?o, ""@yahoo.com""))
+}
+
+"
+queries2_ex537.rq,"#filename: ex537.rq
+
+PREFIX ab:   <http://learningsparql.com/ns/addressbook#> 
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#> 
+
+SELECT ?property ?propName
+WHERE 
+{ 
+  ?property rdfs:domain ab:Person ;
+            rdfs:label ?propName .  
+}
+
+"
+queries2_ex463.rq,"# filename: ex463.rq
+
+PREFIX foaf: <http://xmlns.com/foaf/0.1/>
+
+SELECT DISTINCT ?property
+WHERE 
+{
+  ?person a foaf:Person ;
+          ?property ?value . 
+}
+
+"
+queries2_ex427.rq,"# filename: ex427.rq
+
+PREFIX  owl:  <http://www.w3.org/2002/07/owl#> 
+
+CONSTRUCT 
+{ ?resource2 ?property1 ?resource1 . }
+WHERE
+{
+   ?property1 owl:inverseOf ?property2 .
+   ?resource1 ?property2 ?resource2 .
+}
+
+"
+queries2_ex067.rq,"# filename: ex067.rq
+
+PREFIX ab: <http://learningsparql.com/ns/addressbook#> 
+
+SELECT ?first ?last 
+
+WHERE
+{
+  ?s ab:firstName ?first ;
+     ab:lastName ?last .
+  FILTER NOT EXISTS { ?s ab:workTel ?workNum }
+}
+
+"
+queries2_ex184.rq,"# filename: ex184.rq
+
+PREFIX dc: <http://purl.org/dc/elements/1.1/>
+CONSTRUCT
+{
+  <http://learningsparql.com/ns/data/book312> dc:title ""Jabez Easterbrook"" . 
+}
+WHERE
+{}
+
+"
+queries2_ex174.rq,"# filename: ex174.rq
+
+PREFIX ab: <http://learningsparql.com/ns/addressbook#>
+PREFIX d:  <http://learningsparql.com/ns/data#>
+
+SELECT ?person ?p ?o
+WHERE 
+{
+  ?person ab:firstName ""Craig"" ;
+          ab:lastName  ""Ellis"" ;
+          ?p ?o . 
+}
+
+"
+queries2_ex465.rq,"# filename: ex465.rq
+
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX void: <http://rdfs.org/ns/void#>
+
+SELECT *
+WHERE
+{ ?property rdfs:domain void:Linkset }
+
+"
+queries2_ex088.rq,"# filename: ex088.rq
+
+PREFIX ab: <http://learningsparql.com/ns/addressbook#> 
+
+SELECT ?firstName ?lastName ?streetAddress ?city ?region ?postalCode
+WHERE 
+{ 
+  ?s ab:firstName ?firstName ;
+     ab:lastName ?lastName ;
+     ab:address ?address . 
+
+  ?address ab:postalCode ?postalCode ;
+           ab:city ?city ;
+           ab:streetAddress ?streetAddress ;
+           ab:region ?region . 
+}
+"
+queries2_ex246.rq,"# filename: ex246.rq
+
+BASE <http://learningsparql.com/ns/demo#>
+
+CONSTRUCT {?s ?p ?testURI.}
+WHERE 
+{
+  ?s ?p ?o . 
+  BIND (URI(?o) AS ?testURI)
+} LIMIT 40
+
+"
+queries2_ex251.rq,"# filename: ex251.rq
+
+PREFIX d:   <http://learningsparql.com/ns/data#> 
+
+SELECT ?s ?testStr
+WHERE 
+{
+  ?s ?p ?o . 
+  BIND (str(?o) AS ?testStr)
+}
+
+"
+queries2_ex453.rq,"# filename: ex453.rq
+
+PREFIX gr: <http://purl.org/goodrelations/v1#>
+
+SELECT (COUNT(?o) AS ?hasNextTotal)
+WHERE
+{ ?s gr:hasNext ?o }
+
+"
+queries2_ex017.rq," 
+PREFIX ab: <http://learningsparql.com/ns/addressbook#> 
+
+SELECT ?first ?last
+WHERE
+{
+  ?person ab:homeTel ""(229) 276-5135"" . 
+  ?person ab:firstName ?first . 
+  ?person ab:lastName  ?last . 
+}
+"
+queries2_ex451.rq,"# filename: ex451.rq
+
+PREFIX gr: <http://purl.org/goodrelations/v1#>
+
+SELECT DISTINCT ?class
+WHERE {
+?s gr:hasNext ?o ;
+   a ?class . 
+}
+
+"
+queries2_ex201.rq,"# filename: ex201.rq
+
+PREFIX dm:  <http://learningsparql.com/ns/demo#> 
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+
+ASK WHERE
+{
+  ?item dm:amount ?amount .
+  FILTER ((datatype(?amount)) != xsd:integer) 
+}
+
+"
+queries2_ex500.rq,"# filename: ex500.rq
+
+PREFIX e: <http://learningsparql.com/ns/expenses#> 
+
+SELECT ?description ?date ?amount
+WHERE
+{
+  ?meal e:description ?description ;
+        e:date ?date ;
+        e:amount ?amount . 
+
+  VALUES (?date ?description) {
+         (UNDEF ""lunch"") 
+         (""2011-10-16"" UNDEF) 
+  }
+
+}
+
+"
+queries2_ex212.rq,"# filename: ex212.rq
+
+PREFIX spin: <http://spinrdf.org/spin#> 
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#> 
+PREFIX dm:   <http://learningsparql.com/ns/demo#> 
+
+CONSTRUCT
+{
+    _:b0 a spin:ConstraintViolation .
+    _:b0 rdfs:comment ""Location value must be a URI"" .
+    _:b0 spin:violationRoot ?this .
+
+}
+WHERE
+{
+    ?this dm:location ?city .
+    FILTER (!isURI(?city)) .
+}
+
+"
+queries2_ex260.rq,"# filename: ex260.rq
+
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+
+SELECT ?o ?stringTest ?boolTest
+WHERE 
+{
+  ?s ?p ?o . 
+  BIND (xsd:string(?o) as ?stringTest)
+  BIND (xsd:boolean(?o) as ?boolTest)
+}
+
+"
+queries2_ex406.rq,"# filename: ex406.rq
+
+PREFIX rdfs:    <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX dcterms: <http://purl.org/dc/terms/>
+
+SELECT ?name ?homepage ?description 
+WHERE
+{
+   ?co dcterms:subject
+       <http://dbpedia.org/resource/Category:Wind_power_companies> ;
+   rdfs:label ?name ;
+   rdfs:comment ?description ;
+   <http://dbpedia.org/property/homepage> ?homepage .
+   FILTER ( lang(?name) = ""en"" )
+   FILTER ( lang(?description) = ""en"" )
+}
+"
+queries2_ex086.rq,"# filename: ex086.rq
+
+PREFIX ab: <http://learningsparql.com/ns/addressbook#> 
+
+SELECT ?addressVal
+WHERE { ?s ab:address ?addressVal }
+
+"
+queries2_q6.rq,"PREFIX vcard: <http://www.w3.org/2006/vcard/ns#> 
+PREFIX sn: <http://www.snee.com/hr/> 
+
+SELECT ?givenName ?familyName ?oDate
+WHERE 
+{ 
+   ?person vcard:given-name ?givenName .
+   ?person vcard:family-name ?familyName . 
+   OPTIONAL { ?person sn:completedOrientation  ?oDate . }
+}
+"
+queries2_ex271.rq,"# filename: ex271.rq
+
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#> 
+
+SELECT ?label 
+WHERE { 
+  ?s rdfs:label ?label .
+  FILTER ( lang(?label) = ""en"" )
+}
+
+"
+queries2_ex103.rq,"# filename: ex103.rq
+
+PREFIX ab: <http://learningsparql.com/ns/addressbook#>
+
+SELECT ?first ?last ?instrument 
+WHERE
+{
+    ?person ab:firstName ?first ;
+            ab:lastName ?last ;
+            ab:instrument ?instrument . 
+
+    { ?person ab:instrument ""sax"" . }
+
+    UNION
+
+    { ?person ab:instrument ""trumpet"" . }
+
+}
+"
+queries2_ex279.rq,"# filename: ex279.rq
+
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema> 
+
+SELECT ?label 
+WHERE 
+{
+   ?s rdfs:label ?label .
+    FILTER (!(langMatches(lang(?label),""*"")))
+}
+"
+queries2_ex303.rq,"# filename: ex303.rq
+
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+
+SELECT ?currentTime ?currentSeconds
+WHERE
+{
+   BIND (now() AS ?currentTime)
+   BIND (seconds(?currentTime) AS ?currentSeconds)
+}
+
+"
+queries2_ex467.rq,"# filename: ex467.rq
+
+PREFIX gr: <http://purl.org/goodrelations/v1#>
+
+SELECT DISTINCT ?value
+WHERE
+{ ?s gr:hasNext ?value }
+
+"
+queries2_ex052.rq,"#filename: ex052.rq
+
+PREFIX foaf: <http://xmlns.com/foaf/0.1/> 
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+
+SELECT ?propertyLabel ?value 
+WHERE
+{
+  ?s ?property ?value . 
+  ?property rdfs:label ?propertyLabel . 
+}
+
+"
+queries2_q11.rq,"PREFIX vcard: <http://www.w3.org/2006/vcard/ns#> 
+PREFIX sn: <http://www.snee.com/hr/> 
+PREFIX foaf: <http://xmlns.com/foaf/0.1/>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+
+CONSTRUCT { 
+  ?person rdf:type foaf:Person . 
+  ?person foaf:givenName ?givenName .
+  ?person foaf:familyName ?familyName .
+  ?person foaf:name ?fullName .
+}
+WHERE { 
+  ?person vcard:given-name ?givenName .  
+  ?person vcard:family-name ?familyName .
+  BIND(concat(?givenName,"" "",?familyName) AS ?fullName) 
+}
+"
+queries2_ex061.rq,"# filename: ex061.rq
+
+PREFIX ab: <http://learningsparql.com/ns/addressbook#> 
+
+SELECT ?first ?last ?workTel ?nick
+WHERE
+{
+  ?s ab:firstName ?first ;
+     ab:lastName ?last .
+  OPTIONAL { ?s ab:workTel ?workTel . }
+  OPTIONAL { ?s ab:nick ?nick .  }
+
+}
+
+"
+queries2_ex188.rq,"# filename: ex188.rq
+
+PREFIX ab: <http://learningsparql.com/ns/addressbook#>
+PREFIX d:  <http://learningsparql.com/ns/data#>
+
+CONSTRUCT
+{ ?p ab:hasGrandfather ?g . }
+WHERE
+{
+  ?p ab:hasParent ?parent .
+  ?parent ab:hasParent ?g .
+  ?g ab:gender d:male .
+}
+
+"
+queries2_ex094.rq,"# filename: ex094.rq
+
+PREFIX ab: <http://learningsparql.com/ns/addressbook#>
+
+SELECT DISTINCT ?first ?last 
+WHERE
+{
+  ?s ab:takingCourse ?class ;
+     ab:firstName ?first ;
+     ab:lastName ?last . 
+}
+
+"
+queries2_ex248.rq,"# filename: ex248.rq
+
+BASE <http://learningsparql.com/ns/demo#>
+
+CONSTRUCT {?s ?p ?testURI.}
+WHERE 
+{
+  ?s ?p ?o . 
+  BIND (URI(ENCODE_FOR_URI(?o)) AS ?testURI)
+}
+
+"
+queries2_ex146.rq,"# filename: ex146.rq
+
+PREFIX e: <http://learningsparql.com/ns/expenses#>
+
+SELECT ?description ?date ?amount
+WHERE
+{
+  ?meal e:description ?description ;
+        e:date ?date ;
+        e:amount ?amount . 
+}
+
+ORDER BY ?amount
+
+"
+queries2_ex105.rq,"# filename: ex105.rq
+
+PREFIX dm: <http://learningsparql.com/ns/demo#> 
+
+SELECT ?s ?cost
+WHERE
+{
+  ?s dm:cost ?cost .
+  FILTER (?cost < 10)
+}
+
+"
+queries2_test1.rq,"select distinct ?Concept 
+
+
+
+where   {
+		[] a ?Concept
+	} 
+
+
+
+
+
+
+
+LIMIT 100
+"
+queries2_ex498.rq,"# filename: ex498.rq
+
+PREFIX e: <http://learningsparql.com/ns/expenses#> 
+
+SELECT ?description ?date ?amount
+WHERE
+{
+  ?meal e:description ?description ;
+        e:date ?date ;
+        e:amount ?amount . 
+
+  VALUES (?date ?description) {
+         (""2011-10-15"" ""lunch"") 
+         (""2011-10-16"" ""dinner"")
+  } 
+
+}
+
+"
+queries2_ex509.rq,"#filename: ex509.rq
+
+PREFIX db: <http://dbpedia.org/resource/>
+PREFIX dbo: <http://dbpedia.org/ontology/>
+SELECT ?pacinoFilm
+WHERE
+{
+  ?pacinoFilm dbo:starring db:Al_Pacino .
+  ?pacinoFilm dbo:starring db:Robert_De_Niro . 
+}
+
+"
+queries2_ex170.rq,"# filename: ex170.rq
+
+PREFIX rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX gp:   <http://wifo5-04.informatik.uni-mannheim.de/gutendata/resource/people/>
+
+SELECT ?p ?o 
+WHERE
+{ 
+  SERVICE <http://wifo5-04.informatik.uni-mannheim.de/gutendata/sparql>
+  { gp:Hocking_Joseph ?p ?o . }
+}
+
+
+"
+queries2_q1.rq,"PREFIX vcard: <http://www.w3.org/2006/vcard/ns#> 
+
+SELECT ?person 
+WHERE 
+{ 
+   ?person vcard:family-name ""Smith"" . 
+}
+"
+queries2_ex430.rq,"# filename: ex430.rq
+
+PREFIX foaf: <http://xmlns.com/foaf/0.1/>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+
+SELECT * 
+WHERE 
+{ ?subproperty rdfs:subPropertyOf foaf:page . }
+
+"
+queries2_ex282.rq,"# filename: ex282.rq
+
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#> 
+PREFIX dm:   <http://learningsparql.com/ns/demo#> 
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+
+CONSTRUCT
+{  ?rowURI rdfs:type skos:Concept ;
+           skos:prefLabel ?taggedUSTerm, ?taggedGBTerm . }
+WHERE
+{
+   ?cell1 dm:row ?rownum ;
+          dm:column 1 ; 
+          rdfs:label ?USTerm . 
+
+   BIND (STRLANG(?USTerm,""en-US"") AS ?taggedUSTerm)
+
+   ?cell2 dm:row ?rownum ;
+          dm:column 2 ; 
+          rdfs:label ?GBTerm . 
+
+   BIND (STRLANG(?GBTerm,""en-GB"") AS ?taggedGBTerm) 
+
+   BIND (URI(CONCAT(""http://learningsparql.com/ns/terms#t"",str(?rownum))) 
+         AS ?rowURI)
+}
+
+"
+queries2_test3.rq,"PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX dbo: <http://dbpedia.org/ontology/>
+PREFIX : <http://dbpedia.org/resource/>
+
+SELECT ?person ?birth ?death WHERE {
+	?person dbo:birthDate ?birth .
+	?person rdf:type dbo:Athlete.
+	?person dbo:birthPlace :Cuba .
+FILTER (?birth < ""1900-01-01""^^xsd:date) .
+OPTIONAL{
+	?person dbo:deathDate ?death .
+	}
+} LIMIT 100
+"
+queries2_q9.rq,"PREFIX vcard: <http://www.w3.org/2006/vcard/ns#> 
+PREFIX sn: <http://www.snee.com/hr/> 
+
+SELECT ?givenName ?familyName ?fullName
+WHERE { 
+  ?person vcard:given-name ?givenName .  
+  ?person vcard:family-name ?familyName .
+BIND(concat(?givenName,"" "",?familyName) AS ?fullName) 
+}
+"
+queries2_ex021.rq,"# filename: ex021.rq
+
+PREFIX ab: <http://learningsparql.com/ns/addressbook#> 
+
+SELECT *
+WHERE
+{
+  ?s ?p ?o . 
+  FILTER (regex(?o, ""yahoo"",""i""))
+} LIMIT 50
+ 
+"
+queries2_ex078.rq,"# filename: ex078.rq
+
+PREFIX : <http://learningsparql.com/ns/papers#>
+PREFIX c: <http://learningsparql.com/ns/citations#> 
+
+SELECT ?s
+WHERE { ?s c:cites+ :paperA . }
+
+"
+queries2_ex123.rq,"# filename: ex123.rq
+
+PREFIX ab: <http://learningsparql.com/ns/addressbook#> 
+
+SELECT ?email 
+FROM <ex069.ttl>
+FROM <ex122.ttl>
+WHERE
+{ ?s ab:email ?email . }
+
+"
+queries2_ex006.rq," 
+SELECT ?craigEmail
+WHERE
+{
+  <http://learningsparql.com/ns/addressbook#craig> 
+  <http://learningsparql.com/ns/addressbook#email> 
+  ?craigEmail . 
+}
+"
+queries2_ex068.rq,"# filename: ex068.rq
+
+PREFIX ab: <http://learningsparql.com/ns/addressbook#> 
+
+SELECT ?first ?last 
+
+WHERE
+{
+  ?s ab:firstName ?first ;
+     ab:lastName ?last .
+  MINUS { ?s ab:workTel ?workNum }
+}
+
+"
+queries2_ex547.rq,"# filename: ex547.rq
+
+SELECT * WHERE 
+{ <http://www.worldcat.org/isbn/0062515861> ?p ?o }
+"
+queries2_ex526.rq,"# filename: ex526.rq
+
+PREFIX tops: <http://www.topbraid.org/tops#>
+SELECT *
+WHERE
+{
+  ?index tops:for(3 6)
+  BIND(?index*100 AS ?mult)
+}
+"
+queries2_test5.rq,"PREFIX rdfh: <http://lod2.eu/schemas/rdfh#>
+SELECT SUM(?rdfh_lo_revenue) AS ?lo_revenue ?d_year ?p_brand1
+FROM <http://lod2.eu/schemas/rdfh-inst#ssb1_ttl_qb>
+WHERE
+  {
+    ?li a rdfh:lineorder ;
+        rdfh:lo_orderdate ?lo_orderdate ;
+        rdfh:lo_partkey ?lo_partkey ;
+        rdfh:lo_suppkey ?lo_suppkey ;
+              rdfh:lo_revenue ?rdfh_lo_revenue .
+
+    ?lo_orderdate rdfh:d_year ?d_year .
+    ?lo_partkey rdfh:p_brand1 ?p_brand1 .
+    ?lo_partkey rdfh:p_category ""MFGR#12"" .
+    ?lo_suppkey rdfh:s_region ""AMERICA"" .
+  }
+GROUP BY ?d_year ?p_brand1
+ORDER BY ?d_year ?p_brand1"
+queries2_ex311.rq,"# filename: ex311.rq
+
+SELECT * 
+WHERE
+{ ?s ?p ?o }
+
+"
+queries2_ex255.rq,"# filename: ex255.rq
+
+BASE <http://learningsparql.com/ns/demo#>
+
+CONSTRUCT {?s ?p ?testURI.}
+WHERE 
+{
+  ?s ?p ?o . 
+  BIND( IF(isURI(?o),
+           ?o,
+           URI(ENCODE_FOR_URI(str(?o)))
+          ) AS ?testURI
+      )
+} LIMIT 50
+
+"
+queries2_ex432.rq,"# filename: ex432.rq
+
+PREFIX foaf: <http://xmlns.com/foaf/0.1/>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+
+SELECT * 
+WHERE 
+{
+  ?subproperty rdfs:subPropertyOf+ foaf:page ;
+               rdfs:subPropertyOf ?parentProperty . 
+}
+
+"
+queries2_ex510.rq,"# filename: ex510.rq
+
+PREFIX ab: <http://learningsparql.com/ns/addressbook#> 
+
+SELECT *
+WHERE
+{
+  ?s ?p ?o . 
+  FILTER (CONTAINS(LCASE(?o), ""yahoo""))
+}
+
+"
+queries2_q5.rq,"PREFIX vcard: <http://www.w3.org/2006/vcard/ns#> 
+PREFIX sn: <http://www.snee.com/hr/> 
+
+SELECT ?givenName ?familyName ?oDate
+WHERE 
+{ 
+   ?person vcard:given-name ?givenName .
+   ?person vcard:family-name ?familyName . 
+   ?person sn:completedOrientation  ?oDate . 
+}
+"
+queries2_ex473.rq,"# filename: ex473.rq
+
+SELECT *
+WHERE
+{
+  ?s ?p ?o .
+  FILTER (CONTAINS(LCASE(str(?o)), ""publish"")) 
+} 
+
+"
+queries2_ex476.rq,"# filename: ex476.rq
+
+CONSTRUCT  
+{ <http://dbpedia.org/resource/Joseph_Hocking> ?p ?o . }
+WHERE
+{
+  SERVICE <http://DBpedia.org/sparql>
+   { <http://dbpedia.org/resource/Joseph_Hocking> ?p ?o . }
+}
+
+"
+queries2_ex215.rq,"# filename: ex215.rq
+
+DESCRIBE <http://dbpedia.org/resource/Joseph_Hocking>
+
+"
+queries2_ex459.rq,"# filename: ex459.rq
+
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX gr:   <http://purl.org/goodrelations/v1#>
+
+SELECT * 
+WHERE 
+{
+   ?bf a gr:BusinessFunction ;
+       rdfs:label ?label . 
+   OPTIONAL { ?bf rdfs:comment ?comment }
+}
+
+"
+queries2_ex144.rq,"# filename: ex144.rq
+
+PREFIX e: <http://learningsparql.com/ns/expenses#> 
+
+SELECT ?mealCode ?amount 
+WHERE
+{
+  ?meal e:description ?description ;
+        e:amount ?amount .
+  BIND (UCASE(SUBSTR(?description,1,3)) as ?mealCode)
+}
+
+"
+queries2_ex428.rq,"# filename: ex428.rq
+
+PREFIX d:  <http://learningsparql.com/ns/data#> 
+PREFIX dm: <http://learningsparql.com/ns/demo#> 
+
+CONSTRUCT 
+{ ?resource a dm:TexasGuitarPlayer }
+WHERE
+{
+  ?resource dm:stateOfBirth d:TX ;
+            dm:plays d:Guitar .
+}
+
+"
+queries2_ex128.rq,"# filename: ex128.rq
+
+PREFIX ab: <http://learningsparql.com/ns/addressbook#>
+
+SELECT ?g
+FROM NAMED <ex125.ttl>
+FROM NAMED <ex122.ttl>
+WHERE
+{
+  GRAPH ?g { ?s ?p ?o }
+}
+
+"
+queries2_ex285.rq,"# filename: ex285.rq
+
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema> 
+
+SELECT ?label ?strlenTest ?substrTest ?ucaseTest ?lcaseTest
+WHERE
+{
+  ?s rdfs:label ?label .
+  BIND (STRLEN(?label) AS ?strlenTest)
+  BIND (SUBSTR(?label,4,2) AS ?substrTest)
+  BIND (UCASE(?label) AS ?ucaseTest)
+  BIND (LCASE(?label) AS ?lcaseTest)
+}
+
+"
+queries2_ex235.rq,"# filename: ex235.rq
+
+SELECT ?answer 
+WHERE 
+{ 
+  BIND ((IF (2 > 3, ""Two is bigger"",""Three is bigger"")) AS ?answer)
+}
+"
+queries2_ex109.rq,"# filename: ex109.rq
+
+PREFIX dm:  <http://learningsparql.com/ns/demo#>
+PREFIX db: <http://dbpedia.org/resource/>
+
+SELECT ?s ?cost ?location
+WHERE
+{
+  ?s dm:location ?location ;
+     dm:cost ?cost . 
+  FILTER (?location IN (db:Montreal, db:Lisbon)) . 
+}
+
+"
+queries2_ex242.rq,"# filename: ex242.rq
+
+PREFIX dbr: <http://dbpedia.org/resource/>
+SELECT ?o ?blankTest ?literalTest ?numericTest ?IRITest ?URITest
+WHERE 
+{
+  ?s ?p ?o . 
+  BIND (isBlank(?o) as ?blankTest)
+  BIND (isLiteral(?o) as ?literalTest)
+  BIND (isNumeric(?o) as ?numericTest)
+  BIND (isIRI(?o) as ?IRITest)
+  BIND (isURI(?o) as ?URITest)
+}
+
+
+"
+queries2_ex203.rq,"# filename: ex203.rq
+
+PREFIX dm: <http://learningsparql.com/ns/demo#> 
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+
+CONSTRUCT
+{
+  ?s dm:problem dm:prob29 .
+  dm:prob29 rdfs:label ""Location value must be a URI."" . 
+}
+
+WHERE
+{
+  ?s dm:location ?city .
+  FILTER (!(isURI(?city)))
+}
+
+"
+queries2_ex439.rq,"# filename: ex439.rq
+
+PREFIX owl:  <http://www.w3.org/2002/07/owl#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+
+SELECT * 
+WHERE 
+{ 
+  { ?class a owl:Class }
+  UNION
+  { ?class a rdfs:Class }
+
+  ?class a ?classType
+}
+
+"
+queries2_ex301.rq,"# filename: ex301.rq
+
+PREFIX d: <http://learningsparql.com/ns/data#> 
+PREFIX t: <http://purl.org/tio/ns#> 
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+
+SELECT ?timezoneTest ?tzTest
+WHERE
+{
+  ?mtg t:starts ?startTime . 
+  BIND (timezone(?startTime) AS ?timezoneTest)
+  BIND (tz(?startTime) AS ?tzTest)
+}
+"
+queries2_ex326.rq,"# filename: ex326.rq
+
+PREFIX foaf: <http://xmlns.com/foaf/0.1/>
+PREFIX ab: <http://learningsparql.com/ns/addressbook#> 
+
+CONSTRUCT 
+{ ?s foaf:mbox ?o }
+WHERE 
+{?s ab:email ?o }
+
+"
+queries2_ex101.rq,"# filename: ex101.rq
+
+PREFIX ab: <http://learningsparql.com/ns/addressbook#>
+
+SELECT ?first ?last ?instrument 
+WHERE
+{
+  { ?person ab:firstName ?first ;
+            ab:lastName ?last ;
+            ab:instrument ""trumpet"" ;
+            ab:instrument ?instrument . 
+  }
+
+  UNION
+
+  { ?person ab:firstName ?first ;
+            ab:lastName ?last ;
+            ab:instrument ""sax"" ;
+            ab:instrument ?instrument . 
+  }
+
+}
+
+"
+queries2_ex475.rq,"# filename: ex475.rq
+
+PREFIX gp:   <http://wifo5-04.informatik.uni-mannheim.de/gutendata/resource/people/>
+
+SELECT ?dbpProperty ?dbpValue ?gutenProperty ?gutenValue 
+WHERE
+{
+  SERVICE <http://DBpedia.org/sparql>
+    {
+      <http://dbpedia.org/resource/Joseph_Hocking> ?dbpProperty ?dbpValue .
+    }
+
+  SERVICE <http://wifo5-04.informatik.uni-mannheim.de/gutendata/sparql>
+    {
+      gp:Hocking_Joseph ?gutenProperty ?gutenValue . 
+    }
+}
+
+
+"
+queries2_ex190.rq,"# filename: ex190.rq
+
+PREFIX ab: <http://learningsparql.com/ns/addressbook#>
+PREFIX d:  <http://learningsparql.com/ns/data#>
+
+CONSTRUCT
+{ ?p ab:hasAunt ?aunt . }
+WHERE
+{
+  ?p ab:hasParent ?parent .
+     ?parent ab:hasParent ?g .
+     ?aunt ab:hasParent ?g ;
+           ab:gender d:female .
+
+  FILTER (?parent != ?aunt)  
+}
+
+"
+queries2_ex541.rq,"# filename: ex541.rq
+
+PREFIX e: <http://learningsparql.com/ns/expenses#> 
+
+SELECT UCASE(SUBSTR(?description,1,3))  ?amount
+
+WHERE
+{
+  ?meal e:description ?description ;
+        e:amount ?amount . 
+}
+
+"
+queries2_ex496.rq,"# filename: ex496.rq
+
+PREFIX e: <http://learningsparql.com/ns/expenses#> 
+
+SELECT ?description ?date ?amount
+WHERE
+{
+  ?meal e:description ?description ;
+        e:date ?date ;
+        e:amount ?amount . 
+  VALUES ?description { ""lunch"" ""dinner"" }
+}
+
+"
+queries2_ex084.rq,"# filename: ex084.rq
+
+PREFIX : <http://learningsparql.com/ns/papers#>
+PREFIX c: <http://learningsparql.com/ns/citations#> 
+
+SELECT ?s
+WHERE
+{
+  ?s c:cites/^c:cites :paperF .
+  FILTER(?s != :paperF) 
+}
+
+"
+queries2_ex445.rq,"# filename: ex445.rq
+
+PREFIX rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#> 
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX owl:  <http://www.w3.org/2002/07/owl#>
+
+SELECT *
+WHERE
+{
+  ?propClass rdfs:subClassOf+ rdf:Property . 
+  ?property a ?propClass . 
+}
+
+"
+queries2_ex447.rq,"# filename: ex447.rq
+
+SELECT DISTINCT ?class 
+WHERE {
+  ?instance a ?class . 
+}
+ORDER by ?class
+
+"
+queries2_ex308.rq,"# filename: ex308.rq
+
+PREFIX afn: <http://jena.hpl.hp.com/ARQ/function#>
+PREFIX d:   <http://learningsparql.com/ns/data#> 
+
+SELECT DISTINCT ?s ?sLocalname ?sNamespace 
+WHERE
+{
+  ?s ?p ?o .
+  BIND (afn:localname(?s) AS ?sLocalname )
+  BIND (afn:namespace(?s) AS ?sNamespace )
+}
+
+"
+queries2_ex437.rq,"# filename: ex437.rq
+
+SELECT ?g ?s ?p ?o
+WHERE
+{
+  { ?s ?p ?o }
+  UNION
+  { GRAPH ?g { ?s ?p ?o } }
+}
+# LIMIT 50
+
+"
+queries2_ex155.rq,"# filename: ex155.rq
+
+PREFIX e: <http://learningsparql.com/ns/expenses#> 
+
+SELECT ?description ?date ?maxAmount 
+WHERE
+{
+  {
+    SELECT (MAX(?amount) as ?maxAmount) 
+    WHERE { ?meal e:amount ?amount . }
+  }
+  {
+    ?meal e:description ?description ;
+          e:date ?date ;
+          e:amount ?maxAmount .
+  }
+}
+
+"
+queries2_ex341.rq,"# filename: ex341.rq
+
+SELECT ?g 
+WHERE
+{ GRAPH ?g {} }
+
+"
+queries2_ex239.rq,"# filename: ex239.rq
+
+PREFIX ab: <http://learningsparql.com/ns/addressbook#> 
+
+SELECT ?firstName ?last
+WHERE {
+  ?s ab:lastName ?last; 
+     ab:firstName ?first . 
+  OPTIONAL {
+    ?s ab:nick ?nickname .
+  }
+  BIND (COALESCE(?nickname,?first) AS ?firstName)
+}
+
+"
+queries2_ex230.rq,"# filename: ex230.rq
+
+PREFIX d:   <http://learningsparql.com/ns/data#>
+PREFIX e:   <http://learningsparql.com/ns/expenses#> 
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> 
+
+SELECT ?s ?p ?o
+WHERE {
+  ?s e:date ?date;
+     ?p ?o . 
+  FILTER (?date >= ""2011-10-14T12:00:00""^^xsd:dateTime) 
+}
+"
+queries2_ex213.rq,"# filename: ex213.rq
+
+DESCRIBE  <http://learningsparql.com/ns/data#course59>
+
+"
+queries2_ex223.rq,"# filename: ex223.rq
+
+SELECT ?s
+WHERE 
+{ 
+  ?s ?p ?o .  
+  FILTER (str(?o) = ""two"") 
+} LIMIT 30
+
+"
+queries2_ex151.rq,"# filename: ex151.rq
+
+PREFIX e: <http://learningsparql.com/ns/expenses#>
+
+SELECT ?description ?date ?amount
+WHERE
+{
+  ?meal e:description ?description ;
+        e:date ?date ;
+        e:amount ?amount . 
+}
+
+ORDER BY DESC(?amount)
+LIMIT 1
+
+"
+queries2_ex524.rq,"#filename: ex524.rq
+
+PREFIX apf: <http://jena.hpl.hp.com/ARQ/property#>
+
+SELECT ?o
+WHERE
+{ ?s apf:versionARQ ?o }
+
+"
+queries2_ex456.rq,"# filename: ex456.rq
+
+PREFIX dct: <http://purl.org/dc/terms/>
+
+SELECT (COUNT(?s) AS ?agentTotal) 
+WHERE 
+{ ?s a dct:Agent }
+
+"
+queries2_ex114.rq,"# filename: ex114.rq
+
+SELECT ?label 
+WHERE
+{ ?s rdfs:label ?label . }
+
+"
+queries2_ex354.rq,"# filename: ex354.rq
+
+PREFIX ab: <http://learningsparql.com/ns/addressbook#>
+PREFIX d:  <http://learningsparql.com/ns/data#> 
+PREFIX g:  <http://learningsparql.com/graphs/> 
+
+SELECT ?first ?last ?courseTitle WHERE
+{
+
+  { GRAPH g:people 
+    { ?student ab:firstName ?first ;
+               ab:lastName ?last .
+    }
+  }
+
+  { GRAPH g:enrollment
+    { ?student ab:takingCourse ?course . }
+  }
+
+  { GRAPH g:courses
+    { ?course ab:courseTitle ?courseTitle . }
+  }
+
+}
+
+"
+queries2_ex008.rq,"# filename: ex008.rq
+
+PREFIX ab: <http://learningsparql.com/ns/addressbook#> 
+
+SELECT ?person
+WHERE
+{ ?person ab:homeTel ""(229) 276-5135"" . } 
+"
+queries2_ex220.rq,"# filename: ex220.rq
+
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> 
+PREFIX d:   <http://learningsparql.com/ns/data#> 
+PREFIX dm:  <http://learningsparql.com/ns/demo#> 
+
+SELECT ?s
+WHERE { ?s ?p ""two"" . } 
+
+"
+queries2_ex126.rq,"# filename: ex126.rq
+
+PREFIX ab: <http://learningsparql.com/ns/addressbook#>
+
+SELECT ?lname ?courseName 
+FROM <ex069.ttl> 
+FROM NAMED <ex125.ttl>
+FROM NAMED <ex122.ttl> # unnecessary
+
+WHERE
+{
+  { ?student ab:lastName ?lname }
+  UNION
+  { GRAPH <ex125.ttl> { ?course ab:courseTitle ?courseName } }
+}
+
+
+"
+queries2_ex523.rq,"# filename: ex523.rq
+
+PREFIX ab: <http://learningsparql.com/ns/addressbook#>
+PREFIX d:  <http://learningsparql.com/ns/data#>
+
+CONSTRUCT
+{ ?p ab:hasAunt ?aunt . }
+WHERE
+{
+  ?p ab:hasParent ?parent .
+     ?parent ab:hasParent ?g .
+     ?aunt ab:hasParent ?g ;
+           ab:gender d:female .
+
+# FILTER (?parent != ?aunt)  
+  FILTER (!sameTerm(?parent,?aunt))
+}
+
+"
+queries2_ex057.rq,"# filename: ex057.rq
+
+PREFIX ab: <http://learningsparql.com/ns/addressbook#> 
+
+SELECT ?first ?last ?workTel
+WHERE
+{
+  ?s ab:firstName ?first ;
+     ab:lastName ?last .
+  OPTIONAL 
+  { ?s ab:workTel ?workTel . }
+}
+
+"
+queries2_ex415.rq,"# filename: ex415.rq
+
+PREFIX ab: <http://learningsparql.com/ns/addressbook#> 
+
+SELECT ?firstName ?lastName 
+WHERE 
+{
+  ?person a ab:Musician ;
+          ab:firstName ?firstName ;
+          ab:lastName ?lastName . 
+}
+
+"
+queries2_ex293.rq,"# filename: ex293.rq
+
+PREFIX dm:  <http://learningsparql.com/ns/demo#> 
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> 
+
+SELECT ?amount ?absTest ?roundTest ?ceilTest ?floorTest
+WHERE
+{
+  ?s dm:amount ?amount . 
+  BIND (abs(?amount) AS ?absTest ) 
+  BIND (round(?amount) AS ?roundTest ) 
+  BIND (ceil(?amount) AS ?ceilTest ) 
+  BIND (floor(?amount) AS ?floorTest ) 
+}
+
+"
+queries2_ex207.rq,"# filename: ex207.rq
+
+PREFIX dm:  <http://learningsparql.com/ns/demo#> 
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+
+CONSTRUCT
+{
+  ?item dm:problem dm:prob44 .
+  dm:prob44 rdfs:label ""Expenditures over 100 require grade 5 approval."" . 
+}
+
+WHERE
+{
+  ?item dm:cost ?cost ;
+        dm:amount ?amount .
+  OPTIONAL 
+  {
+    ?item dm:approval ?approvingEmployee . 
+    ?approvingEmployee dm:jobGrade ?grade . 
+  }
+
+  BIND (?cost * ?amount AS ?totalCost) .
+  FILTER ((?totalCost > 100) &&
+          ( (!(bound(?grade)) || (?grade < 5 ) )))   
+}
+
+"
+queries2_ex434.rq,"# filename: ex434.rq
+
+PREFIX foaf: <http://xmlns.com/foaf/0.1/>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+
+SELECT ?property 
+WHERE 
+{ ?property rdfs:domain foaf:Person . }
+
+"
+queries2_ex422.rq,"# filename: ex422.rq
+
+PREFIX ab: <http://learningsparql.com/ns/addressbook#> 
+
+SELECT ?first ?last
+WHERE 
+{ 
+  ?person a ab:Person ;
+          ab:firstName ?first ;
+          ab:lastName ?last . 
+}
+
+"
+queries2_ex202.rq,"# filename: ex202.rq
+
+PREFIX dm:  <http://learningsparql.com/ns/demo#> 
+
+ASK WHERE
+{
+  ?item dm:cost ?cost ;
+        dm:amount ?amount .
+  OPTIONAL 
+  {
+    ?item dm:approval ?approvingEmployee . 
+    ?approvingEmployee dm:jobGrade ?grade . 
+  }
+
+  BIND (?cost * ?amount AS ?totalCost) .
+  FILTER ((?totalCost > 100) &&
+          ( (!(bound(?grade)) || (?grade < 5 ) )))   
+}
+
+"
+queries2_ex512.rq,"# filename: ex512.rq
+
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+
+SELECT *
+WHERE
+{ ?s rdfs:label ?label }
+LIMIT 20
+
+"
+queries2_ex244.rq,"# filename: ex244.rq
+
+PREFIX dbr: <http://dbpedia.org/resource/>
+
+SELECT ?o ?datatype
+WHERE 
+{
+  ?s ?p ?o . 
+  BIND (datatype(?o) as ?datatype)
+}
+
+"
+queries2_ex425.rq,"# filename: ex425.rq
+
+PREFIX dm:   <http://learningsparql.com/ns/demo#> 
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#> 
+
+SELECT ?name
+WHERE
+{
+  ?musician a dm:TexasGuitarPlayer ;
+            rdfs:label ?name . 
+}
+
+"
+queries2_ex218.rq,"# filename: ex218.rq
+
+PREFIX d:  <http://learningsparql.com/ns/data#> 
+PREFIX dm: <http://learningsparql.com/ns/demo#> 
+
+SELECT ?s
+WHERE { ?s ?p 1 . } 
+
+"
+queries2_ex090.rq,"# filename: ex090.rq
+
+SELECT ?p 
+WHERE
+{ ?s ?p ?o . }
+
+"
+queries2_ex055.rq,"# filename: ex055.rq
+
+PREFIX ab: <http://learningsparql.com/ns/addressbook#> 
+
+SELECT ?first ?last ?workTel
+WHERE
+{
+  ?s ab:firstName ?first ;
+     ab:lastName ?last ; 
+     ab:workTel ?workTel .
+}
+
+"
+queries2_ex176.rq,"# filename: ex176.rq
+
+PREFIX ab: <http://learningsparql.com/ns/addressbook#>
+PREFIX d:  <http://learningsparql.com/ns/data#>
+
+CONSTRUCT
+{ ?person ?p ?o . }
+
+WHERE
+{
+  ?person ab:firstName ""Craig"" ;
+          ab:lastName  ""Ellis"" ;
+          ?p ?o . 
+}
+"
+queries2_ex507.rq,"# filename: ex507.rq
+
+PREFIX ab: <http://learningsparql.com/ns/addressbook#> 
+
+SELECT ?craigEmail ?craigTelephone
+WHERE
+{
+  ?person ab:firstName ""Craig"" . 
+  ?person ab:email ?craigEmail . 
+  OPTIONAL { ?person ab:homeTel ?craigTelephone }
+  FILTER(regex(?craigEmail,""yahoo""))
+}
+
+"
+queries2_ex515.rq,"# filename: ex515.rq
+
+PREFIX ab: <http://learningsparql.com/ns/addressbook#> 
+
+SELECT *
+WHERE
+{
+  ?person ab:homeTel ""(229) 276-5135"" . 
+  ?person ab:firstName ?first . 
+}
+
+"
+queries2_ex287.rq,"# filename: ex287.rq
+
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema> 
+
+SELECT ?label ?startsTest ?endsTest ?containsTest ?regexTest
+WHERE
+{
+  ?s rdfs:label ?label .
+  BIND (STRSTARTS(?label,""12"") AS ?startsTest)
+  BIND (STRENDS(?label,""ing"") AS ?endsTest)
+  BIND (CONTAINS(?label,"" "") AS ?containsTest)
+  BIND (regex(?label,""\\d{3}"") AS ?regexTest)
+}
+
+"
+queries2_ex491.rq,"# filename: ex491.rq
+
+PREFIX ab: <http://learningsparql.com/ns/addressbook#> 
+PREFIX nn: <http://learningsparql.com/new/namespace/>
+
+CONSTRUCT 
+{
+  ?personURI ab:firstName ?fn ;
+             ab:lastName ?ln ;
+             ab:email ?email ;
+             ab:homeTel ?tel .
+}
+WHERE {
+  ?person ab:firstName ?fn ;
+          ab:lastName ?ln ;
+          ab:email ?email . 
+  OPTIONAL {
+    ?person ab:homeTel ?tel .
+  }
+  BIND(ENCODE_FOR_URI(CONCAT(?fn,?ln)) AS ?encodedName)
+  BIND(""http://learningsparql.com/new/namespace/"" AS ?baseURI)
+  BIND(URI(CONCAT(?baseURI,?encodedName)) AS ?personURI)
+}
+
+"
+queries2_ex216.rq,"# filename: ex216.rq
+
+PREFIX d:  <http://learningsparql.com/ns/data#>
+PREFIX ab: <http://learningsparql.com/ns/addressbook#>
+
+DESCRIBE ?course WHERE
+{ d:i0432 ab:takingCourse ?course . }
+
+"
+queries2_ex522.rq,"#filename: ex522.rq
+
+PREFIX db: <http://dbpedia.org/resource/>
+PREFIX dbo: <http://dbpedia.org/ontology/>
+
+SELECT ?pacinoFilm
+WHERE
+{
+  ?pacinoFilm dbo:starring db:Al_Pacino .
+  ?deNiroFilm dbo:starring db:Robert_De_Niro . 
+#  FILTER(?pacinoFilm = ?deNiroFilm)
+  FILTER(sameTerm(?pacinoFilm,?deNiroFilm))
+}
+
+"
+queries2_q3.rq,"PREFIX vcard: <http://www.w3.org/2006/vcard/ns#> 
+PREFIX sn: <http://www.snee.com/hr/> 
+
+SELECT ?givenName ?familyName ?hireDate
+WHERE 
+{ 
+   ?person vcard:given-name ?givenName .
+   ?person vcard:family-name ?familyName . 
+   ?person sn:hireDate ?hireDate . 
+}
+"
+queries2_ex267.rq,"# filename: ex267.rq
+
+PREFIX im: <http://learningsparql.com/ns/importedData#> 
+PREFIX dm: <http://learningsparql.com/ns/demo#>
+PREFIX u:  <http://learningsparql.com/ns/units#>
+
+CONSTRUCT { ?s dm:amount ?newAmount . }
+WHERE 
+{
+  ?s im:product ?prodName ;
+     im:amount ?amount ; 
+     im:units ?units .
+
+  BIND (STRDT(?amount,
+              URI(CONCAT(""http://learningsparql.com/ns/units#"",?units)))
+        AS ?newAmount)
+}
+
+"
+queries2_ex418.rq,"# filename: ex418.rq
+
+PREFIX nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>
+PREFIX dc:  <http://purl.org/dc/elements/1.1/> 
+
+SELECT ?filename ?creator 
+WHERE
+{
+  ?resource nfo:fileName ?filename ;
+            dc:creator ?creator . 
+}
+
+"
+queries2_q4.rq,"PREFIX vcard: <http://www.w3.org/2006/vcard/ns#> 
+PREFIX sn: <http://www.snee.com/hr/> 
+
+SELECT ?givenName ?familyName ?hireDate
+WHERE 
+{ 
+   ?person vcard:given-name ?givenName .
+   ?person vcard:family-name ?familyName . 
+   ?person sn:hireDate ?hireDate . 
+   FILTER(?hireDate < ""2015-03-01"")
+}
+"
+queries2_ex149.rq,"# filename: ex149.rq
+
+PREFIX e: <http://learningsparql.com/ns/expenses#>
+
+SELECT ?description ?date ?amount
+WHERE
+{
+  ?meal e:description ?description ;
+        e:date ?date ;
+        e:amount ?amount . 
+}
+
+ORDER BY ?description DESC(?amount)
+
+"
+queries2_ex059.rq,"# filename: ex059.rq
+
+PREFIX ab: <http://learningsparql.com/ns/addressbook#> 
+
+SELECT ?first ?last ?workTel ?nick
+WHERE
+{
+  ?s ab:firstName ?first ;
+     ab:lastName ?last .
+  OPTIONAL 
+  {
+     ?s ab:workTel ?workTel ;
+        ab:nick ?nick . 
+  }
+}
+
+"
+queries2_ex180.rq,"# filename: ex180.rq
+
+PREFIX ab: <http://learningsparql.com/ns/addressbook#>
+
+CONSTRUCT
+{ ?course ab:courseTitle ?courseName . }
+FROM NAMED <ex125.ttl>
+FROM NAMED <ex122.ttl>
+WHERE
+{
+  GRAPH <ex125.ttl> { ?course ab:courseTitle ?courseName }
+}
+
+"
+queries2_ex182.rq,"# filename: ex182.rq
+
+CONSTRUCT 
+{ ?s ?p ?o }
+FROM <http://rdf.freebase.com/rdf/en.joseph_hocking>
+WHERE 
+{ ?s ?p ?o }
+
+"
+queries2_ex480.rq,"# filename: ex480.rq
+
+PREFIX dcterms: <http://purl.org/dc/terms/> 
+
+#DELETE {?document dcterms:dateCopyrighted ""2013"" . }
+#INSERT {?document dcterms:dateCopyrighted ""2014"" . }
+CONSTRUCT{?document dcterms:dateCopyrighted ""2013"" . }
+WHERE  {?document dcterms:dateCopyrighted ""2013"" . }
+
+"
+queries2_q8.rq,"PREFIX vcard: <http://www.w3.org/2006/vcard/ns#> 
+PREFIX sn: <http://www.snee.com/hr/> 
+
+SELECT ?givenName ?familyName ?someVariable WHERE { ?person
+vcard:given-name ?givenName .  ?person vcard:family-name ?familyName .
+BIND(""some value"" AS ?someVariable) }
+"
+queries2_ex192.rq,"# filename: ex192.rq
+
+PREFIX ab:  <http://learningsparql.com/ns/addressbook#>
+PREFIX d:   <http://learningsparql.com/ns/data#>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> 
+
+CONSTRUCT
+{ 
+  ?aunt rdf:type ab:Aunt . 
+  ?p ab:hasAunt ?aunt . 
+}
+
+WHERE
+{
+  ?p ab:hasParent ?parent .
+  ?parent ab:hasParent ?g .
+  ?aunt ab:hasParent ?g ;
+        ab:gender d:female .
+
+FILTER (?parent != ?aunt)  
+}
+
+"
+queries2_ex262.rq,"# filename: ex262.rq
+
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+
+SELECT ?o ?dateTimeTest
+WHERE 
+{
+  ?s ?p ?o . 
+  BIND (xsd:dateTime(?o) as ?dateTimeTest)
+}
+
+"

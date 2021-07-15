@@ -1,0 +1,64 @@
+http://www.wikidata.org/entity/Q14757769	1820-01-04 00:00:00Z	
+http://www.wikidata.org/entity/Q2675890	1820-01-06 00:00:00Z	
+http://www.wikidata.org/entity/Q1661758	1820-01-07 00:00:00Z	
+http://www.wikidata.org/entity/Q2036503	1820-01-08 00:00:00Z	
+http://www.wikidata.org/entity/Q5724285	1820-01-08 00:00:00Z	
+http://www.wikidata.org/entity/Q2239552	1820-01-08 00:00:00Z	
+http://www.wikidata.org/entity/Q282732	1820-01-08 00:00:00Z	
+http://www.wikidata.org/entity/Q10303357	1820-01-09 00:00:00Z	
+http://www.wikidata.org/entity/Q3837642	1820-01-10 00:00:00Z	
+http://www.wikidata.org/entity/Q6223530	1820-01-11 00:00:00Z	
+http://www.wikidata.org/entity/Q1040802	1820-01-12 00:00:00Z	
+http://www.wikidata.org/entity/Q2360411	1820-01-12 00:00:00Z	
+http://www.wikidata.org/entity/Q24018241	1820-01-12 00:00:00Z	
+http://www.wikidata.org/entity/Q50268623	1820-01-12 00:00:00Z	
+http://www.wikidata.org/entity/Q9258668	1820-01-14 00:00:00Z	
+http://www.wikidata.org/entity/Q16030510	1820-01-14 00:00:00Z	
+http://www.wikidata.org/entity/Q64373	1820-01-16 00:00:00Z	
+http://www.wikidata.org/entity/Q12784837	1820-01-17 00:00:00Z	
+http://www.wikidata.org/entity/Q40283989	1820-01-18 00:00:00Z	
+http://www.wikidata.org/entity/Q22016649	1820-01-18 00:00:00Z	
+
+  { 
+    time    0.0022% fanout         1 input         1 rows
+      clear: (<V set_ctr$50 in>)
+    s# 53 51 cluster outer seq start, set no <V set_ctr$50 in>    
+    save ctx:()
+    time     0.014% fanout         1 input         1 rows
+      clear: (<V __xqf_str_parse_date$30 a>, <V __xqf_str_parse_date$28 a>)
+    s# 62 27 END Node
+    After test:
+      0: <V __xqf_str_parse_date$28 a> := Call __xqf_str_parse_date (<c date>, <c 1830-01-01>,  1 )
+      5: <V __xqf_str_parse_date$30 a> := Call __xqf_str_parse_date (<c date>, <c 1820-01-01>,  1 )
+      10: if (<V __xqf_str_parse_date$28 a> >= <V __xqf_str_parse_date$30 a>) then 14 else 15 unkn 15
+      14: BReturn 1
+      15: BReturn 0
+    time     1e+02% fanout      1000 input         1 rows
+    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:   4.3e+04 Fanout:     1e+03
+    Precode:
+      0: <V __xqf_str_parse_date$32 a> := Call __xqf_str_parse_date (<c date>, <c 1820-01-01>,  1 )
+      5: <V __xqf_str_parse_date$34 a> := Call __xqf_str_parse_date (<c date>, <c 1830-01-01>,  1 )
+      10: BReturn 0
+      clear: (<V s_37_2_t0.O$37 an>, <V s_37_2_t0.S$38 rn>, <V __xqf_str_parse_date$34 a>, <V __xqf_str_parse_date$32 a>, <V var2$42 a>, <V var1$40 a>)
+      clear on continue: (<V var1$40 a>, <V var2$42 a>, <V s_37_2_t0.S$38 rn>, <V s_37_2_t0.O$37 an>)$32 (36 ) $34 (36 ) $74 (36 ) $78 (36 ) $80 (36 ) $82 (36 ) 
+    s# 70 36 from DB.DBA.RDF_QUAD by RDF_QUAD_POGS    4.3e+04 rows   
+    Key RDF_QUAD_POGS  ASC  (<V s_37_2_t0.S$38 rn>, <V s_37_2_t0.O$37 an>)
+     P =  IRI_ID"...direct/P569"  ,  O >= <v k___xqf_str_parse_date$74 Set76 an> <= <V k___xqf_str_parse_date$78 an>
+    row specs:  O >= <V k___xqf_str_parse_date$80 an> <= <V k___xqf_str_parse_date$82 an>
+    vector param casts: <V __xqf_str_parse_date$32 a>-> <v k___xqf_str_parse_date$74 Set76 an>, <V __xqf_str_parse_date$34 a>-> <V k___xqf_str_parse_date$78 an>, <V __xqf_str_parse_date$32 a>-> <V k___xqf_str_parse_date$80 an>, <V __xqf_str_parse_date$34 a>-> <V k___xqf_str_parse_date$82 an>
+    
+    After code:
+      0: <V var1$40 a> := Call __id2in (<V s_37_2_t0.S$38 rn>)
+      5: <V var2$42 a> := Call __ro2sq (<V s_37_2_t0.O$37 an>)
+      10: BReturn 0
+    time   0.00049% fanout         0 input      1000 rows
+    $40 () $42 () $50 (36 27 51 ) 
+    s# 91 44 Select (<V var1$40 a>, <V var2$42 a>)
+      set no: <r set_ctr$50 via  Set70 Set76 Set62>
+  }
+Warning: You might have a Cartesian product.
+
+
+
+ 162 msec 98% cpu,       950 rnd      6854 seq         0% same seg   18.7171% same pg 
+Compilation: 1 msec 0 reads         0% read 0 messages         0% clw

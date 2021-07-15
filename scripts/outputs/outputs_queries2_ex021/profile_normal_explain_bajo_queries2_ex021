@@ -1,0 +1,49 @@
+http://www.wikidata.org/entity/Q868165	http://www.w3.org/2000/01/rdf-schema#label	Correo Yahoo!	
+http://www.wikidata.org/entity/Q868165	http://www.w3.org/2000/01/rdf-schema#label	Yahoo Mail	
+http://www.wikidata.org/entity/Q868165	http://www.w3.org/2000/01/rdf-schema#label	Yahoo Mail	
+http://www.wikidata.org/entity/Q868165	http://www.w3.org/2000/01/rdf-schema#label	Yahoo! Mail	
+http://www.wikidata.org/entity/Q868165	http://www.w3.org/2000/01/rdf-schema#label	Yahoo! Mail	
+http://www.wikidata.org/entity/Q868165	http://www.w3.org/2000/01/rdf-schema#label	Yahoo! Mail	
+http://www.wikidata.org/entity/Q868165	http://www.w3.org/2000/01/rdf-schema#label	Yahoo! Mail	
+http://www.wikidata.org/entity/Q868165	http://www.w3.org/2000/01/rdf-schema#label	Yahoo! Mail	
+http://www.wikidata.org/entity/Q868165	http://www.w3.org/2000/01/rdf-schema#label	Yahoo! Mail	
+http://www.wikidata.org/entity/Q868165	http://www.w3.org/2000/01/rdf-schema#label	Yahoo! Mail	
+http://www.wikidata.org/entity/Q868165	http://www.w3.org/2000/01/rdf-schema#label	Yahoo! Mail	
+http://www.wikidata.org/entity/Q868165	http://www.w3.org/2000/01/rdf-schema#label	Yahoo! Mail	
+http://www.wikidata.org/entity/Q868165	http://www.w3.org/2000/01/rdf-schema#label	Yahoo! Mail	
+http://www.wikidata.org/entity/Q868165	http://www.w3.org/2000/01/rdf-schema#label	Yahoo! Mail	
+http://www.wikidata.org/entity/Q868165	http://www.w3.org/2000/01/rdf-schema#label	Yahoo! Mail	
+http://www.wikidata.org/entity/Q868165	http://www.w3.org/2000/01/rdf-schema#label	Yahoo! Mail	
+http://www.wikidata.org/entity/Q868165	http://www.w3.org/2000/01/rdf-schema#label	Yahoo! Mail	
+http://www.wikidata.org/entity/Q868165	http://www.w3.org/2000/01/rdf-schema#label	Yahoo! Mail	
+http://www.wikidata.org/entity/Q868165	http://www.w3.org/2000/01/rdf-schema#label	Yahoo! Mail	
+http://www.wikidata.org/entity/Q868165	http://www.w3.org/2000/01/rdf-schema#label	Yahoo! Mail	
+
+  { 
+    time   1.3e-05% fanout         1 input         1 rows
+    time       1.2% fanout 1.5569e+07 input         1 rows
+    RDF_QUAD_POGS   9.4e+07 rows(s_11_2_t0.O$30, s_11_2_t0.S$29, s_11_2_t0.P$28)
+    
+    time        99% fanout 1.60576e-06 input 1.5569e+07 rows
+    END Node
+    After test:
+    0: __ro2sq$33 := Call __ro2sq (s_11_2_t0.O$30)
+    5: rdf_regex_impl$35 := Call rdf_regex_impl (__ro2sq$33, <c yahoo>, <c i>)
+    10: if ( 0  = rdf_regex_impl$35) then 15 else 14 unkn 15
+    14: BReturn 1
+    15: BReturn 0
+    time   0.00069% fanout         1 input        25 rows
+    skip node  50  <none> set_ctr$49
+    
+    After code:
+    0: s$37 := Call __id2in (s_11_2_t0.S$29)
+    5: p$39 := Call __id2in (s_11_2_t0.P$28)
+    10: o$41 := Call __ro2sq (s_11_2_t0.O$30)
+    15: BReturn 0
+    time   1.3e-06% fanout         0 input        25 rows
+    Select (s$37, p$39, o$41)
+  }
+
+
+ 26810 msec 99% cpu, 3.37718e+06 rnd 1.55524e+07 seq         0% same seg   88.0622% same pg 
+Compilation: 1 msec 0 reads         0% read 0 messages         0% clw

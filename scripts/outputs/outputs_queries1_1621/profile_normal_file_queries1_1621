@@ -1,0 +1,48 @@
+http://www.wikidata.org/entity/Q2614193	http://www.wikidata.org/entity/Q9168	
+http://www.wikidata.org/entity/Q2614267	http://www.wikidata.org/entity/Q9168	
+http://www.wikidata.org/entity/Q2630414	http://www.wikidata.org/entity/Q8785	
+http://www.wikidata.org/entity/Q2630421	http://www.wikidata.org/entity/Q8785	
+http://www.wikidata.org/entity/Q2631503	http://www.wikidata.org/entity/Q8785	
+http://www.wikidata.org/entity/Q2632049	http://www.wikidata.org/entity/Q8785	
+http://www.wikidata.org/entity/Q2634781	http://www.wikidata.org/entity/Q8785	
+http://www.wikidata.org/entity/Q2635853	http://www.wikidata.org/entity/Q8785	
+http://www.wikidata.org/entity/Q2636168	http://www.wikidata.org/entity/Q8785	
+http://www.wikidata.org/entity/Q2639675	http://www.wikidata.org/entity/Q7411	
+http://www.wikidata.org/entity/Q2640121	http://www.wikidata.org/entity/Q8785	
+http://www.wikidata.org/entity/Q2640810	http://www.wikidata.org/entity/Q7737	
+http://www.wikidata.org/entity/Q2640810	http://www.wikidata.org/entity/Q33348	
+http://www.wikidata.org/entity/Q2641306	http://www.wikidata.org/entity/Q8765	
+http://www.wikidata.org/entity/Q2790271	http://www.wikidata.org/entity/Q7737	
+http://www.wikidata.org/entity/Q2790271	http://www.wikidata.org/entity/Q33120	
+http://www.wikidata.org/entity/Q2859466	http://www.wikidata.org/entity/Q8785	
+http://www.wikidata.org/entity/Q2991433	http://www.wikidata.org/entity/Q2736184	
+http://www.wikidata.org/entity/Q16017045	http://www.wikidata.org/entity/Q7737	
+http://www.wikidata.org/entity/Q16017045	http://www.wikidata.org/entity/Q33120	
+
+  { 
+    time   0.00017% fanout         1 input         1 rows
+      clear: (<V set_ctr$41 in>)
+    s# 44 42 cluster outer seq start, set no <V set_ctr$41 in>    
+    save ctx:()
+    time     1e+02% fanout      1000 input         1 rows
+      clear: (<V s_37_2_t0.O$28 an>, <V s_37_2_t0.S$29 rn>, <V var2$33 a>, <V var1$31 a>)
+      clear on continue: (<V s_37_2_t0.O$28 an>, <V s_37_2_t0.S$29 rn>, <V var2$33 a>, <V var1$31 a>)
+    s# 53 27 from DB.DBA.RDF_QUAD by RDF_QUAD    2.1e+03 rows   
+    Key RDF_QUAD  ASC  (<V s_37_2_t0.S$29 rn>, <V s_37_2_t0.O$28 an>)
+     inlined  P =  IRI_ID"...direct/P37" 
+    
+    After code:
+      0: <V var1$31 a> := Call __id2in (<V s_37_2_t0.S$29 rn>)
+      5: <V var2$33 a> := Call __ro2sq (<V s_37_2_t0.O$28 an>)
+      10: BReturn 0
+    time   9.8e-05% fanout         0 input      1000 rows
+    $31 () $33 () $41 (27 42 ) 
+    s# 64 35 Select (<V var1$31 a>, <V var2$33 a>)
+      set no: <r set_ctr$41 via  Set53>
+  }
+Warning: You might have a Cartesian product.
+
+
+
+ 1733 msec 99% cpu,      1814 rnd       998 seq         0% same seg   24.7383% same pg 
+Compilation: 11 msec 0 reads         0% read 0 messages         0% clw

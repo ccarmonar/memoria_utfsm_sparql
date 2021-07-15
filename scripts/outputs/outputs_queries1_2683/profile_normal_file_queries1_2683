@@ -1,0 +1,60 @@
+
+  { 
+    time     0.006% fanout         1 input         1 rows
+      clear: (<V set_ctr$54 in>)
+    s# 60 55 cluster outer seq start, set no <V set_ctr$54 in>    
+    save ctx:()
+    time        21% fanout    529446 input         1 rows
+    Precode:
+      0: <V __rdflit$27 x> := Call __rdflit (rdflit32005)
+      5: BReturn 0
+      clear: (<V s_37_6_t1.S$30 rn>, <V __rdflit$27 x>)
+      clear on continue: (<V s_37_6_t1.S$30 rn>)
+    s# 69 29 from DB.DBA.RDF_QUAD by RDF_QUAD_POGS    1.1e+05 rows   
+    Key RDF_QUAD_POGS  ASC  (<V s_37_6_t1.S$30 rn>)
+     P =  IRI_ID"...direct/P31"  ,  O =  IRI_ID"...Q5" 
+    
+    time        40% fanout         0 input    529446 rows
+    
+    s# 84 79 END Node
+    After test:
+      0: if (  { 
+          time       6.9% fanout         1 input    529446 rows
+            clear: (<V set_ctr$40 in>)
+          s# 88 41 cluster outer seq start, set no <V set_ctr$40 in>    
+          save ctx:()
+          time        32% fanout         0 input    529446 rows
+          Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:   1.1e-07 Fanout:         0
+          
+          s# 97 32 from DB.DBA.RDF_QUAD by RDF_QUAD_POGS    1.1e-07 rows Parallel, tail cost        10   max 1
+          Key RDF_QUAD_POGS  ASC  ()
+           P =  IRI_ID"...inLanguage"  ,  O = rdflit32005
+          copy on branch $40 $0 $0 $0 sets: 60 69 88 
+          
+          time         0% fanout         0 input         0 rows
+          $40 (32 41 ) 
+          s# 106 34 Subquery Select( <none> )
+            set no: <r set_ctr$40 via  Set97>
+        }
+      ) then 4 else 5 unkn 5
+      4: BReturn 1
+      5: BReturn 0
+    time         0% fanout         0 input         0 rows
+      clear: (<V var1$46 a>)$30 (79 ) 
+    s# 118 58 skip node  100  <none> <r set_ctr$54 via  Set84 Set69>
+    After code:
+      0: <V var1$46 a> := Call __id2in (<r s_37_6_t1.S$30 via  Set118 Set84>)
+      5: BReturn 0
+    time         0% fanout         0 input         0 rows
+    $46 (58 ) $54 (58 79 29 55 ) 
+    s# 126 48 Select (<V var1$46 a>)
+      set no: <r set_ctr$54 via  Set118 Set84 Set69>
+  }
+Warning: You might have a Cartesian product.
+
+Warning: You might have a Cartesian product.
+
+
+
+ 33 msec 95% cpu,    529447 rnd    528884 seq   99.8995% same seg         0% same pg 
+Compilation: 1 msec 0 reads         0% read 0 messages         0% clw

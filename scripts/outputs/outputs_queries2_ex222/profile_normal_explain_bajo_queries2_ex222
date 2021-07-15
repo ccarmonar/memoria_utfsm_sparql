@@ -1,0 +1,24 @@
+http://learningsparql.com/ns/data#item2c	
+
+  { 
+    time      0.71% fanout         1 input         1 rows
+    time        69% fanout         1 input         1 rows
+    Precode:
+      0: DB.DBA.RDF_MAKE_OBJ_OF_TYPEDSQLVAL$27 := Call DB.DBA.RDF_MAKE_OBJ_OF_TYPEDSQLVAL (<c two>,  IRI_ID"...potrzebies" , <DB_NULL>)
+      7: BReturn 0
+    RDF_QUAD_OP       2.8 rows(s_7_2_t0.P$30)
+     inlined  O = k_DB.DBA.RDF_MAKE_OBJ_OF_TYPEDSQLVAL$61
+    time        30% fanout         1 input         1 rows
+    RDF_QUAD_POGS       1.2 rows(s_7_2_t0.S$34)
+     P = k_s_7_2_t0.P$75 ,  O = k_DB.DBA.RDF_MAKE_OBJ_OF_TYPEDSQLVAL$79
+    
+    After code:
+    0: s$37 := Call __id2in (s_7_2_t0.S$34)
+    5: BReturn 0
+    time      0.23% fanout         0 input         1 rows
+    Select (s$37)
+  }
+
+
+ 0 msec 32% cpu,         4 rnd         1 seq         0% same seg         0% same pg 
+Compilation: 1 msec 0 reads         0% read 0 messages         0% clw

@@ -1,0 +1,40 @@
+http://www.w3.org/2002/07/owl#Thing	
+http://www.w3.org/2002/07/owl#Nothing	
+http://www.wikidata.org/prop/novalue/P1476	
+http://www.wikidata.org/prop/novalue/P1081	
+http://www.wikidata.org/prop/novalue/P1084	
+http://www.wikidata.org/prop/novalue/P1103	
+http://www.wikidata.org/prop/novalue/P1161	
+http://www.wikidata.org/prop/novalue/P1193	
+http://www.wikidata.org/prop/novalue/P1201	
+http://www.wikidata.org/prop/novalue/P1204	
+
+  { 
+    time       1.3% fanout         1 input         1 rows
+    Subquery 27 
+      { 
+        time        26% fanout       567 input         1 rows
+        RDF_QUAD_POGS   5.7e+02 rows(s_37_2_t0.S$31)
+         P =  IRI_ID"...type"  ,  O =  IRI_ID"...Class" 
+        time        70% fanout  0.996473 input       567 rows
+        Distinct (s_37_2_t0.S$31)
+        time         2% fanout 0.0176991 input       565 rows
+        skip node  10  <none> set_no$29
+        
+        After code:
+        0: var1$28 :=  := artm s_37_2_t0.S$31
+        4: BReturn 0
+        time      0.38% fanout         0 input        10 rows
+        Subquery Select(var1$28)
+      }
+    
+    After code:
+    0: var1$49 := Call __ro2sq (var1$28)
+    5: BReturn 0
+    time      0.36% fanout         0 input        10 rows
+    Select (var1$49)
+  }
+
+
+ 0 msec 23% cpu,         1 rnd       566 seq         0% same seg         0% same pg 
+Compilation: 1 msec 0 reads         0% read 0 messages         0% clw
