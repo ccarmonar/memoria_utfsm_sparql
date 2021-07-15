@@ -2,7 +2,7 @@ import os, json, csv
 from functions.main import GetFinalResults, GroupOperators, GetOperatorExecutionFeatures, IdentifyOperatorType, IdentifyPrecode, IdentifyAfterCode, IdentifyGroupBy, IdentifyDistinct, IdentifyTOP, IdentifyTopOrderByRead, IdentifySkipNode, IdentifySelect, GetGSPO, GetIRI_ID, GetAllPredicatesFromProfile, SetBooleanPredicates, GetStartAndEndOptionalSection, SetBooleanOptionalSection, SetTargetAndTransitive, SetSorts, SetSubqueries, SetAfterTest
 from functions.aux import GetSubstring, ParseNestedBracket, CleanOperators, GetPrefixes, VectorString, MainCurlyBrackets, CountCurlyBrackets, CleanSalts, SubstractStrings
 from functions.build_csv import AllData, FullDataframe
-#current working directory
+#current working directorya
 cwd = os.getcwd()
 path_profiles = os.listdir(os.getcwd()+"/scripts/outputs")
 path_dataset = os.listdir(os.getcwd()+"/dataset")
