@@ -10,6 +10,8 @@ isql_username="dba";
 isql_password="dba";
 
 
+#rm -rf $current_path'/outputs'
+
 for file in $current_path'/temp/'*'.rq'; do
   ./virtuoso_isql_exec_csv.sh ${file##*/}
 done

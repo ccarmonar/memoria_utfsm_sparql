@@ -21,7 +21,8 @@ for file in os.listdir(path_dataset):
         query_list = df.values.tolist()
         for query in query_list:
             name = query[0]
-            if 'test_wikidata4' in name:
+            #if 'test_wikidata14' not in name:
+            if True:
                 query = query[1]
                 if name.endswith(".rq"):
                     name = name.replace(".rq","")
