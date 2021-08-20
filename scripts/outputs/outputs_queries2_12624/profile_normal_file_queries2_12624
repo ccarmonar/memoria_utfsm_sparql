@@ -1,0 +1,106 @@
+http://www.wikidata.org/entity/Q19885523	
+http://www.wikidata.org/entity/Q19885525	
+http://www.wikidata.org/entity/Q15055788	
+http://www.wikidata.org/entity/Q26760378	
+http://www.wikidata.org/entity/Q2063534	
+
+  { 
+    time   0.00023% fanout         1 input         1 rows
+      clear: (<V set_ctr$73 in>)
+    s# 76 74 cluster outer seq start, set no <V set_ctr$73 in>    
+    save ctx:()
+    time     0.051% fanout     18410 input         1 rows
+      clear: (<V s_37_12_t2.S$28 rn>)
+      clear on continue: (<V s_37_12_t2.S$28 rn>)
+    s# 85 27 from DB.DBA.RDF_QUAD by RDF_QUAD_POGS    1.8e+04 rows   
+    Key RDF_QUAD_POGS  ASC  (<V s_37_12_t2.S$28 rn>)
+     P =  IRI_ID"...direct/P31"  ,  O =  IRI_ID"...Q23442" 
+    
+    time      0.41% fanout 0.0428571 input     18410 rows
+      clear: (<V s_37_12_t3.S$31 rn>)
+      clear on continue: (<V s_37_12_t3.S$31 rn>)
+    s# 95 30 from DB.DBA.RDF_QUAD by RDF_QUAD     0.0082 rows   
+    Key RDF_QUAD  ASC  (<V s_37_12_t3.S$31 rn>)
+     inlined  P =  IRI_ID"...direct/P17"  ,  S = <V s_37_12_t2.S$28 rn> ,  O =  IRI_ID"...Q252" 
+    
+    time        50% fanout 0.00633714 input       789 rows
+      clear: (<V var1$65 a>)$28 (30 ) 
+    s# 110 105 END Node
+    After test:
+      0: if (  { 
+          time    0.0012% fanout         1 input       789 rows
+            clear: (<V set_ctr$46 in>)
+          s# 114 47 cluster outer seq start, set no <V set_ctr$46 in>    
+          save ctx:()
+          time        33% fanout   5.43473 input       789 rows
+            clear: (<V s_37_6_t0.O$34 an>)
+            clear on continue: (<V s_37_6_t0.O$34 an>)$127 (33 ) 
+          s# 123 33 from DB.DBA.RDF_QUAD by RDF_QUAD        3.4 rows   
+          Key RDF_QUAD  ASC  (<V s_37_6_t0.O$34 an>)
+           inlined  P =  IRI_ID"...label"  ,  S = <v k_s_37_12_t3.S$127 Set129 rn>
+          vector param casts: <r s_37_12_t3.S$31 via  Set114>-> <v k_s_37_12_t3.S$127 Set129 rn>
+          
+          time        16% fanout 0.0237873 input      4288 rows
+            clear: (<V DB.DBA.RDF_LANGUAGE_OF_OBJ$38 a>, <V __ro2sq$36 a>)$34 () 
+          s# 142 137 END Node
+          After test:
+            0: <V __ro2sq$36 a> := Call __ro2sq (<V s_37_6_t0.O$34 an>)
+            5: <V DB.DBA.RDF_LANGUAGE_OF_OBJ$38 a> := Call DB.DBA.RDF_LANGUAGE_OF_OBJ (<V __ro2sq$36 a>)
+            12: if (<c id> = <V DB.DBA.RDF_LANGUAGE_OF_OBJ$38 a>) then 16 else 17 unkn 17
+            16: BReturn 1
+            17: BReturn 0
+          time    0.0013% fanout         0 input       102 rows
+          $46 (137 33 47 ) 
+          s# 150 40 Subquery Select( <none> )
+            set no: <r set_ctr$46 via  Set142 Set123 Set129>
+        }
+      ) then 9 else 4 unkn 9
+      4: if (  { 
+          time    0.0012% fanout    0.8819 input       779 rows
+            clear: (<V set_ctr$62 in>)
+          s# 159 63 cluster outer seq start, set no <V set_ctr$62 in>    
+          save ctx:()
+          time     0.079% fanout    3.3901 input       687 rows
+            clear: (<V s_37_10_t1.O$50 an>)
+            clear on continue: (<V s_37_10_t1.O$50 an>)$31 (63 ) $172 (49 ) 
+          s# 168 49 from DB.DBA.RDF_QUAD by RDF_QUAD        3.4 rows   
+          Key RDF_QUAD  ASC  (<V s_37_10_t1.O$50 an>)
+           inlined  P =  IRI_ID"...label"  ,  S = <v k_s_37_12_t3.S$172 Set174 rn>
+          vector param casts: <r s_37_12_t3.S$31 via  Set159>-> <v k_s_37_12_t3.S$172 Set174 rn>
+          
+          time      0.53% fanout   0.29283 input      2329 rows
+            clear: (<V DB.DBA.RDF_LANGUAGE_OF_OBJ$54 a>, <V __ro2sq$52 a>)$50 () 
+          s# 187 182 END Node
+          After test:
+            0: <V __ro2sq$52 a> := Call __ro2sq (<V s_37_10_t1.O$50 an>)
+            5: <V DB.DBA.RDF_LANGUAGE_OF_OBJ$54 a> := Call DB.DBA.RDF_LANGUAGE_OF_OBJ (<V __ro2sq$52 a>)
+            12: if (<c en> = <V DB.DBA.RDF_LANGUAGE_OF_OBJ$54 a>) then 16 else 17 unkn 17
+            16: BReturn 1
+            17: BReturn 0
+          time     0.001% fanout         0 input       682 rows
+          $62 (182 49 63 ) 
+          s# 195 56 Subquery Select( <none> )
+            set no: <r set_ctr$62 via  Set187 Set168 Set174>
+        }
+      ) then 9 else 8 unkn 9
+      8: BReturn 1
+      9: BReturn 0
+    After code:
+      0: <V var1$65 a> := Call __id2in (<r s_37_12_t2.S$28 via  Set110 Set95>)
+      5: BReturn 0
+    time   0.00013% fanout         0 input         5 rows
+    $65 (105 ) $73 (105 30 27 74 ) 
+    s# 207 67 Select (<V var1$65 a>)
+      set no: <r set_ctr$73 via  Set110 Set95 Set85>
+  }
+Warning: You might have a Cartesian product.
+
+Warning: You might have a Cartesian product.
+
+Warning: You might have a Cartesian product.
+
+
+
+ 809 msec 99% cpu,     33124 rnd     23530 seq   59.3449% same seg   20.7094% same pg 
+186 disk reads, 0 read ahead,   94.5699% wait
+Compilation: 2 msec 0 reads         0% read 0 messages         0% clw

@@ -1,0 +1,19 @@
+ SELECT  __ro2sq ("s_37_9_rbc"."var1") AS "var1", __ro2sq ("s_37_9_rbc"."var2") AS "var2", __ro2sq ("s_37_9_rbc"."var3Label") AS "var3Label" FROM (SELECT TOP 100 __ro2sq ( "s_37_9_t1"."O") AS "var1",
+    __id2in ( "s_37_9_t2"."S") AS "var2",
+     DB.DBA.SAMPLE (
+       NULL /* due to conflict on var3Label */) AS "var3Label"
+  FROM DB.DBA.RDF_QUAD AS "s_37_9_t1"
+    INNER JOIN DB.DBA.RDF_QUAD AS "s_37_5_t0"
+    ON (
+      "s_37_9_t1"."S" = "s_37_5_t0"."O")
+    INNER JOIN DB.DBA.RDF_QUAD AS "s_37_9_t2"
+    ON (
+      "s_37_9_t2"."S" = "s_37_5_t0"."S")
+  WHERE
+    "s_37_9_t1"."P" = __i2idn ( __bft( 'http://www.wikidata.org/prop/direct/P439' , 1))
+    AND 
+    "s_37_9_t2"."P" = __i2idn ( __bft( 'http://www.wikidata.org/prop/direct/P106' , 1))
+    AND 
+    ( "s_37_5_t0"."P" in ( __i2idn ( __bft ( __bft( 'http://www.wikidata.org/prop/direct/P19' , 1), 1)),  __i2idn ( __bft ( __bft( 'http://www.wikidata.org/prop/direct/P551' , 1), 1))))
+  GROUP BY "s_37_9_t1"."O", "s_37_9_t2"."S"
+OPTION (QUIETCAST)) AS "s_37_9_rbc"

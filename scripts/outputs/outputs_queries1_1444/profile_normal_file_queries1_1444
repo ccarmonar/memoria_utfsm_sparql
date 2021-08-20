@@ -1,0 +1,55 @@
+
+  { 
+    time   0.00045% fanout         1 input         1 rows
+      clear: (<V set_ctr$60 in>)
+    s# 63 61 cluster outer seq start, set no <V set_ctr$60 in>    
+    save ctx:()
+      clear: (<V var1$28 rn>, <V set_no$29 i>, <V var1$52 a>)
+    s# 72 27 Subquery 27 
+      multistate set no = <V set_no$29 i>
+      { 
+        time       5.9% fanout       113 input         1 rows
+          clear: (<V s_37_2_t0.S$31 rn>, <V s_37_2_t0.O$32 an>)
+          clear on continue: (<V s_37_2_t0.S$31 rn>, <V s_37_2_t0.O$32 an>)
+        s# 76 30 from DB.DBA.RDF_QUAD by RDF_QUAD         52 rows   
+        Key RDF_QUAD  ASC  (<V s_37_2_t0.O$32 an>, <V s_37_2_t0.S$31 rn>)
+         inlined  P =  IRI_ID"...direct/P854" 
+        
+        time        94% fanout         0 input       113 rows
+          clear: (<V __rdf_strsqlval$34 s>)$32 () 
+        s# 92 87 END Node
+        After test:
+          0: <V __rdf_strsqlval$34 s> := Call __rdf_strsqlval (<V s_37_2_t0.O$32 an>,  0 )
+          5: if (<c string1> = <V __rdf_strsqlval$34 s>) then 9 else 10 unkn 10
+          9: BReturn 1
+          10: BReturn 0
+        time         0% fanout         0 input         0 rows
+        
+        s# 100 36 Distinct (HASH) set no <r set_no$29 via  Set92 Set76>(<r s_37_2_t0.S$31 via  Set92>)
+        time         0% fanout         0 input         0 rows
+          clear: (<V var1$28 rn>)$31 (36 87 ) 
+        s# 108 50 skip node  100  <none> <r set_no$29 via  Set100 Set92 Set76>
+        After code:
+          0: <V var1$28 rn> :=  := artm <r s_37_2_t0.S$31 via  Set108 Set100 Set92>
+          4: BReturn 0
+        time         0% fanout         0 input         0 rows
+        
+        s# 72 42 Subquery Select(<V var1$28 rn>)
+          set no: <r set_no$29 via  Set108 Set100 Set92 Set76>
+      }
+    
+    After code:
+      0: <V var1$52 a> := Call __ro2sq (<V var1$28 rn>)
+      5: BReturn 0
+    time         0% fanout         0 input         0 rows
+    $52 (27 ) $60 (27 61 ) 
+    s# 124 54 Select (<V var1$52 a>)
+      set no: <r set_ctr$60 via  Set72>
+  }
+Warning: You might have a Cartesian product.
+
+
+
+ 834 msec 99% cpu,       196 rnd       112 seq         0% same seg   14.2132% same pg 
+116 disk reads, 0 read ahead,   5.87233% wait
+Compilation: 1 msec 0 reads         0% read 0 messages         0% clw

@@ -1,0 +1,76 @@
+https://www.ncbi.nlm.nih.gov/protein/P06729	P06729	http://www.wikidata.org/entity/Q2630678	
+http://purl.uniprot.org/uniprot/P06729	P06729	http://www.wikidata.org/entity/Q2630678	
+https://identifiers.org/uniprot:P06729	P06729	http://www.wikidata.org/entity/Q2630678	
+https://www.ncbi.nlm.nih.gov/protein/P05091	P05091	http://www.wikidata.org/entity/Q2640417	
+http://purl.uniprot.org/uniprot/P05091	P05091	http://www.wikidata.org/entity/Q2640417	
+https://identifiers.org/uniprot:P05091	P05091	http://www.wikidata.org/entity/Q2640417	
+http://purl.uniprot.org/uniprot/P48023	P48023	http://www.wikidata.org/entity/Q3067052	
+https://identifiers.org/uniprot:P48023	P48023	http://www.wikidata.org/entity/Q3067052	
+https://www.ncbi.nlm.nih.gov/protein/P48023	P48023	http://www.wikidata.org/entity/Q3067052	
+http://purl.uniprot.org/uniprot/P23975	P23975	http://www.wikidata.org/entity/Q7050954	
+http://purl.uniprot.org/uniprot/P35354	P35354	http://www.wikidata.org/entity/Q415364	
+http://purl.uniprot.org/uniprot/Q9UBM7	Q9UBM7	http://www.wikidata.org/entity/Q259292	
+https://identifiers.org/uniprot:P24298	P24298	http://www.wikidata.org/entity/Q305481	
+https://www.ncbi.nlm.nih.gov/protein/P24298	P24298	http://www.wikidata.org/entity/Q305481	
+http://purl.uniprot.org/uniprot/P24298	P24298	http://www.wikidata.org/entity/Q305481	
+http://purl.uniprot.org/uniprot/P21917	P21917	http://www.wikidata.org/entity/Q308856	
+http://purl.uniprot.org/uniprot/P23528	P23528	http://www.wikidata.org/entity/Q4236472	
+https://identifiers.org/uniprot:P23528	P23528	http://www.wikidata.org/entity/Q4236472	
+https://www.ncbi.nlm.nih.gov/protein/P23528	P23528	http://www.wikidata.org/entity/Q4236472	
+https://identifiers.org/uniprot:P23497	P23497	http://www.wikidata.org/entity/Q21096399	
+
+  { 
+    time      0.12% fanout         1 input         1 rows
+      clear: (<V set_ctr$53 in>)
+    s# 56 54 cluster outer seq start, set no <V set_ctr$53 in>    
+    save ctx:()
+    time       3.1% fanout      1000 input         1 rows
+    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:   1.6e+04 Fanout:     1e+03
+      clear: (<V s_37_6_t0.S$28 rn>)
+      clear on continue: (<V s_37_6_t0.S$28 rn>)
+    s# 65 27 from DB.DBA.RDF_QUAD by RDF_QUAD_POGS    1.6e+04 rows   
+    Key RDF_QUAD_POGS  ASC  (<V s_37_6_t0.S$28 rn>)
+     P =  IRI_ID"...direct/P703"  ,  O =  IRI_ID"...Q15978631" 
+    
+    time        15% fanout     0.253 input      1000 rows
+      clear: (<V s_37_6_t2.S$31 rn>, <V s_37_6_t2.O$32 an>)
+      clear on continue: (<V s_37_6_t2.S$31 rn>, <V s_37_6_t2.O$32 an>)
+    s# 75 30 from DB.DBA.RDF_QUAD by RDF_QUAD       0.46 rows   
+    Key RDF_QUAD  ASC  (<V s_37_6_t2.O$32 an>, <V s_37_6_t2.S$31 rn>)
+     inlined  P =  IRI_ID"...direct/P2888"  ,  S = <V s_37_6_t0.S$28 rn>
+    
+    time       1.1% fanout         1 input       253 rows
+      clear: (<V temp$36 i>, <V isiri_id$34 i>)
+    s# 91 86 END Node
+    After test:
+      0: <V isiri_id$34 i> := Call isiri_id (<V s_37_6_t2.O$32 an>)
+      5: <V temp$36 i> := artm  1  - <V isiri_id$34 i>
+      9: if ( 0  = <V temp$36 i>) then 13 else 14 unkn 14
+      13: BReturn 1
+      14: BReturn 0
+    time        81% fanout  0.474308 input       253 rows
+      clear: (<V s_37_6_t1.O$39 an>, <V var2$45 a>, <V var1$43 a>, <V var3$41 a>)
+      clear on continue: (<V var3$41 a>, <V var1$43 a>, <V var2$45 a>, <V s_37_6_t1.O$39 an>)$32 (86 ) $103 (38 ) $28 (86 30 ) 
+    s# 99 38 from DB.DBA.RDF_QUAD by RDF_QUAD          1 rows   
+    Key RDF_QUAD  ASC  (<V s_37_6_t1.O$39 an>)
+     inlined  P =  IRI_ID"...direct/P352"  ,  S = <v k_s_37_6_t0.S$103 Set105 rn>
+    vector param casts: <r s_37_6_t0.S$28 via  Set91 Set75>-> <v k_s_37_6_t0.S$103 Set105 rn>
+    
+    After code:
+      0: <V var3$41 a> := Call __id2in (<r s_37_6_t0.S$28 via  Set99 Set105 Set91 Set75>)
+      5: <V var1$43 a> := Call __ro2sq (<r s_37_6_t2.O$32 via  Set99 Set105 Set91>)
+      10: <V var2$45 a> := Call __ro2sq (<V s_37_6_t1.O$39 an>)
+      15: BReturn 0
+    time     0.017% fanout         0 input       120 rows
+    $41 () $43 () $45 () $53 (38 86 30 27 54 ) 
+    s# 113 47 Select (<V var1$43 a>, <V var2$45 a>, <V var3$41 a>)
+      set no: <r set_ctr$53 via  Set99 Set105 Set91 Set75 Set65>
+  }
+Warning: You might have a Cartesian product.
+
+Warning: You might have a Cartesian product.
+
+
+
+ 3 msec 56% cpu,      1465 rnd      1064 seq   85.1296% same seg   3.75171% same pg 
+Compilation: 2 msec 0 reads         0% read 0 messages         0% clw

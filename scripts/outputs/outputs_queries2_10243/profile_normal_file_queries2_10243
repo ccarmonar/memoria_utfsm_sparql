@@ -1,0 +1,102 @@
+
+  { 
+    time       5.5% fanout         1 input         1 rows
+      clear: (<V set_ctr$62 in>)
+    s# 87 63 cluster outer seq start, set no <V set_ctr$62 in>    
+    save ctx:()
+    time        95% fanout         0 input         1 rows
+    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:   1.4e-07 Fanout:         0
+    Precode:
+      0: DB.DBA.RDF_MAKE_LONG_OF_SQLVAL$27  := Call DB.DBA.RDF_MAKE_LONG_OF_SQLVAL (<c  >)
+      7: BReturn 0
+      clear: (<V t4.S$30 rn>)
+      clear on continue: (<V t4.S$30 rn>)
+    s# 96 29 from DB.DBA.RDF_QUAD by RDF_QUAD_POGS    1.4e-07 rows   
+    Key RDF_QUAD_POGS  ASC  (<V t4.S$30 rn>)
+     P =  IRI_ID"...isPartOf"  ,  O =  IRI_ID"..." 
+    
+    time         0% fanout         0 input         0 rows
+    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:      0.99 Fanout:         0
+      clear: (<V t3.O$33 an>, <V t3.S$34 rn>)
+      clear on continue: (<V t3.O$33 an>, <V t3.S$34 rn>)$30 () 
+    s# 106 32 from DB.DBA.RDF_QUAD by RDF_QUAD       0.99 rows   
+    Key RDF_QUAD  ASC  (<V t3.S$34 rn>, <V t3.O$33 an>)
+     inlined  P =  IRI_ID"...about"  ,  S = <V t4.S$30 rn>
+    
+    time         0% fanout         0 input         0 rows
+      clear: (<V rdf_contains_impl$42 i>, <V DB.DBA.RDF_LONG_OF_SQLVAL$40 a>, <V __bft$38 x>, <V __id2in$36 a>)
+    s# 122 117 END Node
+    After test:
+      0: <V __id2in$36 a> := Call __id2in (<V t3.S$34 rn>)
+      5: <V __bft$38 x> := Call __bft (<V __id2in$36 a>,  2 )
+      10: <V DB.DBA.RDF_LONG_OF_SQLVAL$40 a> := Call DB.DBA.RDF_LONG_OF_SQLVAL (<V __bft$38 x>)
+      17: <V rdf_contains_impl$42 i> := Call rdf_contains_impl (<V DB.DBA.RDF_LONG_OF_SQLVAL$40 a>, DB.DBA.RDF_MAKE_LONG_OF_SQLVAL$27 )
+      22: if ( 0  = <V rdf_contains_impl$42 i>) then 27 else 26 unkn 27
+      26: BReturn 1
+      27: BReturn 0
+    time         0% fanout         0 input         0 rows
+    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:       0.3 Fanout:         0
+      clear: (<V t5.S$45 rn>)
+      clear on continue: (<V t5.S$45 rn>)$33 (117 ) $134 (44 ) 
+    s# 130 44 from DB.DBA.RDF_QUAD by RDF_QUAD        0.3 rows   
+    Key RDF_QUAD  ASC  (<V t5.S$45 rn>)
+     inlined  P =  IRI_ID"...direct/P105"  ,  S = <v k_t3.O$134 Set136 rn> ,  O =  IRI_ID"...Q7432" 
+    vector param casts: <r t3.O$33 via  Set122>-> <v k_t3.O$134 Set136 rn>
+    
+    time         0% fanout         0 input         0 rows
+    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:   1.3e-05 Fanout:         0
+      clear: (<V t2.S$48 rn>)
+      clear on continue: (<V t2.S$48 rn>)$45 () 
+    s# 144 47 from DB.DBA.RDF_QUAD by RDF_QUAD    1.3e-05 rows   
+    Key RDF_QUAD  ASC  (<V t2.S$48 rn>)
+     inlined  P =  IRI_ID"...direct/P171"  ,  S = <V t5.S$45 rn> ,  O =  IRI_ID"...Q764" 
+    
+    time         0% fanout         0 input         0 rows
+      clear: (<V set_ctr$65 i>)
+    s# 154 69 cluster outer seq start, set no <V set_ctr$65 i>    
+    save ctx:()
+    time         0% fanout         0 input         0 rows
+    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:         1 Fanout:         0
+      clear: (<V t7.O$51 a>, <V t7.S$52 r>)
+      clear on continue: (<V t7.S$52 r>, <V t7.O$51 a>)$167 (50 ) 
+    s# 163 50 from DB.DBA.RDF_QUAD by RDF_QUAD          1 rows   
+    Key RDF_QUAD  ASC  (<V t7.S$52 r>, <V t7.O$51 a>)
+     inlined  P =  IRI_ID"...direct/P685"  ,  S = <v k_t3.S$167 Set169 rn>
+    vector param casts: <r t3.S$34 via  Set154 Set144 Set130 Set136 Set122>-> <v k_t3.S$167 Set169 rn>
+    
+    time         0% fanout         0 input         0 rows
+      clear: (<V rdf_contains_impl$60 i>, <V DB.DBA.RDF_LONG_OF_SQLVAL$58 a>, <V __bft$56 x>, <V __id2in$54 a>)
+    s# 183 178 END Node
+    After test:
+      0: <V __id2in$54 a> := Call __id2in (<V t7.S$52 r>)
+      5: <V __bft$56 x> := Call __bft (<V __id2in$54 a>,  2 )
+      10: <V DB.DBA.RDF_LONG_OF_SQLVAL$58 a> := Call DB.DBA.RDF_LONG_OF_SQLVAL (<V __bft$56 x>)
+      17: <V rdf_contains_impl$60 i> := Call rdf_contains_impl (<V DB.DBA.RDF_LONG_OF_SQLVAL$58 a>, DB.DBA.RDF_MAKE_LONG_OF_SQLVAL$27 )
+      22: if ( 0  = <V rdf_contains_impl$60 i>) then 27 else 26 unkn 27
+      26: BReturn 1
+      27: BReturn 0
+    time         0% fanout         0 input         0 rows
+      clear: (<V t7.O$197 a>, <V t7.S$195 r>, <V var3$78 a>, <V var1$76 a>, <V var2$74 a>)$34 (178 50 69 47 44 117 ) $65 (178 50 69 ) $48 (178 50 69 ) $51 (178 ) $52 (178 ) $54 (178 ) $56 (178 ) $58 (178 ) $60 (178 ) 
+    s# 191 64 end of outer seq <r set_ctr$65 via  Set183 Set163 Set169>
+     out: (<r t7.S$52 via  Set183>, <V rdf_contains_impl$60 i>, <V __id2in$54 a>, <V DB.DBA.RDF_LONG_OF_SQLVAL$58 a>, <r t7.O$51 via  Set183>, <V __bft$56 x>)
+     shadow: (<V t7.S$195 r>,  <none> ,  <none> ,  <none> , <V t7.O$197 a>,  <none> )
+    After code:
+      0: <V var2$74 a> := Call __id2in (<r t3.S$34 via  Set191 Set144 Set130 Set136 Set122>)
+      5: <V var1$76 a> := Call __id2in (<r t2.S$48 via  Set191>)
+      10: <V var3$78 a> := Call __ro2sq (<V t7.O$197 a>)
+      15: BReturn 0
+    time         0% fanout         0 input         0 rows
+    $62 (64 178 50 69 47 44 117 32 29 63 ) $74 (64 ) $76 (64 ) $78 (64 ) 
+    s# 203 80 Select (<V var1$76 a>, <V var2$74 a>, <V var3$78 a>)
+      set no: <r set_ctr$62 via  Set191 Set144 Set130 Set136 Set122 Set106 Set96>
+  }
+Warning: You might have a Cartesian product.
+
+Warning: You might have a Cartesian product.
+
+Warning: You might have a Cartesian product.
+
+
+
+ 0 msec 1% cpu,         1 rnd         0 seq         0% same seg         0% same pg 
+Compilation: 4 msec 0 reads         0% read 0 messages         0% clw

@@ -1,0 +1,84 @@
+	http://www.wikidata.org/entity/Q55601	POINT(121.51194444 25.04)	1919-03-01 00:00:00Z		
+	http://www.wikidata.org/entity/Q544740	POINT(2.27611111 48.83555556)	2012-01-01 00:00:00Z		
+	http://www.wikidata.org/entity/Q734774	POINT(-90.234166666667 38.636388888889)	1818-01-01 00:00:00Z		
+	http://www.wikidata.org/entity/Q755342	POINT(23.7434206 37.9734574)	1871-01-01 00:00:00Z		
+	http://www.wikidata.org/entity/Q168757	POINT(-58.482889 -34.514944)	1854-01-01 00:00:00Z		
+	http://www.wikidata.org/entity/Q226536	POINT(23.328698 42.682212)	1950-01-01 00:00:00Z		
+	http://www.wikidata.org/entity/Q916850	POINT(16.3748 48.2296)	1875-01-01 00:00:00Z		
+	http://www.wikidata.org/entity/Q2783742		1972-01-01 00:00:00Z		
+	http://www.wikidata.org/entity/Q2790734		1898-01-01 00:00:00Z		
+	http://www.wikidata.org/entity/Q2790734		1900-01-01 00:00:00Z		
+	http://www.wikidata.org/entity/Q2915167		1928-01-01 00:00:00Z		
+	http://www.wikidata.org/entity/Q2915281		2002-01-01 00:00:00Z		
+	http://www.wikidata.org/entity/Q2922441		1995-01-01 00:00:00Z		
+	http://www.wikidata.org/entity/Q2924053		1913-01-01 00:00:00Z		
+	http://www.wikidata.org/entity/Q3626715		1931-09-01 00:00:00Z		
+	http://www.wikidata.org/entity/Q3115759		1985-01-01 00:00:00Z		
+	http://www.wikidata.org/entity/Q3230327		1918-01-01 00:00:00Z		
+	http://www.wikidata.org/entity/Q15906801		1941-01-01 00:00:00Z		
+	http://www.wikidata.org/entity/Q16084525		1895-01-01 00:00:00Z		
+	http://www.wikidata.org/entity/Q16084567		1935-01-01 00:00:00Z		
+
+  { 
+    time     0.062% fanout         1 input         1 rows
+      clear: (<V set_ctr$40 in>)
+    s# 64 41 cluster outer seq start, set no <V set_ctr$40 in>    
+    save ctx:()
+    time       1.7% fanout      1000 input         1 rows
+    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:   2.4e+04 Fanout:     1e+03
+      clear: (<V t1.S$28 rn>)
+      clear on continue: (<V t1.S$28 rn>)
+    s# 73 27 from DB.DBA.RDF_QUAD by RDF_QUAD_POGS    2.4e+04 rows   
+    Key RDF_QUAD_POGS  ASC  (<V t1.S$28 rn>)
+     P =  IRI_ID"...direct/P31"  ,  O =  IRI_ID"...Q41176" 
+    
+    time        94% fanout      0.15 input      1000 rows
+    Precode:
+      0: <V var2$30 a> := Call __id2in (<V t1.S$28 rn>)
+      5: BReturn 0
+      clear: (<V t4.O$33 an>, <V var2$30 a>)
+      clear on continue: (<V t4.O$33 an>)
+    s# 83 32 from DB.DBA.RDF_QUAD by RDF_QUAD          1 rows   
+    Key RDF_QUAD  ASC  (<V t4.O$33 an>)
+     inlined  P =  IRI_ID"...direct/P571"  ,  S = <V t1.S$28 rn>
+    
+    time      0.13% fanout         1 input       150 rows
+    Precode:
+      0: <V var4$35 a> := Call __ro2sq (<V t4.O$33 an>)
+      5: BReturn 0
+      clear: (<V set_ctr$43 i>, <V var4$35 a>)$33 () 
+    s# 93 47 cluster outer seq start, set no <V set_ctr$43 i>    
+    save ctx:()
+    time       1.6% fanout 0.0466667 input       150 rows
+    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:       1.1 Fanout:     0.047
+      clear: (<V t3.O$38 a>)
+      clear on continue: (<V t3.O$38 a>)$106 (37 ) $28 (47 32 ) 
+    s# 102 37 from DB.DBA.RDF_QUAD by RDF_QUAD        1.1 rows   
+    Key RDF_QUAD  ASC  (<V t3.O$38 a>)
+     inlined  P =  IRI_ID"...direct/P625"  ,  S = <v k_t1.S$106 Set108 rn>
+    vector param casts: <r t1.S$28 via  Set93 Set83>-> <v k_t1.S$106 Set108 rn>
+    
+    time     0.039% fanout   21.4286 input         7 rows
+    $43 (37 47 ) 
+    s# 116 42 end of outer seq <r set_ctr$43 via  Set102 Set108>
+     out: (<V t3.O$38 a>)
+     shadow: ( <none> )
+    time       2.3% fanout         1 input       150 rows
+      clear: (<V var3$52 a>)$38 (42 ) 
+    s# 124 62 skip node  1000  <none> <r set_ctr$40 via  Set116 Set83 Set73>
+    After code:
+      0: <V var3$52 a> := Call __ro2sq (<r t3.O$38 via  Set124>)
+      5: BReturn 0
+    time     0.016% fanout         0 input       150 rows
+    $35 (62 42 37 47 ) $40 (62 42 37 47 32 27 41 ) $52 (62 ) $30 (62 42 37 47 32 ) 
+    s# 132 54 Select (<DB_NULL>, <r var2$30 via  Set124 Set116 Set83>, <V var3$52 a>, <r var4$35 via  Set124 Set116>, <DB_NULL>)
+      set no: <r set_ctr$40 via  Set124 Set116 Set83 Set73>
+  }
+Warning: You might have a Cartesian product.
+
+Warning: You might have a Cartesian product.
+
+
+
+ 6 msec 72% cpu,      1293 rnd      1000 seq   88.2535% same seg   2.78207% same pg 
+Compilation: 1 msec 0 reads         0% read 0 messages         0% clw

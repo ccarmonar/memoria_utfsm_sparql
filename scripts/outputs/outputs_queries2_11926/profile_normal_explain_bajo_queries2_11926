@@ -1,0 +1,60 @@
+
+  { 
+    time     0.019% fanout         1 input         1 rows
+    Subquery 27 
+      { 
+        time      0.01% fanout         1 input         1 rows
+        fork {
+            time     0.008% fanout         1 input         1 rows
+            fork {
+                time        19% fanout     29774 input         1 rows
+                RDF_QUAD_POGS     3e+04 rows(t4.S$32)
+                 P =  IRI_ID"...direct/P17"  ,  O =  IRI_ID"...Q252" 
+                time        69% fanout 0.0264996 input     29774 rows
+                RDF_QUAD    0.0032 rows(t3.S$35)
+                 inlined  P =  IRI_ID"...direct/P31"  ,  S = t4.S$32 ,  O =  IRI_ID"...Q23442" 
+                time         7% fanout         1 input       789 rows
+                Precode:
+                  0: isnotnull$37 := Call isnotnull (t3.S$35)
+                  5: BReturn 0
+                RDF_QUAD_POGS       1.3 rows(t5.S$40)
+                 P =  IRI_ID"...about"  ,  O = cast$151
+                time       5.5% fanout         0 input       789 rows
+                Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:       5.9 Fanout:         0
+                RDF_QUAD       5.9 rows(t6.O$43)
+                 inlined  P =  IRI_ID"...name"  ,  S = t5.S$40
+                time         0% fanout         0 input         0 rows
+                Sort (t6.O$43) -> (isnotnull$37)
+                
+              }
+            time      0.01% fanout         0 input         1 rows
+            group by read node  
+            (t6.O$43, aggregate$47)
+            time         0% fanout         0 input         0 rows
+            Sort (aggregate$47) -> (t6.O$43)
+            
+          }
+        time     0.023% fanout         0 input         1 rows
+        Key from temp (t6.O$43, aggregate$47)
+        
+        
+        After code:
+        0: __ro2sq$90 := Call __ro2sq (t6.O$43)
+        5: var1$28 :=  := artm __ro2sq$90
+        9: var3$29 :=  := artm aggregate$47
+        13: BReturn 0
+        time         0% fanout         0 input         0 rows
+        Subquery Select(var1$28, var3$29)
+      }
+    
+    After code:
+    0: var1$99 := Call __ro2sq (var1$28)
+    5: var3$101 := Call __ro2sq (var3$29)
+    10: BReturn 0
+    time         0% fanout         0 input         0 rows
+    Select (var1$99, var3$101)
+  }
+
+
+ 8 msec 106% cpu,     31353 rnd     29741 seq   98.5488% same seg   1.07163% same pg 
+Compilation: 4 msec 0 reads         0% read 0 messages         0% clw

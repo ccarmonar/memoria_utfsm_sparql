@@ -1,0 +1,45 @@
+
+  { 
+    time      0.01% fanout         1 input         1 rows
+    time    0.0034% fanout         1 input         1 rows
+    time      0.16% fanout        16 input         1 rows
+    RDF_QUAD        16 rows(s_37_6_t1.O$31)
+     inlined  P =  IRI_ID"...direct/P2565" 
+    time       3.8% fanout    55.625 input        16 rows
+    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:       2.8 Fanout:        56
+    RDF_QUAD_OP       2.8 rows(s_37_6_t2.P$35, s_37_6_t2.O$34)
+     inlined  O = cast$100
+    time      0.34% fanout  0.982022 input       890 rows
+    END Node
+    After test:
+    0: if (s_37_6_t2.P$35 =  IRI_ID"...direct/P2565" ) then 9 else 4 unkn 9
+    4: if (s_37_6_t2.P$35 =  IRI_ID"...direct/P2054" ) then 9 else 8 unkn 9
+    8: BReturn 1
+    9: BReturn 0
+    time        19% fanout    45.587 input       874 rows
+    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:       1.2 Fanout:        46
+    RDF_QUAD_POGS       1.2 rows()
+     P = k_s_37_6_t2.P$129 ,  O = k_s_37_6_t1.O$133
+    time        77% fanout         0 input     39843 rows
+    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:        14 Fanout:         0
+    RDF_QUAD_POGS        14 rows()
+     P =  IRI_ID"...direct/P2054"  ,  O = k_s_37_6_t1.O$144
+    time         0% fanout         0 input         0 rows
+    Distinct (s_37_6_t2.P$35)
+    
+    After code:
+    0: p2$28 :=  := artm s_37_6_t2.P$35
+    4: BReturn 0
+    time         0% fanout         0 input         0 rows
+    Subquery Select(p2$28)
+    
+    After code:
+    0: p2$57 := Call __ro2sq (p2$28)
+    5: BReturn 0
+    time         0% fanout         0 input         0 rows
+    Select (p2$57)
+  }
+
+
+ 31 msec 94% cpu,     40713 rnd     39815 seq   99.4105% same seg  0.363511% same pg 
+Compilation: 2 msec 0 reads         0% read 0 messages         0% clw

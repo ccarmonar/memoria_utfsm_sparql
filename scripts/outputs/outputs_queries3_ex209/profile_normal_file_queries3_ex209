@@ -1,0 +1,235 @@
+http://learningsparql.com/ns/demo#prob32	http://www.w3.org/2000/01/rdf-schema#label	Amount must be an integer.	
+http://learningsparql.com/ns/demo#probXX	http://www.w3.org/2000/01/rdf-schema#label	This is a dummy problem.	
+http://learningsparql.com/ns/demo#prob44	http://www.w3.org/2000/01/rdf-schema#label	Expenditures over 100 require grade 5 approval.	
+http://learningsparql.com/ns/data#item857	http://learningsparql.com/ns/demo#problem	http://learningsparql.com/ns/demo#prob44	
+http://learningsparql.com/ns/demo#prob29	http://www.w3.org/2000/01/rdf-schema#label	Location value must be a URI.	
+http://learningsparql.com/ns/data#item5	http://learningsparql.com/ns/demo#problem	http://learningsparql.com/ns/demo#prob32	
+http://learningsparql.com/ns/data#item693	http://learningsparql.com/ns/demo#problem	http://learningsparql.com/ns/demo#prob29	
+http://learningsparql.com/ns/data#item4	http://learningsparql.com/ns/demo#problem	http://learningsparql.com/ns/demo#prob32	
+http://learningsparql.com/ns/data#item201	http://learningsparql.com/ns/demo#problem	http://learningsparql.com/ns/demo#prob44	
+http://learningsparql.com/ns/data#id1	http://learningsparql.com/ns/demo#problem	http://learningsparql.com/ns/demo#prob29	
+http://learningsparql.com/ns/data#item693	http://learningsparql.com/ns/demo#problem	http://learningsparql.com/ns/demo#prob32	
+http://learningsparql.com/ns/data#item3	http://learningsparql.com/ns/demo#problem	http://learningsparql.com/ns/demo#prob32	
+http://learningsparql.com/ns/data#id5	http://learningsparql.com/ns/demo#problem	http://learningsparql.com/ns/demo#prob32	
+http://learningsparql.com/ns/data#id4	http://learningsparql.com/ns/demo#problem	http://learningsparql.com/ns/demo#prob29	
+http://learningsparql.com/ns/data#item2	http://learningsparql.com/ns/demo#problem	http://learningsparql.com/ns/demo#prob32	
+http://learningsparql.com/ns/data#item432	http://learningsparql.com/ns/demo#problem	http://learningsparql.com/ns/demo#prob44	
+
+  { 
+    Precode:
+      0:   { 
+          time     0.033% fanout         1 input         1 rows
+            clear: (<V ext_sets$159 i>, <V set_ctr$137 in>)
+          s# 160 138 cluster outer seq start, set no <V set_ctr$137 in>    
+          save ctx:()
+          time      0.73% fanout         1 input         1 rows
+          Precode:
+            0: vector$27  := Call vector ( 1 ,  2 ,  3 ,  IRI_ID"...problem" ,  3 ,  IRI_ID"...prob32" )
+            5: vector$29  := Call vector ( 1 ,  1 ,  3 ,  IRI_ID"...problem" ,  3 ,  IRI_ID"...prob29" )
+            10: vector$31  := Call vector ( 1 ,  0 ,  3 ,  IRI_ID"...problem" ,  3 ,  IRI_ID"...prob44" )
+            15: vector$33  := Call vector (vector$27 , vector$29 , vector$31 )
+            20: DB.DBA.RDF_MAKE_LONG_OF_SQLVAL$35  := Call DB.DBA.RDF_MAKE_LONG_OF_SQLVAL (<c Amount must be an integer.>)
+            27: vector$37  := Call vector ( 3 ,  IRI_ID"...prob32" ,  3 ,  IRI_ID"...label" ,  3 , DB.DBA.RDF_MAKE_LONG_OF_SQLVAL$35 )
+            32: DB.DBA.RDF_MAKE_LONG_OF_SQLVAL$39  := Call DB.DBA.RDF_MAKE_LONG_OF_SQLVAL (<c Location value must be a URI.>)
+            39: vector$41  := Call vector ( 3 ,  IRI_ID"...prob29" ,  3 ,  IRI_ID"...label" ,  3 , DB.DBA.RDF_MAKE_LONG_OF_SQLVAL$39 )
+            44: DB.DBA.RDF_MAKE_LONG_OF_SQLVAL$43  := Call DB.DBA.RDF_MAKE_LONG_OF_SQLVAL (<c Expenditures over 100 require grade 5 approval.>)
+            51: vector$45  := Call vector ( 3 ,  IRI_ID"...prob44" ,  3 ,  IRI_ID"...label" ,  3 , DB.DBA.RDF_MAKE_LONG_OF_SQLVAL$43 )
+            56: DB.DBA.RDF_MAKE_LONG_OF_SQLVAL$47  := Call DB.DBA.RDF_MAKE_LONG_OF_SQLVAL (<c This is a dummy problem.>)
+            63: vector$49  := Call vector ( 3 ,  IRI_ID"...probXX" ,  3 ,  IRI_ID"...label" ,  3 , DB.DBA.RDF_MAKE_LONG_OF_SQLVAL$47 )
+            68: vector$51  := Call vector (vector$37 , vector$41 , vector$45 , vector$49 )
+            73: BReturn 0
+          
+          s# 360 139 Fork 139 {  
+                clear: (<V prob44item$56 a>, <V prob29item$55 a>, <V prob32item$54 a>, <V set_no$57 i>)
+              s# 171 53 Subquery 53 
+                multistate set no = <V set_no$57 i>
+                { 
+                  
+                  s# 175 58 Union
+                    { 
+                      time      0.65% fanout        18 input         1 rows
+                        clear: (<V s_28_17_t7-u36.S$60 rn>, <V s_28_17_t7-u36.O$61 an>)
+                        clear on continue: (<V s_28_17_t7-u36.S$60 rn>, <V s_28_17_t7-u36.O$61 an>)
+                      s# 178 59 from DB.DBA.RDF_QUAD by RDF_QUAD         18 rows   
+                      Key RDF_QUAD  ASC  (<V s_28_17_t7-u36.O$61 an>, <V s_28_17_t7-u36.S$60 rn>)
+                       inlined  P =  IRI_ID"...amount" 
+                      
+                      time        91% fanout  0.444444 input        18 rows
+                        clear: (<V DB.DBA.RDF_DATATYPE_OF_OBJ$65 a>, <V __ro2sq$63 a>, <V prob44item$56 a>, <V prob29item$55 a>, <V prob32item$54 a>)$60 () $61 () 
+                      s# 194 189 END Node
+                      After test:
+                        0: <V __ro2sq$63 a> := Call __ro2sq (<V s_28_17_t7-u36.O$61 an>)
+                        5: <V DB.DBA.RDF_DATATYPE_OF_OBJ$65 a> := Call DB.DBA.RDF_DATATYPE_OF_OBJ (<V __ro2sq$63 a>)
+                        12: if (<tag 182 flag 1 c http://www.w3.org/2001/XMLSchema#integer> = <V DB.DBA.RDF_DATATYPE_OF_OBJ$65 a>) then 17 else 16 unkn 17
+                        16: BReturn 1
+                        17: BReturn 0
+                      After code:
+                        0: <V prob32item$54 a> :=  := artm <r s_28_17_t7-u36.S$60 via  Set194>
+                        4: <V prob29item$55 a> :=  := artm <DB_NULL>
+                        8: <V prob44item$56 a> :=  := artm <DB_NULL>
+                        12: BReturn 0
+                      time         3% fanout         0 input         8 rows
+                      Precode:
+                        0: <V vector$135 x> := Call vector (<V prob44item$56 a>, <V prob29item$55 a>, <V prob32item$54 a>)
+                        5: if (user_aggr_notfirst$140  =  1 ) then 20 else 9 unkn 9
+                        9: user_aggr_notfirst$140  :=  := artm  1 
+                        13: <V user_aggr_ret$142 x> := Call DB.DBA.SPARQL_CONSTRUCT_INIT (user_aggr_env$141 )
+                        20: <V user_aggr_ret$142 x> := Call DB.DBA.SPARQL_CONSTRUCT_ACC (user_aggr_env$141 , vector$33 , <V vector$135 x>, vector$51 ,  1 )
+                        27: BReturn 0
+                        clear: (<V user_aggr_ret$142 x>, <V vector$135 x>)
+                      s# 207 143 END Node
+                    }
+                    { 
+                      time      0.62% fanout        12 input         1 rows
+                        clear: (<V s_35_20_t8.S$75 rn>, <V s_35_20_t8.O$76 an>)
+                        clear on continue: (<V s_35_20_t8.S$75 rn>, <V s_35_20_t8.O$76 an>)
+                      s# 214 74 from DB.DBA.RDF_QUAD by RDF_QUAD        5.5 rows   
+                      Key RDF_QUAD  ASC  (<V s_35_20_t8.O$76 an>, <V s_35_20_t8.S$75 rn>)
+                       inlined  P =  IRI_ID"...location" 
+                      
+                      time     0.084% fanout  0.583333 input        12 rows
+                        clear: (<V is_named_iri_id$78 i>, <V prob44item$56 a>, <V prob29item$55 a>, <V prob32item$54 a>)$75 () $76 () 
+                      s# 230 225 END Node
+                      After test:
+                        0: <V is_named_iri_id$78 i> := Call is_named_iri_id (<V s_35_20_t8.O$76 an>)
+                        5: if ( 0  = <V is_named_iri_id$78 i>) then 9 else 10 unkn 10
+                        9: BReturn 1
+                        10: BReturn 0
+                      After code:
+                        0: <V prob32item$54 a> :=  := artm <DB_NULL>
+                        4: <V prob29item$55 a> :=  := artm <r s_35_20_t8.S$75 via  Set230>
+                        8: <V prob44item$56 a> :=  := artm <DB_NULL>
+                        12: BReturn 0
+                      time       1.6% fanout         0 input         7 rows
+                      Precode:
+                        0: <V vector$135 x> := Call vector (<V prob44item$56 a>, <V prob29item$55 a>, <V prob32item$54 a>)
+                        5: if (user_aggr_notfirst$140  =  1 ) then 20 else 9 unkn 9
+                        9: user_aggr_notfirst$140  :=  := artm  1 
+                        13: <V user_aggr_ret$142 x> := Call DB.DBA.SPARQL_CONSTRUCT_INIT (user_aggr_env$141 )
+                        20: <V user_aggr_ret$142 x> := Call DB.DBA.SPARQL_CONSTRUCT_ACC (user_aggr_env$141 , vector$33 , <V vector$135 x>, vector$51 ,  1 )
+                        27: BReturn 0
+                        clear: (<V user_aggr_ret$142 x>, <V vector$135 x>)
+                      s# 239 143 END Node
+                    }
+                    { 
+                      time    0.0047% fanout         1 input         1 rows
+                      
+                      s# 246 106 END Node
+                      time     0.039% fanout         1 input         1 rows
+                        clear: (<V set_ctr$108 i>)
+                      s# 253 112 cluster outer seq start, set no <V set_ctr$108 i>    
+                      save ctx:()
+                        clear: (<V grade$90 a>, <V approvingEmployee$89 a>, <V item$88 r>, <V set_no$91 i>)
+                      s# 262 87 Subquery 87 
+                        multistate set no = <V set_no$91 i>
+                        { 
+                          time       0.2% fanout         2 input         1 rows
+                            clear: (<V t12.S$93 rn>, <V t12.O$94 an>)
+                            clear on continue: (<V t12.S$93 rn>, <V t12.O$94 an>)
+                          s# 266 92 from DB.DBA.RDF_QUAD by RDF_QUAD          2 rows   
+                          Key RDF_QUAD  ASC  (<V t12.O$94 an>, <V t12.S$93 rn>)
+                           inlined  P =  IRI_ID"...approval" 
+                          
+                          time      0.31% fanout       0.5 input         2 rows
+                            clear: (<V t13.O$97 an>, <V grade$90 a>, <V approvingEmployee$89 a>, <V item$88 r>)
+                            clear on continue: (<V item$88 r>, <V approvingEmployee$89 a>, <V grade$90 a>, <V t13.O$97 an>)$93 () $94 () $281 (96 ) 
+                          s# 277 96 from DB.DBA.RDF_QUAD by RDF_QUAD          1 rows   
+                          Key RDF_QUAD  ASC  (<V t13.O$97 an>)
+                           P =  IRI_ID"...jobGrade"  ,  S = <v k_t12.O$281 Set283 rn> ,  O <  5 
+                          row specs:  O <  5 
+                          vector param casts: <V t12.O$94 an>-> <v k_t12.O$281 Set283 rn>
+                          
+                          After code:
+                            0: <V item$88 r> :=  := artm <r t12.S$93 via  Set277 Set283>
+                            4: <V approvingEmployee$89 a> :=  := artm <r t12.O$94 via  Set277 Set283>
+                            8: <V grade$90 a> :=  := artm <V t13.O$97 an>
+                            12: BReturn 0
+                          time    0.0098% fanout         0 input         1 rows
+                          
+                          s# 262 99 Subquery Select(<V item$88 r>, <V approvingEmployee$89 a>, <V grade$90 a>)
+                            set no: <r set_no$91 via  Set277 Set283 Set266>
+                        }
+                      
+                      time     0.017% fanout         1 input         1 rows
+                      $108 (87 112 ) $88 (87 ) $89 (87 ) $90 (87 ) $91 (87 ) 
+                      s# 301 107 end of outer seq <r set_ctr$108 via  Set262>
+                       out: (<V approvingEmployee$89 a>, <V item$88 r>, <V set_no$91 i>, <V grade$90 a>)
+                       shadow: ( <none> ,  <none> ,  <none> ,  <none> )
+                      time      0.15% fanout         8 input         1 rows
+                        clear: (<V t9.O$118 an>, <V t9.S$119 rn>)
+                        clear on continue: (<V t9.O$118 an>, <V t9.S$119 rn>)
+                      s# 309 117 from DB.DBA.RDF_QUAD by RDF_QUAD          8 rows   
+                      Key RDF_QUAD  ASC  (<V t9.S$119 rn>, <V t9.O$118 an>)
+                       inlined  P =  IRI_ID"...cost" 
+                      
+                      time      0.18% fanout         1 input         8 rows
+                        clear: (<V t10.S$122 rn>, <V t10.O$123 an>)
+                        clear on continue: (<V t10.S$122 rn>, <V t10.O$123 an>)$119 () 
+                      s# 320 121 from DB.DBA.RDF_QUAD by RDF_QUAD       0.96 rows   
+                      Key RDF_QUAD  ASC  (<V t10.O$123 an>, <V t10.S$122 rn>)
+                       inlined  P =  IRI_ID"...amount"  ,  S = <V t9.S$119 rn>
+                      
+                      time      0.23% fanout       0.5 input         8 rows
+                        clear: (<V temp$125 an>, <V prob44item$56 a>, <V prob29item$55 a>, <V prob32item$54 a>)$118 (121 ) $122 () $123 () 
+                      s# 336 331 END Node
+                      After test:
+                        0: <V temp$125 an> := artm <r t9.O$118 via  Set320> * <V t10.O$123 an>
+                        4: if (<V temp$125 an> >  100 ) then 8 else 9 unkn 9
+                        8: BReturn 1
+                        9: BReturn 0
+                      After code:
+                        0: <V prob32item$54 a> :=  := artm <DB_NULL>
+                        4: <V prob29item$55 a> :=  := artm <DB_NULL>
+                        8: <V prob44item$56 a> :=  := artm <r t10.S$122 via  Set336>
+                        12: BReturn 0
+                      time         1% fanout         0 input         4 rows
+                      Precode:
+                        0: <V vector$135 x> := Call vector (<V prob44item$56 a>, <V prob29item$55 a>, <V prob32item$54 a>)
+                        5: if (user_aggr_notfirst$140  =  1 ) then 20 else 9 unkn 9
+                        9: user_aggr_notfirst$140  :=  := artm  1 
+                        13: <V user_aggr_ret$142 x> := Call DB.DBA.SPARQL_CONSTRUCT_INIT (user_aggr_env$141 )
+                        20: <V user_aggr_ret$142 x> := Call DB.DBA.SPARQL_CONSTRUCT_ACC (user_aggr_env$141 , vector$33 , <V vector$135 x>, vector$51 ,  1 )
+                        27: BReturn 0
+                        clear: (<V user_aggr_ret$142 x>, <V vector$135 x>)
+                      s# 345 143 END Node
+                    }
+                }
+              
+              time         0% fanout         0 input         0 rows
+              Precode:
+                0: <V vector$135 x> := Call vector (<V prob44item$56 a>, <V prob29item$55 a>, <V prob32item$54 a>)
+                5: if (user_aggr_notfirst$140  =  1 ) then 20 else 9 unkn 9
+                9: user_aggr_notfirst$140  :=  := artm  1 
+                13: <V user_aggr_ret$142 x> := Call DB.DBA.SPARQL_CONSTRUCT_INIT (user_aggr_env$141 )
+                20: <V user_aggr_ret$142 x> := Call DB.DBA.SPARQL_CONSTRUCT_ACC (user_aggr_env$141 , vector$33 , <V vector$135 x>, vector$51 ,  1 )
+                27: BReturn 0
+                clear: (<V user_aggr_ret$142 x>, <V vector$135 x>)$135 (143 ) $54 (53 ) $55 (53 ) $56 (53 ) 
+              s# 353 143 END Node
+          }
+          time     0.097% fanout         1 input         1 rows
+            clear: (<V callret-0$147 x>)
+          s# 367 157 skip node  1  <none> <V set_ctr$137 in>
+          After code:
+            0: <V callret-0$147 x> := Call DB.DBA.SPARQL_CONSTRUCT_FIN (user_aggr_env$141 )
+            7: BReturn 0
+          time     0.007% fanout         0 input         1 rows
+          $159 (157 139 138 ) $137 (157 139 138 ) $147 (157 ) 
+          s# 375 149 Subquery Select(<V callret-0$147 x>)
+            set no: <r set_ctr$137 via  Set367>
+        }
+      
+      8:  <none>  := Call DB.DBA.RDF_DICT_OF_TRIPLES_TO_THREE_COLS (scalar$383 )
+      15: BReturn 0
+    
+    END Node
+  }
+Warning: You might have a Cartesian product.
+
+Warning: You might have a Cartesian product.
+
+Warning: You might have a Cartesian product.
+
+
+
+ 15 msec 68% cpu,        18 rnd        36 seq   42.1053% same seg   5.26316% same pg 
+Compilation: 6 msec 0 reads         0% read 0 messages         0% clw

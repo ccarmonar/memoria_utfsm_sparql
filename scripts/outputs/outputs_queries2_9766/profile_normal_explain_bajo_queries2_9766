@@ -1,0 +1,55 @@
+http://www.wikidata.org/entity/Q961680	http://www.w3.org/2000/01/rdf-schema#label	http://www.w3.org/1999/02/22-rdf-syntax-ns#type	http://wikiba.se/ontology#Item	
+http://www.wikidata.org/entity/Q961680	http://www.w3.org/2004/02/skos/core#prefLabel	http://www.w3.org/1999/02/22-rdf-syntax-ns#type	http://wikiba.se/ontology#Item	
+http://www.wikidata.org/entity/Q961680	http://schema.org/name	http://www.w3.org/1999/02/22-rdf-syntax-ns#type	http://wikiba.se/ontology#Item	
+http://www.wikidata.org/entity/Q961680	http://www.w3.org/2000/01/rdf-schema#label	http://www.w3.org/2000/01/rdf-schema#label	Google	
+http://www.wikidata.org/entity/Q961680	http://www.w3.org/2000/01/rdf-schema#label	http://www.w3.org/2000/01/rdf-schema#label	Google	
+http://www.wikidata.org/entity/Q961680	http://www.w3.org/2000/01/rdf-schema#label	http://www.w3.org/2000/01/rdf-schema#label	Google	
+http://www.wikidata.org/entity/Q961680	http://www.w3.org/2000/01/rdf-schema#label	http://www.w3.org/2000/01/rdf-schema#label	Google	
+http://www.wikidata.org/entity/Q961680	http://www.w3.org/2000/01/rdf-schema#label	http://www.w3.org/2000/01/rdf-schema#label	Google	
+http://www.wikidata.org/entity/Q961680	http://www.w3.org/2000/01/rdf-schema#label	http://www.w3.org/2000/01/rdf-schema#label	Google	
+http://www.wikidata.org/entity/Q961680	http://www.w3.org/2000/01/rdf-schema#label	http://www.w3.org/2000/01/rdf-schema#label	Google	
+http://www.wikidata.org/entity/Q961680	http://www.w3.org/2000/01/rdf-schema#label	http://www.w3.org/2000/01/rdf-schema#label	Google	
+http://www.wikidata.org/entity/Q961680	http://www.w3.org/2000/01/rdf-schema#label	http://www.w3.org/2000/01/rdf-schema#label	Google	
+http://www.wikidata.org/entity/Q961680	http://www.w3.org/2000/01/rdf-schema#label	http://www.w3.org/2000/01/rdf-schema#label	Գուգլ	
+http://www.wikidata.org/entity/Q961680	http://www.w3.org/2000/01/rdf-schema#label	http://www.w3.org/2000/01/rdf-schema#label	גוגל	
+http://www.wikidata.org/entity/Q961680	http://www.w3.org/2000/01/rdf-schema#label	http://www.w3.org/2000/01/rdf-schema#label	गूगल	
+http://www.wikidata.org/entity/Q961680	http://www.w3.org/2000/01/rdf-schema#label	http://www.w3.org/2000/01/rdf-schema#label	Google	
+http://www.wikidata.org/entity/Q961680	http://www.w3.org/2000/01/rdf-schema#label	http://www.w3.org/2000/01/rdf-schema#label	Google	
+http://www.wikidata.org/entity/Q961680	http://www.w3.org/2000/01/rdf-schema#label	http://www.w3.org/2000/01/rdf-schema#label	Google	
+http://www.wikidata.org/entity/Q961680	http://www.w3.org/2000/01/rdf-schema#label	http://www.w3.org/2000/01/rdf-schema#label	Google	
+http://www.wikidata.org/entity/Q961680	http://www.w3.org/2000/01/rdf-schema#label	http://www.w3.org/2000/01/rdf-schema#label	Google	
+
+  { 
+    time     0.088% fanout         1 input         1 rows
+    time       1.3% fanout         3 input         1 rows
+    Precode:
+      0: __rdflit$27 := Call __rdflit (rdflit5462246)
+      5: BReturn 0
+    RDF_QUAD_OP         3 rows(s_37_4_t0.P$30)
+     inlined  O = rdflit5462246
+    time       3.2% fanout         1 input         3 rows
+    RDF_QUAD_POGS       1.2 rows(s_37_4_t0.S$34)
+     P = s_37_4_t0.P$30 ,  O = rdflit5462246
+    time       3.4% fanout         7 input         3 rows
+    Precode:
+      0: var1$37 := Call __id2in (s_37_4_t0.S$34)
+      5: var2Label$39 := Call __id2in (s_37_4_t0.P$30)
+      10: BReturn 0
+    RDF_QUAD_SP       8.5 rows(s_37_4_t1.P$42)
+     inlined  S = s_37_4_t0.S$34
+    time        92% fanout   25.8571 input        21 rows
+    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:       1.2 Fanout:        26
+    RDF_QUAD       1.2 rows(s_37_4_t1.O$46)
+     inlined  P = s_37_4_t1.P$42 ,  S = k_s_37_4_t0.S$105
+    
+    After code:
+    0: var3$49 := Call __id2in (s_37_4_t1.P$42)
+    5: var4$51 := Call __ro2sq (s_37_4_t1.O$46)
+    10: BReturn 0
+    time     0.014% fanout         0 input       543 rows
+    Select (var1$37, var2Label$39, var3$49, var4$51)
+  }
+
+
+ 4 msec 70% cpu,       547 rnd       542 seq   2.91971% same seg   10.7664% same pg 
+Compilation: 1 msec 0 reads         0% read 0 messages         0% clw

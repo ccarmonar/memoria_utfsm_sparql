@@ -1,0 +1,49 @@
+
+  { 
+    time    0.0007% fanout         1 input         1 rows
+      clear: (<V set_ctr$49 in>)
+    s# 52 50 cluster outer seq start, set no <V set_ctr$49 in>    
+    save ctx:()
+    time      0.37% fanout     96569 input         1 rows
+      clear: (<V s_37_4_t0.S$28 rn>)
+      clear on continue: (<V s_37_4_t0.S$28 rn>)
+    s# 61 27 from DB.DBA.RDF_QUAD by RDF_QUAD    9.7e+04 rows   
+    Key RDF_QUAD  ASC  (<V s_37_4_t0.S$28 rn>)
+     inlined  P =  IRI_ID"...direct/P227" 
+    
+    time        44% fanout   1.02289 input     96569 rows
+    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:        57 Fanout:         1
+    Precode:
+      0: <V var1$30 a> := Call __id2in (<V s_37_4_t0.S$28 rn>)
+      5: BReturn 0
+      clear: (<V s_37_4_t1.S$33 rn>, <V var1$30 a>)
+      clear on continue: (<V s_37_4_t1.S$33 rn>)$75 (32 ) $28 () 
+    s# 71 32 from DB.DBA.RDF_QUAD by RDF_QUAD_POGS         57 rows   
+    Key RDF_QUAD_POGS  ASC  (<V s_37_4_t1.S$33 rn>)
+     P =  IRI_ID"...about"  ,  O = <v cast$75 Set77 an>
+    vector param casts: <V s_37_4_t0.S$28 rn>-> <v cast$75 Set77 an>
+    
+    time        55% fanout         0 input     98779 rows
+      clear: (<V _cvt$39 s>, <V __bft$37 x>, <V __id2in$35 a>, <V var2$41 a>)$33 () 
+    s# 90 85 END Node
+    After test:
+      0: <V __id2in$35 a> := Call __id2in (<V s_37_4_t1.S$33 rn>)
+      5: <V __bft$37 x> := Call __bft (<V __id2in$35 a>,  2 )
+      10: <V _cvt$39 s> := Call _cvt (<tag 193 flag 0>, <V __bft$37 x>)
+      15: if (<V _cvt$39 s>  LIKE  <c %string1%>) then 19 else 20 unkn 20
+      19: BReturn 1
+      20: BReturn 0
+    After code:
+      0: <V var2$41 a> := Call __id2in (<r s_37_4_t1.S$33 via  Set90>)
+      5: BReturn 0
+    time         0% fanout         0 input         0 rows
+    $41 (85 ) $49 (85 32 27 50 ) $30 (85 32 ) 
+    s# 98 43 Select (<r var1$30 via  Set90 Set71 Set77>, <V var2$41 a>)
+      set no: <r set_ctr$49 via  Set90 Set71 Set77 Set61>
+  }
+Warning: You might have a Cartesian product.
+
+
+
+ 444 msec 99% cpu,    128962 rnd     98764 seq   74.3973% same seg   17.7524% same pg 
+Compilation: 2 msec 0 reads         0% read 0 messages         0% clw

@@ -1,0 +1,55 @@
+http://www.wikidata.org/entity/Q5915864			
+http://www.wikidata.org/entity/Q2797232			
+http://www.wikidata.org/entity/Q2862099			
+http://www.wikidata.org/entity/Q2920201			
+http://www.wikidata.org/entity/Q2165953			
+http://www.wikidata.org/entity/Q3418041			
+http://www.wikidata.org/entity/Q5456706			
+http://www.wikidata.org/entity/Q5456750			
+http://www.wikidata.org/entity/Q5456871			
+http://www.wikidata.org/entity/Q5456891			
+http://www.wikidata.org/entity/Q5456910			
+http://www.wikidata.org/entity/Q16630001			
+http://www.wikidata.org/entity/Q29276918			
+http://www.wikidata.org/entity/Q530476			
+http://www.wikidata.org/entity/Q618513			
+http://www.wikidata.org/entity/Q619250			
+http://www.wikidata.org/entity/Q619396			
+http://www.wikidata.org/entity/Q619400			
+http://www.wikidata.org/entity/Q914010			
+http://www.wikidata.org/entity/Q11698201			
+
+  { 
+    time       0.2% fanout         1 input         1 rows
+    Precode:
+      0: __all_eq$27 := Call __all_eq ( IRI_ID"...Q14660" )
+      5: BReturn 0
+    Transitive dt dir 2, input: (__all_eq$27)
+      input shadow: (__all_eq$83)
+      output: (_::trans_subj_37_5$30)
+      { 
+        time        11% fanout     0.875 input         8 rows
+        RDF_QUAD_POGS       3.8 rows(s_37_9_t1.S$37, s_37_9_t1.O$36)
+         P =  IRI_ID"...direct/P279"  ,  O = k___all_eq$89
+        
+        After code:
+        0: _::trans_subj_37_5$30 :=  := artm s_37_9_t1.S$37
+        4: _::trans_obj_37_6$31 :=  := artm s_37_9_t1.O$36
+        8: BReturn 0
+        time     0.091% fanout         0 input         7 rows
+        Subquery Select(_::trans_subj_37_5$30, _::trans_obj_37_6$31)
+      }
+    time        78% fanout     39.75 input         8 rows
+    RDF_QUAD_POGS     1e+02 rows(s_37_3_t0.S$57)
+     P =  IRI_ID"...direct/P31"  ,  O = cast$113 O LIKE <c Tó>
+    
+    After code:
+    0: var1$59 := Call __id2in (s_37_3_t0.S$57)
+    5: BReturn 0
+    time     0.073% fanout         0 input       318 rows
+    Select (var1$59, <DB_NULL>, <DB_NULL>)
+  }
+
+
+ 2 msec 42% cpu,        16 rnd       322 seq   17.6471% same seg   47.0588% same pg 
+Compilation: 3 msec 0 reads         0% read 0 messages         0% clw

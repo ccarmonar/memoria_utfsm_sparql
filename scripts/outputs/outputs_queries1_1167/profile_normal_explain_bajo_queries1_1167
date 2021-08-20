@@ -1,0 +1,43 @@
+POINT(-0.0782 51.5085)	POINT(-0.0061111111111111 51.51)	
+
+  { 
+    time       1.4% fanout         1 input         1 rows
+    time        24% fanout         1 input         1 rows
+    RDF_QUAD         1 rows(s_37_7_t2.O$28)
+     inlined  P =  IRI_ID"...direct/P625"  ,  S =  IRI_ID"...Q499565" 
+    time        25% fanout         1 input         1 rows
+    Precode:
+      0: var1$30 := Call __ro2sq (s_37_7_t2.O$28)
+      5: BReturn 0
+    outer {
+        Subquery 32 
+          { 
+            time        13% fanout         2 input         1 rows
+            RDF_QUAD         2 rows(s_37_6_t0.O$36)
+             inlined  P =  IRI_ID"...direct/P131"  ,  S =  IRI_ID"...Q499565" 
+            time        23% fanout       0.5 input         2 rows
+            RDF_QUAD       1.1 rows(s_37_6_t1.O$39)
+             inlined  P =  IRI_ID"...direct/P625"  ,  S = k_s_37_6_t0.O$115
+            
+            After code:
+            0: var2$33 :=  := artm s_37_6_t1.O$39
+            4: BReturn 0
+            time      0.43% fanout         0 input         1 rows
+            Subquery Select(var2$33)
+          }
+        time        12% fanout         1 input         1 rows
+      } /* end of outer */
+    set_ctr$49
+     out: (set_no$34, var2$33)
+     shadow: ( <none> ,  <none> )
+    
+    After code:
+    0: var2$58 := Call __ro2sq (var2$33)
+    5: BReturn 0
+    time      0.18% fanout         0 input         1 rows
+    Select (var1$30, var2$58)
+  }
+
+
+ 0 msec 12% cpu,         6 rnd         1 seq         0% same seg   14.2857% same pg 
+Compilation: 1 msec 0 reads         0% read 0 messages         0% clw

@@ -1,0 +1,34 @@
+SELECT TOP 10 __id2in ( "s_37_10_t2"."S") AS "var1",
+  __ro2sq ( "s_37_10_t3"."O") AS "var2",
+  NULL AS "var4"
+FROM DB.DBA.RDF_QUAD AS "s_37_10_t1"
+  INNER JOIN DB.DBA.RDF_QUAD AS "s_37_10_t2"
+  ON (1)
+  INNER JOIN DB.DBA.RDF_QUAD AS "s_37_10_t3"
+  ON (
+    "s_37_10_t2"."S" = "s_37_10_t3"."S")
+WHERE
+  "s_37_10_t1"."S" = __i2idn ( __bft( 'http://www.bigdata.com/queryHints#Query' , 1))
+  AND 
+  "s_37_10_t1"."P" = __i2idn ( __bft( 'http://www.bigdata.com/queryHints#optimizer' , 1))
+  AND 
+  "s_37_10_t1"."O" = DB.DBA.RDF_OBJ_OF_SQLVAL ( 'None' )
+  AND 
+  "s_37_10_t2"."P" = __i2idn ( __bft( 'http://www.wikidata.org/prop/direct/P31' , 1))
+  AND 
+  "s_37_10_t2"."O" = __i2idn ( __bft( 'http://www.wikidata.org/entity/Q13442814' , 1))
+  AND 
+  "s_37_10_t3"."P" = __i2idn ( __bft( 'http://www.wikidata.org/prop/direct/P577' , 1))
+  AND 
+  not ( EXISTS ( (
+     SELECT TOP 1 1 AS __ask_retval
+      FROM DB.DBA.RDF_QUAD AS "s_37_6_t0"
+      WHERE
+        "s_37_6_t0"."P" = __i2idn ( __bft( 'http://schema.org/description' , 1))
+        AND 
+        "s_37_6_t0"."S" = "s_37_10_t3"."S"
+        AND 
+       ( 'ar'  =  DB.DBA.RDF_LANGUAGE_OF_OBJ (__ro2sq ( "s_37_6_t0"."O")))
+OPTION (QUIETCAST)
+     )))
+OPTION (QUIETCAST)

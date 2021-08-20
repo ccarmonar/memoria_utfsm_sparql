@@ -1,0 +1,49 @@
+1077814	http://www.wikidata.org/entity/Q18590035	
+597163	http://www.wikidata.org/entity/Q2607418	
+954607	http://www.wikidata.org/entity/Q2607535	
+622693	http://www.wikidata.org/entity/Q2607549	
+870435	http://www.wikidata.org/entity/Q2607605	
+767169	http://www.wikidata.org/entity/Q2607676	
+1138127	http://www.wikidata.org/entity/Q2607701	
+655751	http://www.wikidata.org/entity/Q2607955	
+158603	http://www.wikidata.org/entity/Q2607958	
+623625	http://www.wikidata.org/entity/Q2608006	
+875278	http://www.wikidata.org/entity/Q2608019	
+844227	http://www.wikidata.org/entity/Q2608107	
+882930	http://www.wikidata.org/entity/Q2608323	
+867426	http://www.wikidata.org/entity/Q2608326	
+1078813	http://www.wikidata.org/entity/Q2608389	
+596096	http://www.wikidata.org/entity/Q2608509	
+989863	http://www.wikidata.org/entity/Q2608581	
+597502	http://www.wikidata.org/entity/Q2608641	
+863862	http://www.wikidata.org/entity/Q2608728	
+1013634	http://www.wikidata.org/entity/Q2608734	
+
+  { 
+    time     0.049% fanout         1 input         1 rows
+      clear: (<V set_ctr$41 in>)
+    s# 44 42 cluster outer seq start, set no <V set_ctr$41 in>    
+    save ctx:()
+    time     1e+02% fanout      1000 input         1 rows
+    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:   6.9e+04 Fanout:     1e+03
+      clear: (<V t2.S$28 rn>, <V t2.O$29 an>, <V var4$33 a>, <V var2$31 a>)
+      clear on continue: (<V t2.S$28 rn>, <V t2.O$29 an>, <V var4$33 a>, <V var2$31 a>)
+    s# 53 27 from DB.DBA.RDF_QUAD by RDF_QUAD    6.9e+04 rows   
+    Key RDF_QUAD  ASC  (<V t2.O$29 an>, <V t2.S$28 rn>)
+     inlined  P =  IRI_ID"...direct/P815" 
+    
+    After code:
+      0: <V var2$31 a> := Call __ro2sq (<V t2.O$29 an>)
+      5: <V var4$33 a> := Call __id2in (<V t2.S$28 rn>)
+      10: BReturn 0
+    time     0.015% fanout         0 input      1000 rows
+    $31 () $33 () $41 (27 42 ) 
+    s# 64 35 Select (<V var2$31 a>, <V var4$33 a>)
+      set no: <r set_ctr$41 via  Set53>
+  }
+Warning: You might have a Cartesian product.
+
+
+
+ 7 msec 81% cpu,      1022 rnd       998 seq         0% same seg    73.216% same pg 
+Compilation: 1 msec 0 reads         0% read 0 messages         0% clw

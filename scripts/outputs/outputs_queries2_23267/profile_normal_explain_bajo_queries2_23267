@@ -1,0 +1,55 @@
+Compet	
+Peninsulas of Sweden	
+St. James&#39;s Parish Church (Kostanjevica na Krki)	
+Ana Maria Tănasie	
+Richard Carline	
+Korethraster	
+Neoanchisquilla	
+Diana (surname)	
+Beach volleyball by country	
+Deaths in Indonesia by city	
+Kustaa Vaasan tie (Helsinki)	
+Prisons in Norway	
+Gaetano Gorgoni	
+Landscapes of Catalonia	
+Masoveria de la Rabeia	
+Unterwasungen	
+2007-07-07	
+2005-01-14	
+Church of Saint Wenceslaus (Strupčice)	
+Lynn C. Gardner	
+
+  { 
+    time    0.0027% fanout         1 input         1 rows
+    Subquery 27 
+      { 
+        time    0.0021% fanout         1 input         1 rows
+        fork {
+            time       5.3% fanout    361768 input         1 rows
+            RDF_QUAD_POGS   3.6e+05 rows(s_37_2_t0.O$31)
+             inlined  P =  IRI_ID"...direct/P373" 
+            time        92% fanout         0 input    361768 rows
+            Sort (s_37_2_t0.O$31)
+          }
+        time         3% fanout      1000 input         1 rows
+        group by read node  
+        (s_37_2_t0.O$31)
+        
+        After code:
+        0: __ro2sq$54 := Call __ro2sq (s_37_2_t0.O$31)
+        5: var1$28 :=  := artm __ro2sq$54
+        9: BReturn 0
+        time   0.00053% fanout         0 input      1000 rows
+        Subquery Select(var1$28)
+      }
+    
+    After code:
+    0: var1$63 := Call __ro2sq (var1$28)
+    5: BReturn 0
+    time   0.00035% fanout         0 input      1000 rows
+    Select (var1$63)
+  }
+
+
+ 109 msec 98% cpu,      1001 rnd    361380 seq         0% same seg   5.38922% same pg 
+Compilation: 1 msec 0 reads         0% read 0 messages         0% clw

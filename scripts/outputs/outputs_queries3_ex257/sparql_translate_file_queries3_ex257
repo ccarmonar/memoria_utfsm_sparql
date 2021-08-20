@@ -1,0 +1,17 @@
+SELECT __ro2sq ( "s_14_3"."o") AS "o",
+  "s_14_3"."integerTest" AS "integerTest",
+  "s_14_3"."decimalTest" AS "decimalTest",
+  "s_14_3"."floatTest" AS "floatTest",
+  "s_14_3"."doubleTest" AS "doubleTest"
+FROM (
+   SELECT "s_14_2_t0"."S" AS "s",
+      "s_14_2_t0"."P" AS "p",
+      "s_14_2_t0"."O" AS "o",
+       CAST ( __ro2sq ( "s_14_2_t0"."O") AS INTEGER) AS "integerTest",
+       CAST ( __ro2sq ( "s_14_2_t0"."O") AS DECIMAL) AS "decimalTest",
+       CAST ( __ro2sq ( "s_14_2_t0"."O") AS REAL) AS "floatTest",
+       CAST ( __ro2sq ( "s_14_2_t0"."O") AS DOUBLE PRECISION) AS "doubleTest"
+    FROM DB.DBA.RDF_QUAD AS "s_14_2_t0"
+OPTION (QUIETCAST)
+    ) AS "s_14_3"
+OPTION (QUIETCAST)

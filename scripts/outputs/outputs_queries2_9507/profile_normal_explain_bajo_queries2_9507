@@ -1,0 +1,46 @@
+http://www.wikidata.org/entity/Q11471508	
+http://www.wikidata.org/entity/Q11585997	
+http://www.wikidata.org/entity/Q11652755	
+http://www.wikidata.org/entity/Q11528666	
+http://www.wikidata.org/entity/Q11426763	
+http://www.wikidata.org/entity/Q11564642	
+http://www.wikidata.org/entity/Q11441073	
+http://www.wikidata.org/entity/Q11662250	
+http://www.wikidata.org/entity/Q11503066	
+http://www.wikidata.org/entity/Q11375219	
+http://www.wikidata.org/entity/Q11525466	
+http://www.wikidata.org/entity/Q11406236	
+http://www.wikidata.org/entity/Q11617427	
+http://www.wikidata.org/entity/Q11467068	
+http://www.wikidata.org/entity/Q11663218	
+http://www.wikidata.org/entity/Q11454456	
+http://www.wikidata.org/entity/Q11595504	
+http://www.wikidata.org/entity/Q11402676	
+http://www.wikidata.org/entity/Q11512631	
+http://www.wikidata.org/entity/Q8047865	
+
+  { 
+    time   2.6e-05% fanout         1 input         1 rows
+    time       4.7% fanout 5.5146e+07 input         1 rows
+    RDF_QUAD_POGS   7.3e+07 rows(s_37_6_t2.P$29, s_37_6_t2.S$28)
+    
+    time        95% fanout 1.1932e-05 input 5.5146e+07 rows
+    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:         1 Fanout:   1.2e-05
+    RDF_QUAD_POGS         1 rows(s_37_6_t1.S$33)
+     P =  IRI_ID"...directClaim"  ,  O = cast$75
+    time    0.0008% fanout         1 input       658 rows
+    RDF_QUAD      0.57 rows()
+     inlined  P =  IRI_ID"...propertyType"  ,  S = s_37_6_t1.S$33 ,  O =  IRI_ID"...ExternalId" 
+    time    0.0019% fanout  0.151976 input       658 rows
+    skip node  100  <none> set_ctr$45
+    
+    After code:
+    0: var1$37 := Call __id2in (s_37_6_t2.S$28)
+    5: BReturn 0
+    time   8.2e-06% fanout         0 input       100 rows
+    Select (var1$37)
+  }
+
+
+ 10147 msec 99% cpu, 5.51467e+07 rnd 5.50871e+07 seq      99.9% same seg         0% same pg 
+Compilation: 2 msec 0 reads         0% read 0 messages         0% clw

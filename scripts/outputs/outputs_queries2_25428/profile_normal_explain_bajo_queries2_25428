@@ -1,0 +1,43 @@
+
+  { 
+    time     0.089% fanout         1 input         1 rows
+    time     0.028% fanout         1 input         1 rows
+    time       1.4% fanout       129 input         1 rows
+    RDF_QUAD   1.3e+02 rows(s_37_6_t2.S$31)
+     inlined  P =  IRI_ID"...direct/P2944" 
+    time        48% fanout   1.24806 input       129 rows
+    RDF_QUAD_OP       2.8 rows(s_37_6_t1.P$35, s_37_6_t1.O$34)
+     inlined  O = cast$100
+    time      0.65% fanout         1 input       161 rows
+    END Node
+    After test:
+    0: if (s_37_6_t1.P$35 =  IRI_ID"...direct/P2944" ) then 9 else 4 unkn 9
+    4: if (s_37_6_t1.P$35 =  IRI_ID"...direct/P1027" ) then 9 else 8 unkn 9
+    8: BReturn 1
+    9: BReturn 0
+    time        45% fanout   2.22981 input       161 rows
+    RDF_QUAD_POGS       1.2 rows()
+     P = k_s_37_6_t1.P$129 ,  O = k_s_37_6_t2.S$133
+    time       5.6% fanout         0 input       359 rows
+    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:       1.3 Fanout:         0
+    RDF_QUAD_POGS       1.3 rows()
+     P =  IRI_ID"...direct/P1027"  ,  O = k_s_37_6_t1.O$144
+    time         0% fanout         0 input         0 rows
+    Distinct (s_37_6_t1.P$35)
+    
+    After code:
+    0: p2$28 :=  := artm s_37_6_t1.P$35
+    4: BReturn 0
+    time         0% fanout         0 input         0 rows
+    Subquery Select(p2$28)
+    
+    After code:
+    0: p2$57 := Call __ro2sq (p2$28)
+    5: BReturn 0
+    time         0% fanout         0 input         0 rows
+    Select (p2$57)
+  }
+
+
+ 5 msec 66% cpu,       650 rnd       358 seq   67.8955% same seg   25.3456% same pg 
+Compilation: 1 msec 0 reads         0% read 0 messages         0% clw

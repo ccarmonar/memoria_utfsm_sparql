@@ -1,0 +1,64 @@
+http://www.wikidata.org/entity/P4776	http://wikiba.se/ontology#directClaim	http://www.wikidata.org/prop/direct/P4776	
+http://www.wikidata.org/entity/P1084	http://wikiba.se/ontology#directClaim	http://www.wikidata.org/prop/direct/P1084	
+http://www.wikidata.org/entity/P1193	http://wikiba.se/ontology#directClaim	http://www.wikidata.org/prop/direct/P1193	
+http://www.wikidata.org/entity/P1201	http://wikiba.se/ontology#directClaim	http://www.wikidata.org/prop/direct/P1201	
+http://www.wikidata.org/entity/P1654	http://wikiba.se/ontology#directClaim	http://www.wikidata.org/prop/direct/P1654	
+http://www.wikidata.org/entity/P4104	http://wikiba.se/ontology#directClaim	http://www.wikidata.org/prop/direct/P4104	
+http://www.wikidata.org/entity/P1103	http://wikiba.se/ontology#directClaim	http://www.wikidata.org/prop/direct/P1103	
+http://www.wikidata.org/entity/P1081	http://wikiba.se/ontology#directClaim	http://www.wikidata.org/prop/direct/P1081	
+http://www.wikidata.org/entity/P1161	http://wikiba.se/ontology#directClaim	http://www.wikidata.org/prop/direct/P1161	
+http://www.wikidata.org/entity/P1204	http://wikiba.se/ontology#directClaim	http://www.wikidata.org/prop/direct/P1204	
+
+  { 
+    Precode:
+      0:   { 
+          time       1.9% fanout         1 input         1 rows
+          time       6.2% fanout         1 input         1 rows
+          Precode:
+            0: vector$27 := Call vector ( 1 ,  0 ,  3 ,  IRI_ID"...directClaim" ,  1 ,  1 )
+            5: vector$29 := Call vector (vector$27)
+            10: vector$31 := Call vector ()
+            15: BReturn 0
+          fork {
+              Subquery 33 
+                { 
+                  time        65% fanout       552 input         1 rows
+                  RDF_QUAD   5.5e+02 rows(s_37_5_t1.S$38, s_37_5_t1.O$37)
+                   inlined  P =  IRI_ID"...directClaim" 
+                  time        19% fanout 0.0181159 input       552 rows
+                  skip node  10  <none> set_no$35
+                  
+                  After code:
+                  0: __ro2lo$40 := Call __ro2lo (s_37_5_t1.O$37)
+                  5: vector$42 := Call vector (s_37_5_t1.S$38, __ro2lo$40)
+                  10: ctor-1$34 :=  := artm vector$42
+                  14: BReturn 0
+                  time      0.75% fanout         0 input        10 rows
+                  Subquery Select(ctor-1$34)
+                }
+              
+              After code:
+              0: if (user_aggr_notfirst$57  =  1 ) then 15 else 4 unkn 4
+              4: user_aggr_notfirst$57  :=  := artm  1 
+              8: user_aggr_ret$59 := Call DB.DBA.SPARQL_CONSTRUCT_INIT (user_aggr_env$58 )
+              15: user_aggr_ret$59 := Call DB.DBA.SPARQL_CONSTRUCT_ACC (user_aggr_env$58 , vector$29, ctor-1$34, vector$31,  1 )
+              22: BReturn 0
+            }
+          time       6.1% fanout         1 input         1 rows
+          skip node  1  <none> set_ctr$54
+          
+          After code:
+          0: callret-0$60 := Call DB.DBA.SPARQL_CONSTRUCT_FIN (user_aggr_env$58 )
+          7: BReturn 0
+          time      0.45% fanout         0 input         1 rows
+          Subquery Select(callret-0$60)
+        }
+      
+      8:  <none>  := Call DB.DBA.RDF_DICT_OF_TRIPLES_TO_THREE_COLS (scalar$140 )
+      15: BReturn 0
+    END Node
+  }
+
+
+ 1 msec 30% cpu,         1 rnd       551 seq         0% same seg         0% same pg 
+Compilation: 1 msec 0 reads         0% read 0 messages         0% clw

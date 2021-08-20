@@ -1,0 +1,45 @@
+
+  { 
+    time         7% fanout         1 input         1 rows
+    time         2% fanout         1 input         1 rows
+    time        91% fanout         0 input         1 rows
+    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:   1.4e-07 Fanout:         0
+    RDF_QUAD_POGS   1.4e-07 rows(s_37_6_t1.S$35, s_37_6_t1.O$34)
+     inlined  P =  IRI_ID"...P854" 
+    time         0% fanout         0 input         0 rows
+    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:       2.8 Fanout:         0
+    RDF_QUAD_OP       2.8 rows(s_37_6_t0.P$38)
+     inlined  O = cast$112
+    time         0% fanout         0 input         0 rows
+    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:       1.2 Fanout:         0
+    RDF_QUAD_POGS       1.2 rows(s_37_6_t0.S$42)
+     P = s_37_6_t0.P$38 ,  O = k_s_37_6_t1.S$126
+    time         0% fanout         0 input         0 rows
+    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:   1.4e-07 Fanout:         0
+    RDF_QUAD   1.4e-07 rows(s_37_6_t2.O$46)
+     inlined  P =  IRI_ID"...value/P1082"  ,  S = s_37_6_t0.S$42
+    time         0% fanout         0 input         0 rows
+    Distinct (s_37_6_t0.S$42, s_37_6_t0.P$38, s_37_6_t1.O$34, s_37_6_t2.O$46)
+    
+    After code:
+    0: var1$28 :=  := artm s_37_6_t0.S$42
+    4: var2$29 :=  := artm s_37_6_t0.P$38
+    8: var3$30 :=  := artm s_37_6_t1.O$34
+    12: var4$31 :=  := artm s_37_6_t2.O$46
+    16: BReturn 0
+    time         0% fanout         0 input         0 rows
+    Subquery Select(var1$28, var2$29, var3$30, var4$31)
+    
+    After code:
+    0: var1$62 := Call __ro2sq (var1$28)
+    5: var2$64 := Call __ro2sq (var2$29)
+    10: var3$66 := Call __ro2sq (var3$30)
+    15: var4$68 := Call __ro2sq (var4$31)
+    20: BReturn 0
+    time         0% fanout         0 input         0 rows
+    Select (var1$62, var2$64, var3$66, var4$68)
+  }
+
+
+ 0 msec 2% cpu,         1 rnd         0 seq         0% same seg         0% same pg 
+Compilation: 2 msec 0 reads         0% read 0 messages         0% clw

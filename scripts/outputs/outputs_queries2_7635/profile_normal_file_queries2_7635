@@ -1,0 +1,41 @@
+
+  { 
+    time       1.5% fanout         1 input         1 rows
+      clear: (<V set_ctr$44 in>)
+    s# 47 45 cluster outer seq start, set no <V set_ctr$44 in>    
+    save ctx:()
+    time        99% fanout         0 input         1 rows
+    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:         2 Fanout:         0
+    Precode:
+      0: <V wiki/Austria$27 r> := Call __i2idn (<tag 182 flag 1 c https://tw.wikipedia.org/wiki/Austria>)
+      5: BReturn 0
+      clear: (<V s_37_2_t0.P$30 rn>, <V wiki/Austria$27 r>)
+      clear on continue: (<V s_37_2_t0.P$30 rn>)$60 (29 ) 
+    s# 56 29 from DB.DBA.RDF_QUAD by RDF_QUAD_OP          2 rows   
+    Key RDF_QUAD_OP  ASC  (<V s_37_2_t0.P$30 rn>)
+     inlined  O = <v k_wiki/Austria$60 Set62 an>
+    vector param casts: <V wiki/Austria$27 r>-> <v k_wiki/Austria$60 Set62 an>
+    
+    time         0% fanout         0 input         0 rows
+    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:      0.21 Fanout:         0
+      clear: (<V var1$36 a>)
+      clear on continue: (<V var1$36 a>)$74 (33 ) $78 (33 ) $27 (29 ) $30 () 
+    s# 70 33 from DB.DBA.RDF_QUAD by RDF_QUAD_POGS       0.21 rows   
+    Key RDF_QUAD_POGS  ASC  ()
+     inlined  P = <v k_s_37_2_t0.P$74 Set76 rn> ,  O = <V k_wiki/Austria$78 an> ,  S =  IRI_ID"...Q40" 
+    vector param casts: <V s_37_2_t0.P$30 rn>-> <v k_s_37_2_t0.P$74 Set76 rn>, <r wiki/Austria$27 via  Set56 Set62>-> <V k_wiki/Austria$78 an>
+    
+    After code:
+      0: <V var1$36 a> := Call __id2in (<r s_37_2_t0.P$30 via  Set70 Set76>)
+      5: BReturn 0
+    time         0% fanout         0 input         0 rows
+    $36 () $44 (33 29 45 ) 
+    s# 85 38 Select (<V var1$36 a>)
+      set no: <r set_ctr$44 via  Set70 Set76 Set56 Set62>
+  }
+Warning: You might have a Cartesian product.
+
+
+
+ 1 msec 0% cpu,         7 rnd         0 seq         0% same seg         0% same pg 
+Compilation: 25 msec 1 reads   94.6306% read 0 messages         0% clw

@@ -1,0 +1,92 @@
+http://www.wikidata.org/entity/Q48981173	
+http://www.wikidata.org/entity/Q16427857	
+http://www.wikidata.org/entity/Q16427857	
+http://www.wikidata.org/entity/Q26001277	
+http://www.wikidata.org/entity/Q7446204	
+http://www.wikidata.org/entity/Q30669871	
+http://www.wikidata.org/entity/Q40896108	
+http://www.wikidata.org/entity/Q27181527	
+http://www.wikidata.org/entity/Q27908825	
+http://www.wikidata.org/entity/Q38218862	
+http://www.wikidata.org/entity/Q48965239	
+http://www.wikidata.org/entity/Q41334171	
+http://www.wikidata.org/entity/Q26000614	
+http://www.wikidata.org/entity/Q26000623	
+http://www.wikidata.org/entity/Q26000623	
+http://www.wikidata.org/entity/Q26000627	
+http://www.wikidata.org/entity/Q26157466	
+http://www.wikidata.org/entity/Q27166181	
+http://www.wikidata.org/entity/Q34521152	
+http://www.wikidata.org/entity/Q27882156	
+
+  { 
+    time   0.00023% fanout         1 input         1 rows
+      clear: (<V set_ctr$42 in>)
+    s# 64 43 cluster outer seq start, set no <V set_ctr$42 in>    
+    save ctx:()
+    time     0.012% fanout      6000 input         1 rows
+      clear: (<V t1.S$28 rn>)
+      clear on continue: (<V t1.S$28 rn>)
+    s# 73 27 from DB.DBA.RDF_QUAD by RDF_QUAD_POGS      3e+04 rows   
+    Key RDF_QUAD_POGS  ASC  (<V t1.S$28 rn>)
+     P =  IRI_ID"...direct/P31"  ,  O =  IRI_ID"...Q101352" 
+    
+    time      0.15% fanout   1.04117 input      6000 rows
+      clear: (<V t2.S$31 rn>)
+      clear on continue: (<V t2.S$31 rn>)$28 () 
+    s# 83 30 from DB.DBA.RDF_QUAD by RDF_QUAD        1.1 rows   
+    Key RDF_QUAD  ASC  (<V t2.S$31 rn>)
+     inlined  P =  IRI_ID"...direct/P31"  ,  S = <V t1.S$28 rn>
+    
+    time      0.85% fanout         1 input      6247 rows
+    Precode:
+      0: <V var1$33 a> := Call __id2in (<V t2.S$31 rn>)
+      5: BReturn 0
+      clear: (<V set_ctr$45 i>, <V var1$33 a>)
+    s# 93 49 cluster outer seq start, set no <V set_ctr$45 i>    
+    save ctx:()
+    time       1.9% fanout   132.788 input      6247 rows
+      clear: (<V t4.O$36 a>)
+      clear on continue: (<V t4.O$36 a>)$31 (49 ) $106 (35 ) 
+    s# 102 35 from DB.DBA.RDF_QUAD by RDF_QUAD         14 rows   
+    Key RDF_QUAD  ASC  (<V t4.O$36 a>)
+     inlined  P =  IRI_ID"...description"  ,  S = <v k_t2.S$106 Set108 rn>
+    vector param casts: <r t2.S$31 via  Set93>-> <v k_t2.S$106 Set108 rn>
+    
+    time        97% fanout 0.00750547 input    829528 rows
+      clear: (<V DB.DBA.RDF_LANGUAGE_OF_OBJ$40 a>, <V __ro2sq$38 a>)
+    s# 121 116 END Node
+    After test:
+      0: <V __ro2sq$38 a> := Call __ro2sq (<V t4.O$36 a>)
+      5: <V DB.DBA.RDF_LANGUAGE_OF_OBJ$40 a> := Call DB.DBA.RDF_LANGUAGE_OF_OBJ (<V __ro2sq$38 a>)
+      12: if (<c ar> = <V DB.DBA.RDF_LANGUAGE_OF_OBJ$40 a>) then 16 else 17 unkn 17
+      16: BReturn 1
+      17: BReturn 0
+    time      0.04% fanout   1.00337 input      6226 rows
+      clear: (<V t4.O$133 a>)$36 (116 ) $38 (116 ) $40 (116 ) $45 (116 35 49 ) 
+    s# 129 44 end of outer seq <r set_ctr$45 via  Set121 Set102 Set108>
+     out: (<V __ro2sq$38 a>, <r t4.O$36 via  Set121>, <V DB.DBA.RDF_LANGUAGE_OF_OBJ$40 a>)
+     shadow: ( <none> , <V t4.O$133 a>,  <none> )
+    time     0.061% fanout 0.00336161 input      6247 rows
+    $133 (44 ) 
+    s# 144 139 END Node
+    After test:
+      0: if (<V t4.O$133 a>  IS NULL   0 ) then 4 else 5 unkn 5
+      4: BReturn 1
+      5: BReturn 0
+    time    0.0002% fanout         1 input        21 rows
+    
+    s# 152 62 skip node  102  <none> <r set_ctr$42 via  Set144 Set129 Set83 Set73>
+    time   5.9e-05% fanout         0 input        21 rows
+    $33 (62 139 44 116 35 49 ) $42 (62 139 44 116 35 49 30 27 43 ) 
+    s# 160 54 Select (<r var1$33 via  Set152 Set144 Set129>)
+      set no: <r set_ctr$42 via  Set152 Set144 Set129 Set83 Set73>
+  }
+Warning: You might have a Cartesian product.
+
+Warning: You might have a Cartesian product.
+
+
+
+ 1543 msec 99% cpu, 1.67083e+06 rnd    828692 seq  0.594375% same seg   23.4628% same pg 
+Compilation: 2 msec 0 reads         0% read 0 messages         0% clw

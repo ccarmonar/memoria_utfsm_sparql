@@ -1,0 +1,56 @@
+http://www.wikidata.org/entity/Q6384349	
+http://www.wikidata.org/entity/Q48018	
+http://www.wikidata.org/entity/Q48126	
+http://www.wikidata.org/entity/Q48131	
+http://www.wikidata.org/entity/Q5935292	
+http://www.wikidata.org/entity/Q6006041	
+http://www.wikidata.org/entity/Q6008888	
+http://www.wikidata.org/entity/Q6011839	
+http://www.wikidata.org/entity/Q6018258	
+http://www.wikidata.org/entity/Q6018303	
+http://www.wikidata.org/entity/Q6018797	
+http://www.wikidata.org/entity/Q6019367	
+http://www.wikidata.org/entity/Q6019912	
+http://www.wikidata.org/entity/Q6021465	
+http://www.wikidata.org/entity/Q6024006	
+http://www.wikidata.org/entity/Q6026321	
+http://www.wikidata.org/entity/Q6026526	
+http://www.wikidata.org/entity/Q6026998	
+http://www.wikidata.org/entity/Q6028505	
+http://www.wikidata.org/entity/Q6030472	
+
+  { 
+    time      0.44% fanout         1 input         1 rows
+    Subquery 27 
+      { 
+        time        11% fanout       635 input         1 rows
+        RDF_QUAD_POGS   6.4e+02 rows(s_37_6_t0.S$31)
+         P =  IRI_ID"...direct/P31"  ,  O =  IRI_ID"...Q577" 
+        time        43% fanout   1.01417 input       635 rows
+        RDF_QUAD       1.7 rows()
+         inlined  P =  IRI_ID"...direct/P361"  ,  S = s_37_6_t0.S$31
+        time        14% fanout    1.5528 input       644 rows
+        RDF_QUAD_POGS         2 rows()
+         P =  IRI_ID"...direct/P361"  ,  O =  IRI_ID"...Q6939" 
+        time        30% fanout     0.258 input      1000 rows
+        Distinct (s_37_6_t0.S$31)
+        time       1.4% fanout         1 input       258 rows
+        skip node  300  <none> set_no$29
+        
+        After code:
+        0: var1$28 :=  := artm s_37_6_t0.S$31
+        4: BReturn 0
+        time      0.13% fanout         0 input       258 rows
+        Subquery Select(var1$28)
+      }
+    
+    After code:
+    0: var1$53 := Call __ro2sq (var1$28)
+    5: BReturn 0
+    time      0.15% fanout         0 input       258 rows
+    Select (var1$53)
+  }
+
+
+ 2 msec 47% cpu,      1135 rnd      1297 seq   98.6796% same seg  0.880282% same pg 
+Compilation: 2 msec 0 reads         0% read 0 messages         0% clw

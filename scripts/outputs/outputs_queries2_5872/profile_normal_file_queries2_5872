@@ -1,0 +1,53 @@
+
+  { 
+    time       6.7% fanout         1 input         1 rows
+      clear: (<V set_ctr$55 in>)
+    s# 58 56 cluster outer seq start, set no <V set_ctr$55 in>    
+    save ctx:()
+    time        93% fanout         0 input         1 rows
+    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:         2 Fanout:         0
+    Precode:
+      0: if ( 0  =  0 ) then 19 else 4 unkn 19
+      4: <V __rdf_strsqlval$29 s> := Call __rdf_strsqlval (<DB_NULL>,  0 )
+      9: <V rdf_concat_impl$31 s> := Call rdf_concat_impl (<c string1>, <V __rdf_strsqlval$29 s>)
+      14: <V var4$27 s> :=  := artm <V rdf_concat_impl$31 s>
+      18: Jump 49 (level=0)
+      19: if ( 0  =  0 ) then 28 else 23 unkn 28
+      23: <V callretSearchedCASE$33 sn> :=  := artm <c IRI>
+      27: Jump 45 (level=0)
+      28: if ( 0  =  0 ) then 37 else 32 unkn 37
+      32: <V callretSearchedCASE$35 sn> :=  := artm <c string2>
+      36: Jump 41 (level=0)
+      37: <V callretSearchedCASE$35 sn> :=  := artm <c string3>
+      41: <V callretSearchedCASE$33 sn> :=  := artm <V callretSearchedCASE$35 sn>
+      45: <V var4$27 s> :=  := artm <V callretSearchedCASE$33 sn>
+      49: BReturn 0
+      clear: (<V s_37_2_t0.P$38 rn>, <V callretSearchedCASE$35 sn>, <V callretSearchedCASE$33 sn>, <V var4$27 s>, <V rdf_concat_impl$31 s>, <V __rdf_strsqlval$29 s>)
+      clear on continue: (<V s_37_2_t0.P$38 rn>)$31 (37 ) $33 (37 ) $35 (37 ) $29 (37 ) 
+    s# 70 37 from DB.DBA.RDF_QUAD by RDF_QUAD_SP          2 rows   
+    Key RDF_QUAD_SP  ASC  (<V s_37_2_t0.P$38 rn>)
+     inlined  S =  IRI_ID"...Q12418" 
+    
+    time         0% fanout         0 input         0 rows
+    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:       1.2 Fanout:         0
+      clear: (<V s_37_2_t0.O$42 an>, <V var2$47 a>, <V var1$45 a>)
+      clear on continue: (<V s_37_2_t0.O$42 an>, <V var2$47 a>, <V var1$45 a>)$38 () 
+    s# 80 41 from DB.DBA.RDF_QUAD by RDF_QUAD        1.2 rows   
+    Key RDF_QUAD  ASC  (<V s_37_2_t0.O$42 an>)
+     inlined  P = <V s_37_2_t0.P$38 rn> ,  S =  IRI_ID"...Q12418" 
+    
+    After code:
+      0: <V var1$45 a> := Call __id2in (<r s_37_2_t0.P$38 via  Set80>)
+      5: <V var2$47 a> := Call __ro2sq (<V s_37_2_t0.O$42 an>)
+      10: BReturn 0
+    time         0% fanout         0 input         0 rows
+    $45 () $47 () $55 (41 37 56 ) $27 (41 37 ) 
+    s# 90 49 Select (<V var1$45 a>, <V var2$47 a>, <r var4$27 via  Set80 Set70>)
+      set no: <r set_ctr$55 via  Set80 Set70>
+  }
+Warning: You might have a Cartesian product.
+
+
+
+ 0 msec 3% cpu,         1 rnd         0 seq         0% same seg         0% same pg 
+Compilation: 1 msec 0 reads         0% read 0 messages         0% clw

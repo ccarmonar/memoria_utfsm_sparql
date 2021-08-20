@@ -1,0 +1,92 @@
+ SELECT  __ro2sq ("s_37_26_rbc"."var1Label") AS "var1Label", __ro2sq ("s_37_26_rbc"."var2") AS "var2", __ro2sq ("s_37_26_rbc"."var3") AS "var3", __ro2sq ("s_37_26_rbc"."var4") AS "var4", __ro2sq ("s_37_26_rbc"."var5") AS "var5", __ro2sq ("s_37_26_rbc"."var6") AS "var6", __ro2sq ("s_37_26_rbc"."var8") AS "var8" FROM (SELECT TOP 50 __ro2sq ( "s_37_27"."var1Label") AS "var1Label",
+    __ro2sq ( "s_37_27"."var2") AS "var2",
+    __ro2sq ( "s_37_27"."var3") AS "var3",
+    __ro2sq ( "s_37_27"."var4") AS "var4",
+    __ro2sq ( "s_37_19"."var5") AS "var5",
+    __ro2sq ( "s_37_26_t13"."O") AS "var6",
+     DB.DBA.GROUP_CONCAT (
+       __ro2sq ( "s_37_26_t15"."O")) AS "var8"
+  FROM (
+      SELECT "s_37_27_t8"."S" AS "var9",
+        "s_37_27_t9"."O" AS "var1Label",
+        "s_37_27_t10"."O" AS "var3",
+        "s_37_27_t11"."S" AS "var10",
+        "s_37_27_t11"."O" AS "var2",
+        "s_37_27_t12"."O" AS "var4"
+      FROM DB.DBA.RDF_QUAD AS "s_37_27_t8"
+        INNER JOIN DB.DBA.RDF_QUAD AS "s_37_27_t9"
+        ON (
+          "s_37_27_t8"."S" = "s_37_27_t9"."S")
+        INNER JOIN DB.DBA.RDF_QUAD AS "s_37_27_t10"
+        ON (
+          "s_37_27_t8"."S" = "s_37_27_t10"."S"
+          AND 
+          "s_37_27_t9"."S" = "s_37_27_t10"."S")
+        INNER JOIN DB.DBA.RDF_QUAD AS "s_37_9_t0"
+        ON (
+          "s_37_27_t8"."S" = "s_37_9_t0"."S"
+          AND 
+          "s_37_27_t9"."S" = "s_37_9_t0"."S"
+          AND 
+          "s_37_27_t10"."S" = "s_37_9_t0"."S")
+        INNER JOIN DB.DBA.RDF_QUAD AS "s_37_27_t11"
+        ON (
+          "s_37_27_t11"."S" = "s_37_9_t0"."O")
+        INNER JOIN DB.DBA.RDF_QUAD AS "s_37_27_t12"
+        ON (
+          "s_37_27_t11"."S" = "s_37_27_t12"."S"
+          AND 
+          "s_37_27_t12"."S" = "s_37_9_t0"."O")
+      WHERE
+        "s_37_27_t8"."P" = __i2idn ( __bft( 'http://www.wikidata.org/prop/direct/P31' , 1))
+        AND 
+        "s_37_27_t8"."O" = __i2idn ( __bft( 'http://www.wikidata.org/entity/Q6256' , 1))
+        AND 
+        "s_37_27_t9"."P" = __i2idn ( __bft( 'http://www.w3.org/2000/01/rdf-schema#label' , 1))
+        AND 
+        "s_37_27_t10"."P" = __i2idn ( __bft( 'http://www.wikidata.org/prop/direct/P297' , 1))
+        AND 
+        "s_37_27_t11"."P" = __i2idn ( __bft( 'http://www.w3.org/2000/01/rdf-schema#label' , 1))
+        AND 
+        "s_37_27_t12"."P" = __i2idn ( __bft( 'http://www.wikidata.org/prop/direct/P18' , 1))
+        AND 
+       ( 'fr'  =  DB.DBA.RDF_LANGUAGE_OF_OBJ (__ro2sq ( "s_37_27_t9"."O")))
+        AND 
+       ( 'fr'  =  DB.DBA.RDF_LANGUAGE_OF_OBJ (__ro2sq ( "s_37_27_t11"."O")))
+        AND 
+        ( "s_37_9_t0"."P" in ( __i2idn ( __bft ( __bft( 'http://www.wikidata.org/prop/direct/P35' , 1), 1)),  __i2idn ( __bft ( __bft( 'http://www.wikidata.org/prop/direct/P6' , 1), 1))))) AS "s_37_27"
+    LEFT OUTER JOIN (
+      SELECT "s_37_19_t1"."S" AS "var9",
+        "s_37_19_t2"."O" AS "var5"
+      FROM DB.DBA.RDF_QUAD AS "s_37_19_t1"
+        INNER JOIN DB.DBA.RDF_QUAD AS "s_37_19_t2"
+        ON (
+          "s_37_19_t1"."O" = "s_37_19_t2"."S")
+      WHERE
+        "s_37_19_t1"."P" = __i2idn ( __bft( 'http://www.wikidata.org/prop/direct/P36' , 1))
+        AND 
+        "s_37_19_t2"."P" = __i2idn ( __bft( 'http://www.wikidata.org/prop/direct/P625' , 1))) AS "s_37_19"
+    ON (
+      "s_37_27"."var9" = "s_37_19"."var9")
+    INNER JOIN DB.DBA.RDF_QUAD AS "s_37_26_t13"
+    ON (
+      "s_37_26_t13"."S" = "s_37_27"."var9")
+    INNER JOIN DB.DBA.RDF_QUAD AS "s_37_26_t14"
+    ON (
+      "s_37_26_t14"."S" = "s_37_27"."var10")
+    INNER JOIN DB.DBA.RDF_QUAD AS "s_37_26_t15"
+    ON (
+      "s_37_26_t14"."O" = "s_37_26_t15"."S")
+  WHERE
+    "s_37_26_t13"."P" = __i2idn ( __bft( 'http://www.wikidata.org/prop/direct/P1082' , 1))
+    AND 
+    "s_37_26_t14"."P" = __i2idn ( __bft( 'http://www.wikidata.org/prop/direct/P39' , 1))
+    AND 
+    "s_37_26_t15"."P" = __i2idn ( __bft( 'http://www.w3.org/2000/01/rdf-schema#label' , 1))
+    AND 
+   ( "s_37_26_t13"."O" >  10000000)
+    AND 
+   ( 'fr'  =  DB.DBA.RDF_LANGUAGE_OF_OBJ (__ro2sq ( "s_37_26_t15"."O")))
+  GROUP BY "s_37_27"."var1Label", "s_37_27"."var2", "s_37_27"."var3", "s_37_27"."var4", "s_37_19"."var5", "s_37_26_t13"."O"
+  ORDER BY __ro2sq ( "s_37_26_t13"."O") DESC
+OPTION (QUIETCAST)) AS "s_37_26_rbc"

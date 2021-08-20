@@ -1,0 +1,14 @@
+SELECT __ro2sq ( "s_37_3"."var1") AS "var1"
+FROM (
+   SELECT "s_37_2_t0"."O" AS "var1",
+       COUNT (
+         "s_37_2_t0"."S") AS "var3"
+    FROM DB.DBA.RDF_QUAD AS "s_37_2_t0"
+    WHERE
+      "s_37_2_t0"."P" = __i2idn ( __bft( 'http://www.wikidata.org/prop/direct/P4009' , 1))
+    GROUP BY "s_37_2_t0"."O"
+OPTION (QUIETCAST)
+    ) AS "s_37_3"
+WHERE
+ ( "s_37_3"."var3" >  1)
+OPTION (QUIETCAST)

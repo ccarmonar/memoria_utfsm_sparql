@@ -1,0 +1,57 @@
+http://www.wikidata.org/entity/Q16360397		LV0100400	
+http://www.wikidata.org/entity/Q20578441		LV0503300	
+http://www.wikidata.org/entity/Q21481081		LV0515800	
+http://www.wikidata.org/entity/Q21481100		LV0501300	
+http://www.wikidata.org/entity/Q21481106		LV0531100	
+http://www.wikidata.org/entity/Q23826380		LV0514500	
+http://www.wikidata.org/entity/Q23826399		LV0303600	
+http://www.wikidata.org/entity/Q28055894		LV0304400	
+http://www.wikidata.org/entity/Q28055896		LV0301300	
+http://www.wikidata.org/entity/Q28363212		LV0301900	
+http://www.wikidata.org/entity/Q28363218		LV0304900	
+http://www.wikidata.org/entity/Q15218897		LV0526500	
+http://www.wikidata.org/entity/Q29418681		LV0517400	
+http://www.wikidata.org/entity/Q29418705		LV0506300	
+http://www.wikidata.org/entity/Q29419147		LV0502600	
+http://www.wikidata.org/entity/Q29419194		LV0535600	
+http://www.wikidata.org/entity/Q29420111		LV0528000	
+http://www.wikidata.org/entity/Q29420238		LV0529700	
+http://www.wikidata.org/entity/Q29420316		LV0529600	
+http://www.wikidata.org/entity/Q29420953		LV0531900	
+
+  { 
+    time    0.0037% fanout         1 input         1 rows
+      clear: (<V set_ctr$43 in>)
+    s# 46 44 cluster outer seq start, set no <V set_ctr$43 in>    
+    save ctx:()
+    time     0.054% fanout        83 input         1 rows
+      clear: (<V s_37_4_t0.O$28 an>, <V s_37_4_t0.S$29 rn>)
+      clear on continue: (<V s_37_4_t0.O$28 an>, <V s_37_4_t0.S$29 rn>)
+    s# 55 27 from DB.DBA.RDF_QUAD by RDF_QUAD         83 rows   
+    Key RDF_QUAD  ASC  (<V s_37_4_t0.S$29 rn>, <V s_37_4_t0.O$28 an>)
+     inlined  P =  IRI_ID"...direct/P4029" 
+    
+    time     1e+02% fanout         1 input        83 rows
+    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:    0.0014 Fanout:         1
+      clear: (<V var1$35 a>, <V var2$33 a>)
+      clear on continue: (<V var1$35 a>, <V var2$33 a>)$28 () $29 () 
+    s# 66 31 from DB.DBA.RDF_QUAD by RDF_QUAD     0.0014 rows   
+    Key RDF_QUAD  ASC  ()
+     inlined  P =  IRI_ID"...direct/P17"  ,  S = <V s_37_4_t0.S$29 rn> ,  O =  IRI_ID"...Q211" 
+    
+    After code:
+      0: <V var2$33 a> := Call __ro2sq (<r s_37_4_t0.O$28 via  Set66>)
+      5: <V var1$35 a> := Call __id2in (<r s_37_4_t0.S$29 via  Set66>)
+      10: BReturn 0
+    time   0.00076% fanout         0 input        83 rows
+    $33 () $35 () $43 (31 27 44 ) 
+    s# 75 37 Select (<V var1$35 a>, <DB_NULL>, <V var2$33 a>)
+      set no: <r set_ctr$43 via  Set66 Set55>
+  }
+Warning: You might have a Cartesian product.
+
+
+
+ 58 msec 14% cpu,       250 rnd        82 seq     27.49% same seg   52.1912% same pg 
+3 disk reads, 0 read ahead,   13.8379% wait
+Compilation: 348 msec 4 reads   21.5973% read 0 messages         0% clw

@@ -1,0 +1,52 @@
+http://www.wikidata.org/entity/Q428635	
+http://www.wikidata.org/entity/Q428640	
+http://www.wikidata.org/entity/Q1099	
+http://www.wikidata.org/entity/Q1099	
+http://www.wikidata.org/entity/Q1146	
+http://www.wikidata.org/entity/Q1146	
+http://www.wikidata.org/entity/Q1232	
+http://www.wikidata.org/entity/Q1232	
+http://www.wikidata.org/entity/Q1258	
+http://www.wikidata.org/entity/Q1258	
+http://www.wikidata.org/entity/Q1301	
+http://www.wikidata.org/entity/Q1301	
+http://www.wikidata.org/entity/Q1832	
+http://www.wikidata.org/entity/Q1832	
+http://www.wikidata.org/entity/Q556	
+http://www.wikidata.org/entity/Q556	
+http://www.wikidata.org/entity/Q688	
+http://www.wikidata.org/entity/Q688	
+http://www.wikidata.org/entity/Q716	
+http://www.wikidata.org/entity/Q716	
+
+  { 
+    time       1.1% fanout         1 input         1 rows
+    time        28% fanout        27 input         1 rows
+    RDF_QUAD_POGS        27 rows(s_37_6_t1.S$28)
+     P =  IRI_ID"...direct/P31"  ,  O =  IRI_ID"...Q11344" 
+    time        58% fanout         1 input        27 rows
+    END Node
+    After test:
+    0: if (  { 
+        time      0.39% fanout         1 input        27 rows
+        time        13% fanout         0 input        27 rows
+        Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:   1.4e-07 Fanout:         0
+        RDF_QUAD   1.4e-07 rows()
+         inlined  P =  IRI_ID"...P155"  ,  S = k_s_37_6_t1.S$96
+        time         0% fanout         0 input         0 rows
+        Subquery Select( <none> )
+      }
+    ) then 5 else 4 unkn 5
+    4: BReturn 1
+    5: BReturn 0
+    
+    After code:
+    0: var1$44 := Call __id2in (s_37_6_t1.S$28)
+    5: BReturn 0
+    time      0.36% fanout         0 input        27 rows
+    Select (var1$44)
+  }
+
+
+ 1 msec 17% cpu,        28 rnd        26 seq   89.6552% same seg         0% same pg 
+Compilation: 1 msec 0 reads         0% read 0 messages         0% clw

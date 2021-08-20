@@ -1,0 +1,70 @@
+SELECT __id2in ( "s_37_21"."var1") AS "var1",
+  ( "s_37_21"."var2" /  "s_37_43"."var3") AS "var4"
+FROM (
+   SELECT "s_37_20_t4"."P" AS "var1",
+       COUNT ( DISTINCT
+         "s_37_20_t4"."S") AS "var2"
+    FROM DB.DBA.RDF_QUAD AS "s_37_3_t0"
+      INNER JOIN DB.DBA.RDF_QUAD AS "s_37_7_t1"
+      ON (
+        "s_37_7_t1"."S" = "s_37_3_t0"."O")
+      INNER JOIN DB.DBA.RDF_QUAD AS "s_37_12_t2"
+      ON (
+        "s_37_12_t2"."S" = "s_37_3_t0"."S")
+      INNER JOIN DB.DBA.RDF_QUAD AS "s_37_16_t3"
+      ON (
+        "s_37_16_t3"."S" = "s_37_12_t2"."O")
+      INNER JOIN DB.DBA.RDF_QUAD AS "s_37_20_t4"
+      ON (
+        "s_37_20_t4"."S" = "s_37_12_t2"."S"
+        AND 
+        "s_37_20_t4"."S" = "s_37_3_t0"."S")
+    WHERE
+      "s_37_3_t0"."P" = __i2idn ( __bft( 'http://www.wikidata.org/prop/P50' , 1))
+      AND 
+      "s_37_7_t1"."P" = __i2idn ( __bft( 'http://www.wikidata.org/prop/statement/P50' , 1))
+      AND 
+      "s_37_7_t1"."O" = __i2idn ( __bft( 'http://www.wikidata.org/entity/Q9358' , 1))
+      AND 
+      "s_37_12_t2"."P" = __i2idn ( __bft( 'http://www.wikidata.org/prop/P31' , 1))
+      AND 
+      "s_37_16_t3"."P" = __i2idn ( __bft( 'http://www.wikidata.org/prop/statement/P31' , 1))
+      AND 
+      "s_37_16_t3"."O" = __i2idn ( __bft( 'http://www.wikidata.org/entity/Q571' , 1))
+    GROUP BY "s_37_20_t4"."P"
+OPTION (QUIETCAST)
+    ) AS "s_37_21"
+  INNER JOIN (
+   SELECT  COUNT ( DISTINCT
+         "s_37_42_t9"."S") AS "var3"
+    FROM DB.DBA.RDF_QUAD AS "s_37_25_t5"
+      INNER JOIN DB.DBA.RDF_QUAD AS "s_37_29_t6"
+      ON (
+        "s_37_29_t6"."S" = "s_37_25_t5"."O")
+      INNER JOIN DB.DBA.RDF_QUAD AS "s_37_34_t7"
+      ON (
+        "s_37_34_t7"."S" = "s_37_25_t5"."S")
+      INNER JOIN DB.DBA.RDF_QUAD AS "s_37_38_t8"
+      ON (
+        "s_37_38_t8"."S" = "s_37_34_t7"."O")
+      INNER JOIN DB.DBA.RDF_QUAD AS "s_37_42_t9"
+      ON (
+        "s_37_42_t9"."S" = "s_37_34_t7"."S"
+        AND 
+        "s_37_42_t9"."S" = "s_37_25_t5"."S")
+    WHERE
+      "s_37_25_t5"."P" = __i2idn ( __bft( 'http://www.wikidata.org/prop/P50' , 1))
+      AND 
+      "s_37_29_t6"."P" = __i2idn ( __bft( 'http://www.wikidata.org/prop/statement/P50' , 1))
+      AND 
+      "s_37_29_t6"."O" = __i2idn ( __bft( 'http://www.wikidata.org/entity/Q9358' , 1))
+      AND 
+      "s_37_34_t7"."P" = __i2idn ( __bft( 'http://www.wikidata.org/prop/P31' , 1))
+      AND 
+      "s_37_38_t8"."P" = __i2idn ( __bft( 'http://www.wikidata.org/prop/statement/P31' , 1))
+      AND 
+      "s_37_38_t8"."O" = __i2idn ( __bft( 'http://www.wikidata.org/entity/Q571' , 1))
+OPTION (QUIETCAST)
+    ) AS "s_37_43"
+  ON (1)
+OPTION (QUIETCAST)

@@ -1,0 +1,15 @@
+SELECT TOP 100 __id2in ( "s_37_6_t2"."S") AS "var1"
+FROM DB.DBA.RDF_QUAD AS "s_37_6_t0"
+  INNER JOIN DB.DBA.RDF_QUAD AS "s_37_6_t1"
+  ON (
+    "s_37_6_t0"."S" = "s_37_6_t1"."S")
+  INNER JOIN DB.DBA.RDF_QUAD AS "s_37_6_t2"
+  ON (
+    "s_37_6_t1"."O" = "s_37_6_t2"."P")
+WHERE
+  "s_37_6_t0"."P" = __i2idn ( __bft( 'http://wikiba.se/ontology#propertyType' , 1))
+  AND 
+  "s_37_6_t0"."O" = __i2idn ( __bft( 'http://wikiba.se/ontology#ExternalId' , 1))
+  AND 
+  "s_37_6_t1"."P" = __i2idn ( __bft( 'http://wikiba.se/ontology#directclaim' , 1))
+OPTION (QUIETCAST)

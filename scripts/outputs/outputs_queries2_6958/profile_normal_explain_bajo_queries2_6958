@@ -1,0 +1,47 @@
+
+  { 
+    time       7.9% fanout         1 input         1 rows
+    time       2.3% fanout         1 input         1 rows
+    time        90% fanout         0 input         1 rows
+    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:         2 Fanout:         0
+    RDF_QUAD_SP         2 rows(s_37_3_t0.P$33)
+     inlined  S =  IRI_ID"...Q41749" 
+    time         0% fanout         0 input         0 rows
+    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:       1.2 Fanout:         0
+    RDF_QUAD       1.2 rows(s_37_3_t0.O$37)
+     inlined  P = s_37_3_t0.P$33 ,  S =  IRI_ID"...Q41749" 
+    time         0% fanout         0 input         0 rows
+    END Node
+    After test:
+    0: __ro2sq$42 := Call __ro2sq (s_37_3_t0.O$37)
+    5: DB.DBA.RDF_LANGUAGE_OF_OBJ$40 := Call DB.DBA.RDF_LANGUAGE_OF_OBJ (__ro2sq$42)
+    12: isiri_id$44 := Call isiri_id (s_37_3_t0.O$37)
+    17: temp$46 := artm  1  - isiri_id$44
+    21: if ( 0  = temp$46) then 40 else 25 unkn 25
+    25: if (<c > = DB.DBA.RDF_LANGUAGE_OF_OBJ$40) then 40 else 29 unkn 29
+    29: DB.DBA.RDF_LANGMATCHES$48 := Call DB.DBA.RDF_LANGMATCHES (DB.DBA.RDF_LANGUAGE_OF_OBJ$40, <c fr>)
+    36: if ( 0  = DB.DBA.RDF_LANGMATCHES$48) then 41 else 40 unkn 41
+    40: BReturn 1
+    41: BReturn 0
+    time         0% fanout         0 input         0 rows
+    Distinct (s_37_3_t0.P$33, s_37_3_t0.O$37)
+    
+    After code:
+    0: var1$28 :=  := artm <tag 182 flag 1 c http://www.wikidata.org/entity/Q41749>
+    4: var2$29 :=  := artm s_37_3_t0.P$33
+    8: var3$30 :=  := artm s_37_3_t0.O$37
+    12: BReturn 0
+    time         0% fanout         0 input         0 rows
+    Subquery Select(var1$28, var2$29, var3$30)
+    
+    After code:
+    0: var2$64 := Call __ro2sq (var2$29)
+    5: var3$66 := Call __ro2sq (var3$30)
+    10: BReturn 0
+    time         0% fanout         0 input         0 rows
+    Select (var1$28, var2$64, var3$66)
+  }
+
+
+ 0 msec 2% cpu,         1 rnd         0 seq         0% same seg         0% same pg 
+Compilation: 2 msec 0 reads         0% read 0 messages         0% clw

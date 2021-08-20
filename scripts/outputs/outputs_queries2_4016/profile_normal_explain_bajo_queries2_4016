@@ -1,0 +1,66 @@
+http://www.wikidata.org/entity/Q2791923	Jelena Vladimirovna Kazantseva	
+http://www.wikidata.org/entity/Q2851390	Anne des Marquets	
+http://www.wikidata.org/entity/Q2853673	Antoine de Bertin	
+http://www.wikidata.org/entity/Q2853673	Chevalier de Bertin	
+http://www.wikidata.org/entity/Q2856110	Amelie Jeanne Groskamp-ten Have	
+http://www.wikidata.org/entity/Q2858166	Apeles Mestres	
+http://www.wikidata.org/entity/Q2858166	Apeles Mestres Oñós	
+http://www.wikidata.org/entity/Q2862102	Armand Le Calvez	
+http://www.wikidata.org/entity/Q2910910	00002823620 IPI	
+http://www.wikidata.org/entity/Q2910910	00002824225 IPI	
+
+  { 
+    time     0.049% fanout         1 input         1 rows
+    Precode:
+      0: __all_eq$27 := Call __all_eq ( IRI_ID"...Q36180" )
+      5: BReturn 0
+    Transitive dt dir 2, input: (__all_eq$27)
+      input shadow: (__all_eq$98)
+      output: (_::trans_subj_37_7$30)
+      { 
+        time       2.6% fanout     0.875 input         8 rows
+        RDF_QUAD_POGS       3.8 rows(s_37_11_t1.S$37, s_37_11_t1.O$36)
+         P =  IRI_ID"...direct/P279"  ,  O = k___all_eq$104
+        
+        After code:
+        0: _::trans_subj_37_7$30 :=  := artm s_37_11_t1.S$37
+        4: _::trans_obj_37_8$31 :=  := artm s_37_11_t1.O$36
+        8: BReturn 0
+        time     0.018% fanout         0 input         7 rows
+        Subquery Select(_::trans_subj_37_7$30, _::trans_obj_37_8$31)
+      }
+    time       1.1% fanout       125 input         8 rows
+    RDF_QUAD_POGS        59 rows(s_37_5_t0.S$57)
+     P =  IRI_ID"...direct/P106"  ,  O = cast$128 O LIKE <c T�>
+    time        13% fanout     0.995 input      1000 rows
+    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:     0.091 Fanout:         1
+    RDF_QUAD     0.091 rows(s_37_17_t2.S$60)
+     inlined  P =  IRI_ID"...direct/P31"  ,  S = s_37_5_t0.S$57 ,  O =  IRI_ID"...Q5" 
+    time        41% fanout   1.00503 input       995 rows
+    Precode:
+      0: var1$62 := Call __id2in (s_37_17_t2.S$60)
+      5: BReturn 0
+    RDF_QUAD       4.1 rows(s_37_17_t3.O$65)
+     inlined  P =  IRI_ID"...altLabel"  ,  S = s_37_17_t2.S$60
+    time        37% fanout     0.032 input      1000 rows
+    END Node
+    After test:
+    0: if (<c en> = <DB_NULL>) then 20 else 4 unkn 4
+    4: __ro2sq$67 := Call __ro2sq (s_37_17_t3.O$65)
+    9: DB.DBA.RDF_LANGUAGE_OF_OBJ$69 := Call DB.DBA.RDF_LANGUAGE_OF_OBJ (__ro2sq$67)
+    16: if (<c nb> = DB.DBA.RDF_LANGUAGE_OF_OBJ$69) then 20 else 21 unkn 21
+    20: BReturn 1
+    21: BReturn 0
+    time       2.3% fanout    0.3125 input        32 rows
+    skip node  10  <none> set_ctr$79
+    
+    After code:
+    0: var2$71 := Call __ro2sq (s_37_17_t3.O$65)
+    5: BReturn 0
+    time    0.0029% fanout         0 input        10 rows
+    Select (var1$62, var2$71)
+  }
+
+
+ 8 msec 63% cpu,      3314 rnd      1831 seq   38.7934% same seg   22.4133% same pg 
+Compilation: 4 msec 0 reads         0% read 0 messages         0% clw

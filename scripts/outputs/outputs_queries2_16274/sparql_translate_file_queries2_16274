@@ -1,0 +1,90 @@
+ SELECT  __ro2sq ("s_37_23_rbc"."var1") AS "var1", __ro2sq ("s_37_23_rbc"."var2") AS "var2", __ro2sq ("s_37_23_rbc"."var3") AS "var3", __ro2sq ("s_37_23_rbc"."var4") AS "var4" FROM (SELECT __id2in ( "s_37_8"."var1") AS "var1",
+    __ro2sq ( "s_37_8"."var2") AS "var2",
+    "s_37_8"."var3" AS "var3",
+    "s_37_8"."var4" AS "var4"
+  FROM (
+      SELECT __i2idn ( __bft( 'http://wikiba.se/ontology#statementProperty' , 1)) AS "var1",
+        "s_37_3"."var3" AS "var3" ANY,
+        "s_37_3"."var4" AS "var4" ANY,
+        NULL AS "var2" ANY
+      FROM (
+         SELECT __bft ( __bft( 'http://wikiba.se/ontology#statementProperty' , 1), 1) AS "var1",
+             COUNT ( DISTINCT
+               "s_37_2_t0"."S") AS "var3",
+             COUNT (
+               "s_37_2_t0"."O") AS "var4"
+          FROM DB.DBA.RDF_QUAD AS "s_37_2_t0"
+          WHERE
+            "s_37_2_t0"."P" = __i2idn ( __bft( 'http://www.wikidata.org/prop/P402' , 1))
+OPTION (QUIETCAST)
+          ) AS "s_37_3"
+      UNION ALL SELECT __i2idn ( __bft( 'http://wikiba.se/ontology#statementProperty' , 1)) AS "var1",
+        "s_37_7"."var3" AS "var3",
+        "s_37_7"."var4" AS "var4",
+        __i2idn ( __bft( 'http://wikiba.se/ontology#BestRank' , 1)) AS "var2"
+      FROM (
+         SELECT __bft ( __bft( 'http://wikiba.se/ontology#statementProperty' , 1), 1) AS "var1",
+            __bft ( __bft( 'http://wikiba.se/ontology#BestRank' , 1), 1) AS "var2",
+             COUNT ( DISTINCT
+               "s_37_6_t1"."S") AS "var3",
+             COUNT (
+               "s_37_6_t1"."O") AS "var4"
+          FROM DB.DBA.RDF_QUAD AS "s_37_6_t1"
+          WHERE
+            "s_37_6_t1"."P" = __i2idn ( __bft( 'http://www.wikidata.org/prop/direct/P402' , 1))
+OPTION (QUIETCAST)
+          ) AS "s_37_7"
+      UNION ALL SELECT __i2idn ( __bft( 'http://wikiba.se/ontology#statementProperty' , 1)) AS "var1",
+        "s_37_14"."var3" AS "var3",
+        "s_37_14"."var4" AS "var4",
+        "s_37_14"."var2" AS "var2"
+      FROM (
+         SELECT __bft ( __bft( 'http://wikiba.se/ontology#statementProperty' , 1), 1) AS "var1",
+            "s_37_13_t3"."O" AS "var2",
+             COUNT ( DISTINCT
+               "s_37_13_t2"."S") AS "var3",
+             COUNT (
+               "s_37_13_t2"."O") AS "var4"
+          FROM DB.DBA.RDF_QUAD AS "s_37_13_t2"
+            INNER JOIN DB.DBA.RDF_QUAD AS "s_37_13_t3"
+            ON (
+              "s_37_13_t2"."O" = "s_37_13_t3"."S")
+          WHERE
+            "s_37_13_t2"."P" = __i2idn ( __bft( 'http://www.wikidata.org/prop/P402' , 1))
+            AND 
+            "s_37_13_t3"."P" = __i2idn ( __bft( 'http://wikiba.se/ontology#rank' , 1))
+          GROUP BY "s_37_13_t3"."O"
+OPTION (QUIETCAST)
+          ) AS "s_37_14"
+      UNION ALL SELECT __i2idn ( __bft( 'http://wikiba.se/ontology#reference' , 1)) AS "var1",
+        "s_37_18"."var3" AS "var3",
+        "s_37_18"."var4" AS "var4",
+        NULL AS "var2"
+      FROM (
+         SELECT __bft ( __bft( 'http://wikiba.se/ontology#reference' , 1), 1) AS "var1",
+             COUNT ( DISTINCT
+               "s_37_17_t4"."S") AS "var3",
+             COUNT (
+               "s_37_17_t4"."O") AS "var4"
+          FROM DB.DBA.RDF_QUAD AS "s_37_17_t4"
+          WHERE
+            "s_37_17_t4"."P" = __i2idn ( __bft( 'http://www.wikidata.org/prop/reference/P402' , 1))
+OPTION (QUIETCAST)
+          ) AS "s_37_18"
+      UNION ALL SELECT __i2idn ( __bft( 'http://wikiba.se/ontology#qualifier' , 1)) AS "var1",
+        "s_37_22"."var3" AS "var3",
+        "s_37_22"."var4" AS "var4",
+        NULL AS "var2"
+      FROM (
+         SELECT __bft ( __bft( 'http://wikiba.se/ontology#qualifier' , 1), 1) AS "var1",
+             COUNT ( DISTINCT
+               "s_37_21_t5"."S") AS "var3",
+             COUNT (
+               "s_37_21_t5"."O") AS "var4"
+          FROM DB.DBA.RDF_QUAD AS "s_37_21_t5"
+          WHERE
+            "s_37_21_t5"."P" = __i2idn ( __bft( 'http://www.wikidata.org/prop/qualifier/P402' , 1))
+OPTION (QUIETCAST)
+          ) AS "s_37_22") AS "s_37_8"
+  ORDER BY __id2in ( "s_37_8"."var1") DESC, "s_37_8"."var3" DESC, __ro2sq ( "s_37_8"."var2") ASC
+OPTION (QUIETCAST)) AS "s_37_23_rbc"

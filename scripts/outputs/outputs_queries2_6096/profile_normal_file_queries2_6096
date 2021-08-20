@@ -1,0 +1,74 @@
+http://www.wikidata.org/entity/Q3231747	
+http://www.wikidata.org/entity/Q3231892	
+http://www.wikidata.org/entity/Q3238774	
+http://www.wikidata.org/entity/Q3238953	
+http://www.wikidata.org/entity/Q3239170	
+http://www.wikidata.org/entity/Q588969	
+http://www.wikidata.org/entity/Q1080409	
+http://www.wikidata.org/entity/Q1080413	
+http://www.wikidata.org/entity/Q1080424	
+http://www.wikidata.org/entity/Q1080484	
+http://www.wikidata.org/entity/Q1080493	
+http://www.wikidata.org/entity/Q1080634	
+http://www.wikidata.org/entity/Q1031352	
+http://www.wikidata.org/entity/Q1031940	
+http://www.wikidata.org/entity/Q1031965	
+http://www.wikidata.org/entity/Q1032065	
+http://www.wikidata.org/entity/Q1032098	
+http://www.wikidata.org/entity/Q1072690	
+http://www.wikidata.org/entity/Q1072710	
+http://www.wikidata.org/entity/Q1072715	
+
+  { 
+    time      0.31% fanout         1 input         1 rows
+      clear: (<V set_ctr$52 in>)
+    s# 55 53 cluster outer seq start, set no <V set_ctr$52 in>    
+    save ctx:()
+    time       5.3% fanout       259 input         1 rows
+      clear: (<V s_37_6_t1.S$28 rn>)
+      clear on continue: (<V s_37_6_t1.S$28 rn>)
+    s# 64 27 from DB.DBA.RDF_QUAD by RDF_QUAD_POGS    2.1e+02 rows   
+    Key RDF_QUAD_POGS  ASC  (<V s_37_6_t1.S$28 rn>)
+     P =  IRI_ID"...direct/P31"  ,  O =  IRI_ID"...Q27971968" 
+    
+    time        71% fanout  0.335907 input       259 rows
+      clear: (<V var1$44 a>)$28 () 
+    s# 79 74 END Node
+    After test:
+      0: if (  { 
+          time      0.35% fanout         1 input       259 rows
+            clear: (<V set_ctr$38 in>)
+          s# 83 39 cluster outer seq start, set no <V set_ctr$38 in>    
+          save ctx:()
+          time        23% fanout  0.664093 input       259 rows
+          $96 (30 ) 
+          s# 92 30 from DB.DBA.RDF_QUAD by RDF_QUAD          1 rows Parallel, tail cost        10   max 1
+          Key RDF_QUAD  ASC  ()
+           inlined  P =  IRI_ID"...direct/P576"  ,  S = <v k_s_37_6_t1.S$96 Set98 rn>
+          vector param casts: <r s_37_6_t1.S$28 via  Set83>-> <v k_s_37_6_t1.S$96 Set98 rn>
+          copy on branch $96 $38 $0 $0 sets: 55 64 83 
+          
+          time      0.38% fanout         0 input       172 rows
+          $38 (30 39 ) 
+          s# 105 32 Subquery Select( <none> )
+            set no: <r set_ctr$38 via  Set92 Set98>
+        }
+      ) then 5 else 4 unkn 5
+      4: BReturn 1
+      5: BReturn 0
+    After code:
+      0: <V var1$44 a> := Call __id2in (<r s_37_6_t1.S$28 via  Set79>)
+      5: BReturn 0
+    time     0.084% fanout         0 input        87 rows
+    $44 (74 ) $52 (74 27 53 ) 
+    s# 117 46 Select (<V var1$44 a>)
+      set no: <r set_ctr$52 via  Set79 Set64>
+  }
+Warning: You might have a Cartesian product.
+
+Warning: You might have a Cartesian product.
+
+
+
+ 1 msec 33% cpu,       266 rnd       258 seq   95.5056% same seg   1.49813% same pg 
+Compilation: 1 msec 0 reads         0% read 0 messages         0% clw

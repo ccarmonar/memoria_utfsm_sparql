@@ -1,0 +1,70 @@
+http://www.wikidata.org/entity/Q59537		http://commons.wikimedia.org/wiki/Special:FilePath/Ca%20m%C3%A8%20mallorqu%C3%AD%2003a.jpg	
+http://www.wikidata.org/entity/Q1106478		http://commons.wikimedia.org/wiki/Special:FilePath/Bull%20Arab%20%28dog%29.jpg	
+http://www.wikidata.org/entity/Q4354350		http://commons.wikimedia.org/wiki/Special:FilePath/Ovelheiro.jpg	
+http://www.wikidata.org/entity/Q5414		http://commons.wikimedia.org/wiki/Special:FilePath/8675eds%20win.jpg	
+http://www.wikidata.org/entity/Q5414		http://commons.wikimedia.org/wiki/Special:FilePath/8675eds%20win.jpg	
+http://www.wikidata.org/entity/Q5414		http://commons.wikimedia.org/wiki/Special:FilePath/8675eds%20win.jpg	
+http://www.wikidata.org/entity/Q5414		http://commons.wikimedia.org/wiki/Special:FilePath/8675eds%20win.jpg	
+http://www.wikidata.org/entity/Q29022		http://commons.wikimedia.org/wiki/Special:FilePath/Emma2.JPG	
+http://www.wikidata.org/entity/Q29022		http://commons.wikimedia.org/wiki/Special:FilePath/Englishspringerspaniel%20Winston.jpg	
+http://www.wikidata.org/entity/Q29022		http://commons.wikimedia.org/wiki/Special:FilePath/Springer%20Pair.JPG	
+http://www.wikidata.org/entity/Q29177		http://commons.wikimedia.org/wiki/Special:FilePath/Black%20Field%20Spaniel.jpg	
+http://www.wikidata.org/entity/Q29177		http://commons.wikimedia.org/wiki/Special:FilePath/Field%20Spaniel%2003.jpg	
+http://www.wikidata.org/entity/Q29177		http://commons.wikimedia.org/wiki/Special:FilePath/Field%20spaniel%20581.jpg	
+http://www.wikidata.org/entity/Q38961		http://commons.wikimedia.org/wiki/Special:FilePath/BlackNorwegianElkhound.jpg	
+http://www.wikidata.org/entity/Q38963		http://commons.wikimedia.org/wiki/Special:FilePath/Cuvac%201.jpg	
+http://www.wikidata.org/entity/Q38975		http://commons.wikimedia.org/wiki/Special:FilePath/Vycvik%20Stopy%20%283%29.JPG	
+http://www.wikidata.org/entity/Q38991		http://commons.wikimedia.org/wiki/Special:FilePath/Bukadai.jpg	
+http://www.wikidata.org/entity/Q39093		http://commons.wikimedia.org/wiki/Special:FilePath/%2801%29%20Rottweiler%205830118718%20ce2570e348%20o.jpg	
+http://www.wikidata.org/entity/Q39093		http://commons.wikimedia.org/wiki/Special:FilePath/3Rottweilers%20getting%20ready%20for%20a%20side-on%20examination.jpg	
+http://www.wikidata.org/entity/Q39093		http://commons.wikimedia.org/wiki/Special:FilePath/DKV%20Rottweilers%20Shakira%20Von%20Der%20Korperkraft.jpg	
+
+  { 
+    time    0.0086% fanout         1 input         1 rows
+      clear: (<V set_ctr$35 in>)
+    s# 56 36 cluster outer seq start, set no <V set_ctr$35 in>    
+    save ctx:()
+    time      0.12% fanout        78 input         1 rows
+      clear: (<V t1.S$28 rn>)
+      clear on continue: (<V t1.S$28 rn>)
+    s# 65 27 from DB.DBA.RDF_QUAD by RDF_QUAD_POGS         78 rows   
+    Key RDF_QUAD_POGS  ASC  (<V t1.S$28 rn>)
+     P =  IRI_ID"...direct/P31"  ,  O =  IRI_ID"...Q39367" 
+    
+    time       1.4% fanout         1 input        78 rows
+    Precode:
+      0: <V var1$30 a> := Call __id2in (<V t1.S$28 rn>)
+      5: BReturn 0
+      clear: (<V set_ctr$38 i>, <V var1$30 a>)
+    s# 75 42 cluster outer seq start, set no <V set_ctr$38 i>    
+    save ctx:()
+    time      0.79% fanout  0.987179 input        78 rows
+      clear: (<V t3.O$33 a>)
+      clear on continue: (<V t3.O$33 a>)$88 (32 ) $28 (42 ) 
+    s# 84 32 from DB.DBA.RDF_QUAD by RDF_QUAD          1 rows   
+    Key RDF_QUAD  ASC  (<V t3.O$33 a>)
+     inlined  P =  IRI_ID"...direct/P18"  ,  S = <v k_t1.S$88 Set90 rn>
+    vector param casts: <r t1.S$28 via  Set75>-> <v k_t1.S$88 Set90 rn>
+    
+    time        98% fanout         1 input        77 rows
+      clear: (<V var2$47 a>)$33 () $38 (32 42 ) 
+    s# 98 37 end of outer seq <r set_ctr$38 via  Set84 Set90>
+     out: (<V t3.O$33 a>)
+     shadow: ( <none> )
+    After code:
+      0: <V var2$47 a> := Call __ro2sq (<V t3.O$33 a>)
+      5: BReturn 0
+    time    0.0022% fanout         0 input        77 rows
+    $35 (37 32 42 27 36 ) $47 (37 ) $30 (37 32 42 ) 
+    s# 106 49 Select (<r var1$30 via  Set98>, <DB_NULL>, <V var2$47 a>)
+      set no: <r set_ctr$35 via  Set98 Set65>
+  }
+Warning: You might have a Cartesian product.
+
+Warning: You might have a Cartesian product.
+
+
+
+ 26 msec 59% cpu,       217 rnd       100 seq   29.8165% same seg   48.6239% same pg 
+2 disk reads, 0 read ahead,   56.8604% wait
+Compilation: 17 msec 1 reads   37.1396% read 0 messages         0% clw

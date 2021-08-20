@@ -1,0 +1,56 @@
+http://www.wikidata.org/entity/Q2612358		
+http://www.wikidata.org/entity/Q2612713		
+http://www.wikidata.org/entity/Q2612939		
+http://www.wikidata.org/entity/Q2613023		
+http://www.wikidata.org/entity/Q2613028		
+http://www.wikidata.org/entity/Q2613949		
+http://www.wikidata.org/entity/Q2614291		
+http://www.wikidata.org/entity/Q2615224		
+http://www.wikidata.org/entity/Q2615309		
+http://www.wikidata.org/entity/Q2615543		
+http://www.wikidata.org/entity/Q2616059		
+http://www.wikidata.org/entity/Q2616330		
+http://www.wikidata.org/entity/Q2616507		
+http://www.wikidata.org/entity/Q2630496		
+http://www.wikidata.org/entity/Q2637401		
+http://www.wikidata.org/entity/Q2639826		
+http://www.wikidata.org/entity/Q2707116		
+http://www.wikidata.org/entity/Q2707546		
+http://www.wikidata.org/entity/Q2708723		
+http://www.wikidata.org/entity/Q2768443		
+
+  { 
+    time     0.094% fanout         1 input         1 rows
+    time       2.4% fanout      1000 input         1 rows
+    RDF_QUAD   3.9e+03 rows(s_37_8_t2.S$28)
+     inlined  P =  IRI_ID"...direct/P296" 
+    time        93% fanout         1 input      1000 rows
+    END Node
+    After test:
+    0: if (  { 
+        time      0.38% fanout         1 input      1000 rows
+        time       3.8% fanout         0 input      1000 rows
+        Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:   1.4e-07 Fanout:         0
+        RDF_QUAD   1.4e-07 rows(s_37_6_t0.O$31)
+         inlined  P =  IRI_ID"...P296"  ,  S = k_s_37_8_t2.S$102
+        time         0% fanout         0 input         0 rows
+        Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:   1.4e-07 Fanout:         0
+        RDF_QUAD   1.4e-07 rows()
+         inlined  P =  IRI_ID"...qualifier/P972"  ,  S = k_s_37_6_t0.O$116
+        time         0% fanout         0 input         0 rows
+        Subquery Select( <none> )
+      }
+    ) then 5 else 4 unkn 5
+    4: BReturn 1
+    5: BReturn 0
+    
+    After code:
+    0: var1$50 := Call __id2in (s_37_8_t2.S$28)
+    5: BReturn 0
+    time     0.041% fanout         0 input      1000 rows
+    Select (var1$50, <DB_NULL>)
+  }
+
+
+ 3 msec 62% cpu,      1001 rnd       997 seq   99.7006% same seg         0% same pg 
+Compilation: 2 msec 0 reads         0% read 0 messages         0% clw

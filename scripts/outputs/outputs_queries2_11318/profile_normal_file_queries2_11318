@@ -1,0 +1,188 @@
+
+  { 
+    time       9.4% fanout         1 input         1 rows
+      clear: (<V set_ctr$96 in>)
+    s# 140 97 cluster outer seq start, set no <V set_ctr$96 in>    
+    save ctx:()
+    time        91% fanout         0 input         1 rows
+    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:   1.4e-07 Fanout:         0
+    Precode:
+      0: <V __all_eq$27 x> := Call __all_eq ( IRI_ID"...Q83367" )
+      5: BReturn 0
+      clear: (<V t4.O$30 an>, <V t4.S$31 rn>, <V __all_eq$27 x>)
+      clear on continue: (<V t4.S$31 rn>, <V t4.O$30 an>)
+    s# 149 29 from DB.DBA.RDF_QUAD by RDF_QUAD_POGS    1.4e-07 rows   
+    Key RDF_QUAD_POGS  ASC  (<V t4.S$31 rn>, <V t4.O$30 an>)
+     inlined  P =  IRI_ID"...reference/P248" 
+    row specs:  O LIKE <c Tó>
+    
+    time         0% fanout         0 input         0 rows
+    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:   1.4e-07 Fanout:         0
+      clear: (<V t3.S$34 rn>, <V t3.O$35 an>)
+      clear on continue: (<V t3.S$34 rn>, <V t3.O$35 an>)$164 (33 ) 
+    s# 160 33 from DB.DBA.RDF_QUAD by RDF_QUAD_POGS    1.4e-07 rows   
+    Key RDF_QUAD_POGS  ASC  (<V t3.O$35 an>, <V t3.S$34 rn>)
+     P =  IRI_ID"...wasDerivedFrom"  ,  O = <v cast$164 Set166 an>
+    vector param casts: <V t4.S$31 rn>-> <v cast$164 Set166 an>
+    
+    time         0% fanout         0 input         0 rows
+    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:       2.8 Fanout:         0
+      clear: (<V t5.P$38 rn>, <V t5.O$39 an>)
+      clear on continue: (<V t5.P$38 rn>, <V t5.O$39 an>)$179 (37 ) 
+    s# 175 37 from DB.DBA.RDF_QUAD by RDF_QUAD_OP        2.8 rows   
+    Key RDF_QUAD_OP  ASC  (<V t5.O$39 an>, <V t5.P$38 rn>)
+     inlined  O = <v cast$179 Set181 an>
+    vector param casts: <V t3.S$34 rn>-> <v cast$179 Set181 an>
+    
+    time         0% fanout         0 input         0 rows
+    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:       1.2 Fanout:         0
+      clear: (<V t5.S$43 rn>)
+      clear on continue: (<V t5.S$43 rn>)$194 (42 ) 
+    s# 190 42 from DB.DBA.RDF_QUAD by RDF_QUAD_POGS        1.2 rows   
+    Key RDF_QUAD_POGS  ASC  (<V t5.S$43 rn>)
+     P = <V t5.P$38 rn> ,  O = <v k_t3.S$194 Set196 an>
+    vector param casts: <r t3.S$34 via  Set175 Set181>-> <v k_t3.S$194 Set196 an>
+    
+    time         0% fanout         0 input         0 rows
+    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:       8.5 Fanout:         0
+      clear: (<V t8.P$47 rn>)
+      clear on continue: (<V t8.P$47 rn>)$208 (46 ) $212 (46 ) 
+    s# 204 46 from DB.DBA.RDF_QUAD by RDF_QUAD_SP        8.5 rows   
+    Key RDF_QUAD_SP  ASC  (<V t8.P$47 rn>)
+     inlined  S = <v k_t5.O$208 Set210 rn>
+    row specs:  S = <V k_t3.S$212 rn>
+    vector param casts: <r t5.O$39 via  Set190 Set196>-> <v k_t5.O$208 Set210 rn>, <r t3.S$34 via  Set190 Set196 Set175 Set181>-> <V k_t3.S$212 rn>
+    
+    time         0% fanout         0 input         0 rows
+    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:       1.2 Fanout:         0
+      clear: (<V t8.O$51 an>)
+      clear on continue: (<V t8.O$51 an>)$224 (50 ) $228 (50 ) $230 (50 ) $34 (46 42 37 ) $39 (46 42 ) 
+    s# 220 50 from DB.DBA.RDF_QUAD by RDF_QUAD        1.2 rows   
+    Key RDF_QUAD  ASC  (<V t8.O$51 an>)
+     inlined  P = <v k_t8.P$224 Set226 rn> ,  S = <V k_t5.O$228 rn>
+    row specs:  S = <V k_t3.S$230 rn>
+    vector param casts: <V t8.P$47 rn>-> <v k_t8.P$224 Set226 rn>, <r t5.O$39 via  Set204 Set210 Set190 Set196>-> <V k_t5.O$228 rn>, <r t3.S$34 via  Set204 Set210 Set190 Set196 Set175 Set181>-> <V k_t3.S$230 rn>
+    
+    time         0% fanout         0 input         0 rows
+    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:         1 Fanout:         0
+      clear: (<V t6.S$55 rn>)
+      clear on continue: (<V t6.S$55 rn>)$38 (50 46 42 ) $242 (54 ) 
+    s# 238 54 from DB.DBA.RDF_QUAD by RDF_QUAD_POGS          1 rows   
+    Key RDF_QUAD_POGS  ASC  (<V t6.S$55 rn>)
+     P =  IRI_ID"...claim"  ,  O = <v k_t5.P$242 Set244 an>
+    vector param casts: <r t5.P$38 via  Set220 Set226 Set204 Set210 Set190 Set196>-> <v k_t5.P$242 Set244 an>
+    
+    time         0% fanout         0 input         0 rows
+    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:   0.00091 Fanout:         0
+      clear: (<V t7.S$58 rn>)
+      clear on continue: (<V t7.S$58 rn>)$47 (54 50 ) $256 (57 ) $55 () 
+    s# 252 57 from DB.DBA.RDF_QUAD by RDF_QUAD    0.00091 rows   
+    Key RDF_QUAD  ASC  (<V t7.S$58 rn>)
+     inlined  P =  IRI_ID"...statementProperty"  ,  S = <V t6.S$55 rn> ,  O = <v k_t8.P$256 Set258 an>
+    vector param casts: <r t8.P$47 via  Set238 Set244 Set220 Set226>-> <v k_t8.P$256 Set258 an>
+    
+    Precode:
+      0: <V __all_eq$60 x> := Call __all_eq (<r t4.O$30 via  Set252 Set258 Set238 Set244 Set220 Set226 Set204 Set210 Set190 Set196 Set175 Set181 Set160 Set166>)
+      5: BReturn 0
+      clear: (<V _::trans_obj_37_1$64 an>, <V _::trans_subj_37_0$63 rn>, <V __all_eq$60 x>)
+      clear on continue: (<V _::trans_subj_37_0$63 rn>, <V _::trans_obj_37_1$64 an>)$27 (57 54 50 46 42 37 33 29 ) 
+    s# 266 62 Transitive dt dir 2, input: (<r __all_eq$27 via  Set252 Set258 Set238 Set244 Set220 Set226 Set204 Set210 Set190 Set196 Set175 Set181 Set160 Set166 Set149>)
+      input shadow: (<V __all_eq$270 x>)
+      output: (<V _::trans_subj_37_0$63 rn>)
+     Target:  (<V __all_eq$60 x>)
+      { 
+        time         0% fanout         0 input         0 rows
+          clear: (<V in_iter$69 x>)
+          clear on continue: (<V in_iter$69 x>)
+        s# 272 70 in   iterates <V in_iter$69 x>
+          over ( IRI_ID"...direct/P179" ,  IRI_ID"...direct/P361" )
+        time         0% fanout         0 input         0 rows
+        Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:     0.013 Fanout:         0
+          clear: (<V t15.O$73 an>, <V t15.S$74 rn>, <V _::trans_obj_37_1$64 an>, <V _::trans_subj_37_0$63 rn>)
+          clear on continue: (<V _::trans_subj_37_0$63 rn>, <V _::trans_obj_37_1$64 an>, <V t15.S$74 rn>, <V t15.O$73 an>)$69 () $289 (68 ) $293 (68 ) 
+        s# 285 68 from DB.DBA.RDF_QUAD by RDF_QUAD_POGS      0.013 rows   
+        Key RDF_QUAD_POGS  ASC  (<V t15.S$74 rn>, <V t15.O$73 an>)
+         P = <v k_in_iter$289 Set291 rn> ,  O = <V k___all_eq$293 an>
+        vector param casts: <V in_iter$69 x>-> <v k_in_iter$289 Set291 rn>, <r __all_eq$270 via  Set272>-> <V k___all_eq$293 an>
+        
+        After code:
+          0: <V _::trans_subj_37_0$63 rn> :=  := artm <V t15.S$74 rn>
+          4: <V _::trans_obj_37_1$64 an> :=  := artm <V t15.O$73 an>
+          8: BReturn 0
+        time         0% fanout         0 input         0 rows
+        $63 () 
+        s# 304 76 Subquery Select(<V _::trans_subj_37_0$63 rn>, <V _::trans_obj_37_1$64 an>)
+          set no: <r step_set$65 via  Set285 Set291 Set272>
+      }
+    time         0% fanout         0 input         0 rows
+    $64 () 
+    s# 316 311 END Node
+    After test:
+      0: if (<V _::trans_obj_37_1$64 an> =  IRI_ID"...Q83367" ) then 4 else 5 unkn 5
+      4: BReturn 1
+      5: BReturn 0
+    time         0% fanout         0 input         0 rows
+      clear: (<V set_ctr$99 i>)
+    s# 324 103 cluster outer seq start, set no <V set_ctr$99 i>    
+    save ctx:()
+    time         0% fanout         0 input         0 rows
+    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:         1 Fanout:         0
+      clear: (<V t12.O$94 a>)
+      clear on continue: (<V t12.O$94 a>)$337 (93 ) 
+    s# 333 93 from DB.DBA.RDF_QUAD by RDF_QUAD          1 rows   
+    Key RDF_QUAD  ASC  (<V t12.O$94 a>)
+     inlined  P =  IRI_ID"...reference/P958"  ,  S = <v k_t4.S$337 Set339 rn>
+    vector param casts: <r t4.S$31 via  Set324 Set316 Set266 Set252 Set258 Set238 Set244 Set220 Set226 Set204 Set210 Set190 Set196 Set175 Set181 Set160 Set166>-> <v k_t4.S$337 Set339 rn>
+    
+    time         0% fanout         0 input         0 rows
+    $99 (93 103 ) 
+    s# 347 98 end of outer seq <r set_ctr$99 via  Set333 Set339>
+     out: (<V t12.O$94 a>)
+     shadow: ( <none> )
+    time         0% fanout         0 input         0 rows
+      clear: (<V set_ctr$112 i>)
+    s# 355 116 cluster outer seq start, set no <V set_ctr$112 i>    
+    save ctx:()
+    time         0% fanout         0 input         0 rows
+    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:         1 Fanout:         0
+      clear: (<V t10.O$109 a>)
+      clear on continue: (<V t10.O$109 a>)$31 (116 98 93 103 311 62 57 54 50 46 42 37 33 ) $368 (108 ) 
+    s# 364 108 from DB.DBA.RDF_QUAD by RDF_QUAD          1 rows   
+    Key RDF_QUAD  ASC  (<V t10.O$109 a>)
+     inlined  P =  IRI_ID"...reference/P792"  ,  S = <v k_t4.S$368 Set370 rn>
+    vector param casts: <r t4.S$31 via  Set355 Set347 Set316 Set266 Set252 Set258 Set238 Set244 Set220 Set226 Set204 Set210 Set190 Set196 Set175 Set181 Set160 Set166>-> <v k_t4.S$368 Set370 rn>
+    
+    time         0% fanout         0 input         0 rows
+      clear: (<V var5$131 a>, <V var1$129 a>, <V var2$127 a>, <V var3$125 a>, <V var4$123 a>, <V var6$121 a>)$94 (108 116 98 ) $30 (108 116 98 93 103 311 62 57 54 50 46 42 37 33 ) $109 () $43 (108 116 98 93 103 311 62 57 54 50 46 ) $112 (108 116 ) $51 (108 116 98 93 103 311 62 57 54 ) $58 (108 116 98 93 103 311 62 ) 
+    s# 378 111 end of outer seq <r set_ctr$112 via  Set364 Set370>
+     out: (<V t10.O$109 a>)
+     shadow: ( <none> )
+    After code:
+      0: <V var6$121 a> := Call __ro2sq (<r t12.O$94 via  Set378>)
+      5: <V var4$123 a> := Call __ro2sq (<r t4.O$30 via  Set378 Set347 Set316 Set266 Set252 Set258 Set238 Set244 Set220 Set226 Set204 Set210 Set190 Set196 Set175 Set181 Set160 Set166>)
+      10: <V var3$125 a> := Call __ro2sq (<r t8.O$51 via  Set378 Set347 Set316 Set266 Set252 Set258 Set238 Set244>)
+      15: <V var2$127 a> := Call __id2in (<r t7.S$58 via  Set378 Set347 Set316 Set266>)
+      20: <V var1$129 a> := Call __id2in (<r t5.S$43 via  Set378 Set347 Set316 Set266 Set252 Set258 Set238 Set244 Set220 Set226 Set204 Set210>)
+      25: <V var5$131 a> := Call __ro2sq (<V t10.O$109 a>)
+      30: BReturn 0
+    time         0% fanout         0 input         0 rows
+    $96 (111 108 116 98 93 103 311 62 57 54 50 46 42 37 33 29 97 ) $121 (111 ) $123 (111 ) $125 (111 ) $127 (111 ) $129 (111 ) $131 (111 ) 
+    s# 386 133 Select (<V var1$129 a>, <DB_NULL>, <V var2$127 a>, <V var3$125 a>, <V var4$123 a>, <DB_NULL>, <V var5$131 a>, <V var6$121 a>)
+      set no: <r set_ctr$96 via  Set378 Set347 Set316 Set266 Set252 Set258 Set238 Set244 Set220 Set226 Set204 Set210 Set190 Set196 Set175 Set181 Set160 Set166 Set149>
+  }
+Warning: You might have a Cartesian product.
+
+Warning: You might have a Cartesian product.
+
+Warning: You might have a Cartesian product.
+
+Warning: You might have a Cartesian product.
+
+Warning: You might have a Cartesian product.
+
+Warning: You might have a Cartesian product.
+
+
+
+ 0 msec 0% cpu,         1 rnd         0 seq         0% same seg         0% same pg 
+Compilation: 30 msec 0 reads         0% read 0 messages         0% clw

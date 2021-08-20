@@ -1,0 +1,40 @@
+http://www.wikidata.org/entity/P3005	http://www.w3.org/2004/02/skos/core#altLabel	
+
+  { 
+    time    0.0035% fanout         1 input         1 rows
+      clear: (<V set_ctr$47 in>)
+    s# 50 48 cluster outer seq start, set no <V set_ctr$47 in>    
+    save ctx:()
+    time     1e+02% fanout         1 input         1 rows
+    Precode:
+      0: <V __rdflit$27 x> := Call __rdflit (rdflit39719026)
+      5: BReturn 0
+      clear: (<V s_37_2_t0.P$30 rn>, <V __rdflit$27 x>)
+      clear on continue: (<V s_37_2_t0.P$30 rn>)
+    s# 59 29 from DB.DBA.RDF_QUAD by RDF_QUAD_OP          2 rows   
+    Key RDF_QUAD_OP  ASC  (<V s_37_2_t0.P$30 rn>)
+     inlined  O = rdflit39719026
+    
+    time      0.28% fanout         1 input         1 rows
+      clear: (<V s_37_2_t0.S$34 rn>, <V var2$39 a>, <V var1$37 a>)
+      clear on continue: (<V s_37_2_t0.S$34 rn>, <V var2$39 a>, <V var1$37 a>)$30 () 
+    s# 69 33 from DB.DBA.RDF_QUAD by RDF_QUAD_POGS        1.2 rows   
+    Key RDF_QUAD_POGS  ASC  (<V s_37_2_t0.S$34 rn>)
+     P = <V s_37_2_t0.P$30 rn> ,  O = rdflit39719026
+    
+    After code:
+      0: <V var1$37 a> := Call __id2in (<V s_37_2_t0.S$34 rn>)
+      5: <V var2$39 a> := Call __id2in (<r s_37_2_t0.P$30 via  Set69>)
+      10: BReturn 0
+    time   0.00096% fanout         0 input         1 rows
+    $37 () $39 () $47 (33 29 48 ) 
+    s# 79 41 Select (<V var1$37 a>, <V var2$39 a>)
+      set no: <r set_ctr$47 via  Set69 Set59>
+  }
+Warning: You might have a Cartesian product.
+
+
+
+ 57 msec 55% cpu,         3 rnd         0 seq         0% same seg         0% same pg 
+1 disk reads, 0 read ahead,   25.4176% wait
+Compilation: 46 msec 1 reads   21.9623% read 0 messages         0% clw

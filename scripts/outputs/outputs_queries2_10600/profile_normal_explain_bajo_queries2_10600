@@ -1,0 +1,45 @@
+http://www.wikidata.org/entity/Q2609758	doppiatore italiano	
+http://www.wikidata.org/entity/Q2618017	attore statunitense	
+http://www.wikidata.org/entity/Q2748762	attrice spagnola	
+http://www.wikidata.org/entity/Q2631586	attore inglese	
+http://www.wikidata.org/entity/Q2633161	attrice e doppiatrice giapponese	
+http://www.wikidata.org/entity/Q2636244	attore statunitense	
+http://www.wikidata.org/entity/Q2637761	attrice neerlandese	
+http://www.wikidata.org/entity/Q2638912	attrice statunitense	
+http://www.wikidata.org/entity/Q2639419	modella e attrice giapponese	
+http://www.wikidata.org/entity/Q2641559	attrice tedesca	
+
+  { 
+    time     0.036% fanout         1 input         1 rows
+    time      0.87% fanout      1000 input         1 rows
+    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:   2.5e+04 Fanout:     1e+03
+    RDF_QUAD_POGS   2.5e+04 rows(s_37_4_t0.S$28)
+     P =  IRI_ID"...direct/P106"  ,  O =  IRI_ID"...Q33999" 
+    time        36% fanout         1 input      1000 rows
+    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:        14 Fanout:         1
+    Precode:
+      0: var1$30 := Call __id2in (s_37_4_t0.S$28)
+      5: BReturn 0
+    RDF_QUAD        14 rows(s_37_4_t1.O$33)
+     inlined  P =  IRI_ID"...description"  ,  S = s_37_4_t0.S$28
+    time        59% fanout      0.03 input      1000 rows
+    END Node
+    After test:
+    0: __ro2sq$35 := Call __ro2sq (s_37_4_t1.O$33)
+    5: DB.DBA.RDF_LANGUAGE_OF_OBJ$37 := Call DB.DBA.RDF_LANGUAGE_OF_OBJ (__ro2sq$35)
+    12: if (<c it> = DB.DBA.RDF_LANGUAGE_OF_OBJ$37) then 16 else 17 unkn 17
+    16: BReturn 1
+    17: BReturn 0
+    time       3.7% fanout  0.333333 input        30 rows
+    skip node  10  <none> set_ctr$47
+    
+    After code:
+    0: var2$39 := Call __ro2sq (s_37_4_t1.O$33)
+    5: BReturn 0
+    time    0.0055% fanout         0 input        10 rows
+    Select (var1$30, var2$39)
+  }
+
+
+ 10 msec 86% cpu,      2071 rnd      1936 seq   2.12355% same seg   17.0849% same pg 
+Compilation: 1 msec 0 reads         0% read 0 messages         0% clw

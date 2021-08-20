@@ -1,0 +1,45 @@
+5034	http://www.wikidata.org/entity/Q2984830	
+6138	http://www.wikidata.org/entity/Q15834158	
+5750	http://www.wikidata.org/entity/Q57090	
+5404	http://www.wikidata.org/entity/Q57099	
+5120	http://www.wikidata.org/entity/Q69961	
+5264	http://www.wikidata.org/entity/Q378869	
+5320	http://www.wikidata.org/entity/Q3898519	
+1628	http://www.wikidata.org/entity/Q167983	
+887	http://www.wikidata.org/entity/Q203877	
+3973	http://www.wikidata.org/entity/Q526832	
+3942	http://www.wikidata.org/entity/Q658739	
+3834	http://www.wikidata.org/entity/Q64912	
+3395	http://www.wikidata.org/entity/Q1021823	
+3672	http://www.wikidata.org/entity/Q2680071	
+3925	http://www.wikidata.org/entity/Q65177	
+2525	http://www.wikidata.org/entity/Q65213	
+3962	http://www.wikidata.org/entity/Q65244	
+0136	http://www.wikidata.org/entity/Q65347	
+4801	http://www.wikidata.org/entity/Q65463	
+3232	http://www.wikidata.org/entity/Q65508	
+
+  { 
+    time     0.066% fanout         1 input         1 rows
+    time       2.1% fanout       440 input         1 rows
+    RDF_QUAD   4.4e+02 rows(s_37_6_t0.S$29, s_37_6_t0.O$28)
+     inlined  P =  IRI_ID"...direct/P771" 
+    time        31% fanout         1 input       440 rows
+    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:   7.3e-05 Fanout:         1
+    RDF_QUAD   7.3e-05 rows(s_37_6_t1.S$32)
+     inlined  P =  IRI_ID"...direct/P31"  ,  S = s_37_6_t0.S$29 ,  O =  IRI_ID"...Q70208" 
+    time        67% fanout   1.05682 input       440 rows
+    RDF_QUAD         1 rows()
+     inlined  P =  IRI_ID"...direct/P1566"  ,  S = k_s_37_6_t0.S$83
+    
+    After code:
+    0: var2$36 := Call __id2in (s_37_6_t0.S$29)
+    5: var1$38 := Call __ro2sq (s_37_6_t0.O$28)
+    10: BReturn 0
+    time     0.018% fanout         0 input       465 rows
+    Select (var1$38, var2$36)
+  }
+
+
+ 6 msec 74% cpu,      1346 rnd       538 seq   60.7275% same seg   20.2673% same pg 
+Compilation: 2 msec 0 reads         0% read 0 messages         0% clw

@@ -1,0 +1,52 @@
+
+  { 
+    time       0.1% fanout         1 input         1 rows
+    Subquery 27 
+      { 
+        time     0.066% fanout         1 input         1 rows
+        fork {
+            time       8.4% fanout      5868 input         1 rows
+            RDF_QUAD   5.9e+03 rows(s_37_6_t1.S$34, s_37_6_t1.O$33)
+             inlined  P =  IRI_ID"...direct/P749" 
+            time        46% fanout  0.314758 input      5868 rows
+            RDF_QUAD         1 rows(s_37_6_t0.O$38, s_37_6_t0.S$37)
+             inlined  P =  IRI_ID"...direct/P2427"  ,  S = s_37_6_t1.S$34
+            time        45% fanout         0 input      1847 rows
+            Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:   8.8e-05 Fanout:         0
+            RDF_QUAD   8.8e-05 rows()
+             inlined  P =  IRI_ID"...direct/P2427"  ,  S = k_s_37_6_t1.O$132 ,  O = cast$136
+            
+            After code:
+            0: __ro2sq$42 := Call __ro2sq (s_37_6_t1.O$33)
+            5: BReturn 0
+            time         0% fanout         0 input         0 rows
+            Sort (__ro2sq$42) -> (s_37_6_t0.S$37, s_37_6_t0.O$38)
+            
+          }
+        time      0.16% fanout         0 input         1 rows
+        Key from temp (s_37_6_t0.S$37, __ro2sq$42, s_37_6_t0.O$38)
+        
+        
+        After code:
+        0: __ro2sq$66 := Call __ro2sq (s_37_6_t0.O$38)
+        5: __id2in$68 := Call __id2in (s_37_6_t0.S$37)
+        10: var1$28 :=  := artm __id2in$68
+        14: var2$29 :=  := artm __ro2sq$42
+        18: var3$30 :=  := artm __ro2sq$66
+        22: BReturn 0
+        time         0% fanout         0 input         0 rows
+        Subquery Select(var1$28, var2$29, var3$30)
+      }
+    
+    After code:
+    0: var1$77 := Call __ro2sq (var1$28)
+    5: var2$79 := Call __ro2sq (var2$29)
+    10: var3$81 := Call __ro2sq (var3$30)
+    15: BReturn 0
+    time         0% fanout         0 input         0 rows
+    Select (var1$77, var2$79, var3$81)
+  }
+
+
+ 3 msec 59% cpu,      7716 rnd      5867 seq   99.7279% same seg 0.0907088% same pg 
+Compilation: 2 msec 0 reads         0% read 0 messages         0% clw

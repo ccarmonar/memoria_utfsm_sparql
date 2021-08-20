@@ -1,0 +1,106 @@
+http://www.wikidata.org/entity/Q2636164	1850-01-01 00:00:00Z		
+http://www.wikidata.org/entity/Q2763097	0101-01-01 00:00:00Z		
+http://www.wikidata.org/entity/Q2776701	1750-01-01 00:00:00Z		
+http://www.wikidata.org/entity/Q2853445	1750-01-01 00:00:00Z		
+http://www.wikidata.org/entity/Q2852492	1350-01-01 00:00:00Z		
+http://www.wikidata.org/entity/Q2856596	1640-01-01 00:00:00Z		
+http://www.wikidata.org/entity/Q2856818	1652-01-01 00:00:00Z		
+http://www.wikidata.org/entity/Q2856871	1395-01-01 00:00:00Z		
+http://www.wikidata.org/entity/Q2859943	1450-01-01 00:00:00Z		
+http://www.wikidata.org/entity/Q2861317	1050-01-01 00:00:00Z		
+http://www.wikidata.org/entity/Q2913424	0150-01-01 00:00:00Z		
+http://www.wikidata.org/entity/Q2925095	1650-01-01 00:00:00Z		
+http://www.wikidata.org/entity/Q2977943	1505-01-01 00:00:00Z		
+http://www.wikidata.org/entity/Q3061372	1850-01-01 00:00:00Z		
+http://www.wikidata.org/entity/Q3121854	1350-01-01 00:00:00Z		
+http://www.wikidata.org/entity/Q2993518	1005-01-01 00:00:00Z		
+http://www.wikidata.org/entity/Q3059626	0850-01-01 00:00:00Z		
+http://www.wikidata.org/entity/Q3067145	1765-01-01 00:00:00Z		
+http://www.wikidata.org/entity/Q3068180	0250-01-01 00:00:00Z		
+http://www.wikidata.org/entity/Q3068493	1682-12-08 00:00:00Z		
+
+  { 
+    time     0.066% fanout         1 input         1 rows
+      clear: (<V set_ctr$39 in>)
+    s# 74 40 cluster outer seq start, set no <V set_ctr$39 in>    
+    save ctx:()
+    time       2.8% fanout      3000 input         1 rows
+    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:   5.3e+05 Fanout:     3e+03
+      clear: (<V t8.S$28 rn>)
+      clear on continue: (<V t8.S$28 rn>)
+    s# 83 27 from DB.DBA.RDF_QUAD by RDF_QUAD_POGS    5.3e+05 rows   
+    Key RDF_QUAD_POGS  ASC  (<V t8.S$28 rn>)
+     P =  IRI_ID"...direct/P31"  ,  O =  IRI_ID"...Q5" 
+    
+    time        13% fanout     0.284 input      3000 rows
+    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:    0.0075 Fanout:      0.28
+      clear: (<V t9.O$31 an>)
+      clear on continue: (<V t9.O$31 an>)$97 (30 ) 
+    s# 93 30 from DB.DBA.RDF_QUAD by RDF_QUAD     0.0075 rows   
+    Key RDF_QUAD  ASC  (<V t9.O$31 an>)
+     P =  IRI_ID"...direct/P569"  ,  S = <v k_t8.S$97 Set99 rn> ,  O < <tag 211 c 1880-01-01 00:00:00Z>
+    row specs:  O < <tag 211 c 1880-01-01 00:00:00Z>
+    vector param casts: <V t8.S$28 rn>-> <v k_t8.S$97 Set99 rn>
+    
+    time        71% fanout         1 input       852 rows
+    Precode:
+      0: <V var1$33 a> := Call __id2in (<r t8.S$28 via  Set93 Set99>)
+      5: <V var2$35 a> := Call __ro2sq (<V t9.O$31 an>)
+      10: BReturn 0
+      clear: (<V set_ctr$42 i>, <V var2$35 a>, <V var1$33 a>)$31 () 
+    s# 107 46 cluster outer seq start, set no <V set_ctr$42 i>    
+    save ctx:()
+    time       5.6% fanout  0.495305 input       852 rows
+    $120 (37 ) 
+    s# 116 37 from DB.DBA.RDF_QUAD by RDF_QUAD          1 rows   
+    Key RDF_QUAD  ASC  ()
+     inlined  P =  IRI_ID"...direct/P734"  ,  S = <v k_t8.S$120 Set122 rn>
+    vector param casts: <r t8.S$28 via  Set107 Set93 Set99>-> <v k_t8.S$120 Set122 rn>
+    
+    time      0.16% fanout   2.09953 input       422 rows
+    $42 (37 46 ) 
+    s# 129 41 end of outer seq <r set_ctr$42 via  Set116 Set122>
+     out: ()
+     shadow: ()
+    time      0.22% fanout         1 input       886 rows
+      clear: (<V set_ctr$55 i>)
+    s# 137 59 cluster outer seq start, set no <V set_ctr$55 i>    
+    save ctx:()
+    time       6.3% fanout   1.02257 input       886 rows
+      clear: (<V t10.O$52 a>)
+      clear on continue: (<V t10.O$52 a>)$150 (51 ) $28 (59 41 37 46 30 ) 
+    s# 146 51 from DB.DBA.RDF_QUAD by RDF_QUAD          1 rows   
+    Key RDF_QUAD  ASC  (<V t10.O$52 a>)
+     inlined  P =  IRI_ID"...direct/P570"  ,  S = <v k_t8.S$150 Set152 rn>
+    vector param casts: <r t8.S$28 via  Set137 Set129 Set93 Set99>-> <v k_t8.S$150 Set152 rn>
+    
+    time      0.26% fanout   1.03422 input       906 rows
+    $55 (51 59 ) 
+    s# 160 54 end of outer seq <r set_ctr$55 via  Set146 Set152>
+     out: (<V t10.O$52 a>)
+     shadow: ( <none> )
+    time      0.75% fanout 0.0330843 input       937 rows
+    $52 (54 ) 
+    s# 173 168 END Node
+    After test:
+      0: if (<V t10.O$52 a>  IS NULL   0 ) then 4 else 5 unkn 5
+      4: BReturn 1
+      5: BReturn 0
+    time     0.063% fanout         1 input        31 rows
+    
+    s# 181 72 skip node  100  <none> <r set_ctr$39 via  Set173 Set160 Set129 Set93 Set99 Set83>
+    time     0.041% fanout         0 input        31 rows
+    $33 (72 168 54 51 59 41 37 46 ) $35 (72 168 54 51 59 41 37 46 ) $39 (72 168 54 51 59 41 37 46 30 27 40 ) 
+    s# 189 64 Select (<r var1$33 via  Set181 Set173 Set160 Set129>, <r var2$35 via  Set181 Set173 Set160 Set129>, <DB_NULL>)
+      set no: <r set_ctr$39 via  Set181 Set173 Set160 Set129 Set93 Set99 Set83>
+  }
+Warning: You might have a Cartesian product.
+
+Warning: You might have a Cartesian product.
+
+Warning: You might have a Cartesian product.
+
+
+
+ 3 msec 5% cpu,      5178 rnd      3158 seq   91.1952% same seg   7.60765% same pg 
+Compilation: 55 msec 0 reads         0% read 0 messages         0% clw

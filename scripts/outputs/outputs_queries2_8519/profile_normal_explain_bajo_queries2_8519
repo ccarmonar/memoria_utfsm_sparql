@@ -1,0 +1,64 @@
+
+  { 
+    time       6.5% fanout         1 input         1 rows
+    Subquery 27 
+      { 
+        time         4% fanout         1 input         1 rows
+        fork {
+            time       3.1% fanout         1 input         1 rows
+            fork {
+                time        77% fanout         0 input         1 rows
+                Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:   1.4e-07 Fanout:         0
+                RDF_QUAD_POGS   1.4e-07 rows(s_37_8_t3.S$33, s_37_8_t3.O$32)
+                 inlined  P =  IRI_ID"...wasDerivedFrom" 
+                time         0% fanout         0 input         0 rows
+                Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:   5.7e-15 Fanout:         0
+                RDF_QUAD   5.7e-15 rows(s_37_8_t2.S$36)
+                 inlined  P =  IRI_ID"...P2048"  O = cast$143
+                time         0% fanout         0 input         0 rows
+                Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:    0.0036 Fanout:         0
+                RDF_QUAD_POGS    0.0036 rows(s_37_8_t1.S$39)
+                 inlined  P =  IRI_ID"...direct/P361"  ,  O =  IRI_ID"...Q21542493"  ,  S = s_37_8_t2.S$36
+                time         0% fanout         0 input         0 rows
+                Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:   0.00047 Fanout:         0
+                RDF_QUAD_POGS   0.00047 rows(s_37_8_t0.S$42)
+                 inlined  P =  IRI_ID"...direct/P31"  ,  O =  IRI_ID"...Q11060274"  ,  S = s_37_8_t1.S$39
+                
+                After code:
+                0: isnotnull$44 := Call isnotnull (s_37_8_t3.O$32)
+                5: BReturn 0
+                time         0% fanout         0 input         0 rows
+                Sort (s_37_8_t0.S$42) -> (isnotnull$44)
+                
+              }
+            time       3.3% fanout         0 input         1 rows
+            group by read node  
+            (s_37_8_t0.S$42, aggregate$48)
+            time         0% fanout         0 input         0 rows
+            Sort (aggregate$48) -> (s_37_8_t0.S$42)
+            
+          }
+        time       5.8% fanout         0 input         1 rows
+        Key from temp (s_37_8_t0.S$42, aggregate$48)
+        
+        
+        After code:
+        0: __id2in$91 := Call __id2in (s_37_8_t0.S$42)
+        5: var1$28 :=  := artm __id2in$91
+        9: var3$29 :=  := artm aggregate$48
+        13: BReturn 0
+        time         0% fanout         0 input         0 rows
+        Subquery Select(var1$28, var3$29)
+      }
+    
+    After code:
+    0: var1$100 := Call __ro2sq (var1$28)
+    5: var3$102 := Call __ro2sq (var3$29)
+    10: BReturn 0
+    time         0% fanout         0 input         0 rows
+    Select (var1$100, var3$102)
+  }
+
+
+ 0 msec 1% cpu,         1 rnd         0 seq         0% same seg         0% same pg 
+Compilation: 3 msec 0 reads         0% read 0 messages         0% clw

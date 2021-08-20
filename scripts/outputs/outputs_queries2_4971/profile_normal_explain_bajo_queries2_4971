@@ -1,0 +1,72 @@
+http://www.wikidata.org/entity/Q148	
+http://www.wikidata.org/entity/Q155	
+http://www.wikidata.org/entity/Q183	
+http://www.wikidata.org/entity/Q869	
+http://www.wikidata.org/entity/Q713750	
+http://www.wikidata.org/entity/Q1049	
+http://www.wikidata.org/entity/Q916	
+http://www.wikidata.org/entity/Q912	
+http://www.wikidata.org/entity/Q298	
+http://www.wikidata.org/entity/Q476757	
+http://www.wikidata.org/entity/Q31	
+http://www.wikidata.org/entity/Q45	
+http://www.wikidata.org/entity/Q878	
+http://www.wikidata.org/entity/Q801	
+http://www.wikidata.org/entity/Q863	
+http://www.wikidata.org/entity/Q1044	
+http://www.wikidata.org/entity/Q819	
+http://www.wikidata.org/entity/Q398	
+http://www.wikidata.org/entity/Q233	
+http://www.wikidata.org/entity/Q686	
+
+  { 
+    time      0.52% fanout         1 input         1 rows
+    Subquery 27 
+      { 
+        time       0.3% fanout         1 input         1 rows
+        fork {
+            time        12% fanout        41 input         1 rows
+            RDF_QUAD_POGS        41 rows(t2.S$31)
+             P =  IRI_ID"...direct/P463"  ,  O =  IRI_ID"...Q1065" 
+            time       3.2% fanout         1 input        41 rows
+            outer {
+                time        20% fanout   1.90244 input        41 rows
+                RDF_QUAD       1.1 rows(t4.O$34)
+                 inlined  P =  IRI_ID"...direct/P1082"  ,  S = k_t2.S$124
+                time      0.49% fanout   1.03846 input        78 rows
+              } /* end of outer */
+            set_ctr$37
+             out: (t4.O$34)
+             shadow: ( <none> )
+            time        19% fanout  0.283951 input        81 rows
+            Distinct (t2.S$31)
+            time        20% fanout         0 input        23 rows
+            Precode:
+              0: __ro2sq$52 := Call __ro2sq (t4.O$34)
+              5: BReturn 0
+            Sort (__ro2sq$52) -> (t2.S$31)
+            
+          }
+        time        24% fanout        23 input         1 rows
+        Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:         0 Fanout:        23
+        Key from temp (t2.S$31)
+        
+        
+        After code:
+        0: __id2in$67 := Call __id2in (t2.S$31)
+        5: var1$28 :=  := artm __id2in$67
+        9: BReturn 0
+        time      0.18% fanout         0 input        23 rows
+        Subquery Select(var1$28)
+      }
+    
+    After code:
+    0: var1$76 := Call __ro2sq (var1$28)
+    5: BReturn 0
+    time      0.11% fanout         0 input        23 rows
+    Select (var1$76)
+  }
+
+
+ 1 msec 27% cpu,        68 rnd       102 seq   52.1739% same seg    5.7971% same pg 
+Compilation: 1 msec 0 reads         0% read 0 messages         0% clw

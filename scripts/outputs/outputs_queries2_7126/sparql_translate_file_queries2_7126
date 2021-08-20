@@ -1,0 +1,21 @@
+ SELECT  __ro2sq ("s_37_6_rbc"."var1") AS "var1", __ro2sq ("s_37_6_rbc"."var2") AS "var2" FROM (SELECT TOP 2000 __id2in ( "s_37_6_t0"."S") AS "var1",
+    __ro2sq ( "s_37_6_t2"."O") AS "var2"
+  FROM DB.DBA.RDF_QUAD AS "s_37_6_t0"
+    INNER JOIN DB.DBA.RDF_QUAD AS "s_37_6_t1"
+    ON (
+      "s_37_6_t0"."O" = "s_37_6_t1"."S")
+    INNER JOIN DB.DBA.RDF_QUAD AS "s_37_6_t2"
+    ON (
+      "s_37_6_t0"."S" = "s_37_6_t2"."S")
+  WHERE
+    "s_37_6_t0"."P" = __i2idn ( __bft( 'http://www.wikidata.org/prop/P195' , 1))
+    AND 
+    "s_37_6_t1"."P" = __i2idn ( __bft( 'http://www.wikidata.org/prop/statement/P195' , 1))
+    AND 
+    "s_37_6_t1"."O" = __i2idn ( __bft( 'http://www.wikidata.org/entity/Q190804' , 1))
+    AND 
+    "s_37_6_t2"."P" = __i2idn ( __bft( 'http://www.wikidata.org/prop/direct/P217' , 1))
+    AND 
+    (cast ( __ro2sq ( "s_37_6_t2"."O") as varchar) like  '%string1%' )
+  ORDER BY  CAST ( __rdf_sqlval_of_obj /*l*/ ( DB.DBA.rdf_replace_impl ( __ro2lo ( "s_37_6_t2"."O"),  'SK-A-' ,  '' )) AS INTEGER) ASC
+OPTION (QUIETCAST)) AS "s_37_6_rbc"

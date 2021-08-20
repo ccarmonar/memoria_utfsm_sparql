@@ -1,0 +1,40 @@
+SELECT TOP 1 1 AS __ask_retval
+FROM (
+   SELECT "s_15_10_t5"."S" AS "item",
+      "s_15_10_t4"."O" AS "cost",
+      "s_15_10_t5"."O" AS "amount",
+      "s_15_8"."approvingEmployee" AS "approvingEmployee",
+      "s_15_8"."grade" AS "grade",
+      ( "s_15_10_t4"."O" *  "s_15_10_t5"."O") AS "totalCost"
+    FROM DB.DBA.RDF_QUAD AS "s_15_10_t4"
+      INNER JOIN DB.DBA.RDF_QUAD AS "s_15_10_t5"
+      ON (
+        "s_15_10_t5"."S" = "s_15_10_t4"."S")
+      LEFT OUTER JOIN (
+        SELECT "s_15_8_t0"."S" AS "item",
+          "s_15_8_t0"."O" AS "approvingEmployee",
+          "s_15_8_t1"."O" AS "grade"
+        FROM DB.DBA.RDF_QUAD AS "s_15_8_t0"
+          INNER JOIN DB.DBA.RDF_QUAD AS "s_15_8_t1"
+          ON (
+            "s_15_8_t0"."O" = "s_15_8_t1"."S")
+        WHERE
+          "s_15_8_t0"."P" = __i2idn ( __bft( 'http://learningsparql.com/ns/demo#approval' , 1))
+          AND 
+          "s_15_8_t1"."P" = __i2idn ( __bft( 'http://learningsparql.com/ns/demo#jobGrade' , 1))) AS "s_15_8"
+      ON (
+        "s_15_10_t5"."S" = "s_15_8"."item"
+        AND 
+        "s_15_10_t4"."S" = "s_15_8"."item")
+    WHERE
+      "s_15_10_t4"."P" = __i2idn ( __bft( 'http://learningsparql.com/ns/demo#cost' , 1))
+      AND 
+      "s_15_10_t5"."P" = __i2idn ( __bft( 'http://learningsparql.com/ns/demo#amount' , 1))
+OPTION (QUIETCAST)
+    ) AS "s_15_11"
+WHERE
+ ( "s_15_11"."totalCost" >  100)
+  AND 
+ ( not ( ( "s_15_11"."grade" is not null)) OR 
+   ( "s_15_11"."grade" <  5))
+OPTION (QUIETCAST)

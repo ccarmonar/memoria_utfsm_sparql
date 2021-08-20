@@ -1,0 +1,45 @@
+http://www.openlinksw.com/virtrdf-data-formats#default-iid	http://www.w3.org/1999/02/22-rdf-syntax-ns#type	http://www.openlinksw.com/schemas/virtrdf#QuadMapFormat	
+http://www.openlinksw.com/virtrdf-data-formats#default-iid-nullable	http://www.w3.org/1999/02/22-rdf-syntax-ns#type	http://www.openlinksw.com/schemas/virtrdf#QuadMapFormat	
+http://www.openlinksw.com/virtrdf-data-formats#default-iid-nonblank	http://www.w3.org/1999/02/22-rdf-syntax-ns#type	http://www.openlinksw.com/schemas/virtrdf#QuadMapFormat	
+http://www.openlinksw.com/virtrdf-data-formats#default-iid-nonblank-nullable	http://www.w3.org/1999/02/22-rdf-syntax-ns#type	http://www.openlinksw.com/schemas/virtrdf#QuadMapFormat	
+http://www.openlinksw.com/virtrdf-data-formats#default	http://www.w3.org/1999/02/22-rdf-syntax-ns#type	http://www.openlinksw.com/schemas/virtrdf#QuadMapFormat	
+http://www.openlinksw.com/virtrdf-data-formats#default-nullable	http://www.w3.org/1999/02/22-rdf-syntax-ns#type	http://www.openlinksw.com/schemas/virtrdf#QuadMapFormat	
+http://www.openlinksw.com/virtrdf-data-formats#sql-varchar	http://www.w3.org/1999/02/22-rdf-syntax-ns#type	http://www.openlinksw.com/schemas/virtrdf#QuadMapFormat	
+http://www.openlinksw.com/virtrdf-data-formats#sql-varchar-nullable	http://www.w3.org/1999/02/22-rdf-syntax-ns#type	http://www.openlinksw.com/schemas/virtrdf#QuadMapFormat	
+http://www.openlinksw.com/virtrdf-data-formats#sql-varchar-dt	http://www.w3.org/1999/02/22-rdf-syntax-ns#type	http://www.openlinksw.com/schemas/virtrdf#QuadMapFormat	
+http://www.openlinksw.com/virtrdf-data-formats#sql-varchar-dt-nullable	http://www.w3.org/1999/02/22-rdf-syntax-ns#type	http://www.openlinksw.com/schemas/virtrdf#QuadMapFormat	
+
+  { 
+    time      0.86% fanout         1 input         1 rows
+    Subquery 27 
+      { 
+        time        21% fanout      1000 input         1 rows
+        Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:   7.3e+07 Fanout:     1e+03
+        RDF_QUAD_POGS   7.3e+07 rows(s_37_2_t0.S$35, s_37_2_t0.P$34, s_37_2_t0.O$33)
+        
+        time        76% fanout     0.959 input      1000 rows
+        Distinct (s_37_2_t0.S$35, s_37_2_t0.P$34, s_37_2_t0.O$33)
+        time       1.7% fanout 0.0104275 input       959 rows
+        skip node  10  <none> set_no$31
+        
+        After code:
+        0: var2$28 :=  := artm s_37_2_t0.S$35
+        4: var3$29 :=  := artm s_37_2_t0.P$34
+        8: var4$30 :=  := artm s_37_2_t0.O$33
+        12: BReturn 0
+        time      0.27% fanout         0 input        10 rows
+        Subquery Select(var2$28, var3$29, var4$30)
+      }
+    
+    After code:
+    0: var2$54 := Call __ro2sq (var2$28)
+    5: var3$56 := Call __ro2sq (var3$29)
+    10: var4$58 := Call __ro2sq (var4$30)
+    15: BReturn 0
+    time      0.21% fanout         0 input        10 rows
+    Select (var2$54, var3$56, var4$58)
+  }
+
+
+ 0 msec 32% cpu,         1 rnd       998 seq         0% same seg         0% same pg 
+Compilation: 2 msec 0 reads         0% read 0 messages         0% clw

@@ -1,0 +1,60 @@
+http://www.wikidata.org/entity/Q167148	POINT(5.65167 53.03222)	http://www.wikidata.org/prop/direct/P17	
+http://www.wikidata.org/entity/Q800372	POINT(6.65601 52.35685)	http://www.wikidata.org/prop/direct/P17	
+http://www.wikidata.org/entity/Q800372	POINT(6.657222 52.355833)	http://www.wikidata.org/prop/direct/P17	
+http://www.wikidata.org/entity/Q800377	POINT(5.244297 52.376647)	http://www.wikidata.org/prop/direct/P17	
+http://www.wikidata.org/entity/Q800377	POINT(5.245 52.3768)	http://www.wikidata.org/prop/direct/P17	
+http://www.wikidata.org/entity/Q800889	POINT(5.425 53.17)	http://www.wikidata.org/prop/direct/P17	
+http://www.wikidata.org/entity/Q800899	POINT(5.915556 52.960278)	http://www.wikidata.org/prop/direct/P17	
+http://www.wikidata.org/entity/Q800900	POINT(4.823611 52.67)	http://www.wikidata.org/prop/direct/P17	
+http://www.wikidata.org/entity/Q801039	POINT(4.037222 51.465278)	http://www.wikidata.org/prop/direct/P17	
+http://www.wikidata.org/entity/Q801084	POINT(5.472778 52.507778)	http://www.wikidata.org/prop/direct/P17	
+http://www.wikidata.org/entity/Q801163	POINT(6.574444 52.508889)	http://www.wikidata.org/prop/direct/P17	
+http://www.wikidata.org/entity/Q801410	POINT(4.761667 52.308889)	http://www.wikidata.org/prop/direct/P17	
+http://www.wikidata.org/entity/Q801519	POINT(5.08334 51.56054)	http://www.wikidata.org/prop/direct/P17	
+http://www.wikidata.org/entity/Q801519	POINT(5.083611 51.560278)	http://www.wikidata.org/prop/direct/P17	
+http://www.wikidata.org/entity/Q801541	POINT(4.7027777777778 52.521388888889)	http://www.wikidata.org/prop/direct/P17	
+http://www.wikidata.org/entity/Q801653	POINT(4.813889 52.438333)	http://www.wikidata.org/prop/direct/P17	
+http://www.wikidata.org/entity/Q970524	POINT(5.051389 51.565278)	http://www.wikidata.org/prop/direct/P17	
+http://www.wikidata.org/entity/Q47283	POINT(6.867222 53.159167)	http://www.wikidata.org/prop/direct/P17	
+http://www.wikidata.org/entity/Q426233	POINT(5.987778 53.234722)	http://www.wikidata.org/prop/direct/P17	
+http://www.wikidata.org/entity/Q17937	POINT(6.563889 53.210556)	http://www.wikidata.org/prop/direct/P17	
+
+  { 
+    time     0.057% fanout         1 input         1 rows
+    time     0.016% fanout         1 input         1 rows
+    time      0.93% fanout        41 input         1 rows
+    RDF_QUAD_OP        20 rows(s_37_6_t1.P$33)
+     inlined  O =  IRI_ID"...Q55" 
+    time        23% fanout   365.854 input        41 rows
+    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:       1.2 Fanout:   3.7e+02
+    RDF_QUAD_POGS       1.2 rows(s_37_6_t1.S$37)
+     P = s_37_6_t1.P$33 ,  O =  IRI_ID"...Q55" 
+    time        61% fanout 0.00693333 input     15000 rows
+    RDF_QUAD_POGS    0.0017 rows(s_37_6_t0.S$41)
+     inlined  P =  IRI_ID"...direct/P31"  ,  O =  IRI_ID"...Q55488"  ,  S = s_37_6_t1.S$37
+    time       3.9% fanout  0.519231 input       104 rows
+    RDF_QUAD       1.1 rows(s_37_6_t2.O$44)
+     inlined  P =  IRI_ID"...direct/P625"  ,  S = s_37_6_t0.S$41
+    time       2.5% fanout  0.481481 input        54 rows
+    Distinct (s_37_6_t0.S$41, s_37_6_t2.O$44, s_37_6_t1.P$33)
+    
+    After code:
+    0: var1$28 :=  := artm s_37_6_t0.S$41
+    4: var2$29 :=  := artm s_37_6_t2.O$44
+    8: var3$30 :=  := artm s_37_6_t1.P$33
+    12: BReturn 0
+    time       8.8% fanout         1 input        26 rows
+    Subquery Select(var1$28, var2$29, var3$30)
+    
+    After code:
+    0: var1$60 := Call __ro2sq (var1$28)
+    5: var2$62 := Call __ro2sq (var2$29)
+    10: var3$64 := Call __ro2sq (var3$30)
+    15: BReturn 0
+    time      0.02% fanout         0 input        26 rows
+    Select (var1$60, var2$62, var3$64)
+  }
+
+
+ 6 msec 72% cpu,     15169 rnd     15013 seq   99.3738% same seg  0.257086% same pg 
+Compilation: 2 msec 0 reads         0% read 0 messages         0% clw

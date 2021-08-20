@@ -1,0 +1,42 @@
+http://www.wikidata.org/entity/Q27826274	
+http://www.wikidata.org/entity/Q27811466	
+http://www.wikidata.org/entity/Q27826088	
+http://www.wikidata.org/entity/Q27826256	
+http://www.wikidata.org/entity/Q29480311	
+http://www.wikidata.org/entity/Q27826183	
+http://www.wikidata.org/entity/Q27826253	
+
+  { 
+    time         1% fanout         1 input         1 rows
+    Subquery 27 
+      { 
+        time       0.7% fanout         1 input         1 rows
+        fork {
+            time        19% fanout         7 input         1 rows
+            RDF_QUAD_POGS         7 rows(s_37_2_t0.S$31)
+             P =  IRI_ID"...direct/P279"  ,  O =  IRI_ID"...Q139677" 
+            time        31% fanout         0 input         7 rows
+            Sort (s_37_2_t0.S$31)
+          }
+        time        47% fanout         7 input         1 rows
+        group by read node  
+        (s_37_2_t0.S$31)
+        
+        After code:
+        0: __id2in$54 := Call __id2in (s_37_2_t0.S$31)
+        5: var1$28 :=  := artm __id2in$54
+        9: BReturn 0
+        time      0.31% fanout         0 input         7 rows
+        Subquery Select(var1$28)
+      }
+    
+    After code:
+    0: var1$63 := Call __ro2sq (var1$28)
+    5: BReturn 0
+    time      0.23% fanout         0 input         7 rows
+    Select (var1$63)
+  }
+
+
+ 1 msec 21% cpu,         1 rnd         6 seq         0% same seg         0% same pg 
+Compilation: 1 msec 0 reads         0% read 0 messages         0% clw

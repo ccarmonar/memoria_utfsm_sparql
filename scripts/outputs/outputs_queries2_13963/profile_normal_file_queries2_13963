@@ -1,0 +1,126 @@
+http://www.wikidata.org/entity/Q3412674		978-2-205-06132-1	
+http://www.wikidata.org/entity/Q49025252		978-1-4502-0579-5	
+http://www.wikidata.org/entity/Q20501862		978-965-552-857-2	
+http://www.wikidata.org/entity/Q24865245		978-0-684-84859-4	
+http://www.wikidata.org/entity/Q78941047		978-986-03-8092-7	
+http://www.wikidata.org/entity/Q6043721		978-84-216-6292-2	
+http://www.wikidata.org/entity/Q4670623		978-1-4516-1421-3	
+http://www.wikidata.org/entity/Q42901982		978-952-443-455-3	
+http://www.wikidata.org/entity/Q78663612		978-0-511-55045-4	
+http://www.wikidata.org/entity/Q79677001		978-80-7211-305-7	
+http://www.wikidata.org/entity/Q46002746		978-0-19-538207-5	
+http://www.wikidata.org/entity/Q684614		978-0-7432-3515-0	
+http://www.wikidata.org/entity/Q16118999		978-3-8298-1241-2	
+http://www.wikidata.org/entity/Q43458741		978-5-93572-521-1	
+http://www.wikidata.org/entity/Q1574967		978-4-582-74402-6	
+http://www.wikidata.org/entity/Q5232230		978-0-486-44244-0	
+http://www.wikidata.org/entity/Q5232230		978-0-684-15790-0	
+http://www.wikidata.org/entity/Q5232230		978-84-345-8387-0	
+http://www.wikidata.org/entity/Q6081112		978-1-891396-58-8	
+http://www.wikidata.org/entity/Q21056517		978-0-362-00103-7	
+
+  { 
+    time      0.93% fanout         1 input         1 rows
+      clear: (<V set_ctr$89 in>)
+    s# 92 90 cluster outer seq start, set no <V set_ctr$89 in>    
+    save ctx:()
+      clear: (<V var1$29 rn>, <V var3$28 a>, <V set_no$30 i>, <V var3$81 a>, <V var1$79 a>)
+    s# 101 27 Subquery 27 
+      multistate set no = <V set_no$30 i>
+      { 
+        
+        s# 105 31 Union
+          { 
+            time        31% fanout       198 input         1 rows
+              clear: (<V t2.S$33 rn>)
+              clear on continue: (<V t2.S$33 rn>)
+            s# 108 32 from DB.DBA.RDF_QUAD by RDF_QUAD_POGS      2e+02 rows   
+            Key RDF_QUAD_POGS  ASC  (<V t2.S$33 rn>)
+             P =  IRI_ID"...direct/P31"  ,  O =  IRI_ID"...Q571" 
+            
+            time       1.9% fanout         1 input       198 rows
+              clear: (<V set_ctr$39 i>)
+            s# 118 43 cluster outer seq start, set no <V set_ctr$39 i>    
+            save ctx:()
+            time        63% fanout  0.156566 input       198 rows
+              clear: (<V t4.O$36 a>)
+              clear on continue: (<V t4.O$36 a>)$131 (35 ) 
+            s# 127 35 from DB.DBA.RDF_QUAD by RDF_QUAD        1.1 rows   
+            Key RDF_QUAD  ASC  (<V t4.O$36 a>)
+             inlined  P =  IRI_ID"...direct/P212"  ,  S = <v k_t2.S$131 Set133 rn>
+            vector param casts: <r t2.S$33 via  Set118>-> <v k_t2.S$131 Set133 rn>
+            
+            time       2.5% fanout         1 input        31 rows
+              clear: (<V var1$29 rn>, <V var3$28 a>)$33 (35 43 ) $36 () $39 (35 43 ) 
+            s# 141 38 end of outer seq <r set_ctr$39 via  Set127 Set133>
+             out: (<V t4.O$36 a>)
+             shadow: ( <none> )
+            After code:
+              0: <V var3$28 a> :=  := artm <V t4.O$36 a>
+              4: <V var1$29 rn> :=  := artm <r t2.S$33 via  Set141>
+              8: BReturn 0
+            time      0.48% fanout         0 input        31 rows
+            
+            s# 101 48 Subquery Select(<V var3$28 a>, <V var1$29 rn>)
+              set no: <r set_no$30 via  Set141 Set108>
+          }
+          { 
+            time         0% fanout         0 input         0 rows
+            Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:   1.6e+04 Fanout:         0
+              clear: (<V t9.S$56 rn>)
+              clear on continue: (<V t9.S$56 rn>)
+            s# 158 55 from DB.DBA.RDF_QUAD by RDF_QUAD_POGS    1.6e+04 rows   
+            Key RDF_QUAD_POGS  ASC  (<V t9.S$56 rn>)
+             P =  IRI_ID"...direct/P31"  ,  O =  IRI_ID"...Q7725634" 
+            
+            time         0% fanout         0 input         0 rows
+              clear: (<V set_ctr$62 i>)
+            s# 168 66 cluster outer seq start, set no <V set_ctr$62 i>    
+            save ctx:()
+            time         0% fanout         0 input         0 rows
+            Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:       1.1 Fanout:         0
+              clear: (<V t11.O$59 a>)
+              clear on continue: (<V t11.O$59 a>)$181 (58 ) 
+            s# 177 58 from DB.DBA.RDF_QUAD by RDF_QUAD        1.1 rows   
+            Key RDF_QUAD  ASC  (<V t11.O$59 a>)
+             inlined  P =  IRI_ID"...direct/P212"  ,  S = <v k_t9.S$181 Set183 rn>
+            vector param casts: <r t9.S$56 via  Set168>-> <v k_t9.S$181 Set183 rn>
+            
+            time         0% fanout         0 input         0 rows
+              clear: (<V var1$29 rn>, <V var3$28 a>)$62 (58 66 ) $56 (58 66 ) $59 () 
+            s# 191 61 end of outer seq <r set_ctr$62 via  Set177 Set183>
+             out: (<V t11.O$59 a>)
+             shadow: ( <none> )
+            After code:
+              0: <V var3$28 a> :=  := artm <V t11.O$59 a>
+              4: <V var1$29 rn> :=  := artm <r t9.S$56 via  Set191>
+              8: BReturn 0
+            time         0% fanout         0 input         0 rows
+            
+            Subquery Select(<V var3$28 a>, <V var1$29 rn>)
+              set no: <r set_no$30 via  Set191 Set158>
+          }
+      }
+    
+    After code:
+      0: <V var1$79 a> := Call __id2in (<V var1$29 rn>)
+      5: <V var3$81 a> := Call __ro2sq (<V var3$28 a>)
+      10: BReturn 0
+    time      0.21% fanout         0 input        31 rows
+    $79 (27 ) $81 (27 ) $89 (27 90 ) 
+    s# 206 83 Select (<V var1$79 a>, <DB_NULL>, <V var3$81 a>)
+      set no: <r set_ctr$89 via  Set101>
+  }
+Warning: You might have a Cartesian product.
+
+Warning: You might have a Cartesian product.
+
+Warning: You might have a Cartesian product.
+
+Warning: You might have a Cartesian product.
+
+
+
+ 23 msec 89% cpu,       231 rnd       199 seq   84.9138% same seg    1.2931% same pg 
+1 disk reads, 0 read ahead,    85.784% wait
+Compilation: 2 msec 0 reads         0% read 0 messages         0% clw

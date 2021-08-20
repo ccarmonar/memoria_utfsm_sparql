@@ -1,0 +1,84 @@
+SELECT __id2in ( "s_37_33_t15"."S") AS "var1",
+  __ro2sq ( "s_37_33_t17"."O") AS "var2",
+  __ro2sq ( "s_37_33_t18"."O") AS "var3",
+  __ro2sq ( "s_37_33_t13"."O") AS "var4",
+  __ro2sq ( "s_37_33_t14"."O") AS "var5",
+  __ro2sq ( "s_37_31"."var6") AS "var6"
+FROM DB.DBA.RDF_QUAD AS "s_37_3_t0"
+  INNER JOIN (
+   SELECT TRANSITIVE T_OUT(2) T_IN(1) T_MIN( 0) T_NO_CYCLES "s_37_9_t1"."S" AS "_::trans_subj_37_5",
+      "s_37_9_t1"."O" AS "_::trans_obj_37_6"
+    FROM DB.DBA.RDF_QUAD AS "s_37_9_t1"
+    WHERE
+      "s_37_9_t1"."P" = __i2idn ( __bft( 'http://www.wikidata.org/prop/direct/P279' , 1))
+OPTION (QUIETCAST)
+    ) AS "s_37_12"
+  ON (
+    "s_37_3_t0"."O" = "s_37_12"."_::trans_subj_37_5")
+  INNER JOIN DB.DBA.RDF_QUAD AS "s_37_33_t11"
+  ON (
+    "s_37_33_t11"."S" = "s_37_3_t0"."S")
+  INNER JOIN DB.DBA.RDF_QUAD AS "s_37_33_t12"
+  ON (
+    "s_37_33_t12"."S" = "s_37_33_t11"."O")
+  INNER JOIN DB.DBA.RDF_QUAD AS "s_37_33_t13"
+  ON (
+    "s_37_33_t13"."S" = "s_37_33_t12"."O")
+  INNER JOIN DB.DBA.RDF_QUAD AS "s_37_33_t14"
+  ON (
+    "s_37_33_t14"."S" = "s_37_33_t13"."S"
+    AND 
+    "s_37_33_t14"."S" = "s_37_33_t12"."O")
+  INNER JOIN DB.DBA.RDF_QUAD AS "s_37_33_t15"
+  ON (
+    "s_37_33_t15"."S" = "s_37_33_t11"."S"
+    AND 
+    "s_37_33_t15"."S" = "s_37_3_t0"."S")
+  INNER JOIN DB.DBA.RDF_QUAD AS "s_37_33_t16"
+  ON (
+    "s_37_33_t16"."S" = "s_37_33_t15"."O")
+  INNER JOIN DB.DBA.RDF_QUAD AS "s_37_33_t17"
+  ON (
+    "s_37_33_t17"."S" = "s_37_33_t16"."O")
+  INNER JOIN DB.DBA.RDF_QUAD AS "s_37_33_t18"
+  ON (
+    "s_37_33_t18"."S" = "s_37_33_t17"."S"
+    AND 
+    "s_37_33_t18"."S" = "s_37_33_t16"."O")
+  LEFT OUTER JOIN (
+    SELECT "s_37_31_t2"."S" AS "var1",
+      "s_37_31_t2"."O" AS "var6"
+    FROM DB.DBA.RDF_QUAD AS "s_37_31_t2"
+    WHERE
+      "s_37_31_t2"."P" = __i2idn ( __bft( 'http://www.wikidata.org/prop/direct/P2061' , 1))) AS "s_37_31"
+  ON (
+    "s_37_33_t15"."S" = "s_37_31"."var1"
+    AND 
+    "s_37_33_t11"."S" = "s_37_31"."var1"
+    AND 
+    "s_37_3_t0"."S" = "s_37_31"."var1")
+WHERE
+  "s_37_3_t0"."P" = __i2idn ( __bft( 'http://www.wikidata.org/prop/direct/P31' , 1))
+  AND 
+  isiri_id ( "s_37_3_t0"."O")
+  AND 
+  "s_37_33_t11"."P" = __i2idn ( __bft( 'http://www.wikidata.org/prop/P2048' , 1))
+  AND 
+  "s_37_33_t12"."P" = __i2idn ( __bft( 'http://www.wikidata.org/prop/statement/value/P2048' , 1))
+  AND 
+  "s_37_33_t13"."P" = __i2idn ( __bft( 'http://wikiba.se/ontology#quantityAmount' , 1))
+  AND 
+  "s_37_33_t14"."P" = __i2idn ( __bft( 'http://wikiba.se/ontology#quantityUnit' , 1))
+  AND 
+  "s_37_33_t15"."P" = __i2idn ( __bft( 'http://www.wikidata.org/prop/P2049' , 1))
+  AND 
+  "s_37_33_t16"."P" = __i2idn ( __bft( 'http://www.wikidata.org/prop/statement/value/P2049' , 1))
+  AND 
+  "s_37_33_t17"."P" = __i2idn ( __bft( 'http://wikiba.se/ontology#quantityAmount' , 1))
+  AND 
+  "s_37_33_t18"."P" = __i2idn ( __bft( 'http://wikiba.se/ontology#quantityUnit' , 1))
+  AND 
+ ( "s_37_12"."_::trans_obj_37_6" =  __i2idn ( __bft( 'http://www.wikidata.org/entity/Q14660' , 1)))
+  AND 
+  1
+OPTION (QUIETCAST)

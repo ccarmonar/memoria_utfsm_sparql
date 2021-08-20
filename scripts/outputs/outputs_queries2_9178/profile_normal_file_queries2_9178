@@ -1,0 +1,39 @@
+http://www.wikidata.org/entity/Q23	http://commons.wikimedia.org/wiki/Special:FilePath/Gilbert%20Stuart%20Williamstown%20Portrait%20of%20George%20Washington.jpg	
+http://www.wikidata.org/entity/Q23	http://commons.wikimedia.org/wiki/Special:FilePath/Gilbert%20Stuart%20Williamstown%20Portrait%20of%20George%20Washington.jpg	
+http://www.wikidata.org/entity/Q24	http://commons.wikimedia.org/wiki/Special:FilePath/Kiefer%20Sutherland%20at%2024%20Redemption%20premiere%201%20%28headshot%29.jpg	
+http://www.wikidata.org/entity/Q24	http://commons.wikimedia.org/wiki/Special:FilePath/Kiefer%20Sutherland%20at%2024%20Redemption%20premiere%201%20%28headshot%29.jpg	
+
+  { 
+    time       1.4% fanout         1 input         1 rows
+      clear: (<V set_ctr$45 in>)
+    s# 48 46 cluster outer seq start, set no <V set_ctr$45 in>    
+    save ctx:()
+    time       2.7% fanout         3 input         1 rows
+      clear: (<V in_iter$28 x>)
+      clear on continue: (<V in_iter$28 x>)
+    s# 57 29 in   iterates <V in_iter$28 x>
+      over ( IRI_ID"...Q23" ,  IRI_ID"...Q24" ,  IRI_ID"...Q28" )
+    time        96% fanout   1.33333 input         3 rows
+      clear: (<V s_37_3_t0.O$32 an>, <V s_37_3_t0.S$33 rn>, <V var2$37 a>, <V var1$35 a>)
+      clear on continue: (<V var1$35 a>, <V var2$37 a>, <V s_37_3_t0.S$33 rn>, <V s_37_3_t0.O$32 an>)$74 (27 ) $28 () 
+    s# 70 27 from DB.DBA.RDF_QUAD by RDF_QUAD        0.9 rows   
+    Key RDF_QUAD  ASC  (<V s_37_3_t0.S$33 rn>, <V s_37_3_t0.O$32 an>)
+     inlined  P =  IRI_ID"...direct/P18"  ,  S = <v k_in_iter$74 Set76 rn>
+    row specs:  S <  IRI_ID"...nodeID://b0" 
+    vector param casts: <V in_iter$28 x>-> <v k_in_iter$74 Set76 rn>
+    
+    After code:
+      0: <V var1$35 a> := Call __id2in (<V s_37_3_t0.S$33 rn>)
+      5: <V var2$37 a> := Call __ro2sq (<V s_37_3_t0.O$32 an>)
+      10: BReturn 0
+    time      0.35% fanout         0 input         4 rows
+    $35 () $37 () $45 (27 29 46 ) 
+    s# 85 39 Select (<V var1$35 a>, <V var2$37 a>)
+      set no: <r set_ctr$45 via  Set70 Set76 Set57>
+  }
+Warning: You might have a Cartesian product.
+
+
+
+ 0 msec 14% cpu,         7 rnd         2 seq        25% same seg        25% same pg 
+Compilation: 2 msec 0 reads         0% read 0 messages         0% clw

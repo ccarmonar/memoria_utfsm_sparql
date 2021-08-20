@@ -1,0 +1,44 @@
+
+  { 
+    time        49% fanout         1 input         1 rows
+      clear: (<V set_ctr$45 in>)
+    s# 48 46 cluster outer seq start, set no <V set_ctr$45 in>    
+    save ctx:()
+    time        51% fanout         0 input         1 rows
+    
+    s# 57 27 END Node
+    After test:
+      0: if ( 0  = <DB_NULL>) then 5 else 4 unkn 5
+      4: BReturn 1
+      5: BReturn 0
+    time         0% fanout         0 input         0 rows
+    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:   3.4e+04 Fanout:         0
+      clear: (<V s_37_4_t1.O$29 an>, <V s_37_4_t1.S$30 rn>)
+      clear on continue: (<V s_37_4_t1.O$29 an>, <V s_37_4_t1.S$30 rn>)
+    s# 65 28 from DB.DBA.RDF_QUAD by RDF_QUAD    3.4e+04 rows   
+    Key RDF_QUAD  ASC  (<V s_37_4_t1.S$30 rn>, <V s_37_4_t1.O$29 an>)
+     inlined  P =  IRI_ID"...direct/P625" 
+    
+    time         0% fanout         0 input         0 rows
+    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:    0.0041 Fanout:         0
+      clear: (<V s_37_4_t0.S$33 rn>, <V var1$37 a>, <V var2$35 a>)
+      clear on continue: (<V s_37_4_t0.S$33 rn>, <V var1$37 a>, <V var2$35 a>)$29 () $30 () 
+    s# 76 32 from DB.DBA.RDF_QUAD by RDF_QUAD     0.0041 rows   
+    Key RDF_QUAD  ASC  (<V s_37_4_t0.S$33 rn>)
+     inlined  P =  IRI_ID"...direct/P31"  ,  S = <V s_37_4_t1.S$30 rn> ,  O =  IRI_ID"...Q41176" 
+    
+    After code:
+      0: <V var2$35 a> := Call __ro2sq (<r s_37_4_t1.O$29 via  Set76>)
+      5: <V var1$37 a> := Call __id2in (<V s_37_4_t0.S$33 rn>)
+      10: BReturn 0
+    time         0% fanout         0 input         0 rows
+    $35 () $37 () $45 (32 28 27 46 ) 
+    s# 86 39 Select (<V var1$37 a>, <DB_NULL>, <V var2$35 a>)
+      set no: <r set_ctr$45 via  Set76 Set65 Set57>
+  }
+Warning: You might have a Cartesian product.
+
+
+
+ 1 msec 0% cpu,         0 rnd         0 seq         0% same seg         0% same pg 
+Compilation: 1 msec 0 reads         0% read 0 messages         0% clw

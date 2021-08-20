@@ -1,0 +1,76 @@
+https://www.ncbi.nlm.nih.gov/protein/P06729	P06729	http://www.wikidata.org/entity/Q2630678	
+http://purl.uniprot.org/uniprot/P06729	P06729	http://www.wikidata.org/entity/Q2630678	
+https://identifiers.org/uniprot:P06729	P06729	http://www.wikidata.org/entity/Q2630678	
+https://www.ncbi.nlm.nih.gov/protein/P05091	P05091	http://www.wikidata.org/entity/Q2640417	
+http://purl.uniprot.org/uniprot/P05091	P05091	http://www.wikidata.org/entity/Q2640417	
+https://identifiers.org/uniprot:P05091	P05091	http://www.wikidata.org/entity/Q2640417	
+http://purl.uniprot.org/uniprot/P48023	P48023	http://www.wikidata.org/entity/Q3067052	
+https://identifiers.org/uniprot:P48023	P48023	http://www.wikidata.org/entity/Q3067052	
+https://www.ncbi.nlm.nih.gov/protein/P48023	P48023	http://www.wikidata.org/entity/Q3067052	
+http://purl.uniprot.org/uniprot/P23975	P23975	http://www.wikidata.org/entity/Q7050954	
+http://purl.uniprot.org/uniprot/P35354	P35354	http://www.wikidata.org/entity/Q415364	
+http://purl.uniprot.org/uniprot/Q9UBM7	Q9UBM7	http://www.wikidata.org/entity/Q259292	
+https://identifiers.org/uniprot:P24298	P24298	http://www.wikidata.org/entity/Q305481	
+https://www.ncbi.nlm.nih.gov/protein/P24298	P24298	http://www.wikidata.org/entity/Q305481	
+http://purl.uniprot.org/uniprot/P24298	P24298	http://www.wikidata.org/entity/Q305481	
+http://purl.uniprot.org/uniprot/P21917	P21917	http://www.wikidata.org/entity/Q308856	
+http://purl.uniprot.org/uniprot/P23528	P23528	http://www.wikidata.org/entity/Q4236472	
+https://identifiers.org/uniprot:P23528	P23528	http://www.wikidata.org/entity/Q4236472	
+https://www.ncbi.nlm.nih.gov/protein/P23528	P23528	http://www.wikidata.org/entity/Q4236472	
+https://identifiers.org/uniprot:P23497	P23497	http://www.wikidata.org/entity/Q21096399	
+
+  { 
+    time      0.14% fanout         1 input         1 rows
+      clear: (<V set_ctr$54 in>)
+    s# 57 55 cluster outer seq start, set no <V set_ctr$54 in>    
+    save ctx:()
+    time       3.6% fanout      1000 input         1 rows
+    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:   1.6e+04 Fanout:     1e+03
+      clear: (<V s_37_6_t2.S$28 rn>)
+      clear on continue: (<V s_37_6_t2.S$28 rn>)
+    s# 66 27 from DB.DBA.RDF_QUAD by RDF_QUAD_POGS    1.6e+04 rows   
+    Key RDF_QUAD_POGS  ASC  (<V s_37_6_t2.S$28 rn>)
+     P =  IRI_ID"...direct/P703"  ,  O =  IRI_ID"...Q15978631" 
+    
+    time        13% fanout     0.253 input      1000 rows
+      clear: (<V s_37_6_t1.S$31 rn>, <V s_37_6_t1.O$32 an>)
+      clear on continue: (<V s_37_6_t1.S$31 rn>, <V s_37_6_t1.O$32 an>)$28 () 
+    s# 76 30 from DB.DBA.RDF_QUAD by RDF_QUAD       0.46 rows   
+    Key RDF_QUAD  ASC  (<V s_37_6_t1.O$32 an>, <V s_37_6_t1.S$31 rn>)
+     inlined  P =  IRI_ID"...direct/P2888"  ,  S = <V s_37_6_t2.S$28 rn>
+    
+    time      0.97% fanout         1 input       253 rows
+      clear: (<V temp$36 i>, <V isiri_id$34 i>)
+    s# 92 87 END Node
+    After test:
+      0: <V isiri_id$34 i> := Call isiri_id (<V s_37_6_t1.O$32 an>)
+      5: <V temp$36 i> := artm  1  - <V isiri_id$34 i>
+      9: if ( 0  = <V temp$36 i>) then 13 else 14 unkn 14
+      13: BReturn 1
+      14: BReturn 0
+    time        82% fanout  0.474308 input       253 rows
+      clear: (<V s_37_6_t0.S$39 rn>, <V s_37_6_t0.O$40 an>, <V var3$46 a>, <V var2$44 a>, <V var1$42 a>)
+      clear on continue: (<V var1$42 a>, <V var2$44 a>, <V var3$46 a>, <V s_37_6_t0.O$40 an>, <V s_37_6_t0.S$39 rn>)$31 (87 ) $32 (87 ) $104 (38 ) 
+    s# 100 38 from DB.DBA.RDF_QUAD by RDF_QUAD          1 rows   
+    Key RDF_QUAD  ASC  (<V s_37_6_t0.O$40 an>, <V s_37_6_t0.S$39 rn>)
+     inlined  P =  IRI_ID"...direct/P352"  ,  S = <v k_s_37_6_t1.S$104 Set106 rn>
+    vector param casts: <r s_37_6_t1.S$31 via  Set92>-> <v k_s_37_6_t1.S$104 Set106 rn>
+    
+    After code:
+      0: <V var1$42 a> := Call __ro2sq (<r s_37_6_t1.O$32 via  Set100 Set106 Set92>)
+      5: <V var2$44 a> := Call __ro2sq (<V s_37_6_t0.O$40 an>)
+      10: <V var3$46 a> := Call __id2in (<V s_37_6_t0.S$39 rn>)
+      15: BReturn 0
+    time     0.022% fanout         0 input       120 rows
+    $42 () $44 () $46 () $54 (38 87 30 27 55 ) 
+    s# 115 48 Select (<V var1$42 a>, <V var2$44 a>, <V var3$46 a>)
+      set no: <r set_ctr$54 via  Set100 Set106 Set92 Set76 Set66>
+  }
+Warning: You might have a Cartesian product.
+
+Warning: You might have a Cartesian product.
+
+
+
+ 3 msec 53% cpu,      1466 rnd      1064 seq   85.0716% same seg   3.95365% same pg 
+Compilation: 1 msec 0 reads         0% read 0 messages         0% clw

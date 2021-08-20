@@ -1,0 +1,58 @@
+SELECT TOP 10 NULL /* due to conflict on var1 */ AS "var1",
+  __ro2sq ( "s_37_28_t5"."O") AS "var2",
+  __id2in ( "s_37_28_t7"."S") AS "var3"
+FROM DB.DBA.RDF_QUAD AS "s_37_3_t0"
+  INNER JOIN DB.DBA.RDF_QUAD AS "s_37_8_t1"
+  ON (
+    "s_37_8_t1"."S" = "s_37_3_t0"."O")
+  INNER JOIN (
+   SELECT TRANSITIVE T_OUT(2) T_IN(1) T_MIN( 0) T_NO_CYCLES "s_37_14_t2"."S" AS "_::trans_subj_37_10",
+      "s_37_14_t2"."O" AS "_::trans_obj_37_11"
+    FROM DB.DBA.RDF_QUAD AS "s_37_14_t2"
+    WHERE
+      "s_37_14_t2"."P" = __i2idn ( __bft( 'http://www.wikidata.org/prop/direct/P279' , 1))
+OPTION (QUIETCAST)
+    ) AS "s_37_17"
+  ON (
+    "s_37_8_t1"."O" = "s_37_17"."_::trans_subj_37_10")
+  INNER JOIN DB.DBA.RDF_QUAD AS "s_37_28_t3"
+  ON (1)
+  INNER JOIN DB.DBA.RDF_QUAD AS "s_37_28_t4"
+  ON (
+    "s_37_28_t3"."O" = "s_37_28_t4"."S")
+  INNER JOIN DB.DBA.RDF_QUAD AS "s_37_28_t5"
+  ON (
+    "s_37_28_t3"."O" = "s_37_28_t5"."S"
+    AND 
+    "s_37_28_t4"."S" = "s_37_28_t5"."S"
+    AND 
+    "s_37_28_t5"."O" = "s_37_3_t0"."S")
+  INNER JOIN DB.DBA.RDF_QUAD AS "s_37_28_t6"
+  ON (
+    "s_37_28_t3"."O" = "s_37_28_t6"."S"
+    AND 
+    "s_37_28_t4"."S" = "s_37_28_t6"."S"
+    AND 
+    "s_37_28_t5"."S" = "s_37_28_t6"."S")
+  INNER JOIN DB.DBA.RDF_QUAD AS "s_37_28_t7"
+  ON (
+    "s_37_28_t6"."P" = "s_37_28_t7"."O")
+WHERE
+  "s_37_3_t0"."P" = __i2idn ( __bft( 'http://www.wikidata.org/prop/P31' , 1))
+  AND 
+  "s_37_8_t1"."P" = __i2idn ( __bft( 'http://www.wikidata.org/prop/statement/P31' , 1))
+  AND 
+  isiri_id ( "s_37_8_t1"."O")
+  AND 
+  "s_37_28_t3"."P" = __i2idn ( __bft( 'http://www.wikidata.org/prop/P39' , 1))
+  AND 
+  "s_37_28_t4"."P" = __i2idn ( __bft( 'http://www.wikidata.org/prop/statement/P39' , 1))
+  AND 
+  "s_37_28_t5"."P" = __i2idn ( __bft( 'http://www.wikidata.org/prop/qualifier/P2937' , 1))
+  AND 
+  "s_37_28_t7"."P" = __i2idn ( __bft( 'http://wikiba.se/ontology#qualifier' , 1))
+  AND 
+ ( "s_37_17"."_::trans_obj_37_11" =  __i2idn ( __bft( 'http://www.wikidata.org/entity/Q15238777' , 1)))
+  AND 
+  1
+OPTION (QUIETCAST)

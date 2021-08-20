@@ -1,0 +1,58 @@
+feminine	
+Fernando Correia Dias	
+Swedish Pensions Agency	
+Drhovle Ves	
+Negin Kavir District	
+City status	
+Orkney Islands Council	
+Radomirë	
+Kostren i Vogël	
+Ischioplites	
+Easter − 42 days	
+Cumoechus	
+Qareh Chay District	
+Natalia Rasouli	
+Mimias	
+Xherije	
+friend	
+friend	
+Les Mouvements de mode expliqués aux parents	
+Protorhynchites	
+
+  { 
+    time     0.046% fanout         1 input         1 rows
+      clear: (<V set_ctr$44 in>)
+    s# 47 45 cluster outer seq start, set no <V set_ctr$44 in>    
+    save ctx:()
+    time       1.5% fanout      1000 input         1 rows
+    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:   2.4e+07 Fanout:     1e+03
+      clear: (<V t2.O$28 an>)
+      clear on continue: (<V t2.O$28 an>)
+    s# 56 27 from DB.DBA.RDF_QUAD by RDF_QUAD    2.4e+07 rows   
+    Key RDF_QUAD  ASC  (<V t2.O$28 an>)
+     inlined  P =  IRI_ID"...label" 
+    
+    time        98% fanout     0.057 input      1000 rows
+      clear: (<V DB.DBA.RDF_LANGMATCHES$34 x>, <V DB.DBA.RDF_LANGUAGE_OF_OBJ$32 a>, <V __ro2sq$30 a>, <V strippedLabel$36 s>)$28 () 
+    s# 71 66 END Node
+    After test:
+      0: <V __ro2sq$30 a> := Call __ro2sq (<V t2.O$28 an>)
+      5: <V DB.DBA.RDF_LANGUAGE_OF_OBJ$32 a> := Call DB.DBA.RDF_LANGUAGE_OF_OBJ (<V __ro2sq$30 a>)
+      12: <V DB.DBA.RDF_LANGMATCHES$34 x> := Call DB.DBA.RDF_LANGMATCHES (<V DB.DBA.RDF_LANGUAGE_OF_OBJ$32 a>, <c en>)
+      19: if ( 0  = <V DB.DBA.RDF_LANGMATCHES$34 x>) then 24 else 23 unkn 24
+      23: BReturn 1
+      24: BReturn 0
+    After code:
+      0: <V strippedLabel$36 s> := Call __rdf_strsqlval (<r t2.O$28 via  Set71>,  0 )
+      5: BReturn 0
+    time     0.003% fanout         0 input        57 rows
+    $36 (66 ) $44 (66 27 45 ) 
+    s# 79 38 Select (<V strippedLabel$36 s>)
+      set no: <r set_ctr$44 via  Set71 Set56>
+  }
+Warning: You might have a Cartesian product.
+
+
+
+ 8 msec 83% cpu,      1980 rnd       998 seq         0% same seg   46.2898% same pg 
+Compilation: 1 msec 0 reads         0% read 0 messages         0% clw

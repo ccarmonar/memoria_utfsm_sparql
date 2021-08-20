@@ -1,0 +1,43 @@
+
+  { 
+    time       2.5% fanout         1 input         1 rows
+    time       3.6% fanout         1 input         1 rows
+    Precode:
+      0: __rdflit$27 := Call __rdflit (rdflit773544)
+      5: __rdflit$29 := Call __rdflit (rdflit37554360)
+      10: BReturn 0
+    time        50% fanout         1 input         1 rows
+    RDF_QUAD_POGS         1 rows(s_37_8_t1.S$36)
+     P =  IRI_ID"...direct/P2393"  ,  O = rdflit37554360
+    time        21% fanout         1 input         1 rows
+    RDF_QUAD       1.1 rows(s_37_8_t2.O$40, s_37_8_t2.S$39)
+     inlined  P =  IRI_ID"...direct/P703"  ,  S = s_37_8_t1.S$36
+    time        23% fanout         0 input         1 rows
+    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:   4.7e-06 Fanout:         0
+    RDF_QUAD_POGS   4.7e-06 rows()
+     inlined  P =  IRI_ID"...direct/P685"  ,  O = rdflit773544 ,  S = cast$117
+    time         0% fanout         0 input         0 rows
+    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:         1 Fanout:         0
+    RDF_QUAD         1 rows(s_37_8_t3.O$45)
+     inlined  P =  IRI_ID"...direct/P688"  ,  S = k_s_37_8_t1.S$130
+    time         0% fanout         0 input         0 rows
+    Distinct (s_37_8_t1.S$36, s_37_8_t3.O$45)
+    
+    After code:
+    0: var1$32 :=  := artm s_37_8_t1.S$36
+    4: var2$33 :=  := artm s_37_8_t3.O$45
+    8: BReturn 0
+    time         0% fanout         0 input         0 rows
+    Subquery Select(var1$32, var2$33)
+    
+    After code:
+    0: var1$61 := Call __ro2sq (var1$32)
+    5: var2$63 := Call __ro2sq (var2$33)
+    10: BReturn 0
+    time         0% fanout         0 input         0 rows
+    Select (var1$61, var2$63)
+  }
+
+
+ 1 msec 5% cpu,         3 rnd         0 seq         0% same seg         0% same pg 
+Compilation: 2 msec 0 reads         0% read 0 messages         0% clw

@@ -1,0 +1,74 @@
+http://www.wikidata.org/entity/Q38189020	
+http://www.wikidata.org/entity/Q38093490	
+http://www.wikidata.org/entity/Q38093500	
+http://www.wikidata.org/entity/Q38093514	
+http://www.wikidata.org/entity/Q38093533	
+http://www.wikidata.org/entity/Q38150411	
+http://www.wikidata.org/entity/Q38150628	
+http://www.wikidata.org/entity/Q31954137	
+http://www.wikidata.org/entity/Q33257371	
+http://www.wikidata.org/entity/Q33322947	
+http://www.wikidata.org/entity/Q37289476	
+http://www.wikidata.org/entity/Q37289775	
+http://www.wikidata.org/entity/Q37813963	
+http://www.wikidata.org/entity/Q37814056	
+http://www.wikidata.org/entity/Q37814118	
+http://www.wikidata.org/entity/Q37814190	
+http://www.wikidata.org/entity/Q37814346	
+http://www.wikidata.org/entity/Q37814455	
+http://www.wikidata.org/entity/Q37814463	
+http://www.wikidata.org/entity/Q37814563	
+
+  { 
+    time     0.027% fanout         1 input         1 rows
+      clear: (<V set_ctr$35 in>)
+    s# 54 36 cluster outer seq start, set no <V set_ctr$35 in>    
+    save ctx:()
+    time       0.9% fanout      2000 input         1 rows
+      clear: (<V t1.S$28 rn>)
+      clear on continue: (<V t1.S$28 rn>)
+    s# 63 27 from DB.DBA.RDF_QUAD by RDF_QUAD      5e+03 rows   
+    Key RDF_QUAD  ASC  (<V t1.S$28 rn>)
+     inlined  P =  IRI_ID"...direct/P762" 
+    
+    time        56% fanout         1 input      2000 rows
+    Precode:
+      0: <V var1$30 a> := Call __id2in (<V t1.S$28 rn>)
+      5: BReturn 0
+      clear: (<V set_ctr$38 i>, <V var1$30 a>)
+    s# 73 42 cluster outer seq start, set no <V set_ctr$38 i>    
+    save ctx:()
+    time        38% fanout    2.1595 input      2000 rows
+    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:        31 Fanout:       2.2
+      clear: (<V t3.O$33 a>)
+      clear on continue: (<V t3.O$33 a>)$86 (32 ) $28 (42 ) 
+    s# 82 32 from DB.DBA.RDF_QUAD by RDF_QUAD         31 rows   
+    Key RDF_QUAD  ASC  (<V t3.O$33 a>)
+     inlined  P =  IRI_ID"...description"  ,  S = <v k_t1.S$86 Set88 rn>
+    vector param casts: <r t1.S$28 via  Set73>-> <v k_t1.S$86 Set88 rn>
+    
+    time      0.35% fanout   1.00903 input      4319 rows
+    $38 (32 42 ) 
+    s# 96 37 end of outer seq <r set_ctr$38 via  Set82 Set88>
+     out: (<V t3.O$33 a>)
+     shadow: ( <none> )
+    time       4.4% fanout 0.00894906 input      4358 rows
+    $33 (37 ) 
+    s# 109 104 END Node
+    After test:
+      0: if (<V t3.O$33 a>  IS NULL   0 ) then 4 else 5 unkn 5
+      4: BReturn 1
+      5: BReturn 0
+    time     0.011% fanout         0 input        39 rows
+    $35 (104 37 32 42 27 36 ) $30 (104 37 32 42 ) 
+    s# 117 47 Select (<r var1$30 via  Set109 Set96>)
+      set no: <r set_ctr$35 via  Set109 Set96 Set63>
+  }
+Warning: You might have a Cartesian product.
+
+Warning: You might have a Cartesian product.
+
+
+
+ 15 msec 90% cpu,      2482 rnd      4352 seq   69.0697% same seg   22.3923% same pg 
+Compilation: 1 msec 0 reads         0% read 0 messages         0% clw

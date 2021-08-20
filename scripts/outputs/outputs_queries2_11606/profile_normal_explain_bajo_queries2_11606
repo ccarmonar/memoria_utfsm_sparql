@@ -1,0 +1,50 @@
+http://www.wikidata.org/entity/Q22269212	2000.GRO0013.XXXI	
+http://www.wikidata.org/entity/Q22231434	0000.GRO0119.I	
+http://www.wikidata.org/entity/Q22231488	0000.GRO0271.II	
+http://www.wikidata.org/entity/Q22231495	0000.GRO0278.I	
+http://www.wikidata.org/entity/Q22231497	0000.GRO0286.I	
+http://www.wikidata.org/entity/Q22231509	0000.GRO0423.I	
+http://www.wikidata.org/entity/Q22231532	0000.GRO0592.II	
+http://www.wikidata.org/entity/Q22231551	0000.GRO0680.I	
+http://www.wikidata.org/entity/Q22231608	0000.GRO0720.II	
+http://www.wikidata.org/entity/Q22231656	0000.GRO0734.II	
+http://www.wikidata.org/entity/Q22231666	0000.GRO0737.II	
+http://www.wikidata.org/entity/Q22231718	0000.GRO0754.II	
+http://www.wikidata.org/entity/Q22231815	0000.GRO0813.III	
+http://www.wikidata.org/entity/Q22232196	0000.GRO0881.III	
+http://www.wikidata.org/entity/Q22232268	0000.GRO0888.III	
+http://www.wikidata.org/entity/Q22232368	0000.GRO0910.II	
+http://www.wikidata.org/entity/Q22232399	0000.GRO0912.II	
+http://www.wikidata.org/entity/Q22232810	0000.GRO0971.II	
+http://www.wikidata.org/entity/Q22233003	0000.GRO0981.II	
+http://www.wikidata.org/entity/Q22233159	0000.GRO0993.III	
+
+  { 
+    time      0.15% fanout         1 input         1 rows
+    time       4.8% fanout       382 input         1 rows
+    RDF_QUAD_POGS   3.8e+02 rows(t1.S$28)
+     P =  IRI_ID"...direct/P195"  ,  O =  IRI_ID"...Q1948674" 
+    time        49% fanout         1 input       382 rows
+    Precode:
+      0: var1$30 := Call __id2in (t1.S$28)
+      5: BReturn 0
+    outer {
+        time        11% fanout   1.01047 input       382 rows
+        RDF_QUAD         1 rows(t3.O$33)
+         inlined  P =  IRI_ID"...direct/P217"  ,  S = k_t1.S$88
+        time        36% fanout         1 input       386 rows
+      } /* end of outer */
+    set_ctr$38
+     out: (t3.O$33)
+     shadow: ( <none> )
+    
+    After code:
+    0: var2$47 := Call __ro2sq (t3.O$33)
+    5: BReturn 0
+    time     0.021% fanout         0 input       386 rows
+    Select (var1$30, var2$47)
+  }
+
+
+ 1 msec 62% cpu,       769 rnd       385 seq   49.0909% same seg   48.8312% same pg 
+Compilation: 1 msec 0 reads         0% read 0 messages         0% clw

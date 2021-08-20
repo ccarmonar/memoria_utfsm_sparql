@@ -1,0 +1,27 @@
+http://www.wikidata.org/entity/Q477130		
+
+  { 
+    time      0.22% fanout         1 input         1 rows
+    time       5.6% fanout       843 input         1 rows
+    RDF_QUAD_POGS   8.4e+02 rows(s_37_6_t2.S$28)
+     P =  IRI_ID"...direct/P106"  ,  O =  IRI_ID"...Q11063" 
+    time        87% fanout 0.00118624 input       843 rows
+    RDF_QUAD    0.0011 rows(s_37_6_t1.S$31)
+     inlined  P =  IRI_ID"...direct/P19"  ,  S = s_37_6_t2.S$28 ,  O =  IRI_ID"...Q30" 
+    time       2.6% fanout         1 input         1 rows
+    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:     0.091 Fanout:         1
+    RDF_QUAD     0.091 rows(s_37_6_t0.S$34)
+     inlined  P =  IRI_ID"...direct/P31"  ,  S = s_37_6_t1.S$31 ,  O =  IRI_ID"...Q5" 
+    time       4.1% fanout         1 input         1 rows
+    skip node  100  <none> set_ctr$44
+    
+    After code:
+    0: var1$36 := Call __id2in (s_37_6_t0.S$34)
+    5: BReturn 0
+    time     0.085% fanout         0 input         1 rows
+    Select (var1$36, <DB_NULL>)
+  }
+
+
+ 1 msec 44% cpu,       845 rnd       842 seq   95.7447% same seg   2.60047% same pg 
+Compilation: 2 msec 0 reads         0% read 0 messages         0% clw

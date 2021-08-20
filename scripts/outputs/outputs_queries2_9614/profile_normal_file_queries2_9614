@@ -1,0 +1,61 @@
+
+  { 
+    time        20% fanout         1 input         1 rows
+      clear: (<V set_ctr$65 in>)
+    s# 68 66 cluster outer seq start, set no <V set_ctr$65 in>    
+    save ctx:()
+    Precode:
+      0: <V DB.DBA.RDF_MAKE_LONG_OF_SQLVAL$27 a> := Call DB.DBA.RDF_MAKE_LONG_OF_SQLVAL (<c San>)
+      7: <V rdf_contains_impl$29 i> := Call rdf_contains_impl (<DB_NULL>, <V DB.DBA.RDF_MAKE_LONG_OF_SQLVAL$27 a>)
+      12: <V DB.DBA.RDF_LANGMATCHES$31 x> := Call DB.DBA.RDF_LANGMATCHES (<DB_NULL>, <c en>)
+      19: BReturn 0
+      clear: (<V var2Label$35 x>, <V var1$34 rn>, <V set_no$36 i>, <V DB.DBA.RDF_LANGMATCHES$31 x>, <V rdf_contains_impl$29 i>, <V DB.DBA.RDF_MAKE_LONG_OF_SQLVAL$27 a>, <V var1$57 a>)$27 (33 ) 
+    s# 77 33 Subquery 33 
+      multistate set no = <V set_no$36 i>
+      { 
+        time        80% fanout         0 input         1 rows
+        $31 (37 ) $29 (37 ) 
+        s# 81 37 END Node
+        After test:
+          0: if ( 0  = <V rdf_contains_impl$29 i>) then 9 else 4 unkn 9
+          4: if ( 0  = <V DB.DBA.RDF_LANGMATCHES$31 x>) then 9 else 8 unkn 9
+          8: BReturn 1
+          9: BReturn 0
+        time         0% fanout         0 input         0 rows
+        Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:   1.1e+03 Fanout:         0
+          clear: (<V s_37_2_t0.S$39 rn>)
+          clear on continue: (<V s_37_2_t0.S$39 rn>)
+        s# 90 38 from DB.DBA.RDF_QUAD by RDF_QUAD_POGS    1.1e+03 rows   
+        Key RDF_QUAD_POGS  ASC  (<V s_37_2_t0.S$39 rn>)
+         P =  IRI_ID"...direct/P31"  ,  O =  IRI_ID"...Q515" 
+        
+        time         0% fanout         0 input         0 rows
+        
+        s# 100 41 Distinct (HASH) set no <r set_no$36 via  Set90 Set81>(<V s_37_2_t0.S$39 rn>)
+        time         0% fanout         0 input         0 rows
+          clear: (<V var2Label$35 x>, <V var1$34 rn>)$39 (41 ) 
+        s# 108 55 skip node  100  <none> <r set_no$36 via  Set100 Set90 Set81>
+        After code:
+          0: <V var1$34 rn> :=  := artm <r s_37_2_t0.S$39 via  Set108 Set100>
+          4: <V var2Label$35 x> :=  := artm <DB_NULL>
+          8: BReturn 0
+        time         0% fanout         0 input         0 rows
+        
+        s# 77 47 Subquery Select(<V var1$34 rn>, <V var2Label$35 x>)
+          set no: <r set_no$36 via  Set108 Set100 Set90 Set81>
+      }
+    
+    After code:
+      0: <V var1$57 a> := Call __ro2sq (<V var1$34 rn>)
+      5: BReturn 0
+    time         0% fanout         0 input         0 rows
+    $65 (33 66 ) $35 (33 ) $57 (33 ) 
+    s# 125 59 Select (<V var1$57 a>, <V var2Label$35 x>)
+      set no: <r set_ctr$65 via  Set77>
+  }
+Warning: You might have a Cartesian product.
+
+
+
+ 31 msec 95% cpu,         0 rnd         0 seq         0% same seg         0% same pg 
+Compilation: 1 msec 0 reads         0% read 0 messages         0% clw

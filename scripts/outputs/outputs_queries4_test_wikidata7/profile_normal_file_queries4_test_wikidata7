@@ -1,0 +1,94 @@
+http://www.wikidata.org/entity/Q14632249	Isoaedes cavaticus	
+http://www.wikidata.org/entity/Q14634788	Kenknightia gaffigani	
+http://www.wikidata.org/entity/Q14634798	Kenknightia wilkersoni	
+http://www.wikidata.org/entity/Q14589360	Hodgesia cyptopous	
+http://www.wikidata.org/entity/Q14586613	Aedimorphus abnormalis	
+http://www.wikidata.org/entity/Q14586636	Aedimorphus bambiotai	
+http://www.wikidata.org/entity/Q14586710	Aedimorphus gibbinsi	
+http://www.wikidata.org/entity/Q14586727	Aedimorphus grjebinei	
+http://www.wikidata.org/entity/Q14586823	Aedimorphus leptolabis	
+http://www.wikidata.org/entity/Q14586846	Aedimorphus leucarthrius	
+http://www.wikidata.org/entity/Q14586964	Aedimorphus mathioti	
+http://www.wikidata.org/entity/Q14586988	Aedimorphus mattinglyi	
+http://www.wikidata.org/entity/Q14587129	Aedimorphus ochraceus	
+http://www.wikidata.org/entity/Q14626743	Dobrotworskyius alboannulatus	
+http://www.wikidata.org/entity/Q13851929	Hodgesia solomonis	
+http://www.wikidata.org/entity/Q13851997	Trichoprosopon compressum	
+
+  { 
+    time     0.007% fanout         1 input         1 rows
+      clear: (<V set_ctr$75 in>)
+    s# 81 76 cluster outer seq start, set no <V set_ctr$75 in>    
+    save ctx:()
+    Precode:
+      0: <V __all_eq$27 x> := Call __all_eq ( IRI_ID"...Q7367" )
+      5: BReturn 0
+      clear: (<V _::trans_obj_44_5$31 an>, <V _::trans_subj_44_4$30 rn>, <V __all_eq$27 x>)
+      clear on continue: (<V _::trans_subj_44_4$30 rn>, <V _::trans_obj_44_5$31 an>)$27 (29 ) 
+    s# 90 29 Transitive dt dir 2, input: (<V __all_eq$27 x>)
+      input shadow: (<V __all_eq$94 x>)
+      output: (<V _::trans_subj_44_4$30 rn>)
+      { 
+        time      0.65% fanout      0.96 input        25 rows
+          clear: (<V s_44_8_t0.O$36 an>, <V s_44_8_t0.S$37 rn>, <V _::trans_obj_44_5$31 an>, <V _::trans_subj_44_4$30 rn>)
+          clear on continue: (<V _::trans_subj_44_4$30 rn>, <V _::trans_obj_44_5$31 an>, <V s_44_8_t0.S$37 rn>, <V s_44_8_t0.O$36 an>)$94 (35 ) $100 (35 ) 
+        s# 96 35 from DB.DBA.RDF_QUAD by RDF_QUAD_POGS          4 rows   
+        Key RDF_QUAD_POGS  ASC  (<V s_44_8_t0.S$37 rn>, <V s_44_8_t0.O$36 an>)
+         P =  IRI_ID"...direct/P171"  ,  O = <v k___all_eq$100 Set102 an>
+        vector param casts: <V __all_eq$94 x>-> <v k___all_eq$100 Set102 an>
+        
+        After code:
+          0: <V _::trans_subj_44_4$30 rn> :=  := artm <V s_44_8_t0.S$37 rn>
+          4: <V _::trans_obj_44_5$31 an> :=  := artm <V s_44_8_t0.O$36 an>
+          8: BReturn 0
+        time    0.0041% fanout         0 input        24 rows
+        $31 () 
+        s# 113 39 Subquery Select(<V _::trans_subj_44_4$30 rn>, <V _::trans_obj_44_5$31 an>)
+          set no: <r step_set$32 via  Set96 Set102>
+      }
+    time      0.46% fanout      0.96 input        25 rows
+    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:     0.052 Fanout:      0.96
+      clear: (<V s_46_14_t1.S$57 rn>)
+      clear on continue: (<V s_46_14_t1.S$57 rn>)$30 () 
+    s# 120 56 from DB.DBA.RDF_QUAD by RDF_QUAD      0.052 rows   
+    Key RDF_QUAD  ASC  (<V s_46_14_t1.S$57 rn>)
+     inlined  P =  IRI_ID"...direct/P31"  ,  S = <V _::trans_subj_44_4$30 rn> ,  O =  IRI_ID"...Q16521" 
+    
+    time      0.31% fanout  0.666667 input        24 rows
+      clear: (<V s_46_14_t2.S$60 rn>)
+      clear on continue: (<V s_46_14_t2.S$60 rn>)
+    s# 130 59 from DB.DBA.RDF_QUAD by RDF_QUAD_POGS        0.3 rows   
+    Key RDF_QUAD_POGS  ASC  (<V s_46_14_t2.S$60 rn>)
+     inlined  P =  IRI_ID"...direct/P105"  ,  O =  IRI_ID"...Q7432"  ,  S = <V s_46_14_t1.S$57 rn>
+    
+    time        97% fanout         1 input        16 rows
+      clear: (<V s_46_14_t3.O$63 an>)
+      clear on continue: (<V s_46_14_t3.O$63 an>)$144 (62 ) 
+    s# 140 62 from DB.DBA.RDF_QUAD by RDF_QUAD          1 rows   
+    Key RDF_QUAD  ASC  (<V s_46_14_t3.O$63 an>)
+     inlined  P =  IRI_ID"...direct/P225"  ,  S = <v k_s_46_14_t1.S$144 Set146 rn>
+    vector param casts: <r s_46_14_t1.S$57 via  Set130>-> <v k_s_46_14_t1.S$144 Set146 rn>
+    
+    time      0.63% fanout         1 input        16 rows
+      clear: (<V taxonname$67 a>, <V item$65 a>)$63 () $57 (62 59 ) 
+    s# 154 79 skip node  50  <none> <r set_ctr$75 via  Set140 Set146 Set130 Set120 Set90>
+    After code:
+      0: <V item$65 a> := Call __id2in (<r s_46_14_t1.S$57 via  Set154 Set140 Set146 Set130>)
+      5: <V taxonname$67 a> := Call __ro2sq (<r s_46_14_t3.O$63 via  Set154>)
+      10: BReturn 0
+    time   0.00081% fanout         0 input        16 rows
+    $65 (79 ) $67 (79 ) $75 (79 62 59 56 29 76 ) 
+    s# 162 69 Select (<V item$65 a>, <V taxonname$67 a>)
+      set no: <r set_ctr$75 via  Set154 Set140 Set146 Set130 Set120 Set90>
+  }
+Warning: You might have a Cartesian product.
+
+Warning: You might have a Cartesian product.
+
+Warning: You might have a Cartesian product.
+
+
+
+ 48 msec 90% cpu,       122 rnd        17 seq   52.8455% same seg   28.4553% same pg 
+3 disk reads, 0 read ahead,   87.9918% wait
+Compilation: 4 msec 0 reads         0% read 0 messages         0% clw

@@ -1,0 +1,56 @@
+http://www.wikidata.org/entity/Q801311	POINT(15.8645 47.6959)	http://www.wikidata.org/prop/direct/P17	
+http://www.wikidata.org/entity/Q800385	POINT(14.8781 48.1217)	http://www.wikidata.org/prop/direct/P17	
+http://www.wikidata.org/entity/Q800426	POINT(13.6273 47.7122)	http://www.wikidata.org/prop/direct/P17	
+http://www.wikidata.org/entity/Q800577	POINT(15.2791 47.4135)	http://www.wikidata.org/prop/direct/P17	
+http://www.wikidata.org/entity/Q800659	POINT(16.5644 48.3031)	http://www.wikidata.org/prop/direct/P17	
+http://www.wikidata.org/entity/Q800803	POINT(15.6553 48.5975)	http://www.wikidata.org/prop/direct/P17	
+http://www.wikidata.org/entity/Q801040	POINT(12.165833 47.583056)	http://www.wikidata.org/prop/direct/P17	
+http://www.wikidata.org/entity/Q801375	POINT(15.6425 48.6286)	http://www.wikidata.org/prop/direct/P17	
+http://www.wikidata.org/entity/Q801450	POINT(15.6292 46.7098)	http://www.wikidata.org/prop/direct/P17	
+http://www.wikidata.org/entity/Q801528	POINT(15.9967 48.2951)	http://www.wikidata.org/prop/direct/P17	
+http://www.wikidata.org/entity/Q801603	POINT(16.4 48.256389)	http://www.wikidata.org/prop/direct/P17	
+http://www.wikidata.org/entity/Q801626	POINT(16.5128 48.3791)	http://www.wikidata.org/prop/direct/P17	
+http://www.wikidata.org/entity/Q576448	POINT(14.5208 48.1794)	http://www.wikidata.org/prop/direct/P17	
+http://www.wikidata.org/entity/Q698785	POINT(9.604167 47.241111)	http://www.wikidata.org/prop/direct/P17	
+http://www.wikidata.org/entity/Q686592	POINT(16.3611 48.2261)	http://www.wikidata.org/prop/direct/P17	
+http://www.wikidata.org/entity/Q976257	POINT(16.332 48.2265)	http://www.wikidata.org/prop/direct/P17	
+
+  { 
+    time     0.067% fanout         1 input         1 rows
+    time     0.015% fanout         1 input         1 rows
+    time       1.1% fanout        38 input         1 rows
+    RDF_QUAD_OP        20 rows(s_37_6_t1.P$33)
+     inlined  O =  IRI_ID"...Q40" 
+    time        25% fanout   420.526 input        38 rows
+    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:       1.2 Fanout:   4.2e+02
+    RDF_QUAD_POGS       1.2 rows(s_37_6_t1.S$37)
+     P = s_37_6_t1.P$33 ,  O =  IRI_ID"...Q40" 
+    time        58% fanout 0.00225282 input     15980 rows
+    RDF_QUAD_POGS    0.0017 rows(s_37_6_t0.S$41)
+     inlined  P =  IRI_ID"...direct/P31"  ,  O =  IRI_ID"...Q55488"  ,  S = s_37_6_t1.S$37
+    time       3.4% fanout  0.444444 input        36 rows
+    RDF_QUAD       1.1 rows(s_37_6_t2.O$44)
+     inlined  P =  IRI_ID"...direct/P625"  ,  S = s_37_6_t0.S$41
+    time       3.1% fanout         1 input        16 rows
+    Distinct (s_37_6_t0.S$41, s_37_6_t2.O$44, s_37_6_t1.P$33)
+    
+    After code:
+    0: var1$28 :=  := artm s_37_6_t0.S$41
+    4: var2$29 :=  := artm s_37_6_t2.O$44
+    8: var3$30 :=  := artm s_37_6_t1.P$33
+    12: BReturn 0
+    time       8.7% fanout         1 input        16 rows
+    Subquery Select(var1$28, var2$29, var3$30)
+    
+    After code:
+    0: var1$60 := Call __ro2sq (var1$28)
+    5: var2$62 := Call __ro2sq (var2$29)
+    10: var3$64 := Call __ro2sq (var3$30)
+    15: BReturn 0
+    time     0.021% fanout         0 input        16 rows
+    Select (var1$60, var2$62, var3$64)
+  }
+
+
+ 3 msec 72% cpu,     16071 rnd     15964 seq   99.4462% same seg  0.174216% same pg 
+Compilation: 1 msec 0 reads         0% read 0 messages         0% clw

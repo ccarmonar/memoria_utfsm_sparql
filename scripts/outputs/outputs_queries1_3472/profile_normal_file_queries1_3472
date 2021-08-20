@@ -1,0 +1,47 @@
+http://www.wikidata.org/entity/Q24238925	triketora	http://commons.wikimedia.org/wiki/Special:FilePath/Tracy%20Chou%20medium.jpg	
+http://www.wikidata.org/entity/Q19667922	jesstess	http://commons.wikimedia.org/wiki/Special:FilePath/Jessica%20McKellar%20selfportrait%20BW.jpeg	
+
+  { 
+    time       0.2% fanout         1 input         1 rows
+      clear: (<V set_ctr$49 in>)
+    s# 52 50 cluster outer seq start, set no <V set_ctr$49 in>    
+    save ctx:()
+    time         5% fanout       294 input         1 rows
+      clear: (<V s_37_6_t1.O$28 an>, <V s_37_6_t1.S$29 rn>)
+      clear on continue: (<V s_37_6_t1.O$28 an>, <V s_37_6_t1.S$29 rn>)
+    s# 61 27 from DB.DBA.RDF_QUAD by RDF_QUAD    2.9e+02 rows   
+    Key RDF_QUAD  ASC  (<V s_37_6_t1.S$29 rn>, <V s_37_6_t1.O$28 an>)
+     inlined  P =  IRI_ID"...direct/P2037" 
+    
+    time        56% fanout 0.0340136 input       294 rows
+      clear: (<V s_37_6_t0.S$32 rn>)
+      clear on continue: (<V s_37_6_t0.S$32 rn>)$29 () 
+    s# 72 31 from DB.DBA.RDF_QUAD by RDF_QUAD       0.17 rows   
+    Key RDF_QUAD  ASC  (<V s_37_6_t0.S$32 rn>)
+     inlined  P =  IRI_ID"...direct/P21"  ,  S = <V s_37_6_t1.S$29 rn> ,  O =  IRI_ID"...Q6581072" 
+    
+    time        39% fanout       0.2 input        10 rows
+    Precode:
+      0: <V var2$34 a> := Call __ro2sq (<r s_37_6_t1.O$28 via  Set72>)
+      5: <V var1$36 a> := Call __id2in (<V s_37_6_t0.S$32 rn>)
+      10: BReturn 0
+      clear: (<V s_37_6_t2.O$39 an>, <V var1$36 a>, <V var2$34 a>, <V var3$41 a>)
+      clear on continue: (<V var3$41 a>, <V s_37_6_t2.O$39 an>)$32 () $28 (31 ) 
+    s# 82 38 from DB.DBA.RDF_QUAD by RDF_QUAD          1 rows   
+    Key RDF_QUAD  ASC  (<V s_37_6_t2.O$39 an>)
+     inlined  P =  IRI_ID"...direct/P18"  ,  S = <V s_37_6_t0.S$32 rn>
+    
+    After code:
+      0: <V var3$41 a> := Call __ro2sq (<V s_37_6_t2.O$39 an>)
+      5: BReturn 0
+    time     0.025% fanout         0 input         2 rows
+    $34 (38 ) $36 (38 ) $41 () $49 (38 31 27 50 ) 
+    s# 92 43 Select (<r var1$36 via  Set82>, <r var2$34 via  Set82>, <V var3$41 a>)
+      set no: <r set_ctr$49 via  Set82 Set72 Set61>
+  }
+Warning: You might have a Cartesian product.
+
+
+
+ 2 msec 46% cpu,       326 rnd       293 seq   81.0398% same seg   10.7034% same pg 
+Compilation: 1 msec 0 reads         0% read 0 messages         0% clw

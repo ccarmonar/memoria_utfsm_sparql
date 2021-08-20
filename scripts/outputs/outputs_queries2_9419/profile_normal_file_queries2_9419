@@ -1,0 +1,82 @@
+
+  { 
+    time   0.00027% fanout         1 input         1 rows
+      clear: (<V set_ctr$84 in>)
+    s# 87 85 cluster outer seq start, set no <V set_ctr$84 in>    
+    save ctx:()
+    time   8.6e-05% fanout         1 input         1 rows
+      clear: (<V set_no$33 i>)
+    s# 96 69 cluster outer seq start, set no <V set_no$33 i>    
+    save ctx:()
+    time       2.4% fanout        39 input         1 rows
+      clear: (<V s_37_5_t0.P$35 rn>)
+      clear on continue: (<V s_37_5_t0.P$35 rn>)
+    s# 105 34 from DB.DBA.RDF_QUAD by RDF_QUAD_SP         20 rows   
+    Key RDF_QUAD_SP  ASC  (<V s_37_5_t0.P$35 rn>)
+     inlined  S =  IRI_ID"...Q725534" 
+    
+    time        93% fanout   3.48718 input        39 rows
+      clear: (<V s_37_5_t0.O$39 an>)
+      clear on continue: (<V s_37_5_t0.O$39 an>)
+    s# 115 38 from DB.DBA.RDF_QUAD by RDF_QUAD        1.2 rows   
+    Key RDF_QUAD  ASC  (<V s_37_5_t0.O$39 an>)
+     inlined  P = <V s_37_5_t0.P$35 rn> ,  S =  IRI_ID"...Q725534" 
+    
+    time       4.7% fanout 0.0147059 input       136 rows
+    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:       8.5 Fanout:     0.015
+      clear: (<V s_37_5_t1.P$43 rn>)
+      clear on continue: (<V s_37_5_t1.P$43 rn>)$129 (42 ) 
+    s# 125 42 from DB.DBA.RDF_QUAD by RDF_QUAD_SP        8.5 rows   
+    Key RDF_QUAD_SP  ASC  (<V s_37_5_t1.P$43 rn>)
+     inlined  S = <v cast$129 Set131 rn>
+    vector param casts: <V s_37_5_t0.O$39 an>-> <v cast$129 Set131 rn>
+    
+    time    0.0037% fanout         1 input         2 rows
+      clear: (<V s_37_5_t1.O$47 an>)
+      clear on continue: (<V s_37_5_t1.O$47 an>)$143 (46 ) 
+    s# 139 46 from DB.DBA.RDF_QUAD by RDF_QUAD        1.2 rows   
+    Key RDF_QUAD  ASC  (<V s_37_5_t1.O$47 an>)
+     inlined  P = <V s_37_5_t1.P$43 rn> ,  S = <v k_s_37_5_t0.O$143 Set145 rn>
+    vector param casts: <r s_37_5_t0.O$39 via  Set125 Set131>-> <v k_s_37_5_t0.O$143 Set145 rn>
+    
+    time    0.0074% fanout         0 input         2 rows
+      clear: (<V DB.DBA.RDF_LANGMATCHES$54 x>, <V DB.DBA.RDF_LANGUAGE_OF_OBJ$52 a>, <V __ro2sq$50 a>)
+    s# 158 153 END Node
+    After test:
+      0: <V __ro2sq$50 a> := Call __ro2sq (<V s_37_5_t1.O$47 an>)
+      5: <V DB.DBA.RDF_LANGUAGE_OF_OBJ$52 a> := Call DB.DBA.RDF_LANGUAGE_OF_OBJ (<V __ro2sq$50 a>)
+      12: <V DB.DBA.RDF_LANGMATCHES$54 x> := Call DB.DBA.RDF_LANGMATCHES (<V DB.DBA.RDF_LANGUAGE_OF_OBJ$52 a>, <c fr>)
+      19: if ( 0  = <V DB.DBA.RDF_LANGMATCHES$54 x>) then 24 else 23 unkn 24
+      23: BReturn 1
+      24: BReturn 0
+    time         0% fanout         0 input         0 rows
+      clear: (<V var5$32 an>, <V var4$31 rn>, <V var3$30 an>, <V var2$29 rn>, <V var1$28 s>)$35 (153 46 42 38 ) $39 (153 46 42 ) $43 (153 46 ) $47 (153 ) 
+    s# 166 56 Distinct (HASH) set no <r set_no$33 via  Set158 Set139 Set145 Set125 Set131 Set115 Set105>(<r s_37_5_t0.P$35 via  Set158 Set139 Set145 Set125 Set131 Set115>, <r s_37_5_t0.O$39 via  Set158 Set139 Set145 Set125 Set131>, <r s_37_5_t1.P$43 via  Set158 Set139 Set145>, <r s_37_5_t1.O$47 via  Set158>)
+    After code:
+      0: <V var1$28 s> :=  := artm <tag 182 flag 1 c http://www.wikidata.org/entity/Q725534>
+      4: <V var2$29 rn> :=  := artm <r s_37_5_t0.P$35 via  Set166 Set158 Set139 Set145 Set125 Set131 Set115>
+      8: <V var3$30 an> :=  := artm <r s_37_5_t0.O$39 via  Set166 Set158 Set139 Set145 Set125 Set131>
+      12: <V var4$31 rn> :=  := artm <r s_37_5_t1.P$43 via  Set166 Set158 Set139 Set145>
+      16: <V var5$32 an> :=  := artm <r s_37_5_t1.O$47 via  Set166 Set158>
+      20: BReturn 0
+    time         0% fanout         0 input         0 rows
+      clear: (<V var5$76 a>, <V var4$74 a>, <V var3$72 a>, <V var2$70 a>)$31 (56 ) $32 (56 ) $33 (56 153 46 42 38 34 69 ) $29 (56 ) $30 (56 ) 
+    s# 179 62 Subquery Select(<V var1$28 s>, <V var2$29 rn>, <V var3$30 an>, <V var4$31 rn>, <V var5$32 an>)
+      set no: <r set_no$33 via  Set166 Set158 Set139 Set145 Set125 Set131 Set115 Set105>
+    After code:
+      0: <V var2$70 a> := Call __ro2sq (<V var2$29 rn>)
+      5: <V var3$72 a> := Call __ro2sq (<V var3$30 an>)
+      10: <V var4$74 a> := Call __ro2sq (<V var4$31 rn>)
+      15: <V var5$76 a> := Call __ro2sq (<V var5$32 an>)
+      20: BReturn 0
+    time         0% fanout         0 input         0 rows
+    $70 (62 ) $72 (62 ) $74 (62 ) $76 (62 ) $84 (62 56 153 46 42 38 34 69 85 ) $28 (62 56 ) 
+    s# 186 78 Select (<V var1$28 s>, <V var2$70 a>, <V var3$72 a>, <V var4$74 a>, <V var5$76 a>)
+      set no: <r set_ctr$84 via  Set179>
+  }
+Warning: You might have a Cartesian product.
+
+
+
+ 1342 msec 99% cpu,       103 rnd       135 seq   46.1538% same seg   15.3846% same pg 
+Compilation: 2 msec 0 reads         0% read 0 messages         0% clw

@@ -1,0 +1,68 @@
+http://www.wikidata.org/entity/Q2707246		
+http://www.wikidata.org/entity/Q2759019		
+http://www.wikidata.org/entity/Q2862815		
+http://www.wikidata.org/entity/Q3126457		
+http://www.wikidata.org/entity/Q16088399		
+http://www.wikidata.org/entity/Q41173595		
+http://www.wikidata.org/entity/Q1335176		
+http://www.wikidata.org/entity/Q185000		
+http://www.wikidata.org/entity/Q260855		
+http://www.wikidata.org/entity/Q262085		
+http://www.wikidata.org/entity/Q308940		
+http://www.wikidata.org/entity/Q309177		
+http://www.wikidata.org/entity/Q309700		
+http://www.wikidata.org/entity/Q771010		
+http://www.wikidata.org/entity/Q381159		
+http://www.wikidata.org/entity/Q381162		
+http://www.wikidata.org/entity/Q381206		
+http://www.wikidata.org/entity/Q381223		
+http://www.wikidata.org/entity/Q381228		
+http://www.wikidata.org/entity/Q381249		
+
+  { 
+    time      0.09% fanout         1 input         1 rows
+    time         2% fanout       778 input         1 rows
+    Precode:
+      0: __rdflit$27  := Call __rdflit (rdflit32005)
+      5: BReturn 0
+    RDF_QUAD   7.8e+02 rows(s_37_7_t2.S$30)
+     inlined  P =  IRI_ID"...direct/P606" 
+    time      0.31% fanout         1 input       778 rows
+    outer {
+        Subquery 32 
+          { 
+            time        87% fanout   1.02057 input       778 rows
+            Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:     1e+04 Fanout:         1
+            RDF_QUAD_POGS     1e+04 rows(s_37_6_t0.S$38, s_37_6_t0.O$37)
+             P =  IRI_ID"...about"  ,  O = k_s_37_7_t2.S$111 O LIKE <c Tó>
+            time       5.7% fanout         0 input       794 rows
+            Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:   1.4e-07 Fanout:         0
+            RDF_QUAD_POGS   1.4e-07 rows()
+             inlined  P =  IRI_ID"...inLanguage"  ,  O = rdflit32005 ,  S = s_37_6_t0.S$38
+            
+            After code:
+            0: var2$33 :=  := artm s_37_6_t0.S$38
+            4: var1$34 :=  := artm s_37_6_t0.O$37
+            8: BReturn 0
+            time         0% fanout         0 input         0 rows
+            Subquery Select(var2$33, var1$34)
+          }
+        time         0% fanout         0 input         0 rows
+      } /* end of outer */
+    set_ctr$50
+     out: (set_no$35, var2$33, var1$34)
+     shadow: ( <none> ,  <none> ,  <none> )
+    time       4.4% fanout 0.0257069 input       778 rows
+    skip node  20  <none> set_ctr$69
+    
+    After code:
+    0: var1$59 := Call __id2in (s_37_7_t2.S$30)
+    5: var2$61 := Call __id2in (var2$33)
+    10: BReturn 0
+    time      0.03% fanout         0 input        20 rows
+    Select (var1$59, var2$61)
+  }
+
+
+ 4 msec 65% cpu,      1573 rnd       793 seq   91.4867% same seg   7.36976% same pg 
+Compilation: 1 msec 0 reads         0% read 0 messages         0% clw

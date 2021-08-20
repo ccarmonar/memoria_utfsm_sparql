@@ -1,0 +1,72 @@
+
+  { 
+    time       4.1% fanout         1 input         1 rows
+      clear: (<V set_ctr$63 in>)
+    s# 66 64 cluster outer seq start, set no <V set_ctr$63 in>    
+    save ctx:()
+      clear: (<V courseName$28 a>, <V set_no$29 i>, <V courseName$55 a>)
+    s# 75 27 Subquery 27 
+      multistate set no = <V set_no$29 i>
+      { 
+        
+        s# 79 30 Union
+          { 
+            time        56% fanout         0 input         1 rows
+            Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:         6 Fanout:         0
+              clear: (<V s_13_1_t0-u7.O$32 an>, <V courseName$28 a>)
+              clear on continue: (<V s_13_1_t0-u7.O$32 an>, <V courseName$28 a>)
+            s# 82 31 from DB.DBA.RDF_QUAD by RDF_QUAD          6 rows   
+            Key RDF_QUAD  ASC  (<V s_13_1_t0-u7.O$32 an>)
+             inlined  P =  IRI_ID"...courseTitle" 
+            row specs:  G =  IRI_ID"...ex069.ttl" 
+            
+            After code:
+              0: <V courseName$28 a> :=  := artm <V s_13_1_t0-u7.O$32 an>
+              4: BReturn 0
+            time         0% fanout         0 input         0 rows
+            
+            s# 75 34 Subquery Select(<V courseName$28 a>)
+              set no: <r set_no$29 via  Set82>
+          }
+          { 
+            time        28% fanout         6 input         1 rows
+              clear: (<V s_15_3_t1.G$42 rn>, <V s_15_3_t1.O$43 an>)
+              clear on continue: (<V s_15_3_t1.G$42 rn>, <V s_15_3_t1.O$43 an>)
+            s# 100 41 from DB.DBA.RDF_QUAD by RDF_QUAD        8.5 rows   
+            Key RDF_QUAD  ASC  (<V s_15_3_t1.O$43 an>, <V s_15_3_t1.G$42 rn>)
+             inlined  P =  IRI_ID"...courseTitle" 
+            
+            time        12% fanout         0 input         6 rows
+              clear: (<V one_of_these$45 i>, <V courseName$28 a>)$42 () $43 () 
+            s# 116 111 END Node
+            After test:
+              0: <V one_of_these$45 i> := Call one_of_these (<V s_15_3_t1.G$42 rn>,  IRI_ID"...ex125.ttl" ,  IRI_ID"...ex122.ttl" )
+              5: if ( 0  < <V one_of_these$45 i>) then 9 else 10 unkn 10
+              9: BReturn 1
+              10: BReturn 0
+            After code:
+              0: <V courseName$28 a> :=  := artm <r s_15_3_t1.O$43 via  Set116>
+              4: BReturn 0
+            time         0% fanout         0 input         0 rows
+            
+            Subquery Select(<V courseName$28 a>)
+              set no: <r set_no$29 via  Set116 Set100>
+          }
+      }
+    
+    After code:
+      0: <V courseName$55 a> := Call __ro2sq (<V courseName$28 a>)
+      5: BReturn 0
+    time         0% fanout         0 input         0 rows
+    $63 (27 64 ) $55 (27 ) 
+    s# 131 57 Select (<V courseName$55 a>)
+      set no: <r set_ctr$63 via  Set75>
+  }
+Warning: You might have a Cartesian product.
+
+Warning: You might have a Cartesian product.
+
+
+
+ 1 msec 5% cpu,         2 rnd         5 seq         0% same seg         0% same pg 
+Compilation: 1 msec 0 reads         0% read 0 messages         0% clw

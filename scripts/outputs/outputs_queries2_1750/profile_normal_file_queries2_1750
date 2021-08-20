@@ -1,0 +1,35 @@
+0	
+
+  { 
+    time       1.7% fanout         1 input         1 rows
+      clear: (<V set_ctr$31 in>)
+    s# 45 32 cluster outer seq start, set no <V set_ctr$31 in>    
+    save ctx:()
+    time        72% fanout         1 input         1 rows
+    Precode:
+      0: <V subClass$27 r> := Call __i2idn (<tag 182 flag 1 c http://www.w3.org/2000/01/rdf-schema#subClass>)
+      5: BReturn 0
+      clear: (<V subClass$27 r>)
+    s# 69 33 Fork 33 {  
+        time        25% fanout         0 input         1 rows
+        Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:       0.3 Fanout:         0
+        $27 (29 ) $59 (29 ) 
+        s# 55 29 from DB.DBA.RDF_QUAD by RDF_QUAD_POGS        0.3 rows Parallel, tail cost        19   
+        Key RDF_QUAD_POGS  ASC  ()
+         P =  IRI_ID"...type"  ,  O = <v k_subClass$59 Set61 an>
+        vector param casts: <V subClass$27 r>-> <v k_subClass$59 Set61 an>
+        copy on branch $59 $31 $0 $0 sets: 45 
+        
+        After code:
+          0:  sum <V var1$34 i> 1 set no <r set_ctr$31 via  Set55 Set61>
+          5: BReturn 0
+    }
+    time       1.1% fanout         0 input         1 rows
+    $31 (33 32 ) $34 (38 ) 
+    s# 76 38 Select (<V var1$34 i>)
+      set no: <V set_ctr$31 in>
+  }
+
+
+ 0 msec 10% cpu,         4 rnd         0 seq         0% same seg         0% same pg 
+Compilation: 2 msec 0 reads         0% read 0 messages         0% clw

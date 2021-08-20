@@ -1,0 +1,55 @@
+http://www.wikidata.org/entity/Q2785872	
+http://www.wikidata.org/entity/Q3112126	
+http://www.wikidata.org/entity/Q15903857	
+http://www.wikidata.org/entity/Q15908852	
+http://www.wikidata.org/entity/Q15909371	
+http://www.wikidata.org/entity/Q51079018	
+http://www.wikidata.org/entity/Q16082873	
+http://www.wikidata.org/entity/Q30155066	
+http://www.wikidata.org/entity/Q16202626	
+http://www.wikidata.org/entity/Q5349160	
+http://www.wikidata.org/entity/Q5349161	
+http://www.wikidata.org/entity/Q7457786	
+http://www.wikidata.org/entity/Q7700870	
+http://www.wikidata.org/entity/Q16443576	
+http://www.wikidata.org/entity/Q19875871	
+http://www.wikidata.org/entity/Q19875880	
+http://www.wikidata.org/entity/Q19876103	
+http://www.wikidata.org/entity/Q19876113	
+http://www.wikidata.org/entity/Q20583174	
+http://www.wikidata.org/entity/Q30538485	
+
+  { 
+    time      0.23% fanout         1 input         1 rows
+    Precode:
+      0: __all_eq$27 := Call __all_eq ( IRI_ID"...Q15238777" )
+      5: BReturn 0
+    Transitive dt dir 2, input: (__all_eq$27)
+      input shadow: (__all_eq$83)
+      output: (_::trans_subj_37_5$30)
+      { 
+        time       8.3% fanout      0.75 input         4 rows
+        RDF_QUAD_POGS       3.8 rows(s_37_9_t1.S$37, s_37_9_t1.O$36)
+         P =  IRI_ID"...direct/P279"  ,  O = k___all_eq$89
+        
+        After code:
+        0: _::trans_subj_37_5$30 :=  := artm s_37_9_t1.S$37
+        4: _::trans_obj_37_6$31 :=  := artm s_37_9_t1.O$36
+        8: BReturn 0
+        time     0.084% fanout         0 input         3 rows
+        Subquery Select(_::trans_subj_37_5$30, _::trans_obj_37_6$31)
+      }
+    time        83% fanout     88.25 input         4 rows
+    RDF_QUAD_POGS     1e+02 rows(s_37_3_t0.S$57)
+     P =  IRI_ID"...direct/P31"  ,  O = cast$113 O LIKE <c Tó>
+    
+    After code:
+    0: var1$59 := Call __id2in (s_37_3_t0.S$57)
+    5: BReturn 0
+    time     0.068% fanout         0 input       353 rows
+    Select (var1$59)
+  }
+
+
+ 2 msec 41% cpu,         8 rnd       352 seq   22.2222% same seg   22.2222% same pg 
+Compilation: 2 msec 0 reads         0% read 0 messages         0% clw

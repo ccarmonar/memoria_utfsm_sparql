@@ -1,0 +1,52 @@
+http://www.openlinksw.com/schemas/virtrdf#QuadMapFormat	http://www.openlinksw.com/schemas/virtrdf#QuadMapFormat	
+http://www.openlinksw.com/schemas/virtrdf#QuadMapFormat	http://www.openlinksw.com/schemas/virtrdf#QuadMapFormat	
+http://www.openlinksw.com/schemas/virtrdf#QuadMapFormat	http://www.openlinksw.com/schemas/virtrdf#QuadMapFormat	
+http://www.openlinksw.com/schemas/virtrdf#QuadMapFormat	http://www.openlinksw.com/schemas/virtrdf#QuadMapFormat	
+http://www.openlinksw.com/schemas/virtrdf#QuadMapFormat	http://www.openlinksw.com/schemas/virtrdf#QuadMapFormat	
+http://www.openlinksw.com/schemas/virtrdf#QuadMapFormat	http://www.openlinksw.com/schemas/virtrdf#QuadMapFormat	
+http://www.openlinksw.com/schemas/virtrdf#QuadMapFormat	http://www.openlinksw.com/schemas/virtrdf#QuadMapFormat	
+http://www.openlinksw.com/schemas/virtrdf#QuadMapFormat	http://www.openlinksw.com/schemas/virtrdf#QuadMapFormat	
+http://www.openlinksw.com/schemas/virtrdf#QuadMapFormat	http://www.openlinksw.com/schemas/virtrdf#QuadMapFormat	
+http://www.openlinksw.com/schemas/virtrdf#QuadMapFormat	http://www.openlinksw.com/schemas/virtrdf#QuadMapFormat	
+http://www.openlinksw.com/schemas/virtrdf#QuadMapFormat	http://www.openlinksw.com/schemas/virtrdf#QuadMapFormat	
+http://www.openlinksw.com/schemas/virtrdf#QuadMapFormat	http://www.openlinksw.com/schemas/virtrdf#QuadMapFormat	
+http://www.openlinksw.com/schemas/virtrdf#QuadMapFormat	http://www.openlinksw.com/schemas/virtrdf#QuadMapFormat	
+http://www.openlinksw.com/schemas/virtrdf#QuadMapFormat	http://www.openlinksw.com/schemas/virtrdf#QuadMapFormat	
+http://www.openlinksw.com/schemas/virtrdf#QuadMapFormat	http://www.openlinksw.com/schemas/virtrdf#QuadMapFormat	
+http://www.openlinksw.com/schemas/virtrdf#QuadMapFormat	http://www.openlinksw.com/schemas/virtrdf#QuadMapFormat	
+http://www.openlinksw.com/schemas/virtrdf#QuadMapFormat	http://www.openlinksw.com/schemas/virtrdf#QuadMapFormat	
+http://www.openlinksw.com/schemas/virtrdf#QuadMapFormat	http://www.openlinksw.com/schemas/virtrdf#QuadMapFormat	
+http://www.openlinksw.com/schemas/virtrdf#QuadMapFormat	http://www.openlinksw.com/schemas/virtrdf#QuadMapFormat	
+http://www.openlinksw.com/schemas/virtrdf#QuadMapFormat	http://www.openlinksw.com/schemas/virtrdf#QuadMapFormat	
+
+  { 
+    time     0.002% fanout         1 input         1 rows
+      clear: (<V set_ctr$45 in>)
+    s# 48 46 cluster outer seq start, set no <V set_ctr$45 in>    
+    save ctx:()
+    time     1e+02% fanout      1000 input         1 rows
+    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:   7.3e+07 Fanout:     1e+03
+      clear: (<V t2.O$28 an>, <V decimalTest$37 a>, <V DB.DBA.rdf_strdt_impl$35 x>, <V __rdf_strsqlval$33 s>, <V o$31 a>)
+      clear on continue: (<V t2.O$28 an>, <V decimalTest$37 a>, <V DB.DBA.rdf_strdt_impl$35 x>, <V __rdf_strsqlval$33 s>, <V o$31 a>)
+    s# 57 27 from DB.DBA.RDF_QUAD by RDF_QUAD_POGS    7.3e+07 rows   
+    Key RDF_QUAD_POGS  ASC  (<V t2.O$28 an>)
+    
+    
+    After code:
+      0: <V o$31 a> := Call __ro2sq (<V t2.O$28 an>)
+      5: <V __rdf_strsqlval$33 s> := Call __rdf_strsqlval (<V t2.O$28 an>,  0 )
+      10: <V DB.DBA.rdf_strdt_impl$35 x> := Call DB.DBA.rdf_strdt_impl (<V __rdf_strsqlval$33 s>, <tag 182 flag 1 c http://www.w3.org/2001/XMLSchema#decimal>)
+      17: <V decimalTest$37 a> := Call __rdf_sqlval_of_obj (<V DB.DBA.rdf_strdt_impl$35 x>)
+      22: BReturn 0
+    time    0.0014% fanout         0 input      1000 rows
+    $31 () $37 () $45 (27 46 ) 
+    s# 67 39 Select (<V o$31 a>, <V decimalTest$37 a>)
+      set no: <r set_ctr$45 via  Set57>
+  }
+Warning: You might have a Cartesian product.
+
+
+
+ 105 msec 79% cpu,         4 rnd       998 seq         0% same seg         0% same pg 
+1 disk reads, 0 read ahead,   24.9409% wait
+Compilation: 27 msec 0 reads         0% read 0 messages         0% clw

@@ -1,0 +1,14 @@
+SELECT __id2in ( "s_37_4_t0"."S") AS "var1"
+FROM DB.DBA.RDF_QUAD AS "s_37_4_t0"
+  INNER JOIN DB.DBA.RDF_QUAD AS "s_37_4_t1"
+  ON (
+    "s_37_4_t0"."S" = "s_37_4_t1"."S")
+WHERE
+  "s_37_4_t0"."P" = __i2idn ( __bft( 'http://www.wikidata.org/prop/direct/P31' , 1))
+  AND 
+  "s_37_4_t0"."O" = __i2idn ( __bft( 'http://www.wikidata.org/entity/Q4167410' , 1))
+  AND 
+  "s_37_4_t1"."P" = __i2idn ( __bft( 'http://schema.org/description' , 1))
+  AND 
+  "s_37_4_t1"."O" = DB.DBA.RDF_MAKE_OBJ_OF_TYPEDSQLVAL ( 'string1' , __i2id( NULL),  'be-tarask' )
+OPTION (QUIETCAST)

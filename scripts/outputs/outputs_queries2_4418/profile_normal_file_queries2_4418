@@ -1,0 +1,41 @@
+
+  { 
+    time       2.5% fanout         1 input         1 rows
+      clear: (<V set_ctr$44 in>)
+    s# 47 45 cluster outer seq start, set no <V set_ctr$44 in>    
+    save ctx:()
+    time        98% fanout         0 input         1 rows
+    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:      0.21 Fanout:         0
+    Precode:
+      0: <V resource/Guangxi_Gymnasium$27 r> := Call __i2idn (<tag 182 flag 1 c http://dbpedia.org/resource/Guangxi_Gymnasium>)
+      5: BReturn 0
+      clear: (<V s_37_2_t0.O$30 an>, <V resource/Guangxi_Gymnasium$27 r>)
+      clear on continue: (<V s_37_2_t0.O$30 an>)$27 (29 ) $60 (29 ) 
+    s# 56 29 from DB.DBA.RDF_QUAD by RDF_QUAD       0.21 rows   
+    Key RDF_QUAD  ASC  (<V s_37_2_t0.O$30 an>)
+     inlined  P =  IRI_ID"...sameAs"  ,  S = <v k_resource/Guangxi_Gymnasium$60 Set62 rn>
+    vector param casts: <V resource/Guangxi_Gymnasium$27 r>-> <v k_resource/Guangxi_Gymnasium$60 Set62 rn>
+    
+    time         0% fanout         0 input         0 rows
+      clear: (<V _cvt$34 s>, <V __ro2sq$32 a>, <V var1$36 a>)$30 () 
+    s# 75 70 END Node
+    After test:
+      0: <V __ro2sq$32 a> := Call __ro2sq (<V s_37_2_t0.O$30 an>)
+      5: <V _cvt$34 s> := Call _cvt (<tag 193 flag 0>, <V __ro2sq$32 a>)
+      10: if (<V _cvt$34 s>  LIKE  <c %string1%>) then 14 else 15 unkn 15
+      14: BReturn 1
+      15: BReturn 0
+    After code:
+      0: <V var1$36 a> := Call __ro2sq (<r s_37_2_t0.O$30 via  Set75>)
+      5: BReturn 0
+    time         0% fanout         0 input         0 rows
+    $36 (70 ) $44 (70 29 45 ) 
+    s# 83 38 Select (<V var1$36 a>)
+      set no: <r set_ctr$44 via  Set75 Set56 Set62>
+  }
+Warning: You might have a Cartesian product.
+
+
+
+ 0 msec 10% cpu,         4 rnd         0 seq         0% same seg         0% same pg 
+Compilation: 2 msec 0 reads         0% read 0 messages         0% clw

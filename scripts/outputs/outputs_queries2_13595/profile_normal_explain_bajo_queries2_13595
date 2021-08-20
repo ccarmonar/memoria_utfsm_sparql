@@ -1,0 +1,36 @@
+
+  { 
+    time      0.02% fanout         1 input         1 rows
+    time        12% fanout     33946 input         1 rows
+    Precode:
+      0: DB.DBA.RDF_MAKE_LONG_OF_TYPEDSQLVAL_STRINGS$27 := Call DB.DBA.RDF_MAKE_LONG_OF_TYPEDSQLVAL_STRINGS (<c 01-01-1000>, <tag 217 c http://www.w3.org/2001/XMLSchema#dateTime>, <DB_NULL>)
+      7: BReturn 0
+    RDF_QUAD   3.4e+04 rows(s_37_6_t2.S$31, s_37_6_t2.O$30)
+     inlined  P =  IRI_ID"...direct/P625" 
+    time        83% fanout 0.00356448 input     33946 rows
+    RDF_QUAD    0.0041 rows(s_37_6_t0.S$34)
+     inlined  P =  IRI_ID"...direct/P31"  ,  S = s_37_6_t2.S$31 ,  O =  IRI_ID"...Q41176" 
+    time       2.7% fanout  0.446281 input       121 rows
+    RDF_QUAD       0.7 rows(s_37_6_t1.O$37)
+     inlined  P =  IRI_ID"...direct/P571"  ,  S = s_37_6_t0.S$34
+    time       1.7% fanout         0 input        54 rows
+    END Node
+    After test:
+    0: __ro2lo$39 := Call __ro2lo (s_37_6_t1.O$37)
+    5: DB.DBA.RDF_LONG_CMP$41 := Call DB.DBA.RDF_LONG_CMP (__ro2lo$39, DB.DBA.RDF_MAKE_LONG_OF_TYPEDSQLVAL_STRINGS$27)
+    12: if (DB.DBA.RDF_LONG_CMP$41 <=  0 ) then 16 else 17 unkn 17
+    16: BReturn 1
+    17: BReturn 0
+    
+    After code:
+    0: var3$43 := Call __ro2sq (s_37_6_t2.O$30)
+    5: var1$45 := Call __id2in (s_37_6_t0.S$34)
+    10: var2$47 := Call __ro2sq (s_37_6_t1.O$37)
+    15: BReturn 0
+    time         0% fanout         0 input         0 rows
+    Select (var1$45, <DB_NULL>, var2$47, var3$43)
+  }
+
+
+ 18 msec 89% cpu,     34068 rnd     33919 seq   99.4893% same seg  0.287652% same pg 
+Compilation: 2 msec 0 reads         0% read 0 messages         0% clw

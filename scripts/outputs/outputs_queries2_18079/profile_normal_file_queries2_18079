@@ -1,0 +1,87 @@
+http://www.wikidata.org/entity/Q801166	POINT(2.2583333333333 48.724722222222)	http://www.wikidata.org/prop/direct/P17	
+http://www.wikidata.org/entity/Q801181	POINT(5.271667 48.978333)	http://www.wikidata.org/prop/direct/P17	
+http://www.wikidata.org/entity/Q801356	POINT(4.0241666666667 49.259166666667)	http://www.wikidata.org/prop/direct/P17	
+http://www.wikidata.org/entity/Q591611	POINT(4.038494 49.207071)	http://www.wikidata.org/prop/direct/P17	
+http://www.wikidata.org/entity/Q657926	POINT(7.678337 48.872162)	http://www.wikidata.org/prop/direct/P17	
+http://www.wikidata.org/entity/Q659867	POINT(5.386787 46.53529)	http://www.wikidata.org/prop/direct/P17	
+http://www.wikidata.org/entity/Q662776	POINT(7.5558555555556 47.590536111111)	http://www.wikidata.org/prop/direct/P17	
+http://www.wikidata.org/entity/Q663182	POINT(8.833291 41.979103)	http://www.wikidata.org/prop/direct/P17	
+http://www.wikidata.org/entity/Q954512	POINT(3.074167 50.626389)	http://www.wikidata.org/prop/direct/P17	
+http://www.wikidata.org/entity/Q959669	POINT(5.566409 43.296134)	http://www.wikidata.org/prop/direct/P17	
+http://www.wikidata.org/entity/Q962874	POINT(5.134352 48.198638)	http://www.wikidata.org/prop/direct/P17	
+http://www.wikidata.org/entity/Q510695	POINT(3.3941317 46.3155171)	http://www.wikidata.org/prop/direct/P17	
+http://www.wikidata.org/entity/Q632708	POINT(-0.1075 49.286388888889)	http://www.wikidata.org/prop/direct/P17	
+http://www.wikidata.org/entity/Q634761	POINT(2.88 47.336944)	http://www.wikidata.org/prop/direct/P17	
+http://www.wikidata.org/entity/Q2011	POINT(4.8037805555556 45.780136111111)	http://www.wikidata.org/prop/direct/P17	
+http://www.wikidata.org/entity/Q2059	POINT(4.8047916666667 45.766088888889)	http://www.wikidata.org/prop/direct/P17	
+http://www.wikidata.org/entity/Q128074	POINT(7.263314 47.641621)	http://www.wikidata.org/prop/direct/P17	
+http://www.wikidata.org/entity/Q684413	POINT(5.888777 47.163767)	http://www.wikidata.org/prop/direct/P17	
+http://www.wikidata.org/entity/Q687470	POINT(6.021961 47.247033)	http://www.wikidata.org/prop/direct/P17	
+http://www.wikidata.org/entity/Q732449	POINT(1.784548 48.979278)	http://www.wikidata.org/prop/direct/P17	
+
+  { 
+    time     0.025% fanout         1 input         1 rows
+      clear: (<V set_ctr$72 in>)
+    s# 75 73 cluster outer seq start, set no <V set_ctr$72 in>    
+    save ctx:()
+    time    0.0069% fanout         1 input         1 rows
+      clear: (<V set_no$31 i>)
+    s# 84 59 cluster outer seq start, set no <V set_no$31 i>    
+    save ctx:()
+    time       0.4% fanout        45 input         1 rows
+      clear: (<V s_37_6_t1.P$33 rn>)
+      clear on continue: (<V s_37_6_t1.P$33 rn>)
+    s# 93 32 from DB.DBA.RDF_QUAD by RDF_QUAD_OP         20 rows   
+    Key RDF_QUAD_OP  ASC  (<V s_37_6_t1.P$33 rn>)
+     inlined  O =  IRI_ID"...Q142" 
+    
+    time        19% fanout   1111.11 input        45 rows
+    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:       1.2 Fanout:   1.1e+03
+      clear: (<V s_37_6_t1.S$37 rn>)
+      clear on continue: (<V s_37_6_t1.S$37 rn>)
+    s# 103 36 from DB.DBA.RDF_QUAD by RDF_QUAD_POGS        1.2 rows   
+    Key RDF_QUAD_POGS  ASC  (<V s_37_6_t1.S$37 rn>)
+     P = <V s_37_6_t1.P$33 rn> ,  O =  IRI_ID"...Q142" 
+    
+    time        74% fanout   0.00314 input     50000 rows
+      clear: (<V s_37_6_t0.S$41 rn>)
+      clear on continue: (<V s_37_6_t0.S$41 rn>)$37 () 
+    s# 113 40 from DB.DBA.RDF_QUAD by RDF_QUAD_POGS     0.0017 rows   
+    Key RDF_QUAD_POGS  ASC  (<V s_37_6_t0.S$41 rn>)
+     inlined  P =  IRI_ID"...direct/P31"  ,  O =  IRI_ID"...Q55488"  ,  S = <V s_37_6_t1.S$37 rn>
+    
+    time       1.9% fanout  0.229299 input       157 rows
+      clear: (<V s_37_6_t2.O$44 an>)
+      clear on continue: (<V s_37_6_t2.O$44 an>)
+    s# 123 43 from DB.DBA.RDF_QUAD by RDF_QUAD        1.1 rows   
+    Key RDF_QUAD  ASC  (<V s_37_6_t2.O$44 an>)
+     inlined  P =  IRI_ID"...direct/P625"  ,  S = <V s_37_6_t0.S$41 rn>
+    
+    time       1.5% fanout  0.611111 input        36 rows
+      clear: (<V var3$30 rn>, <V var2$29 an>, <V var1$28 rn>)$33 (43 40 36 ) $41 (43 ) $44 () 
+    s# 133 46 Distinct (HASH) set no <r set_no$31 via  Set123 Set113 Set103 Set93>(<r s_37_6_t0.S$41 via  Set123>, <V s_37_6_t2.O$44 an>, <r s_37_6_t1.P$33 via  Set123 Set113 Set103>)
+    After code:
+      0: <V var1$28 rn> :=  := artm <r s_37_6_t0.S$41 via  Set133 Set123>
+      4: <V var2$29 an> :=  := artm <r s_37_6_t2.O$44 via  Set133>
+      8: <V var3$30 rn> :=  := artm <r s_37_6_t1.P$33 via  Set133 Set123 Set113 Set103>
+      12: BReturn 0
+    time       4.1% fanout         1 input        22 rows
+      clear: (<V var3$64 a>, <V var2$62 a>, <V var1$60 a>)$31 (46 43 40 36 32 59 ) $28 (46 ) $29 (46 ) $30 (46 ) 
+    s# 144 52 Subquery Select(<V var1$28 rn>, <V var2$29 an>, <V var3$30 rn>)
+      set no: <r set_no$31 via  Set133 Set123 Set113 Set103 Set93>
+    After code:
+      0: <V var1$60 a> := Call __ro2sq (<V var1$28 rn>)
+      5: <V var2$62 a> := Call __ro2sq (<V var2$29 an>)
+      10: <V var3$64 a> := Call __ro2sq (<V var3$30 rn>)
+      15: BReturn 0
+    time    0.0068% fanout         0 input        22 rows
+    $62 (52 ) $64 (52 ) $72 (52 46 43 40 36 32 59 73 ) $60 (52 ) 
+    s# 151 66 Select (<V var1$60 a>, <V var2$62 a>, <V var3$64 a>)
+      set no: <r set_ctr$72 via  Set144>
+  }
+Warning: You might have a Cartesian product.
+
+
+
+ 13 msec 85% cpu,     50240 rnd     49962 seq   99.6895% same seg 0.0676738% same pg 
+Compilation: 2 msec 0 reads         0% read 0 messages         0% clw

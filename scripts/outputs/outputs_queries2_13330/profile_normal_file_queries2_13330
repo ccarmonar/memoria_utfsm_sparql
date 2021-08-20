@@ -1,0 +1,71 @@
+http://www.wikidata.org/entity/Q2639826	stanice metra v Praze	
+http://www.wikidata.org/entity/Q4086643	zamýšlená stanice metra v Praze	
+http://www.wikidata.org/entity/Q2659859	stanice metra v Praze	
+http://www.wikidata.org/entity/Q1457113	stanice metra v Praze	
+http://www.wikidata.org/entity/Q3491244	stanice metra v Praze	
+
+  { 
+    time      0.47% fanout         1 input         1 rows
+      clear: (<V set_ctr$42 in>)
+    s# 63 43 cluster outer seq start, set no <V set_ctr$42 in>    
+    save ctx:()
+    time       6.8% fanout         5 input         1 rows
+      clear: (<V t2.S$28 rn>)
+      clear on continue: (<V t2.S$28 rn>)
+    s# 72 27 from DB.DBA.RDF_QUAD by RDF_QUAD_POGS          5 rows   
+    Key RDF_QUAD_POGS  ASC  (<V t2.S$28 rn>)
+     P =  IRI_ID"...direct/P361"  ,  O =  IRI_ID"...Q190271" 
+    
+    time        18% fanout         1 input         5 rows
+    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:   0.00027 Fanout:         1
+      clear: (<V t1.S$31 rn>)
+      clear on continue: (<V t1.S$31 rn>)
+    s# 82 30 from DB.DBA.RDF_QUAD by RDF_QUAD    0.00027 rows   
+    Key RDF_QUAD  ASC  (<V t1.S$31 rn>)
+     inlined  P =  IRI_ID"...direct/P31"  ,  S = <V t2.S$28 rn> ,  O =  IRI_ID"...Q928830" 
+    
+    time        17% fanout         1 input         5 rows
+    Precode:
+      0: <V var1$33 a> := Call __id2in (<r t2.S$28 via  Set82>)
+      5: BReturn 0
+      clear: (<V set_ctr$45 i>, <V var1$33 a>)
+    s# 92 49 cluster outer seq start, set no <V set_ctr$45 i>    
+    save ctx:()
+    time        13% fanout      10.4 input         5 rows
+      clear: (<V t4.O$36 a>)
+      clear on continue: (<V t4.O$36 a>)$105 (35 ) $28 (49 30 ) 
+    s# 101 35 from DB.DBA.RDF_QUAD by RDF_QUAD         14 rows   
+    Key RDF_QUAD  ASC  (<V t4.O$36 a>)
+     inlined  P =  IRI_ID"...description"  ,  S = <v k_t2.S$105 Set107 rn>
+    vector param casts: <r t2.S$28 via  Set92 Set82>-> <v k_t2.S$105 Set107 rn>
+    
+    time        40% fanout 0.0961538 input        52 rows
+      clear: (<V DB.DBA.RDF_LANGUAGE_OF_OBJ$40 a>, <V __ro2sq$38 a>)
+    s# 120 115 END Node
+    After test:
+      0: <V __ro2sq$38 a> := Call __ro2sq (<V t4.O$36 a>)
+      5: <V DB.DBA.RDF_LANGUAGE_OF_OBJ$40 a> := Call DB.DBA.RDF_LANGUAGE_OF_OBJ (<V __ro2sq$38 a>)
+      12: if (<c cs> = <V DB.DBA.RDF_LANGUAGE_OF_OBJ$40 a>) then 16 else 17 unkn 17
+      16: BReturn 1
+      17: BReturn 0
+    time       4.6% fanout         1 input         5 rows
+      clear: (<V t4.O$132 a>, <V var2$54 a>)$36 (115 ) $38 (115 ) $40 (115 ) $45 (115 35 49 ) 
+    s# 128 44 end of outer seq <r set_ctr$45 via  Set120 Set101 Set107>
+     out: (<V DB.DBA.RDF_LANGUAGE_OF_OBJ$40 a>, <V __ro2sq$38 a>, <r t4.O$36 via  Set120>)
+     shadow: ( <none> ,  <none> , <V t4.O$132 a>)
+    After code:
+      0: <V var2$54 a> := Call __ro2sq (<V t4.O$132 a>)
+      5: BReturn 0
+    time     0.054% fanout         0 input         5 rows
+    $33 (44 115 35 49 ) $42 (44 115 35 49 30 27 43 ) $54 (44 ) 
+    s# 138 56 Select (<r var1$33 via  Set128>, <V var2$54 a>)
+      set no: <r set_ctr$42 via  Set128 Set82 Set72>
+  }
+Warning: You might have a Cartesian product.
+
+Warning: You might have a Cartesian product.
+
+
+
+ 0 msec 2% cpu,       124 rnd        51 seq       0.8% same seg      14.4% same pg 
+Compilation: 24 msec 1 reads   89.8738% read 0 messages         0% clw

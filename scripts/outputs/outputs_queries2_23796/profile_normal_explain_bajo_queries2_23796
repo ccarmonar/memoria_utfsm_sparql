@@ -1,0 +1,54 @@
+http://www.wikidata.org/prop/direct/P50	
+http://schema.org/about	
+http://www.wikidata.org/prop/direct/P170	
+http://www.wikidata.org/prop/direct/P58	
+http://www.wikidata.org/prop/direct/P3080	
+http://www.wikidata.org/prop/direct/P108	
+http://www.wikidata.org/prop/direct/P123	
+http://www.wikidata.org/prop/direct/P178	
+http://www.wikidata.org/prop/direct/P6275	
+http://www.wikidata.org/prop/direct/P750	
+
+  { 
+    time    0.0043% fanout         1 input         1 rows
+    time    0.0011% fanout         1 input         1 rows
+    time      0.11% fanout      1513 input         1 rows
+    RDF_QUAD   1.5e+03 rows(s_37_6_t2.S$31)
+     inlined  P =  IRI_ID"...direct/P5247" 
+    time       8.6% fanout   2.31527 input      1513 rows
+    RDF_QUAD_OP       2.8 rows(s_37_6_t1.P$35, s_37_6_t1.O$34)
+     inlined  O = cast$100
+    time      0.36% fanout  0.999144 input      3503 rows
+    END Node
+    After test:
+    0: if (s_37_6_t1.P$35 =  IRI_ID"...direct/P5247" ) then 9 else 4 unkn 9
+    4: if (s_37_6_t1.P$35 =  IRI_ID"...direct/P272" ) then 9 else 8 unkn 9
+    8: BReturn 1
+    9: BReturn 0
+    time        13% fanout    86.196 input      3500 rows
+    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:       1.2 Fanout:        86
+    RDF_QUAD_POGS       1.2 rows()
+     P = k_s_37_6_t1.P$129 ,  O = k_s_37_6_t2.S$133
+    time        78% fanout 0.00157448 input    301686 rows
+    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:       4.3 Fanout:    0.0016
+    RDF_QUAD_POGS       4.3 rows()
+     P =  IRI_ID"...direct/P272"  ,  O = k_s_37_6_t1.O$144
+    time      0.13% fanout 0.0210526 input       475 rows
+    Distinct (s_37_6_t1.P$35)
+    
+    After code:
+    0: p2$28 :=  := artm s_37_6_t1.P$35
+    4: BReturn 0
+    time      0.19% fanout         1 input        10 rows
+    Subquery Select(p2$28)
+    
+    After code:
+    0: p2$57 := Call __ro2sq (p2$28)
+    5: BReturn 0
+    time    0.0021% fanout         0 input        10 rows
+    Select (p2$57)
+  }
+
+
+ 74 msec 97% cpu,    306674 rnd    301606 seq    99.461% same seg  0.364881% same pg 
+Compilation: 1 msec 0 reads         0% read 0 messages         0% clw

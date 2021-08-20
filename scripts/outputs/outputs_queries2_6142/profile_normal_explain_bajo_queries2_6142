@@ -1,0 +1,43 @@
+
+  { 
+    time       8.7% fanout         1 input         1 rows
+    time        91% fanout         0 input         1 rows
+    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:         2 Fanout:         0
+    RDF_QUAD_SP         2 rows(s_37_2_t0.P$28)
+     inlined  S =  IRI_ID"...Q12418" 
+    time         0% fanout         0 input         0 rows
+    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:       1.2 Fanout:         0
+    RDF_QUAD       1.2 rows(s_37_2_t0.O$32)
+     inlined  P = s_37_2_t0.P$28 ,  S =  IRI_ID"...Q12418" 
+    
+    After code:
+    0: var1$35 := Call __id2in (s_37_2_t0.P$28)
+    5: var2$37 := Call __ro2sq (s_37_2_t0.O$32)
+    10: isiri_id$41 := Call isiri_id (s_37_2_t0.O$32)
+    15: temp$43 := artm  1  - isiri_id$41
+    19: if ( 0  = temp$43) then 50 else 23 unkn 50
+    23: __ro2sq$45 := Call __ro2sq (s_37_2_t0.O$32)
+    28: DB.DBA.RDF_DATATYPE_OF_OBJ$47 := Call DB.DBA.RDF_DATATYPE_OF_OBJ (__ro2sq$45)
+    35: __rdf_strsqlval$49 := Call __rdf_strsqlval (DB.DBA.RDF_DATATYPE_OF_OBJ$47,  0 )
+    40: rdf_concat_impl$51 := Call rdf_concat_impl (<c string1>, __rdf_strsqlval$49)
+    45: var3$39 :=  := artm rdf_concat_impl$51
+    49: Jump 90 (level=0)
+    50: is_named_iri_id$55 := Call is_named_iri_id (s_37_2_t0.O$32)
+    55: if ( 0  = is_named_iri_id$55) then 64 else 59 unkn 64
+    59: callretSearchedCASE$53 :=  := artm <c IRI>
+    63: Jump 86 (level=0)
+    64: is_bnode_iri_id$59 := Call is_bnode_iri_id (s_37_2_t0.O$32)
+    69: if ( 0  = is_bnode_iri_id$59) then 78 else 73 unkn 78
+    73: callretSearchedCASE$57 :=  := artm <c string2>
+    77: Jump 82 (level=0)
+    78: callretSearchedCASE$57 :=  := artm <c save us!!!>
+    82: callretSearchedCASE$53 :=  := artm callretSearchedCASE$57
+    86: var3$39 :=  := artm callretSearchedCASE$53
+    90: BReturn 0
+    time         0% fanout         0 input         0 rows
+    Select (var1$35, var2$37, var3$39)
+  }
+
+
+ 0 msec 3% cpu,         1 rnd         0 seq         0% same seg         0% same pg 
+Compilation: 1 msec 0 reads         0% read 0 messages         0% clw

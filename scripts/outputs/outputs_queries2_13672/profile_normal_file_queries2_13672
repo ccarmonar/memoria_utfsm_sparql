@@ -1,0 +1,85 @@
+http://www.wikidata.org/entity/Q3093571	11	
+http://www.wikidata.org/entity/Q4838866	12	
+http://www.wikidata.org/entity/Q3434395	13	
+http://www.wikidata.org/entity/Q2821393	14	
+http://www.wikidata.org/entity/Q2381218	19	
+http://www.wikidata.org/entity/Q3340014	22	
+http://www.wikidata.org/entity/Q2874910	29	
+http://www.wikidata.org/entity/Q3425740	35	
+http://www.wikidata.org/entity/Q3573441	86	
+http://www.wikidata.org/entity/Q3047730	101	
+http://www.wikidata.org/entity/Q3524185	103	
+http://www.wikidata.org/entity/Q15973236	105	
+http://www.wikidata.org/entity/Q2934841	111	
+http://www.wikidata.org/entity/Q3261035	112	
+http://www.wikidata.org/entity/Q2380639	116	
+http://www.wikidata.org/entity/Q3188397	118	
+http://www.wikidata.org/entity/Q3170360	122	
+http://www.wikidata.org/entity/Q3102188	135	
+http://www.wikidata.org/entity/Q3265342	175	
+http://www.wikidata.org/entity/Q3094008	179	
+
+  { 
+    time    0.0019% fanout         1 input         1 rows
+      clear: (<V set_ctr$74 in>)
+    s# 77 75 cluster outer seq start, set no <V set_ctr$74 in>    
+    save ctx:()
+      clear: (<V var2$29 a>, <V var1$28 a>, <V set_no$30 i>, <V var2$66 a>, <V var1$64 a>)
+    s# 86 27 Subquery 27 
+      multistate set no = <V set_no$30 i>
+      { 
+        time    0.0012% fanout         1 input         1 rows
+        
+        s# 110 39 Fork 39 {  
+                
+            save ctx:()
+              set no = <V set_no$30 i> array  <none>  save: 
+            time        96% fanout      2227 input         1 rows
+              clear: (<V s_37_2_t0.S$32 rn>, <V s_37_2_t0.O$33 an>, <V _cvt$37 i>, <V __ro2sq$35 a>)
+              clear on continue: (<V s_37_2_t0.S$32 rn>, <V s_37_2_t0.O$33 an>, <V _cvt$37 i>, <V __ro2sq$35 a>)
+            s# 91 31 from DB.DBA.RDF_QUAD by RDF_QUAD    2.2e+03 rows Parallel, tail cost   1.1e+04   
+            Key RDF_QUAD  ASC  (<V s_37_2_t0.O$33 an>, <V s_37_2_t0.S$32 rn>)
+             inlined  P =  IRI_ID"...direct/P1045" 
+            copy on branch $30 $0 $0 $0 sets: 77 
+            
+            After code:
+              0: <V __ro2sq$35 a> := Call __ro2sq (<V s_37_2_t0.O$33 an>)
+              5: <V _cvt$37 i> := Call _cvt (<tag 193 flag 0>, <V __ro2sq$35 a>)
+              10: BReturn 0
+            time       2.6% fanout         0 input      2227 rows
+            $37 () 
+            s# 102 40 Sort (HASH) set no <r set_no$30 via  Set91>(<V _cvt$37 i>) -> (<V s_37_2_t0.S$32 rn>, <V __ro2sq$35 a>)
+            
+        }
+        time       1.5% fanout      1000 input         1 rows
+        Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:         0 Fanout:     1e+03
+          clear: (<V __ro2sq$35 a>, <V s_37_2_t0.S$32 rn>, <V var2$29 a>, <V var1$28 a>, <V __id2in$55 a>)
+          clear on continue: (<V __ro2sq$35 a>, <V s_37_2_t0.S$32 rn>, <V var2$29 a>, <V var1$28 a>, <V __id2in$55 a>)
+        s# 117 45 Key from temp (<V s_37_2_t0.S$32 rn>, <V __ro2sq$35 a>)
+        
+        
+        After code:
+          0: <V __id2in$55 a> := Call __id2in (<V s_37_2_t0.S$32 rn>)
+          5: <V var1$28 a> :=  := artm <V __id2in$55 a>
+          9: <V var2$29 a> :=  := artm <V __ro2sq$35 a>
+          13: BReturn 0
+        time   0.00019% fanout         0 input      1000 rows
+        
+        s# 86 57 Subquery Select(<V var1$28 a>, <V var2$29 a>)
+          set no: <r set_no$30 via  Set117>
+      }
+    
+    After code:
+      0: <V var1$64 a> := Call __ro2sq (<V var1$28 a>)
+      5: <V var2$66 a> := Call __ro2sq (<V var2$29 a>)
+      10: BReturn 0
+    time   0.00021% fanout         0 input      1000 rows
+    $64 (27 ) $66 (27 ) $74 (27 75 ) 
+    s# 135 68 Select (<V var1$64 a>, <V var2$66 a>)
+      set no: <r set_ctr$74 via  Set86>
+  }
+
+
+ 163 msec 99% cpu,      4702 rnd      3223 seq         0% same seg   21.2205% same pg 
+10 disk reads, 0 read ahead,   90.1123% wait
+Compilation: 1 msec 0 reads         0% read 0 messages         0% clw

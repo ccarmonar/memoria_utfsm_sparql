@@ -1,0 +1,13 @@
+SELECT __id2in ( "s_8_4_t0"."S") AS "person",
+  __ro2sq ( "s_8_4_t1"."O") AS "givenName"
+FROM DB.DBA.RDF_QUAD AS "s_8_4_t0"
+  INNER JOIN DB.DBA.RDF_QUAD AS "s_8_4_t1"
+  ON (
+    "s_8_4_t0"."S" = "s_8_4_t1"."S")
+WHERE
+  "s_8_4_t0"."P" = __i2idn ( __bft( 'http://www.w3.org/2006/vcard/ns#family-name' , 1))
+  AND 
+  "s_8_4_t0"."O" = DB.DBA.RDF_OBJ_OF_SQLVAL ( 'Smith' )
+  AND 
+  "s_8_4_t1"."P" = __i2idn ( __bft( 'http://www.w3.org/2006/vcard/ns#given-name' , 1))
+OPTION (QUIETCAST)

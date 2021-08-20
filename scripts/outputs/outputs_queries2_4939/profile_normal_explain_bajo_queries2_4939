@@ -1,0 +1,39 @@
+http://wikiba.se/ontology#String	
+http://wikiba.se/ontology#WikibaseItem	
+http://wikiba.se/ontology#Quantity	
+http://wikiba.se/ontology#ExternalId	
+http://wikiba.se/ontology#CommonsMedia	
+http://wikiba.se/ontology#Monolingualtext	
+http://wikiba.se/ontology#Time	
+http://wikiba.se/ontology#Url	
+http://wikiba.se/ontology#Math	
+
+  { 
+    time       1.4% fanout         1 input         1 rows
+    Subquery 27 
+      { 
+        time        27% fanout       552 input         1 rows
+        RDF_QUAD   5.5e+02 rows(s_37_2_t0.O$31)
+         inlined  P =  IRI_ID"...propertyType" 
+        time        68% fanout 0.0163043 input       552 rows
+        Distinct (s_37_2_t0.O$31)
+        time       2.1% fanout         1 input         9 rows
+        skip node  100  <none> set_no$29
+        
+        After code:
+        0: var1$28 :=  := artm s_37_2_t0.O$31
+        4: BReturn 0
+        time      0.44% fanout         0 input         9 rows
+        Subquery Select(var1$28)
+      }
+    
+    After code:
+    0: var1$49 := Call __ro2sq (var1$28)
+    5: BReturn 0
+    time       0.4% fanout         0 input         9 rows
+    Select (var1$49)
+  }
+
+
+ 1 msec 22% cpu,         1 rnd       551 seq         0% same seg         0% same pg 
+Compilation: 1 msec 0 reads         0% read 0 messages         0% clw

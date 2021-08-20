@@ -1,0 +1,98 @@
+
+  { 
+    time       6.1% fanout         1 input         1 rows
+    Subquery 27 
+      { 
+        time       3.5% fanout         1 input         1 rows
+        fork {
+            time        87% fanout         0 input         1 rows
+            Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:   1.4e-07 Fanout:         0
+            RDF_QUAD_POGS   1.4e-07 rows(s_37_12_t2.O$33, s_37_12_t2.S$32)
+             inlined  P =  IRI_ID"...prop/P31" 
+            time         0% fanout         0 input         0 rows
+            Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:   1.4e-07 Fanout:         0
+            RDF_QUAD_POGS   1.4e-07 rows()
+             inlined  P =  IRI_ID"...statement/P31"  ,  O =  IRI_ID"...Q571"  ,  S = k_s_37_12_t2.O$159
+            time         0% fanout         0 input         0 rows
+            Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:       8.5 Fanout:         0
+            RDF_QUAD_SP       8.5 rows(s_37_20_t4.S$39, s_37_20_t4.P$38)
+             inlined  S = k_s_37_12_t2.S$172
+            time         0% fanout         0 input         0 rows
+            Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:       1.2 Fanout:         0
+            RDF_QUAD       1.2 rows()
+             inlined  P = s_37_20_t4.P$38 ,  S = k_s_37_12_t2.S$187
+            time         0% fanout         0 input         0 rows
+            Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:   1.4e-07 Fanout:         0
+            RDF_QUAD   1.4e-07 rows(s_37_3_t0.O$46)
+             inlined  P =  IRI_ID"...prop/P50"  ,  S = k_s_37_12_t2.S$200
+            time         0% fanout         0 input         0 rows
+            Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:   1.4e-07 Fanout:         0
+            RDF_QUAD_POGS   1.4e-07 rows()
+             inlined  P =  IRI_ID"...statement/P50"  ,  O =  IRI_ID"...Q9358"  ,  S = k_s_37_3_t0.O$214
+            time         0% fanout         0 input         0 rows
+            Sort (s_37_20_t4.P$38) -> (inc$58)
+            
+          }
+        time       3.2% fanout         0 input         1 rows
+        group by read node  
+        (s_37_20_t4.P$38, aggregate$52)
+        
+        After code:
+        0: var1$28 :=  := artm s_37_20_t4.P$38
+        4: var2$29 :=  := artm aggregate$52
+        8: BReturn 0
+        time         0% fanout         0 input         0 rows
+        Subquery Select(var1$28, var2$29)
+      }
+    Subquery 82 
+      { 
+        time         0% fanout         0 input         0 rows
+        fork {
+            time         0% fanout         0 input         0 rows
+            Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:   1.4e-07 Fanout:         0
+            RDF_QUAD_POGS   1.4e-07 rows(s_37_34_t7.O$87, s_37_34_t7.S$86)
+             inlined  P =  IRI_ID"...prop/P31" 
+            time         0% fanout         0 input         0 rows
+            Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:   1.4e-07 Fanout:         0
+            RDF_QUAD_POGS   1.4e-07 rows()
+             inlined  P =  IRI_ID"...statement/P31"  ,  O =  IRI_ID"...Q571"  ,  S = k_s_37_34_t7.O$279
+            time         0% fanout         0 input         0 rows
+            Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:       8.5 Fanout:         0
+            RDF_QUAD_SP       8.5 rows(s_37_42_t9.S$93, s_37_42_t9.P$92)
+             inlined  S = k_s_37_34_t7.S$292
+            time         0% fanout         0 input         0 rows
+            Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:       1.2 Fanout:         0
+            RDF_QUAD       1.2 rows()
+             inlined  P = s_37_42_t9.P$92 ,  S = k_s_37_34_t7.S$307
+            time         0% fanout         0 input         0 rows
+            Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:   1.4e-07 Fanout:         0
+            RDF_QUAD   1.4e-07 rows(s_37_25_t5.O$100)
+             inlined  P =  IRI_ID"...prop/P50"  ,  S = k_s_37_34_t7.S$320
+            time         0% fanout         0 input         0 rows
+            Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:   1.4e-07 Fanout:         0
+            RDF_QUAD_POGS   1.4e-07 rows()
+             inlined  P =  IRI_ID"...statement/P50"  ,  O =  IRI_ID"...Q9358"  ,  S = k_s_37_25_t5.O$334
+            
+            After code:
+            0:  count count$105s_37_42_t9.S$93set no set_no$84distinct via hash area DISTINCT HASH$109
+            5: BReturn 0
+          }
+        
+        After code:
+        0: var3$83 :=  := artm count$105
+        4: BReturn 0
+        time         0% fanout         0 input         0 rows
+        Subquery Select(var3$83)
+      }
+    
+    After code:
+    0: var1$117 := Call __id2in (var1$28)
+    5: var4$119 := artm var2$29 / var3$83
+    9: BReturn 0
+    time         0% fanout         0 input         0 rows
+    Select (var1$117, var4$119)
+  }
+
+
+ 0 msec 0% cpu,         1 rnd         0 seq         0% same seg         0% same pg 
+Compilation: 7 msec 0 reads         0% read 0 messages         0% clw

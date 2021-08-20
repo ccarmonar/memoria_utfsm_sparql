@@ -1,0 +1,46 @@
+
+  { 
+    time       7.9% fanout         1 input         1 rows
+      clear: (<V set_ctr$43 in>)
+    s# 49 44 cluster outer seq start, set no <V set_ctr$43 in>    
+    save ctx:()
+    time        92% fanout         0 input         1 rows
+    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:         2 Fanout:         0
+      clear: (<V s_37_2_t0.P$28 rn>)
+      clear on continue: (<V s_37_2_t0.P$28 rn>)
+    s# 58 27 from DB.DBA.RDF_QUAD by RDF_QUAD_SP          2 rows   
+    Key RDF_QUAD_SP  ASC  (<V s_37_2_t0.P$28 rn>)
+     inlined  S =  IRI_ID"...Q18338317" 
+    
+    time         0% fanout         0 input         0 rows
+    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:       1.2 Fanout:         0
+      clear: (<V s_37_2_t0.O$32 an>)
+      clear on continue: (<V s_37_2_t0.O$32 an>)
+    s# 68 31 from DB.DBA.RDF_QUAD by RDF_QUAD        1.2 rows   
+    Key RDF_QUAD  ASC  (<V s_37_2_t0.O$32 an>)
+     inlined  P = <V s_37_2_t0.P$28 rn> ,  S =  IRI_ID"...Q18338317" 
+    
+    time         0% fanout         0 input         0 rows
+    $32 () 
+    s# 83 78 END Node
+    After test:
+      0: if (<r s_37_2_t0.P$28 via  Set68> = <V s_37_2_t0.O$32 an>) then 4 else 5 unkn 5
+      4: BReturn 1
+      5: BReturn 0
+    time         0% fanout         0 input         0 rows
+      clear: (<V var1$35 a>)$28 (78 31 ) 
+    s# 91 47 skip node  100  <none> <r set_ctr$43 via  Set83 Set68 Set58>
+    After code:
+      0: <V var1$35 a> := Call __id2in (<r s_37_2_t0.P$28 via  Set91 Set83 Set68>)
+      5: BReturn 0
+    time         0% fanout         0 input         0 rows
+    $35 (47 ) $43 (47 78 31 27 44 ) 
+    s# 99 37 Select (<V var1$35 a>)
+      set no: <r set_ctr$43 via  Set91 Set83 Set68 Set58>
+  }
+Warning: You might have a Cartesian product.
+
+
+
+ 0 msec 3% cpu,         1 rnd         0 seq         0% same seg         0% same pg 
+Compilation: 1 msec 0 reads         0% read 0 messages         0% clw

@@ -1,0 +1,21 @@
+SELECT __ro2sq ( "s_37_7_t2"."O") AS "var1",
+  __ro2sq ( "s_37_6"."var2") AS "var2"
+FROM DB.DBA.RDF_QUAD AS "s_37_7_t2"
+  LEFT OUTER JOIN (
+    SELECT "s_37_6_t1"."O" AS "var2"
+    FROM DB.DBA.RDF_QUAD AS "s_37_6_t0"
+      INNER JOIN DB.DBA.RDF_QUAD AS "s_37_6_t1"
+      ON (
+        "s_37_6_t0"."O" = "s_37_6_t1"."S")
+    WHERE
+      "s_37_6_t0"."S" = __i2idn ( __bft( 'http://www.wikidata.org/entity/Q641' , 1))
+      AND 
+      "s_37_6_t0"."P" = __i2idn ( __bft( 'http://www.wikidata.org/prop/direct/P131' , 1))
+      AND 
+      "s_37_6_t1"."P" = __i2idn ( __bft( 'http://www.wikidata.org/prop/direct/P625' , 1))) AS "s_37_6"
+  ON (1)
+WHERE
+  "s_37_7_t2"."S" = __i2idn ( __bft( 'http://www.wikidata.org/entity/Q641' , 1))
+  AND 
+  "s_37_7_t2"."P" = __i2idn ( __bft( 'http://www.wikidata.org/prop/direct/P625' , 1))
+OPTION (QUIETCAST)

@@ -1,0 +1,79 @@
+http://www.wikidata.org/entity/Q2609533	mideagulf	https://www.midea.com/	
+http://www.wikidata.org/entity/Q2700742	MTV_JAPAN	http://www.mtvjapan.com/	
+http://www.wikidata.org/entity/Q2925142	BricomanFrance	http://www.bricoman.fr	
+http://www.wikidata.org/entity/Q2925147	Bricomarche_Fr	http://www.bricomarche.com/	
+http://www.wikidata.org/entity/Q2979949	clubmonaco	http://www.clubmonaco.com/home/index.jsp	
+http://www.wikidata.org/entity/Q2990378	compassbox	http://www.compassboxwhisky.com/	
+http://www.wikidata.org/entity/Q3064637	shodensha_news	http://www.shodensha.co.jp/	
+http://www.wikidata.org/entity/Q3067119	fastenalcompany	https://www.fastenal.com/	
+http://www.wikidata.org/entity/Q3070922	feuvert_fr	http://www.feuvert.fr	
+http://www.wikidata.org/entity/Q3115835	graynics	https://www.gray-nicolls.co.uk/	
+http://www.wikidata.org/entity/Q3117467	lapeyreofficiel	http://www.groupe-lapeyre.com	
+http://www.wikidata.org/entity/Q3122954	Gemo_Officiel	http://www.gemo.fr/	
+http://www.wikidata.org/entity/Q183231	bankofengland	http://www.bankofengland.co.uk	
+http://www.wikidata.org/entity/Q185651	lendleasegroup	http://www.lendlease.com/	
+http://www.wikidata.org/entity/Q186394	Fujitsu_Global	http://www.fujitsu.com/global	
+http://www.wikidata.org/entity/Q260833	sandisk	https://shop.westerndigital.com/sandisk	
+http://www.wikidata.org/entity/Q264997	beyerdynamic	https://global.beyerdynamic.com/	
+http://www.wikidata.org/entity/Q1326127	ESL	http://www.esl.eu/	
+http://www.wikidata.org/entity/Q1326127	ESL	https://www.eslgaming.com/	
+http://www.wikidata.org/entity/Q1326127	ESLCS	http://www.esl.eu/	
+
+  { 
+    time      0.14% fanout         1 input         1 rows
+      clear: (<V set_ctr$41 in>)
+    s# 62 42 cluster outer seq start, set no <V set_ctr$41 in>    
+    save ctx:()
+    time       5.1% fanout      1000 input         1 rows
+    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:   2.8e+04 Fanout:     1e+03
+      clear: (<V t2.O$28 an>, <V t2.S$29 rn>)
+      clear on continue: (<V t2.O$28 an>, <V t2.S$29 rn>)
+    s# 71 27 from DB.DBA.RDF_QUAD by RDF_QUAD    2.8e+04 rows   
+    Key RDF_QUAD  ASC  (<V t2.S$29 rn>, <V t2.O$28 an>)
+     inlined  P =  IRI_ID"...direct/P2002" 
+    
+    time        37% fanout     0.044 input      1000 rows
+    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:    0.0031 Fanout:     0.044
+      clear: (<V t1.S$32 rn>)
+      clear on continue: (<V t1.S$32 rn>)
+    s# 82 31 from DB.DBA.RDF_QUAD by RDF_QUAD     0.0031 rows   
+    Key RDF_QUAD  ASC  (<V t1.S$32 rn>)
+     inlined  P =  IRI_ID"...direct/P31"  ,  S = <V t2.S$29 rn> ,  O =  IRI_ID"...Q4830453" 
+    
+    time        33% fanout         1 input        44 rows
+    Precode:
+      0: <V var2$34 a> := Call __ro2sq (<r t2.O$28 via  Set82>)
+      5: <V var1$36 a> := Call __id2in (<r t2.S$29 via  Set82>)
+      10: BReturn 0
+      clear: (<V set_ctr$44 i>, <V var1$36 a>, <V var2$34 a>)$28 (31 ) 
+    s# 92 48 cluster outer seq start, set no <V set_ctr$44 i>    
+    save ctx:()
+    time       4.9% fanout   1.22727 input        44 rows
+      clear: (<V t4.O$39 a>)
+      clear on continue: (<V t4.O$39 a>)$105 (38 ) $29 (48 31 ) 
+    s# 101 38 from DB.DBA.RDF_QUAD by RDF_QUAD        1.1 rows   
+    Key RDF_QUAD  ASC  (<V t4.O$39 a>)
+     inlined  P =  IRI_ID"...direct/P856"  ,  S = <v k_t2.S$105 Set107 rn>
+    vector param casts: <r t2.S$29 via  Set92 Set82>-> <v k_t2.S$105 Set107 rn>
+    
+    time        21% fanout         1 input        54 rows
+      clear: (<V var3$53 a>)$39 () $44 (38 48 ) 
+    s# 115 43 end of outer seq <r set_ctr$44 via  Set101 Set107>
+     out: (<V t4.O$39 a>)
+     shadow: ( <none> )
+    After code:
+      0: <V var3$53 a> := Call __ro2sq (<V t4.O$39 a>)
+      5: BReturn 0
+    time      0.02% fanout         0 input        54 rows
+    $34 (43 38 48 ) $36 (43 38 48 ) $41 (43 38 48 31 27 42 ) $53 (43 ) 
+    s# 123 55 Select (<r var1$36 via  Set115>, <r var2$34 via  Set115>, <V var3$53 a>)
+      set no: <r set_ctr$41 via  Set115 Set82 Set71>
+  }
+Warning: You might have a Cartesian product.
+
+Warning: You might have a Cartesian product.
+
+
+
+ 2 msec 53% cpu,      1187 rnd      1009 seq   87.1212% same seg   2.77778% same pg 
+Compilation: 2 msec 0 reads         0% read 0 messages         0% clw

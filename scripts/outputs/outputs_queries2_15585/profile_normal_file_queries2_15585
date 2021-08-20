@@ -1,0 +1,54 @@
+
+  { 
+    time    0.0038% fanout         1 input         1 rows
+      clear: (<V set_ctr$62 in>)
+    s# 65 63 cluster outer seq start, set no <V set_ctr$62 in>    
+    save ctx:()
+    time       0.1% fanout         1 input         1 rows
+    Precode:
+      0: <V DB.DBA.RDF_MAKE_LONG_OF_TYPEDSQLVAL_STRINGS$27 a> := Call DB.DBA.RDF_MAKE_LONG_OF_TYPEDSQLVAL_STRINGS (<c 1992-09-31T23:59:59Z>, <tag 217 c http://www.w3.org/2001/XMLSchema#dateTime>, <DB_NULL>)
+      7: BReturn 0
+      clear: (<V set_no$31 i>, <V DB.DBA.RDF_MAKE_LONG_OF_TYPEDSQLVAL_STRINGS$27 a>)
+    s# 74 53 cluster outer seq start, set no <V set_no$31 i>    
+    save ctx:()
+    time       7.2% fanout     61674 input         1 rows
+      clear: (<V s_37_2_t0.S$33 rn>, <V s_37_2_t0.O$34 an>)
+      clear on continue: (<V s_37_2_t0.S$33 rn>, <V s_37_2_t0.O$34 an>)
+    s# 83 32 from DB.DBA.RDF_QUAD by RDF_QUAD_POGS    4.3e+04 rows   
+    Key RDF_QUAD_POGS  ASC  (<V s_37_2_t0.O$34 an>, <V s_37_2_t0.S$33 rn>)
+     P =  IRI_ID"...direct/P570"  ,  O >= <tag 211 c 1992-09-01 00:00:00Z>
+    row specs:  O >= <tag 211 c 1992-09-01 00:00:00Z>
+    
+    time        93% fanout         0 input     61674 rows
+      clear: (<V DB.DBA.RDF_LONG_CMP$38 i>, <V __ro2lo$36 a>)$34 () $27 (32 53 ) 
+    s# 99 94 END Node
+    After test:
+      0: <V __ro2lo$36 a> := Call __ro2lo (<V s_37_2_t0.O$34 an>)
+      5: <V DB.DBA.RDF_LONG_CMP$38 i> := Call DB.DBA.RDF_LONG_CMP (<V __ro2lo$36 a>, <r DB.DBA.RDF_MAKE_LONG_OF_TYPEDSQLVAL_STRINGS$27 via  Set83 Set74>)
+      12: if (<V DB.DBA.RDF_LONG_CMP$38 i> <=  0 ) then 16 else 17 unkn 17
+      16: BReturn 1
+      17: BReturn 0
+    time         0% fanout         0 input         0 rows
+      clear: (<V var1$30 rn>)$33 (94 ) 
+    s# 107 40 Distinct (HASH) set no <r set_no$31 via  Set99 Set83>(<r s_37_2_t0.S$33 via  Set99>)
+    After code:
+      0: <V var1$30 rn> :=  := artm <r s_37_2_t0.S$33 via  Set107 Set99>
+      4: BReturn 0
+    time         0% fanout         0 input         0 rows
+      clear: (<V var1$54 a>)$31 (40 94 32 53 ) $30 (40 ) 
+    s# 116 46 Subquery Select(<V var1$30 rn>)
+      set no: <r set_no$31 via  Set107 Set99 Set83>
+    After code:
+      0: <V var1$54 a> := Call __ro2sq (<V var1$30 rn>)
+      5: BReturn 0
+    time         0% fanout         0 input         0 rows
+    $62 (46 40 94 32 53 63 ) $54 (46 ) 
+    s# 123 56 Select (<V var1$54 a>)
+      set no: <r set_ctr$62 via  Set116>
+  }
+Warning: You might have a Cartesian product.
+
+
+
+ 82 msec 90% cpu,         1 rnd     71714 seq         0% same seg         0% same pg 
+Compilation: 8 msec 0 reads         0% read 0 messages         0% clw

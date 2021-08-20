@@ -1,0 +1,38 @@
+
+  { 
+    time   4.6e-05% fanout         1 input         1 rows
+      clear: (<V set_ctr$45 in>)
+    s# 48 46 cluster outer seq start, set no <V set_ctr$45 in>    
+    save ctx:()
+    time       2.6% fanout    311698 input         1 rows
+      clear: (<V s_37_2_t0.S$28 rn>, <V s_37_2_t0.O$29 an>)
+      clear on continue: (<V s_37_2_t0.S$28 rn>, <V s_37_2_t0.O$29 an>)
+    s# 57 27 from DB.DBA.RDF_QUAD by RDF_QUAD    2.2e+05 rows   
+    Key RDF_QUAD  ASC  (<V s_37_2_t0.O$29 an>, <V s_37_2_t0.S$28 rn>)
+     inlined  P =  IRI_ID"...direct/P225" 
+    
+    time        97% fanout         0 input    311698 rows
+      clear: (<V _cvt$33 s>, <V __ro2sq$31 a>, <V var2$37 a>, <V var1$35 a>)$28 () $29 () 
+    s# 73 68 END Node
+    After test:
+      0: <V __ro2sq$31 a> := Call __ro2sq (<V s_37_2_t0.O$29 an>)
+      5: <V _cvt$33 s> := Call _cvt (<tag 193 flag 0>, <V __ro2sq$31 a>)
+      10: if (<V _cvt$33 s>  LIKE  <c %string1%>) then 14 else 15 unkn 15
+      14: BReturn 1
+      15: BReturn 0
+    After code:
+      0: <V var1$35 a> := Call __id2in (<r s_37_2_t0.S$28 via  Set73>)
+      5: <V var2$37 a> := Call __ro2sq (<r s_37_2_t0.O$29 via  Set73>)
+      10: BReturn 0
+    time         0% fanout         0 input         0 rows
+    $35 (68 ) $37 (68 ) $45 (68 27 46 ) 
+    s# 81 39 Select (<V var1$35 a>, <V var2$37 a>)
+      set no: <r set_ctr$45 via  Set73 Set57>
+  }
+Warning: You might have a Cartesian product.
+
+
+
+ 8680 msec 99% cpu,    311673 rnd    311365 seq         0% same seg   74.1496% same pg 
+731 disk reads, 0 read ahead,   86.9343% wait
+Compilation: 1 msec 0 reads         0% read 0 messages         0% clw

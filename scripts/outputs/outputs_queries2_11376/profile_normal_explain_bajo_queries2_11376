@@ -1,0 +1,85 @@
+http://www.wikidata.org/entity/Q3231747		
+http://www.wikidata.org/entity/Q3231892		
+http://www.wikidata.org/entity/Q3238774		
+http://www.wikidata.org/entity/Q3238953		
+http://www.wikidata.org/entity/Q3239170		
+http://www.wikidata.org/entity/Q588969		
+http://www.wikidata.org/entity/Q1080409		
+http://www.wikidata.org/entity/Q1080413		
+http://www.wikidata.org/entity/Q1080424		
+http://www.wikidata.org/entity/Q1080484		
+http://www.wikidata.org/entity/Q1080493		
+http://www.wikidata.org/entity/Q1080634		
+http://www.wikidata.org/entity/Q1031352		
+http://www.wikidata.org/entity/Q1031940		
+http://www.wikidata.org/entity/Q1031965		
+http://www.wikidata.org/entity/Q1032065		
+http://www.wikidata.org/entity/Q1032098		
+http://www.wikidata.org/entity/Q1072690		
+http://www.wikidata.org/entity/Q1072710		
+http://www.wikidata.org/entity/Q1072715		
+
+  { 
+    time      0.92% fanout         1 input         1 rows
+    time        14% fanout       259 input         1 rows
+    RDF_QUAD_POGS   2.1e+02 rows(s_37_15_t5.S$28)
+     P =  IRI_ID"...direct/P31"  ,  O =  IRI_ID"...Q27971968" 
+    time        40% fanout  0.335907 input       259 rows
+    END Node
+    After test:
+    0: if (  { 
+        time      0.79% fanout         1 input       259 rows
+        time        36% fanout  0.664093 input       259 rows
+        RDF_QUAD         1 rows()
+         inlined  P =  IRI_ID"...direct/P576"  ,  S = k_s_37_15_t5.S$132
+        time      0.83% fanout         0 input       172 rows
+        Subquery Select( <none> )
+      }
+    ) then 5 else 4 unkn 5
+    4: BReturn 1
+    5: BReturn 0
+    time      0.45% fanout         1 input        87 rows
+    outer {
+        Subquery 44 
+          { 
+            time         6% fanout         0 input        87 rows
+            Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:   5.7e-15 Fanout:         0
+            RDF_QUAD   5.7e-15 rows(s_37_14_t4.S$50, s_37_14_t4.O$49)
+             inlined  P =  IRI_ID"...qualifier/P768"  O LIKE <c Tó> ,  O = k_s_37_15_t5.S$170
+            time         0% fanout         0 input         0 rows
+            Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:   1.4e-07 Fanout:         0
+            RDF_QUAD_POGS   1.4e-07 rows(s_37_14_t1.O$54, s_37_14_t1.S$53)
+             P =  IRI_ID"...prop/P39"  ,  O = cast$185
+            time         0% fanout         0 input         0 rows
+            Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:   1.4e-07 Fanout:         0
+            RDF_QUAD_POGS   1.4e-07 rows(s_37_14_t3.S$57)
+             inlined  P =  IRI_ID"...qualifier/P2937"  ,  O =  IRI_ID"...Q29974940"  ,  S = k_s_37_14_t1.O$200
+            time         0% fanout         0 input         0 rows
+            Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:   1.4e-07 Fanout:         0
+            RDF_QUAD_POGS   1.4e-07 rows()
+             inlined  P =  IRI_ID"...statement/P39"  ,  O =  IRI_ID"...Q16707842"  ,  S = k_s_37_14_t1.O$214
+            
+            After code:
+            0: var2$45 :=  := artm s_37_14_t1.S$53
+            4: var1$46 :=  := artm s_37_14_t4.O$49
+            8: BReturn 0
+            time         0% fanout         0 input         0 rows
+            Subquery Select(var2$45, var1$46)
+          }
+        time         0% fanout         0 input         0 rows
+      } /* end of outer */
+    set_ctr$69
+     out: (set_no$47, var2$45, var1$46)
+     shadow: ( <none> ,  <none> ,  <none> )
+    
+    After code:
+    0: var1$78 := Call __id2in (s_37_15_t5.S$28)
+    5: var2$80 := Call __id2in (var2$45)
+    10: BReturn 0
+    time      0.19% fanout         0 input        87 rows
+    Select (var1$78, var2$80)
+  }
+
+
+ 1 msec 0% cpu,       347 rnd       258 seq   97.9885% same seg  0.862069% same pg 
+Compilation: 43 msec 0 reads         0% read 0 messages         0% clw

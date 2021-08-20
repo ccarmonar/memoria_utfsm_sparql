@@ -1,0 +1,54 @@
+
+  { 
+    time       1.9% fanout         1 input         1 rows
+      clear: (<V set_ctr$49 in>)
+    s# 55 50 cluster outer seq start, set no <V set_ctr$49 in>    
+    save ctx:()
+    time        98% fanout         0 input         1 rows
+    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:       0.3 Fanout:         0
+    Precode:
+      0: <V entity/Q719456$27 r> := Call __i2idn (<tag 182 flag 1 c http://www.wikidata.org/entity/Q719456>)
+      5: BReturn 0
+      clear: (<V t2.S$30 rn>, <V entity/Q719456$27 r>)
+      clear on continue: (<V t2.S$30 rn>)$68 (29 ) $27 (29 ) 
+    s# 64 29 from DB.DBA.RDF_QUAD by RDF_QUAD_POGS        0.3 rows   
+    Key RDF_QUAD_POGS  ASC  (<V t2.S$30 rn>)
+     P =  IRI_ID"...direct/P31"  ,  O = <v k_entity/Q719456$68 Set70 an>
+    vector param casts: <V entity/Q719456$27 r>-> <v k_entity/Q719456$68 Set70 an>
+    
+    time         0% fanout         0 input         0 rows
+    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:         1 Fanout:         0
+      clear: (<V t4.O$33 an>, <V t4.S$34 rn>)
+      clear on continue: (<V t4.O$33 an>, <V t4.S$34 rn>)$30 () 
+    s# 78 32 from DB.DBA.RDF_QUAD by RDF_QUAD          1 rows   
+    Key RDF_QUAD  ASC  (<V t4.S$34 rn>, <V t4.O$33 an>)
+     inlined  P =  IRI_ID"...direct/P17"  ,  S = <V t2.S$30 rn>
+    
+    time         0% fanout         0 input         0 rows
+    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:       1.1 Fanout:         0
+    Precode:
+      0: <V var4$36 i> := Call is_named_iri_id (<V t4.O$33 an>)
+      5: BReturn 0
+      clear: (<V t3.O$39 an>, <V var4$36 i>)
+      clear on continue: (<V t3.O$39 an>)$33 () $34 () 
+    s# 89 38 from DB.DBA.RDF_QUAD by RDF_QUAD        1.1 rows   max 1
+    Key RDF_QUAD  ASC  (<V t3.O$39 an>)
+     inlined  P =  IRI_ID"...direct/P131"  ,  S = <V t4.S$34 rn>
+    
+    time         0% fanout         0 input         0 rows
+      clear: (<V var2$41 i>)$39 () 
+    s# 99 53 skip node  1  <none> <r set_ctr$49 via  Set89 Set78 Set64 Set70>
+    After code:
+      0: <V var2$41 i> := Call is_named_iri_id (<r t3.O$39 via  Set99>)
+      5: BReturn 0
+    time         0% fanout         0 input         0 rows
+    $36 (53 38 ) $41 (53 ) $49 (53 38 32 29 50 ) 
+    s# 107 43 Select (<V var2$41 i>, <r var4$36 via  Set99 Set89>)
+      set no: <r set_ctr$49 via  Set99 Set89 Set78 Set64 Set70>
+  }
+Warning: You might have a Cartesian product.
+
+
+
+ 0 msec 7% cpu,         4 rnd         0 seq         0% same seg         0% same pg 
+Compilation: 2 msec 0 reads         0% read 0 messages         0% clw

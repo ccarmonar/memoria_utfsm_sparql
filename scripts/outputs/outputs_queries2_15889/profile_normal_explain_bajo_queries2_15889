@@ -1,0 +1,62 @@
+http://www.w3.org/1999/02/22-rdf-syntax-ns#type	
+http://www.w3.org/2000/01/rdf-schema#label	
+http://www.w3.org/2004/02/skos/core#prefLabel	
+http://www.wikidata.org/prop/direct/P2177	
+http://www.wikidata.org/prop/direct/P2405	
+http://schema.org/name	
+http://www.wikidata.org/prop/direct/P2275	
+http://www.wikidata.org/prop/direct/P267	
+http://www.wikidata.org/prop/direct/P3489	
+http://www.wikidata.org/prop/direct/P3780	
+http://www.wikidata.org/prop/direct/P7830	
+http://www.wikidata.org/prop/direct/P8026	
+http://www.wikidata.org/prop/direct/P4250	
+http://www.wikidata.org/prop/direct/P31	
+http://www.wikidata.org/prop/direct-normalized/P486	
+http://www.wikidata.org/prop/direct-normalized/P6366	
+http://www.wikidata.org/prop/direct-normalized/P638	
+http://www.wikidata.org/prop/direct-normalized/P646	
+http://www.wikidata.org/prop/direct-normalized/P661	
+http://www.wikidata.org/prop/direct-normalized/P662	
+
+  { 
+    time     0.069% fanout         1 input         1 rows
+    time     0.015% fanout         1 input         1 rows
+    time       1.7% fanout      1000 input         1 rows
+    RDF_QUAD   1.5e+03 rows(s_37_6_t0.S$31)
+     inlined  P =  IRI_ID"...direct/P7049" 
+    time       4.9% fanout         1 input      1000 rows
+    RDF_QUAD_SP       8.5 rows(s_37_6_t2.P$35, s_37_6_t2.S$34)
+     inlined  S = s_37_6_t0.S$31
+    time       2.7% fanout     0.965 input      1000 rows
+    END Node
+    After test:
+    0: if (s_37_6_t2.P$35 =  IRI_ID"...direct/P6689" ) then 9 else 4 unkn 9
+    4: if (s_37_6_t2.P$35 =  IRI_ID"...direct/P7049" ) then 9 else 8 unkn 9
+    8: BReturn 1
+    9: BReturn 0
+    time        51% fanout   2.07254 input       965 rows
+    RDF_QUAD       1.2 rows()
+     inlined  P = k_s_37_6_t2.P$125 ,  S = k_s_37_6_t0.S$129
+    time        14% fanout    3.8985 input      2000 rows
+    RDF_QUAD       5.5 rows()
+     inlined  P =  IRI_ID"...direct/P6689"  ,  S = k_s_37_6_t0.S$140
+    time        17% fanout 0.0102604 input      7797 rows
+    Distinct (s_37_6_t2.P$35)
+    
+    After code:
+    0: p2$28 :=  := artm s_37_6_t2.P$35
+    4: BReturn 0
+    time       8.2% fanout         1 input        80 rows
+    Subquery Select(p2$28)
+    
+    After code:
+    0: p2$57 := Call __ro2sq (p2$28)
+    5: BReturn 0
+    time     0.043% fanout         0 input        80 rows
+    Select (p2$57)
+  }
+
+
+ 5 msec 70% cpu,      2197 rnd     10204 seq   90.9463% same seg    6.6879% same pg 
+Compilation: 1 msec 0 reads         0% read 0 messages         0% clw

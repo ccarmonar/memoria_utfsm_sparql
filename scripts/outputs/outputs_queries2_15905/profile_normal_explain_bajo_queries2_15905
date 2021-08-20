@@ -1,0 +1,51 @@
+http://www.w3.org/2002/07/owl#hasValue	http://www.w3.org/2000/01/rdf-schema#label	hasValue	
+http://www.w3.org/2002/07/owl#hasValue	http://www.w3.org/2000/01/rdf-schema#label	hasValue	
+http://learningsparql.com/ns/data#item6	http://www.w3.org/2000/01/rdf-schema#label	this
+
+has two carriage returns in the middle.	
+http://www.w3.org/2002/07/owl#hasKey	http://www.w3.org/2000/01/rdf-schema#label	hasKey	
+http://www.w3.org/2002/07/owl#hasSelf	http://www.w3.org/2000/01/rdf-schema#label	hasSelf	
+http://rdfs.org/ns/void#uriRegexPattern	http://www.w3.org/2000/01/rdf-schema#label	has URI regular expression pattern	
+http://rdfs.org/ns/void#sparqlEndpoint	http://www.w3.org/2000/01/rdf-schema#label	has a SPARQL endpoint at	
+http://rdfs.org/ns/void#uriLookupEndpoint	http://www.w3.org/2000/01/rdf-schema#label	has an URI look-up endpoint at	
+http://rdfs.org/ns/void#subset	http://www.w3.org/2000/01/rdf-schema#label	has subset	
+http://www.wikidata.org/entity/Q1860	http://www.w3.org/2000/01/rdf-schema#label	Bahasa Inggris	
+http://www.wikidata.org/entity/Q1860	http://www.w3.org/2000/01/rdf-schema#label	Bahasa Inggris	
+http://www.wikidata.org/entity/Q1860	http://www.w3.org/2000/01/rdf-schema#label	Bahaso Inggirih	
+http://www.wikidata.org/entity/Q1860	http://www.w3.org/2000/01/rdf-schema#label	Bahaso Inggirih	
+http://www.wikidata.org/entity/Q1860	http://www.w3.org/2000/01/rdf-schema#label	English bhasa	
+http://www.wikidata.org/entity/Q1860	http://www.w3.org/2000/01/rdf-schema#label	English bhasa	
+http://www.wikidata.org/entity/Q878	http://www.w3.org/2000/01/rdf-schema#label	Hukllachasqa Arab Imiratukuna	
+http://www.wikidata.org/entity/Q878	http://www.w3.org/2000/01/rdf-schema#label	Hukllachasqa Arab Imiratukuna	
+http://www.wikidata.org/entity/Q328	http://www.w3.org/2000/01/rdf-schema#label	Wikipedia Bahasa Inggeris	
+http://www.wikidata.org/entity/Q328	http://www.w3.org/2000/01/rdf-schema#label	Wikipedia Bahasa Inggeris	
+http://www.wikidata.org/entity/Q328	http://www.w3.org/2000/01/rdf-schema#label	Wikipedia bahasa Inggris	
+
+  { 
+    time   1.3e-05% fanout         1 input         1 rows
+    time         1% fanout 1.2225e+07 input         1 rows
+    RDF_QUAD_POGS   7.3e+07 rows(s_37_2_t0.O$30, s_37_2_t0.S$29, s_37_2_t0.P$28)
+    
+    time        99% fanout 1.88139e-06 input 1.2225e+07 rows
+    END Node
+    After test:
+    0: __ro2sq$33 := Call __ro2sq (s_37_2_t0.O$30)
+    5: rdf_regex_impl$35 := Call rdf_regex_impl (__ro2sq$33, <c has>, <c i>)
+    10: if ( 0  = rdf_regex_impl$35) then 15 else 14 unkn 15
+    14: BReturn 1
+    15: BReturn 0
+    time    0.0026% fanout         1 input        23 rows
+    skip node  1000  <none> set_ctr$49
+    
+    After code:
+    0: var1$37 := Call __id2in (s_37_2_t0.S$29)
+    5: var2$39 := Call __id2in (s_37_2_t0.P$28)
+    10: var3$41 := Call __ro2sq (s_37_2_t0.O$30)
+    15: BReturn 0
+    time   3.8e-06% fanout         0 input        23 rows
+    Select (var1$37, var2$39, var3$41)
+  }
+
+
+ 21159 msec 99% cpu,     33182 rnd 1.2212e+07 seq         0% same seg   47.8679% same pg 
+Compilation: 1 msec 0 reads         0% read 0 messages         0% clw

@@ -1,0 +1,48 @@
+  { 
+    Precode:
+      0:   { 
+          time      0.54% fanout         1 input         1 rows
+          time       1.7% fanout         1 input         1 rows
+          Precode:
+            0: vector$27 := Call vector ()
+            5: vector$29 := Call vector ( IRI_ID"...Joseph_Hocking" )
+            10: vector$31 := Call vector (<c uid>,  0 )
+            15: BReturn 0
+          fork {
+              Subquery 33 
+                { 
+                  time      0.49% fanout         1 input         1 rows
+                  Precode:
+                    0: __stub$34 :=  := artm  1 
+                    4: BReturn 0
+                  END Node
+                  time      0.22% fanout         0 input         1 rows
+                  Subquery Select(__stub$34)
+                }
+              
+              After code:
+              0: if (user_aggr_notfirst$47  =  1 ) then 15 else 4 unkn 4
+              4: user_aggr_notfirst$47  :=  := artm  1 
+              8: user_aggr_ret$49 := Call DB.DBA.SPARQL_DESC_AGG_INIT (user_aggr_env$48 )
+              15: user_aggr_ret$49 := Call DB.DBA.SPARQL_DESC_AGG_ACC (user_aggr_env$48 , vector$27)
+              22: BReturn 0
+            }
+          time        97% fanout         1 input         1 rows
+          skip node  1  <none> set_ctr$44
+          
+          After code:
+          0: DB.DBA.SPARQL_DESC_AGG_FIN$50 := Call DB.DBA.SPARQL_DESC_AGG_FIN (user_aggr_env$48 )
+          7: callret-0$52 := Call DB.DBA.SPARQL_DESC_DICT (DB.DBA.SPARQL_DESC_AGG_FIN$50, vector$29,  0 , <DB_NULL>, <DB_NULL>, vector$31)
+          14: BReturn 0
+          time       0.4% fanout         0 input         1 rows
+          Subquery Select(callret-0$52)
+        }
+      
+      8:  <none>  := Call DB.DBA.RDF_DICT_OF_TRIPLES_TO_THREE_COLS (scalar$120 )
+      15: BReturn 0
+    END Node
+  }
+
+
+ 0 msec 31% cpu,         2 rnd         0 seq         0% same seg         0% same pg 
+Compilation: 1 msec 0 reads         0% read 0 messages         0% clw

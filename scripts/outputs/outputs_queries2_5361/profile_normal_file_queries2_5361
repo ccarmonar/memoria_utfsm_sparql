@@ -1,0 +1,74 @@
+
+  { 
+    time       6.2% fanout         1 input         1 rows
+      clear: (<V set_ctr$80 in>)
+    s# 83 81 cluster outer seq start, set no <V set_ctr$80 in>    
+    save ctx:()
+    Precode:
+      0: <V __rdflit$27 x> := Call __rdflit (rdflit17988520)
+      5: BReturn 0
+      clear: (<V var2$30 in>, <V set_no$31 i>, <V __rdflit$27 x>, <V var2$72 a>)
+    s# 92 29 Subquery 29 
+      multistate set no = <V set_no$31 i>
+      { 
+        time         4% fanout         1 input         1 rows
+        
+        s# 140 40 Fork 40 {  
+                
+            save ctx:()
+              set no = <V set_no$31 i> array  <none>  save: 
+            time        86% fanout         0 input         1 rows
+            Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:       0.3 Fanout:         0
+              clear: (<V s_37_6_t0.S$33 rn>)
+              clear on continue: (<V s_37_6_t0.S$33 rn>)
+            s# 97 32 from DB.DBA.RDF_QUAD by RDF_QUAD_POGS        0.3 rows   
+            Key RDF_QUAD_POGS  ASC  (<V s_37_6_t0.S$33 rn>)
+             P =  IRI_ID"...direct/P685"  ,  O = rdflit17988520
+            
+            time         0% fanout         0 input         0 rows
+            Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:       8.9 Fanout:         0
+              clear: (<V s_37_6_t1.S$36 rn>)
+              clear on continue: (<V s_37_6_t1.S$36 rn>)$111 (35 ) 
+            s# 107 35 from DB.DBA.RDF_QUAD by RDF_QUAD_POGS        8.9 rows   
+            Key RDF_QUAD_POGS  ASC  (<V s_37_6_t1.S$36 rn>)
+             P =  IRI_ID"...direct/P703"  ,  O = <v cast$111 Set113 an>
+            vector param casts: <V s_37_6_t0.S$33 rn>-> <v cast$111 Set113 an>
+            
+            time         0% fanout         0 input         0 rows
+            Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:      0.31 Fanout:         0
+            
+            s# 121 38 from DB.DBA.RDF_QUAD by RDF_QUAD       0.31 rows   
+            Key RDF_QUAD  ASC  ()
+             inlined  P =  IRI_ID"...direct/P279"  ,  S = <V s_37_6_t1.S$36 rn> ,  O =  IRI_ID"...Q7187" 
+            
+            time         0% fanout         0 input         0 rows
+            $33 (38 35 ) $36 (38 ) 
+            s# 130 41 Sort (HASH) set no <r set_no$31 via  Set121 Set107 Set113 Set97>(<r s_37_6_t0.S$33 via  Set121 Set107 Set113>) -> (<V inc$48 i>) up to   6.3e+04 distinct
+            
+        }
+        time       3.7% fanout         0 input         1 rows
+          clear: (<V aggregate$42 in>, <V s_37_6_t0.S$33 rn>, <V var2$30 in>)
+          clear on continue: (<V aggregate$42 in>, <V s_37_6_t0.S$33 rn>, <V var2$30 in>)
+        s# 147 53 group by read node  
+        (<V s_37_6_t0.S$33 rn>, <V aggregate$42 in>)
+        After code:
+          0: <V var2$30 in> :=  := artm <V aggregate$42 in>
+          4: BReturn 0
+        time         0% fanout         0 input         0 rows
+        
+        s# 92 65 Subquery Select(<V var2$30 in>)
+          set no: <r set_no$31 via  Set147>
+      }
+    
+    After code:
+      0: <V var2$72 a> := Call __ro2sq (<V var2$30 in>)
+      5: BReturn 0
+    time         0% fanout         0 input         0 rows
+    $72 (29 ) $80 (29 81 ) 
+    s# 165 74 Select (<V var2$72 a>)
+      set no: <r set_ctr$80 via  Set92>
+  }
+
+
+ 0 msec 2% cpu,         1 rnd         0 seq         0% same seg         0% same pg 
+Compilation: 3 msec 0 reads         0% read 0 messages         0% clw

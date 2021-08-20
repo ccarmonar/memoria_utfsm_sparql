@@ -1,0 +1,62 @@
+
+  { 
+    time       7.9% fanout         1 input         1 rows
+      clear: (<V set_ctr$62 in>)
+    s# 65 63 cluster outer seq start, set no <V set_ctr$62 in>    
+    save ctx:()
+      clear: (<V var1$28 x>, <V set_no$29 i>)
+    s# 74 27 Subquery 27 
+      multistate set no = <V set_no$29 i>
+      { 
+        time        92% fanout         0 input         1 rows
+        Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:       0.3 Fanout:         0
+          clear: (<V s_37_4_t0.S$31 rn>)
+          clear on continue: (<V s_37_4_t0.S$31 rn>)
+        s# 78 30 from DB.DBA.RDF_QUAD by RDF_QUAD_POGS        0.3 rows   
+        Key RDF_QUAD_POGS  ASC  (<V s_37_4_t0.S$31 rn>)
+         P =  IRI_ID"...directClaim"  ,  O =  IRI_ID"...direct/P1082" 
+        
+        time         0% fanout         0 input         0 rows
+        Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:         2 Fanout:         0
+          clear: (<V s_37_4_t1.P$34 rn>)
+          clear on continue: (<V s_37_4_t1.P$34 rn>)
+        s# 88 33 from DB.DBA.RDF_QUAD by RDF_QUAD_OP          2 rows   
+        Key RDF_QUAD_OP  ASC  (<V s_37_4_t1.P$34 rn>)
+         inlined  O =  IRI_ID"...direct/P585" 
+        
+        time         0% fanout         0 input         0 rows
+        Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:      0.21 Fanout:         0
+        $31 (33 ) $34 () $102 (37 ) 
+        s# 98 37 from DB.DBA.RDF_QUAD by RDF_QUAD_POGS       0.21 rows   
+        Key RDF_QUAD_POGS  ASC  ()
+         inlined  P = <V s_37_4_t1.P$34 rn> ,  O =  IRI_ID"...direct/P585"  ,  S = <v k_s_37_4_t0.S$102 Set104 rn>
+        vector param casts: <r s_37_4_t0.S$31 via  Set88>-> <v k_s_37_4_t0.S$102 Set104 rn>
+        
+        time         0% fanout         0 input         0 rows
+        
+        s# 111 40 Distinct (HASH) set no <r set_no$29 via  Set98 Set104 Set88 Set78>(<DB_NULL>)
+        time         0% fanout         0 input         0 rows
+          clear: (<V var1$28 x>)
+        s# 119 54 skip node  100  <none> <r set_no$29 via  Set111 Set98 Set104 Set88 Set78>
+        After code:
+          0: <V var1$28 x> :=  := artm <DB_NULL>
+          4: BReturn 0
+        time         0% fanout         0 input         0 rows
+        
+        s# 74 46 Subquery Select(<V var1$28 x>)
+          set no: <r set_no$29 via  Set119 Set111 Set98 Set104 Set88 Set78>
+      }
+    
+    time         0% fanout         0 input         0 rows
+    $62 (27 63 ) $28 (27 ) 
+    s# 135 56 Select (<V var1$28 x>)
+      set no: <r set_ctr$62 via  Set74>
+  }
+Warning: You might have a Cartesian product.
+
+Warning: You might have a Cartesian product.
+
+
+
+ 0 msec 3% cpu,         1 rnd         0 seq         0% same seg         0% same pg 
+Compilation: 2 msec 0 reads         0% read 0 messages         0% clw

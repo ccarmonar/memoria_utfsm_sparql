@@ -1,0 +1,47 @@
+http://www.wikidata.org/entity/Q178065	POINT(2.352411 48.860653)	http://www.wikidata.org/prop/direct/P17	
+http://www.wikidata.org/entity/Q656296	POINT(2.3238888888889 48.865833333333)	http://www.wikidata.org/prop/direct/P17	
+http://www.wikidata.org/entity/Q973216	POINT(2.33972222 48.88652778)	http://www.wikidata.org/prop/direct/P17	
+http://www.wikidata.org/entity/Q511	POINT(4.8336111111111 45.766944444444)	http://www.wikidata.org/prop/direct/P17	
+http://www.wikidata.org/entity/Q977732	POINT(2.355278 48.861111)	http://www.wikidata.org/prop/direct/P17	
+http://www.wikidata.org/entity/Q946883	POINT(2.324889 48.854778)	http://www.wikidata.org/prop/direct/P17	
+http://www.wikidata.org/entity/Q82748	POINT(2.8762598 48.9606085)	http://www.wikidata.org/prop/direct/P17	
+
+  { 
+    time     0.025% fanout         1 input         1 rows
+    time    0.0064% fanout         1 input         1 rows
+    time      0.39% fanout        45 input         1 rows
+    RDF_QUAD_OP        20 rows(s_37_6_t1.P$33)
+     inlined  O =  IRI_ID"...Q142" 
+    time        19% fanout   1931.36 input        45 rows
+    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:       1.2 Fanout:   1.9e+03
+    RDF_QUAD_POGS       1.2 rows(s_37_6_t1.S$37)
+     P = s_37_6_t1.P$33 ,  O =  IRI_ID"...Q142" 
+    time        76% fanout 0.000506265 input     86911 rows
+    RDF_QUAD_POGS   9.7e-05 rows(s_37_6_t0.S$41)
+     inlined  P =  IRI_ID"...direct/P31"  ,  O =  IRI_ID"...Q207694"  ,  S = s_37_6_t1.S$37
+    time       1.5% fanout  0.318182 input        44 rows
+    RDF_QUAD       1.1 rows(s_37_6_t2.O$44)
+     inlined  P =  IRI_ID"...direct/P625"  ,  S = s_37_6_t0.S$41
+    time      0.64% fanout       0.5 input        14 rows
+    Distinct (s_37_6_t0.S$41, s_37_6_t2.O$44, s_37_6_t1.P$33)
+    
+    After code:
+    0: var1$28 :=  := artm s_37_6_t0.S$41
+    4: var2$29 :=  := artm s_37_6_t2.O$44
+    8: var3$30 :=  := artm s_37_6_t1.P$33
+    12: BReturn 0
+    time       2.3% fanout         1 input         7 rows
+    Subquery Select(var1$28, var2$29, var3$30)
+    
+    After code:
+    0: var1$60 := Call __ro2sq (var1$28)
+    5: var2$62 := Call __ro2sq (var2$29)
+    10: var3$64 := Call __ro2sq (var3$30)
+    15: BReturn 0
+    time    0.0078% fanout         0 input         7 rows
+    Select (var1$60, var2$62, var3$64)
+  }
+
+
+ 14 msec 85% cpu,     87008 rnd     86824 seq    99.815% same seg  0.014941% same pg 
+Compilation: 2 msec 0 reads         0% read 0 messages         0% clw

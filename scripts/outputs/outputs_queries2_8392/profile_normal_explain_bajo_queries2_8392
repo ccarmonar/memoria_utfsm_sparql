@@ -1,0 +1,110 @@
+					
+
+  { 
+    time       1.7% fanout         1 input         1 rows
+    time      0.59% fanout         1 input         1 rows
+    outer {
+        time        27% fanout         0 input         1 rows
+        Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:         1 Fanout:         0
+        RDF_QUAD         1 rows(t18.O$28)
+         inlined  P =  IRI_ID"...direct/P570"  ,  S =  IRI_ID"...q239328" 
+        time         0% fanout         0 input         0 rows
+      } /* end of outer */
+    set_ctr$33
+     out: (t18.O$28)
+     shadow: ( <none> )
+    time      0.69% fanout         1 input         1 rows
+    outer {
+        time        12% fanout         0 input         1 rows
+        Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:         1 Fanout:         0
+        RDF_QUAD         1 rows(t17.O$43)
+         inlined  P =  IRI_ID"...direct/P19"  ,  S =  IRI_ID"...q239328" 
+        time         0% fanout         0 input         0 rows
+      } /* end of outer */
+    set_ctr$46
+     out: (t17.O$43)
+     shadow: ( <none> )
+    time      0.51% fanout         1 input         1 rows
+    outer {
+        time        12% fanout         0 input         1 rows
+        Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:         1 Fanout:         0
+        RDF_QUAD         1 rows(t16.O$56)
+         inlined  P =  IRI_ID"...direct/P569"  ,  S =  IRI_ID"...q239328" 
+        time         0% fanout         0 input         0 rows
+      } /* end of outer */
+    set_ctr$59
+     out: (t16.O$56)
+     shadow: ( <none> )
+    time      0.54% fanout         1 input         1 rows
+    outer {
+        time        13% fanout         0 input         1 rows
+        Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:         1 Fanout:         0
+        RDF_QUAD         1 rows(t15.O$69)
+         inlined  P =  IRI_ID"...direct/P21"  ,  S =  IRI_ID"...q239328" 
+        time         0% fanout         0 input         0 rows
+      } /* end of outer */
+    set_ctr$72
+     out: (t15.O$69)
+     shadow: ( <none> )
+    time       0.5% fanout         1 input         1 rows
+    outer {
+        time        15% fanout         0 input         1 rows
+        Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:         1 Fanout:         0
+        RDF_QUAD         1 rows(t19.O$82)
+         inlined  P =  IRI_ID"...direct/P27"  ,  S =  IRI_ID"...q239328" 
+        time         0% fanout         0 input         0 rows
+      } /* end of outer */
+    set_ctr$85
+     out: (t19.O$82)
+     shadow: ( <none> )
+    Subquery 94 
+      { 
+        time       1.8% fanout         1 input         1 rows
+        Precode:
+          0: __stub$95 :=  := artm  1 
+          4: BReturn 0
+        END Node
+        time      0.61% fanout         0 input         1 rows
+        Subquery Select(__stub$95)
+      }
+    time      0.66% fanout         1 input         1 rows
+    outer {
+        time        12% fanout         0 input         1 rows
+        Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:         1 Fanout:         0
+        RDF_QUAD         1 rows(t21.O$106)
+         inlined  P =  IRI_ID"...direct/P27"  ,  S =  IRI_ID"...q239328" 
+        time         0% fanout         0 input         0 rows
+        END Node
+        After test:
+        0: if (t19.O$82  IS NULL   0 ) then 8 else 4 unkn 4
+        4: if (t19.O$82 = t21.O$106) then 8 else 9 unkn 9
+        8: BReturn 1
+        9: BReturn 0
+        time         0% fanout         0 input         0 rows
+      } /* end of outer */
+    set_ctr$109
+     out: (t21.O$106)
+     shadow: (t21.O$339)
+    
+    After code:
+    0: var4$118 := Call __ro2sq (t18.O$28)
+    5: var3$120 := Call __ro2sq (t17.O$43)
+    10: var2$122 := Call __ro2sq (t16.O$56)
+    15: var1$124 := Call __ro2sq (t15.O$69)
+    20: __ro2sq$128 := Call __ro2sq (t19.O$82)
+    25: if (__ro2sq$128  IS NULL  <DB_NULL>) then 34 else 29 unkn 34
+    29: var5$126 :=  := artm __ro2sq$128
+    33: Jump 52 (level=0)
+    34: __ro2sq$130 := Call __ro2sq (t21.O$339)
+    39: if (__ro2sq$130  IS NULL  <DB_NULL>) then 48 else 43 unkn 48
+    43: var5$126 :=  := artm __ro2sq$130
+    47: Jump 52 (level=0)
+    48: var5$126 :=  := artm <DB_NULL>
+    52: BReturn 0
+    time      0.39% fanout         0 input         1 rows
+    Select (var1$124, var2$122, var3$120, var4$118, var5$126)
+  }
+
+
+ 1 msec 6% cpu,         6 rnd         0 seq         0% same seg         0% same pg 
+Compilation: 3 msec 0 reads         0% read 0 messages         0% clw

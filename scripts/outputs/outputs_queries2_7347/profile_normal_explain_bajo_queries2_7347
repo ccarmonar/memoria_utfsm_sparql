@@ -1,0 +1,65 @@
+
+  { 
+    time       5.6% fanout         1 input         1 rows
+    time        26% fanout         1 input         1 rows
+    Precode:
+      0: vector$27 := Call vector ( IRI_ID"...Q17432475" )
+      5: vector$29 := Call vector ( IRI_ID"...Q18958594" )
+      10: vector$31 := Call vector ( IRI_ID"...Q20819675" )
+      15: vector$33 := Call vector ( IRI_ID"...Q20973893" )
+      20: vector$35 := Call vector ( IRI_ID"...Q21162640" )
+      25: vector$37 := Call vector ( IRI_ID"...Q21711493" )
+      30: vector$39 := Call vector ( IRI_ID"...Q22962096" )
+      35: vector$41 := Call vector ( IRI_ID"...Q23366230" )
+      40: vector$43 := Call vector ( IRI_ID"...Q28464516" )
+      45: vector$45 := Call vector ( IRI_ID"...Q30012604" )
+      50: vector$47 := Call vector (vector$27, vector$29, vector$31, vector$33, vector$35, vector$37, vector$39, vector$41, vector$43, vector$45)
+      55: BReturn 0
+    time        68% fanout         0 input         1 rows
+    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:   1.4e-07 Fanout:         0
+    RDF_QUAD_POGS   1.4e-07 rows(s_37_7_t2.S$58, s_37_7_t2.O$57)
+     inlined  P =  IRI_ID"...geoLongitude" 
+    time         0% fanout         0 input         0 rows
+    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:   1.4e-07 Fanout:         0
+    RDF_QUAD_POGS   1.4e-07 rows(s_37_7_t0.O$62, s_37_7_t0.S$61)
+     P =  IRI_ID"...value/P625"  ,  O = cast$145
+    time         0% fanout         0 input         0 rows
+    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:   1.4e-07 Fanout:         0
+    RDF_QUAD   1.4e-07 rows(s_37_7_t1.O$65)
+     inlined  P =  IRI_ID"...geoLatitude"  ,  S = cast$160
+    time         0% fanout         0 input         0 rows
+    Precode:
+      0: dta$72 :=  := artm vector$47
+      4: proc_ctr$68 :=  := artm  0 
+      8:  <none>  := Call __reset_temp ( 139909915029520 )
+      13:  <proc table>  := Call DB.DBA.SPARQL_BINDINGS_VIEW_C_1_IMP (vector$47)
+      20: BReturn 0
+    Key from temp (proc_ctr$68, BND0$70)
+    
+    time         0% fanout         0 input         0 rows
+    Distinct (BND0$70, s_37_7_t0.S$61, s_37_7_t0.O$62, s_37_7_t1.O$65, s_37_7_t2.O$57)
+    
+    After code:
+    0: var1$50 :=  := artm BND0$70
+    4: var2$51 :=  := artm s_37_7_t0.S$61
+    8: var3$52 :=  := artm s_37_7_t0.O$62
+    12: var4$53 :=  := artm s_37_7_t1.O$65
+    16: var5$54 :=  := artm s_37_7_t2.O$57
+    20: BReturn 0
+    time         0% fanout         0 input         0 rows
+    Subquery Select(var1$50, var2$51, var3$52, var4$53, var5$54)
+    
+    After code:
+    0: var1$93 := Call __ro2sq (var1$50)
+    5: var2$95 := Call __ro2sq (var2$51)
+    10: var3$97 := Call __ro2sq (var3$52)
+    15: var4$99 := Call __ro2sq (var4$53)
+    20: var5$101 := Call __ro2sq (var5$54)
+    25: BReturn 0
+    time         0% fanout         0 input         0 rows
+    Select (var1$93, var2$95, var3$97, var4$99, var5$101)
+  }
+
+
+ 0 msec 2% cpu,         1 rnd         0 seq         0% same seg         0% same pg 
+Compilation: 3 msec 0 reads         0% read 0 messages         0% clw

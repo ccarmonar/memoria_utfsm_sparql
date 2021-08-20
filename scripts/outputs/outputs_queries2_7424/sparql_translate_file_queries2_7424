@@ -1,0 +1,114 @@
+SELECT __ro2sq ( "s_37_65_t11"."O") AS "var1"
+FROM (
+   SELECT TRANSITIVE T_OUT(2) T_IN(1) T_MIN( 0) T_NO_CYCLES "s_37_4_t0"."S" AS "_::trans_subj_37_0",
+      "s_37_4_t0"."O" AS "_::trans_obj_37_1"
+    FROM DB.DBA.RDF_QUAD AS "s_37_4_t0"
+    WHERE
+      "s_37_4_t0"."P" = __i2idn ( __bft( 'http://www.wikidata.org/prop/direct/P131' , 1))
+OPTION (QUIETCAST)
+    ) AS "s_37_7"
+  INNER JOIN DB.DBA.RDF_QUAD AS "s_37_65_t11"
+  ON (
+    "s_37_65_t11"."S" = "s_37_7"."_::trans_obj_37_1")
+WHERE
+  "s_37_65_t11"."P" = __i2idn ( __bft( 'http://www.wikidata.org/prop/direct/P17' , 1))
+  AND 
+ ( "s_37_7"."_::trans_subj_37_0" =  __i2idn ( __bft( 'http://www.wikidata.org/entity/Q6556803' , 1)))
+  AND 
+  not ( EXISTS ( (
+     SELECT TOP 1 1 AS __ask_retval
+      FROM DB.DBA.RDF_QUAD AS "s_37_13_t1"
+        INNER JOIN (
+         SELECT TRANSITIVE T_OUT(2) T_IN(1) T_MIN( 0) T_NO_CYCLES "s_37_20_t2"."S" AS "_::trans_subj_37_15",
+            "s_37_24_t3"."O" AS "_::trans_obj_37_16"
+          FROM DB.DBA.RDF_QUAD AS "s_37_20_t2"
+            INNER JOIN DB.DBA.RDF_QUAD AS "s_37_24_t3"
+            ON (
+              "s_37_24_t3"."S" = "s_37_20_t2"."O")
+          WHERE
+            "s_37_20_t2"."P" = __i2idn ( __bft( 'http://www.wikidata.org/prop/statement/P131' , 1))
+            AND 
+            "s_37_24_t3"."P" = __i2idn ( __bft( 'http://www.wikidata.org/prop/P131' , 1))
+OPTION (QUIETCAST)
+          ) AS "s_37_27"
+        ON (
+          "s_37_13_t1"."O" = "s_37_27"."_::trans_subj_37_15")
+        INNER JOIN DB.DBA.RDF_QUAD AS "s_37_63_t9"
+        ON (
+          "s_37_63_t9"."S" = "s_37_27"."_::trans_obj_37_16")
+        INNER JOIN DB.DBA.RDF_QUAD AS "s_37_33_t4"
+        ON (1)
+        INNER JOIN (
+         SELECT TRANSITIVE T_OUT(2) T_IN(1) T_MIN( 0) T_NO_CYCLES "s_37_40_t5"."S" AS "_::trans_subj_37_35",
+            "s_37_44_t6"."O" AS "_::trans_obj_37_36"
+          FROM DB.DBA.RDF_QUAD AS "s_37_40_t5"
+            INNER JOIN DB.DBA.RDF_QUAD AS "s_37_44_t6"
+            ON (
+              "s_37_44_t6"."S" = "s_37_40_t5"."O")
+          WHERE
+            "s_37_40_t5"."P" = __i2idn ( __bft( 'http://www.wikidata.org/prop/statement/P131' , 1))
+            AND 
+            "s_37_44_t6"."P" = __i2idn ( __bft( 'http://www.wikidata.org/prop/P131' , 1))
+OPTION (QUIETCAST)
+          ) AS "s_37_47"
+        ON (
+          "s_37_33_t4"."O" = "s_37_47"."_::trans_subj_37_35")
+        INNER JOIN (
+         SELECT TRANSITIVE T_OUT(2) T_IN(1) T_MIN( 0) T_NO_CYCLES "s_37_53_t7"."S" AS "_::trans_subj_37_48",
+            "s_37_57_t8"."O" AS "_::trans_obj_37_49"
+          FROM DB.DBA.RDF_QUAD AS "s_37_53_t7"
+            INNER JOIN DB.DBA.RDF_QUAD AS "s_37_57_t8"
+            ON (
+              "s_37_57_t8"."S" = "s_37_53_t7"."O")
+          WHERE
+            "s_37_53_t7"."P" = __i2idn ( __bft( 'http://www.wikidata.org/prop/statement/P131' , 1))
+            AND 
+            "s_37_57_t8"."P" = __i2idn ( __bft( 'http://www.wikidata.org/prop/P131' , 1))
+OPTION (QUIETCAST)
+          ) AS "s_37_60"
+        ON (
+          "s_37_63_t9"."S" = "s_37_60"."_::trans_obj_37_49"
+          AND 
+          "s_37_27"."_::trans_obj_37_16" = "s_37_60"."_::trans_obj_37_49"
+          AND 
+          "s_37_47"."_::trans_obj_37_36" = "s_37_60"."_::trans_subj_37_48")
+        INNER JOIN DB.DBA.RDF_QUAD AS "s_37_63_t10"
+        ON (
+          "s_37_63_t10"."S" = "s_37_47"."_::trans_obj_37_36"
+          AND 
+          "s_37_63_t10"."S" = "s_37_60"."_::trans_subj_37_48")
+      WHERE
+        "s_37_13_t1"."S" = __i2idn ( __bft( 'http://www.wikidata.org/entity/Q6556803' , 1))
+        AND 
+        "s_37_13_t1"."P" = __i2idn ( __bft( 'http://www.wikidata.org/prop/P131' , 1))
+        AND 
+        isiri_id ( "s_37_13_t1"."O")
+        AND 
+        "s_37_63_t9"."P" = __i2idn ( __bft( 'http://www.wikidata.org/prop/statement/P131' , 1))
+        AND 
+        "s_37_33_t4"."S" = __i2idn ( __bft( 'http://www.wikidata.org/entity/Q6556803' , 1))
+        AND 
+        "s_37_33_t4"."P" = __i2idn ( __bft( 'http://www.wikidata.org/prop/P131' , 1))
+        AND 
+        isiri_id ( "s_37_33_t4"."O")
+        AND 
+        "s_37_63_t10"."P" = __i2idn ( __bft( 'http://www.wikidata.org/prop/qualifier/P582' , 1))
+        AND 
+        "s_37_63_t9"."O" = "s_37_65_t11"."S"
+        AND 
+        1
+        AND 
+        1
+        AND 
+        1
+        AND 
+        1
+        AND 
+        1
+        AND 
+        1
+OPTION (QUIETCAST)
+     )))
+  AND 
+  1
+OPTION (QUIETCAST)

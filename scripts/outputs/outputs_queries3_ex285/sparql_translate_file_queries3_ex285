@@ -1,0 +1,18 @@
+SELECT __ro2sq ( "s_13_3"."label") AS "label",
+  "s_13_3"."strlenTest" AS "strlenTest",
+  "s_13_3"."substrTest" AS "substrTest",
+  __rdf_sqlval_of_obj /*l*/ ( "s_13_3"."ucaseTest") AS "ucaseTest",
+  __rdf_sqlval_of_obj /*l*/ ( "s_13_3"."lcaseTest") AS "lcaseTest"
+FROM (
+   SELECT "s_13_2_t0"."S" AS "s",
+      "s_13_2_t0"."O" AS "label",
+      rdf_strlen_impl ( __ro2sq ( "s_13_2_t0"."O")) AS "strlenTest",
+      rdf_substr_impl ( __ro2lo ( "s_13_2_t0"."O"),  4,  2) AS "substrTest",
+      rdf_ucase_impl ( __ro2lo ( "s_13_2_t0"."O")) AS "ucaseTest",
+      rdf_lcase_impl ( __ro2lo ( "s_13_2_t0"."O")) AS "lcaseTest"
+    FROM DB.DBA.RDF_QUAD AS "s_13_2_t0"
+    WHERE
+      "s_13_2_t0"."P" = __i2idn ( __bft( 'http://www.w3.org/2000/01/rdf-schemalabel' , 1))
+OPTION (QUIETCAST)
+    ) AS "s_13_3"
+OPTION (QUIETCAST)

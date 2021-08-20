@@ -1,0 +1,102 @@
+
+  { 
+    time       8.2% fanout         1 input         1 rows
+      clear: (<V set_ctr$99 in>)
+    s# 102 100 cluster outer seq start, set no <V set_ctr$99 in>    
+    save ctx:()
+      clear: (<V var6$33 x>, <V var5$32 x>, <V var4$31 x>, <V var3$30 x>, <V var2Label$29 x>, <V var1Label$28 x>, <V set_no$34 i>, <V var6$91 a>, <V var5$89 a>, <V var4$87 a>, <V var3$85 a>, <V var2Label$83 a>, <V var1Label$81 a>)
+    s# 111 27 Subquery 27 
+      multistate set no = <V set_no$34 i>
+      { 
+        time       5.4% fanout         1 input         1 rows
+        
+        s# 182 55 Fork 55 {  
+                
+            save ctx:()
+              set no = <V set_no$34 i> array  <none>  save: 
+            time        77% fanout         0 input         1 rows
+            Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:   1.4e-07 Fanout:         0
+              clear: (<V s_37_8_t3.O$36 an>, <V s_37_8_t3.S$37 rn>)
+              clear on continue: (<V s_37_8_t3.O$36 an>, <V s_37_8_t3.S$37 rn>)
+            s# 116 35 from DB.DBA.RDF_QUAD by RDF_QUAD_POGS    1.4e-07 rows   
+            Key RDF_QUAD_POGS  ASC  (<V s_37_8_t3.S$37 rn>, <V s_37_8_t3.O$36 an>)
+             inlined  P =  IRI_ID"...qualifier/P580" 
+            
+            time         0% fanout         0 input         0 rows
+            Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:   1.4e-07 Fanout:         0
+              clear: (<V s_37_8_t2.S$40 rn>)
+              clear on continue: (<V s_37_8_t2.S$40 rn>)$37 () 
+            s# 127 39 from DB.DBA.RDF_QUAD by RDF_QUAD_POGS    1.4e-07 rows   
+            Key RDF_QUAD_POGS  ASC  (<V s_37_8_t2.S$40 rn>)
+             inlined  P =  IRI_ID"...statement/P39"  ,  O =  IRI_ID"...Q11696"  ,  S = <V s_37_8_t3.S$37 rn>
+            
+            time         0% fanout         0 input         0 rows
+            Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:   1.4e-07 Fanout:         0
+              clear: (<V s_37_8_t1.S$43 rn>)
+              clear on continue: (<V s_37_8_t1.S$43 rn>)$40 () $141 (42 ) 
+            s# 137 42 from DB.DBA.RDF_QUAD by RDF_QUAD_POGS    1.4e-07 rows   
+            Key RDF_QUAD_POGS  ASC  (<V s_37_8_t1.S$43 rn>)
+             P =  IRI_ID"...prop/P39"  ,  O = <v cast$141 Set143 an>
+            vector param casts: <V s_37_8_t2.S$40 rn>-> <v cast$141 Set143 an>
+            
+            time         0% fanout         0 input         0 rows
+            Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:     0.091 Fanout:         0
+            $43 () 
+            s# 151 45 from DB.DBA.RDF_QUAD by RDF_QUAD      0.091 rows   
+            Key RDF_QUAD  ASC  ()
+             inlined  P =  IRI_ID"...direct/P31"  ,  S = <V s_37_8_t1.S$43 rn> ,  O =  IRI_ID"...Q5" 
+            
+            time         0% fanout         0 input         0 rows
+            
+            s# 160 47 Distinct (HASH) set no <r set_no$34 via  Set151 Set137 Set143 Set127 Set116>(<DB_NULL>)
+            time         0% fanout         0 input         0 rows
+            Precode:
+              0: <V __ro2sq$53 a> := Call __ro2sq (<r s_37_8_t3.O$36 via  Set160 Set151 Set137 Set143 Set127>)
+              5: <V $57 x> :=  := artm <DB_NULL>
+              9: <V $58 x> :=  := artm <DB_NULL>
+              13: <V $59 x> :=  := artm <DB_NULL>
+              17: <V $60 x> :=  := artm <DB_NULL>
+              21: <V $61 x> :=  := artm <DB_NULL>
+              25: <V $62 x> :=  := artm <DB_NULL>
+              29: BReturn 0
+              clear: (<V $62 x>, <V $61 x>, <V $60 x>, <V $59 x>, <V $58 x>, <V $57 x>, <V __ro2sq$53 a>)$36 (47 45 42 39 ) $53 (56 ) 
+            s# 174 56 Sort (HASH) set no <r set_no$34 via  Set160 Set151 Set137 Set143 Set127 Set116>(<V __ro2sq$53 a>) -> (<V $57 x>, <V $58 x>, <V $59 x>, <V $60 x>, <V $61 x>, <V $62 x>)
+            
+        }
+        time       9.1% fanout         0 input         1 rows
+          clear: (<V $62 x>, <V $61 x>, <V $60 x>, <V $59 x>, <V $58 x>, <V $57 x>, <V var6$33 x>, <V var5$32 x>, <V var4$31 x>, <V var3$30 x>, <V var2Label$29 x>, <V var1Label$28 x>)
+          clear on continue: (<V $62 x>, <V $61 x>, <V $60 x>, <V $59 x>, <V $58 x>, <V $57 x>, <V var6$33 x>, <V var5$32 x>, <V var4$31 x>, <V var3$30 x>, <V var2Label$29 x>, <V var1Label$28 x>)
+        s# 189 67 Key from temp (<V $57 x>, <V $58 x>, <V $59 x>, <V $60 x>, <V $61 x>, <V $62 x>)
+        
+        
+        After code:
+          0: <V var1Label$28 x> :=  := artm <DB_NULL>
+          4: <V var2Label$29 x> :=  := artm <DB_NULL>
+          8: <V var3$30 x> :=  := artm <DB_NULL>
+          12: <V var4$31 x> :=  := artm <DB_NULL>
+          16: <V var5$32 x> :=  := artm <DB_NULL>
+          20: <V var6$33 x> :=  := artm <DB_NULL>
+          24: BReturn 0
+        time         0% fanout         0 input         0 rows
+        
+        s# 111 74 Subquery Select(<V var1Label$28 x>, <V var2Label$29 x>, <V var3$30 x>, <V var4$31 x>, <V var5$32 x>, <V var6$33 x>)
+          set no: <r set_no$34 via  Set189>
+      }
+    
+    After code:
+      0: <V var1Label$81 a> := Call __ro2sq (<V var1Label$28 x>)
+      5: <V var2Label$83 a> := Call __ro2sq (<V var2Label$29 x>)
+      10: <V var3$85 a> := Call __ro2sq (<V var3$30 x>)
+      15: <V var4$87 a> := Call __ro2sq (<V var4$31 x>)
+      20: <V var5$89 a> := Call __ro2sq (<V var5$32 x>)
+      25: <V var6$91 a> := Call __ro2sq (<V var6$33 x>)
+      30: BReturn 0
+    time         0% fanout         0 input         0 rows
+    $99 (27 100 ) $81 (27 ) $83 (27 ) $85 (27 ) $87 (27 ) $89 (27 ) $91 (27 ) 
+    s# 211 93 Select (<V var1Label$81 a>, <V var2Label$83 a>, <V var3$85 a>, <V var4$87 a>, <V var5$89 a>, <V var6$91 a>)
+      set no: <r set_ctr$99 via  Set111>
+  }
+
+
+ 0 msec 0% cpu,         1 rnd         0 seq         0% same seg         0% same pg 
+Compilation: 10 msec 0 reads         0% read 0 messages         0% clw

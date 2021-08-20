@@ -1,0 +1,127 @@
+Error: 23000: SR197: Non unique primary key on DB.DBA.RDF_OBJ.
+  { 
+    time     1e+02% fanout         1 input         1 rows
+    Precode:
+      0: __i2id$27 := Call __i2id (<DB_NULL>)
+      5: DB.DBA.RDF_MAKE_OBJ_OF_TYPEDSQLVAL$29 := Call DB.DBA.RDF_MAKE_OBJ_OF_TYPEDSQLVAL (<c Cameroun>, __i2id$27, <c fr>)
+      12: DB.DBA.RDF_MAKE_OBJ_OF_TYPEDSQLVAL$31 := Call DB.DBA.RDF_MAKE_OBJ_OF_TYPEDSQLVAL (<c capitale>, __i2id$27, <c fr>)
+      19: BReturn 0
+    Subquery 33 
+      { 
+        Union
+          { 
+            Subquery 37 
+              { 
+                time         0% fanout         0 input         0 rows
+                in iterates in_iter$41  over ( IRI_ID"...label" ,  IRI_ID"...altLabel" )
+                time         0% fanout         0 input         0 rows
+                Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:   3.2e+07 Fanout:         0
+                RDF_QUAD_POGS   3.2e+07 rows(s_37_3_t0-u31.S$45)
+                 P = k_in_iter$188 ,  O = k_DB.DBA.RDF_MAKE_OBJ_OF_TYPEDSQLVAL$192
+                time         0% fanout         0 input         0 rows
+                Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:       2.8 Fanout:         0
+                RDF_QUAD_OP       2.8 rows(s_37_20_t2-c5-u31.P$49, s_37_20_t2-c5-u31.O$48)
+                 inlined  O = cast$204
+                time         0% fanout         0 input         0 rows
+                Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:       1.2 Fanout:         0
+                RDF_QUAD_POGS       1.2 rows(s_37_20_t2-c5-u31.S$53)
+                 P = s_37_20_t2-c5-u31.P$49 ,  O = k_s_37_3_t0-u31.S$219
+                time         0% fanout         0 input         0 rows
+                Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:         1 Fanout:         0
+                RDF_QUAD_POGS         1 rows(s_37_27_t7-u31.S$57)
+                 P =  IRI_ID"...directClaim"  ,  O = k_s_37_20_t2-c5-u31.P$233
+                time         0% fanout         0 input         0 rows
+                in iterates in_iter$60  over ( IRI_ID"...label" ,  IRI_ID"...altLabel" )
+                time         0% fanout         0 input         0 rows
+                Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:       3.9 Fanout:         0
+                RDF_QUAD       3.9 rows(s_37_8_t1-u31.S$64)
+                 inlined  P = k_in_iter$260 ,  S = k_s_37_27_t7-u31.S$264 ,  O = k_DB.DBA.RDF_MAKE_OBJ_OF_TYPEDSQLVAL$266
+                time         0% fanout         0 input         0 rows
+                Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:       7.5 Fanout:         0
+                RDF_QUAD       7.5 rows()
+                 inlined  P =  IRI_ID"...label"  ,  S = k_s_37_20_t2-c5-u31.S$278
+                time         0% fanout         0 input         0 rows
+                Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:       7.5 Fanout:         0
+                RDF_QUAD       7.5 rows()
+                 inlined  P =  IRI_ID"...label"  ,  S = k_s_37_3_t0-u31.S$291
+                time         0% fanout         0 input         0 rows
+                Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:       7.5 Fanout:         0
+                RDF_QUAD       7.5 rows()
+                 inlined  P =  IRI_ID"...label"  ,  S = k_s_37_8_t1-u31.S$304
+                time         0% fanout         0 input         0 rows
+                skip node  10  <none> set_no$39
+                
+                After code:
+                0: __dummy_retval$38 :=  := artm <DB_NULL>
+                4: BReturn 0
+                time         0% fanout         0 input         0 rows
+                Subquery Select(__dummy_retval$38)
+              }
+            
+            After code:
+            0: __dummy_retval$34 :=  := artm __dummy_retval$38
+            4: BReturn 0
+            time         0% fanout         0 input         0 rows
+            Subquery Select(__dummy_retval$34)
+          }
+          { 
+            Subquery 89 
+              { 
+                time         0% fanout         0 input         0 rows
+                Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:   7.3e+07 Fanout:         0
+                RDF_QUAD_POGS   7.3e+07 rows(s_37_25_t4-c11.S$95, s_37_25_t4-c11.O$94, s_37_25_t4-c11.P$93)
+                
+                time         0% fanout         0 input         0 rows
+                in iterates in_iter$99  over ( IRI_ID"...label" ,  IRI_ID"...altLabel" )
+                time         0% fanout         0 input         0 rows
+                Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:       3.9 Fanout:         0
+                RDF_QUAD       3.9 rows(s_37_3_t0.S$103)
+                 inlined  P = k_in_iter$370 ,  S = k_s_37_25_t4-c11.S$374 ,  O = k_DB.DBA.RDF_MAKE_OBJ_OF_TYPEDSQLVAL$376
+                time         0% fanout         0 input         0 rows
+                Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:         1 Fanout:         0
+                RDF_QUAD_POGS         1 rows(s_37_27_t7.S$106)
+                 P =  IRI_ID"...directClaim"  ,  O = k_s_37_25_t4-c11.P$388
+                time         0% fanout         0 input         0 rows
+                in iterates in_iter$109  over ( IRI_ID"...label" ,  IRI_ID"...altLabel" )
+                time         0% fanout         0 input         0 rows
+                Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:       3.9 Fanout:         0
+                RDF_QUAD       3.9 rows(s_37_8_t1.S$113)
+                 inlined  P = k_in_iter$415 ,  S = k_s_37_27_t7.S$419 ,  O = k_DB.DBA.RDF_MAKE_OBJ_OF_TYPEDSQLVAL$421
+                time         0% fanout         0 input         0 rows
+                Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:       7.5 Fanout:         0
+                RDF_QUAD       7.5 rows()
+                 inlined  P =  IRI_ID"...label"  ,  S = k_s_37_25_t4-c11.O$433
+                time         0% fanout         0 input         0 rows
+                Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:       7.5 Fanout:         0
+                RDF_QUAD       7.5 rows()
+                 inlined  P =  IRI_ID"...label"  ,  S = k_s_37_3_t0.S$446
+                time         0% fanout         0 input         0 rows
+                Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:       7.5 Fanout:         0
+                RDF_QUAD       7.5 rows()
+                 inlined  P =  IRI_ID"...label"  ,  S = k_s_37_8_t1.S$459
+                time         0% fanout         0 input         0 rows
+                skip node  10  <none> set_no$91
+                
+                After code:
+                0: __dummy_retval$90 :=  := artm <DB_NULL>
+                4: BReturn 0
+                time         0% fanout         0 input         0 rows
+                Subquery Select(__dummy_retval$90)
+              }
+            
+            After code:
+            0: __dummy_retval$34 :=  := artm __dummy_retval$90
+            4: BReturn 0
+            time         0% fanout         0 input         0 rows
+            Subquery Select(__dummy_retval$34)
+          }
+      }
+    time         0% fanout         0 input         0 rows
+    skip node  10  <none> set_ctr$145
+    time         0% fanout         0 input         0 rows
+    Select (<DB_NULL>)
+  }
+
+
+ 1 msec 2% cpu,         3 rnd         0 seq         0% same seg         0% same pg 
+Compilation: 9 msec 0 reads         0% read 0 messages         0% clw

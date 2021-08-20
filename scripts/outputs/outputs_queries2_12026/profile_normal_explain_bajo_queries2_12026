@@ -1,0 +1,104 @@
+http://www.wikidata.org/entity/Q82185	POINT(-1.1513888888889 46.159444444444)	http://www.wikidata.org/prop/direct/P17	
+http://www.wikidata.org/entity/Q711430	POINT(2.5716666666667 49.606388888889)	http://www.wikidata.org/prop/direct/P17	
+http://www.wikidata.org/entity/Q839814	POINT(1.4952777777778 50.11)	http://www.wikidata.org/prop/direct/P17	
+http://www.wikidata.org/entity/Q239091	POINT(3.1538888888889 50.674722222222)	http://www.wikidata.org/prop/direct/P17	
+http://www.wikidata.org/entity/Q42810	POINT(0.10805555555556 49.494166666667)	http://www.wikidata.org/prop/direct/P17	
+http://www.wikidata.org/entity/Q776223	POINT(3.8638888888889 43.631944444444)	http://www.wikidata.org/prop/direct/P17	
+http://www.wikidata.org/entity/Q520242	POINT(3.9822222222222 43.733333333333)	http://www.wikidata.org/prop/direct/P17	
+http://www.wikidata.org/entity/Q52836	POINT(4.8480555555556 47.158333333333)	http://www.wikidata.org/prop/direct/P17	
+http://www.wikidata.org/entity/Q52867	POINT(5.0333333333333 47.180277777778)	http://www.wikidata.org/prop/direct/P17	
+http://www.wikidata.org/entity/Q123050	POINT(7.2891666666667 47.655277777778)	http://www.wikidata.org/prop/direct/P17	
+http://www.wikidata.org/entity/Q123672	POINT(7.1930555555556 48.11)	http://www.wikidata.org/prop/direct/P17	
+http://www.wikidata.org/entity/Q127505	POINT(-3.0138888888889 48.181388888889)	http://www.wikidata.org/prop/direct/P17	
+http://www.wikidata.org/entity/Q127557	POINT(7.23944444 47.66277778)	http://www.wikidata.org/prop/direct/P17	
+http://www.wikidata.org/entity/Q127573	POINT(-2.2366666666667 47.649166666667)	http://www.wikidata.org/prop/direct/P17	
+http://www.wikidata.org/entity/Q127714	POINT(-2.6455555555556 47.525555555556)	http://www.wikidata.org/prop/direct/P17	
+http://www.wikidata.org/entity/Q127725	POINT(2.4519444444444 45.661388888889)	http://www.wikidata.org/prop/direct/P17	
+http://www.wikidata.org/entity/Q128083	POINT(-2.2808333333333 47.725833333333)	http://www.wikidata.org/prop/direct/P17	
+http://www.wikidata.org/entity/Q128533	POINT(-2.2238888888889 47.839166666667)	http://www.wikidata.org/prop/direct/P17	
+http://www.wikidata.org/entity/Q128858	POINT(-2.5716666666667 47.675555555556)	http://www.wikidata.org/prop/direct/P17	
+http://www.wikidata.org/entity/Q128872	POINT(-2.365 47.696111111111)	http://www.wikidata.org/prop/direct/P17	
+
+  { 
+    time    0.0066% fanout         1 input         1 rows
+    time    0.0062% fanout         1 input         1 rows
+    Precode:
+      0: __all_eq$27 := Call __all_eq ( IRI_ID"...Q515" )
+      5: BReturn 0
+    time     0.094% fanout        45 input         1 rows
+    RDF_QUAD_OP        20 rows(s_37_17_t2.P$35)
+     inlined  O =  IRI_ID"...Q142" 
+    time       2.8% fanout   1111.11 input        45 rows
+    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:       1.2 Fanout:   1.1e+03
+    RDF_QUAD_POGS       1.2 rows(s_37_17_t2.S$39)
+     P = s_37_17_t2.P$35 ,  O =  IRI_ID"...Q142" 
+    time        56% fanout    1.0318 input     50000 rows
+    RDF_QUAD       1.1 rows(s_37_3_t0.S$44, s_37_3_t0.O$43)
+     inlined  P =  IRI_ID"...direct/P31"  ,  S = s_37_17_t2.S$39 O LIKE <c Tó>
+    time        23% fanout  0.102268 input     51590 rows
+    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:       1.1 Fanout:       0.1
+    Precode:
+      0: __all_eq$46 := Call __all_eq (s_37_3_t0.O$43)
+      5: BReturn 0
+    RDF_QUAD       1.1 rows(s_37_17_t3.O$49)
+     inlined  P =  IRI_ID"...direct/P625"  ,  S = k_s_37_17_t2.S$185
+    Transitive dt dir 2, input: (__all_eq$27)
+      input shadow: (__all_eq$199)
+      output: (_::trans_subj_37_5$52)
+     Target:  (__all_eq$46)
+      { 
+        time       2.3% fanout  0.909091 input       209 rows
+        RDF_QUAD_POGS       3.8 rows(t4.S$59, t4.O$58)
+         P =  IRI_ID"...direct/P279"  ,  O = k___all_eq$205
+        
+        After code:
+        0: _::trans_subj_37_5$52 :=  := artm t4.S$59
+        4: _::trans_obj_37_6$53 :=  := artm t4.O$58
+        8: BReturn 0
+        time    0.0095% fanout         0 input       190 rows
+        Subquery Select(_::trans_subj_37_5$52, _::trans_obj_37_6$53)
+      }
+    Reverse transitive node, input: (__all_eq$46)
+      output: (_::trans_obj_37_6$53)
+     Target:  (__all_eq$27)
+      { 
+        time       2.9% fanout  0.296875 input       576 rows
+        RDF_QUAD       1.4 rows(t4.S$84, t4.O$83)
+         inlined  P =  IRI_ID"...direct/P279"  ,  S = k___all_eq$235
+        
+        After code:
+        0: _::trans_subj_37_5$52 :=  := artm t4.S$84
+        4: _::trans_obj_37_6$53 :=  := artm t4.O$83
+        8: BReturn 0
+        time    0.0092% fanout         0 input       171 rows
+        Subquery Select(_::trans_subj_37_5$52, _::trans_obj_37_6$53)
+      }
+    time     0.027% fanout         1 input       323 rows
+    END Node
+    After test:
+    0: if (_::trans_obj_37_6$53 =  IRI_ID"...Q515" ) then 4 else 5 unkn 5
+    4: BReturn 1
+    5: BReturn 0
+    time      0.24% fanout  0.907121 input       323 rows
+    Distinct (s_37_17_t2.S$39, s_37_17_t3.O$49, s_37_17_t2.P$35)
+    
+    After code:
+    0: var1$30 :=  := artm s_37_17_t2.S$39
+    4: var2$31 :=  := artm s_37_17_t3.O$49
+    8: var3$32 :=  := artm s_37_17_t2.P$35
+    12: BReturn 0
+    time       2.6% fanout         1 input       293 rows
+    Subquery Select(var1$30, var2$31, var3$32)
+    
+    After code:
+    0: var1$117 := Call __ro2sq (var1$30)
+    5: var2$119 := Call __ro2sq (var2$31)
+    10: var3$121 := Call __ro2sq (var3$32)
+    15: BReturn 0
+    time   0.00098% fanout         0 input       293 rows
+    Select (var1$117, var2$119, var3$121)
+  }
+
+
+ 55 msec 93% cpu,    102559 rnd     54354 seq   97.8861% same seg   1.73167% same pg 
+Compilation: 3 msec 0 reads         0% read 0 messages         0% clw

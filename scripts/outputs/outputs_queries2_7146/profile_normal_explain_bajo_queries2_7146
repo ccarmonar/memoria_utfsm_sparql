@@ -1,0 +1,69 @@
+
+  { 
+    time       6.2% fanout         1 input         1 rows
+    Subquery 27 
+      { 
+        time       4.4% fanout         1 input         1 rows
+        fork {
+            time        82% fanout         0 input         1 rows
+            Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:   1.4e-07 Fanout:         0
+            RDF_QUAD_POGS   1.4e-07 rows(s_37_8_t3.S$37, s_37_8_t3.O$36)
+             inlined  P =  IRI_ID"...qualifier/P580" 
+            time         0% fanout         0 input         0 rows
+            Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:   1.4e-07 Fanout:         0
+            RDF_QUAD_POGS   1.4e-07 rows(s_37_8_t2.S$40)
+             inlined  P =  IRI_ID"...statement/P39"  ,  O =  IRI_ID"...Q11696"  ,  S = s_37_8_t3.S$37
+            time         0% fanout         0 input         0 rows
+            Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:   1.4e-07 Fanout:         0
+            RDF_QUAD_POGS   1.4e-07 rows(s_37_8_t1.S$43)
+             P =  IRI_ID"...prop/P39"  ,  O = cast$141
+            time         0% fanout         0 input         0 rows
+            Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:     0.091 Fanout:         0
+            RDF_QUAD     0.091 rows()
+             inlined  P =  IRI_ID"...direct/P31"  ,  S = s_37_8_t1.S$43 ,  O =  IRI_ID"...Q5" 
+            time         0% fanout         0 input         0 rows
+            Distinct (<DB_NULL>)
+            time         0% fanout         0 input         0 rows
+            Precode:
+              0: __ro2sq$53 := Call __ro2sq (s_37_8_t3.O$36)
+              5: $57 :=  := artm <DB_NULL>
+              9: $58 :=  := artm <DB_NULL>
+              13: $59 :=  := artm <DB_NULL>
+              17: $60 :=  := artm <DB_NULL>
+              21: $61 :=  := artm <DB_NULL>
+              25: $62 :=  := artm <DB_NULL>
+              29: BReturn 0
+            Sort (__ro2sq$53) -> ($57, $58, $59, $60, $61, $62)
+            
+          }
+        time       7.5% fanout         0 input         1 rows
+        Key from temp ($57, $58, $59, $60, $61, $62)
+        
+        
+        After code:
+        0: var1Label$28 :=  := artm <DB_NULL>
+        4: var2Label$29 :=  := artm <DB_NULL>
+        8: var3$30 :=  := artm <DB_NULL>
+        12: var4$31 :=  := artm <DB_NULL>
+        16: var5$32 :=  := artm <DB_NULL>
+        20: var6$33 :=  := artm <DB_NULL>
+        24: BReturn 0
+        time         0% fanout         0 input         0 rows
+        Subquery Select(var1Label$28, var2Label$29, var3$30, var4$31, var5$32, var6$33)
+      }
+    
+    After code:
+    0: var1Label$81 := Call __ro2sq (var1Label$28)
+    5: var2Label$83 := Call __ro2sq (var2Label$29)
+    10: var3$85 := Call __ro2sq (var3$30)
+    15: var4$87 := Call __ro2sq (var4$31)
+    20: var5$89 := Call __ro2sq (var5$32)
+    25: var6$91 := Call __ro2sq (var6$33)
+    30: BReturn 0
+    time         0% fanout         0 input         0 rows
+    Select (var1Label$81, var2Label$83, var3$85, var4$87, var5$89, var6$91)
+  }
+
+
+ 0 msec 2% cpu,         1 rnd         0 seq         0% same seg         0% same pg 
+Compilation: 3 msec 0 reads         0% read 0 messages         0% clw

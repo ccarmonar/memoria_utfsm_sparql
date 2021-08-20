@@ -1,0 +1,72 @@
+http://www.wikidata.org/entity/Q3064505	http://www.wikidata.org/prop/direct/P1025	059846631	http://www.wikidata.org/entity/P1025	
+http://www.wikidata.org/entity/Q3121175	http://www.wikidata.org/prop/direct/P1025	057188009	http://www.wikidata.org/entity/P1025	
+http://www.wikidata.org/entity/Q15758226	http://www.wikidata.org/prop/direct/P1025	039115550	http://www.wikidata.org/entity/P1025	
+http://www.wikidata.org/entity/Q381431	http://www.wikidata.org/prop/direct/P1025	03924539X	http://www.wikidata.org/entity/P1025	
+http://www.wikidata.org/entity/Q20859103	http://www.wikidata.org/prop/direct/P1025	036339539	http://www.wikidata.org/entity/P1025	
+http://www.wikidata.org/entity/Q21236953	http://www.wikidata.org/prop/direct/P1025	030195594	http://www.wikidata.org/entity/P1025	
+http://www.wikidata.org/entity/Q26791231	http://www.wikidata.org/prop/direct/P1025	004301439	http://www.wikidata.org/entity/P1025	
+http://www.wikidata.org/entity/Q26796563	http://www.wikidata.org/prop/direct/P1025	120026910	http://www.wikidata.org/entity/P1025	
+http://www.wikidata.org/entity/Q26869064	http://www.wikidata.org/prop/direct/P1025	079047874	http://www.wikidata.org/entity/P1025	
+http://www.wikidata.org/entity/Q26877172	http://www.wikidata.org/prop/direct/P1025	046206272	http://www.wikidata.org/entity/P1025	
+http://www.wikidata.org/entity/Q26877172	http://www.wikidata.org/prop/direct/P1025	048391042	http://www.wikidata.org/entity/P1025	
+http://www.wikidata.org/entity/Q26878351	http://www.wikidata.org/prop/direct/P1025	039095282	http://www.wikidata.org/entity/P1025	
+http://www.wikidata.org/entity/Q11585797	http://www.wikidata.org/prop/direct/P1025	237722216	http://www.wikidata.org/entity/P1025	
+http://www.wikidata.org/entity/Q1087976	http://www.wikidata.org/prop/direct/P1025	024431265	http://www.wikidata.org/entity/P1025	
+http://www.wikidata.org/entity/Q655717	http://www.wikidata.org/prop/direct/P1025	027361349	http://www.wikidata.org/entity/P1025	
+http://www.wikidata.org/entity/Q1674195	http://www.wikidata.org/prop/direct/P1025	013966065	http://www.wikidata.org/entity/P1025	
+http://www.wikidata.org/entity/Q1674195	http://www.wikidata.org/prop/direct/P1025	083679480	http://www.wikidata.org/entity/P1025	
+http://www.wikidata.org/entity/Q12881834	http://www.wikidata.org/prop/direct/P1025	112334997	http://www.wikidata.org/entity/P1025	
+http://www.wikidata.org/entity/Q26833651	http://www.wikidata.org/prop/direct/P1025	00827262X	http://www.wikidata.org/entity/P1025	
+http://www.wikidata.org/entity/Q26833651	http://www.wikidata.org/prop/direct/P1025	043850596	http://www.wikidata.org/entity/P1025	
+
+  { 
+    time    0.0015% fanout         1 input         1 rows
+      clear: (<V set_ctr$52 in>)
+    s# 58 53 cluster outer seq start, set no <V set_ctr$52 in>    
+    save ctx:()
+    time     0.019% fanout        18 input         1 rows
+      clear: (<V s_37_6_t1.S$28 rn>)
+      clear on continue: (<V s_37_6_t1.S$28 rn>)
+    s# 67 27 from DB.DBA.RDF_QUAD by RDF_QUAD         18 rows   
+    Key RDF_QUAD  ASC  (<V s_37_6_t1.S$28 rn>)
+     inlined  P =  IRI_ID"...direct/P1921" 
+    
+    time      0.02% fanout  0.833333 input        18 rows
+      clear: (<V s_37_6_t2.O$31 an>)
+      clear on continue: (<V s_37_6_t2.O$31 an>)
+    s# 77 30 from DB.DBA.RDF_QUAD by RDF_QUAD          1 rows   
+    Key RDF_QUAD  ASC  (<V s_37_6_t2.O$31 an>)
+     inlined  P =  IRI_ID"...directClaim"  ,  S = <V s_37_6_t1.S$28 rn>
+    
+    time       9.2% fanout   66.6667 input        15 rows
+    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:   9.1e+06 Fanout:        67
+    Precode:
+      0: <V var4$33 a> := Call __id2in (<r s_37_6_t1.S$28 via  Set77>)
+      5: BReturn 0
+      clear: (<V s_37_6_t0.O$36 an>, <V s_37_6_t0.P$37 rn>, <V s_37_6_t0.S$38 rn>, <V var4$33 a>)
+      clear on continue: (<V s_37_6_t0.S$38 rn>, <V s_37_6_t0.P$37 rn>, <V s_37_6_t0.O$36 an>)$31 () $28 (30 ) $91 (35 ) 
+    s# 87 35 from DB.DBA.RDF_QUAD by RDF_QUAD    9.1e+06 rows   
+    Key RDF_QUAD  ASC  (<V s_37_6_t0.S$38 rn>, <V s_37_6_t0.P$37 rn>, <V s_37_6_t0.O$36 an>)
+     inlined  P = <v k_s_37_6_t2.O$91 Set93 rn>
+    vector param casts: <V s_37_6_t2.O$31 an>-> <v k_s_37_6_t2.O$91 Set93 rn>
+    
+    time        91% fanout       0.1 input      1000 rows
+      clear: (<V var3$44 a>, <V var2$42 a>, <V var1$40 a>)$36 () $37 () $38 () 
+    s# 103 56 skip node  100  <none> <r set_ctr$52 via  Set87 Set93 Set77 Set67>
+    After code:
+      0: <V var1$40 a> := Call __id2in (<r s_37_6_t0.S$38 via  Set103>)
+      5: <V var2$42 a> := Call __id2in (<r s_37_6_t0.P$37 via  Set103>)
+      10: <V var3$44 a> := Call __ro2sq (<r s_37_6_t0.O$36 via  Set103>)
+      15: BReturn 0
+    time   0.00034% fanout         0 input       100 rows
+    $33 (56 35 ) $40 (56 ) $42 (56 ) $44 (56 ) $52 (56 35 30 27 53 ) 
+    s# 111 46 Select (<V var1$40 a>, <V var2$42 a>, <V var3$44 a>, <r var4$33 via  Set103 Set87 Set93>)
+      set no: <r set_ctr$52 via  Set103 Set87 Set93 Set77 Set67>
+  }
+Warning: You might have a Cartesian product.
+
+
+
+ 133 msec 47% cpu,       304 rnd      1012 seq   5.57377% same seg   22.2951% same pg 
+9 disk reads, 0 read ahead,   47.0731% wait
+Compilation: 145 msec 2 reads   12.6774% read 0 messages         0% clw

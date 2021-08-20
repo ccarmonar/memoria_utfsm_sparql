@@ -1,0 +1,34 @@
+0	
+
+  { 
+    time       2.7% fanout         1 input         1 rows
+      clear: (<V set_ctr$38 in>)
+    s# 44 39 cluster outer seq start, set no <V set_ctr$38 in>    
+    save ctx:()
+    time        38% fanout        24 input         1 rows
+      clear: (<V t2.S$28 rn>)
+      clear on continue: (<V t2.S$28 rn>)
+    s# 53 27 from DB.DBA.RDF_QUAD by RDF_QUAD_POGS         48 rows   
+    Key RDF_QUAD_POGS  ASC  (<V t2.S$28 rn>)
+     P =  IRI_ID"...direct/P31"  ,  O =  IRI_ID"...Q15260617" 
+    
+    time        57% fanout         1 input        24 rows
+    $28 () 
+    s# 63 30 from DB.DBA.RDF_QUAD by RDF_QUAD          1 rows   max 1
+    Key RDF_QUAD  ASC  ()
+     inlined  P =  IRI_ID"...direct/P580"  ,  S = <V t2.S$28 rn>
+    
+    time       1.7% fanout 0.0416667 input        24 rows
+    
+    s# 72 42 skip node  1  <none> <r set_ctr$38 via  Set63 Set53>
+    time      0.88% fanout         0 input         1 rows
+    $38 (42 30 27 39 ) 
+    s# 80 32 Select ( 0 )
+      set no: <r set_ctr$38 via  Set72 Set63 Set53>
+  }
+Warning: You might have a Cartesian product.
+
+
+
+ 0 msec 6% cpu,        25 rnd        23 seq   84.6154% same seg         0% same pg 
+Compilation: 1 msec 0 reads         0% read 0 messages         0% clw

@@ -1,0 +1,46 @@
+Error: 23000: SR197: Non unique primary key on DB.DBA.RDF_OBJ.
+  { 
+    time     1e+02% fanout         1 input         1 rows
+    Precode:
+      0: DB.DBA.RDF_OBJ_OF_SQLVAL$27 := Call DB.DBA.RDF_OBJ_OF_SQLVAL (<c Stefan>)
+      7: BReturn 0
+    Subquery 29 
+      { 
+        time         0% fanout         0 input         0 rows
+        fork {
+            time         0% fanout         0 input         0 rows
+            Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:       0.3 Fanout:         0
+            RDF_QUAD_POGS       0.3 rows(s_37_4_t0.S$34)
+             P =  IRI_ID"...direct/P735"  ,  O = k_DB.DBA.RDF_OBJ_OF_SQLVAL$106
+            time         0% fanout         0 input         0 rows
+            Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:         1 Fanout:         0
+            RDF_QUAD         1 rows(s_37_4_t1.O$37)
+             inlined  P =  IRI_ID"...direct/P3150"  ,  S = s_37_4_t0.S$34
+            time         0% fanout         0 input         0 rows
+            Sort (s_37_4_t1.O$37) -> (inc$43)
+            
+          }
+        time         0% fanout         0 input         0 rows
+        group by read node  
+        (s_37_4_t1.O$37, aggregate$41)
+        
+        After code:
+        0: __ro2sq$66 := Call __ro2sq (s_37_4_t1.O$37)
+        5: var1$30 :=  := artm aggregate$41
+        9: var2$31 :=  := artm __ro2sq$66
+        13: BReturn 0
+        time         0% fanout         0 input         0 rows
+        Subquery Select(var1$30, var2$31)
+      }
+    
+    After code:
+    0: var1$75 := Call __ro2sq (var1$30)
+    5: var2$77 := Call __ro2sq (var2$31)
+    10: BReturn 0
+    time         0% fanout         0 input         0 rows
+    Select (var1$75, var2$77)
+  }
+
+
+ 0 msec 11% cpu,         3 rnd         0 seq         0% same seg         0% same pg 
+Compilation: 3 msec 0 reads         0% read 0 messages         0% clw

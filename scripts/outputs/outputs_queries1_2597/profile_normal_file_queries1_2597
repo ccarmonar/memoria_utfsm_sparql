@@ -1,0 +1,90 @@
+http://www.wikidata.org/entity/Q1172	22297, 22335, 22453, 22529	http://www.wikidata.org/entity/Q183	
+http://www.wikidata.org/entity/Q1172	22297, 22335, 22453, 22529	http://www.wikidata.org/entity/Q183	
+http://www.wikidata.org/entity/Q1172	22297, 22335, 22453, 22529	http://www.wikidata.org/entity/Q183	
+http://www.wikidata.org/entity/Q1172	22297, 22335, 22453, 22529	http://www.wikidata.org/entity/Q183	
+http://www.wikidata.org/entity/Q1181	20144, 20249, 20251, 20253	http://www.wikidata.org/entity/Q183	
+http://www.wikidata.org/entity/Q1181	20144, 20249, 20251, 20253	http://www.wikidata.org/entity/Q183	
+http://www.wikidata.org/entity/Q1181	20144, 20249, 20251, 20253	http://www.wikidata.org/entity/Q183	
+http://www.wikidata.org/entity/Q1181	20144, 20249, 20251, 20253	http://www.wikidata.org/entity/Q183	
+http://www.wikidata.org/entity/Q1565	22111, 22113, 22115, 22117, 22119	http://www.wikidata.org/entity/Q183	
+http://www.wikidata.org/entity/Q1565	22111, 22113, 22115, 22117, 22119	http://www.wikidata.org/entity/Q183	
+http://www.wikidata.org/entity/Q1565	22111, 22113, 22115, 22117, 22119	http://www.wikidata.org/entity/Q183	
+http://www.wikidata.org/entity/Q1565	22111, 22113, 22115, 22117, 22119	http://www.wikidata.org/entity/Q183	
+http://www.wikidata.org/entity/Q1807	22087, 22089	http://www.wikidata.org/entity/Q183	
+http://www.wikidata.org/entity/Q1807	22087, 22089	http://www.wikidata.org/entity/Q183	
+http://www.wikidata.org/entity/Q1807	22087, 22089	http://www.wikidata.org/entity/Q183	
+http://www.wikidata.org/entity/Q1807	22087, 22089	http://www.wikidata.org/entity/Q183	
+http://www.wikidata.org/entity/Q1611	20144, 20253, 20255, 20257, 20259, 20357, 22525, 22527, 22769	http://www.wikidata.org/entity/Q183	
+http://www.wikidata.org/entity/Q1611	20144, 20253, 20255, 20257, 20259, 20357, 22525, 22527, 22769	http://www.wikidata.org/entity/Q183	
+http://www.wikidata.org/entity/Q1611	20144, 20253, 20255, 20257, 20259, 20357, 22525, 22527, 22769	http://www.wikidata.org/entity/Q183	
+http://www.wikidata.org/entity/Q1611	20144, 20253, 20255, 20257, 20259, 20357, 22525, 22527, 22769	http://www.wikidata.org/entity/Q183	
+
+  { 
+    time     0.059% fanout         1 input         1 rows
+      clear: (<V set_ctr$40 in>)
+    s# 68 41 cluster outer seq start, set no <V set_ctr$40 in>    
+    save ctx:()
+    time       2.7% fanout      2000 input         1 rows
+    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:   1.1e+05 Fanout:     2e+03
+      clear: (<V t1.S$28 rn>, <V t1.O$29 an>)
+      clear on continue: (<V t1.S$28 rn>, <V t1.O$29 an>)
+    s# 77 27 from DB.DBA.RDF_QUAD by RDF_QUAD_POGS    1.1e+05 rows   
+    Key RDF_QUAD_POGS  ASC  (<V t1.O$29 an>, <V t1.S$28 rn>)
+     inlined  P =  IRI_ID"...direct/P281" 
+    
+    time        81% fanout     0.008 input      2000 rows
+      clear: (<V _cvt$33 s>, <V __rdf_strsqlval$31 s>)
+    s# 93 88 END Node
+    After test:
+      0: <V __rdf_strsqlval$31 s> := Call __rdf_strsqlval (<V t1.O$29 an>,  0 )
+      5: <V _cvt$33 s> := Call _cvt (<tag 193 flag 0>, <V __rdf_strsqlval$31 s>)
+      10: if (<V _cvt$33 s>  LIKE  <c %,%>) then 14 else 15 unkn 15
+      14: BReturn 1
+      15: BReturn 0
+    time     0.085% fanout         1 input        16 rows
+      clear: (<V set_ctr$43 i>)
+    s# 101 47 cluster outer seq start, set no <V set_ctr$43 i>    
+    save ctx:()
+    time       4.3% fanout         2 input        16 rows
+      clear: (<V t3.O$36 a>)
+      clear on continue: (<V t3.O$36 a>)$114 (35 ) 
+    s# 110 35 from DB.DBA.RDF_QUAD by RDF_QUAD          1 rows   
+    Key RDF_QUAD  ASC  (<V t3.O$36 a>)
+     inlined  P =  IRI_ID"...direct/P17"  ,  S = <v k_t1.S$114 Set116 rn>
+    vector param casts: <r t1.S$28 via  Set101 Set93>-> <v k_t1.S$114 Set116 rn>
+    
+    time     0.056% fanout         1 input        32 rows
+    $43 (35 47 ) 
+    s# 124 42 end of outer seq <r set_ctr$43 via  Set110 Set116>
+     out: (<V t3.O$36 a>)
+     shadow: ( <none> )
+    time      0.28% fanout         1 input        32 rows
+      clear: (<V one_of_these$38 i>)
+    s# 137 132 END Node
+    After test:
+      0: if (<V t3.O$36 a>  IS NULL   0 ) then 13 else 4 unkn 4
+      4: <V one_of_these$38 i> := Call one_of_these (<V t3.O$36 a>,  IRI_ID"...Q214" ,  IRI_ID"...Q213" )
+      9: if ( 0  < <V one_of_these$38 i>) then 14 else 13 unkn 14
+      13: BReturn 1
+      14: BReturn 0
+    time        11% fanout         1 input        32 rows
+      clear: (<V var3$56 a>, <V var1$54 a>, <V var2$52 a>)$36 (132 42 ) $28 (132 42 35 47 88 ) $29 (132 42 35 47 88 ) 
+    s# 146 66 skip node  5000  <none> <r set_ctr$40 via  Set137 Set124 Set93 Set77>
+    After code:
+      0: <V var2$52 a> := Call __ro2sq (<r t1.O$29 via  Set146 Set137 Set124 Set93>)
+      5: <V var1$54 a> := Call __id2in (<r t1.S$28 via  Set146 Set137 Set124 Set93>)
+      10: <V var3$56 a> := Call __ro2sq (<r t3.O$36 via  Set146 Set137>)
+      15: BReturn 0
+    time     0.013% fanout         0 input        32 rows
+    $40 (66 132 42 35 47 88 27 41 ) $52 (66 ) $54 (66 ) $56 (66 ) 
+    s# 154 58 Select (<V var1$54 a>, <V var2$52 a>, <V var3$56 a>)
+      set no: <r set_ctr$40 via  Set146 Set137 Set124 Set93 Set77>
+  }
+Warning: You might have a Cartesian product.
+
+Warning: You might have a Cartesian product.
+
+
+
+ 6 msec 72% cpu,      2065 rnd      2013 seq  0.677638% same seg    43.272% same pg 
+Compilation: 2 msec 0 reads         0% read 0 messages         0% clw

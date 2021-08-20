@@ -1,0 +1,122 @@
+SELECT __id2in ( "s_0_35"."var1") AS "var1",
+  NULL /* due to conflict on var1Label */ AS "var1Label",
+  __ro2sq ( "s_0_35"."var2") AS "var2",
+  __id2in ( "s_0_35"."var3") AS "var3"
+FROM (
+    SELECT "s_37_32_t6"."S" AS "var1",
+      "s_37_3_t0"."O" AS "_::trans_subj_37_5",
+      __bft( 'http://www.wikidata.org/entity/Q482980' , 1) AS "_::trans_obj_37_6",
+      "s_37_32_t6"."O" AS "var2" ANY,
+      "s_37_3_t0"."O" AS "_::ppath_seq_37_0",
+      NULL AS "var3"
+    FROM DB.DBA.RDF_QUAD AS "s_37_3_t0"
+      INNER JOIN (
+       SELECT TRANSITIVE T_OUT(2) T_IN(1) T_MIN( 0) T_NO_CYCLES "s_37_9_t1-c5"."S" AS "_::trans_subj_37_5",
+          "s_37_9_t1-c5"."O" AS "_::trans_obj_37_6"
+        FROM DB.DBA.RDF_QUAD AS "s_37_9_t1-c5"
+        WHERE
+          "s_37_9_t1-c5"."P" = __i2idn ( __bft( 'http://www.wikidata.org/prop/direct/P279' , 1))
+OPTION (QUIETCAST)
+        ) AS "s_37_12-c5"
+      ON (
+        "s_37_3_t0"."O" = "s_37_12-c5"."_::trans_subj_37_5")
+      INNER JOIN DB.DBA.RDF_QUAD AS "s_37_15_t2-c7"
+      ON (
+        "s_37_3_t0"."S" = "s_37_15_t2-c7"."S")
+      INNER JOIN DB.DBA.RDF_QUAD AS "s_37_32_t5"
+      ON (
+        "s_37_32_t5"."S" = "s_37_3_t0"."S"
+        AND 
+        "s_37_32_t5"."S" = "s_37_15_t2-c7"."S")
+      INNER JOIN DB.DBA.RDF_QUAD AS "s_37_32_t6"
+      ON (
+        "s_37_32_t6"."S" = "s_37_32_t5"."S"
+        AND 
+        "s_37_32_t6"."S" = "s_37_3_t0"."S"
+        AND 
+        "s_37_32_t6"."S" = "s_37_15_t2-c7"."S")
+    WHERE
+      "s_37_3_t0"."P" = __i2idn ( __bft( 'http://www.wikidata.org/prop/direct/P106' , 1))
+      AND 
+      isiri_id ( "s_37_3_t0"."O")
+      AND 
+      "s_37_15_t2-c7"."P" = __i2idn ( __bft( 'http://www.wikidata.org/prop/direct/P19' , 1))
+      AND 
+      "s_37_15_t2-c7"."O" = __i2idn ( __bft( 'http://www.wikidata.org/entity/Q22' , 1))
+      AND 
+      "s_37_32_t5"."P" = __i2idn ( __bft( 'http://www.wikidata.org/prop/direct/P31' , 1))
+      AND 
+      "s_37_32_t5"."O" = __i2idn ( __bft( 'http://www.wikidata.org/entity/Q5' , 1))
+      AND 
+      "s_37_32_t6"."P" = __i2idn ( __bft( 'http://www.wikidata.org/prop/direct/P570' , 1))
+      AND 
+     ( "s_37_12-c5"."_::trans_obj_37_6" =  __i2idn ( __bft( 'http://www.wikidata.org/entity/Q482980' , 1)))
+      AND 
+      1
+    UNION ALL SELECT "s_37_32_t6"."S" AS "var1",
+      "s_37_3_t0"."O" AS "_::trans_subj_37_5",
+      __bft( 'http://www.wikidata.org/entity/Q482980' , 1) AS "_::trans_obj_37_6",
+      "s_37_32_t6"."O" AS "var2",
+      "s_37_3_t0"."O" AS "_::ppath_seq_37_0",
+       __ro2lo ( "s_37_26_t4-c15"."O") AS "var3"
+    FROM DB.DBA.RDF_QUAD AS "s_37_3_t0"
+      INNER JOIN (
+       SELECT TRANSITIVE T_OUT(2) T_IN(1) T_MIN( 0) T_NO_CYCLES "s_37_9_t1-c13"."S" AS "_::trans_subj_37_5",
+          "s_37_9_t1-c13"."O" AS "_::trans_obj_37_6"
+        FROM DB.DBA.RDF_QUAD AS "s_37_9_t1-c13"
+        WHERE
+          "s_37_9_t1-c13"."P" = __i2idn ( __bft( 'http://www.wikidata.org/prop/direct/P279' , 1))
+OPTION (QUIETCAST)
+        ) AS "s_37_12-c13"
+      ON (
+        "s_37_3_t0"."O" = "s_37_12-c13"."_::trans_subj_37_5")
+      INNER JOIN DB.DBA.RDF_QUAD AS "s_37_26_t4-c15"
+      ON (
+        "s_37_3_t0"."S" = "s_37_26_t4-c15"."S")
+      INNER JOIN (
+       SELECT TRANSITIVE T_OUT(2) T_IN(1) T_MIN( 0) T_NO_CYCLES "s_37_22_t3-c15"."S" AS "_::trans_subj_37_18",
+          "s_37_22_t3-c15"."O" AS "_::trans_obj_37_19"
+        FROM DB.DBA.RDF_QUAD AS "s_37_22_t3-c15"
+        WHERE
+          "s_37_22_t3-c15"."P" = __i2idn ( __bft( 'http://www.wikidata.org/prop/direct/P131' , 1))
+OPTION (QUIETCAST)
+        ) AS "s_37_25-c15"
+      ON (
+        "s_37_26_t4-c15"."O" = "s_37_25-c15"."_::trans_subj_37_18")
+      INNER JOIN DB.DBA.RDF_QUAD AS "s_37_32_t5"
+      ON (
+        "s_37_32_t5"."S" = "s_37_3_t0"."S"
+        AND 
+        "s_37_32_t5"."S" = "s_37_26_t4-c15"."S")
+      INNER JOIN DB.DBA.RDF_QUAD AS "s_37_32_t6"
+      ON (
+        "s_37_32_t6"."S" = "s_37_32_t5"."S"
+        AND 
+        "s_37_32_t6"."S" = "s_37_3_t0"."S"
+        AND 
+        "s_37_32_t6"."S" = "s_37_26_t4-c15"."S")
+    WHERE
+      "s_37_3_t0"."P" = __i2idn ( __bft( 'http://www.wikidata.org/prop/direct/P106' , 1))
+      AND 
+      isiri_id ( "s_37_3_t0"."O")
+      AND 
+      "s_37_26_t4-c15"."P" = __i2idn ( __bft( 'http://www.wikidata.org/prop/direct/P19' , 1))
+      AND 
+      isiri_id ( "s_37_26_t4-c15"."O")
+      AND 
+      "s_37_32_t5"."P" = __i2idn ( __bft( 'http://www.wikidata.org/prop/direct/P31' , 1))
+      AND 
+      "s_37_32_t5"."O" = __i2idn ( __bft( 'http://www.wikidata.org/entity/Q5' , 1))
+      AND 
+      "s_37_32_t6"."P" = __i2idn ( __bft( 'http://www.wikidata.org/prop/direct/P570' , 1))
+      AND 
+     ( "s_37_12-c13"."_::trans_obj_37_6" =  __i2idn ( __bft( 'http://www.wikidata.org/entity/Q482980' , 1)))
+      AND 
+     ( "s_37_25-c15"."_::trans_obj_37_19" =  __i2idn ( __bft( 'http://www.wikidata.org/entity/Q22' , 1)))
+      AND 
+      1
+      AND 
+      1) AS "s_0_35"
+WHERE
+  "s_0_35"."_::trans_subj_37_5" = "s_0_35"."_::ppath_seq_37_0"
+OPTION (QUIETCAST)

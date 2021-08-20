@@ -1,0 +1,22 @@
+SELECT __id2in ( "s_37_6_t0"."S") AS "var1",
+  __ro2sq ( "s_37_6_t2"."O") AS "var2"
+FROM DB.DBA.RDF_QUAD AS "s_37_6_t0"
+  INNER JOIN DB.DBA.RDF_QUAD AS "s_37_6_t1"
+  ON (
+    "s_37_6_t0"."S" = "s_37_6_t1"."S")
+  INNER JOIN DB.DBA.RDF_QUAD AS "s_37_6_t2"
+  ON (
+    "s_37_6_t0"."S" = "s_37_6_t2"."S"
+    AND 
+    "s_37_6_t1"."S" = "s_37_6_t2"."S")
+WHERE
+  "s_37_6_t0"."P" = __i2idn ( __bft( 'http://www.wikidata.org/prop/direct/P31' , 1))
+  AND 
+  "s_37_6_t0"."O" = __i2idn ( __bft( 'http://www.wikidata.org/entity/Q3305213' , 1))
+  AND 
+  "s_37_6_t1"."P" = __i2idn ( __bft( 'http://www.wikidata.org/prop/direct/P170' , 1))
+  AND 
+  "s_37_6_t1"."O" = __i2idn ( __bft( 'http://www.wikidata.org/entity/Q762' , 1))
+  AND 
+  "s_37_6_t2"."P" = __i2idn ( __bft( 'http://www.wikidata.org/prop/direct/P18' , 1))
+OPTION (QUIETCAST)

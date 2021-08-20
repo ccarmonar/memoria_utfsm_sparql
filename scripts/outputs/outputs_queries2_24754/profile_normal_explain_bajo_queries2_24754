@@ -1,0 +1,57 @@
+
+  { 
+    time      0.14% fanout         1 input         1 rows
+    Subquery 27 
+      { 
+        time      0.09% fanout         1 input         1 rows
+        fork {
+            time       4.2% fanout       318 input         1 rows
+            RDF_QUAD   2.2e+02 rows(s_37_4_t1.O$33, s_37_4_t1.S$32)
+             inlined  P =  IRI_ID"...direct/P597" 
+            time        92% fanout         0 input       318 rows
+            END Node
+            After test:
+            0: __ro2sq$35 := Call __ro2sq (s_37_4_t1.O$33)
+            5: rdf_strlen_impl$37 := Call rdf_strlen_impl (__ro2sq$35)
+            10: if ( 10  > rdf_strlen_impl$37) then 14 else 15 unkn 15
+            14: BReturn 1
+            15: BReturn 0
+            time         0% fanout         0 input         0 rows
+            Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:      0.17 Fanout:         0
+            Precode:
+              0: __ro2sq$39 := Call __ro2sq (s_37_4_t1.O$33)
+              5: BReturn 0
+            RDF_QUAD      0.17 rows(s_37_4_t0.S$42)
+             inlined  P =  IRI_ID"...direct/P21"  ,  S = k_s_37_4_t1.S$129 ,  O =  IRI_ID"...Q6581072" 
+            
+            After code:
+            0: rdf_strlen_impl$44 := Call rdf_strlen_impl (__ro2sq$39)
+            5: BReturn 0
+            time         0% fanout         0 input         0 rows
+            Sort (rdf_strlen_impl$44) -> (s_37_4_t0.S$42, __ro2sq$39)
+            
+          }
+        time       3.8% fanout         0 input         1 rows
+        Key from temp (s_37_4_t0.S$42, __ro2sq$39)
+        
+        
+        After code:
+        0: __id2in$65 := Call __id2in (s_37_4_t0.S$42)
+        5: var1$28 :=  := artm __id2in$65
+        9: var2$29 :=  := artm __ro2sq$39
+        13: BReturn 0
+        time         0% fanout         0 input         0 rows
+        Subquery Select(var1$28, var2$29)
+      }
+    
+    After code:
+    0: var1$74 := Call __ro2sq (var1$28)
+    5: var2$76 := Call __ro2sq (var2$29)
+    10: BReturn 0
+    time         0% fanout         0 input         0 rows
+    Select (var1$74, var2$76)
+  }
+
+
+ 2 msec 53% cpu,       319 rnd       317 seq         0% same seg      12.5% same pg 
+Compilation: 2 msec 0 reads         0% read 0 messages         0% clw

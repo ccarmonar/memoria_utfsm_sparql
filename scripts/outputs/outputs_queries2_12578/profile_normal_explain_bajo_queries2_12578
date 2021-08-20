@@ -1,0 +1,43 @@
+http://www.wikidata.org/entity/Q1369108	1953-10-09 00:00:00Z	http://www.wikidata.org/entity/Q1183	
+http://www.wikidata.org/entity/Q1369108	1953-10-09 00:00:00Z	http://www.wikidata.org/entity/Q1183	
+http://www.wikidata.org/entity/Q1364255	1931-10-05 00:00:00Z	http://www.wikidata.org/entity/Q1183	
+http://www.wikidata.org/entity/Q1364255	1931-10-05 00:00:00Z	http://www.wikidata.org/entity/Q1183	
+http://www.wikidata.org/entity/Q5205393	1972-04-07 00:00:00Z	http://www.wikidata.org/entity/Q1183	
+http://www.wikidata.org/entity/Q5205393	1972-04-07 00:00:00Z	http://www.wikidata.org/entity/Q1183	
+http://www.wikidata.org/entity/Q18224151	1979-10-28 00:00:00Z	http://www.wikidata.org/entity/Q1183	
+http://www.wikidata.org/entity/Q18224151	1979-10-28 00:00:00Z	http://www.wikidata.org/entity/Q1183	
+http://www.wikidata.org/entity/Q20642057	1999-08-19 00:00:00Z	http://www.wikidata.org/entity/Q1183	
+http://www.wikidata.org/entity/Q20642057	1999-08-19 00:00:00Z	http://www.wikidata.org/entity/Q1183	
+http://www.wikidata.org/entity/Q2504700	1978-09-04 00:00:00Z	http://www.wikidata.org/entity/Q1183	
+http://www.wikidata.org/entity/Q2504700	1978-09-04 00:00:00Z	http://www.wikidata.org/entity/Q1183	
+http://www.wikidata.org/entity/Q5765922	1935-01-21 00:00:00Z	http://www.wikidata.org/entity/Q1183	
+http://www.wikidata.org/entity/Q5765922	1935-01-21 00:00:00Z	http://www.wikidata.org/entity/Q1183	
+
+  { 
+    time      0.45% fanout         1 input         1 rows
+    time       9.3% fanout         7 input         1 rows
+    RDF_QUAD_POGS         7 rows(s_37_8_t3.S$28)
+     P =  IRI_ID"...direct/P706"  ,  O =  IRI_ID"...Q664609" 
+    time        14% fanout   42.2857 input         7 rows
+    RDF_QUAD_POGS        91 rows(s_37_8_t2.S$32, s_37_8_t2.O$31)
+     P =  IRI_ID"...direct/P27"  ,  O = cast$78
+    time        24% fanout 0.0472973 input       296 rows
+    RDF_QUAD_POGS     0.013 rows(s_37_8_t0.S$35)
+     inlined  P =  IRI_ID"...direct/P106"  ,  O =  IRI_ID"...Q36834"  ,  S = s_37_8_t2.S$32
+    time        53% fanout         1 input        14 rows
+    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:     0.011 Fanout:         1
+    RDF_QUAD     0.011 rows(s_37_8_t1.O$38)
+     P =  IRI_ID"...direct/P569"  ,  S = k_s_37_8_t0.S$103 ,  O >= <tag 211 c 1900-01-01 00:00:00Z> O >= <tag 211 c 1900-01-01 00:00:00Z>
+    
+    After code:
+    0: var3$40 := Call __ro2sq (s_37_8_t2.O$31)
+    5: var1$42 := Call __id2in (s_37_8_t0.S$35)
+    10: var2$44 := Call __ro2sq (s_37_8_t1.O$38)
+    15: BReturn 0
+    time      0.16% fanout         0 input        14 rows
+    Select (var1$42, var2$44, var3$40)
+  }
+
+
+ 0 msec 23% cpu,       318 rnd       297 seq   95.9248% same seg   2.50784% same pg 
+Compilation: 3 msec 0 reads         0% read 0 messages         0% clw

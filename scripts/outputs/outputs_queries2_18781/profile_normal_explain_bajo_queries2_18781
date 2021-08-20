@@ -1,0 +1,66 @@
+947529	2	
+947773	2	
+948276	2	
+62710	1	
+12876811	1	
+1796929	1	
+937729	1	
+3083941	1	
+329697	1	
+19835441	1	
+2600250	1	
+79867	1	
+5827410	1	
+5300005	1	
+1028451	1	
+1133685	1	
+35932	1	
+12875917	1	
+4537170	1	
+1092248	1	
+
+  { 
+    time    0.0014% fanout         1 input         1 rows
+    Subquery 27 
+      { 
+        time   0.00076% fanout         1 input         1 rows
+        fork {
+            time   0.00032% fanout         1 input         1 rows
+            fork {
+                time       1.3% fanout     92467 input         1 rows
+                RDF_QUAD_POGS   9.2e+04 rows(s_37_2_t0.O$33, s_37_2_t0.S$32)
+                 inlined  P =  IRI_ID"...direct/P351" 
+                time        63% fanout         0 input     92467 rows
+                Sort (s_37_2_t0.O$33) -> (inc$43)
+                
+              }
+            time        32% fanout     92464 input         1 rows
+            group by read node  
+            (s_37_2_t0.O$33, aggregate$37)
+            time       1.7% fanout         0 input     92464 rows
+            Sort (aggregate$37) -> (s_37_2_t0.O$33)
+            
+          }
+        time       1.9% fanout       100 input         1 rows
+        top order by read (s_37_2_t0.O$33, aggregate$37)
+        
+        After code:
+        0: __ro2sq$79 := Call __ro2sq (s_37_2_t0.O$33)
+        5: var1$28 :=  := artm __ro2sq$79
+        9: var3$29 :=  := artm aggregate$37
+        13: BReturn 0
+        time   0.00023% fanout         0 input       100 rows
+        Subquery Select(var1$28, var3$29)
+      }
+    
+    After code:
+    0: var1$88 := Call __ro2sq (var1$28)
+    5: var3$90 := Call __ro2sq (var3$29)
+    10: BReturn 0
+    time   0.00013% fanout         0 input       100 rows
+    Select (var1$88, var3$90)
+  }
+
+
+ 241 msec 72% cpu,       101 rnd     92368 seq         0% same seg   8.82353% same pg 
+Compilation: 2 msec 0 reads         0% read 0 messages         0% clw

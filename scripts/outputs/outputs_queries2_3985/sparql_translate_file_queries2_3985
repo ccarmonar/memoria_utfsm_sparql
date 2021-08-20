@@ -1,0 +1,7 @@
+SELECT __id2in ( "s_37_2_t0"."P") AS "var1",
+  __ro2sq ( "s_37_2_t0"."O") AS "var2",
+  case when ( (1 - isiri_id ( "s_37_2_t0"."O"))) then ( rdf_concat_impl ( 'string1' ,  DB.DBA.RDF_DATATYPE_OF_OBJ (__ro2sq ( "s_37_2_t0"."O")))) else ( case when ( is_named_iri_id ( "s_37_2_t0"."O")) then ( 'IRI' ) else ( case when ( is_bnode_iri_id ( "s_37_2_t0"."O")) then ( 'blank node' ) else ( 'string2' ) end) end) end AS "var3"
+FROM DB.DBA.RDF_QUAD AS "s_37_2_t0"
+WHERE
+  "s_37_2_t0"."S" = __i2idn ( __bft( 'http://www.wikidata.org/entity/Q12418' , 1))
+OPTION (QUIETCAST)

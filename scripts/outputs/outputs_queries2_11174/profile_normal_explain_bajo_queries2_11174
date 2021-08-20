@@ -1,0 +1,43 @@
+http://www.wikidata.org/entity/Q1020993	
+http://www.wikidata.org/entity/Q213154	
+http://www.wikidata.org/entity/Q665868	
+http://www.wikidata.org/entity/Q1711	
+http://www.wikidata.org/entity/Q1724	
+http://www.wikidata.org/entity/Q2100	
+http://www.wikidata.org/entity/Q586	
+http://www.wikidata.org/entity/Q807	
+http://www.wikidata.org/entity/Q2119	
+http://www.wikidata.org/entity/Q2751	
+
+  { 
+    time      0.82% fanout         1 input         1 rows
+    Subquery 27 
+      { 
+        time        17% fanout        10 input         1 rows
+        RDF_QUAD_POGS        10 rows(s_37_7_t1.S$31)
+         P =  IRI_ID"...direct/P279"  ,  O =  IRI_ID"...Q515" 
+        time        49% fanout      13.8 input        10 rows
+        RDF_QUAD_POGS     1e+02 rows(s_37_3_t0.S$34)
+         P =  IRI_ID"...direct/P31"  ,  O = cast$90
+        time        31% fanout  0.811594 input       138 rows
+        Distinct (s_37_3_t0.S$34)
+        time       1.6% fanout 0.0892857 input       112 rows
+        skip node  10  <none> set_no$29
+        
+        After code:
+        0: var1$28 :=  := artm s_37_3_t0.S$34
+        4: BReturn 0
+        time      0.24% fanout         0 input        10 rows
+        Subquery Select(var1$28)
+      }
+    
+    After code:
+    0: var1$52 := Call __ro2sq (var1$28)
+    5: BReturn 0
+    time      0.24% fanout         0 input        10 rows
+    Select (var1$52)
+  }
+
+
+ 1 msec 24% cpu,        11 rnd       140 seq   8.33333% same seg        25% same pg 
+Compilation: 1 msec 0 reads         0% read 0 messages         0% clw

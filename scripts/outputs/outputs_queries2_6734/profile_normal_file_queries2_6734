@@ -1,0 +1,67 @@
+http://www.wikidata.org/entity/Q165380	Hann. Münden	
+http://www.wikidata.org/entity/Q586	Bonn	
+http://www.wikidata.org/entity/Q586	Bonn	
+http://www.wikidata.org/entity/Q586	Bonn	
+http://www.wikidata.org/entity/Q586	Bonn	
+http://www.wikidata.org/entity/Q586	Bonn	
+http://www.wikidata.org/entity/Q586	Bonn	
+http://www.wikidata.org/entity/Q586	Bonn	
+http://www.wikidata.org/entity/Q586	Bonn	
+http://www.wikidata.org/entity/Q14957	Papenborg	
+http://www.wikidata.org/entity/Q14957	Papenborg	
+http://www.wikidata.org/entity/Q14957	Papenborg	
+http://www.wikidata.org/entity/Q14957	Papenborg	
+http://www.wikidata.org/entity/Q14957	Papenborg	
+http://www.wikidata.org/entity/Q14957	Papenborg	
+http://www.wikidata.org/entity/Q14957	Papenborg	
+http://www.wikidata.org/entity/Q14957	Papenborg	
+
+  { 
+    time      0.14% fanout         1 input         1 rows
+      clear: (<V set_ctr$46 in>)
+    s# 52 47 cluster outer seq start, set no <V set_ctr$46 in>    
+    save ctx:()
+    time       3.4% fanout      1064 input         1 rows
+      clear: (<V s_37_6_t0.S$28 rn>)
+      clear on continue: (<V s_37_6_t0.S$28 rn>)
+    s# 61 27 from DB.DBA.RDF_QUAD by RDF_QUAD_POGS    1.1e+03 rows   
+    Key RDF_QUAD_POGS  ASC  (<V s_37_6_t0.S$28 rn>)
+     P =  IRI_ID"...direct/P31"  ,  O =  IRI_ID"...Q515" 
+    
+    time        75% fanout 0.0272556 input      1064 rows
+      clear: (<V s_37_6_t1.S$31 rn>)
+      clear on continue: (<V s_37_6_t1.S$31 rn>)
+    s# 71 30 from DB.DBA.RDF_QUAD by RDF_QUAD       0.04 rows   
+    Key RDF_QUAD  ASC  (<V s_37_6_t1.S$31 rn>)
+     inlined  P =  IRI_ID"...direct/P17"  ,  S = <V s_37_6_t0.S$28 rn> ,  O =  IRI_ID"...Q183" 
+    
+    time        16% fanout  0.586207 input        29 rows
+    Precode:
+      0: <V var1$33 a> := Call __id2in (<r s_37_6_t0.S$28 via  Set71>)
+      5: BReturn 0
+      clear: (<V s_37_6_t2.O$36 an>, <V var1$33 a>)
+      clear on continue: (<V s_37_6_t2.O$36 an>)$85 (35 ) $28 (30 ) 
+    s# 81 35 from DB.DBA.RDF_QUAD by RDF_QUAD          1 rows   
+    Key RDF_QUAD  ASC  (<V s_37_6_t2.O$36 an>)
+     inlined  P =  IRI_ID"...direct/P1705"  ,  S = <v k_s_37_6_t0.S$85 Set87 rn>
+    vector param casts: <r s_37_6_t0.S$28 via  Set71>-> <v k_s_37_6_t0.S$85 Set87 rn>
+    
+    time       5.6% fanout         1 input        17 rows
+      clear: (<V var2$38 a>)$36 () 
+    s# 95 50 skip node  50  <none> <r set_ctr$46 via  Set81 Set87 Set71 Set61>
+    After code:
+      0: <V var2$38 a> := Call __ro2sq (<r s_37_6_t2.O$36 via  Set95>)
+      5: BReturn 0
+    time     0.017% fanout         0 input        17 rows
+    $33 (50 35 ) $38 (50 ) $46 (50 35 30 27 47 ) 
+    s# 103 40 Select (<r var1$33 via  Set95 Set81 Set87>, <V var2$38 a>)
+      set no: <r set_ctr$46 via  Set95 Set81 Set87 Set71 Set61>
+  }
+Warning: You might have a Cartesian product.
+
+Warning: You might have a Cartesian product.
+
+
+
+ 3 msec 55% cpu,      1113 rnd      1080 seq   91.7415% same seg   4.93716% same pg 
+Compilation: 2 msec 0 reads         0% read 0 messages         0% clw

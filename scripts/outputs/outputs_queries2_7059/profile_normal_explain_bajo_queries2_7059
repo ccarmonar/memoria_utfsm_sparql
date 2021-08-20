@@ -1,0 +1,22 @@
+http://www.wikidata.org/entity/Q71113			
+
+  { 
+    time       1.9% fanout         1 input         1 rows
+    time        34% fanout         6 input         1 rows
+    RDF_QUAD_POGS         6 rows(s_37_4_t0.S$28)
+     P =  IRI_ID"...direct/P31"  ,  O =  IRI_ID"...Q162620" 
+    time        64% fanout  0.166667 input         6 rows
+    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:   7.3e-05 Fanout:      0.17
+    RDF_QUAD   7.3e-05 rows()
+     inlined  P =  IRI_ID"...direct/P131"  ,  S = s_37_4_t0.S$28 ,  O =  IRI_ID"...Q5739" 
+    
+    After code:
+    0: var1$32 := Call __id2in (s_37_4_t0.S$28)
+    5: BReturn 0
+    time       0.7% fanout         0 input         1 rows
+    Select (var1$32, <DB_NULL>, <DB_NULL>)
+  }
+
+
+ 0 msec 11% cpu,         7 rnd         5 seq      62.5% same seg         0% same pg 
+Compilation: 1 msec 0 reads         0% read 0 messages         0% clw

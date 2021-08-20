@@ -1,0 +1,35 @@
+
+  { 
+    time       6.9% fanout         1 input         1 rows
+    time        93% fanout         0 input         1 rows
+    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:   1.4e-07 Fanout:         0
+    Precode:
+      0: vector$27 := Call vector ( IRI_ID"...Q8513" )
+      5: vector$29 := Call vector ( IRI_ID"...Q1789476" )
+      10: vector$31 := Call vector ( IRI_ID"...Q21538537" )
+      15: vector$33 := Call vector ( IRI_ID"...Q5570651" )
+      20: vector$35 := Call vector (vector$27, vector$29, vector$31, vector$33)
+      25: BReturn 0
+    RDF_QUAD_POGS   1.4e-07 rows(s_37_5_t1.S$39, s_37_5_t1.O$38)
+     inlined  P =  IRI_ID"...statement/P279" 
+    time         0% fanout         0 input         0 rows
+    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:   1.4e-07 Fanout:         0
+    RDF_QUAD_POGS   1.4e-07 rows()
+     inlined  P =  IRI_ID"...P279"  ,  O = cast$90 ,  S =  IRI_ID"...Q8513" 
+    time         0% fanout         0 input         0 rows
+    Precode:
+      0: var1$43 := Call __ro2sq (s_37_5_t1.O$38)
+      5: dta$50 :=  := artm vector$35
+      9: proc_ctr$46 :=  := artm  0 
+      13:  <none>  := Call __reset_temp ( 139910668474816 )
+      18:  <proc table>  := Call DB.DBA.SPARQL_BINDINGS_VIEW_C_1_IMP (vector$35)
+      25: BReturn 0
+    Key from temp (proc_ctr$46, BND0$48)
+    
+    time         0% fanout         0 input         0 rows
+    Select (var1$43)
+  }
+
+
+ 0 msec 3% cpu,         1 rnd         0 seq         0% same seg         0% same pg 
+Compilation: 1 msec 0 reads         0% read 0 messages         0% clw

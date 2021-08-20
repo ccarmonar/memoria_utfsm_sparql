@@ -1,0 +1,31 @@
+http://www.wikidata.org/entity/Q4360857	Östergarnsberget	
+http://www.wikidata.org/entity/Q4813444	Ölbäck	
+http://www.wikidata.org/entity/Q18288914	Ekstakusten	
+http://www.wikidata.org/entity/Q18292402	Mulde naturreservat	
+http://www.wikidata.org/entity/Q30157785	Horsan	
+http://www.wikidata.org/entity/Q30159619	Södra Hällarna	
+
+  { 
+    time       0.1% fanout         1 input         1 rows
+    time       4.2% fanout      1478 input         1 rows
+    RDF_QUAD_POGS   1.5e+03 rows(s_37_6_t1.S$28)
+     P =  IRI_ID"...direct/P131"  ,  O =  IRI_ID"...Q374794" 
+    time        87% fanout 0.0128552 input      1478 rows
+    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:   0.00025 Fanout:     0.013
+    RDF_QUAD   0.00025 rows(s_37_6_t0.S$31)
+     inlined  P =  IRI_ID"...direct/P31"  ,  S = s_37_6_t1.S$28 ,  O =  IRI_ID"...Q179049" 
+    time       8.9% fanout  0.315789 input        19 rows
+    RDF_QUAD         1 rows(s_37_6_t2.O$34)
+     inlined  P =  IRI_ID"...direct/P373"  ,  S = s_37_6_t0.S$31
+    
+    After code:
+    0: var1$36 := Call __id2in (s_37_6_t0.S$31)
+    5: var2$38 := Call __ro2sq (s_37_6_t2.O$34)
+    10: BReturn 0
+    time     0.015% fanout         0 input         6 rows
+    Select (var1$36, var2$38)
+  }
+
+
+ 4 msec 62% cpu,      1504 rnd      1476 seq   94.0199% same seg   4.71761% same pg 
+Compilation: 2 msec 0 reads         0% read 0 messages         0% clw

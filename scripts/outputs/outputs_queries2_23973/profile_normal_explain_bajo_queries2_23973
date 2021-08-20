@@ -1,0 +1,35 @@
+S Amigorena	
+Sebastián Amigorena	
+Sebastián Amigorena	
+Amigorena S	
+Amigorena S	
+Amigorena S	
+Amigorena S	
+Amigorena S	
+
+  { 
+    time   2.7e-05% fanout         1 input         1 rows
+    time       1.4% fanout 7.96641e+06 input         1 rows
+    RDF_QUAD_POGS   5.8e+06 rows(s_37_2_t0.O$28)
+     inlined  P =  IRI_ID"...direct/P2093" 
+    time        99% fanout 1.00422e-06 input 7.96641e+06 rows
+    END Node
+    After test:
+    0: __ro2sq$30 := Call __ro2sq (s_37_2_t0.O$28)
+    5: _cvt$32 := Call _cvt (<tag 193 flag 0>, __ro2sq$30)
+    10: if (_cvt$32  LIKE  <c %Amigorena%>) then 14 else 15 unkn 15
+    14: BReturn 1
+    15: BReturn 0
+    time    0.0021% fanout         1 input         8 rows
+    skip node  10  <none> set_ctr$42
+    
+    After code:
+    0: var1$34 := Call __ro2sq (s_37_2_t0.O$28)
+    5: BReturn 0
+    time   6.6e-06% fanout         0 input         8 rows
+    Select (var1$34)
+  }
+
+
+ 11726 msec 99% cpu, 7.96642e+06 rnd 7.9578e+06 seq         0% same seg   50.3638% same pg 
+Compilation: 1 msec 0 reads         0% read 0 messages         0% clw

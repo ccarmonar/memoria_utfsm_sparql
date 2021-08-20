@@ -1,0 +1,66 @@
+http://www.wikidata.org/entity/Q417743	5091	
+
+  { 
+    time    0.0023% fanout         1 input         1 rows
+      clear: (<V set_ctr$66 in>)
+    s# 69 67 cluster outer seq start, set no <V set_ctr$66 in>    
+    save ctx:()
+    time      0.09% fanout         1 input         1 rows
+    Precode:
+      0: <V entity/Q410688$27 r> := Call __i2idn (<tag 182 flag 1 c http://www.wikidata.org/entity/Q410688>)
+      5: BReturn 0
+      clear: (<V set_no$32 i>, <V entity/Q410688$27 r>)
+    s# 78 55 cluster outer seq start, set no <V set_no$32 i>    
+    save ctx:()
+    time       2.1% fanout     15788 input         1 rows
+    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:      0.22 Fanout:   1.6e+04
+      clear: (<V s_37_5_t1.S$34 rn>)
+      clear on continue: (<V s_37_5_t1.S$34 rn>)
+    s# 87 33 from DB.DBA.RDF_QUAD by RDF_QUAD_POGS       0.22 rows   
+    Key RDF_QUAD_POGS  ASC  (<V s_37_5_t1.S$34 rn>)
+     P =  IRI_ID"...direct/P703"  ,  O =  IRI_ID"...Q15978631"  ,  S <  IRI_ID"...nodeID://b0" 
+    row specs:  S <  IRI_ID"...nodeID://b0" 
+    
+    time        95% fanout  0.475298 input     15788 rows
+      clear: (<V s_37_5_t0.O$37 an>, <V s_37_5_t0.S$38 rn>)
+      clear on continue: (<V s_37_5_t0.O$37 an>, <V s_37_5_t0.S$38 rn>)$34 () 
+    s# 97 36 from DB.DBA.RDF_QUAD by RDF_QUAD        0.9 rows   
+    Key RDF_QUAD  ASC  (<V s_37_5_t0.S$38 rn>, <V s_37_5_t0.O$37 an>)
+     inlined  P =  IRI_ID"...direct/P351"  ,  S = <V s_37_5_t1.S$34 rn>
+    row specs:  S <  IRI_ID"...nodeID://b0" 
+    
+    time       2.5% fanout 0.000133262 input      7504 rows
+      clear: (<V one_of_these$40 i>)$27 (36 33 55 ) 
+    s# 113 108 END Node
+    After test:
+      0: <V one_of_these$40 i> := Call one_of_these (<V s_37_5_t0.S$38 rn>, <r entity/Q410688$27 via  Set97 Set87 Set78>,  IRI_ID"...Q416426" ,  IRI_ID"...Q417743" ,  IRI_ID"...Q418634" )
+      5: if ( 0  < <V one_of_these$40 i>) then 9 else 10 unkn 10
+      9: BReturn 1
+      10: BReturn 0
+    time      0.16% fanout         1 input         1 rows
+      clear: (<V var2$31 an>, <V var1$30 rn>)$37 (108 ) $38 (108 ) 
+    s# 121 42 Distinct (HASH) set no <r set_no$32 via  Set113 Set97 Set87>(<r s_37_5_t0.S$38 via  Set113>, <r s_37_5_t0.O$37 via  Set113>)
+    After code:
+      0: <V var1$30 rn> :=  := artm <r s_37_5_t0.S$38 via  Set121 Set113>
+      4: <V var2$31 an> :=  := artm <r s_37_5_t0.O$37 via  Set121 Set113>
+      8: BReturn 0
+    time      0.17% fanout         1 input         1 rows
+      clear: (<V var2$58 a>, <V var1$56 a>)$31 (42 ) $32 (42 108 36 33 55 ) $30 (42 ) 
+    s# 131 48 Subquery Select(<V var1$30 rn>, <V var2$31 an>)
+      set no: <r set_no$32 via  Set121 Set113 Set97 Set87>
+    After code:
+      0: <V var1$56 a> := Call __ro2sq (<V var1$30 rn>)
+      5: <V var2$58 a> := Call __ro2sq (<V var2$31 an>)
+      10: BReturn 0
+    time   0.00083% fanout         0 input         1 rows
+    $66 (48 42 108 36 33 55 67 ) $56 (48 ) $58 (48 ) 
+    s# 138 60 Select (<V var1$56 a>, <V var2$58 a>)
+      set no: <r set_ctr$66 via  Set131>
+  }
+Warning: You might have a Cartesian product.
+
+
+
+ 89 msec 50% cpu,     15790 rnd     15773 seq   99.8227% same seg 0.0253309% same pg 
+11 disk reads, 0 read ahead,   27.7949% wait
+Compilation: 87 msec 5 reads   48.1807% read 0 messages         0% clw

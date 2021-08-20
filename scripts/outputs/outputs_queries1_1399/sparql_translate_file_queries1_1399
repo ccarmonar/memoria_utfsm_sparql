@@ -1,0 +1,24 @@
+ SELECT  __ro2sq ("s_37_9_rbc"."var1") AS "var1" FROM (SELECT DISTINCT "s_37_9_t1"."S" AS "var1"
+  FROM DB.DBA.RDF_QUAD AS "s_37_9_t1"
+    INNER JOIN DB.DBA.RDF_QUAD AS "s_37_9_t2"
+    ON (
+      "s_37_9_t1"."O" = "s_37_9_t2"."S")
+  WHERE
+    "s_37_9_t1"."P" = __i2idn ( __bft( 'http://www.wikidata.org/prop/statement/P131' , 1))
+    AND 
+    "s_37_9_t2"."P" = __i2idn ( __bft( 'http://www.wikidata.org/prop/direct/P31' , 1))
+    AND 
+    is_named_iri_id ( "s_37_9_t2"."O")
+    AND 
+    ( "s_37_9_t2"."O" in ( __i2idn ( __bft ( __bft( 'http://www.wikidata.org/entity/Q6465' , 1), 1)),  __i2idn ( __bft ( __bft( 'http://www.wikidata.org/entity/Q202216' , 1), 1)),  __i2idn ( __bft ( __bft( 'http://www.wikidata.org/entity/Q719487' , 1), 1)),  __i2idn ( __bft ( __bft( 'http://www.wikidata.org/entity/Q3408484' , 1), 1))))
+    AND 
+    not ( EXISTS ( (
+       SELECT TOP 1 1 AS __ask_retval
+        FROM DB.DBA.RDF_QUAD AS "s_37_7_t0"
+        WHERE
+          "s_37_7_t0"."P" = __i2idn ( __bft( 'http://www.wikidata.org/prop/qualifier/P582' , 1))
+          AND 
+          "s_37_7_t0"."S" = "s_37_9_t1"."S"
+OPTION (QUIETCAST)
+       )))
+OPTION (QUIETCAST)) AS "s_37_9_rbc"

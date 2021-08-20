@@ -1,0 +1,42 @@
+Cindy	Marshall	
+Richard	Mutt	
+Richard	Mutt	
+Craig	Ellis	
+Cindy	Marshall	
+Bradley	Perry	
+Katherine	Duncan	
+
+  { 
+    time       1.1% fanout         1 input         1 rows
+    time        23% fanout         8 input         1 rows
+    RDF_QUAD       6.4 rows(s_12_8_t2.S$29, s_12_8_t2.O$28)
+     inlined  P =  IRI_ID"...lastName" 
+    time        14% fanout     0.875 input         8 rows
+    END Node
+    After test:
+    0: if (  { 
+        time      0.32% fanout         1 input         8 rows
+        time        10% fanout     0.125 input         8 rows
+        RDF_QUAD         1 rows()
+         inlined  P =  IRI_ID"...workTel"  ,  S = k_s_12_8_t2.S$103
+        time      0.65% fanout         0 input         1 rows
+        Subquery Select( <none> )
+      }
+    ) then 5 else 4 unkn 5
+    4: BReturn 1
+    5: BReturn 0
+    time        50% fanout         1 input         7 rows
+    RDF_QUAD         1 rows(s_12_8_t1.O$46)
+     inlined  P =  IRI_ID"...firstName"  ,  S = k_s_12_8_t2.S$128
+    
+    After code:
+    0: last$48 := Call __ro2sq (s_12_8_t2.O$28)
+    5: first$50 := Call __ro2sq (s_12_8_t1.O$46)
+    10: BReturn 0
+    time      0.14% fanout         0 input         7 rows
+    Select (first$50, last$48)
+  }
+
+
+ 0 msec 14% cpu,        30 rnd         7 seq   41.9355% same seg   29.0323% same pg 
+Compilation: 1 msec 0 reads         0% read 0 messages         0% clw

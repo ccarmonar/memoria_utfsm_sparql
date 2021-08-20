@@ -1,0 +1,34 @@
+SELECT __id2in ( "s_37_12_t5"."S") AS "var1",
+  __ro2sq ( "s_37_12_t7"."O") AS "var2",
+  __ro2sq ( "s_37_10"."var3") AS "var3",
+  __ro2sq ( "s_37_10"."var4") AS "var4"
+FROM DB.DBA.RDF_QUAD AS "s_37_12_t5"
+  INNER JOIN DB.DBA.RDF_QUAD AS "s_37_12_t6"
+  ON (
+    "s_37_12_t6"."S" = "s_37_12_t5"."O")
+  INNER JOIN DB.DBA.RDF_QUAD AS "s_37_12_t7"
+  ON (
+    "s_37_12_t7"."S" = "s_37_12_t6"."O")
+  LEFT OUTER JOIN (
+    SELECT "s_37_10_t0"."S" AS "var5",
+      "s_37_10_t0"."O" AS "var4",
+      "s_37_10_t1"."O" AS "var3"
+    FROM DB.DBA.RDF_QUAD AS "s_37_10_t0"
+      INNER JOIN DB.DBA.RDF_QUAD AS "s_37_10_t1"
+      ON (
+        "s_37_10_t0"."S" = "s_37_10_t1"."S")
+    WHERE
+      "s_37_10_t0"."P" = __i2idn ( __bft( 'http://wikiba.se/ontology#quantityUpperBound' , 1))
+      AND 
+      "s_37_10_t1"."P" = __i2idn ( __bft( 'http://wikiba.se/ontology#quantityLowerBound' , 1))) AS "s_37_10"
+  ON (
+    "s_37_12_t7"."S" = "s_37_10"."var5"
+    AND 
+    "s_37_12_t6"."O" = "s_37_10"."var5")
+WHERE
+  "s_37_12_t5"."P" = __i2idn ( __bft( 'http://www.wikidata.org/prop/P1352' , 1))
+  AND 
+  "s_37_12_t6"."P" = __i2idn ( __bft( 'http://www.wikidata.org/prop/statement/value/P1352' , 1))
+  AND 
+  "s_37_12_t7"."P" = __i2idn ( __bft( 'http://wikiba.se/ontology#quantityAmount' , 1))
+OPTION (QUIETCAST)

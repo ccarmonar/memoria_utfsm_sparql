@@ -1,0 +1,45 @@
+
+  { 
+    time       9.5% fanout         1 input         1 rows
+      clear: (<V set_ctr$44 in>)
+    s# 47 45 cluster outer seq start, set no <V set_ctr$44 in>    
+    save ctx:()
+    time        90% fanout         0 input         1 rows
+    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:   1.4e-07 Fanout:         0
+      clear: (<V s_37_6_t2.S$28 rn>)
+      clear on continue: (<V s_37_6_t2.S$28 rn>)
+    s# 56 27 from DB.DBA.RDF_QUAD by RDF_QUAD_POGS    1.4e-07 rows   
+    Key RDF_QUAD_POGS  ASC  (<V s_37_6_t2.S$28 rn>)
+     P =  IRI_ID"...isPartOf"  ,  O =  IRI_ID"..." 
+    
+    time         0% fanout         0 input         0 rows
+    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:         1 Fanout:         0
+      clear: (<V s_37_6_t1.O$31 an>)
+      clear on continue: (<V s_37_6_t1.O$31 an>)$28 () 
+    s# 66 30 from DB.DBA.RDF_QUAD by RDF_QUAD          1 rows   
+    Key RDF_QUAD  ASC  (<V s_37_6_t1.O$31 an>)
+     inlined  P =  IRI_ID"...about"  ,  S = <V s_37_6_t2.S$28 rn>
+    
+    time         0% fanout         0 input         0 rows
+    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:      0.38 Fanout:         0
+      clear: (<V s_37_6_t0.S$34 rn>, <V var1$36 a>)
+      clear on continue: (<V var1$36 a>, <V s_37_6_t0.S$34 rn>)$31 () $80 (33 ) 
+    s# 76 33 from DB.DBA.RDF_QUAD by RDF_QUAD       0.38 rows   
+    Key RDF_QUAD  ASC  (<V s_37_6_t0.S$34 rn>)
+     inlined  P =  IRI_ID"...direct/P31"  ,  S = <v k_s_37_6_t1.O$80 Set82 rn> ,  O =  IRI_ID"...Q13442814" 
+    vector param casts: <V s_37_6_t1.O$31 an>-> <v k_s_37_6_t1.O$80 Set82 rn>
+    
+    After code:
+      0: <V var1$36 a> := Call __id2in (<V s_37_6_t0.S$34 rn>)
+      5: BReturn 0
+    time         0% fanout         0 input         0 rows
+    $36 () $44 (33 30 27 45 ) 
+    s# 90 38 Select (<V var1$36 a>)
+      set no: <r set_ctr$44 via  Set76 Set82 Set66 Set56>
+  }
+Warning: You might have a Cartesian product.
+
+
+
+ 0 msec 0% cpu,         1 rnd         0 seq         0% same seg         0% same pg 
+Compilation: 9 msec 0 reads         0% read 0 messages         0% clw

@@ -1,0 +1,93 @@
+http://www.wikidata.org/entity/Q3071111	
+http://www.wikidata.org/entity/Q80484	
+http://www.wikidata.org/entity/Q809657	
+http://www.wikidata.org/entity/Q131128	
+http://www.wikidata.org/entity/Q215238	
+http://www.wikidata.org/entity/Q635045	
+http://www.wikidata.org/entity/Q590361	
+http://www.wikidata.org/entity/Q1639696	
+http://www.wikidata.org/entity/Q664550	
+http://www.wikidata.org/entity/Q1016289	
+http://www.wikidata.org/entity/Q1949069	
+http://www.wikidata.org/entity/Q959528	
+http://www.wikidata.org/entity/Q1026987	
+http://www.wikidata.org/entity/Q2422345	
+http://www.wikidata.org/entity/Q3315681	
+http://www.wikidata.org/entity/Q512116	
+http://www.wikidata.org/entity/Q1000887	
+http://www.wikidata.org/entity/Q4902946	
+http://www.wikidata.org/entity/Q10686	
+http://www.wikidata.org/entity/Q1513	
+
+  { 
+    time     0.062% fanout         1 input         1 rows
+      clear: (<V set_ctr$82 in>)
+    s# 85 83 cluster outer seq start, set no <V set_ctr$82 in>    
+    save ctx:()
+      clear: (<V var1$28 a>, <V set_no$29 i>, <V var1$74 a>)
+    s# 94 27 Subquery 27 
+      multistate set no = <V set_no$29 i>
+      { 
+        time      0.05% fanout         1 input         1 rows
+        
+        s# 140 38 Fork 38 {  
+                
+            save ctx:()
+              set no = <V set_no$29 i> array  <none>  save: 
+            time         2% fanout      1064 input         1 rows
+              clear: (<V s_37_6_t0.S$31 rn>)
+              clear on continue: (<V s_37_6_t0.S$31 rn>)
+            s# 99 30 from DB.DBA.RDF_QUAD by RDF_QUAD_POGS    1.1e+03 rows Parallel, tail cost   9.5e+03   
+            Key RDF_QUAD_POGS  ASC  (<V s_37_6_t0.S$31 rn>)
+             P =  IRI_ID"...direct/P31"  ,  O =  IRI_ID"...Q515" 
+            copy on branch $29 $0 $0 $0 sets: 85 
+            
+            time        40% fanout   1.10714 input      1064 rows
+              clear: (<V s_37_6_t1.S$34 rn>)
+              clear on continue: (<V s_37_6_t1.S$34 rn>)
+            s# 109 33 from DB.DBA.RDF_QUAD by RDF_QUAD          1 rows Parallel, tail cost       8.9   
+            Key RDF_QUAD  ASC  (<V s_37_6_t1.S$34 rn>)
+             inlined  P =  IRI_ID"...direct/P17"  ,  S = <V s_37_6_t0.S$31 rn>
+            copy on branch $31 $29 $0 $0 sets: 85 99 
+            
+            time        13% fanout  0.919355 input      1178 rows
+            $123 (36 ) 
+            s# 119 36 from DB.DBA.RDF_QUAD by RDF_QUAD        1.1 rows Parallel, tail cost       4.5   
+            Key RDF_QUAD  ASC  ()
+             inlined  P =  IRI_ID"...direct/P1082"  ,  S = <v k_s_37_6_t0.S$123 Set125 rn>
+            vector param casts: <r s_37_6_t0.S$31 via  Set109>-> <v k_s_37_6_t0.S$123 Set125 rn>
+            copy on branch $123 $31 $29 $0 sets: 85 99 109 
+            
+            time       5.2% fanout         0 input      1083 rows
+            
+            s# 132 39 Sort (HASH) set no <r set_no$29 via  Set119 Set125 Set109 Set99>(<r s_37_6_t0.S$31 via  Set119 Set125 Set109>)
+        }
+        time        39% fanout       498 input         1 rows
+          clear: (<V s_37_6_t0.S$31 rn>, <V var1$28 a>, <V __id2in$65 a>)
+          clear on continue: (<V s_37_6_t0.S$31 rn>, <V var1$28 a>, <V __id2in$65 a>)
+        s# 147 44 group by read node  
+        (<V s_37_6_t0.S$31 rn>)
+        After code:
+          0: <V __id2in$65 a> := Call __id2in (<V s_37_6_t0.S$31 rn>)
+          5: <V var1$28 a> :=  := artm <V __id2in$65 a>
+          9: BReturn 0
+        time     0.019% fanout         0 input       498 rows
+        
+        s# 94 67 Subquery Select(<V var1$28 a>)
+          set no: <r set_no$29 via  Set147>
+      }
+    
+    After code:
+      0: <V var1$74 a> := Call __ro2sq (<V var1$28 a>)
+      5: BReturn 0
+    time     0.018% fanout         0 input       498 rows
+    $74 (27 ) $82 (27 83 ) 
+    s# 164 76 Select (<V var1$74 a>)
+      set no: <r set_ctr$82 via  Set94>
+  }
+Warning: You might have a Cartesian product.
+
+
+
+ 6 msec 70% cpu,      2243 rnd      1617 seq   96.0784% same seg   2.98574% same pg 
+Compilation: 2 msec 0 reads         0% read 0 messages         0% clw

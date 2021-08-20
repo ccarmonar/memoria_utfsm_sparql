@@ -1,0 +1,56 @@
+http://www.wikidata.org/entity/Q5746018	http://www.wikidata.org/prop/direct/P361	
+http://www.wikidata.org/entity/Q5854900	http://www.wikidata.org/prop/direct/P361	
+http://www.wikidata.org/entity/Q16616989	http://www.wikidata.org/prop/direct/P108	
+http://www.wikidata.org/entity/Q10868645	http://www.wikidata.org/prop/direct/P108	
+http://www.wikidata.org/entity/Q79840290	http://www.wikidata.org/prop/direct/P108	
+http://www.wikidata.org/entity/Q1590902	http://www.wikidata.org/prop/direct/P108	
+http://www.wikidata.org/entity/Q2159559	http://www.wikidata.org/prop/direct/P108	
+http://www.wikidata.org/entity/Q5671540	http://www.wikidata.org/prop/direct/P108	
+http://www.wikidata.org/entity/Q5938451	http://www.wikidata.org/prop/direct/P108	
+http://www.wikidata.org/entity/Q5940076	http://www.wikidata.org/prop/direct/P108	
+http://www.wikidata.org/entity/Q6764718	http://www.wikidata.org/prop/direct/P108	
+http://www.wikidata.org/entity/Q6765626	http://www.wikidata.org/prop/direct/P108	
+http://www.wikidata.org/entity/Q15432014	http://www.wikidata.org/prop/direct/P108	
+http://www.wikidata.org/entity/Q41861880	http://www.wikidata.org/prop/direct/P108	
+http://www.wikidata.org/entity/Q100529	http://www.wikidata.org/prop/direct/P108	
+http://www.wikidata.org/entity/Q51579182	http://www.wikidata.org/prop/direct/P108	
+http://www.wikidata.org/entity/Q5726588	http://www.wikidata.org/prop/direct/P108	
+http://www.wikidata.org/entity/Q5920418	http://www.wikidata.org/prop/direct/P108	
+http://www.wikidata.org/entity/Q16599896	http://www.wikidata.org/prop/direct/P108	
+http://www.wikidata.org/entity/Q18643857	http://www.wikidata.org/prop/direct/P108	
+
+  { 
+    time      0.13% fanout         1 input         1 rows
+      clear: (<V set_ctr$45 in>)
+    s# 48 46 cluster outer seq start, set no <V set_ctr$45 in>    
+    save ctx:()
+    time       1.9% fanout         6 input         1 rows
+      clear: (<V s_37_2_t0.P$28 rn>)
+      clear on continue: (<V s_37_2_t0.P$28 rn>)
+    s# 57 27 from DB.DBA.RDF_QUAD by RDF_QUAD_OP          6 rows   
+    Key RDF_QUAD_OP  ASC  (<V s_37_2_t0.P$28 rn>)
+     inlined  O =  IRI_ID"...Q232141" 
+    
+    time        98% fanout   44.3333 input         6 rows
+    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:       1.2 Fanout:        44
+      clear: (<V s_37_2_t0.S$32 rn>, <V var2$37 a>, <V var1$35 a>)
+      clear on continue: (<V s_37_2_t0.S$32 rn>, <V var2$37 a>, <V var1$35 a>)$28 () 
+    s# 67 31 from DB.DBA.RDF_QUAD by RDF_QUAD_POGS        1.2 rows   
+    Key RDF_QUAD_POGS  ASC  (<V s_37_2_t0.S$32 rn>)
+     P = <V s_37_2_t0.P$28 rn> ,  O =  IRI_ID"...Q232141" 
+    
+    After code:
+      0: <V var1$35 a> := Call __id2in (<V s_37_2_t0.S$32 rn>)
+      5: <V var2$37 a> := Call __id2in (<r s_37_2_t0.P$28 via  Set67>)
+      10: BReturn 0
+    time     0.037% fanout         0 input       266 rows
+    $35 () $37 () $45 (31 27 46 ) 
+    s# 77 39 Select (<V var1$35 a>, <V var2$37 a>)
+      set no: <r set_ctr$45 via  Set67 Set57>
+  }
+Warning: You might have a Cartesian product.
+
+
+
+ 3 msec 66% cpu,        89 rnd       265 seq         0% same seg   12.2222% same pg 
+Compilation: 0 msec 0 reads         0% read 0 messages         0% clw

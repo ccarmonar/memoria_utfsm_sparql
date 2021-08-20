@@ -1,0 +1,19 @@
+ SELECT  __ro2sq ("s_37_5_rbc"."var1") AS "var1", __ro2sq ("s_37_5_rbc"."var2") AS "var2" FROM (SELECT DISTINCT "s_37_5_t0"."S" AS "var1",
+    "s_37_5_t0"."O" AS "var2"
+  FROM DB.DBA.RDF_QUAD AS "s_37_5_t0"
+    INNER JOIN DB.DBA.RDF_QUAD AS "s_37_5_t1"
+    ON (
+      "s_37_5_t0"."S" = "s_37_5_t1"."S")
+  WHERE
+    ( "s_37_5_t0"."S" < min_bnode_iri_id ())
+    AND 
+    "s_37_5_t0"."P" = __i2idn ( __bft( 'http://www.wikidata.org/prop/direct/P351' , 1))
+    AND 
+    ( "s_37_5_t1"."S" < min_bnode_iri_id ())
+    AND 
+    "s_37_5_t1"."P" = __i2idn ( __bft( 'http://www.wikidata.org/prop/direct/P703' , 1))
+    AND 
+    "s_37_5_t1"."O" = __i2idn ( __bft( 'http://www.wikidata.org/entity/Q15978631' , 1))
+    AND 
+    ( "s_37_5_t0"."S" in ( __i2idn ( __bft ( __bft( 'http://www.wikidata.org/entity/Q416426' , 1), 1)),  __i2idn ( __bft ( __bft( 'http://www.wikidata.org/entity/Q417743' , 1), 1)),  __i2idn ( __bft ( __bft( 'http://www.wikidata.org/entity/Q418634' , 1), 1))))
+OPTION (QUIETCAST)) AS "s_37_5_rbc"

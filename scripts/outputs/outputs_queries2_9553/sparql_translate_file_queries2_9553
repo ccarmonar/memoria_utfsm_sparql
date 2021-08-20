@@ -1,0 +1,37 @@
+SELECT __id2in ( "s_37_13_t2"."S") AS "var1",
+  NULL /* due to conflict on var1Label */ AS "var1Label",
+  NULL /* due to conflict on var2Label */ AS "var2Label",
+  NULL /* due to conflict on var3Label */ AS "var3Label"
+FROM DB.DBA.RDF_QUAD AS "s_37_13_t1"
+  INNER JOIN DB.DBA.RDF_QUAD AS "s_37_13_t2"
+  ON (1)
+  INNER JOIN DB.DBA.RDF_QUAD AS "s_37_13_t3"
+  ON (
+    "s_37_13_t2"."S" = "s_37_13_t3"."S")
+  INNER JOIN DB.DBA.RDF_QUAD AS "s_37_9_t0"
+  ON (
+    "s_37_13_t2"."S" = "s_37_9_t0"."S"
+    AND 
+    "s_37_13_t3"."S" = "s_37_9_t0"."S")
+  INNER JOIN DB.DBA.RDF_QUAD AS "s_37_13_t4"
+  ON (
+    "s_37_13_t4"."S" = "s_37_9_t0"."O")
+WHERE
+  "s_37_13_t1"."S" = __i2idn ( __bft( 'http://www.bigdata.com/queryHints#Query' , 1))
+  AND 
+  "s_37_13_t1"."P" = __i2idn ( __bft( 'http://www.bigdata.com/queryHints#optimizer' , 1))
+  AND 
+  "s_37_13_t1"."O" = DB.DBA.RDF_OBJ_OF_SQLVAL ( 'None' )
+  AND 
+  "s_37_13_t2"."P" = __i2idn ( __bft( 'http://www.wikidata.org/prop/direct/P569' , 1))
+  AND 
+  "s_37_13_t3"."P" = __i2idn ( __bft( 'http://www.wikidata.org/prop/direct/P106' , 1))
+  AND 
+  "s_37_13_t4"."P" = __i2idn ( __bft( 'http://www.wikidata.org/prop/direct/P706' , 1))
+  AND 
+  "s_37_13_t4"."O" = __i2idn ( __bft( 'http://www.wikidata.org/entity/Q664609' , 1))
+  AND 
+  ( "s_37_9_t0"."P" in ( __i2idn ( __bft ( __bft( 'http://www.wikidata.org/prop/direct/P19' , 1), 1)),  __i2idn ( __bft ( __bft( 'http://www.wikidata.org/prop/direct/P20' , 1), 1)),  __i2idn ( __bft ( __bft( 'http://www.wikidata.org/prop/direct/P551' , 1), 1))))
+  AND 
+ (DB.DBA.RDF_LONG_CMP( __ro2lo ( "s_37_13_t2"."O"), DB.DBA.RDF_MAKE_LONG_OF_TYPEDSQLVAL_STRINGS ( '1900-00-00T00:00:00Z' , UNAME'http://www.w3.org/2001/XMLSchema#dateTime' , NULL)) <= 0)
+OPTION (QUIETCAST)

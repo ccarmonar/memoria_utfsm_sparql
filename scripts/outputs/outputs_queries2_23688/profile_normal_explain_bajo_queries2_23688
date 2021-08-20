@@ -1,0 +1,46 @@
+http://irail.be/stations/NMBS/008894201	
+https://www.ncbi.nlm.nih.gov/protein/P05091	
+https://www.ncbi.nlm.nih.gov/protein/P06729	
+http://publications.europa.eu/resource/authority/language/KWK	
+http://purl.uniprot.org/uniprot/P05091	
+http://purl.uniprot.org/uniprot/P06729	
+https://identifiers.org/uniprot:P05091	
+https://identifiers.org/uniprot:P06729	
+http://purl.obolibrary.org/obo/HP_0003811	
+http://irail.be/stations/NMBS/008814167	
+http://irail.be/stations/NMBS/008843174	
+http://irail.be/stations/NMBS/008843349	
+http://irail.be/stations/NMBS/008886066	
+https://scigraph.springernature.com/person.01145155511.47	
+http://purl.obolibrary.org/obo/DOID_0110070	
+http://purl.obolibrary.org/obo/HP_0011724	
+http://identifiers.org/doid/DOID:0110070	
+http://publications.europa.eu/resource/authority/language/ORC	
+http://dbpedia.org/resource/Xfinity_Center_(College_Park,_Maryland)	
+http://publications.europa.eu/resource/authority/language/HMR	
+
+  { 
+    time      0.11% fanout         1 input         1 rows
+    time       2.5% fanout      1000 input         1 rows
+    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:   1.2e+05 Fanout:     1e+03
+    RDF_QUAD_POGS   1.2e+05 rows(s_37_2_t0.O$28)
+     inlined  P =  IRI_ID"...direct/P2888" 
+    time        97% fanout         1 input      1000 rows
+    END Node
+    After test:
+    0: isiri_id$30 := Call isiri_id (s_37_2_t0.O$28)
+    5: temp$32 := artm  1  - isiri_id$30
+    9: if ( 0  = temp$32) then 13 else 14 unkn 14
+    13: BReturn 1
+    14: BReturn 0
+    
+    After code:
+    0: var1$34 := Call __ro2sq (s_37_2_t0.O$28)
+    5: BReturn 0
+    time     0.026% fanout         0 input      1000 rows
+    Select (var1$34)
+  }
+
+
+ 4 msec 73% cpu,         3 rnd       998 seq         0% same seg         0% same pg 
+Compilation: 1 msec 0 reads         0% read 0 messages         0% clw

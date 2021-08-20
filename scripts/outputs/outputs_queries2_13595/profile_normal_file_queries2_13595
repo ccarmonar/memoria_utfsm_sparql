@@ -1,0 +1,55 @@
+
+  { 
+    time     0.021% fanout         1 input         1 rows
+      clear: (<V set_ctr$55 in>)
+    s# 58 56 cluster outer seq start, set no <V set_ctr$55 in>    
+    save ctx:()
+    time        12% fanout     33946 input         1 rows
+    Precode:
+      0: <V DB.DBA.RDF_MAKE_LONG_OF_TYPEDSQLVAL_STRINGS$27 a> := Call DB.DBA.RDF_MAKE_LONG_OF_TYPEDSQLVAL_STRINGS (<c 01-01-1000>, <tag 217 c http://www.w3.org/2001/XMLSchema#dateTime>, <DB_NULL>)
+      7: BReturn 0
+      clear: (<V s_37_6_t2.O$30 an>, <V s_37_6_t2.S$31 rn>, <V DB.DBA.RDF_MAKE_LONG_OF_TYPEDSQLVAL_STRINGS$27 a>)
+      clear on continue: (<V s_37_6_t2.S$31 rn>, <V s_37_6_t2.O$30 an>)
+    s# 67 29 from DB.DBA.RDF_QUAD by RDF_QUAD    3.4e+04 rows   
+    Key RDF_QUAD  ASC  (<V s_37_6_t2.S$31 rn>, <V s_37_6_t2.O$30 an>)
+     inlined  P =  IRI_ID"...direct/P625" 
+    
+    time        83% fanout 0.00356448 input     33946 rows
+      clear: (<V s_37_6_t0.S$34 rn>)
+      clear on continue: (<V s_37_6_t0.S$34 rn>)$31 () 
+    s# 78 33 from DB.DBA.RDF_QUAD by RDF_QUAD     0.0041 rows   
+    Key RDF_QUAD  ASC  (<V s_37_6_t0.S$34 rn>)
+     inlined  P =  IRI_ID"...direct/P31"  ,  S = <V s_37_6_t2.S$31 rn> ,  O =  IRI_ID"...Q41176" 
+    
+    time       2.8% fanout  0.446281 input       121 rows
+      clear: (<V s_37_6_t1.O$37 an>)
+      clear on continue: (<V s_37_6_t1.O$37 an>)
+    s# 88 36 from DB.DBA.RDF_QUAD by RDF_QUAD        0.7 rows   
+    Key RDF_QUAD  ASC  (<V s_37_6_t1.O$37 an>)
+     inlined  P =  IRI_ID"...direct/P571"  ,  S = <V s_37_6_t0.S$34 rn>
+    
+    time       1.6% fanout         0 input        54 rows
+      clear: (<V DB.DBA.RDF_LONG_CMP$41 i>, <V __ro2lo$39 a>, <V var2$47 a>, <V var1$45 a>, <V var3$43 a>)$34 (36 ) $37 () $27 (36 33 29 ) $30 (36 33 ) 
+    s# 103 98 END Node
+    After test:
+      0: <V __ro2lo$39 a> := Call __ro2lo (<V s_37_6_t1.O$37 an>)
+      5: <V DB.DBA.RDF_LONG_CMP$41 i> := Call DB.DBA.RDF_LONG_CMP (<V __ro2lo$39 a>, <r DB.DBA.RDF_MAKE_LONG_OF_TYPEDSQLVAL_STRINGS$27 via  Set88 Set78 Set67>)
+      12: if (<V DB.DBA.RDF_LONG_CMP$41 i> <=  0 ) then 16 else 17 unkn 17
+      16: BReturn 1
+      17: BReturn 0
+    After code:
+      0: <V var3$43 a> := Call __ro2sq (<r s_37_6_t2.O$30 via  Set103 Set88 Set78>)
+      5: <V var1$45 a> := Call __id2in (<r s_37_6_t0.S$34 via  Set103 Set88>)
+      10: <V var2$47 a> := Call __ro2sq (<r s_37_6_t1.O$37 via  Set103>)
+      15: BReturn 0
+    time         0% fanout         0 input         0 rows
+    $43 (98 ) $45 (98 ) $47 (98 ) $55 (98 36 33 29 56 ) 
+    s# 111 49 Select (<V var1$45 a>, <DB_NULL>, <V var2$47 a>, <V var3$43 a>)
+      set no: <r set_ctr$55 via  Set103 Set88 Set78 Set67>
+  }
+Warning: You might have a Cartesian product.
+
+
+
+ 16 msec 87% cpu,     34068 rnd     33919 seq   99.4893% same seg  0.287652% same pg 
+Compilation: 3 msec 0 reads         0% read 0 messages         0% clw

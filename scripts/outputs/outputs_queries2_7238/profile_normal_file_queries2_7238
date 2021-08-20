@@ -1,0 +1,47 @@
+
+  { 
+    time       7.6% fanout         1 input         1 rows
+      clear: (<V set_ctr$56 in>)
+    s# 59 57 cluster outer seq start, set no <V set_ctr$56 in>    
+    save ctx:()
+    Precode:
+      0: <V string1$27 r> := Call __i2idn (<tag 182 flag 1 c string1>)
+      5: BReturn 0
+      clear: (<V var1$30 s>, <V set_no$31 i>, <V string1$27 r>)
+    s# 68 29 Subquery 29 
+      multistate set no = <V set_no$31 i>
+      { 
+        time        92% fanout         0 input         1 rows
+        Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:       0.3 Fanout:         0
+        $27 (32 ) 
+        s# 72 32 from DB.DBA.RDF_QUAD by RDF_QUAD        0.3 rows   
+        Key RDF_QUAD  ASC  ()
+         inlined  P =  IRI_ID"...direct/P854"  ,  S = <v k_string1$76 Set78 rn>
+        vector param casts: <V string1$27 r>-> <v k_string1$76 Set78 rn>
+        
+        time         0% fanout         0 input         0 rows
+        
+        s# 85 34 Distinct (HASH) set no <r set_no$31 via  Set72 Set78>(<tag 182 flag 1 c string1>)
+        time         0% fanout         0 input         0 rows
+          clear: (<V var1$30 s>)
+        s# 93 48 skip node  100  <none> <r set_no$31 via  Set85 Set72 Set78>
+        After code:
+          0: <V var1$30 s> :=  := artm <tag 182 flag 1 c string1>
+          4: BReturn 0
+        time         0% fanout         0 input         0 rows
+        
+        s# 68 40 Subquery Select(<V var1$30 s>)
+          set no: <r set_no$31 via  Set93 Set85 Set72 Set78>
+      }
+    
+    time         0% fanout         0 input         0 rows
+    $56 (29 57 ) $30 (29 ) 
+    s# 109 50 Select (<V var1$30 s>)
+      set no: <r set_ctr$56 via  Set68>
+  }
+Warning: You might have a Cartesian product.
+
+
+
+ 0 msec 0% cpu,         4 rnd         0 seq         0% same seg         0% same pg 
+Compilation: 14 msec 1 reads   91.1001% read 0 messages         0% clw

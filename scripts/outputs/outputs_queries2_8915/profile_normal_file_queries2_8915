@@ -1,0 +1,44 @@
+0	
+
+  { 
+    time       7.4% fanout         1 input         1 rows
+      clear: (<V set_ctr$34 in>)
+    s# 51 35 cluster outer seq start, set no <V set_ctr$34 in>    
+    save ctx:()
+    time        12% fanout         1 input         1 rows
+    Precode:
+      0: <V __rdflit$27 x> := Call __rdflit (rdflit36478090)
+      5: BReturn 0
+      clear: (<V __rdflit$27 x>)
+    s# 85 36 Fork 36 {  
+        time        78% fanout         0 input         1 rows
+        Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:   1.4e-07 Fanout:         0
+          clear: (<V s_37_3_t0.O$30 an>)
+          clear on continue: (<V s_37_3_t0.O$30 an>)
+        s# 61 29 from DB.DBA.RDF_QUAD by RDF_QUAD_POGS    1.4e-07 rows Parallel, tail cost       7.9   
+        Key RDF_QUAD_POGS  ASC  (<V s_37_3_t0.O$30 an>)
+         inlined  P =  IRI_ID"...isPartOf" 
+        copy on branch $34 $0 $0 $0 sets: 51 
+        
+        time         0% fanout         0 input         0 rows
+        Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:   1.4e-07 Fanout:         0
+        $75 (32 ) $30 () 
+        s# 71 32 from DB.DBA.RDF_QUAD by RDF_QUAD_POGS    1.4e-07 rows Parallel, tail cost        15   
+        Key RDF_QUAD_POGS  ASC  ()
+         inlined  P =  IRI_ID"...wikiGroup"  ,  O = rdflit36478090 ,  S = <v k_s_37_3_t0.O$75 Set77 rn>
+        vector param casts: <V s_37_3_t0.O$30 an>-> <v k_s_37_3_t0.O$75 Set77 rn>
+        copy on branch $75 $34 $0 $0 sets: 51 61 
+        
+        After code:
+          0:  sum <V var1$37 i> 1 set no <r set_ctr$34 via  Set71 Set77 Set61>
+          5: BReturn 0
+    }
+    time       2.9% fanout         0 input         1 rows
+    $34 (36 35 ) $37 (44 ) 
+    s# 92 44 Select (<V var1$37 i>)
+      set no: <V set_ctr$34 in>
+  }
+
+
+ 0 msec 2% cpu,         1 rnd         0 seq         0% same seg         0% same pg 
+Compilation: 2 msec 0 reads         0% read 0 messages         0% clw

@@ -1,0 +1,44 @@
+
+  { 
+    time      0.18% fanout         1 input         1 rows
+    time     0.051% fanout         1 input         1 rows
+    time       3.2% fanout         4 input         1 rows
+    RDF_QUAD_POGS         4 rows(s_37_4_t0.S$31)
+     P =  IRI_ID"...direct/P31"  ,  O =  IRI_ID"...Q35120" 
+    time         3% fanout        10 input         4 rows
+    RDF_QUAD_SP       8.5 rows(s_37_4_t1.P$34)
+     inlined  S = s_37_4_t0.S$31
+    time        47% fanout     2.075 input        40 rows
+    RDF_QUAD       1.2 rows(s_37_4_t1.O$38)
+     inlined  P = s_37_4_t1.P$34 ,  S = k_s_37_4_t0.S$118
+    time        46% fanout         0 input        83 rows
+    END Node
+    After test:
+    0: __ro2sq$41 := Call __ro2sq (s_37_4_t1.O$38)
+    5: DB.DBA.RDF_LANGUAGE_OF_OBJ$43 := Call DB.DBA.RDF_LANGUAGE_OF_OBJ (__ro2sq$41)
+    12: DB.DBA.RDF_LANGMATCHES$45 := Call DB.DBA.RDF_LANGMATCHES (DB.DBA.RDF_LANGUAGE_OF_OBJ$43, <c EN>)
+    19: if ( 0  = DB.DBA.RDF_LANGMATCHES$45) then 37 else 23 unkn 37
+    23: isiri_id$47 := Call isiri_id (s_37_4_t1.O$38)
+    28: temp$49 := artm  1  - isiri_id$47
+    32: if ( 0  = temp$49) then 36 else 37 unkn 37
+    36: BReturn 1
+    37: BReturn 0
+    time         0% fanout         0 input         0 rows
+    Distinct (s_37_4_t1.P$34)
+    
+    After code:
+    0: var1$28 :=  := artm s_37_4_t1.P$34
+    4: BReturn 0
+    time         0% fanout         0 input         0 rows
+    Subquery Select(var1$28)
+    
+    After code:
+    0: var1$65 := Call __ro2sq (var1$28)
+    5: BReturn 0
+    time         0% fanout         0 input         0 rows
+    Select (var1$65)
+  }
+
+
+ 2 msec 50% cpu,       168 rnd        82 seq         0% same seg   20.1183% same pg 
+Compilation: 2 msec 0 reads         0% read 0 messages         0% clw

@@ -1,0 +1,67 @@
+http://www.wikidata.org/entity/Q6376005	1420636	http://www.wikidata.org/entity/Q16	
+http://www.wikidata.org/entity/Q192531	1507340	http://www.wikidata.org/entity/Q16	
+http://www.wikidata.org/entity/Q156006	1035890	http://www.wikidata.org/entity/Q16	
+http://www.wikidata.org/entity/Q7401266	574709	http://www.wikidata.org/entity/Q16	
+http://www.wikidata.org/entity/Q6685997	597700	http://www.wikidata.org/entity/Q1391	
+http://www.wikidata.org/entity/Q12341531	1622146	http://www.wikidata.org/entity/Q16	
+http://www.wikidata.org/entity/Q845876	654378	http://www.wikidata.org/entity/Q16	
+http://www.wikidata.org/entity/Q1966848	1406867	http://www.wikidata.org/entity/Q16	
+http://www.wikidata.org/entity/Q14638469	655261	http://www.wikidata.org/entity/Q16	
+http://www.wikidata.org/entity/Q5260795	1504446	http://www.wikidata.org/entity/Q16	
+http://www.wikidata.org/entity/Q6982192	2765420	http://www.wikidata.org/entity/Q790	
+http://www.wikidata.org/entity/Q26254087	572803	http://www.wikidata.org/entity/Q16	
+http://www.wikidata.org/entity/Q7059975	572469	http://www.wikidata.org/entity/Q16	
+http://www.wikidata.org/entity/Q292436	1459093	http://www.wikidata.org/entity/Q16	
+http://www.wikidata.org/entity/Q41211	1804544	http://www.wikidata.org/entity/Q1183	
+http://www.wikidata.org/entity/Q739675	1804490	http://www.wikidata.org/entity/Q1183	
+http://www.wikidata.org/entity/Q2935944	1424624	http://www.wikidata.org/entity/Q16	
+http://www.wikidata.org/entity/Q21428298	571168	http://www.wikidata.org/entity/Q16	
+http://www.wikidata.org/entity/Q644607	1415506	http://www.wikidata.org/entity/Q16	
+http://www.wikidata.org/entity/Q7492411	249369	http://www.wikidata.org/entity/Q96	
+
+  { 
+    time    0.0027% fanout         1 input         1 rows
+      clear: (<V set_ctr$48 in>)
+    s# 51 49 cluster outer seq start, set no <V set_ctr$48 in>    
+    save ctx:()
+    time       1.5% fanout     32000 input         1 rows
+      clear: (<V s_37_4_t0.O$28 an>, <V s_37_4_t0.S$29 rn>)
+      clear on continue: (<V s_37_4_t0.O$28 an>, <V s_37_4_t0.S$29 rn>)
+    s# 60 27 from DB.DBA.RDF_QUAD by RDF_QUAD      8e+04 rows   
+    Key RDF_QUAD  ASC  (<V s_37_4_t0.S$29 rn>, <V s_37_4_t0.O$28 an>)
+     inlined  P =  IRI_ID"...direct/P590" 
+    
+    time        94% fanout   1.00166 input     32000 rows
+    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:        10 Fanout:         1
+    Precode:
+      0: <V var1$31 a> := Call __id2in (<V s_37_4_t0.S$29 rn>)
+      5: <V var2$33 a> := Call __ro2sq (<V s_37_4_t0.O$28 an>)
+      10: BReturn 0
+      clear: (<V s_37_4_t1.O$36 an>, <V var2$33 a>, <V var1$31 a>)
+      clear on continue: (<V s_37_4_t1.O$36 an>)$28 () $29 () 
+    s# 71 35 from DB.DBA.RDF_QUAD by RDF_QUAD         10 rows   
+    Key RDF_QUAD  ASC  (<V s_37_4_t1.O$36 an>)
+     inlined  P =  IRI_ID"...direct/P17"  ,  S = <V s_37_4_t0.S$29 rn>
+    
+    time       4.1% fanout 0.000686363 input     32053 rows
+      clear: (<V one_of_these$38 i>, <V var3$40 a>)$36 () 
+    s# 86 81 END Node
+    After test:
+      0: <V one_of_these$38 i> := Call one_of_these (<V s_37_4_t1.O$36 an>,  IRI_ID"...Q709" ,  IRI_ID"...Q702" ,  IRI_ID"...Q695" ,  IRI_ID"...Q30" )
+      5: if ( 0  < <V one_of_these$38 i>) then 10 else 9 unkn 10
+      9: BReturn 1
+      10: BReturn 0
+    After code:
+      0: <V var3$40 a> := Call __ro2sq (<r s_37_4_t1.O$36 via  Set86>)
+      5: BReturn 0
+    time    0.0031% fanout         0 input        22 rows
+    $31 (81 35 ) $33 (81 35 ) $40 (81 ) $48 (81 35 27 49 ) 
+    s# 94 42 Select (<r var1$31 via  Set86 Set71>, <r var2$33 via  Set86 Set71>, <V var3$40 a>)
+      set no: <r set_ctr$48 via  Set86 Set71 Set60>
+  }
+Warning: You might have a Cartesian product.
+
+
+
+ 121 msec 98% cpu,     64178 rnd     32051 seq   49.6658% same seg   25.2232% same pg 
+Compilation: 2 msec 0 reads         0% read 0 messages         0% clw

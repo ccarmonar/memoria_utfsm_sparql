@@ -1,0 +1,39 @@
+http://www.wikidata.org/entity/Q55601		1919-03-01 00:00:00Z	POINT(121.51194444 25.04)	
+http://www.wikidata.org/entity/Q544740		2012-01-01 00:00:00Z	POINT(2.27611111 48.83555556)	
+http://www.wikidata.org/entity/Q734774		1818-01-01 00:00:00Z	POINT(-90.234166666667 38.636388888889)	
+http://www.wikidata.org/entity/Q755342		1871-01-01 00:00:00Z	POINT(23.7434206 37.9734574)	
+http://www.wikidata.org/entity/Q168757		1854-01-01 00:00:00Z	POINT(-58.482889 -34.514944)	
+http://www.wikidata.org/entity/Q226536		1950-01-01 00:00:00Z	POINT(23.328698 42.682212)	
+http://www.wikidata.org/entity/Q916850		1875-01-01 00:00:00Z	POINT(16.3748 48.2296)	
+http://www.wikidata.org/entity/Q95527		1911-01-01 00:00:00Z	POINT(13.3169 52.5008)	
+http://www.wikidata.org/entity/Q591737		1988-01-01 00:00:00Z	POINT(-79.3855 43.6613)	
+http://www.wikidata.org/entity/Q594601		1900-01-01 00:00:00Z	POINT(2.152778 41.41375)	
+
+  { 
+    time     0.078% fanout         1 input         1 rows
+    time       9.7% fanout      7000 input         1 rows
+    RDF_QUAD   3.4e+04 rows(s_37_6_t2.S$29, s_37_6_t2.O$28)
+     inlined  P =  IRI_ID"...direct/P625" 
+    time        72% fanout 0.00385714 input      7000 rows
+    RDF_QUAD    0.0041 rows(s_37_6_t0.S$32)
+     inlined  P =  IRI_ID"...direct/P31"  ,  S = s_37_6_t2.S$29 ,  O =  IRI_ID"...Q41176" 
+    time        18% fanout  0.407407 input        27 rows
+    Precode:
+      0: var3$34 := Call __ro2sq (s_37_6_t2.O$28)
+      5: var1$36 := Call __id2in (s_37_6_t0.S$32)
+      10: BReturn 0
+    RDF_QUAD         1 rows(s_37_6_t1.O$39)
+     inlined  P =  IRI_ID"...direct/P571"  ,  S = s_37_6_t0.S$32
+    time      0.24% fanout  0.909091 input        11 rows
+    skip node  10  <none> set_ctr$49
+    
+    After code:
+    0: var2$41 := Call __ro2sq (s_37_6_t1.O$39)
+    5: BReturn 0
+    time     0.034% fanout         0 input        10 rows
+    Select (var1$36, <DB_NULL>, var2$41, var3$34)
+  }
+
+
+ 6 msec 72% cpu,      7055 rnd      6991 seq   99.1497% same seg  0.297619% same pg 
+Compilation: 1 msec 0 reads         0% read 0 messages         0% clw

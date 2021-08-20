@@ -1,0 +1,58 @@
+
+  { 
+    time       7.1% fanout         1 input         1 rows
+      clear: (<V set_ctr$67 in>)
+    s# 70 68 cluster outer seq start, set no <V set_ctr$67 in>    
+    save ctx:()
+    time        93% fanout         0 input         1 rows
+    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:       0.3 Fanout:         0
+      clear: (<V s_37_3_t0.O$28 an>)
+      clear on continue: (<V s_37_3_t0.O$28 an>)
+    s# 79 27 from DB.DBA.RDF_QUAD by RDF_QUAD        0.3 rows   
+    Key RDF_QUAD  ASC  (<V s_37_3_t0.O$28 an>)
+     inlined  P =  IRI_ID"...direct/P31"  ,  S =  IRI_ID"...601" 
+    row specs:  O LIKE <c Tó>
+    
+    Precode:
+      0: <V __all_eq$30 x> := Call __all_eq (<V s_37_3_t0.O$28 an>)
+      5: BReturn 0
+      clear: (<V _::trans_subj_37_5$33 rn>, <V _::trans_obj_37_6$34 an>, <V __all_eq$30 x>, <V var1$59 a>)
+      clear on continue: (<V var1$59 a>, <V _::trans_obj_37_6$34 an>, <V _::trans_subj_37_5$33 rn>)$28 () $30 (32 ) 
+    s# 89 32 Transitive dt dir 1, input: (<V __all_eq$30 x>)
+      input shadow: (<V __all_eq$93 x>)
+      output: (<V _::trans_obj_37_6$34 an>)
+      { 
+        time         0% fanout         0 input         0 rows
+        Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:       1.4 Fanout:         0
+          clear: (<V s_37_9_t1.O$39 an>, <V s_37_9_t1.S$40 rn>, <V _::trans_obj_37_6$34 an>, <V _::trans_subj_37_5$33 rn>)
+          clear on continue: (<V _::trans_subj_37_5$33 rn>, <V _::trans_obj_37_6$34 an>, <V s_37_9_t1.S$40 rn>, <V s_37_9_t1.O$39 an>)$93 (38 ) $99 (38 ) 
+        s# 95 38 from DB.DBA.RDF_QUAD by RDF_QUAD        1.4 rows   
+        Key RDF_QUAD  ASC  (<V s_37_9_t1.S$40 rn>, <V s_37_9_t1.O$39 an>)
+         inlined  P =  IRI_ID"...direct/P279"  ,  S = <v k___all_eq$99 Set101 rn>
+        vector param casts: <V __all_eq$93 x>-> <v k___all_eq$99 Set101 rn>
+        
+        After code:
+          0: <V _::trans_subj_37_5$33 rn> :=  := artm <V s_37_9_t1.S$40 rn>
+          4: <V _::trans_obj_37_6$34 an> :=  := artm <V s_37_9_t1.O$39 an>
+          8: BReturn 0
+        time         0% fanout         0 input         0 rows
+        $33 () 
+        s# 112 42 Subquery Select(<V _::trans_subj_37_5$33 rn>, <V _::trans_obj_37_6$34 an>)
+          set no: <r step_set$35 via  Set95 Set101>
+      }
+    After code:
+      0: <V var1$59 a> := Call __ro2sq (<V _::trans_obj_37_6$34 an>)
+      5: BReturn 0
+    time         0% fanout         0 input         0 rows
+    $67 (32 27 68 ) $59 () 
+    s# 119 61 Select (<V var1$59 a>)
+      set no: <r set_ctr$67 via  Set89 Set79>
+  }
+Warning: You might have a Cartesian product.
+
+Warning: You might have a Cartesian product.
+
+
+
+ 0 msec 2% cpu,         1 rnd         0 seq         0% same seg         0% same pg 
+Compilation: 2 msec 0 reads         0% read 0 messages         0% clw

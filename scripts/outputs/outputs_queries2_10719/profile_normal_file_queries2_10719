@@ -1,0 +1,75 @@
+
+  { 
+    time        31% fanout         1 input         1 rows
+      clear: (<V set_ctr$78 in>)
+    s# 81 79 cluster outer seq start, set no <V set_ctr$78 in>    
+    save ctx:()
+    time        62% fanout         1 input         1 rows
+    Precode:
+      0: <V __rdflit$27 x> := Call __rdflit (rdflit0)
+      5: <V vector$29 x> := Call vector (<V __rdflit$27 x>)
+      10: <V __rdflit$31 x> := Call __rdflit (rdflit0)
+      15: <V vector$33 x> := Call vector (<V __rdflit$31 x>)
+      20: <V vector$35 x> := Call vector (<V vector$29 x>, <V vector$33 x>)
+      25: BReturn 0
+      clear: (<V set_no$42 i>, <V vector$35 x>, <V vector$33 x>, <V __rdflit$31 x>, <V vector$29 x>, <V __rdflit$27 x>)$31 (71 ) $33 (71 ) $27 (71 ) $29 (71 ) 
+    s# 90 71 cluster outer seq start, set no <V set_no$42 i>    
+    save ctx:()
+    time       6.7% fanout         0 input         1 rows
+    
+    s# 99 43 END Node
+    After test:
+      0: BReturn 0
+    time         0% fanout         0 input         0 rows
+    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:     0.097 Fanout:         0
+    
+    s# 106 44 from DB.DBA.RDF_QUAD by RDF_QUAD_POGS      0.097 rows   
+    Key RDF_QUAD_POGS  ASC  ()
+     P =  IRI_ID"...direct/P31"  ,  O =  IRI_ID"...Q11085" 
+    
+    time         0% fanout         0 input         0 rows
+    
+    s# 120 115 END Node
+    After test:
+      0: if (<c en> = <DB_NULL>) then 4 else 9 unkn 9
+      4: if (<c en> = <DB_NULL>) then 8 else 9 unkn 9
+      8: BReturn 1
+      9: BReturn 0
+    time         0% fanout         0 input         0 rows
+    Precode:
+      0: <V dta$51 x> :=  := artm <r vector$35 via  Set120 Set106 Set99 Set90>
+      4: <V proc_ctr$47 i> :=  := artm  0 
+      8:  <none>  := Call __reset_temp ( 139910656274832 )
+      13:  <proc table>  := Call DB.DBA.SPARQL_BINDINGS_VIEW_C_1_IMP (<r vector$35 via  Set120 Set106 Set99 Set90>)
+      20: BReturn 0
+      clear: (<V BND0$49 a>, <V proc_ctr$47 i>, <V dta$51 x>)
+      clear on continue: (<V proc_ctr$47 i>, <V BND0$49 a>)$35 (115 44 43 71 ) 
+    s# 129 46 Key from temp (<V proc_ctr$47 i>, <V BND0$49 a>)
+    
+    
+    time         0% fanout         0 input         0 rows
+      clear: (<V var3$41 x>, <V var2$40 x>, <V var1Label$39 x>, <V var1$38 x>)
+    s# 138 58 Distinct (HASH) set no <r set_no$42 via  Set129 Set120 Set106 Set99>(<DB_NULL>)
+    After code:
+      0: <V var1$38 x> :=  := artm <DB_NULL>
+      4: <V var1Label$39 x> :=  := artm <DB_NULL>
+      8: <V var2$40 x> :=  := artm <DB_NULL>
+      12: <V var3$41 x> :=  := artm <DB_NULL>
+      16: BReturn 0
+    time         0% fanout         0 input         0 rows
+    $42 (58 46 115 44 43 71 ) 
+    s# 150 64 Subquery Select(<V var1$38 x>, <V var1Label$39 x>, <V var2$40 x>, <V var3$41 x>)
+      set no: <r set_no$42 via  Set138 Set129 Set120 Set106 Set99>
+    time         0% fanout         0 input         0 rows
+    $38 (64 58 ) $39 (64 58 ) $40 (64 58 ) $41 (64 58 ) $78 (64 58 46 115 44 43 71 79 ) 
+    s# 157 72 Select (<V var1$38 x>, <V var1Label$39 x>, <V var2$40 x>, <V var3$41 x>)
+      set no: <r set_ctr$78 via  Set150>
+  }
+Warning: You might have a Cartesian product.
+
+Warning: You might have a Cartesian product.
+
+
+
+ 0 msec 1% cpu,         0 rnd         0 seq         0% same seg         0% same pg 
+Compilation: 2 msec 0 reads         0% read 0 messages         0% clw

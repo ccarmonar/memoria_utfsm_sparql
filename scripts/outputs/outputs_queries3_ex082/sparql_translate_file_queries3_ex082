@@ -1,0 +1,17 @@
+SELECT __id2in ( "s_7_3_t0"."S") AS "s"
+FROM DB.DBA.RDF_QUAD AS "s_7_3_t0"
+  INNER JOIN DB.DBA.RDF_QUAD AS "s_7_8_t1"
+  ON (
+    "s_7_8_t1"."S" = "s_7_3_t0"."O")
+  INNER JOIN DB.DBA.RDF_QUAD AS "s_7_12_t2"
+  ON (
+    "s_7_12_t2"."S" = "s_7_8_t1"."O")
+WHERE
+  "s_7_3_t0"."P" = __i2idn ( __bft( 'http://learningsparql.com/ns/citations#cites' , 1))
+  AND 
+  "s_7_8_t1"."P" = __i2idn ( __bft( 'http://learningsparql.com/ns/citations#cites' , 1))
+  AND 
+  "s_7_12_t2"."P" = __i2idn ( __bft( 'http://learningsparql.com/ns/citations#cites' , 1))
+  AND 
+  "s_7_12_t2"."O" = __i2idn ( __bft( 'http://learningsparql.com/ns/papers#paperA' , 1))
+OPTION (QUIETCAST)

@@ -1,0 +1,44 @@
+http://www.wikidata.org/entity/Q17524874		https://www.wikidata.org/wiki/Special:EntityData/Q17524874	
+http://www.wikidata.org/entity/Q2609235		https://www.wikidata.org/wiki/Special:EntityData/Q2609235	
+http://www.wikidata.org/entity/Q2613150		https://www.wikidata.org/wiki/Special:EntityData/Q2613150	
+http://www.wikidata.org/entity/Q18689382		https://www.wikidata.org/wiki/Special:EntityData/Q18689382	
+http://www.wikidata.org/entity/Q28044148		https://www.wikidata.org/wiki/Special:EntityData/Q28044148	
+http://www.wikidata.org/entity/Q15804434		https://www.wikidata.org/wiki/Special:EntityData/Q15804434	
+http://www.wikidata.org/entity/Q28044936		https://www.wikidata.org/wiki/Special:EntityData/Q28044936	
+http://www.wikidata.org/entity/Q2860005		https://www.wikidata.org/wiki/Special:EntityData/Q2860005	
+http://www.wikidata.org/entity/Q2862334		https://www.wikidata.org/wiki/Special:EntityData/Q2862334	
+http://www.wikidata.org/entity/Q2921123		https://www.wikidata.org/wiki/Special:EntityData/Q2921123	
+http://www.wikidata.org/entity/Q17491007		https://www.wikidata.org/wiki/Special:EntityData/Q17491007	
+http://www.wikidata.org/entity/Q17491693		https://www.wikidata.org/wiki/Special:EntityData/Q17491693	
+http://www.wikidata.org/entity/Q17492761		https://www.wikidata.org/wiki/Special:EntityData/Q17492761	
+http://www.wikidata.org/entity/Q17493904		https://www.wikidata.org/wiki/Special:EntityData/Q17493904	
+http://www.wikidata.org/entity/Q3119110		https://www.wikidata.org/wiki/Special:EntityData/Q3119110	
+http://www.wikidata.org/entity/Q17494208		https://www.wikidata.org/wiki/Special:EntityData/Q17494208	
+http://www.wikidata.org/entity/Q17494295		https://www.wikidata.org/wiki/Special:EntityData/Q17494295	
+http://www.wikidata.org/entity/Q3177992		https://www.wikidata.org/wiki/Special:EntityData/Q3177992	
+http://www.wikidata.org/entity/Q3231193		https://www.wikidata.org/wiki/Special:EntityData/Q3231193	
+http://www.wikidata.org/entity/Q3231954		https://www.wikidata.org/wiki/Special:EntityData/Q3231954	
+
+  { 
+    time     0.053% fanout         1 input         1 rows
+    time       1.4% fanout      1000 input         1 rows
+    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:   4.1e+04 Fanout:     1e+03
+    RDF_QUAD_POGS   4.1e+04 rows(s_37_4_t0.S$28)
+     P =  IRI_ID"...direct/P31"  ,  O =  IRI_ID"...Q3305213" 
+    time        99% fanout         1 input      1000 rows
+    Precode:
+      0: var1$30 := Call __id2in (s_37_4_t0.S$28)
+      5: BReturn 0
+    RDF_QUAD_POGS       1.1 rows(s_37_4_t1.S$33)
+     P =  IRI_ID"...about"  ,  O = cast$69
+    
+    After code:
+    0: var3$35 := Call __id2in (s_37_4_t1.S$33)
+    5: BReturn 0
+    time     0.013% fanout         0 input      1000 rows
+    Select (var1$30, <DB_NULL>, var3$35)
+  }
+
+
+ 7 msec 81% cpu,      1002 rnd       998 seq   98.3051% same seg  0.997009% same pg 
+Compilation: 1 msec 0 reads         0% read 0 messages         0% clw

@@ -1,0 +1,49 @@
+http://www.wikidata.org/entity/Q25713830	1938-01-01 00:00:00Z	
+http://www.wikidata.org/entity/Q2607760	2008-05-29 00:00:00Z	
+http://www.wikidata.org/entity/Q2607974	1922-01-01 00:00:00Z	
+http://www.wikidata.org/entity/Q2608937	2008-01-01 00:00:00Z	
+http://www.wikidata.org/entity/Q2609942	1911-01-01 00:00:00Z	
+http://www.wikidata.org/entity/Q2610441	1977-07-01 00:00:00Z	
+http://www.wikidata.org/entity/Q2610532	2011-01-01 00:00:00Z	
+http://www.wikidata.org/entity/Q2611606	1912-01-01 00:00:00Z	
+http://www.wikidata.org/entity/Q2611615	1984-01-01 00:00:00Z	
+http://www.wikidata.org/entity/Q2612555	2011-01-01 00:00:00Z	
+http://www.wikidata.org/entity/Q2612786	1959-01-01 00:00:00Z	
+http://www.wikidata.org/entity/Q2612941	2000-01-01 00:00:00Z	
+http://www.wikidata.org/entity/Q2613156	1919-03-23 00:00:00Z	
+http://www.wikidata.org/entity/Q2613387	1990-01-01 00:00:00Z	
+http://www.wikidata.org/entity/Q2613450	2012-01-01 00:00:00Z	
+http://www.wikidata.org/entity/Q2613562	2012-02-26 00:00:00Z	
+http://www.wikidata.org/entity/Q2614347	2008-01-01 00:00:00Z	
+http://www.wikidata.org/entity/Q2614800	1920-07-14 00:00:00Z	
+http://www.wikidata.org/entity/Q2615155	2012-01-01 00:00:00Z	
+http://www.wikidata.org/entity/Q2615532	1241-04-01 00:00:00Z	
+
+  { 
+    time       0.1% fanout         1 input         1 rows
+    time     0.023% fanout         1 input         1 rows
+    time         4% fanout      1000 input         1 rows
+    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:   6.1e+04 Fanout:     1e+03
+    RDF_QUAD   6.1e+04 rows(s_37_2_t0.S$33, s_37_2_t0.O$32)
+     inlined  P =  IRI_ID"...direct/P585" 
+    time        10% fanout         1 input      1000 rows
+    Distinct (s_37_2_t0.S$33, s_37_2_t0.O$32)
+    
+    After code:
+    0: var1$28 :=  := artm s_37_2_t0.S$33
+    4: var2$29 :=  := artm s_37_2_t0.O$32
+    8: BReturn 0
+    time        86% fanout         1 input      1000 rows
+    Subquery Select(var1$28, var2$29)
+    
+    After code:
+    0: var1$49 := Call __ro2sq (var1$28)
+    5: var2$51 := Call __ro2sq (var2$29)
+    10: BReturn 0
+    time     0.032% fanout         0 input      1000 rows
+    Select (var1$49, var2$51)
+  }
+
+
+ 3 msec 71% cpu,         1 rnd       998 seq         0% same seg         0% same pg 
+Compilation: 2 msec 0 reads         0% read 0 messages         0% clw

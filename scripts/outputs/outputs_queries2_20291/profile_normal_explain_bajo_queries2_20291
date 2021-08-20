@@ -1,0 +1,53 @@
+				http://www.wikidata.org/entity/Q2610153			
+				http://www.wikidata.org/entity/Q2615896			
+				http://www.wikidata.org/entity/Q2616393			
+				http://www.wikidata.org/entity/Q2616855			
+				http://www.wikidata.org/entity/Q15781016			
+				http://www.wikidata.org/entity/Q2631292			
+				http://www.wikidata.org/entity/Q2631420			
+				http://www.wikidata.org/entity/Q2631428			
+				http://www.wikidata.org/entity/Q2631459			
+				http://www.wikidata.org/entity/Q2631510			
+				http://www.wikidata.org/entity/Q2631514			
+				http://www.wikidata.org/entity/Q2631592			
+				http://www.wikidata.org/entity/Q2631597			
+				http://www.wikidata.org/entity/Q2631601			
+				http://www.wikidata.org/entity/Q2631602			
+				http://www.wikidata.org/entity/Q2631625			
+				http://www.wikidata.org/entity/Q2631655			
+				http://www.wikidata.org/entity/Q2631676			
+				http://www.wikidata.org/entity/Q2632422			
+				http://www.wikidata.org/entity/Q2633388			
+
+  { 
+    time       0.1% fanout         1 input         1 rows
+    time     0.024% fanout         1 input         1 rows
+    time       2.8% fanout      1000 input         1 rows
+    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:   6.5e+04 Fanout:     1e+03
+    RDF_QUAD_POGS   6.5e+04 rows(s_37_2_t0.S$37)
+     P =  IRI_ID"...direct/P17"  ,  O =  IRI_ID"...Q183" 
+    time        17% fanout         1 input      1000 rows
+    Distinct (s_37_2_t0.S$37)
+    
+    After code:
+    0: var1$28 :=  := artm <DB_NULL>
+    4: var2$29 :=  := artm <DB_NULL>
+    8: var1Label$30 :=  := artm <DB_NULL>
+    12: var3$31 :=  := artm <DB_NULL>
+    16: var4$32 :=  := artm s_37_2_t0.S$37
+    20: var4Label$33 :=  := artm <DB_NULL>
+    24: var5$34 :=  := artm <DB_NULL>
+    28: BReturn 0
+    time        80% fanout         1 input      1000 rows
+    Subquery Select(var1$28, var2$29, var1Label$30, var3$31, var4$32, var4Label$33, var5$34)
+    
+    After code:
+    0: var4$53 := Call __ro2sq (var4$32)
+    5: BReturn 0
+    time     0.026% fanout         0 input      1000 rows
+    Select (var1$28, var2$29, var1Label$30, var3$31, var4$53, var4Label$33, var5$34)
+  }
+
+
+ 4 msec 69% cpu,         1 rnd       998 seq         0% same seg         0% same pg 
+Compilation: 1 msec 0 reads         0% read 0 messages         0% clw

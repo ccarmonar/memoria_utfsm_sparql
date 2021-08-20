@@ -1,0 +1,98 @@
+http://commons.wikimedia.org/wiki/Special:FilePath/SilburyHill%20gobeirne.jpg	http://www.wikidata.org/entity/Q225896	POINT(-1.8575 51.415555555556)	
+http://commons.wikimedia.org/wiki/Special:FilePath/National%20Trust%20Shop.jpg	http://www.wikidata.org/entity/Q26487554		
+http://commons.wikimedia.org/wiki/Special:FilePath/Avebury%20Dovecot1.jpg	http://www.wikidata.org/entity/Q17643390		
+http://commons.wikimedia.org/wiki/Special:FilePath/Avebury%20Manor%20Dovecote.jpg	http://www.wikidata.org/entity/Q17643390		
+http://commons.wikimedia.org/wiki/Special:FilePath/Avebury%20-%20panoramio%20%288%29.jpg	http://www.wikidata.org/entity/Q26647565		
+http://commons.wikimedia.org/wiki/Special:FilePath/110-113%20Avebury%20High%20Street.jpg	http://www.wikidata.org/entity/Q26647590		
+http://commons.wikimedia.org/wiki/Special:FilePath/2020-0811Tu%201247-21%20The%20Waggon%20Horses%20pub%20in%20Beckhampton%20Wilts%20England.jpg	http://www.wikidata.org/entity/Q26285244		
+
+  { 
+    time    0.0013% fanout         1 input         1 rows
+      clear: (<V set_ctr$31 in>)
+    s# 84 32 cluster outer seq start, set no <V set_ctr$31 in>    
+    save ctx:()
+    time   0.00067% fanout         1 input         1 rows
+      clear: (<V set_ctr$34 i>)
+    s# 93 38 cluster outer seq start, set no <V set_ctr$34 i>    
+    save ctx:()
+    time       7.6% fanout    398516 input         1 rows
+      clear: (<V t7.O$28 a>, <V t7.S$29 r>)
+      clear on continue: (<V t7.O$28 a>, <V t7.S$29 r>)
+    s# 102 27 from DB.DBA.RDF_QUAD by RDF_QUAD      4e+05 rows   
+    Key RDF_QUAD  ASC  (<V t7.S$29 r>, <V t7.O$28 a>)
+     inlined  P =  IRI_ID"...direct/P18" 
+    
+    time       1.4% fanout         1 input    398516 rows
+    $34 (27 38 ) 
+    s# 113 33 end of outer seq <r set_ctr$34 via  Set102>
+     out: (<V t7.S$29 r>, <V t7.O$28 a>)
+     shadow: ( <none> ,  <none> )
+    time        59% fanout 1.75652e-05 input    398516 rows
+      clear: (<V t10.S$44 rn>)
+      clear on continue: (<V t10.S$44 rn>)$125 (43 ) 
+    s# 121 43 from DB.DBA.RDF_QUAD by RDF_QUAD    1.9e-05 rows   
+    Key RDF_QUAD  ASC  (<V t10.S$44 rn>)
+     inlined  P =  IRI_ID"...direct/P131"  ,  S = <v k_t7.S$125 Set127 rn> ,  O =  IRI_ID"...Q1234698" 
+    vector param casts: <V t7.S$29 r>-> <v k_t7.S$125 Set127 rn>
+    
+      clear: (<V __stub$47 in>, <V set_no$48 i>)
+    s# 135 46 Subquery 46 
+      multistate set no = <V set_no$48 i>
+      { 
+        time    0.0061% fanout         1 input         7 rows
+        Precode:
+          0: <V __stub$47 in> :=  := artm  1 
+          4: BReturn 0
+          clear: (<V __stub$47 in>)
+        s# 140 55 END Node
+        time    0.0018% fanout         0 input         7 rows
+        $47 (55 ) 
+        s# 135 49 Subquery Select(<r __stub$47 via  Set140>)
+          set no: <r set_no$48 via  Set140>
+      }
+    
+    time        20% fanout         1 input         7 rows
+    Precode:
+      0: <V var2$57 a> := Call __id2in (<r t10.S$44 via  Set135>)
+      5: <V var1$59 a> := Call __ro2sq (<r t7.O$28 via  Set135 Set121 Set127>)
+      10: BReturn 0
+      clear: (<V set_ctr$66 i>, <V var1$59 a>, <V var2$57 a>)$44 (46 ) $28 (46 43 33 ) 
+    s# 154 70 cluster outer seq start, set no <V set_ctr$66 i>    
+    save ctx:()
+    time       4.2% fanout     33946 input         7 rows
+      clear: (<V t9.O$62 a>, <V t9.S$63 r>)
+      clear on continue: (<V t9.O$62 a>, <V t9.S$63 r>)
+    s# 163 61 from DB.DBA.RDF_QUAD by RDF_QUAD    2.3e+04 rows   
+    Key RDF_QUAD  ASC  (<V t9.S$63 r>, <V t9.O$62 a>)
+     inlined  P =  IRI_ID"...direct/P625" 
+    
+    time       8.2% fanout 4.20836e-06 input    237622 rows
+    $29 (61 70 46 43 33 ) 
+    s# 179 174 END Node
+    After test:
+      0: if (<r t7.S$29 via  Set163 Set154 Set135 Set121 Set127>  IS NULL   0 ) then 8 else 4 unkn 4
+      4: if (<r t7.S$29 via  Set163 Set154 Set135 Set121 Set127> = <V t9.S$63 r>) then 8 else 9 unkn 9
+      8: BReturn 1
+      9: BReturn 0
+    time     0.018% fanout         7 input         1 rows
+      clear: (<V t9.S$194 r>, <V t9.O$192 a>, <V var3$75 a>)$62 (174 ) $63 (174 ) $66 (174 61 70 ) 
+    s# 188 65 end of outer seq <r set_ctr$66 via  Set179 Set163>
+     out: (<r t9.O$62 via  Set179>, <r t9.S$63 via  Set179>)
+     shadow: (<V t9.O$192 a>, <V t9.S$194 r>)
+    After code:
+      0: <V var3$75 a> := Call __ro2sq (<V t9.O$192 a>)
+      5: BReturn 0
+    time    0.0017% fanout         0 input         7 rows
+    $31 (65 174 61 70 46 43 33 27 38 32 ) $75 (65 ) $57 (65 174 61 70 ) $59 (65 174 61 70 ) 
+    s# 200 77 Select (<r var1$59 via  Set188>, <r var2$57 via  Set188>, <V var3$75 a>)
+      set no: <r set_ctr$31 via  Set188 Set135 Set121 Set127 Set113>
+  }
+Warning: You might have a Cartesian product.
+
+Warning: You might have a Cartesian product.
+
+
+
+ 175 msec 86% cpu,    398539 rnd    635428 seq    99.863% same seg 0.0316154% same pg 
+5 disk reads, 0 read ahead,    39.224% wait
+Compilation: 26 msec 1 reads   12.0584% read 0 messages         0% clw

@@ -1,0 +1,25 @@
+ SELECT  __ro2sq ("s_37_10_rbc"."var1") AS "var1" FROM (SELECT DISTINCT "s_37_10_t1"."P" AS "var1"
+  FROM DB.DBA.RDF_QUAD AS "s_37_10_t0"
+    INNER JOIN DB.DBA.RDF_QUAD AS "s_37_10_t1"
+    ON (
+      "s_37_10_t0"."O" = "s_37_10_t1"."S")
+    INNER JOIN DB.DBA.RDF_QUAD AS "s_37_10_t2"
+    ON (
+      "s_37_10_t1"."O" = "s_37_10_t2"."S")
+    INNER JOIN DB.DBA.RDF_QUAD AS "s_37_10_t3"
+    ON (
+      "s_37_10_t2"."O" = "s_37_10_t3"."S")
+    INNER JOIN DB.DBA.RDF_QUAD AS "s_37_10_t4"
+    ON (
+      "s_37_10_t0"."O" = "s_37_10_t4"."S"
+      AND 
+      "s_37_10_t1"."S" = "s_37_10_t4"."S")
+  WHERE
+    "s_37_10_t0"."S" = __i2idn ( __bft( 'http://www.wikidata.org/entity/Q84' , 1))
+    AND 
+    "s_37_10_t0"."P" = __i2idn ( __bft( 'http://www.wikidata.org/prop/P1082' , 1))
+    AND 
+    "s_37_10_t3"."P" = __i2idn ( __bft( 'http://www.wikidata.org/prop/P854' , 1))
+    AND 
+    "s_37_10_t4"."P" = __i2idn ( __bft( 'http://www.wikidata.org/prop/statement/value/P1082' , 1))
+OPTION (QUIETCAST)) AS "s_37_10_rbc"

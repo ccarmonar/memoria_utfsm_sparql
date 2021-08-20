@@ -1,0 +1,42 @@
+http://www.wikidata.org/entity/Q2615465	1945-09-28 00:00:00Z	2011-03-05 00:00:00Z	
+http://www.wikidata.org/entity/Q4952238	1867-07-29 00:00:00Z	1952-04-09 00:00:00Z	
+http://www.wikidata.org/entity/Q2636539	1101-01-01 00:00:00Z	1220-01-01 00:00:00Z	
+http://www.wikidata.org/entity/Q2637743	1914-07-22 00:00:00Z	2007-11-19 00:00:00Z	
+http://www.wikidata.org/entity/Q2638845	1878-06-26 00:00:00Z	1942-04-03 00:00:00Z	
+http://www.wikidata.org/entity/Q2700102	1462-01-01 00:00:00Z	1523-08-09 00:00:00Z	
+http://www.wikidata.org/entity/Q2701929	1909-09-27 00:00:00Z	1977-05-27 00:00:00Z	
+http://www.wikidata.org/entity/Q2781380	1891-02-04 00:00:00Z	1975-04-04 00:00:00Z	
+http://www.wikidata.org/entity/Q2781789	1900-02-11 00:00:00Z	1991-05-18 00:00:00Z	
+http://www.wikidata.org/entity/Q2787750	1500-01-01 00:00:00Z	1604-02-27 00:00:00Z	
+
+  { 
+    time     0.054% fanout         1 input         1 rows
+    time       0.1% fanout         2 input         1 rows
+    in iterates in_iter$28  over ( IRI_ID"...direct/P106" ,  IRI_ID"...direct/P39" )
+    time       1.6% fanout       500 input         2 rows
+    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:   9.8e+05 Fanout:     5e+02
+    RDF_QUAD_POGS   9.8e+05 rows(s_37_3_t0.S$32)
+     P = k_in_iter$85 ,  O =  IRI_ID"...Q36834" 
+    time        19% fanout      0.96 input      1000 rows
+    RDF_QUAD         1 rows(s_37_9_t1.S$36, s_37_9_t1.O$35)
+     inlined  P =  IRI_ID"...direct/P569"  ,  S = s_37_3_t0.S$32
+    time        79% fanout  0.479167 input       960 rows
+    Precode:
+      0: var1$38 := Call __id2in (s_37_9_t1.S$36)
+      5: var2$40 := Call __ro2sq (s_37_9_t1.O$35)
+      10: BReturn 0
+    RDF_QUAD         1 rows(s_37_9_t2.O$43)
+     inlined  P =  IRI_ID"...direct/P570"  ,  S = s_37_9_t1.S$36
+    time      0.12% fanout 0.0217391 input       460 rows
+    skip node  10  <none> set_ctr$53
+    
+    After code:
+    0: var3$45 := Call __ro2sq (s_37_9_t2.O$43)
+    5: BReturn 0
+    time     0.021% fanout         0 input        10 rows
+    Select (var1$38, var2$40, var3$45)
+  }
+
+
+ 5 msec 72% cpu,      1961 rnd      1061 seq   99.0316% same seg  0.458716% same pg 
+Compilation: 2 msec 0 reads         0% read 0 messages         0% clw

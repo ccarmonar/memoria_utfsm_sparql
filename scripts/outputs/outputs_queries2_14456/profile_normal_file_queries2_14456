@@ -1,0 +1,119 @@
+
+  { 
+    time    0.0021% fanout         1 input         1 rows
+      clear: (<V set_ctr$114 in>)
+    s# 117 115 cluster outer seq start, set no <V set_ctr$114 in>    
+    save ctx:()
+      clear: (<V var4$30 x>, <V var3$29 in>, <V var1$28 a>, <V set_no$31 i>, <V var4$106 a>, <V var3$104 a>, <V var1$102 a>)
+    s# 126 27 Subquery 27 
+      multistate set no = <V set_no$31 i>
+      { 
+        time    0.0016% fanout         1 input         1 rows
+        
+        s# 209 80 Fork 80 {  
+                
+            save ctx:()
+              set no = <V set_no$31 i> array  <none>  save: 
+              clear: (<V var4$35 x>, <V var3$34 in>, <V var1$33 an>, <V set_no$36 i>)
+            s# 131 32 Subquery 32 
+              multistate set no = <V set_no$36 i>
+              { 
+                time   0.00083% fanout         1 input         1 rows
+                
+                s# 165 47 Fork 47 {  
+                        
+                    save ctx:()
+                      set no = <V set_no$36 i> array  <none>  save: 
+                    time      0.14% fanout      5000 input         1 rows
+                      clear: (<V s_37_5_t0.S$38 rn>)
+                      clear on continue: (<V s_37_5_t0.S$38 rn>)
+                    s# 136 37 from DB.DBA.RDF_QUAD by RDF_QUAD      5e+03 rows   
+                    Key RDF_QUAD  ASC  (<V s_37_5_t0.S$38 rn>)
+                     inlined  P =  IRI_ID"...direct/P4075" 
+                    
+                    time         1% fanout    0.3896 input      5000 rows
+                      clear: (<V s_37_5_t1.O$41 an>)
+                      clear on continue: (<V s_37_5_t1.O$41 an>)
+                    s# 146 40 from DB.DBA.RDF_QUAD by RDF_QUAD          1 rows   
+                    Key RDF_QUAD  ASC  (<V s_37_5_t1.O$41 an>)
+                     inlined  P =  IRI_ID"...direct/P373"  ,  S = <V s_37_5_t0.S$38 rn>
+                    
+                    time        97% fanout         0 input      1948 rows
+                    Precode:
+                      0: <V __id2in$43 a> := Call __id2in (<r s_37_5_t0.S$38 via  Set146>)
+                      5: <V isnotnull$45 in> := Call isnotnull (<r s_37_5_t0.S$38 via  Set146>)
+                      10: BReturn 0
+                      clear: (<V ua_ret$53 x>, <V isnotnull$45 in>, <V __id2in$43 a>)$38 (40 ) $43 (48 ) $45 (48 ) 
+                    s# 156 48 Sort (HASH) set no <r set_no$36 via  Set146 Set136>(<V s_37_5_t1.O$41 an>) -> (<V isnotnull$45 in>, gb_tmp$52 ) up to   3.6e+05 distinct
+                    user aggr init
+                    0: <V ua_ret$53 x> := Call DB.DBA.GROUP_CONCAT_INIT (gb_tmp$52 )
+                    7: BReturn 0
+                     user aggr acc
+                    0: <V ua_ret$53 x> := Call DB.DBA.GROUP_CONCAT_ACC (gb_tmp$52 , <V __id2in$43 a>, <c  , >)
+                    7: BReturn 0
+                    
+                    
+                }
+                time       1.2% fanout      1948 input         1 rows
+                  clear: (<V aggregate$51 x>, <V aggregate$49 in>, <V s_37_5_t1.O$41 an>)
+                  clear on continue: (<V aggregate$51 x>, <V aggregate$49 in>, <V s_37_5_t1.O$41 an>)
+                s# 172 58 group by read node  
+                (<V s_37_5_t1.O$41 an>, <V aggregate$49 in>, <V aggregate$51 x>)
+                time       1.1% fanout         0 input      1948 rows
+                Precode:
+                  0: <V DB.DBA.GROUP_CONCAT_FIN$70 x> := Call DB.DBA.GROUP_CONCAT_FIN (<V aggregate$51 x>)
+                  7: BReturn 0
+                  clear: (<V DB.DBA.GROUP_CONCAT_FIN$70 x>, <V var4$35 x>, <V var3$34 in>, <V var1$33 an>)$70 (72 ) $41 () $49 () $51 () 
+                s# 183 72 END Node
+                After test:
+                  0: if (<V aggregate$49 in> >  1 ) then 4 else 5 unkn 5
+                  4: BReturn 1
+                  5: BReturn 0
+                After code:
+                  0: <V var1$33 an> :=  := artm <r s_37_5_t1.O$41 via  Set183>
+                  4: <V var3$34 in> :=  := artm <r aggregate$49 via  Set183>
+                  8: <V var4$35 x> :=  := artm <r DB.DBA.GROUP_CONCAT_FIN$70 via  Set183>
+                  12: BReturn 0
+                time         0% fanout         0 input         0 rows
+                
+                s# 131 73 Subquery Select(<V var1$33 an>, <V var3$34 in>, <V var4$35 x>)
+                  set no: <r set_no$36 via  Set183 Set172>
+              }
+            
+            time         0% fanout         0 input         0 rows
+            
+            s# 201 81 Sort (HASH) set no <r set_no$31 via  Set131>(<V var3$34 in>) -> (<V var1$33 an>, <V var4$35 x>)
+            
+        }
+        time     0.068% fanout         0 input         1 rows
+          clear: (<V var4$35 x>, <V var3$34 in>, <V var1$33 an>, <V var4$30 x>, <V var3$29 in>, <V var1$28 a>, <V __ro2sq$93 a>)
+          clear on continue: (<V var4$35 x>, <V var3$34 in>, <V var1$33 an>, <V var4$30 x>, <V var3$29 in>, <V var1$28 a>, <V __ro2sq$93 a>)
+        s# 216 86 Key from temp (<V var1$33 an>, <V var3$34 in>, <V var4$35 x>)
+        
+        
+        After code:
+          0: <V __ro2sq$93 a> := Call __ro2sq (<V var1$33 an>)
+          5: <V var1$28 a> :=  := artm <V __ro2sq$93 a>
+          9: <V var3$29 in> :=  := artm <V var3$34 in>
+          13: <V var4$30 x> :=  := artm <V var4$35 x>
+          17: BReturn 0
+        time         0% fanout         0 input         0 rows
+        
+        s# 126 95 Subquery Select(<V var1$28 a>, <V var3$29 in>, <V var4$30 x>)
+          set no: <r set_no$31 via  Set216>
+      }
+    
+    After code:
+      0: <V var1$102 a> := Call __ro2sq (<V var1$28 a>)
+      5: <V var3$104 a> := Call __ro2sq (<V var3$29 in>)
+      10: <V var4$106 a> := Call __ro2sq (<V var4$30 x>)
+      15: BReturn 0
+    time         0% fanout         0 input         0 rows
+    $102 (27 ) $104 (27 ) $106 (27 ) $114 (27 115 ) 
+    s# 235 108 Select (<V var1$102 a>, <V var3$104 a>, <V var4$106 a>)
+      set no: <r set_ctr$114 via  Set126>
+  }
+
+
+ 101 msec 57% cpu,      6903 rnd      4995 seq   72.0307% same seg   19.5249% same pg 
+Compilation: 74 msec 1 reads    10.054% read 0 messages         0% clw

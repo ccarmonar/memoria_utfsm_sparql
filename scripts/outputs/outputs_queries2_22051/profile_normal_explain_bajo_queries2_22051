@@ -1,0 +1,56 @@
+http://www.wikidata.org/entity/Q31	11431406	
+http://www.wikidata.org/entity/Q31	11431406	
+http://www.wikidata.org/entity/Q31	11431406	
+http://www.wikidata.org/entity/Q31	11431406	
+http://www.wikidata.org/entity/Q1044	7557212	
+http://www.wikidata.org/entity/Q1044	7557212	
+http://www.wikidata.org/entity/Q1044	7557212	
+http://www.wikidata.org/entity/Q1044	7557212	
+http://www.wikidata.org/entity/Q1049	40533330	
+http://www.wikidata.org/entity/Q1049	40533330	
+http://www.wikidata.org/entity/Q1049	40533330	
+http://www.wikidata.org/entity/Q1049	40533330	
+http://www.wikidata.org/entity/Q1183	3193694	
+http://www.wikidata.org/entity/Q1183	3193694	
+http://www.wikidata.org/entity/Q1183	3193694	
+http://www.wikidata.org/entity/Q1183	3193694	
+http://www.wikidata.org/entity/Q13353	5215	
+http://www.wikidata.org/entity/Q13353	5215	
+http://www.wikidata.org/entity/Q13353	5215	
+http://www.wikidata.org/entity/Q13353	5215	
+
+  { 
+    time     0.023% fanout         1 input         1 rows
+    time    0.0066% fanout         1 input         1 rows
+    time        12% fanout    140000 input         1 rows
+    RDF_QUAD_POGS   1.1e+06 rows(s_37_2_t0.O$31)
+     inlined  P =  IRI_ID"...direct/P17" 
+    time        80% fanout 0.00227143 input    140000 rows
+    Distinct (s_37_2_t0.O$31)
+    
+    After code:
+    0: var1$28 :=  := artm s_37_2_t0.O$31
+    4: BReturn 0
+    time      0.13% fanout         1 input       318 rows
+    Subquery Select(var1$28)
+    time       4.9% fanout  0.081761 input       318 rows
+    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:       1.1 Fanout:     0.082
+    RDF_QUAD       1.1 rows(s_37_8_t2.S$49, s_37_8_t2.O$48)
+     inlined  P =  IRI_ID"...direct/P1082"  ,  S = k_var1$115
+    time       2.9% fanout   1.07692 input        26 rows
+    Precode:
+      0: var2$51 := Call __ro2sq (s_37_8_t2.O$48)
+      5: BReturn 0
+    RDF_QUAD       1.9 rows(s_37_8_t1.S$54)
+     inlined  P =  IRI_ID"...direct/P299"  ,  S = k_var1$130
+    
+    After code:
+    0: var1$56 := Call __id2in (s_37_8_t1.S$54)
+    5: BReturn 0
+    time     0.024% fanout         0 input        28 rows
+    Select (var1$56, var2$51)
+  }
+
+
+ 14 msec 86% cpu,       345 rnd    139875 seq   87.8613% same seg   1.44509% same pg 
+Compilation: 2 msec 0 reads         0% read 0 messages         0% clw

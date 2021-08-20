@@ -1,0 +1,51 @@
+http://schema.org/about	
+http://www.wikidata.org/prop/direct/P155	
+http://www.wikidata.org/prop/direct/P156	
+http://www.wikidata.org/prop/direct/P2715	
+http://www.wikidata.org/prop/direct/P1344	
+http://www.wikidata.org/prop/direct/P361	
+http://www.wikidata.org/prop/direct/P527	
+http://www.wikidata.org/prop/direct/P921	
+http://www.wikidata.org/prop/direct/P1269	
+
+  { 
+    time     0.022% fanout         1 input         1 rows
+    time    0.0063% fanout         1 input         1 rows
+    time      0.75% fanout      1738 input         1 rows
+    RDF_QUAD   1.7e+03 rows(s_37_6_t2.S$31)
+     inlined  P =  IRI_ID"...direct/P991" 
+    time        51% fanout   1.47641 input      1738 rows
+    RDF_QUAD_OP       2.8 rows(s_37_6_t1.P$35, s_37_6_t1.O$34)
+     inlined  O = cast$100
+    time       2.5% fanout  0.819564 input      2566 rows
+    END Node
+    After test:
+    0: if (s_37_6_t1.P$35 =  IRI_ID"...direct/P991" ) then 9 else 4 unkn 9
+    4: if (s_37_6_t1.P$35 =  IRI_ID"...direct/P3602" ) then 9 else 8 unkn 9
+    8: BReturn 1
+    9: BReturn 0
+    time        30% fanout   1.12126 input      2103 rows
+    RDF_QUAD_POGS       1.2 rows()
+     P = k_s_37_6_t1.P$129 ,  O = k_s_37_6_t2.S$133
+    time        11% fanout   1.79262 input      2358 rows
+    RDF_QUAD_POGS       6.5 rows()
+     P =  IRI_ID"...direct/P3602"  ,  O = k_s_37_6_t1.O$144
+    time       3.5% fanout 0.00212917 input      4227 rows
+    Distinct (s_37_6_t1.P$35)
+    
+    After code:
+    0: p2$28 :=  := artm s_37_6_t1.P$35
+    4: BReturn 0
+    time       1.2% fanout         1 input         9 rows
+    Subquery Select(p2$28)
+    
+    After code:
+    0: p2$57 := Call __ro2sq (p2$28)
+    5: BReturn 0
+    time     0.016% fanout         0 input         9 rows
+    Select (p2$57)
+  }
+
+
+ 14 msec 88% cpu,      6197 rnd      6456 seq   91.3359% same seg   7.42175% same pg 
+Compilation: 2 msec 0 reads         0% read 0 messages         0% clw

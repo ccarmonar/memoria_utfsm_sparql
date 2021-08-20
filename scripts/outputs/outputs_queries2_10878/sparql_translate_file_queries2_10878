@@ -1,0 +1,17 @@
+SELECT TOP 1 is_named_iri_id ( "s_37_5"."var1") AS "var2"
+FROM (
+   SELECT "s_37_4_t0"."S" AS "var3",
+      "s_37_4_t1"."O" AS "var1"
+    FROM DB.DBA.RDF_QUAD AS "s_37_4_t0"
+      INNER JOIN DB.DBA.RDF_QUAD AS "s_37_4_t1"
+      ON (
+        "s_37_4_t0"."S" = "s_37_4_t1"."S")
+    WHERE
+      "s_37_4_t0"."P" = __i2idn ( __bft( 'http://www.wikidata.org/prop/direct/P31' , 1))
+      AND 
+      "s_37_4_t0"."O" = __i2idn ( __bft( 'http://www.wikidata.org/entity/Q2596245' , 1))
+      AND 
+      "s_37_4_t1"."P" = __i2idn ( __bft( 'http://www.wikidata.org/prop/direct/P495' , 1))
+OPTION (QUIETCAST)
+    ) AS "s_37_5"
+OPTION (QUIETCAST)

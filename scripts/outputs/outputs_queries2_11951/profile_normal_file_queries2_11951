@@ -1,0 +1,49 @@
+11955	http://www.wikidata.org/entity/Q2632655	
+1368	http://www.wikidata.org/entity/Q2636220	
+30315	http://www.wikidata.org/entity/Q2698472	
+68058	http://www.wikidata.org/entity/Q2698619	
+10775	http://www.wikidata.org/entity/Q2698619	
+31670	http://www.wikidata.org/entity/Q2698619	
+10215	http://www.wikidata.org/entity/Q2787340	
+3698	http://www.wikidata.org/entity/Q2857428	
+6564	http://www.wikidata.org/entity/Q2858166	
+53922	http://www.wikidata.org/entity/Q2916269	
+43895	http://www.wikidata.org/entity/Q2978090	
+660	http://www.wikidata.org/entity/Q3058092	
+68904	http://www.wikidata.org/entity/Q3059649	
+36738	http://www.wikidata.org/entity/Q3062619	
+70422	http://www.wikidata.org/entity/Q3065693	
+65133	http://www.wikidata.org/entity/Q3065693	
+15200	http://www.wikidata.org/entity/Q3069048	
+65573	http://www.wikidata.org/entity/Q3069570	
+163	http://www.wikidata.org/entity/Q3069593	
+6785	http://www.wikidata.org/entity/Q3070710	
+
+  { 
+    time    0.0015% fanout         1 input         1 rows
+      clear: (<V set_ctr$41 in>)
+    s# 44 42 cluster outer seq start, set no <V set_ctr$41 in>    
+    save ctx:()
+    time     1e+02% fanout      1000 input         1 rows
+      clear: (<V s_37_2_t0.S$28 rn>, <V s_37_2_t0.O$29 an>, <V var2$33 a>, <V var1$31 a>)
+      clear on continue: (<V s_37_2_t0.S$28 rn>, <V s_37_2_t0.O$29 an>, <V var2$33 a>, <V var1$31 a>)
+    s# 53 27 from DB.DBA.RDF_QUAD by RDF_QUAD    1.6e+03 rows   
+    Key RDF_QUAD  ASC  (<V s_37_2_t0.O$29 an>, <V s_37_2_t0.S$28 rn>)
+     inlined  P =  IRI_ID"...direct/P2799" 
+    
+    After code:
+      0: <V var1$31 a> := Call __ro2sq (<V s_37_2_t0.O$29 an>)
+      5: <V var2$33 a> := Call __id2in (<V s_37_2_t0.S$28 rn>)
+      10: BReturn 0
+    time   0.00014% fanout         0 input      1000 rows
+    $31 () $33 () $41 (27 42 ) 
+    s# 64 35 Select (<V var1$31 a>, <V var2$33 a>)
+      set no: <r set_ctr$41 via  Set53>
+  }
+Warning: You might have a Cartesian product.
+
+
+
+ 234 msec 99% cpu,      1906 rnd       998 seq         0% same seg   34.0325% same pg 
+12 disk reads, 0 read ahead,   96.2827% wait
+Compilation: 1 msec 0 reads         0% read 0 messages         0% clw

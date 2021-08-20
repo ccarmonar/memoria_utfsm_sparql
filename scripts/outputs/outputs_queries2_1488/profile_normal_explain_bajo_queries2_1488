@@ -1,0 +1,36 @@
+
+  { 
+    time       6.4% fanout         1 input         1 rows
+    time       1.7% fanout         1 input         1 rows
+    time        92% fanout         0 input         1 rows
+    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:       0.3 Fanout:         0
+    RDF_QUAD       0.3 rows(s_37_3_t0.O$35)
+     inlined  P =  IRI_ID"...direct/P625"  ,  S =  IRI_ID"...Q10728033" 
+    time         0% fanout         0 input         0 rows
+    Distinct (s_37_3_t0.O$35)
+    
+    After code:
+    0: __ro2sq$43 := Call __ro2sq (s_37_3_t0.O$35)
+    5: var1$28 :=  := artm <tag 182 flag 1 c http://www.wikidata.org/entity/Q10728033>
+    9: var2$29 :=  := artm <DB_NULL>
+    13: var3$30 :=  := artm __ro2sq$43
+    17: var4$31 :=  := artm <DB_NULL>
+    21: var5$32 :=  := artm <DB_NULL>
+    25: BReturn 0
+    time         0% fanout         0 input         0 rows
+    Subquery Select(var1$28, var2$29, var3$30, var4$31, var5$32)
+    
+    After code:
+    0: var1$53 := Call __ro2sq (var1$28)
+    5: var2$55 := Call __ro2sq (var2$29)
+    10: var3$57 := Call __ro2sq (var3$30)
+    15: var4$59 := Call __ro2sq (var4$31)
+    20: var5$61 := Call __ro2sq (var5$32)
+    25: BReturn 0
+    time         0% fanout         0 input         0 rows
+    Select (var1$53, var2$55, var3$57, var4$59, var5$61)
+  }
+
+
+ 0 msec 3% cpu,         1 rnd         0 seq         0% same seg         0% same pg 
+Compilation: 2 msec 0 reads         0% read 0 messages         0% clw

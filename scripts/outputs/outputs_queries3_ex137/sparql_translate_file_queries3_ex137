@@ -1,0 +1,18 @@
+SELECT __ro2sq ( "s_13_3"."lastName") AS "lastName",
+  __ro2sq ( "s_18_7"."courseName") AS "courseName"
+FROM (
+   SELECT "s_13_2_t0"."O" AS "lastName"
+    FROM DB.DBA.RDF_QUAD AS "s_13_2_t0"
+    WHERE
+      "s_13_2_t0"."P" = __i2idn ( __bft( 'http://learningsparql.com/ns/addressbook#lastName' , 1))
+OPTION (QUIETCAST)
+    ) AS "s_13_3"
+  INNER JOIN (
+   SELECT "s_18_6_t1"."O" AS "courseName"
+    FROM DB.DBA.RDF_QUAD AS "s_18_6_t1"
+    WHERE
+      "s_18_6_t1"."P" = __i2idn ( __bft( 'http://learningsparql.com/ns/addressbook#courseTitle' , 1))
+OPTION (QUIETCAST)
+    ) AS "s_18_7"
+  ON (1)
+OPTION (QUIETCAST)

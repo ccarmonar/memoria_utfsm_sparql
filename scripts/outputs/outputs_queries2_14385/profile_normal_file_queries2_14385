@@ -1,0 +1,47 @@
+
+  { 
+    time     0.028% fanout         1 input         1 rows
+      clear: (<V set_ctr$52 in>)
+    s# 55 53 cluster outer seq start, set no <V set_ctr$52 in>    
+    save ctx:()
+    time       1.1% fanout      1247 input         1 rows
+      clear: (<V s_37_6_t1.O$28 an>, <V s_37_6_t1.S$29 rn>)
+      clear on continue: (<V s_37_6_t1.O$28 an>, <V s_37_6_t1.S$29 rn>)
+    s# 64 27 from DB.DBA.RDF_QUAD by RDF_QUAD    1.2e+03 rows   
+    Key RDF_QUAD  ASC  (<V s_37_6_t1.S$29 rn>, <V s_37_6_t1.O$28 an>)
+     inlined  P =  IRI_ID"...direct/P1050" 
+    
+    time        14% fanout  0.420209 input      1247 rows
+      clear: (<V s_37_6_t0.O$32 an>, <V s_37_6_t0.S$33 rn>)
+      clear on continue: (<V s_37_6_t0.O$32 an>, <V s_37_6_t0.S$33 rn>)$29 () 
+    s# 75 31 from DB.DBA.RDF_QUAD by RDF_QUAD          1 rows   
+    Key RDF_QUAD  ASC  (<V s_37_6_t0.S$33 rn>, <V s_37_6_t0.O$32 an>)
+     inlined  P =  IRI_ID"...direct/P373"  ,  S = <V s_37_6_t1.S$29 rn>
+    
+    time        85% fanout         0 input       524 rows
+    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:         1 Fanout:         0
+    Precode:
+      0: <V var2$35 a> := Call __ro2sq (<r s_37_6_t1.O$28 via  Set75>)
+      5: <V var3$37 a> := Call __ro2sq (<V s_37_6_t0.O$32 an>)
+      10: <V var4$39 a> := Call __id2in (<V s_37_6_t0.S$33 rn>)
+      15: BReturn 0
+      clear: (<V s_37_6_t2.O$42 an>, <V var4$39 a>, <V var3$37 a>, <V var2$35 a>, <V var1$44 a>)
+      clear on continue: (<V var1$44 a>, <V s_37_6_t2.O$42 an>)$32 () $33 () $28 (31 ) 
+    s# 86 41 from DB.DBA.RDF_QUAD by RDF_QUAD          1 rows   
+    Key RDF_QUAD  ASC  (<V s_37_6_t2.O$42 an>)
+     inlined  P =  IRI_ID"...direct/P486"  ,  S = <V s_37_6_t0.S$33 rn>
+    
+    After code:
+      0: <V var1$44 a> := Call __ro2sq (<V s_37_6_t2.O$42 an>)
+      5: BReturn 0
+    time         0% fanout         0 input         0 rows
+    $35 (41 ) $37 (41 ) $39 (41 ) $44 () $52 (41 31 27 53 ) 
+    s# 96 46 Select (<V var1$44 a>, <r var2$35 via  Set86>, <r var3$37 via  Set86>, <r var4$39 via  Set86>)
+      set no: <r set_ctr$52 via  Set86 Set75 Set64>
+  }
+Warning: You might have a Cartesian product.
+
+
+
+ 14 msec 86% cpu,      3302 rnd      1276 seq   52.8005% same seg   4.23857% same pg 
+Compilation: 1 msec 0 reads         0% read 0 messages         0% clw

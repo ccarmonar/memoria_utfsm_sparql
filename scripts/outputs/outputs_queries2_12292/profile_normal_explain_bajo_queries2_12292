@@ -1,0 +1,53 @@
+http://www.wikidata.org/entity/Q34266	http://www.wikidata.org/entity/Q241122	
+http://www.wikidata.org/entity/Q34266	http://www.wikidata.org/entity/Q2081104	
+http://www.wikidata.org/entity/Q34266	http://www.wikidata.org/entity/Q4209183	
+http://www.wikidata.org/entity/Q34266	http://www.wikidata.org/entity/Q4209183	
+http://www.wikidata.org/entity/Q34266	http://www.wikidata.org/entity/Q4209183	
+http://www.wikidata.org/entity/Q34266	http://www.wikidata.org/entity/Q4223770	
+http://www.wikidata.org/entity/Q34266	http://www.wikidata.org/entity/Q702274	
+http://www.wikidata.org/entity/Q34266	http://www.wikidata.org/entity/Q1025805	
+http://www.wikidata.org/entity/Q34266	http://www.wikidata.org/entity/Q23845994	
+http://www.wikidata.org/entity/Q34266	http://www.wikidata.org/entity/Q23846615	
+http://www.wikidata.org/entity/Q34266	http://www.wikidata.org/entity/Q4454439	
+http://www.wikidata.org/entity/Q34266	http://www.wikidata.org/entity/Q720404	
+http://www.wikidata.org/entity/Q34266	http://www.wikidata.org/entity/Q207105	
+http://www.wikidata.org/entity/Q34266	http://www.wikidata.org/entity/Q18802167	
+http://www.wikidata.org/entity/Q34266	http://www.wikidata.org/entity/Q486913	
+http://www.wikidata.org/entity/Q34266	http://www.wikidata.org/entity/Q4525602	
+http://www.wikidata.org/entity/Q34266	http://www.wikidata.org/entity/Q20636655	
+http://www.wikidata.org/entity/Q34266	http://www.wikidata.org/entity/Q16273036	
+http://www.wikidata.org/entity/Q34266	http://www.wikidata.org/entity/Q13646690	
+http://www.wikidata.org/entity/Q34266	http://www.wikidata.org/entity/Q4404036	
+
+  { 
+    time     0.083% fanout         1 input         1 rows
+    time      0.23% fanout         5 input         1 rows
+    in iterates in_iter$28  over ( IRI_ID"...Q34266" ,  IRI_ID"...Q139319" ,  IRI_ID"...Q170770" ,  IRI_ID"...Q186096" ,  IRI_ID"...Q2184" )
+    time       4.7% fanout     249.6 input         5 rows
+    RDF_QUAD_POGS   1.2e+03 rows(s_37_5_t1.O$33, s_37_5_t1.S$32)
+     P =  IRI_ID"...direct/P17"  ,  O = k_in_iter$79
+    time         2% fanout         1 input      1248 rows
+    END Node
+    After test:
+    0: is_named_iri_id$35 := Call is_named_iri_id (s_37_5_t1.O$33)
+    5: if ( 0  = is_named_iri_id$35) then 10 else 9 unkn 10
+    9: BReturn 1
+    10: BReturn 0
+    time        93% fanout 0.0176282 input      1248 rows
+    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:       1.2 Fanout:     0.018
+    Precode:
+      0: var1$37 := Call __ro2sq (s_37_5_t1.O$33)
+      5: BReturn 0
+    RDF_QUAD       1.2 rows(s_37_5_t0.S$40)
+     inlined  P =  IRI_ID"...direct/P281"  ,  S = k_s_37_5_t1.S$107
+    
+    After code:
+    0: var2$42 := Call __id2in (s_37_5_t0.S$40)
+    5: BReturn 0
+    time     0.045% fanout         0 input        22 rows
+    Select (var1$37, var2$42)
+  }
+
+
+ 4 msec 63% cpu,      1253 rnd      1244 seq   97.2887% same seg   1.75439% same pg 
+Compilation: 2 msec 0 reads         0% read 0 messages         0% clw

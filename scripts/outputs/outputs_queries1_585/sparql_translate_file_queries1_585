@@ -1,0 +1,28 @@
+SELECT __id2in ( "s_37_7"."var1") AS "var1"
+FROM (
+   SELECT "s_37_6_t0"."S" AS "var1",
+       COUNT (
+         "s_37_6_t0"."S") AS "var2"
+    FROM DB.DBA.RDF_QUAD AS "s_37_6_t0"
+      INNER JOIN DB.DBA.RDF_QUAD AS "s_37_6_t1"
+      ON (
+        "s_37_6_t0"."O" = "s_37_6_t1"."S")
+      INNER JOIN DB.DBA.RDF_QUAD AS "s_37_6_t2"
+      ON (
+        "s_37_6_t0"."S" = "s_37_6_t2"."S")
+    WHERE
+      "s_37_6_t0"."P" = __i2idn ( __bft( 'http://www.wikidata.org/prop/P106' , 1))
+      AND 
+      "s_37_6_t1"."P" = __i2idn ( __bft( 'http://www.wikidata.org/prop/statement/P106' , 1))
+      AND 
+      "s_37_6_t1"."O" = __i2idn ( __bft( 'http://www.wikidata.org/entity/Q42973' , 1))
+      AND 
+      "s_37_6_t2"."P" = __i2idn ( __bft( 'http://www.wikidata.org/prop/P106' , 1))
+    GROUP BY "s_37_6_t0"."S"
+OPTION (QUIETCAST)
+    ) AS "s_37_7"
+WHERE
+ ( "s_37_7"."var2" =  1)
+  AND 
+  __xsd_type ( 1) = __bft( 'http://www.w3.org/2001/XMLSchema#integer' , 1)
+OPTION (QUIETCAST)

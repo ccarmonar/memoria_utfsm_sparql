@@ -1,0 +1,134 @@
+http://www.wikidata.org/entity/Q48816531	1997-11-10 00:00:00Z	
+http://www.wikidata.org/entity/Q5546415	nodeID://b65949	
+http://www.wikidata.org/entity/Q28534199	1999-01-21 00:00:00Z	
+http://www.wikidata.org/entity/Q37013923	nodeID://b77089	
+http://www.wikidata.org/entity/Q15849487	2000-01-01 00:00:00Z	
+http://www.wikidata.org/entity/Q1176671	2000-01-01 00:00:00Z	
+http://www.wikidata.org/entity/Q15849487	2000-01-01 00:00:00Z	
+http://www.wikidata.org/entity/Q1176671	2000-01-01 00:00:00Z	
+http://www.wikidata.org/entity/Q48816531	1997-10-11 00:00:00Z	
+http://www.wikidata.org/entity/Q24450681	1996-10-10 00:00:00Z	
+http://www.wikidata.org/entity/Q24450681	1996-10-10 00:00:00Z	
+http://www.wikidata.org/entity/Q17475006	1996-01-06 00:00:00Z	
+http://www.wikidata.org/entity/Q19901946	1995-09-20 00:00:00Z	
+http://www.wikidata.org/entity/Q19901946	1995-09-20 00:00:00Z	
+http://www.wikidata.org/entity/Q16237010	1995-07-11 00:00:00Z	
+http://www.wikidata.org/entity/Q16237010	1995-07-11 00:00:00Z	
+http://www.wikidata.org/entity/Q10549154	1993-08-31 00:00:00Z	
+http://www.wikidata.org/entity/Q5246108	1993-03-30 00:00:00Z	
+http://www.wikidata.org/entity/Q5246108	1993-03-29 00:00:00Z	
+http://www.wikidata.org/entity/Q19577514	1978-12-19 00:00:00Z	
+
+  { 
+    time     0.015% fanout         1 input         1 rows
+    Precode:
+      0: __all_eq$27 := Call __all_eq ( IRI_ID"...Q22" )
+      5: BReturn 0
+    Subquery 29 
+      { 
+        time    0.0064% fanout         1 input         1 rows
+        fork {
+            Subquery 33 
+              { 
+                Union
+                  { 
+                    time      0.36% fanout       187 input         1 rows
+                    RDF_QUAD_POGS   1.9e+02 rows(t3.S$39)
+                     P =  IRI_ID"...direct/P19"  ,  O =  IRI_ID"...Q22" 
+                    time        15% fanout  0.989305 input       187 rows
+                    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:     0.091 Fanout:      0.99
+                    RDF_QUAD     0.091 rows(t4.S$42)
+                     inlined  P =  IRI_ID"...direct/P31"  ,  S = t3.S$39 ,  O =  IRI_ID"...Q5" 
+                    time      0.26% fanout         1 input       185 rows
+                    outer {
+                        time       6.3% fanout  0.886486 input       185 rows
+                        RDF_QUAD         1 rows(t6.O$45)
+                         inlined  P =  IRI_ID"...direct/P569"  ,  S = k_t4.S$229
+                        time     0.041% fanout   1.16463 input       164 rows
+                      } /* end of outer */
+                    set_ctr$48
+                     out: (t6.O$45)
+                     shadow: ( <none> )
+                    
+                    After code:
+                    0: var2$34 :=  := artm t6.O$45
+                    4: var1$35 :=  := artm t4.S$42
+                    8: BReturn 0
+                    time         2% fanout         0 input       191 rows
+                    Precode:
+                      0: __ro2sq$118 := Call __ro2sq (var2$34)
+                      5: BReturn 0
+                    Sort (__ro2sq$118) -> (var1$35)
+                    
+                  }
+                  { 
+                    Transitive dt dir 2, input: (__all_eq$27)
+                      input shadow: (__all_eq$261)
+                      output: (_::trans_subj_37_5$65)
+                      { 
+                        time        12% fanout   1.01445 input      3115 rows
+                        RDF_QUAD_POGS       9.6 rows(t15.S$72, t15.O$71)
+                         P =  IRI_ID"...direct/P131"  ,  O = k___all_eq$267
+                        
+                        After code:
+                        0: _::trans_subj_37_5$65 :=  := artm t15.S$72
+                        4: _::trans_obj_37_6$66 :=  := artm t15.O$71
+                        8: BReturn 0
+                        time     0.015% fanout         0 input      3160 rows
+                        Subquery Select(_::trans_subj_37_5$65, _::trans_obj_37_6$66)
+                      }
+                    time        48% fanout 0.000894454 input      3354 rows
+                    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:       4.1 Fanout:   0.00089
+                    RDF_QUAD_POGS       4.1 rows(t13.S$92)
+                     P =  IRI_ID"...direct/P19"  ,  O = cast$291 O LIKE <c Tó>
+                    time      0.38% fanout         1 input         3 rows
+                    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:     0.091 Fanout:         1
+                    RDF_QUAD     0.091 rows(t16.S$95)
+                     inlined  P =  IRI_ID"...direct/P31"  ,  S = t13.S$92 ,  O =  IRI_ID"...Q5" 
+                    time     0.017% fanout         1 input         3 rows
+                    outer {
+                        time      0.28% fanout         1 input         3 rows
+                        RDF_QUAD         1 rows(t18.O$98)
+                         inlined  P =  IRI_ID"...direct/P569"  ,  S = k_t16.S$324
+                        time     0.023% fanout         1 input         3 rows
+                      } /* end of outer */
+                    set_ctr$101
+                     out: (t18.O$98)
+                     shadow: ( <none> )
+                    
+                    After code:
+                    0: var2$34 :=  := artm t18.O$98
+                    4: var1$35 :=  := artm t16.S$95
+                    8: BReturn 0
+                    time     0.071% fanout         0 input         3 rows
+                    Precode:
+                      0: __ro2sq$118 := Call __ro2sq (var2$34)
+                      5: BReturn 0
+                    Sort (__ro2sq$118) -> (var1$35)
+                    
+                  }
+              }
+          }
+        time       4.1% fanout       475 input         1 rows
+        top order by read (var1$35, __ro2sq$118)
+        
+        After code:
+        0: __id2in$153 := Call __id2in (var1$35)
+        5: var1$30 :=  := artm __id2in$153
+        9: var2$31 :=  := artm __ro2sq$118
+        13: BReturn 0
+        time    0.0034% fanout         0 input       475 rows
+        Subquery Select(var1$30, var2$31)
+      }
+    
+    After code:
+    0: var1$162 := Call __ro2sq (var1$30)
+    5: var2$164 := Call __ro2sq (var2$31)
+    10: BReturn 0
+    time    0.0029% fanout         0 input       475 rows
+    Select (var1$162, var2$164)
+  }
+
+
+ 23 msec 55% cpu,      7399 rnd      3595 seq   91.0946% same seg   7.55405% same pg 
+Compilation: 6 msec 0 reads         0% read 0 messages         0% clw

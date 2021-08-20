@@ -1,0 +1,81 @@
+http://www.wikidata.org/entity/Q2630678	P06729	https://www.ncbi.nlm.nih.gov/protein/P06729	
+http://www.wikidata.org/entity/Q2630678	P06729	http://purl.uniprot.org/uniprot/P06729	
+http://www.wikidata.org/entity/Q2630678	P06729	https://identifiers.org/uniprot:P06729	
+http://www.wikidata.org/entity/Q2640417	P05091	https://www.ncbi.nlm.nih.gov/protein/P05091	
+http://www.wikidata.org/entity/Q2640417	P05091	http://purl.uniprot.org/uniprot/P05091	
+http://www.wikidata.org/entity/Q2640417	P05091	https://identifiers.org/uniprot:P05091	
+http://www.wikidata.org/entity/Q3067052	P48023	http://purl.uniprot.org/uniprot/P48023	
+http://www.wikidata.org/entity/Q3067052	P48023	https://identifiers.org/uniprot:P48023	
+http://www.wikidata.org/entity/Q3067052	P48023	https://www.ncbi.nlm.nih.gov/protein/P48023	
+http://www.wikidata.org/entity/Q7050954	P23975	http://purl.uniprot.org/uniprot/P23975	
+http://www.wikidata.org/entity/Q415364	P35354	http://purl.uniprot.org/uniprot/P35354	
+http://www.wikidata.org/entity/Q259292	Q9UBM7	http://purl.uniprot.org/uniprot/Q9UBM7	
+http://www.wikidata.org/entity/Q305481	P24298	https://identifiers.org/uniprot:P24298	
+http://www.wikidata.org/entity/Q305481	P24298	https://www.ncbi.nlm.nih.gov/protein/P24298	
+http://www.wikidata.org/entity/Q305481	P24298	http://purl.uniprot.org/uniprot/P24298	
+http://www.wikidata.org/entity/Q308856	P21917	http://purl.uniprot.org/uniprot/P21917	
+http://www.wikidata.org/entity/Q4236472	P23528	http://purl.uniprot.org/uniprot/P23528	
+http://www.wikidata.org/entity/Q4236472	P23528	https://identifiers.org/uniprot:P23528	
+http://www.wikidata.org/entity/Q4236472	P23528	https://www.ncbi.nlm.nih.gov/protein/P23528	
+http://www.wikidata.org/entity/Q21096399	P23497	https://identifiers.org/uniprot:P23497	
+
+  { 
+    time    0.0021% fanout         1 input         1 rows
+      clear: (<V set_ctr$68 in>)
+    s# 71 69 cluster outer seq start, set no <V set_ctr$68 in>    
+    save ctx:()
+    time   0.00054% fanout         1 input         1 rows
+      clear: (<V set_no$31 i>)
+    s# 80 55 cluster outer seq start, set no <V set_no$31 i>    
+    save ctx:()
+    time     0.054% fanout      1000 input         1 rows
+    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:   1.6e+04 Fanout:     1e+03
+      clear: (<V s_37_6_t2.S$33 rn>)
+      clear on continue: (<V s_37_6_t2.S$33 rn>)
+    s# 89 32 from DB.DBA.RDF_QUAD by RDF_QUAD_POGS    1.6e+04 rows   
+    Key RDF_QUAD_POGS  ASC  (<V s_37_6_t2.S$33 rn>)
+     P =  IRI_ID"...direct/P703"  ,  O =  IRI_ID"...Q15978631" 
+    
+    time      0.17% fanout     0.255 input      1000 rows
+      clear: (<V s_37_6_t0.O$36 an>, <V s_37_6_t0.S$37 rn>)
+      clear on continue: (<V s_37_6_t0.O$36 an>, <V s_37_6_t0.S$37 rn>)$33 () 
+    s# 99 35 from DB.DBA.RDF_QUAD by RDF_QUAD          1 rows   
+    Key RDF_QUAD  ASC  (<V s_37_6_t0.S$37 rn>, <V s_37_6_t0.O$36 an>)
+     inlined  P =  IRI_ID"...direct/P352"  ,  S = <V s_37_6_t2.S$33 rn>
+    
+    time     0.094% fanout  0.470588 input       255 rows
+      clear: (<V s_37_6_t1.O$40 an>)
+      clear on continue: (<V s_37_6_t1.O$40 an>)
+    s# 110 39 from DB.DBA.RDF_QUAD by RDF_QUAD          1 rows   
+    Key RDF_QUAD  ASC  (<V s_37_6_t1.O$40 an>)
+     inlined  P =  IRI_ID"...direct/P2888"  ,  S = <V s_37_6_t0.S$37 rn>
+    
+    time     0.086% fanout         1 input       120 rows
+      clear: (<V var3$30 an>, <V var2$29 an>, <V var1$28 rn>)$36 (39 ) $37 (39 ) $40 () 
+    s# 120 42 Distinct (HASH) set no <r set_no$31 via  Set110 Set99 Set89>(<r s_37_6_t0.S$37 via  Set110>, <r s_37_6_t0.O$36 via  Set110>, <V s_37_6_t1.O$40 an>)
+    After code:
+      0: <V var1$28 rn> :=  := artm <r s_37_6_t0.S$37 via  Set120 Set110>
+      4: <V var2$29 an> :=  := artm <r s_37_6_t0.O$36 via  Set120 Set110>
+      8: <V var3$30 an> :=  := artm <r s_37_6_t1.O$40 via  Set120>
+      12: BReturn 0
+    time     1e+02% fanout         1 input       120 rows
+      clear: (<V var3$60 a>, <V var2$58 a>, <V var1$56 a>)$31 (42 39 35 32 55 ) $28 (42 ) $29 (42 ) $30 (42 ) 
+    s# 131 48 Subquery Select(<V var1$28 rn>, <V var2$29 an>, <V var3$30 an>)
+      set no: <r set_no$31 via  Set120 Set110 Set99 Set89>
+    After code:
+      0: <V var1$56 a> := Call __ro2sq (<V var1$28 rn>)
+      5: <V var2$58 a> := Call __ro2sq (<V var2$29 an>)
+      10: <V var3$60 a> := Call __ro2sq (<V var3$30 an>)
+      15: BReturn 0
+    time   0.00041% fanout         0 input       120 rows
+    $68 (48 42 39 35 32 55 69 ) $56 (48 ) $58 (48 ) $60 (48 ) 
+    s# 138 62 Select (<V var1$56 a>, <V var2$58 a>, <V var3$60 a>)
+      set no: <r set_ctr$68 via  Set131>
+  }
+Warning: You might have a Cartesian product.
+
+
+
+ 184 msec 98% cpu,      1576 rnd      1064 seq   79.2644% same seg   5.19975% same pg 
+15 disk reads, 0 read ahead,   96.9825% wait
+Compilation: 2 msec 0 reads         0% read 0 messages         0% clw

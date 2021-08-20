@@ -1,0 +1,67 @@
+http://www.wikidata.org/entity/Q996759		http://www.wikidata.org/entity/Q40089		
+http://www.wikidata.org/entity/Q996121		http://www.wikidata.org/entity/Q22731		
+http://www.wikidata.org/entity/Q996029		http://www.wikidata.org/entity/Q22731		
+http://www.wikidata.org/entity/Q99200		http://www.wikidata.org/entity/Q483269		
+http://www.wikidata.org/entity/Q991088		http://www.wikidata.org/entity/Q43338		
+http://www.wikidata.org/entity/Q990815		http://www.wikidata.org/entity/Q1370714		
+http://www.wikidata.org/entity/Q9848336		http://www.wikidata.org/entity/Q12321255		
+http://www.wikidata.org/entity/Q9848336		http://www.wikidata.org/entity/Q296955		
+http://www.wikidata.org/entity/Q980401		http://www.wikidata.org/entity/Q22731		
+http://www.wikidata.org/entity/Q978987		http://www.wikidata.org/entity/Q34095		
+http://www.wikidata.org/entity/Q978785		http://www.wikidata.org/entity/Q466481		
+http://www.wikidata.org/entity/Q974674		http://www.wikidata.org/entity/Q296955		
+http://www.wikidata.org/entity/Q974300		http://www.wikidata.org/entity/Q40861		
+http://www.wikidata.org/entity/Q969377		http://www.wikidata.org/entity/Q12321255		
+http://www.wikidata.org/entity/Q969377		http://www.wikidata.org/entity/Q296955		
+http://www.wikidata.org/entity/Q969367		http://www.wikidata.org/entity/Q296955		
+http://www.wikidata.org/entity/Q969335		http://www.wikidata.org/entity/Q125576		
+http://www.wikidata.org/entity/Q966429		http://www.wikidata.org/entity/Q40089		
+http://www.wikidata.org/entity/Q965981		http://www.wikidata.org/entity/Q1418287		
+http://www.wikidata.org/entity/Q965124		http://www.wikidata.org/entity/Q296955		
+
+  { 
+    time    0.0011% fanout         1 input         1 rows
+    Subquery 27 
+      { 
+        time    0.0005% fanout         1 input         1 rows
+        fork {
+            time        46% fanout     74131 input         1 rows
+            RDF_QUAD   7.4e+04 rows(s_37_2_t0.S$35, s_37_2_t0.O$34)
+             inlined  P =  IRI_ID"...direct/P186" 
+            
+            After code:
+            0: __id2in$37 := Call __id2in (s_37_2_t0.S$35)
+            5: $41 :=  := artm <DB_NULL>
+            9: $42 :=  := artm <DB_NULL>
+            13: BReturn 0
+            time        54% fanout         0 input     74131 rows
+            Sort (__id2in$37) -> ($41, s_37_2_t0.O$34, $42)
+            
+          }
+        time      0.61% fanout      1000 input         1 rows
+        top order by read (__id2in$37, $41, s_37_2_t0.O$34, $42)
+        
+        After code:
+        0: __ro2sq$63 := Call __ro2sq (s_37_2_t0.O$34)
+        5: var1$28 :=  := artm __id2in$37
+        9: var2$29 :=  := artm <DB_NULL>
+        13: var3$30 :=  := artm __ro2sq$63
+        17: var4$31 :=  := artm <DB_NULL>
+        21: BReturn 0
+        time   0.00018% fanout         0 input      1000 rows
+        Subquery Select(var1$28, var2$29, var3$30, var4$31)
+      }
+    
+    After code:
+    0: var1$72 := Call __ro2sq (var1$28)
+    5: var2$74 := Call __ro2sq (var2$29)
+    10: var3$76 := Call __ro2sq (var3$30)
+    15: var4$78 := Call __ro2sq (var4$31)
+    20: BReturn 0
+    time   0.00018% fanout         0 input      1000 rows
+    Select (var1$72, var2$74, var3$76, var4$78)
+  }
+
+
+ 90 msec 286% cpu,       177 rnd     74054 seq         0% same seg   22.4719% same pg 
+Compilation: 1 msec 0 reads         0% read 0 messages         0% clw

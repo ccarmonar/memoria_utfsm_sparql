@@ -1,0 +1,48 @@
+http://www.wikidata.org/entity/Q188289	PKR				http://www.wikidata.org/entity/Q30891632	
+http://www.wikidata.org/entity/Q189097	ESP				http://www.wikidata.org/entity/Q25381943	
+http://www.wikidata.org/entity/Q192090	VND				http://www.wikidata.org/entity/Q25381954	
+http://www.wikidata.org/entity/Q242988	LRD				http://www.wikidata.org/entity/Q11110	
+http://www.wikidata.org/entity/Q214393	XPF				http://www.wikidata.org/entity/Q4419561	
+http://www.wikidata.org/entity/Q1546443	GRD				http://www.wikidata.org/entity/Q25382126	
+http://www.wikidata.org/entity/Q200055	LAK				http://www.wikidata.org/entity/Q25380448	
+http://www.wikidata.org/entity/Q271206	SDG				http://www.wikidata.org/entity/Q249306	
+http://www.wikidata.org/entity/Q259502	AUD				http://www.wikidata.org/entity/Q11110	
+http://www.wikidata.org/entity/Q4597	SBD				http://www.wikidata.org/entity/Q11110	
+http://www.wikidata.org/entity/Q4597	SBD				http://www.wikidata.org/entity/Q11110	
+http://www.wikidata.org/entity/Q4597	SBD				http://www.wikidata.org/entity/Q11110	
+http://www.wikidata.org/entity/Q4597	SBD				http://www.wikidata.org/entity/Q11110	
+http://www.wikidata.org/entity/Q4597	SBD				http://www.wikidata.org/entity/Q11110	
+http://www.wikidata.org/entity/Q4597	SBD				http://www.wikidata.org/entity/Q11110	
+http://www.wikidata.org/entity/Q4597	SBD				http://www.wikidata.org/entity/Q11110	
+http://www.wikidata.org/entity/Q4597	SBD				http://www.wikidata.org/entity/Q11110	
+http://www.wikidata.org/entity/Q193712	STN				http://www.wikidata.org/entity/Q62859221	
+http://www.wikidata.org/entity/Q199857	SAR				http://www.wikidata.org/entity/Q4419558	
+http://www.wikidata.org/entity/Q209792	JMD				http://www.wikidata.org/entity/Q11110	
+
+  { 
+    time      0.38% fanout         1 input         1 rows
+    time       6.7% fanout        23 input         1 rows
+    RDF_QUAD        23 rows(s_37_6_t2.S$29, s_37_6_t2.O$28)
+     inlined  P =  IRI_ID"...direct/P489" 
+    time        47% fanout  0.913043 input        23 rows
+    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:   2.3e-05 Fanout:      0.91
+    RDF_QUAD   2.3e-05 rows(s_37_6_t0.S$32)
+     inlined  P =  IRI_ID"...direct/P31"  ,  S = s_37_6_t2.S$29 ,  O =  IRI_ID"...Q8142" 
+    time        46% fanout         1 input        21 rows
+    Precode:
+      0: var6$34 := Call __ro2sq (s_37_6_t2.O$28)
+      5: var1$36 := Call __id2in (s_37_6_t0.S$32)
+      10: BReturn 0
+    RDF_QUAD       1.1 rows(s_37_6_t1.O$39)
+     inlined  P =  IRI_ID"...direct/P498"  ,  S = s_37_6_t0.S$32
+    
+    After code:
+    0: var2$41 := Call __ro2sq (s_37_6_t1.O$39)
+    5: BReturn 0
+    time     0.049% fanout         0 input        21 rows
+    Select (var1$36, var2$41, <DB_NULL>, <DB_NULL>, <DB_NULL>, var6$34)
+  }
+
+
+ 1 msec 34% cpu,        66 rnd        28 seq   44.7761% same seg   16.4179% same pg 
+Compilation: 2 msec 0 reads         0% read 0 messages         0% clw

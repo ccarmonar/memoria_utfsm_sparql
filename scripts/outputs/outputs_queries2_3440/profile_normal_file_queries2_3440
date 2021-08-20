@@ -1,0 +1,52 @@
+http://www.wikidata.org/entity/Q2607936	http://www.wikidata.org/prop/direct/P36	http://www.wikidata.org/entity/Q3404335	
+http://www.wikidata.org/entity/Q2608054	http://www.wikidata.org/prop/direct/P36	http://www.wikidata.org/entity/Q623594	
+http://www.wikidata.org/entity/Q2610703	http://www.wikidata.org/prop/direct/P36	http://www.wikidata.org/entity/Q1026071	
+http://www.wikidata.org/entity/Q2610751	http://www.wikidata.org/prop/direct/P36	http://www.wikidata.org/entity/Q2420935	
+http://www.wikidata.org/entity/Q2610766	http://www.wikidata.org/prop/direct/P36	http://www.wikidata.org/entity/Q888959	
+http://www.wikidata.org/entity/Q2610777	http://www.wikidata.org/prop/direct/P36	http://www.wikidata.org/entity/Q80983	
+http://www.wikidata.org/entity/Q2618079	http://www.wikidata.org/prop/direct/P36	http://www.wikidata.org/entity/Q991548	
+http://www.wikidata.org/entity/Q2640094	http://www.wikidata.org/prop/direct/P36	http://www.wikidata.org/entity/Q304448	
+http://www.wikidata.org/entity/Q5113190	http://www.wikidata.org/prop/direct/P36	http://www.wikidata.org/entity/Q2607545	
+http://www.wikidata.org/entity/Q5114085	http://www.wikidata.org/prop/direct/P36	http://www.wikidata.org/entity/Q2607406	
+http://www.wikidata.org/entity/Q12816823	http://www.wikidata.org/prop/direct/P36	http://www.wikidata.org/entity/Q221051	
+http://www.wikidata.org/entity/Q21637520	http://www.wikidata.org/prop/direct/P36	http://www.wikidata.org/entity/Q2640810	
+http://www.wikidata.org/entity/Q2631630	http://www.wikidata.org/prop/direct/P36	http://www.wikidata.org/entity/Q4063052	
+http://www.wikidata.org/entity/Q2632410	http://www.wikidata.org/prop/direct/P36	http://www.wikidata.org/entity/Q2010649	
+http://www.wikidata.org/entity/Q2633807	http://www.wikidata.org/prop/direct/P36	http://www.wikidata.org/entity/Q1075057	
+http://www.wikidata.org/entity/Q2636683	http://www.wikidata.org/prop/direct/P36	http://www.wikidata.org/entity/Q1004270	
+http://www.wikidata.org/entity/Q2636982	http://www.wikidata.org/prop/direct/P36	http://www.wikidata.org/entity/Q1003105	
+http://www.wikidata.org/entity/Q2638827	http://www.wikidata.org/prop/direct/P36	http://www.wikidata.org/entity/Q4214846	
+http://www.wikidata.org/entity/Q2639206	http://www.wikidata.org/prop/direct/P36	http://www.wikidata.org/entity/Q4408597	
+http://www.wikidata.org/entity/Q2639675	http://www.wikidata.org/prop/direct/P36	http://www.wikidata.org/entity/Q1023257	
+
+  { 
+    time      0.18% fanout         1 input         1 rows
+      clear: (<V set_ctr$41 in>)
+    s# 47 42 cluster outer seq start, set no <V set_ctr$41 in>    
+    save ctx:()
+    time       4.6% fanout      1000 input         1 rows
+    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:   1.4e+04 Fanout:     1e+03
+      clear: (<V s_37_2_t0.O$28 an>, <V s_37_2_t0.S$29 rn>)
+      clear on continue: (<V s_37_2_t0.O$28 an>, <V s_37_2_t0.S$29 rn>)
+    s# 56 27 from DB.DBA.RDF_QUAD by RDF_QUAD    1.4e+04 rows   
+    Key RDF_QUAD  ASC  (<V s_37_2_t0.S$29 rn>, <V s_37_2_t0.O$28 an>)
+     inlined  P =  IRI_ID"...direct/P36" 
+    
+    time        95% fanout       0.1 input      1000 rows
+      clear: (<V var3$33 a>, <V var1$31 a>)$28 () $29 () 
+    s# 67 45 skip node  100  <none> <r set_ctr$41 via  Set56>
+    After code:
+      0: <V var1$31 a> := Call __id2in (<r s_37_2_t0.S$29 via  Set67>)
+      5: <V var3$33 a> := Call __ro2sq (<r s_37_2_t0.O$28 via  Set67>)
+      10: BReturn 0
+    time      0.05% fanout         0 input       100 rows
+    $31 (45 ) $33 (45 ) $41 (45 27 42 ) 
+    s# 75 35 Select (<V var1$31 a>, <tag 182 flag 1 c http://www.wikidata.org/prop/direct/P36>, <V var3$33 a>)
+      set no: <r set_ctr$41 via  Set67 Set56>
+  }
+Warning: You might have a Cartesian product.
+
+
+
+ 2 msec 58% cpu,       201 rnd       998 seq         0% same seg   47.5248% same pg 
+Compilation: 1 msec 0 reads         0% read 0 messages         0% clw

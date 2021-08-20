@@ -1,0 +1,39 @@
+SELECT TOP 1 __id2in ( "s_37_10_t0"."S") AS "var1"
+FROM DB.DBA.RDF_QUAD AS "s_37_10_t0"
+  INNER JOIN DB.DBA.RDF_QUAD AS "s_37_10_t1"
+  ON (
+    "s_37_10_t0"."S" = "s_37_10_t1"."S")
+  INNER JOIN DB.DBA.RDF_QUAD AS "s_37_10_t2"
+  ON (
+    "s_37_10_t0"."S" = "s_37_10_t2"."S"
+    AND 
+    "s_37_10_t1"."S" = "s_37_10_t2"."S")
+  INNER JOIN DB.DBA.RDF_QUAD AS "s_37_10_t3"
+  ON (
+    "s_37_10_t0"."S" = "s_37_10_t3"."S"
+    AND 
+    "s_37_10_t1"."S" = "s_37_10_t3"."S"
+    AND 
+    "s_37_10_t2"."S" = "s_37_10_t3"."S")
+  INNER JOIN DB.DBA.RDF_QUAD AS "s_37_10_t4"
+  ON (
+    "s_37_10_t3"."O" = "s_37_10_t4"."S")
+WHERE
+  "s_37_10_t0"."P" = __i2idn ( __bft( 'http://www.w3.org/1999/02/22-rdf-syntax-ns#type' , 1))
+  AND 
+  "s_37_10_t0"."O" = __i2idn ( __bft( 'http://schema.org/Article' , 1))
+  AND 
+  "s_37_10_t1"."P" = __i2idn ( __bft( 'http://schema.org/about' , 1))
+  AND 
+  "s_37_10_t1"."O" = __i2idn ( __bft( 'http://www.wikidata.org/entity/Q515701' , 1))
+  AND 
+  "s_37_10_t2"."P" = __i2idn ( __bft( 'http://schema.org/inLanguage' , 1))
+  AND 
+  "s_37_10_t2"."O" = DB.DBA.RDF_OBJ_OF_SQLVAL ( 'fr' )
+  AND 
+  "s_37_10_t3"."P" = __i2idn ( __bft( 'http://schema.org/isPartOf' , 1))
+  AND 
+  "s_37_10_t4"."P" = __i2idn ( __bft( 'http://wikiba.se/ontology#wikiGroup' , 1))
+  AND 
+  "s_37_10_t4"."O" = DB.DBA.RDF_OBJ_OF_SQLVAL ( 'string1' )
+OPTION (QUIETCAST)

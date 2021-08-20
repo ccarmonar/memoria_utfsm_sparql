@@ -1,0 +1,76 @@
+31135937	
+8067859	
+13648530	
+6780619	
+21574873	
+7468720	
+19270	
+24339026	
+4823	
+48328876	
+9903900	
+15476416	
+934	
+9892	
+2520	
+91903836	
+7363759	
+143904872	
+11473005	
+12961019	
+
+  { 
+    time    0.0008% fanout         1 input         1 rows
+      clear: (<V set_ctr$71 in>)
+    s# 74 72 cluster outer seq start, set no <V set_ctr$71 in>    
+    save ctx:()
+      clear: (<V var1$28 a>, <V set_no$29 i>, <V var1$63 a>)
+    s# 83 27 Subquery 27 
+      multistate set no = <V set_no$29 i>
+      { 
+        time   0.00061% fanout         1 input         1 rows
+        
+        s# 106 33 Fork 33 {  
+                
+            save ctx:()
+              set no = <V set_no$29 i> array  <none>  save: 
+            time      0.13% fanout     11409 input         1 rows
+              clear: (<V s_37_2_t0.O$31 an>)
+              clear on continue: (<V s_37_2_t0.O$31 an>)
+            s# 88 30 from DB.DBA.RDF_QUAD by RDF_QUAD    1.1e+04 rows Parallel, tail cost   6.9e+02   
+            Key RDF_QUAD  ASC  (<V s_37_2_t0.O$31 an>)
+             inlined  P =  IRI_ID"...direct/P535" 
+            copy on branch $29 $0 $0 $0 sets: 74 
+            
+            time      0.93% fanout         0 input     11409 rows
+            
+            s# 98 34 Sort (HASH) set no <r set_no$29 via  Set88>(<V s_37_2_t0.O$31 an>)
+        }
+        time        99% fanout      1000 input         1 rows
+          clear: (<V s_37_2_t0.O$31 an>, <V var1$28 a>, <V __ro2sq$54 a>)
+          clear on continue: (<V s_37_2_t0.O$31 an>, <V var1$28 a>, <V __ro2sq$54 a>)
+        s# 113 39 group by read node  
+        (<V s_37_2_t0.O$31 an>)
+        After code:
+          0: <V __ro2sq$54 a> := Call __ro2sq (<V s_37_2_t0.O$31 an>)
+          5: <V var1$28 a> :=  := artm <V __ro2sq$54 a>
+          9: BReturn 0
+        time   0.00019% fanout         0 input      1000 rows
+        
+        s# 83 56 Subquery Select(<V var1$28 a>)
+          set no: <r set_no$29 via  Set113>
+      }
+    
+    After code:
+      0: <V var1$63 a> := Call __ro2sq (<V var1$28 a>)
+      5: BReturn 0
+    time   0.00013% fanout         0 input      1000 rows
+    $63 (27 ) $71 (27 72 ) 
+    s# 130 65 Select (<V var1$63 a>)
+      set no: <r set_ctr$71 via  Set83>
+  }
+
+
+ 392 msec 99% cpu,      1001 rnd     11397 seq         0% same seg   13.8723% same pg 
+23 disk reads, 0 read ahead,   97.2843% wait
+Compilation: 0 msec 0 reads         0% read 0 messages         0% clw

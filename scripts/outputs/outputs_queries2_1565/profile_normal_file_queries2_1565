@@ -1,0 +1,81 @@
+
+  { 
+    time       8.9% fanout         1 input         1 rows
+      clear: (<V set_ctr$67 in>)
+    s# 70 68 cluster outer seq start, set no <V set_ctr$67 in>    
+    save ctx:()
+    time        91% fanout         0 input         1 rows
+    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:       0.3 Fanout:         0
+      clear: (<V s_37_17_t3.S$28 rn>)
+      clear on continue: (<V s_37_17_t3.S$28 rn>)
+    s# 79 27 from DB.DBA.RDF_QUAD by RDF_QUAD_POGS        0.3 rows   
+    Key RDF_QUAD_POGS  ASC  (<V s_37_17_t3.S$28 rn>)
+     P =  IRI_ID"...direct/P31"  ,  O =  IRI_ID"...Q849854" 
+    
+    time         0% fanout         0 input         0 rows
+      clear: (<V set_ctr$50 i>)
+    s# 89 54 cluster outer seq start, set no <V set_ctr$50 i>    
+    save ctx:()
+      clear: (<V var1$31 r>, <V set_no$32 i>)
+    s# 98 30 Subquery 30 
+      multistate set no = <V set_no$32 i>
+      { 
+        time         0% fanout         0 input         0 rows
+        Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:   1.7e-14 Fanout:         0
+          clear: (<V s_37_5_t0.S$34 rn>, <V s_37_5_t0.O$35 an>)
+          clear on continue: (<V s_37_5_t0.O$35 an>, <V s_37_5_t0.S$34 rn>)
+        s# 102 33 from DB.DBA.RDF_QUAD by RDF_QUAD_POGS    1.7e-14 rows   
+        Key RDF_QUAD_POGS  ASC  (<V s_37_5_t0.O$35 an>, <V s_37_5_t0.S$34 rn>)
+         inlined  P =  IRI_ID"...P2043" 
+        row specs:  S = <v k_s_37_17_t3.S$106 Set108 rn>
+        vector param casts: <r s_37_17_t3.S$28 via  Set89>-> <v k_s_37_17_t3.S$106 Set108 rn>
+        
+        time         0% fanout         0 input         0 rows
+        Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:   1.7e-14 Fanout:         0
+          clear: (<V s_37_10_t1.O$38 an>)
+          clear on continue: (<V s_37_10_t1.O$38 an>)$35 () $121 (37 ) 
+        s# 117 37 from DB.DBA.RDF_QUAD by RDF_QUAD_POGS    1.7e-14 rows   
+        Key RDF_QUAD_POGS  ASC  (<V s_37_10_t1.O$38 an>)
+         inlined  P =  IRI_ID"...value-normalized/P2043" 
+        row specs:  S = <v k_s_37_5_t0.O$121 Set123 rn>
+        vector param casts: <V s_37_5_t0.O$35 an>-> <v k_s_37_5_t0.O$121 Set123 rn>
+        
+        time         0% fanout         0 input         0 rows
+        Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:   1.4e-07 Fanout:         0
+          clear: (<V var1$31 r>)
+          clear on continue: (<V var1$31 r>)$34 (37 ) $38 () $135 (40 ) 
+        s# 131 40 from DB.DBA.RDF_QUAD by RDF_QUAD    1.4e-07 rows   
+        Key RDF_QUAD  ASC  ()
+         inlined  P =  IRI_ID"...quantityUnit"  ,  S = <v k_s_37_10_t1.O$135 Set137 rn>
+        vector param casts: <V s_37_10_t1.O$38 an>-> <v k_s_37_10_t1.O$135 Set137 rn>
+        
+        After code:
+          0: <V var1$31 r> :=  := artm <r s_37_5_t0.S$34 via  Set131 Set137 Set117 Set123>
+          4: BReturn 0
+        time         0% fanout         0 input         0 rows
+        
+        s# 98 42 Subquery Select(<V var1$31 r>)
+          set no: <r set_no$32 via  Set131 Set137 Set117 Set123 Set102 Set108>
+      }
+    
+    time         0% fanout         0 input         0 rows
+      clear: (<V var1$59 a>)$31 (30 ) $32 (30 ) $50 (30 54 ) $28 (30 54 ) 
+    s# 152 49 end of outer seq <r set_ctr$50 via  Set98>
+     out: (<V var1$31 r>, <V set_no$32 i>)
+     shadow: ( <none> ,  <none> )
+    After code:
+      0: <V var1$59 a> := Call __id2in (<r s_37_17_t3.S$28 via  Set152>)
+      5: BReturn 0
+    time         0% fanout         0 input         0 rows
+    $67 (49 30 54 27 68 ) $59 (49 ) 
+    s# 160 61 Select (<V var1$59 a>, <DB_NULL>)
+      set no: <r set_ctr$67 via  Set152 Set79>
+  }
+Warning: You might have a Cartesian product.
+
+Warning: You might have a Cartesian product.
+
+
+
+ 0 msec 0% cpu,         1 rnd         0 seq         0% same seg         0% same pg 
+Compilation: 46 msec 0 reads         0% read 0 messages         0% clw

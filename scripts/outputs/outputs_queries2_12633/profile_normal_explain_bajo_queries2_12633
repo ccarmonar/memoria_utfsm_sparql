@@ -1,0 +1,42 @@
+http://www.wikidata.org/entity/Q2612400		1422	
+http://www.wikidata.org/entity/Q2780443		130100	
+http://www.wikidata.org/entity/Q2850970		1817	
+http://www.wikidata.org/entity/Q2981008		28350	
+http://www.wikidata.org/entity/Q3059549		197767	
+http://www.wikidata.org/entity/Q3060511		2154	
+http://www.wikidata.org/entity/Q16267013		954	
+http://www.wikidata.org/entity/Q3121817		1656	
+http://www.wikidata.org/entity/Q3310623		1541	
+http://www.wikidata.org/entity/Q3174605		689	
+http://www.wikidata.org/entity/Q3175531		786	
+http://www.wikidata.org/entity/Q15907132		190518	
+http://www.wikidata.org/entity/Q16089810		125104	
+http://www.wikidata.org/entity/Q55823		197542	
+http://www.wikidata.org/entity/Q55915		197507	
+http://www.wikidata.org/entity/Q57279		197671	
+http://www.wikidata.org/entity/Q57640		124696	
+http://www.wikidata.org/entity/Q57806		28548	
+http://www.wikidata.org/entity/Q71670		28237	
+http://www.wikidata.org/entity/Q71671		28236	
+
+  { 
+    time     0.077% fanout         1 input         1 rows
+    time       2.4% fanout       449 input         1 rows
+    RDF_QUAD   4.5e+02 rows(s_37_4_t1.S$29, s_37_4_t1.O$28)
+     inlined  P =  IRI_ID"...direct/P1186" 
+    time        98% fanout   1.00668 input       449 rows
+    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:    0.0083 Fanout:         1
+    RDF_QUAD    0.0083 rows(s_37_4_t0.S$32)
+     inlined  P =  IRI_ID"...direct/P39"  ,  S = s_37_4_t1.S$29 ,  O =  IRI_ID"...Q27169" 
+    
+    After code:
+    0: var2$34 := Call __ro2sq (s_37_4_t1.O$28)
+    5: var1$36 := Call __id2in (s_37_4_t0.S$32)
+    10: BReturn 0
+    time    0.0099% fanout         0 input       452 rows
+    Select (var1$36, <DB_NULL>, var2$34)
+  }
+
+
+ 5 msec 75% cpu,       902 rnd       452 seq    48.948% same seg   13.1783% same pg 
+Compilation: 1 msec 0 reads         0% read 0 messages         0% clw

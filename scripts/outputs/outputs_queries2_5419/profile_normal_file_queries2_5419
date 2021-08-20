@@ -1,0 +1,71 @@
+http://www.w3.org/1999/02/22-rdf-syntax-ns#type	http://wikiba.se/ontology#Item	
+http://www.w3.org/1999/02/22-rdf-syntax-ns#type	http://www.wikidata.org/prop/novalue/P735	
+http://www.w3.org/2000/01/rdf-schema#label	Kleofóntův malíř	
+http://www.w3.org/2000/01/rdf-schema#label	Kleophon Painter	
+http://www.w3.org/2000/01/rdf-schema#label	Kleophon Painter	
+http://www.w3.org/2000/01/rdf-schema#label	Kleophon Painter	
+http://www.w3.org/2000/01/rdf-schema#label	Kleophon Painter	
+http://www.w3.org/2000/01/rdf-schema#label	Kleophon Painter	
+http://www.w3.org/2000/01/rdf-schema#label	Kleophon Painter	
+http://www.w3.org/2000/01/rdf-schema#label	Kleophon Painter	
+http://www.w3.org/2000/01/rdf-schema#label	Kleophon-Maler	
+http://www.w3.org/2000/01/rdf-schema#label	Kleophonmaleren	
+http://www.w3.org/2000/01/rdf-schema#label	Peintre de Cléophon	
+http://www.w3.org/2000/01/rdf-schema#label	Pintor de Cleofonte	
+http://www.w3.org/2000/01/rdf-schema#label	Pittore di Cleofonte	
+http://www.w3.org/2000/01/rdf-schema#label	Вазапісец Клеафона	
+http://www.w3.org/2000/01/rdf-schema#label	Вазописец Клеофона	
+http://www.w3.org/2000/01/rdf-schema#label	Вазописець Клеофона	
+http://www.w3.org/2004/02/skos/core#prefLabel	Kleofóntův malíř	
+http://www.w3.org/2004/02/skos/core#prefLabel	Kleophon Painter	
+
+  { 
+    time    0.0035% fanout         1 input         1 rows
+      clear: (<V set_ctr$63 in>)
+    s# 66 64 cluster outer seq start, set no <V set_ctr$63 in>    
+    save ctx:()
+    time   0.00081% fanout         1 input         1 rows
+      clear: (<V set_no$30 i>)
+    s# 75 52 cluster outer seq start, set no <V set_no$30 i>    
+    save ctx:()
+    time     0.042% fanout        39 input         1 rows
+      clear: (<V s_37_3_t0.P$32 rn>)
+      clear on continue: (<V s_37_3_t0.P$32 rn>)
+    s# 84 31 from DB.DBA.RDF_QUAD by RDF_QUAD_SP         20 rows   
+    Key RDF_QUAD_SP  ASC  (<V s_37_3_t0.P$32 rn>)
+     inlined  S =  IRI_ID"...Q725534" 
+    
+    time      0.96% fanout   3.48718 input        39 rows
+      clear: (<V s_37_3_t0.O$36 an>)
+      clear on continue: (<V s_37_3_t0.O$36 an>)
+    s# 94 35 from DB.DBA.RDF_QUAD by RDF_QUAD        1.2 rows   
+    Key RDF_QUAD  ASC  (<V s_37_3_t0.O$36 an>)
+     inlined  P = <V s_37_3_t0.P$32 rn> ,  S =  IRI_ID"...Q725534" 
+    
+    time      0.16% fanout         1 input       136 rows
+      clear: (<V var2$29 an>, <V var1$28 rn>)$32 (35 ) $36 () 
+    s# 104 39 Distinct (HASH) set no <r set_no$30 via  Set94 Set84>(<r s_37_3_t0.P$32 via  Set94>, <V s_37_3_t0.O$36 an>)
+    After code:
+      0: <V var1$28 rn> :=  := artm <r s_37_3_t0.P$32 via  Set104 Set94>
+      4: <V var2$29 an> :=  := artm <r s_37_3_t0.O$36 via  Set104>
+      8: BReturn 0
+    time        99% fanout         1 input       136 rows
+      clear: (<V var2$55 a>, <V var1$53 a>)$28 (39 ) $29 (39 ) $30 (39 35 31 52 ) 
+    s# 114 45 Subquery Select(<V var1$28 rn>, <V var2$29 an>)
+      set no: <r set_no$30 via  Set104 Set94 Set84>
+    After code:
+      0: <V var1$53 a> := Call __ro2sq (<V var1$28 rn>)
+      5: <V var2$55 a> := Call __ro2sq (<V var2$29 an>)
+      10: BReturn 0
+    time   0.00085% fanout         0 input       136 rows
+    $63 (45 39 35 31 52 64 ) $53 (45 ) $55 (45 ) 
+    s# 121 57 Select (<V var1$53 a>, <V var2$55 a>)
+      set no: <r set_ctr$63 via  Set114>
+  }
+Warning: You might have a Cartesian product.
+
+
+
+ 96 msec 98% cpu,       153 rnd       134 seq         0% same seg   31.8182% same pg 
+5 disk reads, 0 read ahead,   74.1662% wait
+Compilation: 1 msec 0 reads         0% read 0 messages         0% clw

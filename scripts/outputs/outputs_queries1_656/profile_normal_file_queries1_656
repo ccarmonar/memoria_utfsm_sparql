@@ -1,0 +1,57 @@
+http://www.wikidata.org/entity/Q28321372	
+http://www.wikidata.org/entity/Q2677358	
+http://www.wikidata.org/entity/Q983438	
+http://www.wikidata.org/entity/Q1988686	
+http://www.wikidata.org/entity/Q5301151	
+http://www.wikidata.org/entity/Q5301160	
+http://www.wikidata.org/entity/Q5301169	
+http://www.wikidata.org/entity/Q269474	
+http://www.wikidata.org/entity/Q1252404	
+http://www.wikidata.org/entity/Q28321372	
+http://www.wikidata.org/entity/Q2677358	
+http://www.wikidata.org/entity/Q983438	
+http://www.wikidata.org/entity/Q1988686	
+http://www.wikidata.org/entity/Q5301151	
+http://www.wikidata.org/entity/Q5301160	
+http://www.wikidata.org/entity/Q5301169	
+http://www.wikidata.org/entity/Q269474	
+http://www.wikidata.org/entity/Q1252404	
+http://www.wikidata.org/entity/Q28321372	
+http://www.wikidata.org/entity/Q2677358	
+
+  { 
+    time      0.81% fanout         1 input         1 rows
+      clear: (<V set_ctr$45 in>)
+    s# 48 46 cluster outer seq start, set no <V set_ctr$45 in>    
+    save ctx:()
+    time        11% fanout         4 input         1 rows
+    Precode:
+      0: <V __rdflit$27 x> := Call __rdflit (rdflit2164022)
+      5: BReturn 0
+      clear: (<V s_37_2_t0.P$30 rn>, <V __rdflit$27 x>)
+      clear on continue: (<V s_37_2_t0.P$30 rn>)
+    s# 57 29 from DB.DBA.RDF_QUAD by RDF_QUAD_OP          4 rows   
+    Key RDF_QUAD_OP  ASC  (<V s_37_2_t0.P$30 rn>)
+     inlined  O = rdflit2164022
+    
+    time        88% fanout         7 input         4 rows
+      clear: (<V s_37_2_t0.S$34 rn>, <V var1$37 a>)
+      clear on continue: (<V s_37_2_t0.S$34 rn>, <V var1$37 a>)$30 () 
+    s# 67 33 from DB.DBA.RDF_QUAD by RDF_QUAD_POGS        1.2 rows   
+    Key RDF_QUAD_POGS  ASC  (<V s_37_2_t0.S$34 rn>)
+     P = <V s_37_2_t0.P$30 rn> ,  O = rdflit2164022
+    
+    After code:
+      0: <V var1$37 a> := Call __id2in (<V s_37_2_t0.S$34 rn>)
+      5: BReturn 0
+    time      0.18% fanout         0 input        28 rows
+    $37 () $45 (33 29 46 ) 
+    s# 77 39 Select (<V var1$37 a>)
+      set no: <r set_ctr$45 via  Set67 Set57>
+  }
+Warning: You might have a Cartesian product.
+
+
+
+ 1 msec 0% cpu,        33 rnd        27 seq         0% same seg   8.82353% same pg 
+Compilation: 47 msec 2 reads   96.8942% read 0 messages         0% clw

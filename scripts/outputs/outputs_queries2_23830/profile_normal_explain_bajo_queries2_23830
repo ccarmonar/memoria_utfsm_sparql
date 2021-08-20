@@ -1,0 +1,52 @@
+http://www.wikidata.org/entity/Q511067	http://commons.wikimedia.org/wiki/Special:FilePath/Vasyugan.jpg			
+
+  { 
+    time     0.026% fanout         1 input         1 rows
+    Subquery 27 
+      { 
+        time     0.013% fanout         1 input         1 rows
+        fork {
+            time         6% fanout     33946 input         1 rows
+            RDF_QUAD   3.4e+04 rows(s_37_4_t1.S$34)
+             inlined  P =  IRI_ID"...direct/P625" 
+            time        79% fanout  0.779326 input     33946 rows
+            RDF_QUAD         1 rows(s_37_4_t0.S$38, s_37_4_t0.O$37)
+             inlined  P =  IRI_ID"...direct/P18"  ,  S = s_37_4_t1.S$34
+            
+            After code:
+            0: rdf_rand_impl$40 := Call rdf_rand_impl ()
+            5: $44 :=  := artm <DB_NULL>
+            9: $45 :=  := artm <DB_NULL>
+            13: BReturn 0
+            time        15% fanout         0 input     26455 rows
+            Sort (rdf_rand_impl$40) -> (s_37_4_t0.S$38, s_37_4_t0.O$37, $44, $45)
+            
+          }
+        time      0.41% fanout         1 input         1 rows
+        top order by read (s_37_4_t0.S$38, s_37_4_t0.O$37, $44, $45)
+        
+        After code:
+        0: __ro2sq$69 := Call __ro2sq (s_37_4_t0.O$37)
+        5: __id2in$71 := Call __id2in (s_37_4_t0.S$38)
+        10: var1$28 :=  := artm __id2in$71
+        14: var2$29 :=  := artm __ro2sq$69
+        18: var3$30 :=  := artm <DB_NULL>
+        22: var4$31 :=  := artm <DB_NULL>
+        26: BReturn 0
+        time    0.0048% fanout         0 input         1 rows
+        Subquery Select(var1$28, var2$29, var3$30, var4$31)
+      }
+    
+    After code:
+    0: var1$80 := Call __ro2sq (var1$28)
+    5: var2$82 := Call __ro2sq (var2$29)
+    10: var3$84 := Call __ro2sq (var3$30)
+    15: var4$86 := Call __ro2sq (var4$31)
+    20: BReturn 0
+    time    0.0034% fanout         0 input         1 rows
+    Select (var1$80, var2$82, var3$84, var4$86)
+  }
+
+
+ 14 msec 88% cpu,     33942 rnd     37122 seq   99.8085% same seg 0.0854374% same pg 
+Compilation: 1 msec 0 reads         0% read 0 messages         0% clw

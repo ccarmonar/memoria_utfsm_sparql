@@ -1,0 +1,13 @@
+ SELECT  __ro2sq ("s_37_7_rbc"."var1") AS "var1" FROM (SELECT __ro2sq ( "s_37_5_t0"."O") AS "var1"
+  FROM DB.DBA.RDF_QUAD AS "s_37_7_t1"
+    INNER JOIN DB.DBA.RDF_QUAD AS "s_37_5_t0"
+    ON (
+      "s_37_7_t1"."O" = "s_37_5_t0"."S")
+  WHERE
+    "s_37_7_t1"."P" = __i2idn ( __bft( 'http://www.wikidata.org/prop/direct/P86' , 1))
+    AND 
+    ( "s_37_5_t0"."P" in ( __i2idn ( __bft ( __bft( 'http://www.wikidata.org/prop/direct/P19' , 1), 1)),  __i2idn ( __bft ( __bft( 'http://www.wikidata.org/prop/direct/P20' , 1), 1)),  __i2idn ( __bft ( __bft( 'http://www.wikidata.org/prop/direct/P551' , 1), 1))))
+  GROUP BY "s_37_5_t0"."O", NULL /* due to conflict on var1Label */
+  ORDER BY  COUNT ( DISTINCT
+       "s_37_7_t1"."O") DESC
+OPTION (QUIETCAST)) AS "s_37_7_rbc"

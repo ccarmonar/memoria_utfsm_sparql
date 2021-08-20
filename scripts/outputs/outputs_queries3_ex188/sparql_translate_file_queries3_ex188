@@ -1,0 +1,30 @@
+ DB.DBA.RDF_DICT_OF_TRIPLES_TO_THREE_COLS ((SELECT TOP 1  DB.DBA.SPARQL_CONSTRUCT (
+      vector (
+        vector (
+         1,
+         0,
+         3,
+         __i2id ( UNAME'http://learningsparql.com/ns/addressbook#hasGrandfather' ),
+         1,
+         1)),
+      vector (
+       "s_13_9_t1"."S",
+       __ro2lo ( "s_13_9_t2"."O")),
+      vector (),
+     1) AS "callret-0"
+FROM DB.DBA.RDF_QUAD AS "s_13_9_t1"
+  INNER JOIN DB.DBA.RDF_QUAD AS "s_13_9_t2"
+  ON (
+    "s_13_9_t1"."O" = "s_13_9_t2"."S")
+  INNER JOIN DB.DBA.RDF_QUAD AS "s_13_9_t3"
+  ON (
+    "s_13_9_t2"."O" = "s_13_9_t3"."S")
+WHERE
+  "s_13_9_t1"."P" = __i2idn ( __bft( 'http://learningsparql.com/ns/addressbook#hasParent' , 1))
+  AND 
+  "s_13_9_t2"."P" = __i2idn ( __bft( 'http://learningsparql.com/ns/addressbook#hasParent' , 1))
+  AND 
+  "s_13_9_t3"."P" = __i2idn ( __bft( 'http://learningsparql.com/ns/addressbook#gender' , 1))
+  AND 
+  "s_13_9_t3"."O" = __i2idn ( __bft( 'http://learningsparql.com/ns/data#male' , 1))
+OPTION (QUIETCAST)))

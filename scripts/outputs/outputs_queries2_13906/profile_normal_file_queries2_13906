@@ -1,0 +1,62 @@
+http://www.wikidata.org/entity/Q16177838	
+http://www.wikidata.org/entity/Q4818475	
+http://www.wikidata.org/entity/Q6066228	
+http://www.wikidata.org/entity/Q11834022	
+http://www.wikidata.org/entity/Q3651579	
+http://www.wikidata.org/entity/Q2174404	
+http://www.wikidata.org/entity/Q530637	
+http://www.wikidata.org/entity/Q5040787	
+http://www.wikidata.org/entity/Q42534559	
+http://www.wikidata.org/entity/Q4336599	
+http://www.wikidata.org/entity/Q2917082	
+http://www.wikidata.org/entity/Q679016	
+http://www.wikidata.org/entity/Q16006623	
+http://www.wikidata.org/entity/Q11724908	
+http://www.wikidata.org/entity/Q61071	
+http://www.wikidata.org/entity/Q4337560	
+http://www.wikidata.org/entity/Q15829799	
+http://www.wikidata.org/entity/Q9140339	
+http://www.wikidata.org/entity/Q18604241	
+http://www.wikidata.org/entity/Q20894003	
+
+  { 
+    time      0.14% fanout         1 input         1 rows
+      clear: (<V set_ctr$55 in>)
+    s# 58 56 cluster outer seq start, set no <V set_ctr$55 in>    
+    save ctx:()
+    time      0.03% fanout         1 input         1 rows
+      clear: (<V set_no$29 i>)
+    s# 67 46 cluster outer seq start, set no <V set_no$29 i>    
+    save ctx:()
+    time        56% fanout        88 input         1 rows
+      clear: (<V s_37_2_t0.S$31 rn>)
+      clear on continue: (<V s_37_2_t0.S$31 rn>)
+    s# 76 30 from DB.DBA.RDF_QUAD by RDF_QUAD_POGS         88 rows   
+    Key RDF_QUAD_POGS  ASC  (<V s_37_2_t0.S$31 rn>)
+     P =  IRI_ID"...direct/P570"  ,  O >= <tag 211 c 1969-07-01 00:00:00Z> <= <tag 211 c 1969-07-31 23:59:59Z>
+    row specs:  O >= <tag 211 c 1969-07-01 00:00:00Z> <= <tag 211 c 1969-07-31 23:59:59Z>
+    
+    time       5.3% fanout         1 input        88 rows
+      clear: (<V var1$28 rn>)$31 () 
+    s# 86 33 Distinct (HASH) set no <r set_no$29 via  Set76>(<V s_37_2_t0.S$31 rn>)
+    After code:
+      0: <V var1$28 rn> :=  := artm <r s_37_2_t0.S$31 via  Set86>
+      4: BReturn 0
+    time        38% fanout         1 input        88 rows
+      clear: (<V var1$47 a>)$28 (33 ) $29 (33 30 46 ) 
+    s# 95 39 Subquery Select(<V var1$28 rn>)
+      set no: <r set_no$29 via  Set86 Set76>
+    After code:
+      0: <V var1$47 a> := Call __ro2sq (<V var1$28 rn>)
+      5: BReturn 0
+    time     0.036% fanout         0 input        88 rows
+    $47 (39 ) $55 (39 33 30 46 56 ) 
+    s# 102 49 Select (<V var1$47 a>)
+      set no: <r set_ctr$55 via  Set95>
+  }
+Warning: You might have a Cartesian product.
+
+
+
+ 2 msec 44% cpu,        74 rnd     10769 seq         0% same seg   2.66667% same pg 
+Compilation: 3 msec 0 reads         0% read 0 messages         0% clw

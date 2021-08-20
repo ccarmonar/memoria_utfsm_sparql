@@ -1,0 +1,45 @@
+https://schema.org/naics	http://www.wikidata.org/entity/P3224	
+https://schema.org/name	http://www.wikidata.org/entity/P1476	
+https://schema.org/inLanguage	http://www.wikidata.org/entity/P407	
+https://schema.org/byArtist	http://www.wikidata.org/entity/P175	
+https://schema.org/subOrganization	http://www.wikidata.org/entity/P355	
+https://schema.org/foundingLocation	http://www.wikidata.org/entity/P740	
+https://schema.org/repeatFrequency	http://www.wikidata.org/entity/P2257	
+https://schema.org/connectedTo	http://www.wikidata.org/entity/P2789	
+https://schema.org/numberOfSeasons	http://www.wikidata.org/entity/P2437	
+https://schema.org/participant	http://www.wikidata.org/entity/P710	
+https://schema.org/flightNumber	http://www.wikidata.org/entity/P3090	
+https://schema.org/name	http://www.wikidata.org/entity/P2561	
+https://schema.org/position	http://www.wikidata.org/entity/P1545	
+https://schema.org/worksFor	http://www.wikidata.org/entity/P108	
+https://schema.org/organizer	http://www.wikidata.org/entity/P664	
+https://schema.org/givenName	http://www.wikidata.org/entity/P735	
+https://schema.org/brand	http://www.wikidata.org/entity/P1716	
+https://schema.org/award	http://www.wikidata.org/entity/P166	
+https://schema.org/birthPlace	http://www.wikidata.org/entity/P19	
+
+  { 
+    time      0.39% fanout         1 input         1 rows
+    time       7.1% fanout        81 input         1 rows
+    RDF_QUAD        80 rows(t2.O$29, t2.S$28)
+     inlined  P =  IRI_ID"...direct/P1628" 
+    time        92% fanout  0.234568 input        81 rows
+    END Node
+    After test:
+    0: __rdf_strsqlval$31 := Call __rdf_strsqlval (t2.O$29,  0 )
+    5: rdf_regex_impl$33 := Call rdf_regex_impl (__rdf_strsqlval$31, <c schema.org>)
+    10: if ( 0  = rdf_regex_impl$33) then 15 else 14 unkn 15
+    14: BReturn 1
+    15: BReturn 0
+    
+    After code:
+    0: var1$35 := Call __ro2sq (t2.O$29)
+    5: var2$37 := Call __id2in (t2.S$28)
+    10: BReturn 0
+    time      0.13% fanout         0 input        19 rows
+    Select (var1$35, var2$37)
+  }
+
+
+ 1 msec 36% cpu,         1 rnd        80 seq         0% same seg         0% same pg 
+Compilation: 1 msec 0 reads         0% read 0 messages         0% clw

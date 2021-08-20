@@ -1,0 +1,23 @@
+1	
+
+  { 
+    time      0.19% fanout         1 input         1 rows
+    time       4.7% fanout       701 input         1 rows
+    RDF_QUAD_POGS     7e+02 rows(t2.S$28)
+     P =  IRI_ID"...direct/P31"  ,  O =  IRI_ID"...Q188509" 
+    time        94% fanout   1.42653 input       701 rows
+    RDF_QUAD       1.1 rows(t3.O$31)
+     inlined  P =  IRI_ID"...direct/P131"  ,  S = t2.S$28
+    time      0.49% fanout     0.001 input      1000 rows
+    skip node  1  <none> set_ctr$41
+    
+    After code:
+    0: var2$33 := Call is_named_iri_id (t3.O$31)
+    5: BReturn 0
+    time     0.076% fanout         0 input         1 rows
+    Select (var2$33)
+  }
+
+
+ 2 msec 48% cpu,       516 rnd      1206 seq   89.5551% same seg   9.47776% same pg 
+Compilation: 2 msec 0 reads         0% read 0 messages         0% clw

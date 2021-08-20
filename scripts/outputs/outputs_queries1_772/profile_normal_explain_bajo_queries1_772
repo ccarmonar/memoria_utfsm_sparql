@@ -1,0 +1,196 @@
+
+  { 
+    time       6.2% fanout         1 input         1 rows
+    Subquery 27 
+      { 
+        time       4.3% fanout         1 input         1 rows
+        fork {
+            time        82% fanout         0 input         1 rows
+            Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:   1.4e-07 Fanout:         0
+            RDF_QUAD_POGS   1.4e-07 rows(t38.O$37, t38.S$36)
+             inlined  P =  IRI_ID"...prop/P39" 
+            time         0% fanout         0 input         0 rows
+            Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:   1.4e-07 Fanout:         0
+            RDF_QUAD_POGS   1.4e-07 rows(t39.S$40)
+             inlined  P =  IRI_ID"...statement/P39"  ,  O =  IRI_ID"...Q737115"  ,  S = cast$232
+            time         0% fanout         0 input         0 rows
+            Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:     0.091 Fanout:         0
+            RDF_QUAD     0.091 rows()
+             inlined  P =  IRI_ID"...direct/P31"  ,  S = k_t38.S$246 ,  O =  IRI_ID"...Q5" 
+            time         0% fanout         0 input         0 rows
+            outer {
+                time         0% fanout         0 input         0 rows
+                Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:         1 Fanout:         0
+                RDF_QUAD         1 rows(t41.O$45)
+                 inlined  P =  IRI_ID"...qualifier/P582"  ,  S = k_t39.S$268
+                time         0% fanout         0 input         0 rows
+              } /* end of outer */
+            set_ctr$48
+             out: (t41.O$45)
+             shadow: ( <none> )
+            time         0% fanout         0 input         0 rows
+            outer {
+                time         0% fanout         0 input         0 rows
+                Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:         1 Fanout:         0
+                RDF_QUAD         1 rows(t40.O$58)
+                 inlined  P =  IRI_ID"...qualifier/P580"  ,  S = k_t39.S$299
+                time         0% fanout         0 input         0 rows
+              } /* end of outer */
+            set_ctr$61
+             out: (t40.O$58)
+             shadow: ( <none> )
+            time         0% fanout         0 input         0 rows
+            outer {
+                time         0% fanout         0 input         0 rows
+                Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:         1 Fanout:         0
+                RDF_QUAD         1 rows(t44.O$71)
+                 inlined  P =  IRI_ID"...qualifier/P1366"  ,  S = k_t39.S$330
+                time         0% fanout         0 input         0 rows
+              } /* end of outer */
+            set_ctr$74
+             out: (t44.O$71)
+             shadow: ( <none> )
+            time         0% fanout         0 input         0 rows
+            outer {
+                time         0% fanout         0 input         0 rows
+                Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:         1 Fanout:         0
+                RDF_QUAD         1 rows(t45.O$84)
+                 inlined  P =  IRI_ID"...qualifier/P156"  ,  S = k_t39.S$361
+                time         0% fanout         0 input         0 rows
+                END Node
+                After test:
+                0: if (t44.O$71  IS NULL   0 ) then 8 else 4 unkn 4
+                4: if (t44.O$71 = t45.O$84) then 8 else 9 unkn 9
+                8: BReturn 1
+                9: BReturn 0
+                time         0% fanout         0 input         0 rows
+              } /* end of outer */
+            set_ctr$87
+             out: (t45.O$84)
+             shadow: (t45.O$389)
+            time         0% fanout         0 input         0 rows
+            Precode:
+              0: if (t44.O$71  IS NULL  <DB_NULL>) then 9 else 4 unkn 9
+              4: coalesce_ret$96 :=  := artm t44.O$71
+              8: Jump 22 (level=0)
+              9: if (t45.O$389  IS NULL  <DB_NULL>) then 18 else 13 unkn 18
+              13: coalesce_ret$96 :=  := artm t45.O$389
+              17: Jump 22 (level=0)
+              18: coalesce_ret$96 :=  := artm <DB_NULL>
+              22: BReturn 0
+            outer {
+                time         0% fanout         0 input         0 rows
+                Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:         1 Fanout:         0
+                RDF_QUAD         1 rows(t42.O$99)
+                 inlined  P =  IRI_ID"...qualifier/P1365"  ,  S = k_t39.S$410
+                time         0% fanout         0 input         0 rows
+              } /* end of outer */
+            set_ctr$102
+             out: (t42.O$99)
+             shadow: ( <none> )
+            time         0% fanout         0 input         0 rows
+            outer {
+                time         0% fanout         0 input         0 rows
+                Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:         1 Fanout:         0
+                RDF_QUAD         1 rows(t47.O$112)
+                 inlined  P =  IRI_ID"...qualifier/P1545"  ,  S = k_t39.S$441
+                time         0% fanout         0 input         0 rows
+                END Node
+                After test:
+                0: if (coalesce_ret$96  IS NULL   0 ) then 8 else 4 unkn 4
+                4: if (coalesce_ret$96 = t47.O$112) then 8 else 9 unkn 9
+                8: BReturn 1
+                9: BReturn 0
+                time         0% fanout         0 input         0 rows
+              } /* end of outer */
+            set_ctr$115
+             out: (t47.O$112)
+             shadow: (t47.O$469)
+            time         0% fanout         0 input         0 rows
+            outer {
+                time         0% fanout         0 input         0 rows
+                Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:         1 Fanout:         0
+                RDF_QUAD         1 rows(t43.O$125)
+                 inlined  P =  IRI_ID"...qualifier/P155"  ,  S = k_t39.S$488
+                time         0% fanout         0 input         0 rows
+                END Node
+                After test:
+                0: if (t42.O$99  IS NULL   0 ) then 8 else 4 unkn 4
+                4: if (t42.O$99 = t43.O$125) then 8 else 9 unkn 9
+                8: BReturn 1
+                9: BReturn 0
+                time         0% fanout         0 input         0 rows
+              } /* end of outer */
+            set_ctr$128
+             out: (t43.O$125)
+             shadow: (t43.O$516)
+            
+            After code:
+            0: if (t44.O$71  IS NULL  <DB_NULL>) then 9 else 4 unkn 9
+            4: coalesce_ret$139 :=  := artm t44.O$71
+            8: Jump 22 (level=0)
+            9: if (t45.O$84  IS NULL  <DB_NULL>) then 18 else 13 unkn 18
+            13: coalesce_ret$139 :=  := artm t45.O$84
+            17: Jump 22 (level=0)
+            18: coalesce_ret$139 :=  := artm <DB_NULL>
+            22: __ro2sq$141 := Call __ro2sq (coalesce_ret$139)
+            27: if (__ro2sq$141  IS NULL  <DB_NULL>) then 36 else 31 unkn 36
+            31: coalesce_ret$137 :=  := artm __ro2sq$141
+            35: Jump 54 (level=0)
+            36: __ro2sq$143 := Call __ro2sq (t47.O$112)
+            41: if (__ro2sq$143  IS NULL  <DB_NULL>) then 50 else 45 unkn 50
+            45: coalesce_ret$137 :=  := artm __ro2sq$143
+            49: Jump 54 (level=0)
+            50: coalesce_ret$137 :=  := artm <DB_NULL>
+            54: if (t42.O$99  IS NULL  <DB_NULL>) then 63 else 58 unkn 63
+            58: coalesce_ret$145 :=  := artm t42.O$99
+            62: Jump 76 (level=0)
+            63: if (t43.O$516  IS NULL  <DB_NULL>) then 72 else 67 unkn 72
+            67: coalesce_ret$145 :=  := artm t43.O$516
+            71: Jump 76 (level=0)
+            72: coalesce_ret$145 :=  := artm <DB_NULL>
+            76: BReturn 0
+            time         0% fanout         0 input         0 rows
+            Distinct (t38.S$36, t40.O$58, t41.O$45, coalesce_ret$145, coalesce_ret$137)
+            time         0% fanout         0 input         0 rows
+            Precode:
+              0: __ro2sq$153 := Call __ro2sq (t40.O$58)
+              5: $157 :=  := artm <DB_NULL>
+              9: BReturn 0
+            Sort (__ro2sq$153) -> ($157, t38.S$36, t41.O$45, t43.O$125, t42.O$99, coalesce_ret$145, coalesce_ret$137)
+            
+          }
+        time       7.8% fanout         0 input         1 rows
+        Key from temp ($157, t38.S$36, __ro2sq$153, t41.O$45, t43.O$516, t42.O$99, coalesce_ret$145, coalesce_ret$137)
+        
+        
+        After code:
+        0: __ro2sq$169 := Call __ro2sq (coalesce_ret$145)
+        5: __ro2sq$171 := Call __ro2sq (t41.O$45)
+        10: __id2in$173 := Call __id2in (t38.S$36)
+        15: var1$28 :=  := artm <DB_NULL>
+        19: var2$29 :=  := artm __id2in$173
+        23: var3$30 :=  := artm __ro2sq$153
+        27: var4$31 :=  := artm __ro2sq$171
+        31: var5$32 :=  := artm __ro2sq$169
+        35: var6$33 :=  := artm coalesce_ret$137
+        39: BReturn 0
+        time         0% fanout         0 input         0 rows
+        Subquery Select(var1$28, var2$29, var3$30, var4$31, var5$32, var6$33)
+      }
+    
+    After code:
+    0: var1$182 := Call __ro2sq (var1$28)
+    5: var2$184 := Call __ro2sq (var2$29)
+    10: var3$186 := Call __ro2sq (var3$30)
+    15: var4$188 := Call __ro2sq (var4$31)
+    20: var5$190 := Call __ro2sq (var5$32)
+    25: var6$192 := Call __ro2sq (var6$33)
+    30: BReturn 0
+    time         0% fanout         0 input         0 rows
+    Select (var1$182, var2$184, var3$186, var4$188, var5$190, var6$192)
+  }
+
+
+ 0 msec 0% cpu,         1 rnd         0 seq         0% same seg         0% same pg 
+Compilation: 7 msec 0 reads         0% read 0 messages         0% clw

@@ -1,0 +1,80 @@
+http://www.wikidata.org/entity/Q2640628	kwk	http://www.wikidata.org/entity/Q31171620	
+http://www.wikidata.org/entity/Q2992915	nce	http://www.wikidata.org/entity/Q33663752	
+http://www.wikidata.org/entity/Q3063759	faf	http://www.wikidata.org/entity/Q33657156	
+http://www.wikidata.org/entity/Q3063974	grr	http://www.wikidata.org/entity/Q33661468	
+http://www.wikidata.org/entity/Q3112363	lha	http://www.wikidata.org/entity/Q33663473	
+http://www.wikidata.org/entity/Q3125730	hah	http://www.wikidata.org/entity/Q33657082	
+http://www.wikidata.org/entity/Q3176748	jhi	http://www.wikidata.org/entity/Q33074024	
+http://www.wikidata.org/entity/Q3237491	aja	http://www.wikidata.org/entity/Q33140188	
+http://www.wikidata.org/entity/Q2592378	xsb	http://www.wikidata.org/entity/Q33077208	
+http://www.wikidata.org/entity/Q56236	lui	http://www.wikidata.org/entity/Q33109540	
+http://www.wikidata.org/entity/Q56241	mrt	http://www.wikidata.org/entity/Q33076633	
+http://www.wikidata.org/entity/Q56251	ker	http://www.wikidata.org/entity/Q33128985	
+http://www.wikidata.org/entity/Q56264	ubi	http://www.wikidata.org/entity/Q36166911	
+http://www.wikidata.org/entity/Q56272	bcw	http://www.wikidata.org/entity/Q36154053	
+http://www.wikidata.org/entity/Q56280	bdn	http://www.wikidata.org/entity/Q36154003	
+http://www.wikidata.org/entity/Q56320	fqs	http://www.wikidata.org/entity/Q33669512	
+http://www.wikidata.org/entity/Q56372	jee	http://www.wikidata.org/entity/Q33674051	
+http://www.wikidata.org/entity/Q56386	mrc	http://www.wikidata.org/entity/Q32144579	
+http://www.wikidata.org/entity/Q56387	xgf	http://www.wikidata.org/entity/Q33109490	
+http://www.wikidata.org/entity/Q56388	thz	http://www.wikidata.org/entity/Q105714936	
+
+  { 
+    time    0.0052% fanout         1 input         1 rows
+      clear: (<V set_ctr$40 in>)
+    s# 61 41 cluster outer seq start, set no <V set_ctr$40 in>    
+    save ctx:()
+    time       0.1% fanout      1000 input         1 rows
+      clear: (<V t1.S$28 rn>)
+      clear on continue: (<V t1.S$28 rn>)
+    s# 70 27 from DB.DBA.RDF_QUAD by RDF_QUAD_POGS    1.2e+03 rows   
+    Key RDF_QUAD_POGS  ASC  (<V t1.S$28 rn>)
+     P =  IRI_ID"...direct/P31"  ,  O =  IRI_ID"...Q34770" 
+    
+    time        65% fanout     0.545 input      1000 rows
+    Precode:
+      0: <V var1$30 a> := Call __id2in (<V t1.S$28 rn>)
+      5: BReturn 0
+      clear: (<V t4.O$33 an>, <V var1$30 a>)
+      clear on continue: (<V t4.O$33 an>)
+    s# 80 32 from DB.DBA.RDF_QUAD by RDF_QUAD          1 rows   
+    Key RDF_QUAD  ASC  (<V t4.O$33 an>)
+     inlined  P =  IRI_ID"...direct/P910"  ,  S = <V t1.S$28 rn>
+    
+    time        32% fanout         1 input       545 rows
+    Precode:
+      0: <V var3$35 a> := Call __ro2sq (<V t4.O$33 an>)
+      5: BReturn 0
+      clear: (<V set_ctr$43 i>, <V var3$35 a>)$33 () 
+    s# 90 47 cluster outer seq start, set no <V set_ctr$43 i>    
+    save ctx:()
+    time      0.36% fanout   1.11193 input       545 rows
+      clear: (<V t3.O$38 a>)
+      clear on continue: (<V t3.O$38 a>)$103 (37 ) $28 (47 32 ) 
+    s# 99 37 from DB.DBA.RDF_QUAD by RDF_QUAD          1 rows   
+    Key RDF_QUAD  ASC  (<V t3.O$38 a>)
+     inlined  P =  IRI_ID"...direct/P220"  ,  S = <v k_t1.S$103 Set105 rn>
+    vector param casts: <r t1.S$28 via  Set90 Set80>-> <v k_t1.S$103 Set105 rn>
+    
+    time       2.6% fanout         1 input       606 rows
+      clear: (<V var2$52 a>)$38 () $43 (37 47 ) 
+    s# 113 42 end of outer seq <r set_ctr$43 via  Set99 Set105>
+     out: (<V t3.O$38 a>)
+     shadow: ( <none> )
+    After code:
+      0: <V var2$52 a> := Call __ro2sq (<V t3.O$38 a>)
+      5: BReturn 0
+    time   0.00081% fanout         0 input       606 rows
+    $35 (42 37 47 ) $40 (42 37 47 32 27 41 ) $52 (42 ) $30 (42 37 47 32 ) 
+    s# 121 54 Select (<r var1$30 via  Set113 Set80>, <V var2$52 a>, <r var3$35 via  Set113>)
+      set no: <r set_ctr$40 via  Set113 Set80 Set70>
+  }
+Warning: You might have a Cartesian product.
+
+Warning: You might have a Cartesian product.
+
+
+
+ 49 msec 97% cpu,      3530 rnd      1103 seq   43.5854% same seg   24.2707% same pg 
+2 disk reads, 0 read ahead,    81.245% wait
+Compilation: 1 msec 0 reads         0% read 0 messages         0% clw

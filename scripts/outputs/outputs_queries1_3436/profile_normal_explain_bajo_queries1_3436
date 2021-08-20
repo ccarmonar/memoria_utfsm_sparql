@@ -1,0 +1,54 @@
+http://www.wikidata.org/entity/Q266131	http://commons.wikimedia.org/wiki/Special:FilePath/MargaretGeller1981a.jpg	1947-12-08 00:00:00Z	http://www.wikidata.org/entity/Q217346	
+http://www.wikidata.org/entity/Q5478265	http://commons.wikimedia.org/wiki/Special:FilePath/France%20A.%20C%C3%B3rdova%20official%20photo.jpg	1947-08-05 00:00:00Z	http://www.wikidata.org/entity/Q90	
+http://www.wikidata.org/entity/Q11193042	http://commons.wikimedia.org/wiki/Special:FilePath/Isabel%20Martin%20Lewis.jpg	1881-07-11 00:00:00Z	http://www.wikidata.org/entity/Q388977	
+http://www.wikidata.org/entity/Q2669110	http://commons.wikimedia.org/wiki/Special:FilePath/Dr.%20Christine%20Jones%20Forman.jpg	1949-02-03 00:00:00Z	http://www.wikidata.org/entity/Q36091	
+http://www.wikidata.org/entity/Q7421764	http://commons.wikimedia.org/wiki/Special:FilePath/Sara%20Seager%20CHF-Cain-Conference-May-2016-059.jpg	1971-07-21 00:00:00Z	http://www.wikidata.org/entity/Q172	
+http://www.wikidata.org/entity/Q7421764	http://commons.wikimedia.org/wiki/Special:FilePath/Sara%20Seager.jpg	1971-07-21 00:00:00Z	http://www.wikidata.org/entity/Q172	
+http://www.wikidata.org/entity/Q48472405	http://commons.wikimedia.org/wiki/Special:FilePath/Chanda%20Prescod-Weinstein%2C%20Becoming%20Interplanetary.jpg	1982-08-23 00:00:00Z	http://www.wikidata.org/entity/Q4356724	
+
+  { 
+    time     0.043% fanout         1 input         1 rows
+    time         1% fanout       843 input         1 rows
+    RDF_QUAD_POGS   8.4e+02 rows(s_37_14_t3.S$28)
+     P =  IRI_ID"...direct/P106"  ,  O =  IRI_ID"...Q11063" 
+    time        62% fanout   1.01661 input       843 rows
+    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:     0.091 Fanout:         1
+    RDF_QUAD     0.091 rows(s_37_14_t0.S$31)
+     inlined  P =  IRI_ID"...direct/P31"  ,  S = s_37_14_t3.S$28 ,  O =  IRI_ID"...Q5" 
+    time        16% fanout  0.180863 input       857 rows
+    RDF_QUAD      0.13 rows(s_37_14_t2.S$34)
+     inlined  P =  IRI_ID"...direct/P27"  ,  S = s_37_14_t0.S$31 ,  O =  IRI_ID"...Q30" 
+    time       7.6% fanout  0.116129 input       155 rows
+    RDF_QUAD      0.17 rows(s_37_14_t1.S$37)
+     inlined  P =  IRI_ID"...direct/P21"  ,  S = k_s_37_14_t0.S$113 ,  O =  IRI_ID"...Q6581072" 
+    time         6% fanout         1 input        18 rows
+    Precode:
+      0: var1$39 := Call __id2in (s_37_14_t0.S$31)
+      5: BReturn 0
+    RDF_QUAD         1 rows(s_37_14_t5.S$43, s_37_14_t5.O$42)
+     inlined  P =  IRI_ID"...direct/P569"  ,  S = k_s_37_14_t0.S$127
+    time         3% fanout  0.722222 input        18 rows
+    Precode:
+      0: var3$45 := Call __ro2sq (s_37_14_t5.O$42)
+      5: BReturn 0
+    RDF_QUAD         1 rows(s_37_14_t6.S$49, s_37_14_t6.O$48)
+     inlined  P =  IRI_ID"...direct/P19"  ,  S = k_s_37_14_t0.S$142
+    time       3.8% fanout  0.538462 input        13 rows
+    Precode:
+      0: var4$51 := Call __ro2sq (s_37_14_t6.O$48)
+      5: BReturn 0
+    RDF_QUAD         1 rows(s_37_14_t4.O$54)
+     inlined  P =  IRI_ID"...direct/P18"  ,  S = k_s_37_14_t0.S$157
+    time      0.62% fanout         1 input         7 rows
+    skip node  100  <none> set_ctr$64
+    
+    After code:
+    0: var2$56 := Call __ro2sq (s_37_14_t4.O$54)
+    5: BReturn 0
+    time     0.024% fanout         0 input         7 rows
+    Select (var1$39, var2$56, var3$45, var4$51)
+  }
+
+
+ 5 msec 15% cpu,      1905 rnd       857 seq   85.3095% same seg   13.5362% same pg 
+Compilation: 23 msec 0 reads         0% read 0 messages         0% clw

@@ -1,0 +1,104 @@
+http://www.wikidata.org/entity/Q20583901	AZ 5400	
+http://www.wikidata.org/entity/Q31728404	৪২০৪ / ৪২২২	
+http://www.wikidata.org/entity/Q31728293	৪২১২	
+http://www.wikidata.org/entity/Q31728399	৪২২২	
+
+  { 
+    time   0.00063% fanout         1 input         1 rows
+      clear: (<V set_ctr$97 in>)
+    s# 100 98 cluster outer seq start, set no <V set_ctr$97 in>    
+    save ctx:()
+      clear: (<V var2$29 a>, <V var1$28 a>, <V set_no$30 i>, <V var2$89 a>, <V var1$87 a>)
+    s# 109 27 Subquery 27 
+      multistate set no = <V set_no$30 i>
+      { 
+        time   0.00036% fanout         1 input         1 rows
+        
+        s# 187 65 Fork 65 {  
+                
+            save ctx:()
+              set no = <V set_no$30 i> array  <none>  save: 
+            time      0.86% fanout    152758 input         1 rows
+              clear: (<V s_37_6_t1.O$32 an>, <V s_37_6_t1.S$33 rn>)
+              clear on continue: (<V s_37_6_t1.O$32 an>, <V s_37_6_t1.S$33 rn>)
+            s# 114 31 from DB.DBA.RDF_QUAD by RDF_QUAD_POGS    6.1e+04 rows   
+            Key RDF_QUAD_POGS  ASC  (<V s_37_6_t1.S$33 rn>, <V s_37_6_t1.O$32 an>)
+             inlined  P =  IRI_ID"...direct/P281" 
+            
+            time        87% fanout 2.61852e-05 input    152758 rows
+              clear: (<V rdf_regex_impl$55 i>, <V _cvt$39 s>, <V rdf_regex_impl$37 i>, <V __ro2sq$35 a>)
+            s# 130 125 END Node
+            After test:
+              0: <V __ro2sq$35 a> := Call __ro2sq (<V s_37_6_t1.O$32 an>)
+              5: <V rdf_regex_impl$37 i> := Call rdf_regex_impl (<V __ro2sq$35 a>, <c ^[0-9]{5}NULLstring1>)
+              10: if ( 0  = <V rdf_regex_impl$37 i>) then 14 else 37 unkn 37
+              14: <V _cvt$39 s> := Call _cvt (<tag 193 flag 0>, <V __ro2sq$35 a>)
+              19: if (<V _cvt$39 s>  LIKE  <c %string2%>) then 37 else 23 unkn 37
+              23: if (  { 
+                  time      0.15% fanout         1 input    152758 rows
+                    clear: (<V set_ctr$49 in>)
+                  s# 136 50 cluster outer seq start, set no <V set_ctr$49 in>    
+                  save ctx:()
+                  time        12% fanout   1.01773 input    152758 rows
+                  $149 (41 ) 
+                  s# 145 41 from DB.DBA.RDF_QUAD by RDF_QUAD          1 rows Parallel, tail cost        10   max 1
+                  Key RDF_QUAD  ASC  ()
+                   inlined  P =  IRI_ID"...direct/P17"  ,  S = <v k_s_37_6_t1.S$149 Set151 rn>
+                  vector param casts: <r s_37_6_t1.S$33 via  Set136>-> <v k_s_37_6_t1.S$149 Set151 rn>
+                  copy on branch $149 $49 $0 $0 sets: 100 114 136 
+                  
+                  time      0.12% fanout         0 input    155466 rows
+                  $49 (41 50 ) 
+                  s# 158 43 Subquery Select( <none> )
+                    set no: <r set_ctr$49 via  Set145 Set151>
+                }
+              ) then 37 else 27 unkn 37
+              27: <V rdf_regex_impl$55 i> := Call rdf_regex_impl (<V __ro2sq$35 a>, <c [^0-9]>)
+              32: if ( 0  = <V rdf_regex_impl$55 i>) then 37 else 36 unkn 37
+              36: BReturn 1
+              37: BReturn 0
+            time     0.023% fanout         1 input         4 rows
+            
+            s# 171 57 Distinct (HASH) set no <r set_no$30 via  Set130 Set114>(<r s_37_6_t1.S$33 via  Set130>, <r s_37_6_t1.O$32 via  Set130>)
+            time     0.033% fanout         0 input         4 rows
+            Precode:
+              0: <V __ro2sq$63 a> := Call __ro2sq (<r s_37_6_t1.O$32 via  Set171 Set130>)
+              5: BReturn 0
+              clear: (<V __ro2sq$63 a>)$32 (57 125 ) 
+            s# 179 66 Sort (HASH) set no <r set_no$30 via  Set171 Set130 Set114>(<V __ro2sq$63 a>) -> (<r s_37_6_t1.S$33 via  Set171 Set130>)
+            
+        }
+        time      0.03% fanout         4 input         1 rows
+        Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:         0 Fanout:         4
+          clear: (<V __ro2sq$63 a>, <V s_37_6_t1.S$33 rn>, <V var2$29 a>, <V var1$28 a>, <V __id2in$78 a>)
+          clear on continue: (<V __ro2sq$63 a>, <V s_37_6_t1.S$33 rn>, <V var2$29 a>, <V var1$28 a>, <V __id2in$78 a>)
+        s# 194 71 Key from temp (<V s_37_6_t1.S$33 rn>, <V __ro2sq$63 a>)
+        
+        
+        After code:
+          0: <V __id2in$78 a> := Call __id2in (<V s_37_6_t1.S$33 rn>)
+          5: <V var1$28 a> :=  := artm <V __id2in$78 a>
+          9: <V var2$29 a> :=  := artm <V __ro2sq$63 a>
+          13: BReturn 0
+        time   4.8e-05% fanout         0 input         4 rows
+        
+        s# 109 80 Subquery Select(<V var1$28 a>, <V var2$29 a>)
+          set no: <r set_no$30 via  Set194>
+      }
+    
+    After code:
+      0: <V var1$87 a> := Call __ro2sq (<V var1$28 a>)
+      5: <V var2$89 a> := Call __ro2sq (<V var2$29 a>)
+      10: BReturn 0
+    time   5.6e-05% fanout         0 input         4 rows
+    $97 (27 98 ) $87 (27 ) $89 (27 ) 
+    s# 212 91 Select (<V var1$87 a>, <V var2$89 a>)
+      set no: <r set_ctr$97 via  Set109>
+  }
+Warning: You might have a Cartesian product.
+
+
+
+ 456 msec 99% cpu,    305410 rnd    155432 seq   47.8621% same seg   34.4336% same pg 
+3 disk reads, 0 read ahead,   12.1256% wait
+Compilation: 2 msec 0 reads         0% read 0 messages         0% clw

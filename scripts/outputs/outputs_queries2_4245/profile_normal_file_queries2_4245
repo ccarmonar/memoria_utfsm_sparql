@@ -1,0 +1,64 @@
+http://www.wikidata.org/entity/Q2500638	http://purl.org/dc/terms/creator	
+http://www.wikidata.org/entity/Q494823	http://purl.org/dc/terms/format	
+http://www.wikidata.org/entity/P512	http://d-nb.info/standards/elementset/gnd#academicDegree	
+http://www.wikidata.org/entity/P3224	http://purl.org/goodrelations/v1#hasNAICS	
+http://www.wikidata.org/entity/P3224	http://www.freebase.com/business/naics2007	
+http://www.wikidata.org/entity/P3224	https://schema.org/naics	
+http://www.wikidata.org/entity/P449	http://www.freebase.com/tv/tv_program/original_network	
+http://www.wikidata.org/entity/Q340169	http://purl.org/dc/terms/medium	
+http://www.wikidata.org/entity/P1476	http://purl.org/dc/terms/title	
+http://www.wikidata.org/entity/P1476	http://ogp.me/ns#title	
+http://www.wikidata.org/entity/P1476	https://schema.org/name	
+http://www.wikidata.org/entity/P1476	http://purl.bdrc.io/ontology/core/hasTitle	
+http://www.wikidata.org/entity/P1476	http://gov.genealogy.net/ontology.owl#hasTitle	
+http://www.wikidata.org/entity/P1476	http://id.loc.gov/ontologies/bibframe/title	
+http://www.wikidata.org/entity/P407	http://purl.org/dc/terms/language	
+http://www.wikidata.org/entity/P407	http://gov.genealogy.net/ontology.owl#language	
+http://www.wikidata.org/entity/P407	https://schema.org/inLanguage	
+http://www.wikidata.org/entity/P407	http://d-nb.info/standards/elementset/gnd#language	
+http://www.wikidata.org/entity/P175	https://schema.org/byArtist	
+http://www.wikidata.org/entity/P175	http://id.loc.gov/vocabulary/relators/prf	
+
+  { 
+    time      0.23% fanout         1 input         1 rows
+      clear: (<V set_ctr$49 in>)
+    s# 55 50 cluster outer seq start, set no <V set_ctr$49 in>    
+    save ctx:()
+    time       5.3% fanout        81 input         1 rows
+    Precode:
+      0: <V DB.DBA.RDF_MAKE_LONG_OF_SQLVAL$27 a> := Call DB.DBA.RDF_MAKE_LONG_OF_SQLVAL (<c string1>)
+      7: BReturn 0
+      clear: (<V s_37_2_t0.S$30 rn>, <V s_37_2_t0.O$31 an>, <V DB.DBA.RDF_MAKE_LONG_OF_SQLVAL$27 a>)
+      clear on continue: (<V s_37_2_t0.O$31 an>, <V s_37_2_t0.S$30 rn>)
+    s# 64 29 from DB.DBA.RDF_QUAD by RDF_QUAD         37 rows   
+    Key RDF_QUAD  ASC  (<V s_37_2_t0.O$31 an>, <V s_37_2_t0.S$30 rn>)
+     inlined  P =  IRI_ID"...direct/P1628" 
+    
+    time        51% fanout         1 input        81 rows
+      clear: (<V rdf_strstarts_impl$37 i>, <V DB.DBA.RDF_LONG_OF_SQLVAL$35 a>, <V __rdf_strsqlval$33 s>)$27 (29 ) 
+    s# 80 75 END Node
+    After test:
+      0: <V __rdf_strsqlval$33 s> := Call __rdf_strsqlval (<V s_37_2_t0.O$31 an>,  0 )
+      5: <V DB.DBA.RDF_LONG_OF_SQLVAL$35 a> := Call DB.DBA.RDF_LONG_OF_SQLVAL (<V __rdf_strsqlval$33 s>)
+      12: <V rdf_strstarts_impl$37 i> := Call rdf_strstarts_impl (<V DB.DBA.RDF_LONG_OF_SQLVAL$35 a>, <r DB.DBA.RDF_MAKE_LONG_OF_SQLVAL$27 via  Set64>)
+      17: if ( 0  = <V rdf_strstarts_impl$37 i>) then 21 else 22 unkn 22
+      21: BReturn 1
+      22: BReturn 0
+    time        43% fanout         1 input        81 rows
+      clear: (<V var2$41 a>, <V var1$39 a>)$31 (75 ) $30 (75 ) 
+    s# 88 53 skip node  100  <none> <r set_ctr$49 via  Set80 Set64>
+    After code:
+      0: <V var1$39 a> := Call __id2in (<r s_37_2_t0.S$30 via  Set88 Set80>)
+      5: <V var2$41 a> := Call __ro2sq (<r s_37_2_t0.O$31 via  Set88 Set80>)
+      10: BReturn 0
+    time     0.055% fanout         0 input        81 rows
+    $39 (53 ) $41 (53 ) $49 (53 75 29 50 ) 
+    s# 96 43 Select (<V var1$39 a>, <V var2$41 a>)
+      set no: <r set_ctr$49 via  Set88 Set80 Set64>
+  }
+Warning: You might have a Cartesian product.
+
+
+
+ 2 msec 51% cpu,         4 rnd        80 seq         0% same seg         0% same pg 
+Compilation: 1 msec 0 reads         0% read 0 messages         0% clw

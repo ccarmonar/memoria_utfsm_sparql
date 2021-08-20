@@ -1,0 +1,99 @@
+Error: 22007: DT001: Function year needs a datetime, date or time as argument 1, not an arg of type DB_NULL (204)
+  { 
+    time     1e+02% fanout         1 input         1 rows
+    Precode:
+      0: vector$27 := Call vector ( IRI_ID"...Q183" )
+      5: vector$29 := Call vector ( IRI_ID"...Q16957" )
+      10: vector$31 := Call vector ( IRI_ID"...Q713750" )
+      15: vector$33 := Call vector ( IRI_ID"...Q41304" )
+      20: vector$35 := Call vector ( IRI_ID"...Q7318" )
+      25: vector$37 := Call vector ( IRI_ID"...Q43287" )
+      30: vector$39 := Call vector (vector$27, vector$29, vector$31, vector$33, vector$35, vector$37)
+      35: rdf_year_impl$41 := Call rdf_year_impl (<DB_NULL>)
+      40: BReturn 0
+    Subquery 43 
+      { 
+        time         0% fanout         0 input         0 rows
+        fork {
+            Subquery 48 
+              { 
+                time         0% fanout         0 input         0 rows
+                Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:   1.4e-07 Fanout:         0
+                RDF_QUAD_POGS   1.4e-07 rows(s_37_5_t1.S$55)
+                 P =  IRI_ID"...isPartOf"  ,  O =  IRI_ID"..." 
+                time         0% fanout         0 input         0 rows
+                Precode:
+                  0: dta$62 :=  := artm vector$39
+                  4: proc_ctr$58 :=  := artm  0 
+                  8:  <none>  := Call __reset_temp ( 139909915029520 )
+                  13:  <proc table>  := Call DB.DBA.SPARQL_BINDINGS_VIEW_C_1_IMP (vector$39)
+                  20: BReturn 0
+                Key from temp (proc_ctr$58, BND0$60)
+                
+                time         0% fanout         0 input         0 rows
+                Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:         1 Fanout:         0
+                RDF_QUAD         1 rows(s_37_5_t0.S$71, s_37_5_t0.O$70)
+                 inlined  P =  IRI_ID"...about"  ,  S = k_s_37_5_t1.S$188
+                
+                After code:
+                0: var5$49 :=  := artm s_37_5_t0.S$71
+                4: var3$50 :=  := artm s_37_5_t0.O$70
+                8: var6$51 :=  := artm BND0$60
+                12: var1$52 :=  := artm rdf_year_impl$41
+                16: BReturn 0
+                time         0% fanout         0 input         0 rows
+                Subquery Select(var5$49, var3$50, var6$51, var1$52)
+              }
+            time         0% fanout         0 input         0 rows
+            Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:   0.00023 Fanout:         0
+            RDF_QUAD_POGS   0.00023 rows(s_37_13_t4.O$82, s_37_13_t4.S$81)
+             inlined  P =  IRI_ID"...direct/P27"  ,  O = k_var6$214 ,  S = k_var3$218
+            time         0% fanout         0 input         0 rows
+            END Node
+            After test:
+            0: is_named_iri_id$84 := Call is_named_iri_id (s_37_13_t4.O$82)
+            5: if ( 0  = is_named_iri_id$84) then 10 else 9 unkn 10
+            9: BReturn 1
+            10: BReturn 0
+            time         0% fanout         0 input         0 rows
+            Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:         1 Fanout:         0
+            RDF_QUAD         1 rows(s_37_13_t2.S$87)
+             inlined  P =  IRI_ID"...direct/P569"  ,  S = k_var3$244
+            time         0% fanout         0 input         0 rows
+            Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:         1 Fanout:         0
+            RDF_QUAD         1 rows(s_37_13_t3.O$90)
+             inlined  P =  IRI_ID"...direct/P21"  ,  S = s_37_13_t2.S$87
+            
+            After code:
+            0: isnotnull$92 := Call isnotnull (s_37_13_t2.S$87)
+            5: BReturn 0
+            time         0% fanout         0 input         0 rows
+            Sort (var1$52, s_37_13_t3.O$90) -> (isnotnull$92)
+            
+          }
+        time         0% fanout         0 input         0 rows
+        group by read node  
+        (var1$52, s_37_13_t3.O$90, aggregate$96)
+        
+        After code:
+        0: __ro2sq$123 := Call __ro2sq (s_37_13_t3.O$90)
+        5: var1$44 :=  := artm var1$52
+        9: var2$45 :=  := artm __ro2sq$123
+        13: var4$46 :=  := artm aggregate$96
+        17: BReturn 0
+        time         0% fanout         0 input         0 rows
+        Subquery Select(var1$44, var2$45, var4$46)
+      }
+    
+    After code:
+    0: var1$132 := Call __ro2sq (var1$44)
+    5: var2$134 := Call __ro2sq (var2$45)
+    10: var4$136 := Call __ro2sq (var4$46)
+    15: BReturn 0
+    time         0% fanout         0 input         0 rows
+    Select (var1$132, var2$134, var4$136)
+  }
+
+
+ 0 msec 0% cpu,         0 rnd         0 seq         0% same seg         0% same pg 
+Compilation: 7 msec 0 reads         0% read 0 messages         0% clw

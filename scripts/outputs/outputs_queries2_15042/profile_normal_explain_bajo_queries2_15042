@@ -1,0 +1,49 @@
+http://www.wikidata.org/entity/Q2706450	
+http://www.wikidata.org/entity/Q2762074	
+http://www.wikidata.org/entity/Q2993061	
+http://www.wikidata.org/entity/Q3070969	
+http://www.wikidata.org/entity/Q16200994	
+http://www.wikidata.org/entity/Q5535905	
+http://www.wikidata.org/entity/Q5637932	
+http://www.wikidata.org/entity/Q6959494	
+http://www.wikidata.org/entity/Q7249951	
+http://www.wikidata.org/entity/Q30547069	
+http://www.wikidata.org/entity/Q10616584	
+http://www.wikidata.org/entity/Q79053444	
+http://www.wikidata.org/entity/Q11600043	
+http://www.wikidata.org/entity/Q11600584	
+http://www.wikidata.org/entity/Q11601213	
+http://www.wikidata.org/entity/Q669075	
+http://www.wikidata.org/entity/Q1144255	
+http://www.wikidata.org/entity/Q1414855	
+http://www.wikidata.org/entity/Q1469831	
+http://www.wikidata.org/entity/Q2001882	
+
+  { 
+    time      0.12% fanout         1 input         1 rows
+    time     0.027% fanout         1 input         1 rows
+    time        46% fanout       962 input         1 rows
+    RDF_QUAD_POGS   9.6e+02 rows(s_37_4_t1.S$31)
+     P =  IRI_ID"...direct/P582"  ,  O >= <tag 211 c 1973-01-01 00:00:00Z> <= <tag 211 c 1983-12-31 23:59:59Z> O >= <tag 211 c 1973-01-01 00:00:00Z> <= <tag 211 c 1983-12-31 23:59:59Z>
+    time        28% fanout  0.160083 input       962 rows
+    RDF_QUAD     0.058 rows(s_37_4_t0.S$34)
+     P =  IRI_ID"...direct/P580"  ,  S = s_37_4_t1.S$31 ,  O >= <tag 211 c 1963-01-01 00:00:00Z> <= <tag 211 c 1973-12-31 23:59:59Z> O >= <tag 211 c 1963-01-01 00:00:00Z> <= <tag 211 c 1973-12-31 23:59:59Z>
+    time       5.1% fanout  0.980519 input       154 rows
+    Distinct (s_37_4_t0.S$34)
+    
+    After code:
+    0: var1$28 :=  := artm s_37_4_t0.S$34
+    4: BReturn 0
+    time        21% fanout         1 input       151 rows
+    Subquery Select(var1$28)
+    
+    After code:
+    0: var1$50 := Call __ro2sq (var1$28)
+    5: BReturn 0
+    time     0.039% fanout         0 input       151 rows
+    Select (var1$50)
+  }
+
+
+ 3 msec 59% cpu,       963 rnd      7093 seq   99.4813% same seg         0% same pg 
+Compilation: 2 msec 0 reads         0% read 0 messages         0% clw

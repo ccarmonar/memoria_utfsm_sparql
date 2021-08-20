@@ -1,0 +1,75 @@
+0	
+
+  { 
+    time       6.1% fanout         1 input         1 rows
+    time       9.3% fanout         1 input         1 rows
+    Precode:
+      0: __all_eq$27 := Call __all_eq ( IRI_ID"...Q4671277" )
+      5: BReturn 0
+    fork {
+        time        82% fanout         0 input         1 rows
+        Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:   1.4e-07 Fanout:         0
+        RDF_QUAD_POGS   1.4e-07 rows(s_37_10_t1.S$31, s_37_10_t1.O$30)
+         inlined  P =  IRI_ID"...statement/P31"  O LIKE <c Tó>
+        time         0% fanout         0 input         0 rows
+        Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:   1.4e-07 Fanout:         0
+        RDF_QUAD_POGS   1.4e-07 rows(s_37_5_t0.S$34)
+         P =  IRI_ID"...prop/P31"  ,  O = cast$133
+        Precode:
+          0: __all_eq$36 := Call __all_eq (s_37_10_t1.O$30)
+          5: BReturn 0
+        Transitive dt dir 2, input: (__all_eq$27)
+          input shadow: (__all_eq$147)
+          output: (_::trans_subj_37_12$39)
+         Target:  (__all_eq$36)
+          { 
+            time         0% fanout         0 input         0 rows
+            Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:       3.8 Fanout:         0
+            RDF_QUAD_POGS       3.8 rows(t5.S$46, t5.O$45)
+             P =  IRI_ID"...direct/P279"  ,  O = k___all_eq$153
+            
+            After code:
+            0: _::trans_subj_37_12$39 :=  := artm t5.S$46
+            4: _::trans_obj_37_13$40 :=  := artm t5.O$45
+            8: BReturn 0
+            time         0% fanout         0 input         0 rows
+            Subquery Select(_::trans_subj_37_12$39, _::trans_obj_37_13$40)
+          }
+        Reverse transitive node, input: (__all_eq$36)
+          output: (_::trans_obj_37_13$40)
+         Target:  (__all_eq$27)
+          { 
+            time         0% fanout         0 input         0 rows
+            Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:       1.4 Fanout:         0
+            RDF_QUAD       1.4 rows(t5.S$71, t5.O$70)
+             inlined  P =  IRI_ID"...direct/P279"  ,  S = k___all_eq$183
+            
+            After code:
+            0: _::trans_subj_37_12$39 :=  := artm t5.S$71
+            4: _::trans_obj_37_13$40 :=  := artm t5.O$70
+            8: BReturn 0
+            time         0% fanout         0 input         0 rows
+            Subquery Select(_::trans_subj_37_12$39, _::trans_obj_37_13$40)
+          }
+        time         0% fanout         0 input         0 rows
+        END Node
+        After test:
+        0: if (_::trans_obj_37_13$40 =  IRI_ID"...Q4671277" ) then 4 else 5 unkn 5
+        4: BReturn 1
+        5: BReturn 0
+        time         0% fanout         0 input         0 rows
+        Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:         1 Fanout:         0
+        RDF_QUAD         1 rows(s_37_20_t3.S$91)
+         inlined  P =  IRI_ID"...direct/P154"  ,  S = k_s_37_5_t0.S$223
+        
+        After code:
+        0:  count var2$96s_37_20_t3.S$91set no set_ctr$93distinct via hash area DISTINCT HASH$100
+        5: BReturn 0
+      }
+    time       2.5% fanout         0 input         1 rows
+    Select (var2$96)
+  }
+
+
+ 0 msec 1% cpu,         1 rnd         0 seq         0% same seg         0% same pg 
+Compilation: 5 msec 0 reads         0% read 0 messages         0% clw

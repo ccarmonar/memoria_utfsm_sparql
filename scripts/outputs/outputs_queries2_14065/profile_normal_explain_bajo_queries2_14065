@@ -1,0 +1,66 @@
+http://www.wikidata.org/entity/Q2767667	
+http://www.wikidata.org/entity/Q3070885	
+http://www.wikidata.org/entity/Q3120725	
+http://www.wikidata.org/entity/Q16015014	
+http://www.wikidata.org/entity/Q16092014	
+http://www.wikidata.org/entity/Q16106350	
+http://www.wikidata.org/entity/Q16107046	
+http://www.wikidata.org/entity/Q16197442	
+http://www.wikidata.org/entity/Q16199195	
+http://www.wikidata.org/entity/Q16200014	
+http://www.wikidata.org/entity/Q16200062	
+http://www.wikidata.org/entity/Q16200212	
+http://www.wikidata.org/entity/Q16200314	
+http://www.wikidata.org/entity/Q16200376	
+http://www.wikidata.org/entity/Q16201037	
+http://www.wikidata.org/entity/Q16201547	
+http://www.wikidata.org/entity/Q16202071	
+http://www.wikidata.org/entity/Q16202189	
+http://www.wikidata.org/entity/Q16202260	
+http://www.wikidata.org/entity/Q16202270	
+
+  { 
+    time     0.095% fanout         1 input         1 rows
+    time       2.5% fanout      1000 input         1 rows
+    Precode:
+      0: __rdflit$27 := Call __rdflit (rdflit5868978)
+      5: BReturn 0
+    RDF_QUAD_POGS   5.1e+03 rows(s_37_12_t3.S$30)
+     P =  IRI_ID"...direct/P27"  ,  O =  IRI_ID"...Q668" 
+    time        17% fanout     0.193 input      1000 rows
+    RDF_QUAD      0.17 rows(s_37_12_t2.S$33)
+     inlined  P =  IRI_ID"...direct/P21"  ,  S = s_37_12_t3.S$30 ,  O =  IRI_ID"...Q6581072" 
+    time        37% fanout         1 input       193 rows
+    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:        15 Fanout:         1
+    Precode:
+      0: var1$35 := Call __id2in (s_37_12_t2.S$33)
+      5: BReturn 0
+    RDF_QUAD_POGS        15 rows(s_37_12_t4.O$38)
+     P =  IRI_ID"...about"  ,  O = cast$105
+    time        22% fanout         1 input       193 rows
+    END Node
+    After test:
+    0: if (  { 
+        time      0.11% fanout         1 input       193 rows
+        time        19% fanout         1 input       193 rows
+        RDF_QUAD_POGS         1 rows(s_37_10_t0.S$41)
+         P =  IRI_ID"...about"  ,  O = k_s_37_12_t4.O$137
+        time       2.5% fanout         0 input       193 rows
+        Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:   1.4e-07 Fanout:         0
+        RDF_QUAD_POGS   1.4e-07 rows()
+         inlined  P =  IRI_ID"...inLanguage"  ,  O = rdflit5868978 ,  S = s_37_10_t0.S$41
+        time         0% fanout         0 input         0 rows
+        Subquery Select( <none> )
+      }
+    ) then 5 else 4 unkn 5
+    4: BReturn 1
+    5: BReturn 0
+    time     0.095% fanout         1 input       193 rows
+    skip node  1000  <none> set_ctr$66
+    time     0.031% fanout         0 input       193 rows
+    Select (var1$35)
+  }
+
+
+ 3 msec 48% cpu,      1580 rnd       998 seq   95.3194% same seg   4.04807% same pg 
+Compilation: 3 msec 0 reads         0% read 0 messages         0% clw

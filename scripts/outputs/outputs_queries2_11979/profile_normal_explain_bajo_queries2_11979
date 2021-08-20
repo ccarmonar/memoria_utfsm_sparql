@@ -1,0 +1,47 @@
+http://www.wikidata.org/entity/Q2978902	96519292	n88016218	http://www.wikidata.org/entity/Q49085	
+http://www.wikidata.org/entity/Q3066918	32021482	n86070213	http://www.wikidata.org/entity/Q49085	
+http://www.wikidata.org/entity/Q3309607	46048608	n97061721	http://www.wikidata.org/entity/Q49085	
+http://www.wikidata.org/entity/Q16007986	23676978	n88002996	http://www.wikidata.org/entity/Q49078	
+http://www.wikidata.org/entity/Q16009928	112779522	n81040107	http://www.wikidata.org/entity/Q1417088	
+http://www.wikidata.org/entity/Q16009928	112779522	n81040107	http://www.wikidata.org/entity/Q37014	
+http://www.wikidata.org/entity/Q16009971	310521152	no2014101154	http://www.wikidata.org/entity/Q49085	
+http://www.wikidata.org/entity/Q16015330	70943879	no88001690	http://www.wikidata.org/entity/Q49085	
+http://www.wikidata.org/entity/Q16017544	3778259	n80103611	http://www.wikidata.org/entity/Q49085	
+http://www.wikidata.org/entity/Q16107330	27238460	n78096461	http://www.wikidata.org/entity/Q49085	
+
+  { 
+    time      0.22% fanout         1 input         1 rows
+    time       6.3% fanout      1000 input         1 rows
+    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:   1.5e+04 Fanout:     1e+03
+    RDF_QUAD   1.5e+04 rows(s_37_10_t4.S$29, s_37_10_t4.O$28)
+     inlined  P =  IRI_ID"...direct/P172" 
+    time        34% fanout     0.241 input      1000 rows
+    RDF_QUAD      0.13 rows(s_37_10_t1.S$32)
+     inlined  P =  IRI_ID"...direct/P27"  ,  S = s_37_10_t4.S$29 ,  O =  IRI_ID"...Q30" 
+    time        11% fanout  0.307054 input       241 rows
+    RDF_QUAD      0.17 rows(s_37_10_t0.S$35)
+     inlined  P =  IRI_ID"...direct/P21"  ,  S = s_37_10_t1.S$32 ,  O =  IRI_ID"...Q6581072" 
+    time        33% fanout  0.540541 input        74 rows
+    Precode:
+      0: var4$37 := Call __ro2sq (s_37_10_t4.O$28)
+      5: var1$39 := Call __id2in (s_37_10_t0.S$35)
+      10: BReturn 0
+    RDF_QUAD         1 rows(s_37_10_t2.S$43, s_37_10_t2.O$42)
+     inlined  P =  IRI_ID"...direct/P214"  ,  S = s_37_10_t0.S$35
+    time       4.5% fanout     0.875 input        40 rows
+    RDF_QUAD         1 rows(s_37_10_t3.O$46)
+     inlined  P =  IRI_ID"...direct/P244"  ,  S = k_s_37_10_t0.S$119
+    time        10% fanout  0.285714 input        35 rows
+    skip node  10  <none> set_ctr$58
+    
+    After code:
+    0: var2$48 := Call __ro2sq (s_37_10_t2.O$42)
+    5: var3$50 := Call __ro2sq (s_37_10_t3.O$46)
+    10: BReturn 0
+    time     0.021% fanout         0 input        10 rows
+    Select (var1$39, var2$48, var3$50, var4$37)
+  }
+
+
+ 2 msec 25% cpu,      1376 rnd       998 seq   97.7487% same seg  0.580973% same pg 
+Compilation: 4 msec 0 reads         0% read 0 messages         0% clw

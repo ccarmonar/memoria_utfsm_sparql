@@ -1,0 +1,59 @@
+http://www.wikidata.org/prop/direct/P4322	
+http://www.wikidata.org/prop/direct/P1346	
+http://www.wikidata.org/prop/direct/P710	
+http://www.wikidata.org/prop/direct/P40	
+http://www.wikidata.org/prop/direct/P527	
+http://www.wikidata.org/prop/direct/P4324	
+http://schema.org/about	
+http://www.wikidata.org/prop/direct/P161	
+http://www.wikidata.org/prop/direct/P1855	
+http://www.wikidata.org/prop/direct/P2321	
+http://www.wikidata.org/prop/direct/P4323	
+http://www.wikidata.org/prop/direct/P3494	
+http://www.wikidata.org/prop/direct/P1889	
+http://www.wikidata.org/prop/direct/P921	
+http://www.w3.org/2002/07/owl#sameAs	
+http://www.wikidata.org/prop/direct/P3497	
+http://www.wikidata.org/prop/direct/P138	
+
+  { 
+    time     0.032% fanout         1 input         1 rows
+    time    0.0081% fanout         1 input         1 rows
+    time      0.54% fanout       534 input         1 rows
+    RDF_QUAD   5.3e+02 rows(s_37_6_t1.O$31)
+     inlined  P =  IRI_ID"...direct/P4320" 
+    time        21% fanout   5.18352 input       534 rows
+    RDF_QUAD_OP       2.8 rows(s_37_6_t2.P$35, s_37_6_t2.O$34)
+     inlined  O = cast$100
+    time       2.4% fanout  0.694725 input      2768 rows
+    END Node
+    After test:
+    0: if (s_37_6_t2.P$35 =  IRI_ID"...direct/P4320" ) then 9 else 4 unkn 9
+    4: if (s_37_6_t2.P$35 =  IRI_ID"...direct/P2417" ) then 9 else 8 unkn 9
+    8: BReturn 1
+    9: BReturn 0
+    time        22% fanout   3.36921 input      1923 rows
+    RDF_QUAD_POGS       1.2 rows()
+     P = k_s_37_6_t2.P$129 ,  O = k_s_37_6_t1.O$133
+    time        34% fanout   5.30684 input      6479 rows
+    RDF_QUAD_POGS       6.2 rows()
+     P =  IRI_ID"...direct/P2417"  ,  O = k_s_37_6_t1.O$144
+    time        17% fanout 0.00049443 input     34383 rows
+    Distinct (s_37_6_t2.P$35)
+    
+    After code:
+    0: p2$28 :=  := artm s_37_6_t2.P$35
+    4: BReturn 0
+    time         2% fanout         1 input        17 rows
+    Subquery Select(p2$28)
+    
+    After code:
+    0: p2$57 := Call __ro2sq (p2$28)
+    5: BReturn 0
+    time     0.021% fanout         0 input        17 rows
+    Select (p2$57)
+  }
+
+
+ 11 msec 84% cpu,      8899 rnd     36051 seq   96.9438% same seg   2.17978% same pg 
+Compilation: 2 msec 0 reads         0% read 0 messages         0% clw

@@ -1,0 +1,54 @@
+http://www.wikidata.org/entity/Q3488144	Association d&#39;auteurs	
+http://www.wikidata.org/entity/Q2862691	Marlier	
+http://www.wikidata.org/entity/Q2910678	Quartier de Bordeaux, France	
+http://www.wikidata.org/entity/Q2925284	Service de police judiciaire français	
+http://www.wikidata.org/entity/Q2986710	Commission chargée d’examiner les demandes individuelles présentées par les victimes ou par leurs ayants droit pour la réparation des préjudices consécutifs aux spoliations de biens	
+http://www.wikidata.org/entity/Q2993072	Région naturelle de France	
+http://www.wikidata.org/entity/Q3060491	Centre commercial français	
+http://www.wikidata.org/entity/Q3113669	Club français de handball basé à Nancy	
+http://www.wikidata.org/entity/Q3113703	Sommet du massif du Vignemale, Pyrénées	
+http://www.wikidata.org/entity/Q3114642	Festival du voyage d&#39;Albertville	
+http://www.wikidata.org/entity/Q3125186	Banque européenne	
+http://www.wikidata.org/entity/Q3240039	BHNS reliant la gare RER de Sucy-Bonneuil au Carrefour de la Résistance à Thiais	
+http://www.wikidata.org/entity/Q3240177	Reseau de transport en commun niçois	
+http://www.wikidata.org/entity/Q4065200	Conflit naval	
+http://www.wikidata.org/entity/Q921944	Editeur de jeux vidéo	
+http://www.wikidata.org/entity/Q308705	Magazine sportif français	
+http://www.wikidata.org/entity/Q3398465	Port dans le Pas-de-Calais, France	
+http://www.wikidata.org/entity/Q3410684	Site remarquable	
+http://www.wikidata.org/entity/Q3416570	Station de radio bretonne	
+http://www.wikidata.org/entity/Q15133262	Sous-marin Saphir (Q44)	
+
+  { 
+    time    0.0088% fanout         1 input         1 rows
+    time      0.29% fanout      2000 input         1 rows
+    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:   5.8e+04 Fanout:     2e+03
+    RDF_QUAD_POGS   5.8e+04 rows(s_37_4_t0.S$28)
+     P =  IRI_ID"...direct/P17"  ,  O =  IRI_ID"...Q142" 
+    time        20% fanout     6.508 input      2000 rows
+    Precode:
+      0: var1$30 := Call __id2in (s_37_4_t0.S$28)
+      5: BReturn 0
+    RDF_QUAD        14 rows(s_37_4_t1.O$33)
+     inlined  P =  IRI_ID"...description"  ,  S = s_37_4_t0.S$28
+    time        80% fanout 0.0016134 input     13016 rows
+    END Node
+    After test:
+    0: __ro2sq$35 := Call __ro2sq (s_37_4_t1.O$33)
+    5: rdf_regex_impl$37 := Call rdf_regex_impl (__ro2sq$35, <c ^[A-Z]>)
+    10: if ( 0  = rdf_regex_impl$37) then 26 else 14 unkn 26
+    14: DB.DBA.RDF_LANGUAGE_OF_OBJ$39 := Call DB.DBA.RDF_LANGUAGE_OF_OBJ (__ro2sq$35)
+    21: if (<c fr> = DB.DBA.RDF_LANGUAGE_OF_OBJ$39) then 25 else 26 unkn 26
+    25: BReturn 1
+    26: BReturn 0
+    
+    After code:
+    0: var1Label$41 := Call __ro2sq (s_37_4_t1.O$33)
+    5: BReturn 0
+    time     0.004% fanout         0 input        21 rows
+    Select (var1$30, var1Label$41)
+  }
+
+
+ 37 msec 95% cpu,     16550 rnd     13286 seq   10.9661% same seg   14.2469% same pg 
+Compilation: 1 msec 0 reads         0% read 0 messages         0% clw

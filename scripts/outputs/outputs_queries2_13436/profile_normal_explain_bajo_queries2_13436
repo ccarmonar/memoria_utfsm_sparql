@@ -1,0 +1,47 @@
+http://www.wikidata.org/entity/Q2859497	http://www.wikidata.org/entity/Q355237	1993	
+http://www.wikidata.org/entity/Q3232674	http://www.wikidata.org/entity/Q3510072	2008	
+http://www.wikidata.org/entity/Q41728579	http://www.wikidata.org/entity/Q44403	1827	
+http://www.wikidata.org/entity/Q15830740	http://www.wikidata.org/entity/Q15817534	2002	
+http://www.wikidata.org/entity/Q15888518	http://www.wikidata.org/entity/Q155547	2006	
+http://www.wikidata.org/entity/Q15919347	http://www.wikidata.org/entity/Q47119616	2003	
+http://www.wikidata.org/entity/Q41477777	http://www.wikidata.org/entity/Q714935	1997	
+http://www.wikidata.org/entity/Q41481274	http://www.wikidata.org/entity/Q41479853	2017	
+http://www.wikidata.org/entity/Q41733636	http://www.wikidata.org/entity/Q9068	1878	
+http://www.wikidata.org/entity/Q74335	http://www.wikidata.org/entity/Q312405	1992	
+http://www.wikidata.org/entity/Q23035974	http://www.wikidata.org/entity/Q48413	1991	
+http://www.wikidata.org/entity/Q5327041	http://www.wikidata.org/entity/Q20874124	1972	
+http://www.wikidata.org/entity/Q5637304	http://www.wikidata.org/entity/Q19357686	2008	
+http://www.wikidata.org/entity/Q5645462	http://www.wikidata.org/entity/Q692	1603	
+http://www.wikidata.org/entity/Q9372884	http://www.wikidata.org/entity/Q9375672	1995	
+http://www.wikidata.org/entity/Q9372884	http://www.wikidata.org/entity/Q9391842	1995	
+http://www.wikidata.org/entity/Q15635222	http://www.wikidata.org/entity/Q4115628	1871	
+http://www.wikidata.org/entity/Q15635660	http://www.wikidata.org/entity/Q199588	1925	
+http://www.wikidata.org/entity/Q15635660	http://www.wikidata.org/entity/Q199588	1926	
+http://www.wikidata.org/entity/Q16889190	http://www.wikidata.org/entity/Q5800395	1975	
+
+  { 
+    time     0.071% fanout         1 input         1 rows
+    time         2% fanout      1000 input         1 rows
+    RDF_QUAD_POGS   4.7e+03 rows(s_37_6_t0.S$28)
+     P =  IRI_ID"...direct/P31"  ,  O =  IRI_ID"...Q3331189" 
+    time        30% fanout     0.404 input      1000 rows
+    RDF_QUAD         1 rows(s_37_6_t2.S$32, s_37_6_t2.O$31)
+     inlined  P =  IRI_ID"...direct/P577"  ,  S = s_37_6_t0.S$28
+    time        68% fanout  0.928218 input       404 rows
+    Precode:
+      0: var1$34 := Call __id2in (s_37_6_t0.S$28)
+      5: var4$36 := Call rdf_year_impl (s_37_6_t2.O$31)
+      10: BReturn 0
+    RDF_QUAD       1.9 rows(s_37_6_t1.O$39)
+     inlined  P =  IRI_ID"...direct/P50"  ,  S = k_s_37_6_t0.S$86
+    
+    After code:
+    0: var2$41 := Call __ro2sq (s_37_6_t1.O$39)
+    5: BReturn 0
+    time      0.03% fanout         0 input       375 rows
+    Select (var1$34, var2$41, var4$36)
+  }
+
+
+ 5 msec 73% cpu,      1405 rnd      1129 seq   95.7326% same seg   3.84068% same pg 
+Compilation: 2 msec 0 reads         0% read 0 messages         0% clw

@@ -1,0 +1,57 @@
+
+  { 
+    time       9.9% fanout         1 input         1 rows
+      clear: (<V set_ctr$67 in>)
+    s# 70 68 cluster outer seq start, set no <V set_ctr$67 in>    
+    save ctx:()
+    time        90% fanout         0 input         1 rows
+    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:         2 Fanout:         0
+      clear: (<V s_37_2_t0.P$28 rn>)
+      clear on continue: (<V s_37_2_t0.P$28 rn>)
+    s# 79 27 from DB.DBA.RDF_QUAD by RDF_QUAD_SP          2 rows   
+    Key RDF_QUAD_SP  ASC  (<V s_37_2_t0.P$28 rn>)
+     inlined  S =  IRI_ID"...Q12418" 
+    
+    time         0% fanout         0 input         0 rows
+    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:       1.2 Fanout:         0
+      clear: (<V s_37_2_t0.O$32 an>, <V callretSearchedCASE$57 sn>, <V is_bnode_iri_id$59 i>, <V callretSearchedCASE$53 sn>, <V is_named_iri_id$55 i>, <V var4$39 s>, <V rdf_concat_impl$51 s>, <V __rdf_strsqlval$49 s>, <V DB.DBA.RDF_DATATYPE_OF_OBJ$47 a>, <V __ro2sq$45 a>, <V temp$43 i>, <V isiri_id$41 i>, <V var3$37 a>, <V var1$35 a>)
+      clear on continue: (<V s_37_2_t0.O$32 an>, <V callretSearchedCASE$57 sn>, <V is_bnode_iri_id$59 i>, <V callretSearchedCASE$53 sn>, <V is_named_iri_id$55 i>, <V var4$39 s>, <V rdf_concat_impl$51 s>, <V __rdf_strsqlval$49 s>, <V DB.DBA.RDF_DATATYPE_OF_OBJ$47 a>, <V __ro2sq$45 a>, <V temp$43 i>, <V isiri_id$41 i>, <V var3$37 a>, <V var1$35 a>)$28 () 
+    s# 89 31 from DB.DBA.RDF_QUAD by RDF_QUAD        1.2 rows   
+    Key RDF_QUAD  ASC  (<V s_37_2_t0.O$32 an>)
+     inlined  P = <V s_37_2_t0.P$28 rn> ,  S =  IRI_ID"...Q12418" 
+    
+    After code:
+      0: <V var1$35 a> := Call __id2in (<r s_37_2_t0.P$28 via  Set89>)
+      5: <V var3$37 a> := Call __ro2sq (<V s_37_2_t0.O$32 an>)
+      10: <V isiri_id$41 i> := Call isiri_id (<V s_37_2_t0.O$32 an>)
+      15: <V temp$43 i> := artm  1  - <V isiri_id$41 i>
+      19: if ( 0  = <V temp$43 i>) then 50 else 23 unkn 50
+      23: <V __ro2sq$45 a> := Call __ro2sq (<V s_37_2_t0.O$32 an>)
+      28: <V DB.DBA.RDF_DATATYPE_OF_OBJ$47 a> := Call DB.DBA.RDF_DATATYPE_OF_OBJ (<V __ro2sq$45 a>)
+      35: <V __rdf_strsqlval$49 s> := Call __rdf_strsqlval (<V DB.DBA.RDF_DATATYPE_OF_OBJ$47 a>,  0 )
+      40: <V rdf_concat_impl$51 s> := Call rdf_concat_impl (<c string1>, <V __rdf_strsqlval$49 s>)
+      45: <V var4$39 s> :=  := artm <V rdf_concat_impl$51 s>
+      49: Jump 90 (level=0)
+      50: <V is_named_iri_id$55 i> := Call is_named_iri_id (<V s_37_2_t0.O$32 an>)
+      55: if ( 0  = <V is_named_iri_id$55 i>) then 64 else 59 unkn 64
+      59: <V callretSearchedCASE$53 sn> :=  := artm <c IRI>
+      63: Jump 86 (level=0)
+      64: <V is_bnode_iri_id$59 i> := Call is_bnode_iri_id (<V s_37_2_t0.O$32 an>)
+      69: if ( 0  = <V is_bnode_iri_id$59 i>) then 78 else 73 unkn 78
+      73: <V callretSearchedCASE$57 sn> :=  := artm <c string2>
+      77: Jump 82 (level=0)
+      78: <V callretSearchedCASE$57 sn> :=  := artm <c save us!!!>
+      82: <V callretSearchedCASE$53 sn> :=  := artm <V callretSearchedCASE$57 sn>
+      86: <V var4$39 s> :=  := artm <V callretSearchedCASE$53 sn>
+      90: BReturn 0
+    time         0% fanout         0 input         0 rows
+    $35 () $67 (31 27 68 ) $37 () $39 () 
+    s# 102 61 Select (<V var1$35 a>, <tag 217 c http://www.w3.org/2001/XMLSchema#anyURI>, <V var3$37 a>, <V var4$39 s>)
+      set no: <r set_ctr$67 via  Set89 Set79>
+  }
+Warning: You might have a Cartesian product.
+
+
+
+ 0 msec 2% cpu,         1 rnd         0 seq         0% same seg         0% same pg 
+Compilation: 2 msec 0 reads         0% read 0 messages         0% clw

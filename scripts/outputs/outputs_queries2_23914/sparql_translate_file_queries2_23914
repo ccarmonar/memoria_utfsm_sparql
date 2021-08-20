@@ -1,0 +1,85 @@
+ SELECT  __ro2sq ("s_37_24_rbc"."var1") AS "var1", "s_37_24_rbc"."var1Label" AS "var1Label", __ro2sq ("s_37_24_rbc"."var2") AS "var2", __ro2sq ("s_37_24_rbc"."var3") AS "var3", __ro2sq ("s_37_24_rbc"."var4") AS "var4" FROM (SELECT DISTINCT "s_37_24_t11"."S" AS "var1",
+    NULL /* due to conflict on var1Label */ AS "var1Label",
+    "s_37_21"."var2" AS "var2",
+    "s_37_25_t9"."O" AS "var3",
+    "s_37_18"."var4" AS "var4"
+  FROM DB.DBA.RDF_QUAD AS "s_37_25_t7"
+    INNER JOIN DB.DBA.RDF_QUAD AS "s_37_25_t8"
+    ON (
+      "s_37_25_t8"."S" = "s_37_25_t7"."S")
+    INNER JOIN DB.DBA.RDF_QUAD AS "s_37_25_t9"
+    ON (
+      "s_37_25_t9"."S" = "s_37_25_t8"."S"
+      AND 
+      "s_37_25_t9"."S" = "s_37_25_t7"."S")
+    INNER JOIN (
+     SELECT TRANSITIVE T_OUT(2) T_IN(1) T_MIN( 0) T_NO_CYCLES "s_37_10_t0"."S" AS "_::trans_subj_37_6",
+        "s_37_10_t0"."O" AS "_::trans_obj_37_7"
+      FROM DB.DBA.RDF_QUAD AS "s_37_10_t0"
+      WHERE
+        "s_37_10_t0"."P" = __i2idn ( __bft( 'http://www.wikidata.org/prop/direct/P131' , 1))
+OPTION (QUIETCAST)
+      ) AS "s_37_13"
+    ON (
+      "s_37_25_t9"."S" = "s_37_13"."_::trans_subj_37_6"
+      AND 
+      "s_37_25_t8"."S" = "s_37_13"."_::trans_subj_37_6"
+      AND 
+      "s_37_25_t7"."S" = "s_37_13"."_::trans_subj_37_6")
+    INNER JOIN DB.DBA.RDF_QUAD AS "s_37_25_t10"
+    ON (
+      "s_37_25_t10"."O" = "s_37_13"."_::trans_obj_37_7")
+    LEFT OUTER JOIN (
+      SELECT "s_37_18_t1"."S" AS "var3",
+        "s_37_18_t1"."O" AS "var4"
+      FROM DB.DBA.RDF_QUAD AS "s_37_18_t1"
+      WHERE
+        "s_37_18_t1"."P" = __i2idn ( __bft( 'http://www.wikidata.org/prop/direct/P625' , 1))) AS "s_37_18"
+    ON (
+      "s_37_25_t9"."O" = "s_37_18"."var3")
+    LEFT OUTER JOIN (
+      SELECT "s_37_21_t2"."S" AS "var1",
+        "s_37_21_t2"."O" AS "var2"
+      FROM DB.DBA.RDF_QUAD AS "s_37_21_t2"
+      WHERE
+        "s_37_21_t2"."P" = __i2idn ( __bft( 'http://www.wikidata.org/prop/direct/P18' , 1))) AS "s_37_21"
+    ON (
+      "s_37_25_t9"."S" = "s_37_21"."var1"
+      AND 
+      "s_37_25_t8"."S" = "s_37_21"."var1"
+      AND 
+      "s_37_25_t7"."S" = "s_37_21"."var1"
+      AND 
+      "s_37_13"."_::trans_subj_37_6" = "s_37_21"."var1")
+    INNER JOIN DB.DBA.RDF_QUAD AS "s_37_24_t11"
+    ON (
+      "s_37_24_t11"."S" = "s_37_25_t9"."S"
+      AND 
+      "s_37_24_t11"."S" = "s_37_25_t8"."S"
+      AND 
+      "s_37_24_t11"."S" = "s_37_25_t7"."S"
+      AND 
+      "s_37_24_t11"."S" = "s_37_13"."_::trans_subj_37_6")
+  WHERE
+    "s_37_25_t7"."P" = __i2idn ( __bft( 'http://www.wikidata.org/prop/direct/P21' , 1))
+    AND 
+    "s_37_25_t7"."O" = __i2idn ( __bft( 'http://www.wikidata.org/entity/Q6581072' , 1))
+    AND 
+    "s_37_25_t8"."P" = __i2idn ( __bft( 'http://www.wikidata.org/prop/direct/P106' , 1))
+    AND 
+    "s_37_25_t8"."O" = __i2idn ( __bft( 'http://www.wikidata.org/entity/Q81096' , 1))
+    AND 
+    "s_37_25_t9"."P" = __i2idn ( __bft( 'http://www.wikidata.org/prop/direct/P19' , 1))
+    AND 
+    "s_37_25_t10"."S" = __i2idn ( __bft( 'http://www.wikidata.org/entity/Q47588' , 1))
+    AND 
+    "s_37_25_t10"."P" = __i2idn ( __bft( 'http://www.wikidata.org/prop/direct/P527' , 1))
+    AND 
+    "s_37_24_t11"."P" = __i2idn ( __bft( 'http://www.wikidata.org/prop/direct/P31' , 1))
+    AND 
+    "s_37_24_t11"."O" = __i2idn ( __bft( 'http://www.wikidata.org/entity/Q5' , 1))
+    AND 
+    1
+    AND 
+    1
+OPTION (QUIETCAST)) AS "s_37_24_rbc"

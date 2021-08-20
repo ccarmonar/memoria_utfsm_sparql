@@ -1,0 +1,51 @@
+http://www.wikidata.org/entity/Q12037173	
+http://www.wikidata.org/entity/Q15927927	
+http://www.wikidata.org/entity/Q19538813	
+http://www.wikidata.org/entity/Q21339291	
+http://www.wikidata.org/entity/Q22909479	
+http://www.wikidata.org/entity/Q28045356	
+http://www.wikidata.org/entity/Q45375749	
+http://www.wikidata.org/entity/Q45406549	
+http://www.wikidata.org/entity/Q45426803	
+http://www.wikidata.org/entity/Q45440823	
+http://www.wikidata.org/entity/Q45615326	
+http://www.wikidata.org/entity/Q45693886	
+http://www.wikidata.org/entity/Q11245973	
+http://www.wikidata.org/entity/Q11246068	
+http://www.wikidata.org/entity/Q11246134	
+http://www.wikidata.org/entity/Q11246216	
+http://www.wikidata.org/entity/Q11246255	
+http://www.wikidata.org/entity/Q11246374	
+http://www.wikidata.org/entity/Q11246486	
+http://www.wikidata.org/entity/Q11246665	
+
+  { 
+    time    0.0049% fanout         1 input         1 rows
+      clear: (<V set_ctr$38 in>)
+    s# 44 39 cluster outer seq start, set no <V set_ctr$38 in>    
+    save ctx:()
+    time        52% fanout     91000 input         1 rows
+      clear: (<V s_37_2_t0.S$28 rn>)
+      clear on continue: (<V s_37_2_t0.S$28 rn>)
+    s# 53 27 from DB.DBA.RDF_QUAD by RDF_QUAD_POGS    5.3e+05 rows   
+    Key RDF_QUAD_POGS  ASC  (<V s_37_2_t0.S$28 rn>)
+     P =  IRI_ID"...direct/P31"  ,  O =  IRI_ID"...Q5" 
+    
+    time        48% fanout  0.010989 input     91000 rows
+      clear: (<V var1$30 a>)$28 () 
+    s# 63 42 skip node  10000  90000 <r set_ctr$38 via  Set53>
+    After code:
+      0: <V var1$30 a> := Call __id2in (<r s_37_2_t0.S$28 via  Set63>)
+      5: BReturn 0
+    time    0.0011% fanout         0 input      1000 rows
+    $38 (42 27 39 ) $30 (42 ) 
+    s# 71 32 Select (<V var1$30 a>)
+      set no: <r set_ctr$38 via  Set63 Set53>
+  }
+Warning: You might have a Cartesian product.
+
+
+
+ 43 msec 60% cpu,      1001 rnd     90902 seq         0% same seg   97.9042% same pg 
+3 disk reads, 0 read ahead,   25.6176% wait
+Compilation: 29 msec 0 reads         0% read 0 messages         0% clw

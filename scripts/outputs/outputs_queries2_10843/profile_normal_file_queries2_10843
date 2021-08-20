@@ -1,0 +1,42 @@
+
+  { 
+    time       2.6% fanout         1 input         1 rows
+      clear: (<V set_ctr$47 in>)
+    s# 50 48 cluster outer seq start, set no <V set_ctr$47 in>    
+    save ctx:()
+    time        97% fanout         0 input         1 rows
+    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:         2 Fanout:         0
+    Precode:
+      0: <V entity/Q28444938$27 r> := Call __i2idn (<tag 182 flag 1 c http://www.wikidata.org/entity/Q28444938>)
+      5: BReturn 0
+      clear: (<V s_37_2_t0.P$30 rn>, <V entity/Q28444938$27 r>)
+      clear on continue: (<V s_37_2_t0.P$30 rn>)$63 (29 ) 
+    s# 59 29 from DB.DBA.RDF_QUAD by RDF_QUAD_OP          2 rows   
+    Key RDF_QUAD_OP  ASC  (<V s_37_2_t0.P$30 rn>)
+     inlined  O = <v k_entity/Q28444938$63 Set65 an>
+    vector param casts: <V entity/Q28444938$27 r>-> <v k_entity/Q28444938$63 Set65 an>
+    
+    time         0% fanout         0 input         0 rows
+    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:       1.2 Fanout:         0
+      clear: (<V s_37_2_t0.S$34 rn>, <V var2$39 a>, <V var1$37 a>)
+      clear on continue: (<V var1$37 a>, <V var2$39 a>, <V s_37_2_t0.S$34 rn>)$77 (33 ) $81 (33 ) $27 (29 ) $30 () 
+    s# 73 33 from DB.DBA.RDF_QUAD by RDF_QUAD_POGS        1.2 rows   
+    Key RDF_QUAD_POGS  ASC  (<V s_37_2_t0.S$34 rn>)
+     P = <v k_s_37_2_t0.P$77 Set79 rn> ,  O = <V k_entity/Q28444938$81 an>
+    vector param casts: <V s_37_2_t0.P$30 rn>-> <v k_s_37_2_t0.P$77 Set79 rn>, <r entity/Q28444938$27 via  Set59 Set65>-> <V k_entity/Q28444938$81 an>
+    
+    After code:
+      0: <V var1$37 a> := Call __id2in (<V s_37_2_t0.S$34 rn>)
+      5: <V var2$39 a> := Call __id2in (<r s_37_2_t0.P$30 via  Set73 Set79>)
+      10: BReturn 0
+    time         0% fanout         0 input         0 rows
+    $37 () $39 () $47 (33 29 48 ) 
+    s# 89 41 Select (<V var1$37 a>, <V var2$39 a>)
+      set no: <r set_ctr$47 via  Set73 Set79 Set59 Set65>
+  }
+Warning: You might have a Cartesian product.
+
+
+
+ 0 msec 0% cpu,         4 rnd         0 seq         0% same seg         0% same pg 
+Compilation: 22 msec 1 reads   94.8896% read 0 messages         0% clw

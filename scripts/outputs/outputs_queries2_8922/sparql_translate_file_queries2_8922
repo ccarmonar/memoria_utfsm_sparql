@@ -1,0 +1,24 @@
+SELECT __id2in ( "s_37_3_t0"."S") AS "var1"
+FROM DB.DBA.RDF_QUAD AS "s_37_3_t0"
+  INNER JOIN DB.DBA.RDF_QUAD AS "s_37_7_t1"
+  ON (
+    "s_37_7_t1"."S" = "s_37_3_t0"."O")
+WHERE
+  "s_37_3_t0"."P" = __i2idn ( __bft( 'http://www.wikidata.org/prop/P31' , 1))
+  AND 
+  "s_37_7_t1"."P" = __i2idn ( __bft( 'http://www.wikidata.org/prop/statement/P31' , 1))
+  AND 
+  "s_37_7_t1"."O" = __i2idn ( __bft( 'http://www.wikidata.org/entity/Q6256' , 1))
+  AND 
+  not ( EXISTS ( (
+     SELECT TOP 1 1 AS __ask_retval
+      FROM DB.DBA.RDF_QUAD AS "s_37_11_t2"
+      WHERE
+        "s_37_11_t2"."P" = __i2idn ( __bft( 'http://www.wikidata.org/prop/direct/P31' , 1))
+        AND 
+        "s_37_11_t2"."O" = __i2idn ( __bft( 'http://www.wikidata.org/entity/Q3024240' , 1))
+        AND 
+        "s_37_11_t2"."S" = "s_37_3_t0"."S"
+OPTION (QUIETCAST)
+     )))
+OPTION (QUIETCAST)

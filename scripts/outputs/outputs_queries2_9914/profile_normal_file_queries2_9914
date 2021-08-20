@@ -1,0 +1,71 @@
+		
+
+  { 
+    time    0.0099% fanout         1 input         1 rows
+      clear: (<V set_ctr$33 in>)
+    s# 69 34 cluster outer seq start, set no <V set_ctr$33 in>    
+    save ctx:()
+    time      0.15% fanout         1 input         1 rows
+      clear: (<V t1.S$28 rn>)
+      clear on continue: (<V t1.S$28 rn>)
+    s# 78 27 from DB.DBA.RDF_QUAD by RDF_QUAD_POGS          1 rows   
+    Key RDF_QUAD_POGS  ASC  (<V t1.S$28 rn>)
+     P =  IRI_ID"...direct/P31"  ,  O =  IRI_ID"...Q217526" 
+    
+    time    0.0043% fanout         1 input         1 rows
+      clear: (<V set_ctr$36 i>)
+    s# 88 40 cluster outer seq start, set no <V set_ctr$36 i>    
+    save ctx:()
+    time     1e+02% fanout         0 input         1 rows
+    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:         1 Fanout:         0
+      clear: (<V t3.O$31 a>)
+      clear on continue: (<V t3.O$31 a>)$101 (30 ) 
+    s# 97 30 from DB.DBA.RDF_QUAD by RDF_QUAD          1 rows   
+    Key RDF_QUAD  ASC  (<V t3.O$31 a>)
+     inlined  P =  IRI_ID"...direct/P2067"  ,  S = <v k_t1.S$101 Set103 rn>
+    vector param casts: <r t1.S$28 via  Set88>-> <v k_t1.S$101 Set103 rn>
+    
+    time         0% fanout         0 input         0 rows
+    $36 (30 40 ) 
+    s# 111 35 end of outer seq <r set_ctr$36 via  Set97 Set103>
+     out: (<V t3.O$31 a>)
+     shadow: ( <none> )
+    time     0.067% fanout         1 input         1 rows
+    Precode:
+      0: <V var1$45 a> := Call __ro2sq (<V t3.O$31 a>)
+      5: BReturn 0
+      clear: (<V set_ctr$51 i>, <V var1$45 a>)$31 (35 ) 
+    s# 119 55 cluster outer seq start, set no <V set_ctr$51 i>    
+    save ctx:()
+    time     0.095% fanout         0 input         1 rows
+    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:         1 Fanout:         0
+      clear: (<V t5.O$48 a>)
+      clear on continue: (<V t5.O$48 a>)$132 (47 ) $28 (55 35 30 40 ) 
+    s# 128 47 from DB.DBA.RDF_QUAD by RDF_QUAD          1 rows   
+    Key RDF_QUAD  ASC  (<V t5.O$48 a>)
+     inlined  P =  IRI_ID"...direct/P2386"  ,  S = <v k_t1.S$132 Set134 rn>
+    vector param casts: <r t1.S$28 via  Set119 Set111>-> <v k_t1.S$132 Set134 rn>
+    
+    time         0% fanout         0 input         0 rows
+      clear: (<V var2$60 a>)$48 () $51 (47 55 ) 
+    s# 142 50 end of outer seq <r set_ctr$51 via  Set128 Set134>
+     out: (<V t5.O$48 a>)
+     shadow: ( <none> )
+    After code:
+      0: <V var2$60 a> := Call __ro2sq (<V t5.O$48 a>)
+      5: BReturn 0
+    time    0.0026% fanout         0 input         1 rows
+    $33 (50 47 55 35 30 40 27 34 ) $45 (50 47 55 ) $60 (50 ) 
+    s# 150 62 Select (<r var1$45 via  Set142>, <V var2$60 a>)
+      set no: <r set_ctr$33 via  Set142 Set111 Set78>
+  }
+Warning: You might have a Cartesian product.
+
+Warning: You might have a Cartesian product.
+
+Warning: You might have a Cartesian product.
+
+
+
+ 33 msec 94% cpu,         3 rnd         0 seq         0% same seg         0% same pg 
+Compilation: 1 msec 0 reads         0% read 0 messages         0% clw

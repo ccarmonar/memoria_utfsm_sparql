@@ -1,0 +1,111 @@
+
+  { 
+    time       4.6% fanout         1 input         1 rows
+    time       1.3% fanout         1 input         1 rows
+    Subquery 30 
+      { 
+        Union
+          { 
+            Subquery 34 
+              { 
+                Union
+                  { 
+                    Subquery 38 
+                      { 
+                        Union
+                          { 
+                            time        59% fanout         0 input         1 rows
+                            Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:   1.4e-07 Fanout:         0
+                            RDF_QUAD_POGS   1.4e-07 rows(s_37_15_t4-u21.O$43)
+                             inlined  P =  IRI_ID"...prop/P31" 
+                            time         0% fanout         0 input         0 rows
+                            Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:   1.4e-07 Fanout:         0
+                            RDF_QUAD_POGS   1.4e-07 rows()
+                             inlined  P =  IRI_ID"...statement/P31"  ,  O =  IRI_ID"...Q6465"  ,  S = cast$183
+                            
+                            After code:
+                            0: __dummy_retval$39 :=  := artm <DB_NULL>
+                            4: BReturn 0
+                            time         0% fanout         0 input         0 rows
+                            Subquery Select(__dummy_retval$39)
+                          }
+                          { 
+                            time        14% fanout         0 input         1 rows
+                            Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:   1.4e-07 Fanout:         0
+                            RDF_QUAD_POGS   1.4e-07 rows(s_37_15_t4-u22.O$55)
+                             inlined  P =  IRI_ID"...prop/P31" 
+                            time         0% fanout         0 input         0 rows
+                            Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:   1.4e-07 Fanout:         0
+                            RDF_QUAD_POGS   1.4e-07 rows()
+                             inlined  P =  IRI_ID"...statement/P31"  ,  O =  IRI_ID"...Q202216"  ,  S = cast$214
+                            
+                            After code:
+                            0: __dummy_retval$39 :=  := artm <DB_NULL>
+                            4: BReturn 0
+                            time         0% fanout         0 input         0 rows
+                            Subquery Select(__dummy_retval$39)
+                          }
+                      }
+                    
+                    After code:
+                    0: __dummy_retval$35 :=  := artm __dummy_retval$39
+                    4: BReturn 0
+                    time         0% fanout         0 input         0 rows
+                    Subquery Select(__dummy_retval$35)
+                  }
+                  { 
+                    time        11% fanout         0 input         1 rows
+                    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:   1.4e-07 Fanout:         0
+                    RDF_QUAD_POGS   1.4e-07 rows(s_37_15_t4-u23.O$75)
+                     inlined  P =  IRI_ID"...prop/P31" 
+                    time         0% fanout         0 input         0 rows
+                    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:   1.4e-07 Fanout:         0
+                    RDF_QUAD_POGS   1.4e-07 rows()
+                     inlined  P =  IRI_ID"...statement/P31"  ,  O =  IRI_ID"...Q719487"  ,  S = cast$252
+                    
+                    After code:
+                    0: __dummy_retval$35 :=  := artm <DB_NULL>
+                    4: BReturn 0
+                    time         0% fanout         0 input         0 rows
+                    Subquery Select(__dummy_retval$35)
+                  }
+              }
+            
+            After code:
+            0: __dummy_retval$31 :=  := artm __dummy_retval$35
+            4: BReturn 0
+            time         0% fanout         0 input         0 rows
+            Subquery Select(__dummy_retval$31)
+          }
+          { 
+            time        10% fanout         0 input         1 rows
+            Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:   1.4e-07 Fanout:         0
+            RDF_QUAD_POGS   1.4e-07 rows(s_37_15_t4.O$95)
+             inlined  P =  IRI_ID"...prop/P31" 
+            time         0% fanout         0 input         0 rows
+            Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:   1.4e-07 Fanout:         0
+            RDF_QUAD_POGS   1.4e-07 rows()
+             inlined  P =  IRI_ID"...statement/P31"  ,  O =  IRI_ID"...Q3408484"  ,  S = cast$290
+            
+            After code:
+            0: __dummy_retval$31 :=  := artm <DB_NULL>
+            4: BReturn 0
+            time         0% fanout         0 input         0 rows
+            Subquery Select(__dummy_retval$31)
+          }
+      }
+    time         0% fanout         0 input         0 rows
+    Distinct (<DB_NULL>)
+    
+    After code:
+    0: var1$28 :=  := artm <DB_NULL>
+    4: BReturn 0
+    time         0% fanout         0 input         0 rows
+    Subquery Select(var1$28)
+    time         0% fanout         0 input         0 rows
+    Select (var1$28)
+  }
+
+
+ 0 msec 2% cpu,         4 rnd         0 seq         0% same seg         0% same pg 
+Compilation: 3 msec 0 reads         0% read 0 messages         0% clw

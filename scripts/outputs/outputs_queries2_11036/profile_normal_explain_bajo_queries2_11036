@@ -1,0 +1,73 @@
+http://www.wikidata.org/entity/Q2608814	1956384	847947	111584	
+http://www.wikidata.org/entity/Q2609763	38166	720244	1172310	
+http://www.wikidata.org/entity/Q2609818	124291	756919	2753603	
+http://www.wikidata.org/entity/Q2609974	1980067	593280	984443	
+http://www.wikidata.org/entity/Q2610183	1039319	758270	2743442	
+http://www.wikidata.org/entity/Q2612332	147073	501942	1095025	
+http://www.wikidata.org/entity/Q2612650	2108390	591925	984735	
+http://www.wikidata.org/entity/Q2614030	46650	573953	32571	
+http://www.wikidata.org/entity/Q2614212	1876157	603510	587782	
+http://www.wikidata.org/entity/Q2614314	2079204	869794	1216625	
+http://www.wikidata.org/entity/Q2614508	2337685	890749	1209811	
+http://www.wikidata.org/entity/Q2614553	1654909	849241	25623633	
+http://www.wikidata.org/entity/Q2614810	2698455	753907	2748404	
+http://www.wikidata.org/entity/Q2614880	50923	900401	4456655	
+http://www.wikidata.org/entity/Q2615257	2291368	66667	403195	
+http://www.wikidata.org/entity/Q2615770	1911960	884367	1218338	
+http://www.wikidata.org/entity/Q2615804	2203738	119647	869113	
+http://www.wikidata.org/entity/Q2616206	1956279	849858	1181606	
+http://www.wikidata.org/entity/Q2616366	1985573	684949	1046200	
+http://www.wikidata.org/entity/Q2616528	481568	763305	2755411	
+
+  { 
+    time      0.14% fanout         1 input         1 rows
+    time       4.2% fanout      1000 input         1 rows
+    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:     3e+05 Fanout:     1e+03
+    RDF_QUAD_POGS     3e+05 rows(t1.S$28)
+     P =  IRI_ID"...direct/P31"  ,  O =  IRI_ID"...Q16521" 
+    time      0.56% fanout         1 input      1000 rows
+    outer {
+        time        11% fanout     0.419 input      1000 rows
+        RDF_QUAD         1 rows(t7.O$31)
+         inlined  P =  IRI_ID"...direct/P830"  ,  S = k_t1.S$121
+        time       0.3% fanout         1 input       419 rows
+      } /* end of outer */
+    set_ctr$36
+     out: (t7.O$31)
+     shadow: ( <none> )
+    time      0.26% fanout         1 input       419 rows
+    outer {
+        time       6.1% fanout  0.768496 input       419 rows
+        RDF_QUAD         1 rows(t5.O$46)
+         inlined  P =  IRI_ID"...direct/P815"  ,  S = k_t1.S$152
+        time      0.21% fanout         1 input       322 rows
+      } /* end of outer */
+    set_ctr$49
+     out: (t5.O$46)
+     shadow: ( <none> )
+    time      0.21% fanout         1 input       322 rows
+    outer {
+        time       4.1% fanout  0.319876 input       322 rows
+        RDF_QUAD         1 rows(t3.O$59)
+         inlined  P =  IRI_ID"...direct/P685"  ,  S = k_t1.S$183
+        time       0.1% fanout         1 input       103 rows
+      } /* end of outer */
+    set_ctr$62
+     out: (t3.O$59)
+     shadow: ( <none> )
+    time        73% fanout  0.970874 input       103 rows
+    skip node  100  <none> set_ctr$33
+    
+    After code:
+    0: var4$71 := Call __ro2sq (t7.O$31)
+    5: var3$73 := Call __ro2sq (t5.O$46)
+    10: var1$75 := Call __id2in (t1.S$28)
+    15: var2$77 := Call __ro2sq (t3.O$59)
+    20: BReturn 0
+    time     0.013% fanout         0 input       100 rows
+    Select (var1$75, var2$77, var3$73, var4$71)
+  }
+
+
+ 2 msec 55% cpu,      2042 rnd       998 seq    85.071% same seg   5.77582% same pg 
+Compilation: 2 msec 0 reads         0% read 0 messages         0% clw

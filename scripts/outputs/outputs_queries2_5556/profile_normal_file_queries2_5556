@@ -1,0 +1,47 @@
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+
+  { 
+    time       8.2% fanout         1 input         1 rows
+      clear: (<V set_ctr$36 in>)
+    s# 42 37 cluster outer seq start, set no <V set_ctr$36 in>    
+    save ctx:()
+    time        83% fanout      1000 input         1 rows
+    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:   7.3e+07 Fanout:     1e+03
+    
+    s# 51 27 from DB.DBA.RDF_QUAD by RDF_QUAD_POGS    7.3e+07 rows   
+    Key RDF_QUAD_POGS  ASC  ()
+    
+    
+    time       6.6% fanout       0.1 input      1000 rows
+    
+    s# 60 40 skip node  100  <none> <r set_ctr$36 via  Set51>
+    time       2.5% fanout         0 input       100 rows
+    $36 (40 27 37 ) 
+    s# 68 30 Select (<DB_NULL>)
+      set no: <r set_ctr$36 via  Set60 Set51>
+  }
+Warning: You might have a Cartesian product.
+
+
+
+ 0 msec 7% cpu,         1 rnd       998 seq         0% same seg         0% same pg 
+Compilation: 1 msec 0 reads         0% read 0 messages         0% clw

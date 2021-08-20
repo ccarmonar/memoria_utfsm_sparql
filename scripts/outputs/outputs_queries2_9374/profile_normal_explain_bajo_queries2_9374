@@ -1,0 +1,21 @@
+Error: 23000: SR197: Non unique primary key on DB.DBA.RDF_OBJ.
+  { 
+    time     1e+02% fanout         1 input         1 rows
+    time         0% fanout         0 input         1 rows
+    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:       0.3 Fanout:         0
+    Precode:
+      0: DB.DBA.RDF_OBJ_OF_SQLVAL$27 := Call DB.DBA.RDF_OBJ_OF_SQLVAL (<c 1497100>)
+      7: BReturn 0
+    RDF_QUAD_POGS       0.3 rows(s_37_2_t0.S$30)
+     P =  IRI_ID"...direct/P2346"  ,  O = k_DB.DBA.RDF_OBJ_OF_SQLVAL$56
+    
+    After code:
+    0: var1$32 := Call __id2in (s_37_2_t0.S$30)
+    5: BReturn 0
+    time         0% fanout         0 input         0 rows
+    Select (var1$32)
+  }
+
+
+ 1 msec 20% cpu,         3 rnd         0 seq         0% same seg         0% same pg 
+Compilation: 0 msec 0 reads         0% read 0 messages         0% clw

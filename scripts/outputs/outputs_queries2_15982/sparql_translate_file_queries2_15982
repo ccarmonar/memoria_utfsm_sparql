@@ -1,0 +1,26 @@
+SELECT __id2in ( "s_37_8_t2"."S") AS "var1",
+  NULL /* due to conflict on var1Label */ AS "var1Label",
+  __bft( 'http://www.wikidata.org/entity/Q4022' , 1) AS "var2"
+FROM DB.DBA.RDF_QUAD AS "s_37_8_t2"
+WHERE
+  "s_37_8_t2"."P" = __i2idn ( __bft( 'http://www.wikidata.org/prop/direct/P31' , 1))
+  AND 
+  "s_37_8_t2"."O" = __i2idn ( __bft( 'http://www.wikidata.org/entity/Q4022' , 1))
+  AND 
+  EXISTS ( (
+     SELECT TOP 1 1 AS __ask_retval
+      FROM DB.DBA.RDF_QUAD AS "s_37_6_t0"
+        INNER JOIN DB.DBA.RDF_QUAD AS "s_37_6_t1"
+        ON (
+          "s_37_6_t0"."S" = "s_37_6_t1"."S")
+      WHERE
+        "s_37_6_t0"."P" = __i2idn ( __bft( 'http://schema.org/about' , 1))
+        AND 
+        "s_37_6_t1"."P" = __i2idn ( __bft( 'http://schema.org/inLanguage' , 1))
+        AND 
+        "s_37_6_t1"."O" = DB.DBA.RDF_OBJ_OF_SQLVAL ( 'nb' )
+        AND 
+        "s_37_6_t0"."O" = "s_37_8_t2"."S"
+OPTION (QUIETCAST)
+     ))
+OPTION (QUIETCAST)

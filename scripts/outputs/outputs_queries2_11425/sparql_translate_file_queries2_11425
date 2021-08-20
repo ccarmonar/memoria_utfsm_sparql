@@ -1,0 +1,17 @@
+SELECT TOP 50 __id2in ( "s_37_11_t2"."S") AS "var1",
+  __ro2sq ( "s_37_11_t2"."O") AS "var2",
+  __id2in ( "s_37_11_t2"."P") AS "var3"
+FROM DB.DBA.RDF_QUAD AS "s_37_3_t0"
+  INNER JOIN DB.DBA.RDF_QUAD AS "s_37_7_t1"
+  ON (
+    "s_37_7_t1"."S" = "s_37_3_t0"."O")
+  INNER JOIN DB.DBA.RDF_QUAD AS "s_37_11_t2"
+  ON (
+    "s_37_11_t2"."S" = "s_37_3_t0"."S"
+    AND 
+    "s_37_11_t2"."O" = "s_37_7_t1"."O")
+WHERE
+  "s_37_3_t0"."P" = __i2idn ( __bft( 'http://www.w3.org/ns/prov#wasDerivedFrom' , 1))
+  AND 
+  "s_37_7_t1"."P" = __i2idn ( __bft( 'http://www.wikidata.org/prop/reference/P143' , 1))
+OPTION (QUIETCAST)

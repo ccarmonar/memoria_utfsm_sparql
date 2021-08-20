@@ -1,0 +1,20 @@
+ SELECT  __ro2sq ("s_37_6_rbc"."var1") AS "var1", __ro2sq ("s_37_6_rbc"."var2") AS "var2", __ro2sq ("s_37_6_rbc"."var3") AS "var3", __ro2sq ("s_37_6_rbc"."var4") AS "var4", __ro2sq ("s_37_6_rbc"."var5") AS "var5" FROM (SELECT __id2in ( "s_37_6_t0"."P") AS "var1",
+    __ro2sq ( "s_37_6_t0"."O") AS "var2",
+    __id2in ( "s_37_6_t1"."S") AS "var3",
+    __id2in ( "s_37_6_t2"."P") AS "var4",
+    __ro2sq ( "s_37_6_t2"."O") AS "var5"
+  FROM DB.DBA.RDF_QUAD AS "s_37_6_t0"
+    INNER JOIN DB.DBA.RDF_QUAD AS "s_37_6_t1"
+    ON (
+      "s_37_6_t0"."P" = "s_37_6_t1"."O")
+    INNER JOIN DB.DBA.RDF_QUAD AS "s_37_6_t2"
+    ON (
+      "s_37_6_t1"."S" = "s_37_6_t2"."S")
+  WHERE
+    "s_37_6_t0"."S" = __i2idn ( __bft( 'http://www.wikidata.org/entity/Q9197118' , 1))
+    AND 
+    (1 - isiri_id ( "s_37_6_t0"."O"))
+    AND 
+    "s_37_6_t1"."P" = __i2idn ( __bft( 'http://www.w3.org/2002/07/owl#onProperty' , 1))
+  ORDER BY __id2in ( "s_37_6_t0"."P") ASC, __ro2sq ( "s_37_6_t0"."O") ASC, __id2in ( "s_37_6_t1"."S") ASC
+OPTION (QUIETCAST)) AS "s_37_6_rbc"

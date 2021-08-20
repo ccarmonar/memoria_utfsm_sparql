@@ -1,0 +1,62 @@
+POINT(35.083888888889 32.926111111111)	http://commons.wikimedia.org/wiki/Special:FilePath/Aerial%20view%20of%20Acre%201.jpg	
+POINT(13.401111111111 52.519166666667)	http://commons.wikimedia.org/wiki/Special:FilePath/Berliner%20Dom%20von%20Humboldt-Box.jpg	
+POINT(10.1225 54.338888888889)	http://commons.wikimedia.org/wiki/Special:FilePath/Olshausenstrasse%20Kiel%20Zugang%20Uni.jpg	
+POINT(2.1747222222222 49.87)	http://commons.wikimedia.org/wiki/Special:FilePath/Guignemicourt%20%28Somme%29%20%284%29.JPG	
+POINT(36.316666666667 49.966666666667)	http://commons.wikimedia.org/wiki/Special:FilePath/Situation%20third%20battle%20of%20Kharkov.png	
+POINT(8.2416666666667 49.993055555556)	http://commons.wikimedia.org/wiki/Special:FilePath/Domus%20Universitatis%20Mainz.jpg	
+POINT(9.65 51.416666666667)	http://commons.wikimedia.org/wiki/Special:FilePath/Hann%20M%C3%BCnden%20Rathaus%202007.jpg	
+POINT(-46.697222222222 -23.701111111111)	http://commons.wikimedia.org/wiki/Special:FilePath/Interlagos%202006%20aerial.jpg	
+POINT(135.16666666667 34.233333333333)	http://commons.wikimedia.org/wiki/Special:FilePath/Wakayama%20Castle19nt3200.jpg	
+POINT(40.432661111111 56.141544444444)	http://commons.wikimedia.org/wiki/Special:FilePath/Vladimir%20asv2019-01%20img40%20Tsentral.jpg	
+POINT(-4.6213888888889 48.433888888889)	http://commons.wikimedia.org/wiki/Special:FilePath/Sint-Renan%20-%20Centre-ville.JPG	
+POINT(116.2633 37.69189)	http://commons.wikimedia.org/wiki/Special:FilePath/%E6%99%AF%E5%B7%9E%E5%A1%94%20Jingzhou%20Pagoda.JPG	
+POINT(2.4536111111111 48.890833333333)	http://commons.wikimedia.org/wiki/Special:FilePath/Petit%20Noisy.jpg	
+POINT(30.33036667 59.76825)	http://commons.wikimedia.org/wiki/Special:FilePath/Pulkovo%20observatory%202004.jpg	
+POINT(136.5275 34.578055555556)	http://commons.wikimedia.org/wiki/Special:FilePath/Gojoban%20Yashiki01.jpg	
+POINT(17.110555555556 49.472222222222)	http://commons.wikimedia.org/wiki/Special:FilePath/Radnice%20%28Prost%C4%9Bjov-%20czech%20republic%29.jpg	
+POINT(14.7 37.383333333333)	http://commons.wikimedia.org/wiki/Special:FilePath/Ramacca%20panorama.jpg	
+POINT(-118.25 34.170833333333)	http://commons.wikimedia.org/wiki/Special:FilePath/Glendale%20California%20From%20Forest%20Lawn.jpg	
+POINT(-80.259166666667 26.270555555556)	http://commons.wikimedia.org/wiki/Special:FilePath/Coral%20Springs%20One%20Charter%20Place.JPG	
+POINT(11.3 47.966666666667)	http://commons.wikimedia.org/wiki/Special:FilePath/0911-w025-h025-q070-Rathaus-Gemeinde-Poecking.jpg	
+
+  { 
+    time   0.00095% fanout         1 input         1 rows
+      clear: (<V set_ctr$44 in>)
+    s# 50 45 cluster outer seq start, set no <V set_ctr$44 in>    
+    save ctx:()
+    time     0.038% fanout      1000 input         1 rows
+    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:   3.4e+04 Fanout:     1e+03
+      clear: (<V s_37_4_t1.O$28 an>, <V s_37_4_t1.S$29 rn>)
+      clear on continue: (<V s_37_4_t1.O$28 an>, <V s_37_4_t1.S$29 rn>)
+    s# 59 27 from DB.DBA.RDF_QUAD by RDF_QUAD    3.4e+04 rows   
+    Key RDF_QUAD  ASC  (<V s_37_4_t1.S$29 rn>, <V s_37_4_t1.O$28 an>)
+     inlined  P =  IRI_ID"...direct/P625" 
+    
+    time        83% fanout     0.694 input      1000 rows
+    Precode:
+      0: <V var1$31 a> := Call __ro2sq (<V s_37_4_t1.O$28 an>)
+      5: BReturn 0
+      clear: (<V s_37_4_t0.O$34 an>, <V var1$31 a>)
+      clear on continue: (<V s_37_4_t0.O$34 an>)$28 () $29 () 
+    s# 70 33 from DB.DBA.RDF_QUAD by RDF_QUAD          1 rows   
+    Key RDF_QUAD  ASC  (<V s_37_4_t0.O$34 an>)
+     inlined  P =  IRI_ID"...direct/P18"  ,  S = <V s_37_4_t1.S$29 rn>
+    
+    time        17% fanout  0.144092 input       694 rows
+      clear: (<V var2$36 a>)$34 () 
+    s# 80 48 skip node  100  <none> <r set_ctr$44 via  Set70 Set59>
+    After code:
+      0: <V var2$36 a> := Call __ro2sq (<r s_37_4_t0.O$34 via  Set80>)
+      5: BReturn 0
+    time   0.00014% fanout         0 input       100 rows
+    $31 (48 33 ) $36 (48 ) $44 (48 33 27 45 ) 
+    s# 88 38 Select (<r var1$31 via  Set80 Set70>, <V var2$36 a>)
+      set no: <r set_ctr$44 via  Set80 Set70 Set59>
+  }
+Warning: You might have a Cartesian product.
+
+
+
+ 334 msec 99% cpu,      2101 rnd      1027 seq   47.5262% same seg   44.9096% same pg 
+23 disk reads, 0 read ahead,    78.875% wait
+Compilation: 1 msec 0 reads         0% read 0 messages         0% clw

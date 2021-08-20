@@ -1,0 +1,45 @@
+http://www.wikidata.org/entity/Q15137635	http://www.wikidata.org/entity/Q15137640	
+http://www.wikidata.org/entity/Q15137640	http://www.wikidata.org/entity/Q15137635	
+http://www.wikidata.org/entity/Q18116724	http://www.wikidata.org/entity/Q134741	
+http://www.wikidata.org/entity/Q23702390	http://www.wikidata.org/entity/Q23702400	
+http://www.wikidata.org/entity/Q23702400	http://www.wikidata.org/entity/Q23702390	
+http://www.wikidata.org/entity/Q18856984	http://www.wikidata.org/entity/Q18857001	
+http://www.wikidata.org/entity/Q18857001	http://www.wikidata.org/entity/Q18856984	
+http://www.wikidata.org/entity/Q17486162	http://www.wikidata.org/entity/Q21118303	
+http://www.wikidata.org/entity/Q21118303	http://www.wikidata.org/entity/Q17486162	
+http://www.wikidata.org/entity/Q134741	http://www.wikidata.org/entity/Q18116724	
+http://www.wikidata.org/entity/Q20830723	http://www.wikidata.org/entity/Q20830727	
+http://www.wikidata.org/entity/Q20830727	http://www.wikidata.org/entity/Q20830723	
+http://www.wikidata.org/entity/Q20203677	http://www.wikidata.org/entity/Q3085727	
+http://www.wikidata.org/entity/Q3085727	http://www.wikidata.org/entity/Q20203677	
+http://www.wikidata.org/entity/Q47522685	http://www.wikidata.org/entity/Q950507	
+
+  { 
+    time      0.27% fanout         1 input         1 rows
+    time       7.7% fanout       771 input         1 rows
+    RDF_QUAD_POGS   7.7e+02 rows(s_37_10_t0.S$28)
+     P =  IRI_ID"...direct/P119"  ,  O =  IRI_ID"...Q311" 
+    time        33% fanout  0.215305 input       771 rows
+    RDF_QUAD       1.2 rows(s_37_10_t4.O$32, s_37_10_t4.S$31)
+     inlined  P =  IRI_ID"...direct/P26"  ,  S = s_37_10_t0.S$28
+    time        17% fanout 0.0903614 input       166 rows
+    RDF_QUAD     0.036 rows(s_37_10_t2.S$35)
+     inlined  P =  IRI_ID"...direct/P119"  ,  S = k_s_37_10_t4.O$88 ,  O =  IRI_ID"...Q311" 
+    time        14% fanout         1 input        15 rows
+    RDF_QUAD         1 rows()
+     inlined  P =  IRI_ID"...direct/P21"  ,  S = s_37_10_t2.S$35
+    time        27% fanout         1 input        15 rows
+    RDF_QUAD         1 rows()
+     inlined  P =  IRI_ID"...direct/P21"  ,  S = k_s_37_10_t0.S$111
+    
+    After code:
+    0: var2$41 := Call __id2in (s_37_10_t2.S$35)
+    5: var1$43 := Call __id2in (s_37_10_t0.S$28)
+    10: BReturn 0
+    time     0.097% fanout         0 input        15 rows
+    Select (var1$43, var2$41)
+  }
+
+
+ 1 msec 30% cpu,       968 rnd       786 seq     97.42% same seg   1.85759% same pg 
+Compilation: 3 msec 0 reads         0% read 0 messages         0% clw

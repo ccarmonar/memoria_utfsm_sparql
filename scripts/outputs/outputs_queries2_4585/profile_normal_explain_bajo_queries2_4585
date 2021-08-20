@@ -1,0 +1,121 @@
+Error: 23000: SR197: Non unique primary key on DB.DBA.RDF_OBJ.
+  { 
+    time     1e+02% fanout         1 input         1 rows
+    Precode:
+      0: DB.DBA.RDF_OBJ_OF_SQLVAL$27 := Call DB.DBA.RDF_OBJ_OF_SQLVAL (<c string1>)
+      7: DB.DBA.RDF_OBJ_OF_SQLVAL$29 := Call DB.DBA.RDF_OBJ_OF_SQLVAL (<c string2>)
+      14: DB.DBA.RDF_OBJ_OF_SQLVAL$31 := Call DB.DBA.RDF_OBJ_OF_SQLVAL (<c string3>)
+      21: DB.DBA.RDF_OBJ_OF_SQLVAL$33 := Call DB.DBA.RDF_OBJ_OF_SQLVAL (<c L E Hashem>)
+      28: DB.DBA.RDF_OBJ_OF_SQLVAL$35 := Call DB.DBA.RDF_OBJ_OF_SQLVAL (<c string4>)
+      35: BReturn 0
+    Subquery 37 
+      { 
+        Union
+          { 
+            Subquery 41 
+              { 
+                Union
+                  { 
+                    Subquery 45 
+                      { 
+                        Union
+                          { 
+                            Subquery 49 
+                              { 
+                                Union
+                                  { 
+                                    time         0% fanout         0 input         0 rows
+                                    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:       0.3 Fanout:         0
+                                    RDF_QUAD_POGS       0.3 rows(s_37_2_t0-u17.S$54)
+                                     P =  IRI_ID"...direct/P2093"  ,  O = k_DB.DBA.RDF_OBJ_OF_SQLVAL$180
+                                    
+                                    After code:
+                                    0: var1$50 :=  := artm s_37_2_t0-u17.S$54
+                                    4: BReturn 0
+                                    time         0% fanout         0 input         0 rows
+                                    Subquery Select(var1$50)
+                                  }
+                                  { 
+                                    time         0% fanout         0 input         0 rows
+                                    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:       0.3 Fanout:         0
+                                    RDF_QUAD_POGS       0.3 rows(s_37_5_t1-u18.S$64)
+                                     P =  IRI_ID"...direct/P2093"  ,  O = k_DB.DBA.RDF_OBJ_OF_SQLVAL$202
+                                    
+                                    After code:
+                                    0: var1$50 :=  := artm s_37_5_t1-u18.S$64
+                                    4: BReturn 0
+                                    time         0% fanout         0 input         0 rows
+                                    Subquery Select(var1$50)
+                                  }
+                              }
+                            
+                            After code:
+                            0: var1$46 :=  := artm var1$50
+                            4: BReturn 0
+                            time         0% fanout         0 input         0 rows
+                            Subquery Select(var1$46)
+                          }
+                          { 
+                            time         0% fanout         0 input         0 rows
+                            Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:       0.3 Fanout:         0
+                            RDF_QUAD_POGS       0.3 rows(s_37_9_t2-u19.S$82)
+                             P =  IRI_ID"...direct/P2093"  ,  O = k_DB.DBA.RDF_OBJ_OF_SQLVAL$231
+                            
+                            After code:
+                            0: var1$46 :=  := artm s_37_9_t2-u19.S$82
+                            4: BReturn 0
+                            time         0% fanout         0 input         0 rows
+                            Subquery Select(var1$46)
+                          }
+                      }
+                    
+                    After code:
+                    0: var1$42 :=  := artm var1$46
+                    4: BReturn 0
+                    time         0% fanout         0 input         0 rows
+                    Subquery Select(var1$42)
+                  }
+                  { 
+                    time         0% fanout         0 input         0 rows
+                    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:       0.3 Fanout:         0
+                    RDF_QUAD_POGS       0.3 rows(s_37_12_t3-u20.S$100)
+                     P =  IRI_ID"...direct/P2093"  ,  O = k_DB.DBA.RDF_OBJ_OF_SQLVAL$260
+                    
+                    After code:
+                    0: var1$42 :=  := artm s_37_12_t3-u20.S$100
+                    4: BReturn 0
+                    time         0% fanout         0 input         0 rows
+                    Subquery Select(var1$42)
+                  }
+              }
+            
+            After code:
+            0: var1$38 :=  := artm var1$42
+            4: BReturn 0
+            time         0% fanout         0 input         0 rows
+            Subquery Select(var1$38)
+          }
+          { 
+            time         0% fanout         0 input         0 rows
+            Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:       0.3 Fanout:         0
+            RDF_QUAD_POGS       0.3 rows(s_37_15_t4.S$118)
+             P =  IRI_ID"...direct/P2093"  ,  O = k_DB.DBA.RDF_OBJ_OF_SQLVAL$289
+            
+            After code:
+            0: var1$38 :=  := artm s_37_15_t4.S$118
+            4: BReturn 0
+            time         0% fanout         0 input         0 rows
+            Subquery Select(var1$38)
+          }
+      }
+    
+    After code:
+    0: var1$128 := Call __id2in (var1$38)
+    5: BReturn 0
+    time         0% fanout         0 input         0 rows
+    Select (var1$128)
+  }
+
+
+ 1 msec 10% cpu,         3 rnd         0 seq         0% same seg         0% same pg 
+Compilation: 2 msec 0 reads         0% read 0 messages         0% clw

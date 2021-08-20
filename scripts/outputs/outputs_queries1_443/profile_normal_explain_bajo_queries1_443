@@ -1,0 +1,30 @@
+http://www.wikidata.org/entity/Q1524516			
+http://www.wikidata.org/entity/Q16845772			
+http://www.wikidata.org/entity/Q3731876			
+http://www.wikidata.org/entity/Q107933			
+http://www.wikidata.org/entity/Q544889			
+http://www.wikidata.org/entity/Q16730610			
+http://www.wikidata.org/entity/Q3338647			
+
+  { 
+    time      0.18% fanout         1 input         1 rows
+    time       3.8% fanout       454 input         1 rows
+    RDF_QUAD_POGS   4.5e+02 rows(s_37_6_t0.S$28)
+     P =  IRI_ID"...direct/P27"  ,  O =  IRI_ID"...Q222" 
+    time        74% fanout 0.0462555 input       454 rows
+    RDF_QUAD     0.015 rows(s_37_6_t2.S$31)
+     inlined  P =  IRI_ID"...direct/P106"  ,  S = s_37_6_t0.S$28 ,  O =  IRI_ID"...Q177220" 
+    time        22% fanout  0.333333 input        21 rows
+    RDF_QUAD      0.83 rows()
+     inlined  P =  IRI_ID"...direct/P21"  ,  S = k_s_37_6_t0.S$79 ,  O =  IRI_ID"...Q6581097" 
+    
+    After code:
+    0: var1$35 := Call __id2in (s_37_6_t0.S$28)
+    5: BReturn 0
+    time     0.064% fanout         0 input         7 rows
+    Select (var1$35, <DB_NULL>, <DB_NULL>)
+  }
+
+
+ 2 msec 51% cpu,       476 rnd       453 seq   85.7442% same seg   12.7883% same pg 
+Compilation: 2 msec 0 reads         0% read 0 messages         0% clw

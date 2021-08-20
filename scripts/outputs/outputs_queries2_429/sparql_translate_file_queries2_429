@@ -1,0 +1,24 @@
+SELECT __id2in ( "s_37_8_t0"."S") AS "var1"
+FROM DB.DBA.RDF_QUAD AS "s_37_8_t0"
+  INNER JOIN DB.DBA.RDF_QUAD AS "s_37_8_t1"
+  ON (
+    "s_37_8_t0"."O" = "s_37_8_t1"."S")
+  INNER JOIN DB.DBA.RDF_QUAD AS "s_37_8_t2"
+  ON (
+    "s_37_8_t1"."O" = "s_37_8_t2"."S")
+  INNER JOIN DB.DBA.RDF_QUAD AS "s_37_8_t3"
+  ON (
+    "s_37_8_t1"."O" = "s_37_8_t3"."S"
+    AND 
+    "s_37_8_t2"."S" = "s_37_8_t3"."S")
+WHERE
+  "s_37_8_t0"."P" = __i2idn ( __bft( 'http://www.wikidata.org/prop/P2046' , 1))
+  AND 
+  "s_37_8_t1"."P" = __i2idn ( __bft( 'http://www.wikidata.org/prop/statement/value/P2046' , 1))
+  AND 
+  "s_37_8_t2"."P" = __i2idn ( __bft( 'http://wikiba.se/ontology#quantityAmount' , 1))
+  AND 
+  "s_37_8_t3"."P" = __i2idn ( __bft( 'http://wikiba.se/ontology#quantityUnit' , 1))
+  AND 
+  "s_37_8_t3"."O" = __i2idn ( __bft( 'http://www.wikidata.org/entity/Q25343' , 1))
+OPTION (QUIETCAST)

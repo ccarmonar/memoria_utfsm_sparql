@@ -1,0 +1,82 @@
+0	
+
+  { 
+    time       5.1% fanout         1 input         1 rows
+    time       4.6% fanout         1 input         1 rows
+    fork {
+        Subquery 27 
+          { 
+            Union
+              { 
+                time        59% fanout         0 input         1 rows
+                Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:         2 Fanout:         0
+                RDF_QUAD_SP         2 rows(s_37_2_t0-u8.P$35)
+                 inlined  S =  IRI_ID"...Q250089" 
+                time         0% fanout         0 input         0 rows
+                Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:       1.2 Fanout:         0
+                RDF_QUAD       1.2 rows(s_37_2_t0-u8.O$39)
+                 inlined  P = s_37_2_t0-u8.P$35 ,  S =  IRI_ID"...Q250089" 
+                
+                After code:
+                0: var2$28 :=  := artm s_37_2_t0-u8.P$35
+                4: var3$29 :=  := artm s_37_2_t0-u8.O$39
+                8: var4$30 :=  := artm <DB_NULL>
+                12: var5$31 :=  := artm <DB_NULL>
+                16: BReturn 0
+                time         0% fanout         0 input         0 rows
+                Precode:
+                  0: __id2in$65 := Call __id2in (var2$28)
+                  5: __ro2sq$67 := Call __ro2sq (var3$29)
+                  10: __id2in$69 := Call __id2in (var4$30)
+                  15: __id2in$71 := Call __id2in (var5$31)
+                  20: box_hash$73 := Call box_hash (__id2in$65, __ro2sq$67, __id2in$69, __id2in$71)
+                  25:  count var1$78box_hash$73set no set_ctr$75distinct via hash area DISTINCT HASH$82
+                  30: BReturn 0
+                END Node
+              }
+              { 
+                time        30% fanout         0 input         1 rows
+                Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:         2 Fanout:         0
+                RDF_QUAD_OP         2 rows(s_37_5_t1.P$50)
+                 inlined  O =  IRI_ID"...Q250089" 
+                time         0% fanout         0 input         0 rows
+                Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:       1.2 Fanout:         0
+                RDF_QUAD_POGS       1.2 rows(s_37_5_t1.S$54)
+                 P = s_37_5_t1.P$50 ,  O =  IRI_ID"...Q250089" 
+                
+                After code:
+                0: var2$28 :=  := artm <DB_NULL>
+                4: var3$29 :=  := artm <DB_NULL>
+                8: var4$30 :=  := artm s_37_5_t1.S$54
+                12: var5$31 :=  := artm s_37_5_t1.P$50
+                16: BReturn 0
+                time         0% fanout         0 input         0 rows
+                Precode:
+                  0: __id2in$65 := Call __id2in (var2$28)
+                  5: __ro2sq$67 := Call __ro2sq (var3$29)
+                  10: __id2in$69 := Call __id2in (var4$30)
+                  15: __id2in$71 := Call __id2in (var5$31)
+                  20: box_hash$73 := Call box_hash (__id2in$65, __ro2sq$67, __id2in$69, __id2in$71)
+                  25:  count var1$78box_hash$73set no set_ctr$75distinct via hash area DISTINCT HASH$82
+                  30: BReturn 0
+                END Node
+              }
+          }
+        time         0% fanout         0 input         0 rows
+        Precode:
+          0: __id2in$65 := Call __id2in (var2$28)
+          5: __ro2sq$67 := Call __ro2sq (var3$29)
+          10: __id2in$69 := Call __id2in (var4$30)
+          15: __id2in$71 := Call __id2in (var5$31)
+          20: box_hash$73 := Call box_hash (__id2in$65, __ro2sq$67, __id2in$69, __id2in$71)
+          25:  count var1$78box_hash$73set no set_ctr$75distinct via hash area DISTINCT HASH$82
+          30: BReturn 0
+        END Node
+      }
+    time       1.8% fanout         0 input         1 rows
+    Select (var1$78)
+  }
+
+
+ 0 msec 2% cpu,         2 rnd         0 seq         0% same seg         0% same pg 
+Compilation: 3 msec 0 reads         0% read 0 messages         0% clw

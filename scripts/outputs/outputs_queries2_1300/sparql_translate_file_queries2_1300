@@ -1,0 +1,42 @@
+SELECT __id2in ( "s_37_12_t8"."S") AS "var1",
+  __id2in ( "s_37_12_t7"."S") AS "var2",
+  __ro2sq ( "s_37_10"."var3") AS "var3"
+FROM DB.DBA.RDF_QUAD AS "s_37_12_t5"
+  INNER JOIN DB.DBA.RDF_QUAD AS "s_37_12_t6"
+  ON (
+    "s_37_12_t6"."O" = "s_37_12_t5"."S")
+  INNER JOIN DB.DBA.RDF_QUAD AS "s_37_12_t7"
+  ON (
+    "s_37_12_t7"."S" = "s_37_12_t6"."S")
+  INNER JOIN DB.DBA.RDF_QUAD AS "s_37_12_t8"
+  ON (
+    "s_37_12_t8"."S" = "s_37_12_t6"."O"
+    AND 
+    "s_37_12_t8"."S" = "s_37_12_t5"."S")
+  LEFT OUTER JOIN (
+    SELECT "s_37_10_t0"."S" AS "var1",
+      "s_37_10_t0"."O" AS "var3"
+    FROM DB.DBA.RDF_QUAD AS "s_37_10_t0"
+    WHERE
+      "s_37_10_t0"."P" = __i2idn ( __bft( 'http://www.wikidata.org/prop/direct/P2561' , 1))) AS "s_37_10"
+  ON (
+    "s_37_12_t8"."S" = "s_37_10"."var1"
+    AND 
+    "s_37_12_t6"."O" = "s_37_10"."var1"
+    AND 
+    "s_37_12_t5"."S" = "s_37_10"."var1")
+WHERE
+  "s_37_12_t5"."P" = __i2idn ( __bft( 'http://www.wikidata.org/prop/direct/P171' , 1))
+  AND 
+  "s_37_12_t5"."O" = __i2idn ( __bft( 'http://www.wikidata.org/entity/Q4867740' , 1))
+  AND 
+  "s_37_12_t6"."P" = __i2idn ( __bft( 'http://schema.org/about' , 1))
+  AND 
+  "s_37_12_t7"."P" = __i2idn ( __bft( 'http://schema.org/isPartOf' , 1))
+  AND 
+  "s_37_12_t7"."O" = __i2idn ( __bft( 'https://en.wikipedia.org/' , 1))
+  AND 
+  "s_37_12_t8"."P" = __i2idn ( __bft( 'http://www.wikidata.org/prop/direct/P105' , 1))
+  AND 
+  "s_37_12_t8"."O" = __i2idn ( __bft( 'http://www.wikidata.org/entity/Q7432' , 1))
+OPTION (QUIETCAST)

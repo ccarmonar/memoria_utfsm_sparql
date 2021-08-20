@@ -1,0 +1,107 @@
+http://www.wikidata.org/entity/Q336310	POINT(21.923888888889 43.311666666667)	
+http://www.wikidata.org/entity/Q348387	POINT(24.030012111111 49.8394255)	
+http://www.wikidata.org/entity/Q558537	POINT(13.741347 51.058114)	
+http://www.wikidata.org/entity/Q859383	POINT(14.08409 40.79821)	
+http://www.wikidata.org/entity/Q881611	POINT(13.39277778 52.51722222)	
+http://www.wikidata.org/entity/Q928541	POINT(-99.16771 19.427)	
+http://www.wikidata.org/entity/Q439130	POINT(12.37144 51.3388)	
+http://www.wikidata.org/entity/Q473851	POINT(4.8931883 52.3730435)	
+http://www.wikidata.org/entity/Q518072	POINT(-0.59055556 42.67583333)	
+http://www.wikidata.org/entity/Q822122	POINT(7.4429 46.94657)	
+http://www.wikidata.org/entity/Q833213	POINT(-3.68694444 40.41194444)	
+http://www.wikidata.org/entity/Q1000021	POINT(13.297294 52.520531)	
+http://www.wikidata.org/entity/Q5578	POINT(12.235 45.667)	
+http://www.wikidata.org/entity/Q5578	POINT(12.235 45.667)	
+http://www.wikidata.org/entity/Q5578	POINT(12.235 45.667)	
+http://www.wikidata.org/entity/Q5578	POINT(12.235 45.667)	
+http://www.wikidata.org/entity/Q5583	POINT(12.24695 45.66633)	
+http://www.wikidata.org/entity/Q5583	POINT(12.24695 45.66633)	
+http://www.wikidata.org/entity/Q5583	POINT(12.24695 45.66633)	
+http://www.wikidata.org/entity/Q5583	POINT(12.24695 45.66633)	
+
+  { 
+    time    0.0061% fanout         1 input         1 rows
+      clear: (<V set_ctr$99 in>)
+    s# 102 100 cluster outer seq start, set no <V set_ctr$99 in>    
+    save ctx:()
+    Precode:
+      0: <V __all_eq$27 x> := Call __all_eq ( IRI_ID"...Q4989906" )
+      5: BReturn 0
+      clear: (<V _::trans_obj_37_10$31 an>, <V _::trans_subj_37_9$30 rn>, <V __all_eq$27 x>)
+      clear on continue: (<V _::trans_subj_37_9$30 rn>, <V _::trans_obj_37_10$31 an>)$27 (29 ) 
+    s# 111 29 Transitive dt dir 2, input: (<V __all_eq$27 x>)
+      input shadow: (<V __all_eq$115 x>)
+      output: (<V _::trans_subj_37_9$30 rn>)
+      { 
+        time      0.38% fanout  0.944444 input        18 rows
+          clear: (<V s_37_13_t1.O$36 an>, <V s_37_13_t1.S$37 rn>, <V _::trans_obj_37_10$31 an>, <V _::trans_subj_37_9$30 rn>)
+          clear on continue: (<V _::trans_subj_37_9$30 rn>, <V _::trans_obj_37_10$31 an>, <V s_37_13_t1.S$37 rn>, <V s_37_13_t1.O$36 an>)$115 (35 ) $121 (35 ) 
+        s# 117 35 from DB.DBA.RDF_QUAD by RDF_QUAD_POGS        3.8 rows   
+        Key RDF_QUAD_POGS  ASC  (<V s_37_13_t1.S$37 rn>, <V s_37_13_t1.O$36 an>)
+         P =  IRI_ID"...direct/P279"  ,  O = <v k___all_eq$121 Set123 an>
+        vector param casts: <V __all_eq$115 x>-> <v k___all_eq$121 Set123 an>
+        
+        After code:
+          0: <V _::trans_subj_37_9$30 rn> :=  := artm <V s_37_13_t1.S$37 rn>
+          4: <V _::trans_obj_37_10$31 an> :=  := artm <V s_37_13_t1.O$36 an>
+          8: BReturn 0
+        time    0.0028% fanout         0 input        17 rows
+        $31 () 
+        s# 134 39 Subquery Select(<V _::trans_subj_37_9$30 rn>, <V _::trans_obj_37_10$31 an>)
+          set no: <r step_set$32 via  Set117 Set123>
+      }
+    Precode:
+      0: <V __all_eq$56 x> := Call __all_eq (<V _::trans_subj_37_9$30 rn>)
+      5: BReturn 0
+      clear: (<V _::trans_obj_37_2$60 an>, <V _::trans_subj_37_1$59 rn>, <V __all_eq$56 x>)
+      clear on continue: (<V _::trans_subj_37_1$59 rn>, <V _::trans_obj_37_2$60 an>)$56 (58 ) $30 () 
+    s# 141 58 Transitive dt dir 2, input: (<V __all_eq$56 x>)
+      input shadow: (<V __all_eq$145 x>)
+      output: (<V _::trans_subj_37_1$59 rn>)
+      { 
+        time       6.3% fanout  0.997126 input      3132 rows
+        Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:     1e+02 Fanout:         1
+          clear: (<V s_37_5_t0.O$65 an>, <V s_37_5_t0.S$66 rn>, <V _::trans_obj_37_2$60 an>, <V _::trans_subj_37_1$59 rn>)
+          clear on continue: (<V _::trans_subj_37_1$59 rn>, <V _::trans_obj_37_2$60 an>, <V s_37_5_t0.S$66 rn>, <V s_37_5_t0.O$65 an>)$145 (64 ) $151 (64 ) 
+        s# 147 64 from DB.DBA.RDF_QUAD by RDF_QUAD_POGS      1e+02 rows   
+        Key RDF_QUAD_POGS  ASC  (<V s_37_5_t0.S$66 rn>, <V s_37_5_t0.O$65 an>)
+         P =  IRI_ID"...direct/P31"  ,  O = <v k___all_eq$151 Set153 an>
+        vector param casts: <V __all_eq$145 x>-> <v k___all_eq$151 Set153 an>
+        
+        After code:
+          0: <V _::trans_subj_37_1$59 rn> :=  := artm <V s_37_5_t0.S$66 rn>
+          4: <V _::trans_obj_37_2$60 an> :=  := artm <V s_37_5_t0.O$65 an>
+          8: BReturn 0
+        time    0.0019% fanout         0 input      3123 rows
+        $60 () 
+        s# 164 68 Subquery Select(<V _::trans_subj_37_1$59 rn>, <V _::trans_obj_37_2$60 an>)
+          set no: <r step_set$61 via  Set147 Set153>
+      }
+    time        87% fanout    0.0265 input      2000 rows
+    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:       1.1 Fanout:     0.026
+      clear: (<V s_37_19_t2.O$86 an>, <V s_37_19_t2.S$87 rn>, <V var2$91 a>, <V var1$89 a>)
+      clear on continue: (<V s_37_19_t2.O$86 an>, <V s_37_19_t2.S$87 rn>, <V var2$91 a>, <V var1$89 a>)$59 () 
+    s# 171 85 from DB.DBA.RDF_QUAD by RDF_QUAD        1.1 rows   
+    Key RDF_QUAD  ASC  (<V s_37_19_t2.S$87 rn>, <V s_37_19_t2.O$86 an>)
+     inlined  P =  IRI_ID"...direct/P625"  ,  S = <V _::trans_subj_37_1$59 rn>
+    
+    After code:
+      0: <V var1$89 a> := Call __id2in (<V s_37_19_t2.S$87 rn>)
+      5: <V var2$91 a> := Call __ro2sq (<V s_37_19_t2.O$86 an>)
+      10: BReturn 0
+    time   0.00085% fanout         0 input        53 rows
+    $99 (85 58 29 100 ) $89 () $91 () 
+    s# 182 93 Select (<V var1$89 a>, <V var2$91 a>)
+      set no: <r set_ctr$99 via  Set171 Set141 Set111>
+  }
+Warning: You might have a Cartesian product.
+
+Warning: You might have a Cartesian product.
+
+Warning: You might have a Cartesian product.
+
+
+
+ 33 msec 58% cpu,      5250 rnd      3133 seq   94.5534% same seg   3.08513% same pg 
+1 disk reads, 0 read ahead,   48.6537% wait
+Compilation: 23 msec 1 reads   37.0318% read 0 messages         0% clw

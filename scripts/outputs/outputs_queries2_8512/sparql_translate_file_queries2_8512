@@ -1,0 +1,55 @@
+SELECT __id2in ( "s_37_4_t0"."S") AS "var1",
+  __ro2sq ( "s_37_13"."_::trans_obj_37_7") AS "var2"
+FROM
+   DB.DBA.SPARQL_BINDINGS_VIEW_C_1 AS "s_37_0" TABLE OPTION (EST_SIZE 23, EST_TIME 115)
+  INNER JOIN DB.DBA.RDF_QUAD AS "s_37_4_t0"
+  ON (
+    "s_37_4_t0"."S" = "s_37_0".BND0 )
+  INNER JOIN (
+   SELECT TRANSITIVE T_OUT(2) T_IN(1) T_MIN( 0) T_NO_CYCLES "s_37_10_t1"."S" AS "_::trans_subj_37_6",
+      "s_37_10_t1"."O" AS "_::trans_obj_37_7"
+    FROM DB.DBA.RDF_QUAD AS "s_37_10_t1"
+    WHERE
+      "s_37_10_t1"."P" = __i2idn ( __bft( 'http://www.wikidata.org/prop/direct/P279' , 1))
+OPTION (QUIETCAST)
+    ) AS "s_37_13"
+  ON (
+    "s_37_4_t0"."O" = "s_37_13"."_::trans_subj_37_6")
+WHERE
+ 
+  "s_37_0".DTA = vector (
+    vector ( __i2id ( UNAME'http://www.wikidata.org/entity/Q159' )),
+    vector ( __i2id ( UNAME'http://www.wikidata.org/entity/Q159' )),
+    vector ( __i2id ( UNAME'http://www.wikidata.org/entity/Q142' )),
+    vector ( __i2id ( UNAME'http://www.wikidata.org/entity/Q142' )),
+    vector ( __i2id ( UNAME'http://www.wikidata.org/entity/Q142' )),
+    vector ( __i2id ( UNAME'http://www.wikidata.org/entity/Q11081619' )),
+    vector ( __i2id ( UNAME'http://www.wikidata.org/entity/Q31' )),
+    vector ( __i2id ( UNAME'http://www.wikidata.org/entity/Q31' )),
+    vector ( __i2id ( UNAME'http://www.wikidata.org/entity/Q31' )),
+    vector ( __i2id ( UNAME'http://www.wikidata.org/entity/Q30' )),
+    vector ( __i2id ( UNAME'http://www.wikidata.org/entity/Q30' )),
+    vector ( __i2id ( UNAME'http://www.wikidata.org/entity/Q30' )),
+    vector ( __i2id ( UNAME'http://www.wikidata.org/entity/Q30' )),
+    vector ( __i2id ( UNAME'http://www.wikidata.org/entity/Q30' )),
+    vector ( __i2id ( UNAME'http://www.wikidata.org/entity/Q96' )),
+    vector ( __i2id ( UNAME'http://www.wikidata.org/entity/Q528178' )),
+    vector ( __i2id ( UNAME'http://www.wikidata.org/entity/Q528178' )),
+    vector ( __i2id ( UNAME'http://www.wikidata.org/entity/Q801' )),
+    vector ( __i2id ( UNAME'http://www.wikidata.org/entity/Q35' )),
+    vector ( __i2id ( UNAME'http://www.wikidata.org/entity/Q183' )),
+    vector ( __i2id ( UNAME'http://www.wikidata.org/entity/Q1581237' )),
+    vector ( __i2id ( UNAME'http://www.wikidata.org/entity/Q39' )),
+    vector ( __i2id ( UNAME'http://www.wikidata.org/entity/Q15180' )))
+  
+  AND 
+  ( "s_37_4_t0"."S" < min_bnode_iri_id ())
+  AND 
+  "s_37_4_t0"."P" = __i2idn ( __bft( 'http://www.wikidata.org/prop/direct/P31' , 1))
+  AND 
+  isiri_id ( "s_37_4_t0"."O")
+  AND 
+  1
+  AND 
+  1
+OPTION (QUIETCAST)

@@ -1,0 +1,48 @@
+http://www.wikidata.org/entity/Q2608670			
+http://www.wikidata.org/entity/Q2860347			
+http://www.wikidata.org/entity/Q2918331			
+http://www.wikidata.org/entity/Q3071241			
+http://www.wikidata.org/entity/Q3071276			
+http://www.wikidata.org/entity/Q3113383			
+http://www.wikidata.org/entity/Q15690792			
+http://www.wikidata.org/entity/Q15825946			
+http://www.wikidata.org/entity/Q15891535			
+http://www.wikidata.org/entity/Q41550684			
+http://www.wikidata.org/entity/Q259561			
+http://www.wikidata.org/entity/Q263434			
+http://www.wikidata.org/entity/Q377287			
+http://www.wikidata.org/entity/Q19944712			
+http://www.wikidata.org/entity/Q496134			
+http://www.wikidata.org/entity/Q496148			
+http://www.wikidata.org/entity/Q500052			
+http://www.wikidata.org/entity/Q796486			
+http://www.wikidata.org/entity/Q1523687			
+http://www.wikidata.org/entity/Q3408037			
+
+  { 
+    time     0.098% fanout         1 input         1 rows
+    time     0.019% fanout         1 input         1 rows
+    time       2.5% fanout      1000 input         1 rows
+    RDF_QUAD_POGS   1.1e+03 rows(s_37_2_t0.S$33)
+     P =  IRI_ID"...direct/P31"  ,  O =  IRI_ID"...Q3231690" 
+    time        11% fanout         1 input      1000 rows
+    Distinct (s_37_2_t0.S$33)
+    
+    After code:
+    0: var1$28 :=  := artm s_37_2_t0.S$33
+    4: var1Label$29 :=  := artm <DB_NULL>
+    8: var2Label$30 :=  := artm <DB_NULL>
+    12: BReturn 0
+    time        87% fanout         1 input      1000 rows
+    Subquery Select(var1$28, var1Label$29, var2Label$30)
+    
+    After code:
+    0: var1$49 := Call __ro2sq (var1$28)
+    5: BReturn 0
+    time     0.024% fanout         0 input      1000 rows
+    Select (var1$49, var1Label$29, var2Label$30)
+  }
+
+
+ 4 msec 72% cpu,         3 rnd       998 seq         0% same seg         0% same pg 
+Compilation: 1 msec 0 reads         0% read 0 messages         0% clw

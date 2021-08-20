@@ -1,0 +1,58 @@
+
+  { 
+    time      0.42% fanout         1 input         1 rows
+    Precode:
+      0: DB.DBA.RDF_MAKE_LONG_OF_SQLVAL$27 := Call DB.DBA.RDF_MAKE_LONG_OF_SQLVAL (<c string1>)
+      7: BReturn 0
+    Subquery 29 
+      { 
+        time      0.27% fanout         1 input         1 rows
+        fork {
+            time        12% fanout        81 input         1 rows
+            RDF_QUAD        80 rows(s_37_4_t0.O$35, s_37_4_t0.S$34)
+             inlined  P =  IRI_ID"...direct/P1628" 
+            time        86% fanout         0 input        81 rows
+            END Node
+            After test:
+            0: __rdf_strsqlval$37 := Call __rdf_strsqlval (s_37_4_t0.O$35,  0 )
+            5: DB.DBA.RDF_LONG_OF_SQLVAL$39 := Call DB.DBA.RDF_LONG_OF_SQLVAL (__rdf_strsqlval$37)
+            12: rdf_contains_impl$41 := Call rdf_contains_impl (DB.DBA.RDF_LONG_OF_SQLVAL$39, DB.DBA.RDF_MAKE_LONG_OF_SQLVAL$27)
+            17: if ( 0  = rdf_contains_impl$41) then 22 else 21 unkn 22
+            21: BReturn 1
+            22: BReturn 0
+            time         0% fanout         0 input         0 rows
+            Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:         1 Fanout:         0
+            RDF_QUAD         1 rows(s_37_4_t1.O$44)
+             inlined  P =  IRI_ID"...directClaim"  ,  S = k_s_37_4_t0.S$125
+            
+            After code:
+            0: __ro2sq$46 := Call __ro2sq (s_37_4_t1.O$44)
+            5: BReturn 0
+            time         0% fanout         0 input         0 rows
+            Sort (__ro2sq$46) -> (s_37_4_t0.O$35)
+            
+          }
+        time       1.4% fanout         0 input         1 rows
+        Key from temp (__ro2sq$46, s_37_4_t0.O$35)
+        
+        
+        After code:
+        0: __ro2sq$61 := Call __ro2sq (s_37_4_t0.O$35)
+        5: var1$30 :=  := artm __ro2sq$46
+        9: var2$31 :=  := artm __ro2sq$61
+        13: BReturn 0
+        time         0% fanout         0 input         0 rows
+        Subquery Select(var1$30, var2$31)
+      }
+    
+    After code:
+    0: var1$70 := Call __ro2sq (var1$30)
+    5: var2$72 := Call __ro2sq (var2$31)
+    10: BReturn 0
+    time         0% fanout         0 input         0 rows
+    Select (var1$70, var2$72)
+  }
+
+
+ 1 msec 30% cpu,         1 rnd        80 seq         0% same seg         0% same pg 
+Compilation: 2 msec 0 reads         0% read 0 messages         0% clw

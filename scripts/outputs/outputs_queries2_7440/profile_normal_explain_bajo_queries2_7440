@@ -1,0 +1,51 @@
+http://www.openlinksw.com/schemas/virtrdf#QuadMapFormat	
+http://www.openlinksw.com/schemas/virtrdf#QuadStorage	
+http://www.openlinksw.com/schemas/virtrdf#array-of-QuadMapFormat	
+http://www.openlinksw.com/schemas/virtrdf#QuadMap	
+http://www.openlinksw.com/schemas/virtrdf#QuadMapValue	
+http://www.openlinksw.com/schemas/virtrdf#array-of-QuadMapColumn	
+http://www.openlinksw.com/schemas/virtrdf#QuadMapColumn	
+http://www.openlinksw.com/schemas/virtrdf#array-of-QuadMapATable	
+http://www.openlinksw.com/schemas/virtrdf#QuadMapATable	
+http://www.openlinksw.com/schemas/virtrdf#QuadMapFText	
+http://www.openlinksw.com/schemas/virtrdf#array-of-string	
+http://www.openlinksw.com/schemas/virtrdf#array-of-QuadMap	
+http://www.w3.org/2002/07/owl#SymmetricProperty	
+http://www.w3.org/2002/07/owl#FunctionalProperty	
+http://www.w3.org/1999/02/22-rdf-syntax-ns#Property	
+http://www.w3.org/2002/07/owl#Class	
+http://www.w3.org/2002/07/owl#Ontology	
+http://www.w3.org/2000/01/rdf-schema#Class	
+http://www.w3.org/2002/07/owl#OntologyProperty	
+http://www.w3.org/2002/07/owl#AnnotationProperty	
+
+  { 
+    time      0.95% fanout         1 input         1 rows
+    Subquery 27 
+      { 
+        time        18% fanout      2000 input         1 rows
+        Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:   7.3e+07 Fanout:     2e+03
+        RDF_QUAD_POGS   7.3e+07 rows(s_37_2_t0.O$31)
+        
+        time        78% fanout     0.011 input      2000 rows
+        Distinct (s_37_2_t0.O$31)
+        time       2.1% fanout         1 input        22 rows
+        skip node  25  <none> set_no$29
+        
+        After code:
+        0: var1$28 :=  := artm s_37_2_t0.O$31
+        4: BReturn 0
+        time      0.39% fanout         0 input        22 rows
+        Subquery Select(var1$28)
+      }
+    
+    After code:
+    0: var1$50 := Call __ro2sq (var1$28)
+    5: BReturn 0
+    time      0.36% fanout         0 input        22 rows
+    Select (var1$50)
+  }
+
+
+ 1 msec 33% cpu,         1 rnd      1997 seq         0% same seg         0% same pg 
+Compilation: 1 msec 0 reads         0% read 0 messages         0% clw

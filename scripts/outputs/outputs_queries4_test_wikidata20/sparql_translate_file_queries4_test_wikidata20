@@ -1,0 +1,106 @@
+SELECT TOP 5000 __id2in ( "s_0_30"."item") AS "item"
+FROM (
+    SELECT TOP 5000 "s_60_24_t7"."S" AS "item"
+    FROM DB.DBA.RDF_QUAD AS "s_60_25_t6-c17"
+      INNER JOIN DB.DBA.RDF_QUAD AS "s_49_4_t0-c5-c17"
+      ON (
+        "s_49_4_t0-c5-c17"."S" = "s_60_25_t6-c17"."S")
+      LEFT OUTER JOIN (
+        SELECT "s_54_21_t3-c19"."G" AS "_::default_52_17",
+          "s_54_21_t4-c19"."S" AS "sitelink",
+          "s_54_21_t3-c19"."O" AS "item",
+          "s_54_21_t4-c19"."G" AS "_::default_52_19"
+        FROM DB.DBA.RDF_QUAD AS "s_54_21_t3-c19"
+          INNER JOIN DB.DBA.RDF_QUAD AS "s_54_21_t4-c19"
+          ON (
+            "s_54_21_t4-c19"."S" = "s_54_21_t3-c19"."S")
+        WHERE
+          "s_54_21_t3-c19"."P" = __i2idn ( __bft( 'http://schema.org/about' , 1))
+          AND 
+          isiri_id ( "s_54_21_t3-c19"."O")
+          AND 
+          "s_54_21_t4-c19"."P" = __i2idn ( __bft( 'http://schema.org/inLanguage' , 1))
+          AND 
+          "s_54_21_t4-c19"."O" = DB.DBA.RDF_OBJ_OF_SQLVAL ( 'cy' )) AS "s_54_21-c19"
+      ON (
+        "s_49_4_t0-c5-c17"."S" = "s_54_21-c19"."item"
+        AND 
+        "s_60_25_t6-c17"."S" = "s_54_21-c19"."item")
+      INNER JOIN DB.DBA.RDF_QUAD AS "s_60_24_t7"
+      ON (
+        "s_60_24_t7"."S" = "s_49_4_t0-c5-c17"."S"
+        AND 
+        "s_60_24_t7"."S" = "s_60_25_t6-c17"."S")
+    WHERE
+      "s_60_25_t6-c17"."P" = __i2idn ( __bft( 'http://www.wikidata.org/prop/direct/P21' , 1))
+      AND 
+      "s_60_25_t6-c17"."O" = __i2idn ( __bft( 'http://www.wikidata.org/entity/Q6581072' , 1))
+      AND 
+      "s_49_4_t0-c5-c17"."P" = __i2idn ( __bft( 'http://www.wikidata.org/prop/direct/P19' , 1))
+      AND 
+      "s_49_4_t0-c5-c17"."O" = __i2idn ( __bft( 'http://www.wikidata.org/entity/Q25' , 1))
+      AND 
+      "s_60_24_t7"."P" = __i2idn ( __bft( 'http://www.wikidata.org/prop/direct/P31' , 1))
+      AND 
+      "s_60_24_t7"."O" = __i2idn ( __bft( 'http://www.wikidata.org/entity/Q5' , 1))
+      AND 
+      not ( ( "s_54_21-c19"."sitelink" is not null))
+    UNION ALL SELECT TOP 5000 "s_60_24_t7"."S" AS "item"
+    FROM (
+        SELECT "s_60_25_t6-c25"."G" AS "_::default_44_0",
+          "s_60_25_t6-c25"."S" AS "item"
+        FROM DB.DBA.RDF_QUAD AS "s_60_25_t6-c25"
+          INNER JOIN DB.DBA.RDF_QUAD AS "s_52_15_t2-c11-c25"
+          ON (
+            "s_60_25_t6-c25"."S" = "s_52_15_t2-c11-c25"."S")
+          INNER JOIN (
+           SELECT TRANSITIVE T_OUT(2) T_IN(1) T_MIN( 0) T_NO_CYCLES "s_49_11_t1-c11-c25"."S" AS "_::trans_subj_49_7",
+              "s_49_11_t1-c11-c25"."O" AS "_::trans_obj_49_8"
+            FROM DB.DBA.RDF_QUAD AS "s_49_11_t1-c11-c25"
+            WHERE
+              "s_49_11_t1-c11-c25"."P" = __i2idn ( __bft( 'http://www.wikidata.org/prop/direct/P131' , 1))
+OPTION (QUIETCAST)
+            ) AS "s_49_14-c11-c25"
+          ON (
+            "s_52_15_t2-c11-c25"."O" = "s_49_14-c11-c25"."_::trans_subj_49_7")
+        WHERE
+          "s_60_25_t6-c25"."P" = __i2idn ( __bft( 'http://www.wikidata.org/prop/direct/P21' , 1))
+          AND 
+          "s_60_25_t6-c25"."O" = __i2idn ( __bft( 'http://www.wikidata.org/entity/Q6581072' , 1))
+          AND 
+          "s_52_15_t2-c11-c25"."P" = __i2idn ( __bft( 'http://www.wikidata.org/prop/direct/P19' , 1))
+          AND 
+          isiri_id ( "s_52_15_t2-c11-c25"."O")
+          AND 
+         ( "s_49_14-c11-c25"."_::trans_obj_49_8" =  __i2idn ( __bft( 'http://www.wikidata.org/entity/Q25' , 1)))
+          AND 
+          1) AS "s_0_27-c25"
+      LEFT OUTER JOIN (
+        SELECT "s_54_21_t3-c27"."G" AS "_::default_52_17",
+          "s_54_21_t4-c27"."S" AS "sitelink",
+          "s_54_21_t3-c27"."O" AS "item",
+          "s_54_21_t4-c27"."G" AS "_::default_52_19"
+        FROM DB.DBA.RDF_QUAD AS "s_54_21_t3-c27"
+          INNER JOIN DB.DBA.RDF_QUAD AS "s_54_21_t4-c27"
+          ON (
+            "s_54_21_t4-c27"."S" = "s_54_21_t3-c27"."S")
+        WHERE
+          "s_54_21_t3-c27"."P" = __i2idn ( __bft( 'http://schema.org/about' , 1))
+          AND 
+          isiri_id ( "s_54_21_t3-c27"."O")
+          AND 
+          "s_54_21_t4-c27"."P" = __i2idn ( __bft( 'http://schema.org/inLanguage' , 1))
+          AND 
+          "s_54_21_t4-c27"."O" = DB.DBA.RDF_OBJ_OF_SQLVAL ( 'cy' )) AS "s_54_21-c27"
+      ON (
+        "s_0_27-c25"."item" = "s_54_21-c27"."item")
+      INNER JOIN DB.DBA.RDF_QUAD AS "s_60_24_t7"
+      ON (
+        "s_60_24_t7"."S" = "s_0_27-c25"."item")
+    WHERE
+      "s_60_24_t7"."P" = __i2idn ( __bft( 'http://www.wikidata.org/prop/direct/P31' , 1))
+      AND 
+      "s_60_24_t7"."O" = __i2idn ( __bft( 'http://www.wikidata.org/entity/Q5' , 1))
+      AND 
+      not ( ( "s_54_21-c27"."sitelink" is not null))) AS "s_0_30"
+OPTION (QUIETCAST)

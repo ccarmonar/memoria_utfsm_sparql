@@ -1,0 +1,254 @@
+http://wikiba.se/ontology#statementProperty	http://wikiba.se/ontology#BestRank	17219	19118	
+http://wikiba.se/ontology#statementProperty		0	0	
+http://wikiba.se/ontology#reference		0	0	
+http://wikiba.se/ontology#qualifier		0	0	
+
+  { 
+    time     0.017% fanout         1 input         1 rows
+    Subquery 27 
+      { 
+        time    0.0096% fanout         1 input         1 rows
+        fork {
+            Subquery 33 
+              { 
+                Union
+                  { 
+                    Subquery 40 
+                      { 
+                        time     0.044% fanout         1 input         1 rows
+                        fork {
+                            time      0.24% fanout         0 input         1 rows
+                            Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:   1.4e-07 Fanout:         0
+                            RDF_QUAD_POGS   1.4e-07 rows(s_37_2_t0.O$47, s_37_2_t0.S$46)
+                             inlined  P =  IRI_ID"...P137" 
+                            
+                            After code:
+                            0: isnotnull$49 := Call isnotnull (s_37_2_t0.O$47)
+                            5:  sum count$52isnotnull$49set no set_no$44
+                            10:  count count$53s_37_2_t0.S$46set no set_no$44distinct via hash area DISTINCT HASH$57
+                            15: BReturn 0
+                          }
+                        
+                        After code:
+                        0: var1$41 :=  := artm <tag 182 flag 1 c http://wikiba.se/ontology#statementProperty>
+                        4: var3$42 :=  := artm count$53
+                        8: var4$43 :=  := artm count$52
+                        12: BReturn 0
+                        time    0.0063% fanout         0 input         1 rows
+                        Subquery Select(var1$41, var3$42, var4$43)
+                      }
+                    
+                    After code:
+                    0: var1$34 :=  := artm  IRI_ID"...statementProperty" 
+                    4: var3$35 :=  := artm var3$42
+                    8: var4$36 :=  := artm var4$43
+                    12: var2$37 :=  := artm <DB_NULL>
+                    16: BReturn 0
+                    time      0.45% fanout         0 input         1 rows
+                    Precode:
+                      0: __id2in$227 := Call __id2in (var1$34)
+                      5: __ro2sq$229 := Call __ro2sq (var2$37)
+                      10: BReturn 0
+                    Sort (__id2in$227, var3$35, __ro2sq$229) -> (var4$36)
+                    
+                  }
+                  { 
+                    Subquery 72 
+                      { 
+                        time     0.025% fanout         1 input         1 rows
+                        fork {
+                            time        98% fanout         0 input         1 rows
+                            Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:   1.9e+04 Fanout:         0
+                            RDF_QUAD   1.9e+04 rows(s_37_6_t1.O$80, s_37_6_t1.S$79)
+                             inlined  P =  IRI_ID"...direct/P137" 
+                            
+                            After code:
+                            0: isnotnull$82 := Call isnotnull (s_37_6_t1.O$80)
+                            5:  sum count$85isnotnull$82set no set_no$77
+                            10:  count count$86s_37_6_t1.S$79set no set_no$77distinct via hash area DISTINCT HASH$90
+                            15: BReturn 0
+                          }
+                        
+                        After code:
+                        0: var1$73 :=  := artm <tag 182 flag 1 c http://wikiba.se/ontology#statementProperty>
+                        4: var2$74 :=  := artm <tag 182 flag 1 c http://wikiba.se/ontology#BestRank>
+                        8: var3$75 :=  := artm count$86
+                        12: var4$76 :=  := artm count$85
+                        16: BReturn 0
+                        time    0.0031% fanout         0 input         1 rows
+                        Subquery Select(var1$73, var2$74, var3$75, var4$76)
+                      }
+                    
+                    After code:
+                    0: var1$34 :=  := artm  IRI_ID"...statementProperty" 
+                    4: var3$35 :=  := artm var3$75
+                    8: var4$36 :=  := artm var4$76
+                    12: var2$37 :=  := artm  IRI_ID"...BestRank" 
+                    16: BReturn 0
+                    time      0.38% fanout         0 input         1 rows
+                    Precode:
+                      0: __id2in$227 := Call __id2in (var1$34)
+                      5: __ro2sq$229 := Call __ro2sq (var2$37)
+                      10: BReturn 0
+                    Sort (__id2in$227, var3$35, __ro2sq$229) -> (var4$36)
+                    
+                  }
+                  { 
+                    Subquery 105 
+                      { 
+                        time    0.0037% fanout         1 input         1 rows
+                        fork {
+                            time     0.088% fanout         0 input         1 rows
+                            Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:   1.4e-07 Fanout:         0
+                            RDF_QUAD_POGS   1.4e-07 rows(s_37_13_t3.S$113, s_37_13_t3.O$112)
+                             inlined  P =  IRI_ID"...rank" 
+                            time         0% fanout         0 input         0 rows
+                            Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:   1.4e-07 Fanout:         0
+                            RDF_QUAD_POGS   1.4e-07 rows(s_37_13_t2.O$117, s_37_13_t2.S$116)
+                             P =  IRI_ID"...P137"  ,  O = cast$406
+                            
+                            After code:
+                            0: isnotnull$119 := Call isnotnull (s_37_13_t2.O$117)
+                            5: BReturn 0
+                            time         0% fanout         0 input         0 rows
+                            Sort (s_37_13_t3.O$112) -> (isnotnull$119, inc$131)
+                            
+                          }
+                        time      0.01% fanout         0 input         1 rows
+                        group by read node  
+                        (s_37_13_t3.O$112, aggregate$123, aggregate$125)
+                        
+                        After code:
+                        0: var1$106 :=  := artm <tag 182 flag 1 c http://wikiba.se/ontology#statementProperty>
+                        4: var2$107 :=  := artm s_37_13_t3.O$112
+                        8: var3$108 :=  := artm aggregate$125
+                        12: var4$109 :=  := artm aggregate$123
+                        16: BReturn 0
+                        time         0% fanout         0 input         0 rows
+                        Subquery Select(var1$106, var2$107, var3$108, var4$109)
+                      }
+                    
+                    After code:
+                    0: var1$34 :=  := artm  IRI_ID"...statementProperty" 
+                    4: var3$35 :=  := artm var3$108
+                    8: var4$36 :=  := artm var4$109
+                    12: var2$37 :=  := artm var2$107
+                    16: BReturn 0
+                    time         0% fanout         0 input         0 rows
+                    Precode:
+                      0: __id2in$227 := Call __id2in (var1$34)
+                      5: __ro2sq$229 := Call __ro2sq (var2$37)
+                      10: BReturn 0
+                    Sort (__id2in$227, var3$35, __ro2sq$229) -> (var4$36)
+                    
+                  }
+                  { 
+                    Subquery 162 
+                      { 
+                        time     0.014% fanout         1 input         1 rows
+                        fork {
+                            time     0.052% fanout         0 input         1 rows
+                            Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:   1.4e-07 Fanout:         0
+                            RDF_QUAD_POGS   1.4e-07 rows(s_37_17_t4.O$169, s_37_17_t4.S$168)
+                             inlined  P =  IRI_ID"...reference/P137" 
+                            
+                            After code:
+                            0: isnotnull$171 := Call isnotnull (s_37_17_t4.O$169)
+                            5:  sum count$174isnotnull$171set no set_no$166
+                            10:  count count$175s_37_17_t4.S$168set no set_no$166distinct via hash area DISTINCT HASH$179
+                            15: BReturn 0
+                          }
+                        
+                        After code:
+                        0: var1$163 :=  := artm <tag 182 flag 1 c http://wikiba.se/ontology#reference>
+                        4: var3$164 :=  := artm count$175
+                        8: var4$165 :=  := artm count$174
+                        12: BReturn 0
+                        time    0.0014% fanout         0 input         1 rows
+                        Subquery Select(var1$163, var3$164, var4$165)
+                      }
+                    
+                    After code:
+                    0: var1$34 :=  := artm  IRI_ID"...reference" 
+                    4: var3$35 :=  := artm var3$164
+                    8: var4$36 :=  := artm var4$165
+                    12: var2$37 :=  := artm <DB_NULL>
+                    16: BReturn 0
+                    time      0.13% fanout         0 input         1 rows
+                    Precode:
+                      0: __id2in$227 := Call __id2in (var1$34)
+                      5: __ro2sq$229 := Call __ro2sq (var2$37)
+                      10: BReturn 0
+                    Sort (__id2in$227, var3$35, __ro2sq$229) -> (var4$36)
+                    
+                  }
+                  { 
+                    Subquery 194 
+                      { 
+                        time     0.012% fanout         1 input         1 rows
+                        fork {
+                            time     0.047% fanout         0 input         1 rows
+                            Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:   1.4e-07 Fanout:         0
+                            RDF_QUAD_POGS   1.4e-07 rows(s_37_21_t5.O$201, s_37_21_t5.S$200)
+                             inlined  P =  IRI_ID"...qualifier/P137" 
+                            
+                            After code:
+                            0: isnotnull$203 := Call isnotnull (s_37_21_t5.O$201)
+                            5:  sum count$206isnotnull$203set no set_no$198
+                            10:  count count$207s_37_21_t5.S$200set no set_no$198distinct via hash area DISTINCT HASH$211
+                            15: BReturn 0
+                          }
+                        
+                        After code:
+                        0: var1$195 :=  := artm <tag 182 flag 1 c http://wikiba.se/ontology#qualifier>
+                        4: var3$196 :=  := artm count$207
+                        8: var4$197 :=  := artm count$206
+                        12: BReturn 0
+                        time    0.0017% fanout         0 input         1 rows
+                        Subquery Select(var1$195, var3$196, var4$197)
+                      }
+                    
+                    After code:
+                    0: var1$34 :=  := artm  IRI_ID"...qualifier" 
+                    4: var3$35 :=  := artm var3$196
+                    8: var4$36 :=  := artm var4$197
+                    12: var2$37 :=  := artm <DB_NULL>
+                    16: BReturn 0
+                    time      0.11% fanout         0 input         1 rows
+                    Precode:
+                      0: __id2in$227 := Call __id2in (var1$34)
+                      5: __ro2sq$229 := Call __ro2sq (var2$37)
+                      10: BReturn 0
+                    Sort (__id2in$227, var3$35, __ro2sq$229) -> (var4$36)
+                    
+                  }
+              }
+          }
+        time     0.049% fanout         4 input         1 rows
+        Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:         0 Fanout:         4
+        Key from temp (__id2in$227, __ro2sq$229, var3$35, var4$36)
+        
+        
+        After code:
+        0: var1$28 :=  := artm __id2in$227
+        4: var2$29 :=  := artm __ro2sq$229
+        8: var3$30 :=  := artm var3$35
+        12: var4$31 :=  := artm var4$36
+        16: BReturn 0
+        time    0.0012% fanout         0 input         4 rows
+        Subquery Select(var1$28, var2$29, var3$30, var4$31)
+      }
+    
+    After code:
+    0: var1$256 := Call __ro2sq (var1$28)
+    5: var2$258 := Call __ro2sq (var2$29)
+    10: var3$260 := Call __ro2sq (var3$30)
+    15: var4$262 := Call __ro2sq (var4$31)
+    20: BReturn 0
+    time    0.0031% fanout         0 input         4 rows
+    Select (var1$256, var2$258, var3$260, var4$262)
+  }
+
+
+ 13 msec 37% cpu,        10 rnd     19099 seq         0% same seg         0% same pg 
+Compilation: 11 msec 0 reads         0% read 0 messages         0% clw

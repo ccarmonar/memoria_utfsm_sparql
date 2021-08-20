@@ -1,0 +1,51 @@
+lunch	2011-10-14 13:19:00	11.13	
+lunch	2011-10-14T13:19	11.13	
+lunch	2011-10-14	11.13	
+dinner	2011-10-14 19:04:00	28.3	
+dinner	2011-10-14T19:04	28.3	
+dinner	2011-10-14	28.3	
+lunch	2011-10-15	9.45	
+dinner	2011-10-15	31.45	
+lunch	2011-10-16	10	
+dinner	2011-10-16	25.05	
+
+  { 
+    time       1.3% fanout         1 input         1 rows
+    time        23% fanout         9 input         1 rows
+    Precode:
+      0: __rdflit$27 := Call __rdflit (rdflit1138)
+      5: __rdflit$29 := Call __rdflit (rdflit1137)
+      10: BReturn 0
+    RDF_QUAD        12 rows(s_12_7_t0.O$33, s_12_7_t0.S$32)
+     inlined  P =  IRI_ID"...description" 
+    time       7.1% fanout  0.666667 input         9 rows
+    END Node
+    After test:
+    0: one_of_these$35 := Call one_of_these (s_12_7_t0.O$33, __rdflit$27, __rdflit$29)
+    5: if ( 0  < one_of_these$35) then 9 else 23 unkn 23
+    9: isiri_id$37 := Call isiri_id (s_12_7_t0.O$33)
+    14: temp$39 := artm  1  - isiri_id$37
+    18: if ( 0  = temp$39) then 23 else 22 unkn 23
+    22: BReturn 1
+    23: BReturn 0
+    time        14% fanout         1 input         6 rows
+    RDF_QUAD         1 rows(s_12_7_t2.S$43, s_12_7_t2.O$42)
+     inlined  P =  IRI_ID"...amount"  ,  S = k_s_12_7_t0.S$101
+    time        54% fanout   1.66667 input         6 rows
+    Precode:
+      0: description$45 := Call __ro2sq (s_12_7_t0.O$33)
+      5: amount$47 := Call __ro2sq (s_12_7_t2.O$42)
+      10: BReturn 0
+    RDF_QUAD       1.7 rows(s_12_7_t1.O$50)
+     inlined  P =  IRI_ID"...date"  ,  S = k_s_12_7_t0.S$116
+    
+    After code:
+    0: date$52 := Call __ro2sq (s_12_7_t1.O$50)
+    5: BReturn 0
+    time      0.19% fanout         0 input        10 rows
+    Select (description$45, date$52, amount$47)
+  }
+
+
+ 0 msec 11% cpu,        27 rnd        12 seq   35.7143% same seg   21.4286% same pg 
+Compilation: 2 msec 0 reads         0% read 0 messages         0% clw

@@ -1,0 +1,48 @@
+http://www.wikidata.org/entity/Q2778021	AIRLINES ALADIA	9A	
+http://www.wikidata.org/entity/Q2781127	SKYJET	UQ	
+http://www.wikidata.org/entity/Q2913429	MEGANTARA	9M	
+http://www.wikidata.org/entity/Q3061897	EAGLE FLIGHT	OW	
+http://www.wikidata.org/entity/Q71988	YUNNAN	3Q	
+http://www.wikidata.org/entity/Q305350	ABAN	K5	
+http://www.wikidata.org/entity/Q381078	AER ARANN	RE	
+http://www.wikidata.org/entity/Q381257	AERO ASIA	E4	
+http://www.wikidata.org/entity/Q381321	BIRD EXPRESS	W4	
+http://www.wikidata.org/entity/Q381415	AEROCONDOR	2B	
+http://www.wikidata.org/entity/Q384068	EXPRESS JET	XU	
+http://www.wikidata.org/entity/Q859510	CEDAR JET	ME	
+http://www.wikidata.org/entity/Q1018340	BUZZ	UK	
+http://www.wikidata.org/entity/Q2162266	ADIK	IM	
+http://www.wikidata.org/entity/Q3412468	QESHM AIR	QB	
+http://www.wikidata.org/entity/Q5315836	FLY DUO	VB	
+http://www.wikidata.org/entity/Q5329951	EASAIR	X7	
+http://www.wikidata.org/entity/Q5458930	FLEX BRASIL	JH	
+http://www.wikidata.org/entity/Q7455925	Cruzeiro	SC	
+http://www.wikidata.org/entity/Q15139453	NORSTAR	DU	
+
+  { 
+    time     0.042% fanout         1 input         1 rows
+    time       1.3% fanout       315 input         1 rows
+    RDF_QUAD   3.2e+02 rows(s_37_6_t1.S$29, s_37_6_t1.O$28)
+     inlined  P =  IRI_ID"...direct/P432" 
+    time        43% fanout  0.971429 input       315 rows
+    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:    0.0001 Fanout:      0.97
+    RDF_QUAD    0.0001 rows(s_37_6_t0.S$32)
+     inlined  P =  IRI_ID"...direct/P31"  ,  S = s_37_6_t1.S$29 ,  O =  IRI_ID"...Q46970" 
+    time        56% fanout   0.79085 input       306 rows
+    Precode:
+      0: var2$34 := Call __ro2sq (s_37_6_t1.O$28)
+      5: var1$36 := Call __id2in (s_37_6_t0.S$32)
+      10: BReturn 0
+    RDF_QUAD         1 rows(s_37_6_t2.O$39)
+     inlined  P =  IRI_ID"...direct/P229"  ,  S = s_37_6_t0.S$32
+    
+    After code:
+    0: var3$41 := Call __ro2sq (s_37_6_t2.O$39)
+    5: BReturn 0
+    time    0.0079% fanout         0 input       242 rows
+    Select (var1$36, var2$34, var3$41)
+  }
+
+
+ 7 msec 80% cpu,      1170 rnd       322 seq   44.4065% same seg    10.333% same pg 
+Compilation: 1 msec 0 reads         0% read 0 messages         0% clw

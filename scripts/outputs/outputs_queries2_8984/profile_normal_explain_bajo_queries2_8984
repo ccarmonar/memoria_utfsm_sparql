@@ -1,0 +1,57 @@
+http://www.wikidata.org/entity/Q2638019	
+http://www.wikidata.org/entity/Q47344175	
+http://www.wikidata.org/entity/Q2992500	
+http://www.wikidata.org/entity/Q38994	
+http://www.wikidata.org/entity/Q135847	
+http://www.wikidata.org/entity/Q719602	
+http://www.wikidata.org/entity/Q1958838	
+http://www.wikidata.org/entity/Q15138389	
+http://www.wikidata.org/entity/Q30500746	
+http://www.wikidata.org/entity/Q501851	
+http://www.wikidata.org/entity/Q13165032	
+http://www.wikidata.org/entity/Q7278	
+http://www.wikidata.org/entity/Q213103	
+http://www.wikidata.org/entity/Q1207505	
+http://www.wikidata.org/entity/Q364	
+http://www.wikidata.org/entity/Q331055	
+http://www.wikidata.org/entity/Q33318813	
+http://www.wikidata.org/entity/Q3760158	
+http://www.wikidata.org/entity/Q11514315	
+http://www.wikidata.org/entity/Q27768150	
+
+  { 
+    time         1% fanout         1 input         1 rows
+    Subquery 27 
+      { 
+        time        18% fanout       530 input         1 rows
+        RDF_QUAD   5.2e+02 rows(s_37_2_t0.O$31)
+         inlined  P =  IRI_ID"...direct/P1629" 
+        time        13% fanout         1 input       530 rows
+        END Node
+        After test:
+        0: is_named_iri_id$33 := Call is_named_iri_id (s_37_2_t0.O$31)
+        5: if ( 0  = is_named_iri_id$33) then 10 else 9 unkn 10
+        9: BReturn 1
+        10: BReturn 0
+        time        63% fanout  0.964151 input       530 rows
+        Distinct (s_37_2_t0.O$31)
+        time       4.6% fanout         1 input       511 rows
+        skip node  10000  <none> set_no$29
+        
+        After code:
+        0: var1$28 :=  := artm s_37_2_t0.O$31
+        4: BReturn 0
+        time      0.34% fanout         0 input       511 rows
+        Subquery Select(var1$28)
+      }
+    
+    After code:
+    0: var1$51 := Call __ro2sq (var1$28)
+    5: BReturn 0
+    time      0.35% fanout         0 input       511 rows
+    Select (var1$51)
+  }
+
+
+ 2 msec 60% cpu,         2 rnd       529 seq         0% same seg         0% same pg 
+Compilation: 1 msec 0 reads         0% read 0 messages         0% clw

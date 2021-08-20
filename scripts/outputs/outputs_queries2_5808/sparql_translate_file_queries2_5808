@@ -1,0 +1,10 @@
+SELECT NULL /* due to conflict on var1 */ AS "var1",
+  NULL /* due to conflict on var2 */ AS "var2"
+FROM DB.DBA.RDF_QUAD AS "s_37_2_t0"
+WHERE
+  "s_37_2_t0"."P" = __i2idn ( __bft( 'http://www.wikidata.org/entity/p31' , 1))
+  AND 
+  "s_37_2_t0"."O" = __i2idn ( __bft( 'http://www.wikidata.org/entity/Q515' , 1))
+  AND 
+  rdf_regex_impl ( __bft (__id2in ( "s_37_2_t0"."S"), 2),  'balashov' ,  'i' )
+OPTION (QUIETCAST)

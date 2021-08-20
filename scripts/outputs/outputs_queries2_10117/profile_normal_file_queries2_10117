@@ -1,0 +1,74 @@
+
+  { 
+    time       2.6% fanout         1 input         1 rows
+      clear: (<V set_ctr$68 in>)
+    s# 71 69 cluster outer seq start, set no <V set_ctr$68 in>    
+    save ctx:()
+    time        71% fanout         1 input         1 rows
+    Precode:
+      0: <V prop/qualifier/value/P2911$27 r> := Call __i2idn (<tag 182 flag 1 c http://www.wikidata.org/prop/qualifier/value/P2911>)
+      5: BReturn 0
+      clear: (<V set_no$31 i>, <V prop/qualifier/value/P2911$27 r>)
+    s# 80 59 cluster outer seq start, set no <V set_no$31 i>    
+    save ctx:()
+    time        26% fanout         0 input         1 rows
+    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:   1.4e-07 Fanout:         0
+      clear: (<V s_37_6_t1.S$33 rn>, <V s_37_6_t1.O$34 an>)
+      clear on continue: (<V s_37_6_t1.O$34 an>, <V s_37_6_t1.S$33 rn>)$93 (32 ) $27 (59 ) 
+    s# 89 32 from DB.DBA.RDF_QUAD by RDF_QUAD_POGS    1.4e-07 rows   
+    Key RDF_QUAD_POGS  ASC  (<V s_37_6_t1.O$34 an>, <V s_37_6_t1.S$33 rn>)
+     inlined  P = <v k_prop/qualifier/value/P2911$93 Set95 rn>
+    vector param casts: <r prop/qualifier/value/P2911$27 via  Set80>-> <v k_prop/qualifier/value/P2911$93 Set95 rn>
+    
+    time         0% fanout         0 input         0 rows
+    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:   1.4e-07 Fanout:         0
+    $34 () $108 (36 ) 
+    s# 104 36 from DB.DBA.RDF_QUAD by RDF_QUAD_POGS    1.4e-07 rows   
+    Key RDF_QUAD_POGS  ASC  ()
+     inlined  P =  IRI_ID"...quantityUnit"  ,  O =  IRI_ID"...Q636099"  ,  S = <v cast$108 Set110 rn>
+    vector param casts: <V s_37_6_t1.O$34 an>-> <v cast$108 Set110 rn>
+    
+    time         0% fanout         0 input         0 rows
+    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:       2.8 Fanout:         0
+      clear: (<V s_37_6_t0.P$39 rn>)
+      clear on continue: (<V s_37_6_t0.P$39 rn>)$121 (38 ) 
+    s# 117 38 from DB.DBA.RDF_QUAD by RDF_QUAD_OP        2.8 rows   
+    Key RDF_QUAD_OP  ASC  (<V s_37_6_t0.P$39 rn>)
+     inlined  O = <v k_s_37_6_t1.S$121 Set123 an>
+    vector param casts: <r s_37_6_t1.S$33 via  Set104 Set110>-> <v k_s_37_6_t1.S$121 Set123 an>
+    
+    time         0% fanout         0 input         0 rows
+    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:       1.2 Fanout:         0
+      clear: (<V s_37_6_t0.S$43 rn>)
+      clear on continue: (<V s_37_6_t0.S$43 rn>)$33 (38 36 ) $39 () $135 (42 ) 
+    s# 131 42 from DB.DBA.RDF_QUAD by RDF_QUAD_POGS        1.2 rows   
+    Key RDF_QUAD_POGS  ASC  (<V s_37_6_t0.S$43 rn>)
+     P = <V s_37_6_t0.P$39 rn> ,  O = <v k_s_37_6_t1.S$135 Set137 an>
+    vector param casts: <r s_37_6_t1.S$33 via  Set117 Set123 Set104 Set110>-> <v k_s_37_6_t1.S$135 Set137 an>
+    
+    time         0% fanout         0 input         0 rows
+      clear: (<V var1$30 rn>)$43 () 
+    s# 145 46 Distinct (HASH) set no <r set_no$31 via  Set131 Set137 Set117 Set123 Set104 Set110 Set89 Set95>(<V s_37_6_t0.S$43 rn>)
+    After code:
+      0: <V var1$30 rn> :=  := artm <r s_37_6_t0.S$43 via  Set145>
+      4: BReturn 0
+    time         0% fanout         0 input         0 rows
+      clear: (<V var1$60 a>)$31 (46 42 38 36 32 59 ) $30 (46 ) 
+    s# 154 52 Subquery Select(<V var1$30 rn>)
+      set no: <r set_no$31 via  Set145 Set131 Set137 Set117 Set123 Set104 Set110 Set89 Set95>
+    After code:
+      0: <V var1$60 a> := Call __ro2sq (<V var1$30 rn>)
+      5: BReturn 0
+    time         0% fanout         0 input         0 rows
+    $68 (52 46 42 38 36 32 59 69 ) $60 (52 ) 
+    s# 161 62 Select (<V var1$60 a>)
+      set no: <r set_ctr$68 via  Set154>
+  }
+Warning: You might have a Cartesian product.
+
+Warning: You might have a Cartesian product.
+
+
+
+ 1 msec 0% cpu,         4 rnd         0 seq         0% same seg         0% same pg 
+Compilation: 48 msec 1 reads   53.6551% read 0 messages         0% clw

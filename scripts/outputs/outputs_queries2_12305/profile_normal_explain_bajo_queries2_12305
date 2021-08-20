@@ -1,0 +1,51 @@
+http://www.wikidata.org/entity/Q2607833	
+http://www.wikidata.org/entity/Q2608116	
+http://www.wikidata.org/entity/Q2609352	
+http://www.wikidata.org/entity/Q2610467	
+http://www.wikidata.org/entity/Q2611484	
+http://www.wikidata.org/entity/Q2611641	
+http://www.wikidata.org/entity/Q2612475	
+http://www.wikidata.org/entity/Q2614171	
+http://www.wikidata.org/entity/Q2615772	
+http://www.wikidata.org/entity/Q2615789	
+http://www.wikidata.org/entity/Q2616040	
+http://www.wikidata.org/entity/Q2616131	
+http://www.wikidata.org/entity/Q2616529	
+http://www.wikidata.org/entity/Q2617113	
+http://www.wikidata.org/entity/Q2617141	
+http://www.wikidata.org/entity/Q2617980	
+http://www.wikidata.org/entity/Q2618165	
+http://www.wikidata.org/entity/Q6975551	
+http://www.wikidata.org/entity/Q16373907	
+http://www.wikidata.org/entity/Q2630748	
+
+  { 
+    time      0.88% fanout         1 input         1 rows
+    Subquery 27 
+      { 
+        time        24% fanout      1000 input         1 rows
+        Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:   3.5e+04 Fanout:     1e+03
+        RDF_QUAD_POGS   3.5e+04 rows(s_37_2_t0.S$31)
+         P =  IRI_ID"...direct/P31"  ,  O =  IRI_ID"...Q13406463" 
+        time        69% fanout         1 input      1000 rows
+        Distinct (s_37_2_t0.S$31)
+        time       5.7% fanout         1 input      1000 rows
+        skip node  10000  <none> set_no$29
+        
+        After code:
+        0: var1$28 :=  := artm s_37_2_t0.S$31
+        4: BReturn 0
+        time      0.33% fanout         0 input      1000 rows
+        Subquery Select(var1$28)
+      }
+    
+    After code:
+    0: var1$49 := Call __ro2sq (var1$28)
+    5: BReturn 0
+    time      0.27% fanout         0 input      1000 rows
+    Select (var1$49)
+  }
+
+
+ 3 msec 70% cpu,         5 rnd       998 seq         0% same seg   33.3333% same pg 
+Compilation: 1 msec 0 reads         0% read 0 messages         0% clw

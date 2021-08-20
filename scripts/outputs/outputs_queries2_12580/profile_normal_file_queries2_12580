@@ -1,0 +1,86 @@
+http://www.wikidata.org/entity/Q16282894	1	
+http://www.wikidata.org/entity/Q19796102	3	
+http://www.wikidata.org/entity/Q39247448	1	
+http://www.wikidata.org/entity/Q20716377	2	
+http://www.wikidata.org/entity/Q43912070	1	
+http://www.wikidata.org/entity/Q20023000	4	
+http://www.wikidata.org/entity/Q19810532	2	
+http://www.wikidata.org/entity/Q20155713	3	
+http://www.wikidata.org/entity/Q18175370	16	
+http://www.wikidata.org/entity/Q19826350	1	
+
+  { 
+    time     0.017% fanout         1 input         1 rows
+      clear: (<V set_ctr$87 in>)
+    s# 90 88 cluster outer seq start, set no <V set_ctr$87 in>    
+    save ctx:()
+      clear: (<V var3$29 in>, <V var1$28 a>, <V set_no$30 i>, <V var3$79 a>, <V var1$77 a>)
+    s# 99 27 Subquery 27 
+      multistate set no = <V set_no$30 i>
+      { 
+        time    0.0097% fanout         1 input         1 rows
+        
+        s# 132 41 Fork 41 {  
+                
+            save ctx:()
+              set no = <V set_no$30 i> array  <none>  save: 
+            time      0.45% fanout       797 input         1 rows
+              clear: (<V s_37_4_t0.S$32 rn>)
+              clear on continue: (<V s_37_4_t0.S$32 rn>)
+            s# 104 31 from DB.DBA.RDF_QUAD by RDF_QUAD_POGS      8e+02 rows Parallel, tail cost   1.3e+04   
+            Key RDF_QUAD_POGS  ASC  (<V s_37_4_t0.S$32 rn>)
+             P =  IRI_ID"...direct/P31"  ,  O =  IRI_ID"...Q202444" 
+            copy on branch $30 $0 $0 $0 sets: 90 
+            
+            time        99% fanout  0.294856 input       797 rows
+            Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:       3.2 Fanout:      0.29
+            Precode:
+              0: <V __id2in$34 a> := Call __id2in (<V s_37_4_t0.S$32 rn>)
+              5: BReturn 0
+              clear: (<V s_37_4_t1.O$37 an>, <V __id2in$34 a>, <V isnotnull$39 in>)
+              clear on continue: (<V isnotnull$39 in>, <V s_37_4_t1.O$37 an>)
+            s# 114 36 from DB.DBA.RDF_QUAD by RDF_QUAD        3.2 rows Parallel, tail cost       6.1   
+            Key RDF_QUAD  ASC  (<V s_37_4_t1.O$37 an>)
+             inlined  P =  IRI_ID"...direct/P460"  ,  S = <V s_37_4_t0.S$32 rn>
+            copy on branch $32 $30 $34 $0 sets: 90 104 
+            
+            After code:
+              0: <V isnotnull$39 in> := Call isnotnull (<V s_37_4_t1.O$37 an>)
+              5: BReturn 0
+            time      0.33% fanout         0 input       235 rows
+            $32 (36 ) $39 () 
+            s# 124 42 Sort (HASH) set no <r set_no$30 via  Set114 Set104>(<r s_37_4_t0.S$32 via  Set114>) -> (<V isnotnull$39 in>, <r __id2in$34 via  Set114>) up to   6.8e+06 distinct
+            
+        }
+        time      0.15% fanout        63 input         1 rows
+          clear: (<V __id2in$34 a>, <V aggregate$43 in>, <V s_37_4_t0.S$32 rn>)
+          clear on continue: (<V __id2in$34 a>, <V aggregate$43 in>, <V s_37_4_t0.S$32 rn>)
+        s# 139 49 group by read node  
+        (<V s_37_4_t0.S$32 rn>, <V aggregate$43 in>, <V __id2in$34 a>)
+        time     0.016% fanout   0.15873 input        63 rows
+          clear: (<V var3$29 in>, <V var1$28 a>)$34 () $43 () 
+        s# 149 75 skip node  10  <none> <r set_no$30 via  Set139>
+        After code:
+          0: <V var1$28 a> :=  := artm <r __id2in$34 via  Set149>
+          4: <V var3$29 in> :=  := artm <r aggregate$43 via  Set149>
+          8: BReturn 0
+        time    0.0015% fanout         0 input        10 rows
+        
+        s# 99 67 Subquery Select(<V var1$28 a>, <V var3$29 in>)
+          set no: <r set_no$30 via  Set149 Set139>
+      }
+    
+    After code:
+      0: <V var1$77 a> := Call __ro2sq (<V var1$28 a>)
+      5: <V var3$79 a> := Call __ro2sq (<V var3$29 in>)
+      10: BReturn 0
+    time    0.0027% fanout         0 input        10 rows
+    $77 (27 ) $79 (27 ) $87 (27 88 ) 
+    s# 166 81 Select (<V var1$77 a>, <V var3$79 a>)
+      set no: <r set_ctr$87 via  Set99>
+  }
+
+
+ 23 msec 89% cpu,      1581 rnd       968 seq   50.1896% same seg   25.2212% same pg 
+1 disk reads, 0 read ahead,   69.8549% wait
+Compilation: 2 msec 0 reads         0% read 0 messages         0% clw

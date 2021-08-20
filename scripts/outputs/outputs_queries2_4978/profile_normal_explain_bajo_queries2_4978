@@ -1,0 +1,57 @@
+
+  { 
+    time       8.5% fanout         1 input         1 rows
+    time        92% fanout         0 input         1 rows
+    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:         2 Fanout:         0
+    RDF_QUAD_SP         2 rows(t1.P$28)
+     inlined  S =  IRI_ID"...Q9197118" 
+    time         0% fanout         0 input         0 rows
+    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:       1.2 Fanout:         0
+    RDF_QUAD       1.2 rows(t1.O$32)
+     inlined  P = t1.P$28 ,  S =  IRI_ID"...Q9197118" 
+    time         0% fanout         0 input         0 rows
+    END Node
+    After test:
+    0: isiri_id$35 := Call isiri_id (t1.O$32)
+    5: temp$37 := artm  1  - isiri_id$35
+    9: if ( 0  = temp$37) then 14 else 13 unkn 14
+    13: BReturn 1
+    14: BReturn 0
+    time         0% fanout         0 input         0 rows
+    Precode:
+      0: var1$39 := Call __id2in (t1.P$28)
+      5: var2$41 := Call __ro2sq (t1.O$32)
+      10: BReturn 0
+    outer {
+        time         0% fanout         0 input         0 rows
+        Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:       2.8 Fanout:         0
+        RDF_QUAD_OP       2.8 rows(t3.O$45, t3.P$44)
+         inlined  O = k_t1.P$132
+        time         0% fanout         0 input         0 rows
+        END Node
+        After test:
+        0: is_named_iri_id$48 := Call is_named_iri_id (t3.O$45)
+        5: if ( 0  = is_named_iri_id$48) then 10 else 9 unkn 10
+        9: BReturn 1
+        10: BReturn 0
+        time         0% fanout         0 input         0 rows
+        Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:       1.2 Fanout:         0
+        RDF_QUAD_POGS       1.2 rows(t3.S$51)
+         P = k_t3.P$160 ,  O = k_t1.P$164
+        time         0% fanout         0 input         0 rows
+      } /* end of outer */
+    set_ctr$57
+     out: (t3.P$44, t3.S$51, is_named_iri_id$48, t3.O$45)
+     shadow: (t3.P$176,  <none> , is_named_iri_id$178, t3.O$180)
+    
+    After code:
+    0: var3$66 := Call __id2in (t3.S$51)
+    5: var4$68 := Call __id2in (t3.P$176)
+    10: BReturn 0
+    time         0% fanout         0 input         0 rows
+    Select (var1$39, var2$41, var3$66, var4$68)
+  }
+
+
+ 0 msec 2% cpu,         1 rnd         0 seq         0% same seg         0% same pg 
+Compilation: 2 msec 0 reads         0% read 0 messages         0% clw

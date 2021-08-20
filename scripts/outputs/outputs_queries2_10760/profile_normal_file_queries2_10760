@@ -1,0 +1,77 @@
+
+  { 
+    time        10% fanout         1 input         1 rows
+      clear: (<V set_ctr$47 in>)
+    s# 68 48 cluster outer seq start, set no <V set_ctr$47 in>    
+    save ctx:()
+    time        90% fanout         0 input         1 rows
+    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:   1.4e-07 Fanout:         0
+      clear: (<V t4.O$28 an>, <V t4.S$29 rn>)
+      clear on continue: (<V t4.O$28 an>, <V t4.S$29 rn>)
+    s# 77 27 from DB.DBA.RDF_QUAD by RDF_QUAD_POGS    1.4e-07 rows   
+    Key RDF_QUAD_POGS  ASC  (<V t4.S$29 rn>, <V t4.O$28 an>)
+     inlined  P =  IRI_ID"...qualifier/P580" 
+    
+    time         0% fanout         0 input         0 rows
+    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:   1.4e-07 Fanout:         0
+      clear: (<V t3.S$32 rn>)
+      clear on continue: (<V t3.S$32 rn>)$29 () 
+    s# 88 31 from DB.DBA.RDF_QUAD by RDF_QUAD_POGS    1.4e-07 rows   
+    Key RDF_QUAD_POGS  ASC  (<V t3.S$32 rn>)
+     inlined  P =  IRI_ID"...statement/P39"  ,  O =  IRI_ID"...Q15233311"  ,  S = <V t4.S$29 rn>
+    
+    time         0% fanout         0 input         0 rows
+    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:   1.4e-07 Fanout:         0
+      clear: (<V t2.S$35 rn>)
+      clear on continue: (<V t2.S$35 rn>)$32 () $102 (34 ) 
+    s# 98 34 from DB.DBA.RDF_QUAD by RDF_QUAD_POGS    1.4e-07 rows   
+    Key RDF_QUAD_POGS  ASC  (<V t2.S$35 rn>)
+     P =  IRI_ID"...prop/P39"  ,  O = <v cast$102 Set104 an>
+    vector param casts: <V t3.S$32 rn>-> <v cast$102 Set104 an>
+    
+    time         0% fanout         0 input         0 rows
+    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:     0.091 Fanout:         0
+      clear: (<V t1.S$38 rn>)
+      clear on continue: (<V t1.S$38 rn>)
+    s# 112 37 from DB.DBA.RDF_QUAD by RDF_QUAD      0.091 rows   
+    Key RDF_QUAD  ASC  (<V t1.S$38 rn>)
+     inlined  P =  IRI_ID"...direct/P31"  ,  S = <V t2.S$35 rn> ,  O =  IRI_ID"...Q5" 
+    
+    time         0% fanout         0 input         0 rows
+    Precode:
+      0: <V var2$40 a> := Call __ro2sq (<r t4.O$28 via  Set112 Set98 Set104 Set88>)
+      5: <V var1$42 a> := Call __id2in (<r t2.S$35 via  Set112>)
+      10: BReturn 0
+      clear: (<V set_ctr$50 i>, <V var1$42 a>, <V var2$40 a>)$28 (37 34 31 ) 
+    s# 122 54 cluster outer seq start, set no <V set_ctr$50 i>    
+    save ctx:()
+    time         0% fanout         0 input         0 rows
+    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:         1 Fanout:         0
+      clear: (<V t6.O$45 a>)
+      clear on continue: (<V t6.O$45 a>)$35 (54 37 ) $135 (44 ) 
+    s# 131 44 from DB.DBA.RDF_QUAD by RDF_QUAD          1 rows   
+    Key RDF_QUAD  ASC  (<V t6.O$45 a>)
+     inlined  P =  IRI_ID"...direct/P18"  ,  S = <v k_t2.S$135 Set137 rn>
+    vector param casts: <r t2.S$35 via  Set122 Set112>-> <v k_t2.S$135 Set137 rn>
+    
+    time         0% fanout         0 input         0 rows
+      clear: (<V var3$59 a>)$45 () $50 (44 54 ) 
+    s# 145 49 end of outer seq <r set_ctr$50 via  Set131 Set137>
+     out: (<V t6.O$45 a>)
+     shadow: ( <none> )
+    After code:
+      0: <V var3$59 a> := Call __ro2sq (<V t6.O$45 a>)
+      5: BReturn 0
+    time         0% fanout         0 input         0 rows
+    $40 (49 44 54 ) $42 (49 44 54 ) $47 (49 44 54 37 34 31 27 48 ) $59 (49 ) 
+    s# 153 61 Select (<r var1$42 via  Set145>, <DB_NULL>, <r var2$40 via  Set145>, <V var3$59 a>)
+      set no: <r set_ctr$47 via  Set145 Set112 Set98 Set104 Set88 Set77>
+  }
+Warning: You might have a Cartesian product.
+
+Warning: You might have a Cartesian product.
+
+
+
+ 0 msec 0% cpu,         1 rnd         0 seq         0% same seg         0% same pg 
+Compilation: 22 msec 0 reads         0% read 0 messages         0% clw

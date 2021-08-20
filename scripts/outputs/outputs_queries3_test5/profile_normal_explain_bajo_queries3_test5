@@ -1,0 +1,92 @@
+
+  { 
+    time       6.2% fanout         1 input         1 rows
+    Precode:
+      0: __rdflit$27 := Call __rdflit (rdflit1415)
+      5: __rdflit$29 := Call __rdflit (rdflit1414)
+      10: BReturn 0
+    Subquery 31 
+      { 
+        time       3.8% fanout         1 input         1 rows
+        fork {
+            time         3% fanout         1 input         1 rows
+            fork {
+                time        78% fanout         0 input         1 rows
+                Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:   5.6e-15 Fanout:         0
+                RDF_QUAD_POGS   5.6e-15 rows(s_18_9_t4.S$38, s_18_9_t4.O$37)
+                 inlined  P =  IRI_ID"...lo_revenue"  G =  IRI_ID"...ssb1_ttl_qb" 
+                time         0% fanout         0 input         0 rows
+                Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:   5.6e-15 Fanout:         0
+                RDF_QUAD   5.6e-15 rows(s_18_9_t1.O$42, s_18_9_t1.S$41)
+                 inlined  P =  IRI_ID"...lo_orderdate"  ,  S = s_18_9_t4.S$38 G =  IRI_ID"...ssb1_ttl_qb" 
+                time         0% fanout         0 input         0 rows
+                Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:       0.8 Fanout:         0
+                RDF_QUAD_POGS unq       0.8 rows (s_18_9_t0.S$45)
+                 P =  IRI_ID"...type"  ,  O =  IRI_ID"...lineorder"  ,  S = s_18_9_t1.S$41 ,  G =  IRI_ID"...ssb1_ttl_qb" 
+                time         0% fanout         0 input         0 rows
+                Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:   5.6e-15 Fanout:         0
+                RDF_QUAD   5.6e-15 rows(s_18_9_t2.O$49, s_18_9_t2.S$48)
+                 inlined  P =  IRI_ID"...lo_partkey"  ,  S = s_18_9_t0.S$45 G =  IRI_ID"...ssb1_ttl_qb" 
+                time         0% fanout         0 input         0 rows
+                Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:   5.6e-15 Fanout:         0
+                RDF_QUAD   5.6e-15 rows(s_18_9_t6.S$53, s_18_9_t6.O$52)
+                 inlined  P =  IRI_ID"...p_brand1"  ,  S = cast$213 G =  IRI_ID"...ssb1_ttl_qb" 
+                time         0% fanout         0 input         0 rows
+                Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:   5.6e-15 Fanout:         0
+                Precode:
+                  0: __ro2sq$55 := Call __ro2sq (s_18_9_t6.O$52)
+                  5: BReturn 0
+                RDF_QUAD   5.6e-15 rows(s_18_9_t3.O$58)
+                 inlined  P =  IRI_ID"...lo_suppkey"  ,  S = k_s_18_9_t0.S$228 G =  IRI_ID"...ssb1_ttl_qb" 
+                time         0% fanout         0 input         0 rows
+                Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:   3.2e-19 Fanout:         0
+                RDF_QUAD_POGS unq   3.2e-19 rows ()
+                 P =  IRI_ID"...s_region"  ,  O = rdflit1414 ,  S = cast$242 ,  G =  IRI_ID"...ssb1_ttl_qb" 
+                time         0% fanout         0 input         0 rows
+                Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:   3.2e-19 Fanout:         0
+                RDF_QUAD_POGS unq   3.2e-19 rows ()
+                 P =  IRI_ID"...p_category"  ,  O = rdflit1415 ,  S = k_s_18_9_t2.O$255 ,  G =  IRI_ID"...ssb1_ttl_qb" 
+                time         0% fanout         0 input         0 rows
+                Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:   5.6e-15 Fanout:         0
+                RDF_QUAD   5.6e-15 rows(s_18_9_t5.O$65)
+                 inlined  P =  IRI_ID"...d_year"  ,  S = k_s_18_9_t1.O$268 G =  IRI_ID"...ssb1_ttl_qb" 
+                
+                After code:
+                0: __ro2sq$67 := Call __ro2sq (s_18_9_t5.O$65)
+                5: BReturn 0
+                time         0% fanout         0 input         0 rows
+                Sort (s_18_9_t5.O$65, s_18_9_t6.O$52) -> (s_18_9_t4.O$37, __ro2sq$55, __ro2sq$67)
+                
+              }
+            time       3.6% fanout         0 input         1 rows
+            group by read node  
+            (s_18_9_t5.O$65, s_18_9_t6.O$52, aggregate$71, __ro2sq$55, __ro2sq$67)
+            time         0% fanout         0 input         0 rows
+            Sort (__ro2sq$67, __ro2sq$55) -> (aggregate$71)
+            
+          }
+        time       5.8% fanout         0 input         1 rows
+        Key from temp (aggregate$71, __ro2sq$67, __ro2sq$55)
+        
+        
+        After code:
+        0: lo_revenue$32 :=  := artm aggregate$71
+        4: d_year$33 :=  := artm __ro2sq$67
+        8: p_brand1$34 :=  := artm __ro2sq$55
+        12: BReturn 0
+        time         0% fanout         0 input         0 rows
+        Subquery Select(lo_revenue$32, d_year$33, p_brand1$34)
+      }
+    
+    After code:
+    0: lo_revenue$136 := Call __ro2sq (lo_revenue$32)
+    5: d_year$138 := Call __ro2sq (d_year$33)
+    10: p_brand1$140 := Call __ro2sq (p_brand1$34)
+    15: BReturn 0
+    time         0% fanout         0 input         0 rows
+    Select (lo_revenue$136, d_year$138, p_brand1$140)
+  }
+
+
+ 0 msec 1% cpu,         1 rnd         0 seq         0% same seg         0% same pg 
+Compilation: 7 msec 0 reads         0% read 0 messages         0% clw

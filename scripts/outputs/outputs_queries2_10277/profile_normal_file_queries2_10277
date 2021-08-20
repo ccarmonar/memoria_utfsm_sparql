@@ -1,0 +1,52 @@
+
+  { 
+    time       2.6% fanout         1 input         1 rows
+      clear: (<V set_ctr$48 in>)
+    s# 54 49 cluster outer seq start, set no <V set_ctr$48 in>    
+    save ctx:()
+    time        97% fanout         0 input         1 rows
+    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:   1.4e-07 Fanout:         0
+    Precode:
+      0: <V __rdflit$27 x> := Call __rdflit (rdflit32005)
+      5: <V https://en.wikivoyage.org$29 r> := Call __i2idn (<tag 182 flag 1 c https://en.wikivoyage.org>)
+      10: BReturn 0
+      clear: (<V s_37_6_t2.S$32 rn>, <V https://en.wikivoyage.org$29 r>, <V __rdflit$27 x>)
+      clear on continue: (<V s_37_6_t2.S$32 rn>)$67 (31 ) $29 (31 ) 
+    s# 63 31 from DB.DBA.RDF_QUAD by RDF_QUAD_POGS    1.4e-07 rows   
+    Key RDF_QUAD_POGS  ASC  (<V s_37_6_t2.S$32 rn>)
+     P =  IRI_ID"...isPartOf"  ,  O = <v k_https://en.wikivoyage.org$67 Set69 an>
+    vector param casts: <V https://en.wikivoyage.org$29 r>-> <v k_https://en.wikivoyage.org$67 Set69 an>
+    
+    time         0% fanout         0 input         0 rows
+    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:   1.4e-07 Fanout:         0
+      clear: (<V s_37_6_t1.S$35 rn>)
+      clear on continue: (<V s_37_6_t1.S$35 rn>)$32 () 
+    s# 77 34 from DB.DBA.RDF_QUAD by RDF_QUAD_POGS    1.4e-07 rows   
+    Key RDF_QUAD_POGS  ASC  (<V s_37_6_t1.S$35 rn>)
+     inlined  P =  IRI_ID"...inLanguage"  ,  O = rdflit32005 ,  S = <V s_37_6_t2.S$32 rn>
+    
+    time         0% fanout         0 input         0 rows
+    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:         1 Fanout:         0
+      clear: (<V s_37_6_t0.S$38 rn>)
+      clear on continue: (<V s_37_6_t0.S$38 rn>)$35 () 
+    s# 87 37 from DB.DBA.RDF_QUAD by RDF_QUAD          1 rows   
+    Key RDF_QUAD  ASC  (<V s_37_6_t0.S$38 rn>)
+     inlined  P =  IRI_ID"...about"  ,  S = <V s_37_6_t1.S$35 rn>
+    
+    time         0% fanout         0 input         0 rows
+      clear: (<V var1$40 a>)$38 () 
+    s# 97 52 skip node  10  <none> <r set_ctr$48 via  Set87 Set77 Set63 Set69>
+    After code:
+      0: <V var1$40 a> := Call __id2in (<r s_37_6_t0.S$38 via  Set97>)
+      5: BReturn 0
+    time         0% fanout         0 input         0 rows
+    $40 (52 ) $48 (52 37 34 31 49 ) 
+    s# 105 42 Select (<V var1$40 a>)
+      set no: <r set_ctr$48 via  Set97 Set87 Set77 Set63 Set69>
+  }
+Warning: You might have a Cartesian product.
+
+
+
+ 0 msec 0% cpu,         4 rnd         0 seq         0% same seg         0% same pg 
+Compilation: 32 msec 2 reads   84.8133% read 0 messages         0% clw

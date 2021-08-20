@@ -1,0 +1,45 @@
+
+  { 
+    time       7.6% fanout         1 input         1 rows
+      clear: (<V set_ctr$60 in>)
+    s# 63 61 cluster outer seq start, set no <V set_ctr$60 in>    
+    save ctx:()
+    time       1.9% fanout         1 input         1 rows
+      clear: (<V set_no$30 i>)
+    s# 72 49 cluster outer seq start, set no <V set_no$30 i>    
+    save ctx:()
+    time        91% fanout         0 input         1 rows
+    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:       0.3 Fanout:         0
+      clear: (<V s_37_3_t0.O$32 an>)
+      clear on continue: (<V s_37_3_t0.O$32 an>)
+    s# 81 31 from DB.DBA.RDF_QUAD by RDF_QUAD        0.3 rows   
+    Key RDF_QUAD  ASC  (<V s_37_3_t0.O$32 an>)
+     inlined  P =  IRI_ID"...direct/P625"  ,  S =  IRI_ID"...Q142" 
+    
+    time         0% fanout         0 input         0 rows
+      clear: (<V var2$29 a>, <V var1$28 s>, <V __ro2sq$40 a>)$32 () 
+    s# 91 34 Distinct (HASH) set no <r set_no$30 via  Set81>(<V s_37_3_t0.O$32 an>)
+    After code:
+      0: <V __ro2sq$40 a> := Call __ro2sq (<r s_37_3_t0.O$32 via  Set91>)
+      5: <V var1$28 s> :=  := artm <tag 182 flag 1 c http://www.wikidata.org/entity/Q142>
+      9: <V var2$29 a> :=  := artm <V __ro2sq$40 a>
+      13: BReturn 0
+    time         0% fanout         0 input         0 rows
+      clear: (<V var2$52 a>, <V var1$50 a>)$28 (34 ) $29 (34 ) $30 (34 31 49 ) 
+    s# 101 42 Subquery Select(<V var1$28 s>, <V var2$29 a>)
+      set no: <r set_no$30 via  Set91 Set81>
+    After code:
+      0: <V var1$50 a> := Call __ro2sq (<V var1$28 s>)
+      5: <V var2$52 a> := Call __ro2sq (<V var2$29 a>)
+      10: BReturn 0
+    time         0% fanout         0 input         0 rows
+    $50 (42 ) $52 (42 ) $60 (42 34 31 49 61 ) 
+    s# 108 54 Select (<V var1$50 a>, <V var2$52 a>)
+      set no: <r set_ctr$60 via  Set101>
+  }
+Warning: You might have a Cartesian product.
+
+
+
+ 0 msec 3% cpu,         1 rnd         0 seq         0% same seg         0% same pg 
+Compilation: 1 msec 0 reads         0% read 0 messages         0% clw

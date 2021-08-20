@@ -1,0 +1,74 @@
+http://www.wikidata.org/entity/Q39059847	
+http://www.wikidata.org/entity/Q185620	
+http://www.wikidata.org/entity/Q186394	
+http://www.wikidata.org/entity/Q950380	
+http://www.wikidata.org/entity/Q4230527	
+http://www.wikidata.org/entity/Q5324680	
+http://www.wikidata.org/entity/Q12043771	
+http://www.wikidata.org/entity/Q12058335	
+http://www.wikidata.org/entity/Q16630634	
+http://www.wikidata.org/entity/Q18199526	
+http://www.wikidata.org/entity/Q36877471	
+http://www.wikidata.org/entity/Q36877509	
+http://www.wikidata.org/entity/Q81230	
+http://www.wikidata.org/entity/Q509404	
+http://www.wikidata.org/entity/Q152057	
+http://www.wikidata.org/entity/Q160746	
+http://www.wikidata.org/entity/Q169167	
+http://www.wikidata.org/entity/Q169339	
+http://www.wikidata.org/entity/Q30258601	
+http://www.wikidata.org/entity/Q201653	
+
+  { 
+    time      0.12% fanout         1 input         1 rows
+      clear: (<V set_ctr$60 in>)
+    s# 63 61 cluster outer seq start, set no <V set_ctr$60 in>    
+    save ctx:()
+      clear: (<V var1$28 rn>, <V set_no$29 i>, <V var1$52 a>)
+    s# 72 27 Subquery 27 
+      multistate set no = <V set_no$29 i>
+      { 
+        time         2% fanout       189 input         1 rows
+          clear: (<V s_37_4_t1.S$31 rn>)
+          clear on continue: (<V s_37_4_t1.S$31 rn>)
+        s# 76 30 from DB.DBA.RDF_QUAD by RDF_QUAD    1.9e+02 rows   
+        Key RDF_QUAD  ASC  (<V s_37_4_t1.S$31 rn>)
+         inlined  P =  IRI_ID"...direct/P2295" 
+        
+        time        93% fanout  0.809524 input       189 rows
+        Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:    0.0031 Fanout:      0.81
+          clear: (<V s_37_4_t0.S$34 rn>)
+          clear on continue: (<V s_37_4_t0.S$34 rn>)$31 () 
+        s# 86 33 from DB.DBA.RDF_QUAD by RDF_QUAD     0.0031 rows   
+        Key RDF_QUAD  ASC  (<V s_37_4_t0.S$34 rn>)
+         inlined  P =  IRI_ID"...direct/P31"  ,  S = <V s_37_4_t1.S$31 rn> ,  O =  IRI_ID"...Q4830453" 
+        
+        time       4.6% fanout  0.915033 input       153 rows
+        
+        s# 96 36 Distinct (HASH) set no <r set_no$29 via  Set86 Set76>(<V s_37_4_t0.S$34 rn>)
+        time      0.26% fanout         1 input       140 rows
+          clear: (<V var1$28 rn>)$34 (36 ) 
+        s# 104 50 skip node  100000  <none> <r set_no$29 via  Set96 Set86 Set76>
+        After code:
+          0: <V var1$28 rn> :=  := artm <r s_37_4_t0.S$34 via  Set104 Set96>
+          4: BReturn 0
+        time     0.039% fanout         0 input       140 rows
+        
+        s# 72 42 Subquery Select(<V var1$28 rn>)
+          set no: <r set_no$29 via  Set104 Set96 Set86 Set76>
+      }
+    
+    After code:
+      0: <V var1$52 a> := Call __ro2sq (<V var1$28 rn>)
+      5: BReturn 0
+    time     0.028% fanout         0 input       140 rows
+    $52 (27 ) $60 (27 61 ) 
+    s# 120 54 Select (<V var1$52 a>)
+      set no: <r set_ctr$60 via  Set72>
+  }
+Warning: You might have a Cartesian product.
+
+
+
+ 4 msec 71% cpu,       318 rnd       194 seq   32.6019% same seg   26.0188% same pg 
+Compilation: 1 msec 0 reads         0% read 0 messages         0% clw

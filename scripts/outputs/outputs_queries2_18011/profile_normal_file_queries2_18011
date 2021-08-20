@@ -1,0 +1,136 @@
+		
+
+  { 
+    time    0.0059% fanout         1 input         1 rows
+      clear: (<V set_ctr$101 in>)
+    s# 104 102 cluster outer seq start, set no <V set_ctr$101 in>    
+    save ctx:()
+    time   0.00082% fanout         1 input         1 rows
+      clear: (<V set_no$30 i>)
+    s# 113 94 cluster outer seq start, set no <V set_no$30 i>    
+    save ctx:()
+      clear: (<V __dummy_retval$32 x>, <V set_no$33 i>)
+    s# 122 31 Subquery 31 
+      multistate set no = <V set_no$33 i>
+      { 
+        
+        s# 126 34 Union
+          { 
+              clear: (<V __dummy_retval$36 x>, <V set_no$37 i>, <V __dummy_retval$32 x>)
+            s# 129 35 Subquery 35 
+              multistate set no = <V set_no$37 i>
+              { 
+                
+                s# 133 38 Union
+                  { 
+                    time     0.068% fanout         0 input         1 rows
+                    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:       0.3 Fanout:         0
+                    
+                    s# 136 39 from DB.DBA.RDF_QUAD by RDF_QUAD_POGS        0.3 rows   
+                    Key RDF_QUAD_POGS  ASC  ()
+                     P =  IRI_ID"...direct/P1792"  ,  O =  IRI_ID"...Q13972" 
+                    
+                    time         0% fanout         0 input         0 rows
+                    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:   3.6e+03 Fanout:         0
+                      clear: (<V __dummy_retval$36 x>)
+                      clear on continue: (<V __dummy_retval$36 x>)
+                    s# 145 41 from DB.DBA.RDF_QUAD by RDF_QUAD_POGS    3.6e+03 rows   
+                    Key RDF_QUAD_POGS  ASC  ()
+                     P =  IRI_ID"...direct/P106"  ,  O =  IRI_ID"...Q33231" 
+                    
+                    After code:
+                      0: <V __dummy_retval$36 x> :=  := artm <DB_NULL>
+                      4: BReturn 0
+                    time         0% fanout         0 input         0 rows
+                    
+                    s# 129 43 Subquery Select(<V __dummy_retval$36 x>)
+                      set no: <r set_no$37 via  Set145 Set136>
+                  }
+                  { 
+                    time     0.028% fanout        98 input         1 rows
+                    
+                    s# 162 50 from DB.DBA.RDF_QUAD by RDF_QUAD_POGS         98 rows   
+                    Key RDF_QUAD_POGS  ASC  ()
+                     P =  IRI_ID"...direct/P19"  ,  O =  IRI_ID"...Q13972" 
+                    
+                    time        22% fanout      3563 input        98 rows
+                      clear: (<V __dummy_retval$36 x>)
+                      clear on continue: (<V __dummy_retval$36 x>)
+                    s# 171 52 from DB.DBA.RDF_QUAD by RDF_QUAD_POGS    3.6e+03 rows   
+                    Key RDF_QUAD_POGS  ASC  ()
+                     P =  IRI_ID"...direct/P106"  ,  O =  IRI_ID"...Q33231" 
+                    
+                    After code:
+                      0: <V __dummy_retval$36 x> :=  := artm <DB_NULL>
+                      4: BReturn 0
+                    time     0.081% fanout         0 input    349174 rows
+                    
+                    Subquery Select(<V __dummy_retval$36 x>)
+                      set no: <r set_no$37 via  Set171 Set162>
+                  }
+              }
+            
+            After code:
+              0: <V __dummy_retval$32 x> :=  := artm <V __dummy_retval$36 x>
+              4: BReturn 0
+            time     0.055% fanout         0 input    349174 rows
+            
+            s# 122 62 Subquery Select(<V __dummy_retval$32 x>)
+              set no: <r set_no$33 via  Set129>
+          }
+          { 
+            time      0.03% fanout        35 input         1 rows
+            
+            s# 195 69 from DB.DBA.RDF_QUAD by RDF_QUAD_POGS         35 rows   
+            Key RDF_QUAD_POGS  ASC  ()
+             P =  IRI_ID"...direct/P20"  ,  O =  IRI_ID"...Q13972" 
+            
+            time       7.6% fanout      3563 input        35 rows
+              clear: (<V __dummy_retval$32 x>)
+              clear on continue: (<V __dummy_retval$32 x>)
+            s# 204 71 from DB.DBA.RDF_QUAD by RDF_QUAD_POGS    3.6e+03 rows   
+            Key RDF_QUAD_POGS  ASC  ()
+             P =  IRI_ID"...direct/P106"  ,  O =  IRI_ID"...Q33231" 
+            
+            After code:
+              0: <V __dummy_retval$32 x> :=  := artm <DB_NULL>
+              4: BReturn 0
+            time     0.025% fanout         0 input    124705 rows
+            $32 () 
+            Subquery Select(<V __dummy_retval$32 x>)
+              set no: <r set_no$33 via  Set204 Set195>
+          }
+      }
+    
+    time        70% fanout 2.11024e-06 input    473879 rows
+      clear: (<V var2$29 x>, <V var1$28 x>)
+    s# 220 81 Distinct (HASH) set no <r set_no$30 via  Set122>(<DB_NULL>)
+    After code:
+      0: <V var1$28 x> :=  := artm <DB_NULL>
+      4: <V var2$29 x> :=  := artm <DB_NULL>
+      8: BReturn 0
+    time    0.0021% fanout         1 input         1 rows
+    $30 (81 31 94 ) 
+    s# 230 87 Subquery Select(<V var1$28 x>, <V var2$29 x>)
+      set no: <r set_no$30 via  Set220 Set122>
+    time    0.0027% fanout         0 input         1 rows
+    $101 (87 81 31 94 102 ) $28 (87 81 ) $29 (87 81 ) 
+    s# 237 95 Select (<V var1$28 x>, <V var2$29 x>)
+      set no: <r set_ctr$101 via  Set230>
+  }
+Warning: You might have a Cartesian product.
+
+Warning: You might have a Cartesian product.
+
+Warning: You might have a Cartesian product.
+
+Warning: You might have a Cartesian product.
+
+Warning: You might have a Cartesian product.
+
+Warning: You might have a Cartesian product.
+
+
+
+ 45 msec 62% cpu,       136 rnd    473404 seq         0% same seg   95.6204% same pg 
+Compilation: 27 msec 1 reads   34.2749% read 0 messages         0% clw

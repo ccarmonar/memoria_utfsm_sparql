@@ -1,0 +1,47 @@
+	POINT(23.950277777778 49.7175)		http://www.wikidata.org/entity/Q6581097	
+	POINT(19.203611111111 69.304722222222)		http://www.wikidata.org/entity/Q6581072	
+	POINT(-2.411667 43.032778)		http://www.wikidata.org/entity/Q6581097	
+	POINT(13.411111111111 50.462777777778)		http://www.wikidata.org/entity/Q6581097	
+	POINT(12.333888888889 64.724166666667)		http://www.wikidata.org/entity/Q6581072	
+	POINT(-0.68916666666667 42.276666666667)		http://www.wikidata.org/entity/Q6581097	
+	POINT(12.633709213451 49.795398066933)		http://www.wikidata.org/entity/Q6581097	
+	POINT(3.2994444444444 48.558888888889)		http://www.wikidata.org/entity/Q6581097	
+	POINT(4.86 43.964166666667)		http://www.wikidata.org/entity/Q6581097	
+	POINT(-4.7016666666667 42.231944444444)		http://www.wikidata.org/entity/Q6581097	
+	POINT(41.85 41.133333333333)		http://www.wikidata.org/entity/Q6581097	
+	POINT(11 51)		http://www.wikidata.org/entity/Q6581097	
+	POINT(12.66666667 54.16666667)		http://www.wikidata.org/entity/Q6581097	
+	POINT(11.66666667 53.5)		http://www.wikidata.org/entity/Q6581097	
+	POINT(6.1 46.133333333333)		http://www.wikidata.org/entity/Q6581097	
+	POINT(6.3166666666667 46.5)		http://www.wikidata.org/entity/Q6581097	
+	POINT(6.3666666666667 46.5)		http://www.wikidata.org/entity/Q6581097	
+	POINT(6.8666666666667 46.683333333333)		http://www.wikidata.org/entity/Q6581097	
+	POINT(6.99348 46.29731)		http://www.wikidata.org/entity/Q6581097	
+	POINT(6.45 46.683333333333)		http://www.wikidata.org/entity/Q6581072	
+
+  { 
+    time      0.23% fanout         1 input         1 rows
+    time       6.3% fanout      1000 input         1 rows
+    RDF_QUAD_POGS   3.4e+03 rows(s_37_6_t0.O$29, s_37_6_t0.S$28)
+     inlined  P =  IRI_ID"...direct/P6" 
+    time        39% fanout     0.099 input      1000 rows
+    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:         1 Fanout:     0.099
+    RDF_QUAD         1 rows(s_37_6_t2.O$32)
+     inlined  P =  IRI_ID"...direct/P21"  ,  S = k_s_37_6_t0.O$74
+    time        54% fanout  0.353535 input        99 rows
+    Precode:
+      0: var4$34 := Call __ro2sq (s_37_6_t2.O$32)
+      5: BReturn 0
+    RDF_QUAD       1.1 rows(s_37_6_t1.O$37)
+     inlined  P =  IRI_ID"...direct/P625"  ,  S = k_s_37_6_t0.S$88
+    
+    After code:
+    0: var2$39 := Call __ro2sq (s_37_6_t1.O$37)
+    5: BReturn 0
+    time     0.041% fanout         0 input        35 rows
+    Select (<DB_NULL>, var2$39, <DB_NULL>, var4$34)
+  }
+
+
+ 1 msec 45% cpu,      1135 rnd       998 seq   95.6866% same seg   1.93662% same pg 
+Compilation: 2 msec 0 reads         0% read 0 messages         0% clw

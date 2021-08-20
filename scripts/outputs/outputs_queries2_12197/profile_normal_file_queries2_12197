@@ -1,0 +1,78 @@
+	8668	
+
+  { 
+    time      0.18% fanout         1 input         1 rows
+      clear: (<V set_ctr$96 in>)
+    s# 99 97 cluster outer seq start, set no <V set_ctr$96 in>    
+    save ctx:()
+      clear: (<V var3$29 in>, <V var1Label$28 x>, <V set_no$30 i>, <V var3$88 a>, <V var1Label$86 a>)
+    s# 108 27 Subquery 27 
+      multistate set no = <V set_no$30 i>
+      { 
+        time     0.093% fanout         1 input         1 rows
+        
+        s# 158 60 Fork 60 {  
+                
+            save ctx:()
+              set no = <V set_no$30 i> array  <none>  save: 
+            time     0.099% fanout         1 input         1 rows
+            
+            s# 133 36 Fork 36 {  
+                    
+                save ctx:()
+                  set no = <V set_no$30 i> array  <none>  save: 
+                time        43% fanout      8668 input         1 rows
+                  clear: (<V s_37_2_t0.S$32 rn>, <V $38 x>, <V isnotnull$34 in>)
+                  clear on continue: (<V s_37_2_t0.S$32 rn>, <V $38 x>, <V isnotnull$34 in>)
+                s# 114 31 from DB.DBA.RDF_QUAD by RDF_QUAD    8.7e+03 rows Parallel, tail cost   1.3e+03   
+                Key RDF_QUAD  ASC  (<V s_37_2_t0.S$32 rn>)
+                 inlined  P =  IRI_ID"...direct/P53" 
+                copy on branch $30 $0 $0 $0 sets: 99 
+                
+                After code:
+                  0: <V isnotnull$34 in> := Call isnotnull (<V s_37_2_t0.S$32 rn>)
+                  5: <V $38 x> :=  := artm <DB_NULL>
+                  9: BReturn 0
+                time        51% fanout         0 input      8668 rows
+                $34 () 
+                s# 125 37 Sort (HASH) set no <r set_no$30 via  Set114>(<V $38 x>) -> (<V isnotnull$34 in>) up to         1 distinct
+                
+            }
+            time       4.8% fanout         1 input         1 rows
+              clear: (<V aggregate$39 in>, <V $38 x>)
+              clear on continue: (<V aggregate$39 in>, <V $38 x>)
+            s# 140 45 group by read node  
+            (<V $38 x>, <V aggregate$39 in>)
+            time      0.56% fanout         0 input         1 rows
+            
+            s# 150 61 Sort (HASH) set no <r set_no$30 via  Set140>(TOP  100  ) (<V aggregate$39 in>) -> (<V $38 x>)
+            
+        }
+        time      0.29% fanout         1 input         1 rows
+          clear: (<V aggregate$39 in>, <V $38 x>, <V var3$29 in>, <V var1Label$28 x>)
+          clear on continue: (<V aggregate$39 in>, <V $38 x>, <V var3$29 in>, <V var1Label$28 x>)
+        s# 165 66 top order by node (<V $38 x>, <V aggregate$39 in>)
+        set no <V set_no$30 i>
+        After code:
+          0: <V var1Label$28 x> :=  := artm <V $38 x>
+          4: <V var3$29 in> :=  := artm <V aggregate$39 in>
+          8: BReturn 0
+        time     0.057% fanout         0 input         1 rows
+        
+        s# 108 79 Subquery Select(<V var1Label$28 x>, <V var3$29 in>)
+          set no: <r set_no$30 via  Set165>
+      }
+    
+    After code:
+      0: <V var1Label$86 a> := Call __ro2sq (<V var1Label$28 x>)
+      5: <V var3$88 a> := Call __ro2sq (<V var3$29 in>)
+      10: BReturn 0
+    time     0.045% fanout         0 input         1 rows
+    $96 (27 97 ) $86 (27 ) $88 (27 ) 
+    s# 184 90 Select (<V var1Label$86 a>, <V var3$88 a>)
+      set no: <r set_ctr$96 via  Set108>
+  }
+
+
+ 2 msec 42% cpu,         1 rnd      8659 seq         0% same seg         0% same pg 
+Compilation: 2 msec 0 reads         0% read 0 messages         0% clw

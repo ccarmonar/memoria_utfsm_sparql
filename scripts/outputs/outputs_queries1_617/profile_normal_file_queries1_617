@@ -1,0 +1,50 @@
+
+  { 
+    time        11% fanout         1 input         1 rows
+      clear: (<V set_ctr$50 in>)
+    s# 53 51 cluster outer seq start, set no <V set_ctr$50 in>    
+    save ctx:()
+    time        89% fanout         0 input         1 rows
+    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:   1.4e-07 Fanout:         0
+      clear: (<V s_37_5_t1.O$28 an>)
+      clear on continue: (<V s_37_5_t1.O$28 an>)
+    s# 62 27 from DB.DBA.RDF_QUAD by RDF_QUAD    1.4e-07 rows   
+    Key RDF_QUAD  ASC  (<V s_37_5_t1.O$28 an>)
+     inlined  P =  IRI_ID"...wdt:P19"  ,  S =  IRI_ID"...Q9068" 
+    
+    time         0% fanout         0 input         0 rows
+    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:         2 Fanout:         0
+    Precode:
+      0: <V var4Label$30 a> := Call __ro2sq (<V s_37_5_t1.O$28 an>)
+      5: BReturn 0
+      clear: (<V s_37_5_t0.P$33 rn>, <V var4Label$30 a>)
+      clear on continue: (<V s_37_5_t0.P$33 rn>)$28 () 
+    s# 72 32 from DB.DBA.RDF_QUAD by RDF_QUAD_SP          2 rows   
+    Key RDF_QUAD_SP  ASC  (<V s_37_5_t0.P$33 rn>)
+     inlined  S =  IRI_ID"...Q9068" 
+    
+    time         0% fanout         0 input         0 rows
+    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:       1.2 Fanout:         0
+      clear: (<V s_37_5_t0.O$37 an>, <V var3$42 a>, <V var2$40 a>)
+      clear on continue: (<V s_37_5_t0.O$37 an>, <V var3$42 a>, <V var2$40 a>)$33 () 
+    s# 82 36 from DB.DBA.RDF_QUAD by RDF_QUAD        1.2 rows   
+    Key RDF_QUAD  ASC  (<V s_37_5_t0.O$37 an>)
+     inlined  P = <V s_37_5_t0.P$33 rn> ,  S =  IRI_ID"...Q9068" 
+    
+    After code:
+      0: <V var2$40 a> := Call __id2in (<r s_37_5_t0.P$33 via  Set82>)
+      5: <V var3$42 a> := Call __ro2sq (<V s_37_5_t0.O$37 an>)
+      10: BReturn 0
+    time         0% fanout         0 input         0 rows
+    $40 () $42 () $50 (36 32 27 51 ) $30 (36 32 ) 
+    s# 92 44 Select (<tag 182 flag 1 c http://www.wikidata.org/entity/Q9068>, <V var2$40 a>, <V var3$42 a>, <r var4Label$30 via  Set82 Set72>)
+      set no: <r set_ctr$50 via  Set82 Set72 Set62>
+  }
+Warning: You might have a Cartesian product.
+
+Warning: You might have a Cartesian product.
+
+
+
+ 0 msec 0% cpu,         1 rnd         0 seq         0% same seg         0% same pg 
+Compilation: 121 msec 1 reads   12.3889% read 0 messages         0% clw

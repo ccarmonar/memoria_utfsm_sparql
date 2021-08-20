@@ -1,0 +1,13 @@
+ SELECT  __ro2sq ("s_12_4_rbc"."s") AS "s", "s_12_4_rbc"."sLocalname" AS "sLocalname", "s_12_4_rbc"."sNamespace" AS "sNamespace" FROM (SELECT DISTINCT "s_12_3"."s" AS "s",
+    "s_12_3"."sLocalname" AS "sLocalname",
+    "s_12_3"."sNamespace" AS "sNamespace"
+  FROM (
+     SELECT "s_12_2_t0"."S" AS "s",
+        "s_12_2_t0"."P" AS "p",
+        "s_12_2_t0"."O" AS "o",
+         DB.DBA."http://jena.hpl.hp.com/ARQ/function#localname" (  __id2in ( "s_12_2_t0"."S")) AS "sLocalname",
+         DB.DBA."http://jena.hpl.hp.com/ARQ/function#namespace" (  __id2in ( "s_12_2_t0"."S")) AS "sNamespace"
+      FROM DB.DBA.RDF_QUAD AS "s_12_2_t0"
+OPTION (QUIETCAST)
+      ) AS "s_12_3"
+OPTION (QUIETCAST)) AS "s_12_4_rbc"

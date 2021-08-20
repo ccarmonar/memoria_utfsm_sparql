@@ -1,0 +1,86 @@
+				
+
+  { 
+    time       1.3% fanout         1 input         1 rows
+    time      0.35% fanout         1 input         1 rows
+    time      0.33% fanout         1 input         1 rows
+    END Node
+    time      0.32% fanout         1 input         1 rows
+    outer {
+        time        23% fanout         0 input         1 rows
+        Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:         1 Fanout:         0
+        RDF_QUAD         1 rows(t10.O$34)
+         inlined  P =  IRI_ID"...direct/P585"  ,  S =  IRI_ID"...Q16684898" 
+        time         0% fanout         0 input         0 rows
+      } /* end of outer */
+    set_ctr$38
+     out: (t10.O$34)
+     shadow: ( <none> )
+    time      0.45% fanout         1 input         1 rows
+    outer {
+        time       9.2% fanout         0 input         1 rows
+        Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:         1 Fanout:         0
+        RDF_QUAD         1 rows(t8.O$48)
+         inlined  P =  IRI_ID"...direct/P625"  ,  S =  IRI_ID"...Q16684898" 
+        time         0% fanout         0 input         0 rows
+      } /* end of outer */
+    set_ctr$51
+     out: (t8.O$48)
+     shadow: ( <none> )
+    time      0.38% fanout         1 input         1 rows
+    outer {
+        time       7.1% fanout         0 input         1 rows
+        Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:         1 Fanout:         0
+        RDF_QUAD         1 rows(t6.O$61)
+         inlined  P =  IRI_ID"...direct/P131"  ,  S =  IRI_ID"...Q16684898" 
+        time         0% fanout         0 input         0 rows
+      } /* end of outer */
+    set_ctr$64
+     out: (t6.O$61)
+     shadow: ( <none> )
+    time      0.42% fanout         1 input         1 rows
+    outer {
+        time       9.6% fanout         0 input         1 rows
+        Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:         1 Fanout:         0
+        RDF_QUAD         1 rows(t4.O$74)
+         inlined  P =  IRI_ID"...direct/P31"  ,  S =  IRI_ID"...Q16684898" 
+        time         0% fanout         0 input         0 rows
+      } /* end of outer */
+    set_ctr$77
+     out: (t4.O$74)
+     shadow: ( <none> )
+    Subquery 86 
+      { 
+        time       1.2% fanout         1 input         1 rows
+        Precode:
+          0: __stub$87 :=  := artm  1 
+          4: BReturn 0
+        END Node
+        time       0.4% fanout         0 input         1 rows
+        Subquery Select(__stub$87)
+      }
+    time        44% fanout         1 input         1 rows
+    Distinct (t4.O$74, t6.O$61, t8.O$48, t10.O$34)
+    
+    After code:
+    0: var1$28 :=  := artm t4.O$74
+    4: var2$29 :=  := artm t6.O$61
+    8: var3$30 :=  := artm t8.O$48
+    12: var4$31 :=  := artm t10.O$34
+    16: BReturn 0
+    time       2.2% fanout         1 input         1 rows
+    Subquery Select(var1$28, var2$29, var3$30, var4$31)
+    
+    After code:
+    0: var1$111 := Call __ro2sq (var1$28)
+    5: var2$113 := Call __ro2sq (var2$29)
+    10: var3$115 := Call __ro2sq (var3$30)
+    15: var4$117 := Call __ro2sq (var4$31)
+    20: BReturn 0
+    time      0.33% fanout         0 input         1 rows
+    Select (var1$111, var2$113, var3$115, var4$117)
+  }
+
+
+ 1 msec 9% cpu,         4 rnd         0 seq         0% same seg         0% same pg 
+Compilation: 2 msec 0 reads         0% read 0 messages         0% clw

@@ -1,0 +1,44 @@
+http://www.wikidata.org/prop/direct/P138	
+
+  { 
+    time     0.068% fanout         1 input         1 rows
+    time     0.019% fanout         1 input         1 rows
+    time       1.2% fanout        90 input         1 rows
+    RDF_QUAD        90 rows(s_37_6_t1.O$31)
+     inlined  P =  IRI_ID"...direct/P1557" 
+    time        22% fanout   3.51111 input        90 rows
+    RDF_QUAD_OP       2.8 rows(s_37_6_t2.P$35, s_37_6_t2.O$34)
+     inlined  O = cast$100
+    time       1.1% fanout  0.712025 input       316 rows
+    END Node
+    After test:
+    0: if (s_37_6_t2.P$35 =  IRI_ID"...direct/P1557" ) then 9 else 4 unkn 9
+    4: if (s_37_6_t2.P$35 =  IRI_ID"...direct/P5236" ) then 9 else 8 unkn 9
+    8: BReturn 1
+    9: BReturn 0
+    time        41% fanout   9.51556 input       225 rows
+    RDF_QUAD_POGS       1.2 rows()
+     P = k_s_37_6_t2.P$129 ,  O = k_s_37_6_t1.O$133
+    time        26% fanout   0.59972 input      2141 rows
+    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:        39 Fanout:       0.6
+    RDF_QUAD_POGS        39 rows()
+     P =  IRI_ID"...direct/P5236"  ,  O = k_s_37_6_t1.O$144
+    time       6.1% fanout 0.000778816 input      1284 rows
+    Distinct (s_37_6_t2.P$35)
+    
+    After code:
+    0: p2$28 :=  := artm s_37_6_t2.P$35
+    4: BReturn 0
+    time       1.4% fanout         1 input         1 rows
+    Subquery Select(p2$28)
+    
+    After code:
+    0: p2$57 := Call __ro2sq (p2$28)
+    5: BReturn 0
+    time     0.024% fanout         0 input         1 rows
+    Select (p2$57)
+  }
+
+
+ 6 msec 69% cpu,      2456 rnd      3509 seq   92.7961% same seg    4.4363% same pg 
+Compilation: 1 msec 0 reads         0% read 0 messages         0% clw

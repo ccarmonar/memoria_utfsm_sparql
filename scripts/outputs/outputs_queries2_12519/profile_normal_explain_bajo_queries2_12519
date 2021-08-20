@@ -1,0 +1,49 @@
+http://www.wikidata.org/entity/Q2609695		
+http://www.wikidata.org/entity/Q2849615		
+http://www.wikidata.org/entity/Q2859328		
+http://www.wikidata.org/entity/Q2924521		
+http://www.wikidata.org/entity/Q2982964		
+http://www.wikidata.org/entity/Q3237412		
+http://www.wikidata.org/entity/Q15898526		
+http://www.wikidata.org/entity/Q15904190		
+http://www.wikidata.org/entity/Q15911448		
+http://www.wikidata.org/entity/Q16001187		
+http://www.wikidata.org/entity/Q16001193		
+http://www.wikidata.org/entity/Q16001205		
+http://www.wikidata.org/entity/Q16001239		
+http://www.wikidata.org/entity/Q16001251		
+http://www.wikidata.org/entity/Q16001287		
+http://www.wikidata.org/entity/Q16001304		
+http://www.wikidata.org/entity/Q16001320		
+http://www.wikidata.org/entity/Q16001350		
+http://www.wikidata.org/entity/Q16001409		
+http://www.wikidata.org/entity/Q16001422		
+
+  { 
+    time      0.96% fanout         1 input         1 rows
+    time        20% fanout       342 input         1 rows
+    RDF_QUAD_POGS   3.4e+02 rows(t1.S$28)
+     P =  IRI_ID"...direct/P31"  ,  O =  IRI_ID"...Q33384" 
+    time       1.7% fanout         1 input       342 rows
+    outer {
+        time        77% fanout         0 input       342 rows
+        Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:         1 Fanout:         0
+        RDF_QUAD         1 rows(t3.O$31)
+         inlined  P =  IRI_ID"...direct/P301"  ,  S = k_t1.S$88
+        time         0% fanout         0 input         0 rows
+      } /* end of outer */
+    set_ctr$36
+     out: (t3.O$31)
+     shadow: ( <none> )
+    
+    After code:
+    0: var1$45 := Call __id2in (t1.S$28)
+    5: var2$47 := Call __ro2sq (t3.O$31)
+    10: BReturn 0
+    time      0.35% fanout         0 input       342 rows
+    Select (var1$45, var2$47)
+  }
+
+
+ 1 msec 51% cpu,       343 rnd       341 seq   97.6744% same seg   1.45349% same pg 
+Compilation: 1 msec 0 reads         0% read 0 messages         0% clw

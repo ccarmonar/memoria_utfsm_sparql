@@ -1,0 +1,51 @@
+
+  { 
+    time     0.057% fanout         1 input         1 rows
+      clear: (<V set_ctr$50 in>)
+    s# 53 51 cluster outer seq start, set no <V set_ctr$50 in>    
+    save ctx:()
+    time       2.5% fanout      1033 input         1 rows
+      clear: (<V s_37_6_t0.O$28 an>, <V s_37_6_t0.S$29 rn>)
+      clear on continue: (<V s_37_6_t0.O$28 an>, <V s_37_6_t0.S$29 rn>)
+    s# 62 27 from DB.DBA.RDF_QUAD by RDF_QUAD      1e+03 rows   
+    Key RDF_QUAD  ASC  (<V s_37_6_t0.S$29 rn>, <V s_37_6_t0.O$28 an>)
+     inlined  P =  IRI_ID"...direct/P220" 
+    
+    time        87% fanout  0.197483 input      1033 rows
+    Precode:
+      0: <V var1$31 a> := Call __ro2sq (<V s_37_6_t0.O$28 an>)
+      5: BReturn 0
+      clear: (<V s_37_6_t1.O$34 an>, <V s_37_6_t1.S$35 rn>, <V var1$31 a>)
+      clear on continue: (<V s_37_6_t1.S$35 rn>, <V s_37_6_t1.O$34 an>)$28 () 
+    s# 73 33 from DB.DBA.RDF_QUAD by RDF_QUAD          1 rows   
+    Key RDF_QUAD  ASC  (<V s_37_6_t1.S$35 rn>, <V s_37_6_t1.O$34 an>)
+     inlined  P =  IRI_ID"...direct/P1705"  ,  S = <V s_37_6_t0.S$29 rn>
+    
+    time       9.9% fanout         0 input       204 rows
+    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:       1.4 Fanout:         0
+    Precode:
+      0: <V var2Label$37 a> := Call __ro2sq (<V s_37_6_t1.O$34 an>)
+      5: BReturn 0
+      clear: (<V s_37_6_t2.O$40 an>, <V var2Label$37 a>, <V var3$42 a>)
+      clear on continue: (<V var3$42 a>, <V s_37_6_t2.O$40 an>)$34 () $88 (39 ) $29 (33 ) 
+    s# 84 39 from DB.DBA.RDF_QUAD by RDF_QUAD        1.4 rows   
+    Key RDF_QUAD  ASC  (<V s_37_6_t2.O$40 an>)
+     inlined  P =  IRI_ID"...direct/P37"  ,  S = <v k_s_37_6_t0.S$88 Set90 rn>
+    vector param casts: <r s_37_6_t0.S$29 via  Set73>-> <v k_s_37_6_t0.S$88 Set90 rn>
+    
+    After code:
+      0: <V var3$42 a> := Call __ro2sq (<V s_37_6_t2.O$40 an>)
+      5: BReturn 0
+    time         0% fanout         0 input         0 rows
+    $31 (39 33 ) $37 (39 ) $42 () $50 (39 33 27 51 ) 
+    s# 98 44 Select (<r var1$31 via  Set84 Set90 Set73>, <r var2Label$37 via  Set84 Set90>, <V var3$42 a>)
+      set no: <r set_ctr$50 via  Set84 Set90 Set73 Set62>
+  }
+Warning: You might have a Cartesian product.
+
+Warning: You might have a Cartesian product.
+
+
+
+ 6 msec 77% cpu,      2475 rnd      1121 seq   49.6769% same seg   15.3069% same pg 
+Compilation: 2 msec 0 reads         0% read 0 messages         0% clw

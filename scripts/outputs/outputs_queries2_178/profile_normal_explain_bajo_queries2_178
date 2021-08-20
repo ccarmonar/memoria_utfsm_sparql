@@ -1,0 +1,41 @@
+Error: 23000: SR197: Non unique primary key on DB.DBA.RDF_OBJ.
+  { 
+    time     1e+02% fanout         1 input         1 rows
+    time         0% fanout         0 input         1 rows
+    Precode:
+      0: DB.DBA.RDF_OBJ_OF_SQLVAL$27 := Call DB.DBA.RDF_OBJ_OF_SQLVAL (<c string1>)
+      7: DB.DBA.RDF_OBJ_OF_SQLVAL$29 := Call DB.DBA.RDF_OBJ_OF_SQLVAL (<c string2>)
+      14: BReturn 0
+    time         0% fanout         0 input         0 rows
+    in iterates in_iter$35  over (DB.DBA.RDF_OBJ_OF_SQLVAL$27, DB.DBA.RDF_OBJ_OF_SQLVAL$29)
+    time         0% fanout         0 input         0 rows
+    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:      0.59 Fanout:         0
+    RDF_QUAD_POGS      0.59 rows(s_37_3_t0.O$40, s_37_3_t0.S$39)
+     P =  IRI_ID"...direct/P356"  ,  O = k_in_iter$106
+    time         0% fanout         0 input         0 rows
+    END Node
+    After test:
+    0: isiri_id$42 := Call isiri_id (s_37_3_t0.O$40)
+    5: temp$44 := artm  1  - isiri_id$42
+    9: if ( 0  = temp$44) then 14 else 13 unkn 14
+    13: BReturn 1
+    14: BReturn 0
+    time         0% fanout         0 input         0 rows
+    Distinct (s_37_3_t0.S$39)
+    
+    After code:
+    0: var1$32 :=  := artm s_37_3_t0.S$39
+    4: BReturn 0
+    time         0% fanout         0 input         0 rows
+    Subquery Select(var1$32)
+    
+    After code:
+    0: var1$60 := Call __ro2sq (var1$32)
+    5: BReturn 0
+    time         0% fanout         0 input         0 rows
+    Select (var1$60)
+  }
+
+
+ 0 msec 15% cpu,         3 rnd         0 seq         0% same seg         0% same pg 
+Compilation: 2 msec 0 reads         0% read 0 messages         0% clw

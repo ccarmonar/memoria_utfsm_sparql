@@ -1,0 +1,72 @@
+64773	
+
+  { 
+    time    0.0075% fanout         1 input         1 rows
+      clear: (<V set_ctr$52 in>)
+    s# 70 53 cluster outer seq start, set no <V set_ctr$52 in>    
+    save ctx:()
+    time    0.0062% fanout         1 input         1 rows
+    
+    s# 131 54 Fork 54 {  
+          clear: (<V var1$28 rn>, <V set_no$29 i>)
+        s# 80 27 Subquery 27 
+          multistate set no = <V set_no$29 i>
+          { 
+            
+            s# 84 30 Union
+              { 
+                time       3.3% fanout     65032 input         1 rows
+                  clear: (<V s_37_2_t0-u9.S$32 rn>, <V var1$28 rn>)
+                  clear on continue: (<V s_37_2_t0-u9.S$32 rn>, <V var1$28 rn>)
+                s# 87 31 from DB.DBA.RDF_QUAD by RDF_QUAD_POGS    6.5e+04 rows   
+                Key RDF_QUAD_POGS  ASC  (<V s_37_2_t0-u9.S$32 rn>)
+                 P =  IRI_ID"...direct/P17"  ,  O =  IRI_ID"...Q183" 
+                
+                After code:
+                  0: <V var1$28 rn> :=  := artm <V s_37_2_t0-u9.S$32 rn>
+                  4: BReturn 0
+                time        97% fanout         0 input     65032 rows
+                Precode:
+                  0:  count <V var2$55 in><V var1$28 rn>set no <r set_ctr$52 via  Set87>distinct via hash area <V DISTINCT HASH$59 x>
+                  5: BReturn 0
+                
+                s# 100 60 END Node
+              }
+              { 
+                time     0.062% fanout        79 input         1 rows
+                  clear: (<V s_37_5_t1.S$42 rn>, <V var1$28 rn>)
+                  clear on continue: (<V s_37_5_t1.S$42 rn>, <V var1$28 rn>)
+                s# 107 41 from DB.DBA.RDF_QUAD by RDF_QUAD_POGS         79 rows   
+                Key RDF_QUAD_POGS  ASC  (<V s_37_5_t1.S$42 rn>)
+                 P =  IRI_ID"...direct/P131"  ,  O =  IRI_ID"...Q183" 
+                
+                After code:
+                  0: <V var1$28 rn> :=  := artm <V s_37_5_t1.S$42 rn>
+                  4: BReturn 0
+                time     0.051% fanout         0 input        79 rows
+                Precode:
+                  0:  count <V var2$55 in><V var1$28 rn>set no <r set_ctr$52 via  Set107>distinct via hash area <V DISTINCT HASH$59 x>
+                  5: BReturn 0
+                
+                s# 117 60 END Node
+              }
+          }
+        
+        time         0% fanout         0 input         0 rows
+        Precode:
+          0:  count <V var2$55 in><V var1$28 rn>set no <r set_ctr$52 via  Set80>distinct via hash area <V DISTINCT HASH$59 x>
+          5: BReturn 0
+        $28 (27 ) 
+        s# 124 60 END Node
+    }
+    time     0.002% fanout         0 input         1 rows
+    $52 (54 53 ) $55 (63 ) 
+    s# 138 63 Select (<V var2$55 in>)
+      set no: <V set_ctr$52 in>
+  }
+Warning: You might have a Cartesian product.
+
+
+
+ 45 msec 56% cpu,         2 rnd     65040 seq         0% same seg         0% same pg 
+Compilation: 2 msec 0 reads         0% read 0 messages         0% clw

@@ -1,0 +1,19 @@
+ SELECT  "s_37_6_rbc"."var1Label" AS "var1Label" FROM (SELECT DISTINCT NULL /* due to conflict on var1Label */ AS "var1Label"
+  FROM DB.DBA.RDF_QUAD AS "s_37_6_t0"
+    INNER JOIN DB.DBA.RDF_QUAD AS "s_37_6_t1"
+    ON (
+      "s_37_6_t0"."S" = "s_37_6_t1"."S")
+    INNER JOIN DB.DBA.RDF_QUAD AS "s_37_6_t2"
+    ON (
+      "s_37_6_t1"."O" = "s_37_6_t2"."S")
+  WHERE
+    "s_37_6_t0"."P" = __i2idn ( __bft( 'http://www.wikidata.org/prop/direct/P31' , 1))
+    AND 
+    "s_37_6_t0"."O" = __i2idn ( __bft( 'http://www.wikidata.org/entity/Q5' , 1))
+    AND 
+    "s_37_6_t1"."P" = __i2idn ( __bft( 'http://www.wikidata.org/prop/P39' , 1))
+    AND 
+    "s_37_6_t2"."P" = __i2idn ( __bft( 'http://www.wikidata.org/prop/statement/P39' , 1))
+    AND 
+    "s_37_6_t2"."O" = __i2idn ( __bft( 'http://www.wikidata.org/entity/Q11696' , 1))
+OPTION (QUIETCAST)) AS "s_37_6_rbc"

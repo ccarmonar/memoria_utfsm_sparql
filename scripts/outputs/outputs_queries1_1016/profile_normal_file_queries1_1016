@@ -1,0 +1,74 @@
+http://www.wikidata.org/entity/Q3042249	http://commons.wikimedia.org/wiki/Special:FilePath/Gyantse%20Dzong%2C%20Gyantse%2C%20Tibet%20on%208%20May%202015.jpg		
+http://www.wikidata.org/entity/Q15944511	http://commons.wikimedia.org/wiki/Special:FilePath/France%20WC2018%20final.jpg		
+http://www.wikidata.org/entity/Q15944511	http://commons.wikimedia.org/wiki/Special:FilePath/German%20football%20team%202016%20Olympics%20women.jpg		
+http://www.wikidata.org/entity/Q3863	http://commons.wikimedia.org/wiki/Special:FilePath/Asteroidsscale.jpg		
+http://www.wikidata.org/entity/Q3863	http://commons.wikimedia.org/wiki/Special:FilePath/Asteroidsscale.jpg		
+http://www.wikidata.org/entity/Q3863	http://commons.wikimedia.org/wiki/Special:FilePath/Asteroidsscale.jpg		
+http://www.wikidata.org/entity/Q3863	http://commons.wikimedia.org/wiki/Special:FilePath/Asteroidsscale.jpg		
+http://www.wikidata.org/entity/Q3863	http://commons.wikimedia.org/wiki/Special:FilePath/Asteroidsscale.jpg		
+http://www.wikidata.org/entity/Q3863	http://commons.wikimedia.org/wiki/Special:FilePath/Asteroidsscale.jpg		
+http://www.wikidata.org/entity/Q3863	http://commons.wikimedia.org/wiki/Special:FilePath/Asteroidsscale.jpg		
+http://www.wikidata.org/entity/Q3863	http://commons.wikimedia.org/wiki/Special:FilePath/Asteroidsscale.jpg		
+http://www.wikidata.org/entity/Q3863	http://commons.wikimedia.org/wiki/Special:FilePath/Asteroidsscale.jpg		
+http://www.wikidata.org/entity/Q3863	http://commons.wikimedia.org/wiki/Special:FilePath/Asteroidsscale.jpg		
+http://www.wikidata.org/entity/Q3863	http://commons.wikimedia.org/wiki/Special:FilePath/Asteroidsscale.jpg		
+http://www.wikidata.org/entity/Q3863	http://commons.wikimedia.org/wiki/Special:FilePath/Asteroidsscale.jpg		
+http://www.wikidata.org/entity/Q3863	http://commons.wikimedia.org/wiki/Special:FilePath/Asteroidsscale.jpg		
+http://www.wikidata.org/entity/Q3863	http://commons.wikimedia.org/wiki/Special:FilePath/Asteroidsscale.jpg		
+http://www.wikidata.org/entity/Q3863	http://commons.wikimedia.org/wiki/Special:FilePath/Asteroidsscale.jpg		
+http://www.wikidata.org/entity/Q3863	http://commons.wikimedia.org/wiki/Special:FilePath/Asteroidsscale.jpg		
+http://www.wikidata.org/entity/Q3863	http://commons.wikimedia.org/wiki/Special:FilePath/Asteroidsscale.jpg		
+
+  { 
+    time   0.00091% fanout         1 input         1 rows
+      clear: (<V set_ctr$35 in>)
+    s# 59 36 cluster outer seq start, set no <V set_ctr$35 in>    
+    save ctx:()
+    time       3.5% fanout      1000 input         1 rows
+    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:   6.3e+06 Fanout:     1e+03
+      clear: (<V t1.O$28 an>)
+      clear on continue: (<V t1.O$28 an>)
+    s# 68 27 from DB.DBA.RDF_QUAD by RDF_QUAD    6.3e+06 rows   
+    Key RDF_QUAD  ASC  (<V t1.O$28 an>)
+     inlined  P =  IRI_ID"...direct/P31" 
+    
+    time        56% fanout         1 input      1000 rows
+    Precode:
+      0: <V var1$30 a> := Call __ro2sq (<V t1.O$28 an>)
+      5: BReturn 0
+      clear: (<V set_ctr$38 i>, <V var1$30 a>)
+    s# 78 42 cluster outer seq start, set no <V set_ctr$38 i>    
+    save ctx:()
+    time        41% fanout     0.268 input      1000 rows
+      clear: (<V t3.O$33 a>)
+      clear on continue: (<V t3.O$33 a>)$28 (42 ) $91 (32 ) 
+    s# 87 32 from DB.DBA.RDF_QUAD by RDF_QUAD          1 rows   
+    Key RDF_QUAD  ASC  (<V t3.O$33 a>)
+     inlined  P =  IRI_ID"...direct/P18"  ,  S = <v k_t1.O$91 Set93 rn>
+    vector param casts: <r t1.O$28 via  Set78>-> <v k_t1.O$91 Set93 rn>
+    
+    time    0.0018% fanout         1 input       268 rows
+    $38 (32 42 ) 
+    s# 101 37 end of outer seq <r set_ctr$38 via  Set87 Set93>
+     out: (<V t3.O$33 a>)
+     shadow: ( <none> )
+    time     0.031% fanout 0.0746269 input       268 rows
+      clear: (<V var2$47 a>)$33 (37 ) 
+    s# 109 57 skip node  20  <none> <r set_ctr$35 via  Set101 Set68>
+    After code:
+      0: <V var2$47 a> := Call __ro2sq (<r t3.O$33 via  Set109>)
+      5: BReturn 0
+    time   0.00012% fanout         0 input        20 rows
+    $35 (57 37 32 42 27 36 ) $47 (57 ) $30 (57 37 32 42 ) 
+    s# 117 49 Select (<r var1$30 via  Set109 Set101>, <V var2$47 a>, <DB_NULL>)
+      set no: <r set_ctr$35 via  Set109 Set101 Set68>
+  }
+Warning: You might have a Cartesian product.
+
+Warning: You might have a Cartesian product.
+
+
+
+ 438 msec 99% cpu,      1569 rnd      1131 seq   62.6752% same seg   5.35032% same pg 
+5 disk reads, 0 read ahead,    6.3846% wait
+Compilation: 2 msec 0 reads         0% read 0 messages         0% clw

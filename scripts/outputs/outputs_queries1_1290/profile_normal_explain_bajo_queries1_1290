@@ -1,0 +1,68 @@
+Error: 23000: SR197: Non unique primary key on DB.DBA.RDF_OBJ.
+  { 
+    time     1e+02% fanout         1 input         1 rows
+    time         0% fanout         0 input         1 rows
+    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:   1.4e-07 Fanout:         0
+    Precode:
+      0: DB.DBA.RDF_OBJ_OF_SQLVAL$27 := Call DB.DBA.RDF_OBJ_OF_SQLVAL (<c string1>)
+      7: BReturn 0
+    RDF_QUAD_POGS   1.4e-07 rows(s_37_3_t0.O$31, s_37_3_t0.S$30)
+     inlined  P =  IRI_ID"...P699" 
+    time         0% fanout         0 input         0 rows
+    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:   1.4e-07 Fanout:         0
+    RDF_QUAD_POGS   1.4e-07 rows()
+     inlined  P =  IRI_ID"...statement/P699"  ,  O = k_DB.DBA.RDF_OBJ_OF_SQLVAL$110 ,  S = k_s_37_3_t0.O$114
+    time         0% fanout         0 input         0 rows
+    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:       8.5 Fanout:         0
+    RDF_QUAD_SP       8.5 rows(s_37_19_t2.P$37, s_37_19_t2.S$36)
+     inlined  S = k_s_37_3_t0.S$125
+    time         0% fanout         0 input         0 rows
+    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:       1.2 Fanout:         0
+    RDF_QUAD       1.2 rows(s_37_19_t2.O$41)
+     inlined  P = s_37_19_t2.P$37 ,  S = k_s_37_3_t0.S$140
+    time         0% fanout         0 input         0 rows
+    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:   1.4e-07 Fanout:         0
+    RDF_QUAD_POGS   1.4e-07 rows(s_37_19_t5.S$45)
+     inlined  P =  IRI_ID"...rank"  ,  O =  IRI_ID"...DeprecatedRank"  ,  S = k_s_37_19_t2.O$154
+    time         0% fanout         0 input         0 rows
+    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:         1 Fanout:         0
+    RDF_QUAD_POGS         1 rows(s_37_19_t3.S$48)
+     P =  IRI_ID"...claim"  ,  O = k_s_37_19_t2.P$168
+    time         0% fanout         0 input         0 rows
+    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:         1 Fanout:         0
+    RDF_QUAD         1 rows(s_37_19_t4.O$51)
+     inlined  P =  IRI_ID"...propertyType"  ,  S = s_37_19_t3.S$48
+    time         0% fanout         0 input         0 rows
+    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:       8.5 Fanout:         0
+    Precode:
+      0: var2$53 := Call __id2in (s_37_19_t2.P$37)
+      5: var1$55 := Call __id2in (s_37_19_t2.S$36)
+      10: var5$57 := Call __ro2sq (s_37_19_t4.O$51)
+      15: BReturn 0
+    RDF_QUAD_SP       8.5 rows(s_37_19_t6.P$60)
+     inlined  S = k_s_37_19_t2.O$192 S = k_s_37_19_t5.S$196
+    time         0% fanout         0 input         0 rows
+    END Node
+    After test:
+    0: __id2in$63 := Call __id2in (s_37_19_t6.P$60)
+    5: __bft$65 := Call __bft (__id2in$63,  2 )
+    10: _cvt$67 := Call _cvt (<tag 193 flag 0>, __bft$65)
+    15: if (_cvt$67  LIKE  <c %string2%>) then 19 else 20 unkn 20
+    19: BReturn 1
+    20: BReturn 0
+    time         0% fanout         0 input         0 rows
+    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:       1.2 Fanout:         0
+    RDF_QUAD       1.2 rows(s_37_19_t6.O$70)
+     inlined  P = k_s_37_19_t6.P$221 ,  S = k_s_37_19_t2.O$225 S = k_s_37_19_t5.S$227
+    
+    After code:
+    0: var3$73 := Call __id2in (s_37_19_t6.P$60)
+    5: var4$75 := Call __ro2sq (s_37_19_t6.O$70)
+    10: BReturn 0
+    time         0% fanout         0 input         0 rows
+    Select (var1$55, var2$53, var3$73, var4$75, var5$57)
+  }
+
+
+ 0 msec 4% cpu,         3 rnd         0 seq         0% same seg         0% same pg 
+Compilation: 6 msec 0 reads         0% read 0 messages         0% clw

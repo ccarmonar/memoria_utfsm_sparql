@@ -1,0 +1,72 @@
+http://www.wikidata.org/entity/Q10880293	http://www.wikidata.org/entity/Q7737	http://www.wikidata.org/entity/Q5287	
+http://www.wikidata.org/entity/Q5593446	http://www.wikidata.org/entity/Q8097	http://www.wikidata.org/entity/Q5885	
+http://www.wikidata.org/entity/Q902949	http://www.wikidata.org/entity/Q9067	http://www.wikidata.org/entity/Q1860	
+http://www.wikidata.org/entity/Q47471412	http://www.wikidata.org/entity/Q1860	http://www.wikidata.org/entity/Q150	
+http://www.wikidata.org/entity/Q47471412	http://www.wikidata.org/entity/Q1860	http://www.wikidata.org/entity/Q1321	
+http://www.wikidata.org/entity/Q47471412	http://www.wikidata.org/entity/Q1860	http://www.wikidata.org/entity/Q188	
+http://www.wikidata.org/entity/Q47471412	http://www.wikidata.org/entity/Q1860	http://www.wikidata.org/entity/Q652	
+http://www.wikidata.org/entity/Q4064921	http://www.wikidata.org/entity/Q9091	http://www.wikidata.org/entity/Q7737	
+http://www.wikidata.org/entity/Q7089917	http://www.wikidata.org/entity/Q15065	http://www.wikidata.org/entity/Q9237	
+http://www.wikidata.org/entity/Q12593668	http://www.wikidata.org/entity/Q9176	http://www.wikidata.org/entity/Q727694	
+http://www.wikidata.org/entity/Q12686381	http://www.wikidata.org/entity/Q9237	http://www.wikidata.org/entity/Q15065	
+http://www.wikidata.org/entity/Q45740018	http://www.wikidata.org/entity/Q1860	http://www.wikidata.org/entity/Q7737	
+http://www.wikidata.org/entity/Q45740018	http://www.wikidata.org/entity/Q1860	http://www.wikidata.org/entity/Q9299	
+http://www.wikidata.org/entity/Q45740018	http://www.wikidata.org/entity/Q188	http://www.wikidata.org/entity/Q7737	
+http://www.wikidata.org/entity/Q45740018	http://www.wikidata.org/entity/Q188	http://www.wikidata.org/entity/Q9299	
+http://www.wikidata.org/entity/Q45740018	http://www.wikidata.org/entity/Q7737	http://www.wikidata.org/entity/Q9299	
+http://www.wikidata.org/entity/Q45740018	http://www.wikidata.org/entity/Q8748	http://www.wikidata.org/entity/Q7737	
+http://www.wikidata.org/entity/Q45740018	http://www.wikidata.org/entity/Q8748	http://www.wikidata.org/entity/Q9299	
+http://www.wikidata.org/entity/Q45740018	http://www.wikidata.org/entity/Q9299	http://www.wikidata.org/entity/Q7737	
+http://www.wikidata.org/entity/Q18353960	http://www.wikidata.org/entity/Q1860	http://www.wikidata.org/entity/Q9237	
+
+  { 
+    time     0.016% fanout         1 input         1 rows
+      clear: (<V set_ctr$49 in>)
+    s# 52 50 cluster outer seq start, set no <V set_ctr$49 in>    
+    save ctx:()
+    time       3.5% fanout     31000 input         1 rows
+      clear: (<V s_37_6_t1.O$28 an>, <V s_37_6_t1.S$29 rn>)
+      clear on continue: (<V s_37_6_t1.O$28 an>, <V s_37_6_t1.S$29 rn>)
+    s# 61 27 from DB.DBA.RDF_QUAD by RDF_QUAD    3.4e+04 rows   
+    Key RDF_QUAD  ASC  (<V s_37_6_t1.S$29 rn>, <V s_37_6_t1.O$28 an>)
+     inlined  P =  IRI_ID"...direct/P364" 
+    
+    time        77% fanout  0.648742 input     31000 rows
+    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:    0.0046 Fanout:      0.65
+      clear: (<V s_37_6_t0.S$32 rn>)
+      clear on continue: (<V s_37_6_t0.S$32 rn>)$29 () 
+    s# 72 31 from DB.DBA.RDF_QUAD by RDF_QUAD     0.0046 rows   
+    Key RDF_QUAD  ASC  (<V s_37_6_t0.S$32 rn>)
+     inlined  P =  IRI_ID"...direct/P31"  ,  S = <V s_37_6_t1.S$29 rn> ,  O =  IRI_ID"...Q11424" 
+    
+    time        16% fanout 0.00472378 input     20111 rows
+    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:         1 Fanout:    0.0047
+      clear: (<V s_37_6_t2.O$35 an>)
+      clear on continue: (<V s_37_6_t2.O$35 an>)
+    s# 82 34 from DB.DBA.RDF_QUAD by RDF_QUAD          1 rows   
+    Key RDF_QUAD  ASC  (<V s_37_6_t2.O$35 an>)
+     inlined  P =  IRI_ID"...direct/P407"  ,  S = <V s_37_6_t0.S$32 rn>
+    
+    time       3.4% fanout  0.221053 input        95 rows
+      clear: (<V var3$41 a>, <V var1$39 a>, <V var2$37 a>)$32 (34 ) $35 () $28 (34 31 ) 
+    s# 97 92 END Node
+    After test:
+      0: if (<r s_37_6_t1.O$28 via  Set82 Set72> = <V s_37_6_t2.O$35 an>) then 5 else 4 unkn 5
+      4: BReturn 1
+      5: BReturn 0
+    After code:
+      0: <V var2$37 a> := Call __ro2sq (<r s_37_6_t1.O$28 via  Set97 Set82 Set72>)
+      5: <V var1$39 a> := Call __id2in (<r s_37_6_t0.S$32 via  Set97 Set82>)
+      10: <V var3$41 a> := Call __ro2sq (<r s_37_6_t2.O$35 via  Set97>)
+      15: BReturn 0
+    time    0.0096% fanout         0 input        21 rows
+    $37 (92 ) $39 (92 ) $41 (92 ) $49 (92 34 31 27 50 ) 
+    s# 105 43 Select (<V var1$39 a>, <V var2$37 a>, <V var3$41 a>)
+      set no: <r set_ctr$49 via  Set97 Set82 Set72 Set61>
+  }
+Warning: You might have a Cartesian product.
+
+
+
+ 22 msec 92% cpu,     51151 rnd     31010 seq   99.0929% same seg   0.68619% same pg 
+Compilation: 2 msec 0 reads         0% read 0 messages         0% clw

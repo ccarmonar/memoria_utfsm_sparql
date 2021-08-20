@@ -1,0 +1,23 @@
+ SELECT  __ro2sq ("s_37_6_rbc"."var1") AS "var1", __ro2sq ("s_37_6_rbc"."var2") AS "var2" FROM (SELECT TOP 500 __id2in ( "s_37_6_t0"."S") AS "var1",
+    __ro2sq ( "s_37_6_t0"."O") AS "var2"
+  FROM DB.DBA.RDF_QUAD AS "s_37_6_t0"
+    INNER JOIN DB.DBA.RDF_QUAD AS "s_37_6_t1"
+    ON (
+      "s_37_6_t0"."S" = "s_37_6_t1"."S")
+    INNER JOIN DB.DBA.RDF_QUAD AS "s_37_6_t2"
+    ON (
+      "s_37_6_t0"."O" = "s_37_6_t2"."S")
+  WHERE
+    "s_37_6_t0"."P" = __i2idn ( __bft( 'http://www.wikidata.org/prop/direct/P2959' , 1))
+    AND 
+    "s_37_6_t1"."P" = __i2idn ( __bft( 'http://www.wikidata.org/prop/direct/P31' , 1))
+    AND 
+    "s_37_6_t1"."O" = __i2idn ( __bft( 'http://www.wikidata.org/entity/Q21286738' , 1))
+    AND 
+    "s_37_6_t2"."P" = __i2idn ( __bft( 'http://www.wikidata.org/prop/direct/P31' , 1))
+    AND 
+    "s_37_6_t2"."O" = __i2idn ( __bft( 'http://www.wikidata.org/entity/Q21286738' , 1))
+    AND 
+   ( "s_37_6_t0"."O" <>  "s_37_6_t0"."S")
+  ORDER BY  CAST ( rdf_strafter_impl ( DB.DBA.RDF_LONG_OF_SQLVAL ( __bft (__id2in ( "s_37_6_t0"."O"), 2)),  DB.DBA.RDF_MAKE_LONG_OF_SQLVAL ( 'Q' )) AS INTEGER) ASC
+OPTION (QUIETCAST)) AS "s_37_6_rbc"

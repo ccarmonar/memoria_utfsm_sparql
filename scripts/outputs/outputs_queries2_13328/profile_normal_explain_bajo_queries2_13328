@@ -1,0 +1,45 @@
+
+  { 
+    time      0.14% fanout         1 input         1 rows
+    time     0.042% fanout         1 input         1 rows
+    time       2.4% fanout         1 input         1 rows
+    RDF_QUAD         1 rows(s_37_6_t1.O$31)
+     inlined  P =  IRI_ID"...direct/P1358" 
+    time       4.4% fanout        36 input         1 rows
+    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:       2.8 Fanout:        36
+    RDF_QUAD_OP       2.8 rows(s_37_6_t2.P$35, s_37_6_t2.O$34)
+     inlined  O = cast$100
+    time       0.5% fanout  0.972222 input        36 rows
+    END Node
+    After test:
+    0: if (s_37_6_t2.P$35 =  IRI_ID"...direct/P1358" ) then 9 else 4 unkn 9
+    4: if (s_37_6_t2.P$35 =  IRI_ID"...direct/P2234" ) then 9 else 8 unkn 9
+    8: BReturn 1
+    9: BReturn 0
+    time        68% fanout   14.1143 input        35 rows
+    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:       1.2 Fanout:        14
+    RDF_QUAD_POGS       1.2 rows()
+     P = k_s_37_6_t2.P$129 ,  O = k_s_37_6_t1.O$133
+    time        24% fanout         0 input       494 rows
+    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:   1.1e+03 Fanout:         0
+    RDF_QUAD_POGS   1.1e+03 rows()
+     P =  IRI_ID"...direct/P2234"  ,  O = k_s_37_6_t1.O$144
+    time         0% fanout         0 input         0 rows
+    Distinct (s_37_6_t2.P$35)
+    
+    After code:
+    0: p2$28 :=  := artm s_37_6_t2.P$35
+    4: BReturn 0
+    time         0% fanout         0 input         0 rows
+    Subquery Select(p2$28)
+    
+    After code:
+    0: p2$57 := Call __ro2sq (p2$28)
+    5: BReturn 0
+    time         0% fanout         0 input         0 rows
+    Select (p2$57)
+  }
+
+
+ 3 msec 53% cpu,       531 rnd       493 seq   92.6692% same seg   3.19549% same pg 
+Compilation: 2 msec 0 reads         0% read 0 messages         0% clw

@@ -1,0 +1,56 @@
+	http://www.wikidata.org/entity/Q894072	POINT(-0.09084 51.505516)	1014-01-01 00:00:00Z		http://commons.wikimedia.org/wiki/Special:FilePath/Borough%20Market%20%284701274756%29.jpg	
+	http://www.wikidata.org/entity/Q5727966		0100-01-01 00:00:00Z		http://commons.wikimedia.org/wiki/Special:FilePath/Restes%20d%27edifici%20a%20l%27%C3%80gora%20d%27Atenes.JPG	
+	http://www.wikidata.org/entity/Q2812652		1085-01-01 00:00:00Z		http://commons.wikimedia.org/wiki/Special:FilePath/Katedralskolan%20lund.JPG	
+	http://www.wikidata.org/entity/Q848397	POINT(29.00416667 41.02111111)	1110-01-01 00:00:00Z		http://commons.wikimedia.org/wiki/Special:FilePath/Istanbul%20asv2020-02%20img53%20Maiden%27s%20Tower.jpg	
+	http://www.wikidata.org/entity/Q10502449		1200-01-01 00:00:00Z		http://commons.wikimedia.org/wiki/Special:FilePath/21300000013630%20Strandgatan%2028%202.jpg	
+	http://www.wikidata.org/entity/Q16511590		1109-01-01 00:00:00Z		http://commons.wikimedia.org/wiki/Special:FilePath/2tours%20bologne%20082005.jpg	
+	http://www.wikidata.org/entity/Q16511590		1150-01-01 00:00:00Z		http://commons.wikimedia.org/wiki/Special:FilePath/2tours%20bologne%20082005.jpg	
+	http://www.wikidata.org/entity/Q1625521		1100-01-01 00:00:00Z		http://commons.wikimedia.org/wiki/Special:FilePath/Dortmund%20-%20PO-H%C3%B6rder%20Burgplatz%2BH%C3%B6rder%20Burg%2001%20ies.jpg	
+	http://www.wikidata.org/entity/Q638531		1200-01-01 00:00:00Z			
+
+  { 
+    time     0.037% fanout         1 input         1 rows
+    time       6.2% fanout      1908 input         1 rows
+    RDF_QUAD_POGS   1.9e+03 rows(t9.S$29, t9.O$28)
+     P =  IRI_ID"...direct/P571"  ,  O <= <tag 211 c 1200-01-01 00:00:00> O <= <tag 211 c 1200-01-01 00:00:00>
+    time        90% fanout 0.00471698 input      1908 rows
+    RDF_QUAD    0.0041 rows(t7.S$32)
+     inlined  P =  IRI_ID"...direct/P31"  ,  S = t9.S$29 ,  O =  IRI_ID"...Q41176" 
+    time      0.85% fanout         1 input         9 rows
+    Precode:
+      0: var4$34 := Call __ro2sq (t9.O$28)
+      5: var2$36 := Call __id2in (t7.S$32)
+      10: BReturn 0
+    outer {
+        time       1.2% fanout  0.888889 input         9 rows
+        RDF_QUAD         1 rows(t11.O$39)
+         inlined  P =  IRI_ID"...direct/P18"  ,  S = k_t7.S$120
+        time     0.018% fanout     1.125 input         8 rows
+      } /* end of outer */
+    set_ctr$44
+     out: (t11.O$39)
+     shadow: ( <none> )
+    time      0.68% fanout         1 input         9 rows
+    Precode:
+      0: var5$53 := Call __ro2sq (t11.O$39)
+      5: BReturn 0
+    outer {
+        time      0.62% fanout  0.222222 input         9 rows
+        RDF_QUAD       1.1 rows(t8.O$56)
+         inlined  P =  IRI_ID"...direct/P625"  ,  S = k_t7.S$151
+        time      0.66% fanout       4.5 input         2 rows
+      } /* end of outer */
+    set_ctr$59
+     out: (t8.O$56)
+     shadow: ( <none> )
+    
+    After code:
+    0: var3$68 := Call __ro2sq (t8.O$56)
+    5: BReturn 0
+    time    0.0097% fanout         0 input         9 rows
+    Select (<DB_NULL>, var2$36, var3$68, var4$34, <DB_NULL>, var5$53)
+  }
+
+
+ 9 msec 78% cpu,      1929 rnd      7261 seq   79.0155% same seg   19.4819% same pg 
+Compilation: 3 msec 0 reads         0% read 0 messages         0% clw

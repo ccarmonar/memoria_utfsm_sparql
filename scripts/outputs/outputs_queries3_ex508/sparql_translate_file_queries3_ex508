@@ -1,0 +1,14 @@
+SELECT __id2in ( "s_12_4_t0"."S") AS "pacinoFilm"
+FROM DB.DBA.RDF_QUAD AS "s_12_4_t0"
+  INNER JOIN DB.DBA.RDF_QUAD AS "s_12_4_t1"
+  ON (
+    "s_12_4_t0"."S" = "s_12_4_t1"."S")
+WHERE
+  "s_12_4_t0"."P" = __i2idn ( __bft( 'http://dbpedia.org/ontology/starring' , 1))
+  AND 
+  "s_12_4_t0"."O" = __i2idn ( __bft( 'http://dbpedia.org/resource/Al_Pacino' , 1))
+  AND 
+  "s_12_4_t1"."P" = __i2idn ( __bft( 'http://dbpedia.org/ontology/starring' , 1))
+  AND 
+  "s_12_4_t1"."O" = __i2idn ( __bft( 'http://dbpedia.org/resource/Robert_De_Niro' , 1))
+OPTION (QUIETCAST)

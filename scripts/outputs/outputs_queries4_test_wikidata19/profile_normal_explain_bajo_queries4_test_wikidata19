@@ -1,0 +1,269 @@
+
+  { 
+    time      0.15% fanout         1 input         1 rows
+    Precode:
+      0: vector$27  := Call vector ()
+      5: vector$29  := Call vector (<c stubvar40>)
+      10: vector$31  := Call vector (<c stubvar41>)
+      15: BReturn 0
+    Subquery 33 
+      { 
+        time      0.12% fanout         1 input         1 rows
+        fork {
+            Subquery 44 
+              { 
+                Union
+                  { 
+                    time       3.4% fanout        64 input         1 rows
+                    RDF_QUAD_POGS        64 rows(t3.S$53)
+                     P =  IRI_ID"...direct/P136"  ,  O =  IRI_ID"...Q1164267" 
+                    time       5.3% fanout         1 input        64 rows
+                    END Node
+                    After test:
+                    0: if (  { 
+                        time     0.066% fanout         1 input        64 rows
+                        time         5% fanout         0 input        64 rows
+                        Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:   3.6e-05 Fanout:         0
+                        RDF_QUAD   3.6e-05 rows()
+                         inlined  P =  IRI_ID"...direct/P840"  ,  S = k_t3.S$366 ,  O =  IRI_ID"...Q933" 
+                        time         0% fanout         0 input         0 rows
+                        Subquery Select( <none> )
+                      }
+                    ) then 5 else 4 unkn 5
+                    4: BReturn 1
+                    5: BReturn 0
+                    time        42% fanout         0 input        64 rows
+                    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:   3.4e-05 Fanout:         0
+                    RDF_QUAD   3.4e-05 rows(t4.S$70)
+                     inlined  P =  IRI_ID"...direct/P31"  ,  S = k_t3.S$391 ,  O =  IRI_ID"...Q571" 
+                    time         0% fanout         0 input         0 rows
+                    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:     0.015 Fanout:         0
+                    RDF_QUAD_POGS     0.015 rows(t12.S$73)
+                     inlined  P =  IRI_ID"...direct/P407"  ,  O =  IRI_ID"...Q150"  ,  S = t4.S$70
+                    time         0% fanout         0 input         0 rows
+                    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:       1.1 Fanout:         0
+                    RDF_QUAD       1.1 rows(t9.S$77, t9.O$76)
+                     inlined  P =  IRI_ID"...direct/P840"  ,  S = k_t4.S$415
+                    time         0% fanout         0 input         0 rows
+                    Precode:
+                      0: ws_endpoint$84 :=  := artm <tag 182 flag 1 c http://wikiba.se/ontology#label>
+                      4: ws_params$86 :=  := artm vector$27 
+                      8: qtext_template$88 :=  := artm <c  SELECT ?stubvar40
+                       WHERE {  <http://www.bigdata.com/rdf#serviceParam> <http://wikiba.se/ontology#language> "[AUTO_LANGUAGE],fr" . }>
+                      12: qtext_posmap$90 :=  := artm <tag 225 c >
+                      16: param_row$92 :=  := artm vector$27 
+                      20: expected_vars$94 :=  := artm vector$29 
+                      24: proc_ctr$80 :=  := artm  0 
+                      28:  <none>  := Call __reset_temp ( 139910702987936 )
+                      33:  <proc table>  := Call DB.DBA.SPARQL_SINV_IMP (<tag 182 flag 1 c http://wikiba.se/ontology#label>, vector$27 , <c  SELECT ?stubvar40
+                       WHERE {  <http://www.bigdata.com/rdf#serviceParam> <http://wikiba.se/ontology#language> "[AUTO_LANGUAGE],fr" . }>, <tag 225 c >, vector$27 , vector$29 )
+                      40: BReturn 0
+                    Key from temp (proc_ctr$80, RSET$82)
+                    
+                    time         0% fanout         0 input         0 rows
+                    outer {
+                        time         0% fanout         0 input         0 rows
+                        Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:         1 Fanout:         0
+                        RDF_QUAD         1 rows(t8.O$102)
+                         inlined  P =  IRI_ID"...direct/P571"  ,  S = k_t4.S$448
+                        time         0% fanout         0 input         0 rows
+                      } /* end of outer */
+                    set_ctr$105
+                     out: (t8.O$102)
+                     shadow: ( <none> )
+                    time         0% fanout         0 input         0 rows
+                    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:       1.1 Fanout:         0
+                    RDF_QUAD       1.1 rows(t10.O$115)
+                     inlined  P =  IRI_ID"...direct/P625"  ,  S = k_t9.O$470
+                    time         0% fanout         0 input         0 rows
+                    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:       1.5 Fanout:         0
+                    RDF_QUAD       1.5 rows(t11.O$118)
+                     inlined  P =  IRI_ID"...direct/P953"  ,  S = k_t9.S$484
+                    time         0% fanout         0 input         0 rows
+                    outer {
+                        time         0% fanout         0 input         0 rows
+                        Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:       1.9 Fanout:         0
+                        RDF_QUAD       1.9 rows()
+                         inlined  P =  IRI_ID"...direct/P50"  ,  S = k_t4.S$507
+                        time         0% fanout         0 input         0 rows
+                      } /* end of outer */
+                    set_ctr$123
+                     out: ()
+                     shadow: ()
+                    
+                    After code:
+                    0: ed$45 :=  := artm <DB_NULL>
+                    4: lien$46 :=  := artm t11.O$118
+                    8: dateCreation$47 :=  := artm t8.O$102
+                    12: item$48 :=  := artm t9.S$77
+                    16: coord$49 :=  := artm t10.O$115
+                    20: BReturn 0
+                    time         0% fanout         0 input         0 rows
+                    END Node
+                    
+                    After code:
+                    0: rdf_year_impl$231 := Call rdf_year_impl (dateCreation$47)
+                    5: BReturn 0
+                    time         0% fanout         0 input         0 rows
+                    Distinct (item$48, ed$45, rdf_year_impl$231, coord$49, lien$46)
+                    time         0% fanout         0 input         0 rows
+                    Precode:
+                      0: __ro2sq$239 := Call __ro2sq (dateCreation$47)
+                      5: $243 :=  := artm <DB_NULL>
+                      9: $244 :=  := artm <DB_NULL>
+                      13: $245 :=  := artm <DB_NULL>
+                      17: $246 :=  := artm <DB_NULL>
+                      21: BReturn 0
+                    Sort (__ro2sq$239) -> (item$48, $243, ed$45, $244, $245, rdf_year_impl$231, $246, coord$49, lien$46)
+                    
+                  }
+                  { 
+                    time       1.7% fanout        64 input         1 rows
+                    RDF_QUAD_POGS        64 rows(t29.S$140)
+                     P =  IRI_ID"...direct/P136"  ,  O =  IRI_ID"...Q1164267" 
+                    time       3.7% fanout         1 input        64 rows
+                    END Node
+                    After test:
+                    0: if (  { 
+                        time     0.064% fanout         1 input        64 rows
+                        time       3.6% fanout         0 input        64 rows
+                        Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:   3.6e-05 Fanout:         0
+                        RDF_QUAD   3.6e-05 rows()
+                         inlined  P =  IRI_ID"...direct/P840"  ,  S = k_t29.S$588 ,  O =  IRI_ID"...Q933" 
+                        time         0% fanout         0 input         0 rows
+                        Subquery Select( <none> )
+                      }
+                    ) then 5 else 4 unkn 5
+                    4: BReturn 1
+                    5: BReturn 0
+                    time        34% fanout         0 input        64 rows
+                    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:   3.4e-05 Fanout:         0
+                    RDF_QUAD   3.4e-05 rows(t30.S$157)
+                     inlined  P =  IRI_ID"...direct/P31"  ,  S = k_t29.S$613 ,  O =  IRI_ID"...Q571" 
+                    time         0% fanout         0 input         0 rows
+                    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:       1.1 Fanout:         0
+                    RDF_QUAD_POGS       1.1 rows(t37.S$161, t37.O$160)
+                     P =  IRI_ID"...direct/P629"  ,  O = cast$627
+                    time         0% fanout         0 input         0 rows
+                    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:     0.015 Fanout:         0
+                    RDF_QUAD     0.015 rows(t39.S$164)
+                     inlined  P =  IRI_ID"...direct/P407"  ,  S = t37.S$161 ,  O =  IRI_ID"...Q150" 
+                    time         0% fanout         0 input         0 rows
+                    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:       1.1 Fanout:         0
+                    RDF_QUAD       1.1 rows(t35.O$168, t35.S$167)
+                     inlined  P =  IRI_ID"...direct/P840"  ,  S = k_t30.S$652
+                    time         0% fanout         0 input         0 rows
+                    Precode:
+                      0: ws_endpoint$175 :=  := artm <tag 182 flag 1 c http://wikiba.se/ontology#label>
+                      4: ws_params$177 :=  := artm vector$27 
+                      8: qtext_template$179 :=  := artm <c  SELECT ?stubvar41
+                       WHERE {  <http://www.bigdata.com/rdf#serviceParam> <http://wikiba.se/ontology#language> "[AUTO_LANGUAGE],fr" . }>
+                      12: qtext_posmap$181 :=  := artm <tag 225 c >
+                      16: param_row$183 :=  := artm vector$27 
+                      20: expected_vars$185 :=  := artm vector$31 
+                      24: proc_ctr$171 :=  := artm  0 
+                      28:  <none>  := Call __reset_temp ( 139910679418848 )
+                      33:  <proc table>  := Call DB.DBA.SPARQL_SINV_IMP (<tag 182 flag 1 c http://wikiba.se/ontology#label>, vector$27 , <c  SELECT ?stubvar41
+                       WHERE {  <http://www.bigdata.com/rdf#serviceParam> <http://wikiba.se/ontology#language> "[AUTO_LANGUAGE],fr" . }>, <tag 225 c >, vector$27 , vector$31 )
+                      40: BReturn 0
+                    Key from temp (proc_ctr$171, RSET$173)
+                    
+                    time         0% fanout         0 input         0 rows
+                    outer {
+                        time         0% fanout         0 input         0 rows
+                        Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:         1 Fanout:         0
+                        RDF_QUAD         1 rows(t34.O$193)
+                         inlined  P =  IRI_ID"...direct/P571"  ,  S = k_t30.S$685
+                        time         0% fanout         0 input         0 rows
+                      } /* end of outer */
+                    set_ctr$196
+                     out: (t34.O$193)
+                     shadow: ( <none> )
+                    time         0% fanout         0 input         0 rows
+                    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:       1.1 Fanout:         0
+                    RDF_QUAD       1.1 rows(t36.O$206)
+                     inlined  P =  IRI_ID"...direct/P625"  ,  S = k_t35.O$707
+                    time         0% fanout         0 input         0 rows
+                    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:       1.5 Fanout:         0
+                    RDF_QUAD       1.5 rows(t38.O$209)
+                     inlined  P =  IRI_ID"...direct/P953"  ,  S = k_t37.S$721
+                    time         0% fanout         0 input         0 rows
+                    outer {
+                        time         0% fanout         0 input         0 rows
+                        Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:       1.9 Fanout:         0
+                        RDF_QUAD       1.9 rows()
+                         inlined  P =  IRI_ID"...direct/P50"  ,  S = k_t30.S$744
+                        time         0% fanout         0 input         0 rows
+                      } /* end of outer */
+                    set_ctr$214
+                     out: ()
+                     shadow: ()
+                    
+                    After code:
+                    0: ed$45 :=  := artm t39.S$164
+                    4: lien$46 :=  := artm t38.O$209
+                    8: dateCreation$47 :=  := artm t34.O$193
+                    12: item$48 :=  := artm t35.S$167
+                    16: coord$49 :=  := artm t36.O$206
+                    20: BReturn 0
+                    time         0% fanout         0 input         0 rows
+                    END Node
+                    
+                    After code:
+                    0: rdf_year_impl$231 := Call rdf_year_impl (dateCreation$47)
+                    5: BReturn 0
+                    time         0% fanout         0 input         0 rows
+                    Distinct (item$48, ed$45, rdf_year_impl$231, coord$49, lien$46)
+                    time         0% fanout         0 input         0 rows
+                    Precode:
+                      0: __ro2sq$239 := Call __ro2sq (dateCreation$47)
+                      5: $243 :=  := artm <DB_NULL>
+                      9: $244 :=  := artm <DB_NULL>
+                      13: $245 :=  := artm <DB_NULL>
+                      17: $246 :=  := artm <DB_NULL>
+                      21: BReturn 0
+                    Sort (__ro2sq$239) -> (item$48, $243, ed$45, $244, $245, rdf_year_impl$231, $246, coord$49, lien$46)
+                    
+                  }
+              }
+          }
+        time      0.22% fanout         0 input         1 rows
+        top order by read (item$48, $243, ed$45, $244, $245, rdf_year_impl$231, $246, coord$49, lien$46)
+        
+        After code:
+        0: __ro2sq$271 := Call __ro2sq (lien$46)
+        5: __ro2sq$273 := Call __ro2sq (coord$49)
+        10: __id2in$275 := Call __id2in (ed$45)
+        15: __id2in$277 := Call __id2in (item$48)
+        20: item$34 :=  := artm __id2in$277
+        24: itemLabel$35 :=  := artm <DB_NULL>
+        28: ed$36 :=  := artm __id2in$275
+        32: edLabel$37 :=  := artm <DB_NULL>
+        36: auteurLabel$38 :=  := artm <DB_NULL>
+        40: AnneeCreation$39 :=  := artm rdf_year_impl$231
+        44: lieuLabel$40 :=  := artm <DB_NULL>
+        48: coord$41 :=  := artm __ro2sq$273
+        52: lien$42 :=  := artm __ro2sq$271
+        56: BReturn 0
+        time         0% fanout         0 input         0 rows
+        Subquery Select(item$34, itemLabel$35, ed$36, edLabel$37, auteurLabel$38, AnneeCreation$39, lieuLabel$40, coord$41, lien$42)
+      }
+    
+    After code:
+    0: item$286 := Call __ro2sq (item$34)
+    5: itemLabel$288 := Call __ro2sq (itemLabel$35)
+    10: ed$290 := Call __ro2sq (ed$36)
+    15: edLabel$292 := Call __ro2sq (edLabel$37)
+    20: auteurLabel$294 := Call __ro2sq (auteurLabel$38)
+    25: AnneeCreation$296 := Call __ro2sq (AnneeCreation$39)
+    30: lieuLabel$298 := Call __ro2sq (lieuLabel$40)
+    35: coord$300 := Call __ro2sq (coord$41)
+    40: lien$302 := Call __ro2sq (lien$42)
+    45: BReturn 0
+    time         0% fanout         0 input         0 rows
+    Select (item$286, itemLabel$288, ed$290, edLabel$292, auteurLabel$294, AnneeCreation$296, lieuLabel$298, coord$300, lien$302)
+  }
+
+
+ 1 msec 7% cpu,       258 rnd       126 seq   67.9537% same seg   24.7104% same pg 
+Compilation: 15 msec 0 reads         0% read 0 messages         0% clw

@@ -1,0 +1,64 @@
+http://www.wikidata.org/entity/Q14864589	http://www.wikidata.org/entity/Q169313	http://www.wikidata.org/entity/Q169313	9.92	9.92	
+http://www.wikidata.org/entity/Q22275721	http://www.wikidata.org/entity/Q169313	http://www.wikidata.org/entity/Q169313	9.92	9.92	
+http://www.wikidata.org/entity/Q22275809	http://www.wikidata.org/entity/Q169313	http://www.wikidata.org/entity/Q169313	9.92	9.92	
+http://www.wikidata.org/entity/Q22320696	http://www.wikidata.org/entity/Q169313	http://www.wikidata.org/entity/Q169313	9.92	9.92	
+http://www.wikidata.org/entity/Q29018193	http://www.wikidata.org/entity/Q169313	http://www.wikidata.org/entity/Q169313	9.92	9.92	
+http://www.wikidata.org/entity/Q29018208	http://www.wikidata.org/entity/Q169313	http://www.wikidata.org/entity/Q169313	9.92	9.92	
+http://www.wikidata.org/entity/Q29018212	http://www.wikidata.org/entity/Q169313	http://www.wikidata.org/entity/Q169313	9.92	9.92	
+http://www.wikidata.org/entity/Q29018230	http://www.wikidata.org/entity/Q169313	http://www.wikidata.org/entity/Q169313	9.92	9.92	
+http://www.wikidata.org/entity/Q50266092	http://www.wikidata.org/entity/Q169313	http://www.wikidata.org/entity/Q169313	9.92	9.92	
+http://www.wikidata.org/entity/Q50294617	http://www.wikidata.org/entity/Q169313	http://www.wikidata.org/entity/Q169313	9.92	9.92	
+http://www.wikidata.org/entity/Q22255239	http://www.wikidata.org/entity/Q180341	http://www.wikidata.org/entity/Q180341	2.29	2.29	
+http://www.wikidata.org/entity/Q30225370	http://www.wikidata.org/entity/Q211891	http://www.wikidata.org/entity/Q211891	3.2	3.2	
+http://www.wikidata.org/entity/Q30225370	http://www.wikidata.org/entity/Q211891	http://www.wikidata.org/entity/Q171877	3.2	11.62	
+http://www.wikidata.org/entity/Q30225370	http://www.wikidata.org/entity/Q211891	http://www.wikidata.org/entity/Q171877	3.2	11.75	
+http://www.wikidata.org/entity/Q30230775	http://www.wikidata.org/entity/Q211891	http://www.wikidata.org/entity/Q211891	3.2	3.2	
+http://www.wikidata.org/entity/Q22281916	http://www.wikidata.org/entity/Q49546	http://www.wikidata.org/entity/Q49546	19.16	19.16	
+http://www.wikidata.org/entity/Q22315578	http://www.wikidata.org/entity/Q171877	http://www.wikidata.org/entity/Q171877	11.62	11.62	
+http://www.wikidata.org/entity/Q22315578	http://www.wikidata.org/entity/Q171877	http://www.wikidata.org/entity/Q171877	11.75	11.62	
+http://www.wikidata.org/entity/Q22315578	http://www.wikidata.org/entity/Q171877	http://www.wikidata.org/entity/Q171877	11.62	11.75	
+http://www.wikidata.org/entity/Q22315578	http://www.wikidata.org/entity/Q171877	http://www.wikidata.org/entity/Q171877	11.75	11.75	
+
+  { 
+    time      0.16% fanout         1 input         1 rows
+    time     0.043% fanout         1 input         1 rows
+    time       3.1% fanout        23 input         1 rows
+    RDF_QUAD        23 rows(s_37_8_t3.S$36, s_37_8_t3.O$35)
+     inlined  P =  IRI_ID"...direct/P1117" 
+    time        14% fanout   3.04348 input        23 rows
+    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:   7.9e+03 Fanout:         3
+    RDF_QUAD_POGS   7.9e+03 rows(s_37_8_t1.S$40, s_37_8_t1.O$39)
+     P =  IRI_ID"...direct/P527"  ,  O = cast$115
+    time        17% fanout   13.3571 input        70 rows
+    RDF_QUAD       2.8 rows(s_37_8_t0.O$44, s_37_8_t0.S$43)
+     inlined  P =  IRI_ID"...direct/P527"  ,  S = s_37_8_t1.S$40
+    time        13% fanout  0.136898 input       935 rows
+    RDF_QUAD         1 rows(s_37_8_t2.O$47)
+     inlined  P =  IRI_ID"...direct/P1117"  ,  S = cast$141
+    time       7.3% fanout         1 input       128 rows
+    Distinct (s_37_8_t0.S$43, s_37_8_t0.O$44, s_37_8_t1.O$39, s_37_8_t2.O$47, s_37_8_t3.O$35)
+    
+    After code:
+    0: var1$28 :=  := artm s_37_8_t0.S$43
+    4: var2$29 :=  := artm s_37_8_t0.O$44
+    8: var3$30 :=  := artm s_37_8_t1.O$39
+    12: var4$31 :=  := artm s_37_8_t2.O$47
+    16: var5$32 :=  := artm s_37_8_t3.O$35
+    20: BReturn 0
+    time        44% fanout         1 input       128 rows
+    Subquery Select(var1$28, var2$29, var3$30, var4$31, var5$32)
+    
+    After code:
+    0: var1$63 := Call __ro2sq (var1$28)
+    5: var2$65 := Call __ro2sq (var2$29)
+    10: var3$67 := Call __ro2sq (var3$30)
+    15: var4$69 := Call __ro2sq (var4$31)
+    20: var5$71 := Call __ro2sq (var5$32)
+    25: BReturn 0
+    time      0.04% fanout         0 input       128 rows
+    Select (var1$63, var2$65, var3$67, var4$69, var5$71)
+  }
+
+
+ 2 msec 47% cpu,      1029 rnd      1004 seq    97.767% same seg   1.74757% same pg 
+Compilation: 2 msec 0 reads         0% read 0 messages         0% clw

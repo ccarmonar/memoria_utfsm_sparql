@@ -1,0 +1,57 @@
+http://www.wikidata.org/entity/Q2169621	http://www.wikidata.org/entity/Q24018749	
+http://www.wikidata.org/entity/Q21065986	http://www.wikidata.org/entity/Q24018749	
+http://www.wikidata.org/entity/Q21065986	http://www.wikidata.org/entity/Q21041501	
+http://www.wikidata.org/entity/Q2169621	http://www.wikidata.org/entity/Q24018749	
+http://www.wikidata.org/entity/Q21065986	http://www.wikidata.org/entity/Q24018749	
+http://www.wikidata.org/entity/Q21065986	http://www.wikidata.org/entity/Q21041501	
+
+  { 
+    time      0.43% fanout         1 input         1 rows
+    Subquery 27 
+      { 
+        Union
+          { 
+            time       9.2% fanout       148 input         1 rows
+            RDF_QUAD_POGS   1.5e+02 rows(s_37_2_t0-c5-u13.S$33)
+             P =  IRI_ID"...direct/P31"  ,  O =  IRI_ID"...Q1426271" 
+            time        41% fanout 0.0202703 input       148 rows
+            Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:       1.7 Fanout:      0.02
+            RDF_QUAD       1.7 rows(s_37_9_t2-u13.S$37, s_37_9_t2-u13.O$36)
+             inlined  P =  IRI_ID"...direct/P361"  ,  S = s_37_2_t0-c5-u13.S$33
+            
+            After code:
+            0: var1$28 :=  := artm s_37_9_t2-u13.S$37
+            4: var2$29 :=  := artm s_37_9_t2-u13.O$36
+            8: BReturn 0
+            time      0.16% fanout         0 input         3 rows
+            Subquery Select(var1$28, var2$29)
+          }
+          { 
+            time       9.1% fanout       153 input         1 rows
+            RDF_QUAD_POGS   1.5e+02 rows(s_37_5_t1-c11.S$47)
+             P =  IRI_ID"...direct/P16"  ,  O =  IRI_ID"...Q1426271" 
+            time        40% fanout 0.0196078 input       153 rows
+            Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:       1.7 Fanout:      0.02
+            RDF_QUAD       1.7 rows(s_37_9_t2.S$51, s_37_9_t2.O$50)
+             inlined  P =  IRI_ID"...direct/P361"  ,  S = s_37_5_t1-c11.S$47
+            
+            After code:
+            0: var1$28 :=  := artm s_37_9_t2.S$51
+            4: var2$29 :=  := artm s_37_9_t2.O$50
+            8: BReturn 0
+            time     0.097% fanout         0 input         3 rows
+            Subquery Select(var1$28, var2$29)
+          }
+      }
+    
+    After code:
+    0: var1$61 := Call __id2in (var1$28)
+    5: var2$63 := Call __ro2sq (var2$29)
+    10: BReturn 0
+    time       0.2% fanout         0 input         6 rows
+    Select (var1$61, var2$63)
+  }
+
+
+ 0 msec 28% cpu,       303 rnd       301 seq   88.4868% same seg   9.21053% same pg 
+Compilation: 2 msec 0 reads         0% read 0 messages         0% clw

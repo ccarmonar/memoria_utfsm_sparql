@@ -1,0 +1,61 @@
+0	
+
+  { 
+    time       3.7% fanout         1 input         1 rows
+    time       2.9% fanout         1 input         1 rows
+    fork {
+        Subquery 27 
+          { 
+            Union
+              { 
+                time        55% fanout         0 input         1 rows
+                Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:       0.3 Fanout:         0
+                RDF_QUAD_POGS       0.3 rows(s_37_2_t0-c5-u14.S$32)
+                 P =  IRI_ID"...direct/P17"  ,  O =  IRI_ID"...Q189988" 
+                time         0% fanout         0 input         0 rows
+                Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:         1 Fanout:         0
+                RDF_QUAD         1 rows(s_37_10_t2-u14.S$35)
+                 inlined  P =  IRI_ID"...direct/P18"  ,  S = s_37_2_t0-c5-u14.S$32
+                
+                After code:
+                0: var1$28 :=  := artm s_37_10_t2-u14.S$35
+                4: BReturn 0
+                time         0% fanout         0 input         0 rows
+                Precode:
+                  0:  count var2$61var1$28set no set_ctr$58distinct via hash area DISTINCT HASH$65
+                  5: BReturn 0
+                END Node
+              }
+              { 
+                time        37% fanout         0 input         1 rows
+                Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:       0.3 Fanout:         0
+                RDF_QUAD_POGS       0.3 rows(s_37_5_t1-c11.S$45)
+                 P =  IRI_ID"...direct/P131"  ,  O =  IRI_ID"...Q189988" 
+                time         0% fanout         0 input         0 rows
+                Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:         1 Fanout:         0
+                RDF_QUAD         1 rows(s_37_10_t2.S$48)
+                 inlined  P =  IRI_ID"...direct/P18"  ,  S = s_37_5_t1-c11.S$45
+                
+                After code:
+                0: var1$28 :=  := artm s_37_10_t2.S$48
+                4: BReturn 0
+                time         0% fanout         0 input         0 rows
+                Precode:
+                  0:  count var2$61var1$28set no set_ctr$58distinct via hash area DISTINCT HASH$65
+                  5: BReturn 0
+                END Node
+              }
+          }
+        time         0% fanout         0 input         0 rows
+        Precode:
+          0:  count var2$61var1$28set no set_ctr$58distinct via hash area DISTINCT HASH$65
+          5: BReturn 0
+        END Node
+      }
+    time       1.3% fanout         0 input         1 rows
+    Select (var2$61)
+  }
+
+
+ 0 msec 3% cpu,         2 rnd         0 seq         0% same seg         0% same pg 
+Compilation: 3 msec 0 reads         0% read 0 messages         0% clw

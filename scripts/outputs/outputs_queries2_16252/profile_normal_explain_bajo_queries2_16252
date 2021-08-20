@@ -1,0 +1,30 @@
+0	
+
+  { 
+    time    0.0015% fanout         1 input         1 rows
+    time    0.0014% fanout         1 input         1 rows
+    fork {
+        time       3.7% fanout     91224 input         1 rows
+        RDF_QUAD_POGS   6.3e+04 rows(s_37_2_t0.O$29, s_37_2_t0.S$28)
+         inlined  P =  IRI_ID"...direct/P637" 
+        time        96% fanout         0 input     91224 rows
+        END Node
+        After test:
+        0: __ro2sq$31 := Call __ro2sq (s_37_2_t0.O$29)
+        5: rdf_strlen_impl$33 := Call rdf_strlen_impl (__ro2sq$31)
+        10: if ( 2  > rdf_strlen_impl$33) then 14 else 15 unkn 15
+        14: BReturn 1
+        15: BReturn 0
+        
+        After code:
+        0: isnotnull$35 := Call isnotnull (s_37_2_t0.S$28)
+        5:  sum var2$40isnotnull$35set no set_ctr$37
+        10: BReturn 0
+      }
+    time   0.00025% fanout         0 input         1 rows
+    Select (var2$40)
+  }
+
+
+ 40 msec 415% cpu,     91225 rnd     91128 seq         0% same seg   99.0759% same pg 
+Compilation: 1 msec 0 reads         0% read 0 messages         0% clw

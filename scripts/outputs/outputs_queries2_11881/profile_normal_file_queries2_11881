@@ -1,0 +1,47 @@
+http://www.wikidata.org/entity/Q4361180	
+http://www.wikidata.org/entity/Q3626715	
+http://www.wikidata.org/entity/Q3064258	
+http://www.wikidata.org/entity/Q15830534	
+http://www.wikidata.org/entity/Q15900644	
+http://www.wikidata.org/entity/Q15904002	
+http://www.wikidata.org/entity/Q15904669	
+http://www.wikidata.org/entity/Q16097938	
+http://www.wikidata.org/entity/Q16198436	
+http://www.wikidata.org/entity/Q32453202	
+http://www.wikidata.org/entity/Q1355654	
+http://www.wikidata.org/entity/Q2166743	
+http://www.wikidata.org/entity/Q4233753	
+http://www.wikidata.org/entity/Q5320428	
+http://www.wikidata.org/entity/Q23019261	
+http://www.wikidata.org/entity/Q6747393	
+http://www.wikidata.org/entity/Q6749262	
+http://www.wikidata.org/entity/Q7163306	
+http://www.wikidata.org/entity/Q12055400	
+http://www.wikidata.org/entity/Q16631997	
+
+  { 
+    time     0.085% fanout         1 input         1 rows
+      clear: (<V set_ctr$38 in>)
+    s# 41 39 cluster outer seq start, set no <V set_ctr$38 in>    
+    save ctx:()
+    time     1e+02% fanout       764 input         1 rows
+      clear: (<V s_37_2_t0.S$28 rn>, <V var1$30 a>)
+      clear on continue: (<V s_37_2_t0.S$28 rn>, <V var1$30 a>)
+    s# 50 27 from DB.DBA.RDF_QUAD by RDF_QUAD_POGS    7.6e+02 rows   
+    Key RDF_QUAD_POGS  ASC  (<V s_37_2_t0.S$28 rn>)
+     P =  IRI_ID"...direct/P31"  ,  O =  IRI_ID"...Q2385804" 
+    
+    After code:
+      0: <V var1$30 a> := Call __id2in (<V s_37_2_t0.S$28 rn>)
+      5: BReturn 0
+    time     0.021% fanout         0 input       764 rows
+    $38 (27 39 ) $30 () 
+    s# 60 32 Select (<V var1$30 a>)
+      set no: <r set_ctr$38 via  Set50>
+  }
+Warning: You might have a Cartesian product.
+
+
+
+ 4 msec 14% cpu,       759 rnd       763 seq         0% same seg   45.6579% same pg 
+Compilation: 18 msec 1 reads   80.4242% read 0 messages         0% clw

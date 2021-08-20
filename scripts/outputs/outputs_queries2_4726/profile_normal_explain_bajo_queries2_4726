@@ -1,0 +1,26 @@
+French official and statesman	
+
+  { 
+    time      0.55% fanout         1 input         1 rows
+    time        12% fanout        50 input         1 rows
+    RDF_QUAD        23 rows(s_37_2_t0.O$28)
+     inlined  P =  IRI_ID"...description"  ,  S =  IRI_ID"...Q3052772" 
+    time        87% fanout      0.02 input        50 rows
+    END Node
+    After test:
+    0: __ro2sq$30 := Call __ro2sq (s_37_2_t0.O$28)
+    5: DB.DBA.RDF_LANGUAGE_OF_OBJ$32 := Call DB.DBA.RDF_LANGUAGE_OF_OBJ (__ro2sq$30)
+    12: if (<c en> = DB.DBA.RDF_LANGUAGE_OF_OBJ$32) then 16 else 17 unkn 17
+    16: BReturn 1
+    17: BReturn 0
+    
+    After code:
+    0: var2Label$34 := Call __ro2sq (s_37_2_t0.O$28)
+    5: BReturn 0
+    time     0.058% fanout         0 input         1 rows
+    Select (var2Label$34)
+  }
+
+
+ 0 msec 31% cpu,       102 rnd        49 seq         0% same seg   64.0777% same pg 
+Compilation: 1 msec 0 reads         0% read 0 messages         0% clw

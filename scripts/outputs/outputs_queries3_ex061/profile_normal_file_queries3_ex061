@@ -1,0 +1,83 @@
+Richard	Mutt		Dick	
+Craig	Ellis	(245) 315-5486		
+Cindy	Marshall			
+Richard	Mutt			
+Craig	Ellis			
+Cindy	Marshall			
+Bradley	Perry			
+Katherine	Duncan			
+
+  { 
+    time         1% fanout         1 input         1 rows
+      clear: (<V set_ctr$38 in>)
+    s# 78 39 cluster outer seq start, set no <V set_ctr$38 in>    
+    save ctx:()
+    time        20% fanout         8 input         1 rows
+      clear: (<V t2.O$28 an>, <V t2.S$29 rn>)
+      clear on continue: (<V t2.O$28 an>, <V t2.S$29 rn>)
+    s# 87 27 from DB.DBA.RDF_QUAD by RDF_QUAD          8 rows   
+    Key RDF_QUAD  ASC  (<V t2.S$29 rn>, <V t2.O$28 an>)
+     inlined  P =  IRI_ID"...lastName" 
+    
+    time        12% fanout         1 input         8 rows
+      clear: (<V t1.O$32 an>, <V t1.S$33 rn>)
+      clear on continue: (<V t1.O$32 an>, <V t1.S$33 rn>)
+    s# 98 31 from DB.DBA.RDF_QUAD by RDF_QUAD          1 rows   
+    Key RDF_QUAD  ASC  (<V t1.S$33 rn>, <V t1.O$32 an>)
+     inlined  P =  IRI_ID"...firstName"  ,  S = <V t2.S$29 rn>
+    
+    time      0.49% fanout         1 input         8 rows
+      clear: (<V set_ctr$41 i>)
+    s# 109 45 cluster outer seq start, set no <V set_ctr$41 i>    
+    save ctx:()
+    time       8.2% fanout     0.125 input         8 rows
+      clear: (<V t6.O$36 a>)
+      clear on continue: (<V t6.O$36 a>)$122 (35 ) 
+    s# 118 35 from DB.DBA.RDF_QUAD by RDF_QUAD          1 rows   
+    Key RDF_QUAD  ASC  (<V t6.O$36 a>)
+     inlined  P =  IRI_ID"...nick"  ,  S = <v k_t2.S$122 Set124 rn>
+    vector param casts: <r t2.S$29 via  Set109 Set98>-> <v k_t2.S$122 Set124 rn>
+    
+    time      0.55% fanout         8 input         1 rows
+    $41 (35 45 ) 
+    s# 132 40 end of outer seq <r set_ctr$41 via  Set118 Set124>
+     out: (<V t6.O$36 a>)
+     shadow: ( <none> )
+    time      0.66% fanout         1 input         8 rows
+      clear: (<V set_ctr$54 i>)
+    s# 140 58 cluster outer seq start, set no <V set_ctr$54 i>    
+    save ctx:()
+    time        12% fanout     0.125 input         8 rows
+      clear: (<V t4.O$51 a>)
+      clear on continue: (<V t4.O$51 a>)$29 (58 40 35 45 31 ) $153 (50 ) 
+    s# 149 50 from DB.DBA.RDF_QUAD by RDF_QUAD          1 rows   
+    Key RDF_QUAD  ASC  (<V t4.O$51 a>)
+     inlined  P =  IRI_ID"...workTel"  ,  S = <v k_t2.S$153 Set155 rn>
+    vector param casts: <r t2.S$29 via  Set140 Set132 Set98>-> <v k_t2.S$153 Set155 rn>
+    
+    time        45% fanout         8 input         1 rows
+      clear: (<V workTel$69 a>, <V first$67 a>, <V last$65 a>, <V nick$63 a>)$32 (50 58 40 35 45 ) $36 (50 58 40 ) $51 () $54 (50 58 ) $28 (50 58 40 35 45 31 ) 
+    s# 163 53 end of outer seq <r set_ctr$54 via  Set149 Set155>
+     out: (<V t4.O$51 a>)
+     shadow: ( <none> )
+    After code:
+      0: <V nick$63 a> := Call __ro2sq (<r t6.O$36 via  Set163>)
+      5: <V last$65 a> := Call __ro2sq (<r t2.O$28 via  Set163 Set132 Set98>)
+      10: <V first$67 a> := Call __ro2sq (<r t1.O$32 via  Set163 Set132>)
+      15: <V workTel$69 a> := Call __ro2sq (<V t4.O$51 a>)
+      20: BReturn 0
+    time      0.32% fanout         0 input         8 rows
+    $63 (53 ) $65 (53 ) $67 (53 ) $69 (53 ) $38 (53 50 58 40 35 45 31 27 39 ) 
+    s# 171 71 Select (<V first$67 a>, <V last$65 a>, <V workTel$69 a>, <V nick$63 a>)
+      set no: <r set_ctr$38 via  Set163 Set132 Set98 Set87>
+  }
+Warning: You might have a Cartesian product.
+
+Warning: You might have a Cartesian product.
+
+Warning: You might have a Cartesian product.
+
+
+
+ 1 msec 18% cpu,        43 rnd         7 seq   45.4545% same seg   20.4545% same pg 
+Compilation: 2 msec 0 reads         0% read 0 messages         0% clw

@@ -1,0 +1,19 @@
+SELECT __ro2sq ( "s_11_6_t0"."O") AS "first",
+  __ro2sq ( "s_11_6_t1"."O") AS "last",
+  __ro2sq ( "s_11_6_t2"."O") AS "workTel"
+FROM DB.DBA.RDF_QUAD AS "s_11_6_t0"
+  INNER JOIN DB.DBA.RDF_QUAD AS "s_11_6_t1"
+  ON (
+    "s_11_6_t0"."S" = "s_11_6_t1"."S")
+  INNER JOIN DB.DBA.RDF_QUAD AS "s_11_6_t2"
+  ON (
+    "s_11_6_t0"."S" = "s_11_6_t2"."S"
+    AND 
+    "s_11_6_t1"."S" = "s_11_6_t2"."S")
+WHERE
+  "s_11_6_t0"."P" = __i2idn ( __bft( 'http://learningsparql.com/ns/addressbook#firstName' , 1))
+  AND 
+  "s_11_6_t1"."P" = __i2idn ( __bft( 'http://learningsparql.com/ns/addressbook#lastName' , 1))
+  AND 
+  "s_11_6_t2"."P" = __i2idn ( __bft( 'http://learningsparql.com/ns/addressbook#workTel' , 1))
+OPTION (QUIETCAST)

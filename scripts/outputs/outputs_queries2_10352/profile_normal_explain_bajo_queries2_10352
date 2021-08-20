@@ -1,0 +1,94 @@
+	
+
+  { 
+    time       3.6% fanout         1 input         1 rows
+    time      0.99% fanout         1 input         1 rows
+    outer {
+        time        46% fanout         0 input         1 rows
+        Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:         1 Fanout:         0
+        RDF_QUAD         1 rows(t13.O$28)
+         inlined  P =  IRI_ID"...direct/P625"  ,  S =  IRI_ID"...Q27981116" 
+        time         0% fanout         0 input         0 rows
+      } /* end of outer */
+    set_ctr$33
+     out: (t13.O$28)
+     shadow: ( <none> )
+    time         1% fanout         1 input         1 rows
+    outer {
+        Subquery 42 
+          { 
+            time        30% fanout         0 input         1 rows
+            Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:       0.3 Fanout:         0
+            RDF_QUAD       0.3 rows(t18.O$46)
+             inlined  P =  IRI_ID"...direct/P159"  ,  S =  IRI_ID"...Q27981116" 
+            time         0% fanout         0 input         0 rows
+            Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:       1.1 Fanout:         0
+            RDF_QUAD       1.1 rows(t19.O$49)
+             inlined  P =  IRI_ID"...direct/P625"  ,  S = k_t18.O$179
+            
+            After code:
+            0: var4$43 :=  := artm t19.O$49
+            4: BReturn 0
+            time         0% fanout         0 input         0 rows
+            Subquery Select(var4$43)
+          }
+        time         0% fanout         0 input         0 rows
+      } /* end of outer */
+    set_ctr$59
+     out: (var4$43, set_no$44)
+     shadow: ( <none> ,  <none> )
+    time      0.93% fanout         1 input         1 rows
+    outer {
+        Subquery 68 
+          { 
+            time        13% fanout         0 input         1 rows
+            Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:   1.4e-07 Fanout:         0
+            RDF_QUAD_POGS   1.4e-07 rows(t16.S$73, t16.O$72)
+             inlined  P =  IRI_ID"...qualifier/P625" 
+            time         0% fanout         0 input         0 rows
+            Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:   1.4e-07 Fanout:         0
+            RDF_QUAD_POGS   1.4e-07 rows()
+             inlined  P =  IRI_ID"...P159"  ,  O = cast$233 ,  S =  IRI_ID"...Q27981116" 
+            
+            After code:
+            0: var3$69 :=  := artm t16.O$72
+            4: BReturn 0
+            time         0% fanout         0 input         0 rows
+            Subquery Select(var3$69)
+          }
+        time         0% fanout         0 input         0 rows
+      } /* end of outer */
+    set_ctr$85
+     out: (set_no$70, var3$69)
+     shadow: ( <none> ,  <none> )
+    Subquery 94 
+      { 
+        time       3.1% fanout         1 input         1 rows
+        Precode:
+          0: __stub$95 :=  := artm  1 
+          4: BReturn 0
+        END Node
+        time      0.96% fanout         0 input         1 rows
+        Subquery Select(__stub$95)
+      }
+    
+    After code:
+    0: if (t13.O$28  IS NULL  <DB_NULL>) then 9 else 4 unkn 9
+    4: coalesce_ret$105 :=  := artm t13.O$28
+    8: Jump 31 (level=0)
+    9: if (var3$69  IS NULL  <DB_NULL>) then 18 else 13 unkn 18
+    13: coalesce_ret$105 :=  := artm var3$69
+    17: Jump 31 (level=0)
+    18: if (var4$43  IS NULL  <DB_NULL>) then 27 else 22 unkn 27
+    22: coalesce_ret$105 :=  := artm var4$43
+    26: Jump 31 (level=0)
+    27: coalesce_ret$105 :=  := artm <DB_NULL>
+    31: var1$107 := Call __ro2sq (coalesce_ret$105)
+    36: BReturn 0
+    time      0.65% fanout         0 input         1 rows
+    Select (var1$107)
+  }
+
+
+ 0 msec 1% cpu,         3 rnd         0 seq         0% same seg         0% same pg 
+Compilation: 11 msec 0 reads         0% read 0 messages         0% clw

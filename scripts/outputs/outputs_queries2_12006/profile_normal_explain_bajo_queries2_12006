@@ -1,0 +1,31 @@
+
+  { 
+    time     0.015% fanout         1 input         1 rows
+    time      0.35% fanout       851 input         1 rows
+    RDF_QUAD_POGS   8.5e+02 rows(s_37_5_t1.S$28)
+     P =  IRI_ID"...direct/P31"  ,  O =  IRI_ID"...Q39715" 
+    time        34% fanout   6.14101 input       851 rows
+    Precode:
+      0: var1$30 := Call __id2in (s_37_5_t1.S$28)
+      5: BReturn 0
+    RDF_QUAD        14 rows(s_37_4_t0.O$33)
+     inlined  P =  IRI_ID"...description"  ,  S = s_37_5_t1.S$28
+    time        66% fanout         0 input      5226 rows
+    END Node
+    After test:
+    0: __ro2sq$35 := Call __ro2sq (s_37_4_t0.O$33)
+    5: DB.DBA.RDF_LANGUAGE_OF_OBJ$37 := Call DB.DBA.RDF_LANGUAGE_OF_OBJ (__ro2sq$35)
+    12: if (<c en-gb> = DB.DBA.RDF_LANGUAGE_OF_OBJ$37) then 16 else 17 unkn 17
+    16: BReturn 1
+    17: BReturn 0
+    
+    After code:
+    0: var2$39 := Call __ro2sq (s_37_4_t0.O$33)
+    5: BReturn 0
+    time         0% fanout         0 input         0 rows
+    Select (var1$30, var2$39)
+  }
+
+
+ 27 msec 93% cpu,     11302 rnd      5222 seq   2.82226% same seg   8.74989% same pg 
+Compilation: 2 msec 0 reads         0% read 0 messages         0% clw

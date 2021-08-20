@@ -1,0 +1,29 @@
+http://www.wikidata.org/entity/Q24238925	triketora	http://commons.wikimedia.org/wiki/Special:FilePath/Tracy%20Chou%20medium.jpg	
+http://www.wikidata.org/entity/Q19667922	jesstess	http://commons.wikimedia.org/wiki/Special:FilePath/Jessica%20McKellar%20selfportrait%20BW.jpeg	
+
+  { 
+    time      0.22% fanout         1 input         1 rows
+    time       5.6% fanout       294 input         1 rows
+    RDF_QUAD   2.9e+02 rows(s_37_6_t1.S$29, s_37_6_t1.O$28)
+     inlined  P =  IRI_ID"...direct/P2037" 
+    time        61% fanout 0.0340136 input       294 rows
+    RDF_QUAD      0.17 rows(s_37_6_t0.S$32)
+     inlined  P =  IRI_ID"...direct/P21"  ,  S = s_37_6_t1.S$29 ,  O =  IRI_ID"...Q6581072" 
+    time        33% fanout       0.2 input        10 rows
+    Precode:
+      0: var2$34 := Call __ro2sq (s_37_6_t1.O$28)
+      5: var1$36 := Call __id2in (s_37_6_t0.S$32)
+      10: BReturn 0
+    RDF_QUAD         1 rows(s_37_6_t2.O$39)
+     inlined  P =  IRI_ID"...direct/P18"  ,  S = s_37_6_t0.S$32
+    
+    After code:
+    0: var3$41 := Call __ro2sq (s_37_6_t2.O$39)
+    5: BReturn 0
+    time      0.04% fanout         0 input         2 rows
+    Select (var1$36, var2$34, var3$41)
+  }
+
+
+ 2 msec 45% cpu,       315 rnd       293 seq   83.8608% same seg   11.0759% same pg 
+Compilation: 1 msec 0 reads         0% read 0 messages         0% clw

@@ -1,0 +1,86 @@
+http://www.wikidata.org/entity/Q27826037		
+http://www.wikidata.org/entity/Q27826045		
+http://www.wikidata.org/entity/Q27826052		
+http://www.wikidata.org/entity/Q27826066		
+http://www.wikidata.org/entity/Q27826085		
+http://www.wikidata.org/entity/Q27826116		
+http://www.wikidata.org/entity/Q27826126		
+http://www.wikidata.org/entity/Q27826141		
+http://www.wikidata.org/entity/Q27826152		
+http://www.wikidata.org/entity/Q27826161		
+http://www.wikidata.org/entity/Q27826185		
+http://www.wikidata.org/entity/Q27826232		
+http://www.wikidata.org/entity/Q27826248		
+http://www.wikidata.org/entity/Q27826252		
+http://www.wikidata.org/entity/Q27826004		
+http://www.wikidata.org/entity/Q27826038		
+http://www.wikidata.org/entity/Q27826060		
+http://www.wikidata.org/entity/Q27826089		
+http://www.wikidata.org/entity/Q27826115		
+http://www.wikidata.org/entity/Q27826192		
+
+  { 
+    time     0.015% fanout         1 input         1 rows
+      clear: (<V set_ctr$41 in>)
+    s# 62 42 cluster outer seq start, set no <V set_ctr$41 in>    
+    save ctx:()
+    time      0.25% fanout       310 input         1 rows
+      clear: (<V t3.S$28 rn>)
+      clear on continue: (<V t3.S$28 rn>)
+    s# 71 27 from DB.DBA.RDF_QUAD by RDF_QUAD_POGS    3.1e+02 rows   
+    Key RDF_QUAD_POGS  ASC  (<V t3.S$28 rn>)
+     P =  IRI_ID"...direct/P703"  ,  O =  IRI_ID"...Q21397863" 
+    
+    time       1.5% fanout 0.0741935 input       310 rows
+    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:   1.4e-05 Fanout:     0.074
+      clear: (<V t2.S$31 rn>)
+      clear on continue: (<V t2.S$31 rn>)
+    s# 81 30 from DB.DBA.RDF_QUAD by RDF_QUAD    1.4e-05 rows   
+    Key RDF_QUAD  ASC  (<V t2.S$31 rn>)
+     inlined  P =  IRI_ID"...direct/P31"  ,  S = <V t3.S$28 rn> ,  O =  IRI_ID"...Q139677" 
+    
+    time      0.17% fanout         1 input        23 rows
+    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:   0.00063 Fanout:         1
+      clear: (<V t1.S$34 rn>)
+      clear on continue: (<V t1.S$34 rn>)$31 () 
+    s# 91 33 from DB.DBA.RDF_QUAD by RDF_QUAD_POGS    0.00063 rows   
+    Key RDF_QUAD_POGS  ASC  (<V t1.S$34 rn>)
+     inlined  P =  IRI_ID"...direct/P703"  ,  O =  IRI_ID"...Q21397863"  ,  S = <V t2.S$31 rn>
+    
+    time       1.2% fanout         1 input        23 rows
+    Precode:
+      0: <V var1$36 a> := Call __id2in (<r t3.S$28 via  Set91 Set81>)
+      5: BReturn 0
+      clear: (<V set_ctr$44 i>, <V var1$36 a>)
+    s# 101 48 cluster outer seq start, set no <V set_ctr$44 i>    
+    save ctx:()
+    time        97% fanout         0 input        23 rows
+    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:       1.7 Fanout:         0
+      clear: (<V t5.O$39 a>)
+      clear on continue: (<V t5.O$39 a>)$114 (38 ) $28 (48 33 30 ) 
+    s# 110 38 from DB.DBA.RDF_QUAD by RDF_QUAD        1.7 rows   
+    Key RDF_QUAD  ASC  (<V t5.O$39 a>)
+     inlined  P =  IRI_ID"...direct/P361"  ,  S = <v k_t3.S$114 Set116 rn>
+    vector param casts: <r t3.S$28 via  Set101 Set91 Set81>-> <v k_t3.S$114 Set116 rn>
+    
+    time         0% fanout         0 input         0 rows
+      clear: (<V var2$53 a>)$39 () $44 (38 48 ) 
+    s# 124 43 end of outer seq <r set_ctr$44 via  Set110 Set116>
+     out: (<V t5.O$39 a>)
+     shadow: ( <none> )
+    After code:
+      0: <V var2$53 a> := Call __ro2sq (<V t5.O$39 a>)
+      5: BReturn 0
+    time    0.0089% fanout         0 input        23 rows
+    $36 (43 38 48 ) $41 (43 38 48 33 30 27 42 ) $53 (43 ) 
+    s# 132 55 Select (<r var1$36 via  Set124>, <V var2$53 a>)
+      set no: <r set_ctr$41 via  Set124 Set91 Set81 Set71>
+  }
+Warning: You might have a Cartesian product.
+
+Warning: You might have a Cartesian product.
+
+
+
+ 23 msec 89% cpu,       380 rnd       309 seq   90.5512% same seg   6.56168% same pg 
+Compilation: 2 msec 0 reads         0% read 0 messages         0% clw

@@ -1,0 +1,41 @@
+
+  { 
+    time       9.1% fanout         1 input         1 rows
+      clear: (<V set_ctr$47 in>)
+    s# 53 48 cluster outer seq start, set no <V set_ctr$47 in>    
+    save ctx:()
+    time        91% fanout         0 input         1 rows
+    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:   1.4e-07 Fanout:         0
+      clear: (<V s_37_4_t1.O$28 an>, <V s_37_4_t1.S$29 rn>)
+      clear on continue: (<V s_37_4_t1.O$28 an>, <V s_37_4_t1.S$29 rn>)
+    s# 62 27 from DB.DBA.RDF_QUAD by RDF_QUAD_POGS    1.4e-07 rows   
+    Key RDF_QUAD_POGS  ASC  (<V s_37_4_t1.S$29 rn>, <V s_37_4_t1.O$28 an>)
+     inlined  P =  IRI_ID"...place" 
+    
+    time         0% fanout         0 input         0 rows
+    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:   1.4e-07 Fanout:         0
+      clear: (<V s_37_4_t0.O$32 an>, <V s_37_4_t0.S$33 rn>)
+      clear on continue: (<V s_37_4_t0.O$32 an>, <V s_37_4_t0.S$33 rn>)$29 () 
+    s# 73 31 from DB.DBA.RDF_QUAD by RDF_QUAD    1.4e-07 rows   
+    Key RDF_QUAD  ASC  (<V s_37_4_t0.S$33 rn>, <V s_37_4_t0.O$32 an>)
+     inlined  P =  IRI_ID"...type"  ,  S = <V s_37_4_t1.S$29 rn>
+    
+    time         0% fanout         0 input         0 rows
+      clear: (<V var2$39 a>, <V var1$37 a>, <V var3$35 a>)$32 () $33 () $28 (31 ) 
+    s# 84 51 skip node  10  <none> <r set_ctr$47 via  Set73 Set62>
+    After code:
+      0: <V var3$35 a> := Call __ro2sq (<r s_37_4_t1.O$28 via  Set84 Set73>)
+      5: <V var1$37 a> := Call __id2in (<r s_37_4_t0.S$33 via  Set84>)
+      10: <V var2$39 a> := Call __ro2sq (<r s_37_4_t0.O$32 via  Set84>)
+      15: BReturn 0
+    time         0% fanout         0 input         0 rows
+    $35 (51 ) $37 (51 ) $39 (51 ) $47 (51 31 27 48 ) 
+    s# 92 41 Select (<V var1$37 a>, <V var2$39 a>, <V var3$35 a>)
+      set no: <r set_ctr$47 via  Set84 Set73 Set62>
+  }
+Warning: You might have a Cartesian product.
+
+
+
+ 0 msec 0% cpu,         1 rnd         0 seq         0% same seg         0% same pg 
+Compilation: 346 msec 2 reads   12.8456% read 0 messages         0% clw

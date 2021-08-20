@@ -1,0 +1,46 @@
+
+  { 
+    time       1.9% fanout         1 input         1 rows
+      clear: (<V set_ctr$52 in>)
+    s# 55 53 cluster outer seq start, set no <V set_ctr$52 in>    
+    save ctx:()
+    time        98% fanout         0 input         1 rows
+    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:      0.14 Fanout:         0
+    Precode:
+      0: <V entity/Q11$27 r> := Call __i2idn (<tag 182 flag 1 c http://www.wikidata.org/entity/Q11>)
+      5: <V DB.DBA.RDF_MAKE_LONG_OF_SQLVAL$29 a> := Call DB.DBA.RDF_MAKE_LONG_OF_SQLVAL (<c matter>)
+      12: BReturn 0
+      clear: (<V s_37_2_t0.O$32 an>, <V DB.DBA.RDF_MAKE_LONG_OF_SQLVAL$29 a>, <V entity/Q11$27 r>)
+      clear on continue: (<V s_37_2_t0.O$32 an>)$68 (31 ) $27 (31 ) 
+    s# 64 31 from DB.DBA.RDF_QUAD by RDF_QUAD       0.14 rows   
+    Key RDF_QUAD  ASC  (<V s_37_2_t0.O$32 an>)
+     inlined  P =  IRI_ID"...description"  ,  S = <v k_entity/Q11$68 Set70 rn>
+    vector param casts: <V entity/Q11$27 r>-> <v k_entity/Q11$68 Set70 rn>
+    
+    time         0% fanout         0 input         0 rows
+      clear: (<V DB.DBA.RDF_LANGUAGE_OF_OBJ$42 a>, <V __ro2sq$40 a>, <V rdf_contains_impl$38 i>, <V rdf_lcase_impl$36 s>, <V __ro2lo$34 a>, <V var1$44 a>)$32 () $29 (31 ) 
+    s# 83 78 END Node
+    After test:
+      0: <V __ro2lo$34 a> := Call __ro2lo (<V s_37_2_t0.O$32 an>)
+      5: <V rdf_lcase_impl$36 s> := Call rdf_lcase_impl (<V __ro2lo$34 a>)
+      10: <V rdf_contains_impl$38 i> := Call rdf_contains_impl (<V rdf_lcase_impl$36 s>, <r DB.DBA.RDF_MAKE_LONG_OF_SQLVAL$29 via  Set64 Set70>)
+      15: if ( 0  = <V rdf_contains_impl$38 i>) then 36 else 19 unkn 36
+      19: <V __ro2sq$40 a> := Call __ro2sq (<V s_37_2_t0.O$32 an>)
+      24: <V DB.DBA.RDF_LANGUAGE_OF_OBJ$42 a> := Call DB.DBA.RDF_LANGUAGE_OF_OBJ (<V __ro2sq$40 a>)
+      31: if (<c en> = <V DB.DBA.RDF_LANGUAGE_OF_OBJ$42 a>) then 35 else 36 unkn 36
+      35: BReturn 1
+      36: BReturn 0
+    After code:
+      0: <V var1$44 a> := Call __ro2sq (<r s_37_2_t0.O$32 via  Set83>)
+      5: BReturn 0
+    time         0% fanout         0 input         0 rows
+    $44 (78 ) $52 (78 31 53 ) 
+    s# 92 46 Select (<V var1$44 a>)
+      set no: <r set_ctr$52 via  Set83 Set64 Set70>
+  }
+Warning: You might have a Cartesian product.
+
+
+
+ 1 msec 0% cpu,         4 rnd         0 seq         0% same seg         0% same pg 
+Compilation: 28 msec 1 reads   94.7872% read 0 messages         0% clw

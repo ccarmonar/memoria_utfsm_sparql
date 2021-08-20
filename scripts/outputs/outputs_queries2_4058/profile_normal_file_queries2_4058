@@ -1,0 +1,41 @@
+http://www.wikidata.org/entity/Q8609571	
+http://www.wikidata.org/entity/Q13628719	
+http://www.wikidata.org/entity/Q32214197	
+http://www.wikidata.org/entity/Q6213182	
+http://www.wikidata.org/entity/Q8293009	
+http://www.wikidata.org/entity/Q8437671	
+http://www.wikidata.org/entity/Q8576337	
+http://www.wikidata.org/entity/Q8693108	
+http://www.wikidata.org/entity/Q8876512	
+http://www.wikidata.org/entity/Q8995787	
+
+  { 
+    time        11% fanout         1 input         1 rows
+      clear: (<V set_ctr$38 in>)
+    s# 44 39 cluster outer seq start, set no <V set_ctr$38 in>    
+    save ctx:()
+    time        32% fanout      1000 input         1 rows
+    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:   7.1e+04 Fanout:     1e+03
+      clear: (<V s_37_2_t0.S$28 rn>)
+      clear on continue: (<V s_37_2_t0.S$28 rn>)
+    s# 53 27 from DB.DBA.RDF_QUAD by RDF_QUAD    7.1e+04 rows   
+    Key RDF_QUAD  ASC  (<V s_37_2_t0.S$28 rn>)
+     inlined  P =  IRI_ID"...direct/P301" 
+    
+    time        56% fanout      0.01 input      1000 rows
+      clear: (<V var1$30 a>)$28 () 
+    s# 63 42 skip node  10  <none> <r set_ctr$38 via  Set53>
+    After code:
+      0: <V var1$30 a> := Call __id2in (<r s_37_2_t0.S$28 via  Set63>)
+      5: BReturn 0
+    time      0.24% fanout         0 input        10 rows
+    $38 (42 27 39 ) $30 (42 ) 
+    s# 71 32 Select (<V var1$30 a>)
+      set no: <r set_ctr$38 via  Set63 Set53>
+  }
+Warning: You might have a Cartesian product.
+
+
+
+ 1 msec 23% cpu,        11 rnd       998 seq         0% same seg        50% same pg 
+Compilation: 1 msec 0 reads         0% read 0 messages         0% clw

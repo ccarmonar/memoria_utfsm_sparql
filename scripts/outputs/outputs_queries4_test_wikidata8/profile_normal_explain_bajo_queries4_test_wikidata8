@@ -1,0 +1,96 @@
+
+  { 
+    time       7.4% fanout         1 input         1 rows
+    Precode:
+      0: vector$27  := Call vector ()
+      5: vector$29  := Call vector (<c stubvar17>)
+      10: vector$31  := Call vector (<DB_NULL>, <DB_NULL>, <DB_NULL>, <DB_NULL>, <DB_NULL>, <DB_NULL>, <DB_NULL>)
+      15: BReturn 0
+    Subquery 33 
+      { 
+        time        93% fanout         0 input         1 rows
+        Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:   1.4e-07 Fanout:         0
+        RDF_QUAD_POGS   1.4e-07 rows(t8.S$41)
+         P =  IRI_ID"...qualifier/P31"  ,  O =  IRI_ID"...Q27075870" 
+        time         0% fanout         0 input         0 rows
+        Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:       2.8 Fanout:         0
+        RDF_QUAD_OP       2.8 rows(t2.O$45, t2.P$44)
+         inlined  O = cast$162
+        time         0% fanout         0 input         0 rows
+        Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:       1.2 Fanout:         0
+        RDF_QUAD_POGS       1.2 rows(t2.S$49)
+         P = t2.P$44 ,  O = k_t8.S$177
+        time         0% fanout         0 input         0 rows
+        Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:       8.5 Fanout:         0
+        RDF_QUAD_SP       8.5 rows(t5.P$53)
+         inlined  S = k_t2.O$191 S = k_t8.S$195
+        time         0% fanout         0 input         0 rows
+        Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:       1.2 Fanout:         0
+        RDF_QUAD       1.2 rows(t5.O$57)
+         inlined  P = t5.P$53 ,  S = k_t2.O$207 S = k_t8.S$211
+        time         0% fanout         0 input         0 rows
+        Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:         1 Fanout:         0
+        RDF_QUAD_POGS         1 rows(t7.S$61)
+         P =  IRI_ID"...claim"  ,  O = k_t2.P$223
+        time         0% fanout         0 input         0 rows
+        Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:   0.00091 Fanout:         0
+        RDF_QUAD   0.00091 rows()
+         inlined  P =  IRI_ID"...statementProperty"  ,  S = t7.S$61 ,  O = k_t5.P$237
+        time         0% fanout         0 input         0 rows
+        Precode:
+          0: __ro2sq$65 := Call __ro2sq (t5.O$57)
+          5: __id2in$67 := Call __id2in (t2.S$49)
+          10: ws_endpoint$74 :=  := artm <tag 182 flag 1 c http://wikiba.se/ontology#label>
+          14: ws_params$76 :=  := artm vector$27 
+          18: qtext_template$78 :=  := artm <c  SELECT ?stubvar17
+           WHERE {  <http://www.bigdata.com/rdf#serviceParam> <http://wikiba.se/ontology#language> "en" . }>
+          22: qtext_posmap$80 :=  := artm <tag 225 c >
+          26: param_row$82 :=  := artm vector$31 
+          30: expected_vars$84 :=  := artm vector$29 
+          34: proc_ctr$70 :=  := artm  0 
+          38:  <none>  := Call __reset_temp ( 139909906088640 )
+          43:  <proc table>  := Call DB.DBA.SPARQL_SINV_IMP (<tag 182 flag 1 c http://wikiba.se/ontology#label>, vector$27 , <c  SELECT ?stubvar17
+           WHERE {  <http://www.bigdata.com/rdf#serviceParam> <http://wikiba.se/ontology#language> "en" . }>, <tag 225 c >, vector$31 , vector$29 )
+          50: BReturn 0
+        Key from temp (proc_ctr$70, RSET$72)
+        
+        time         0% fanout         0 input         0 rows
+        outer {
+            time         0% fanout         0 input         0 rows
+            Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:         1 Fanout:         0
+            RDF_QUAD         1 rows(t4.O$92)
+             inlined  P =  IRI_ID"...direct/P275"  ,  S = k_t2.S$268
+            time         0% fanout         0 input         0 rows
+          } /* end of outer */
+        set_ctr$95
+         out: (t4.O$92)
+         shadow: ( <none> )
+        time         0% fanout         0 input         0 rows
+        skip node  100  <none> set_no$39
+        
+        After code:
+        0: __ro2sq$104 := Call __ro2sq (t4.O$92)
+        5: database$34 :=  := artm __id2in$67
+        9: databaseLabel$35 :=  := artm <DB_NULL>
+        13: license$36 :=  := artm __ro2sq$104
+        17: licenseLabel$37 :=  := artm <DB_NULL>
+        21: value$38 :=  := artm __ro2sq$65
+        25: BReturn 0
+        time         0% fanout         0 input         0 rows
+        Subquery Select(database$34, databaseLabel$35, license$36, licenseLabel$37, value$38)
+      }
+    
+    After code:
+    0: database$116 := Call __ro2sq (database$34)
+    5: databaseLabel$118 := Call __ro2sq (databaseLabel$35)
+    10: license$120 := Call __ro2sq (license$36)
+    15: licenseLabel$122 := Call __ro2sq (licenseLabel$37)
+    20: value$124 := Call __ro2sq (value$38)
+    25: BReturn 0
+    time         0% fanout         0 input         0 rows
+    Select (database$116, databaseLabel$118, license$120, licenseLabel$122, value$124)
+  }
+
+
+ 0 msec 1% cpu,         1 rnd         0 seq         0% same seg         0% same pg 
+Compilation: 5 msec 0 reads         0% read 0 messages         0% clw

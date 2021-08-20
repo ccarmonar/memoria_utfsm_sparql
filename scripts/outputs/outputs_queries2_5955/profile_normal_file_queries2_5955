@@ -1,0 +1,78 @@
+http://www.wikidata.org/entity/Q5915864			
+http://www.wikidata.org/entity/Q2797232			
+http://www.wikidata.org/entity/Q2862099			
+http://www.wikidata.org/entity/Q2920201			
+http://www.wikidata.org/entity/Q2165953			
+http://www.wikidata.org/entity/Q3418041			
+http://www.wikidata.org/entity/Q5456706			
+http://www.wikidata.org/entity/Q5456750			
+http://www.wikidata.org/entity/Q5456871			
+http://www.wikidata.org/entity/Q5456891			
+http://www.wikidata.org/entity/Q5456910			
+http://www.wikidata.org/entity/Q16630001			
+http://www.wikidata.org/entity/Q29276918			
+http://www.wikidata.org/entity/Q530476			
+http://www.wikidata.org/entity/Q618513			
+http://www.wikidata.org/entity/Q619250			
+http://www.wikidata.org/entity/Q619396			
+http://www.wikidata.org/entity/Q619400			
+http://www.wikidata.org/entity/Q914010			
+http://www.wikidata.org/entity/Q11698201			
+
+  { 
+    time     0.014% fanout         1 input         1 rows
+      clear: (<V set_ctr$67 in>)
+    s# 70 68 cluster outer seq start, set no <V set_ctr$67 in>    
+    save ctx:()
+    Precode:
+      0: <V __all_eq$27 x> := Call __all_eq ( IRI_ID"...Q14660" )
+      5: BReturn 0
+      clear: (<V _::trans_obj_37_6$31 an>, <V _::trans_subj_37_5$30 rn>, <V __all_eq$27 x>)
+      clear on continue: (<V _::trans_subj_37_5$30 rn>, <V _::trans_obj_37_6$31 an>)$27 (29 ) 
+    s# 79 29 Transitive dt dir 2, input: (<V __all_eq$27 x>)
+      input shadow: (<V __all_eq$83 x>)
+      output: (<V _::trans_subj_37_5$30 rn>)
+      { 
+        time      0.93% fanout     0.875 input         8 rows
+          clear: (<V s_37_9_t1.O$36 an>, <V s_37_9_t1.S$37 rn>, <V _::trans_obj_37_6$31 an>, <V _::trans_subj_37_5$30 rn>)
+          clear on continue: (<V _::trans_subj_37_5$30 rn>, <V _::trans_obj_37_6$31 an>, <V s_37_9_t1.S$37 rn>, <V s_37_9_t1.O$36 an>)$83 (35 ) $89 (35 ) 
+        s# 85 35 from DB.DBA.RDF_QUAD by RDF_QUAD_POGS        3.8 rows   
+        Key RDF_QUAD_POGS  ASC  (<V s_37_9_t1.S$37 rn>, <V s_37_9_t1.O$36 an>)
+         P =  IRI_ID"...direct/P279"  ,  O = <v k___all_eq$89 Set91 an>
+        vector param casts: <V __all_eq$83 x>-> <v k___all_eq$89 Set91 an>
+        
+        After code:
+          0: <V _::trans_subj_37_5$30 rn> :=  := artm <V s_37_9_t1.S$37 rn>
+          4: <V _::trans_obj_37_6$31 an> :=  := artm <V s_37_9_t1.O$36 an>
+          8: BReturn 0
+        time    0.0055% fanout         0 input         7 rows
+        $31 () 
+        s# 102 39 Subquery Select(<V _::trans_subj_37_5$30 rn>, <V _::trans_obj_37_6$31 an>)
+          set no: <r step_set$32 via  Set85 Set91>
+      }
+    time        98% fanout     39.75 input         8 rows
+      clear: (<V s_37_3_t0.S$57 rn>, <V var1$59 a>)
+      clear on continue: (<V s_37_3_t0.S$57 rn>, <V var1$59 a>)$113 (56 ) $30 () 
+    s# 109 56 from DB.DBA.RDF_QUAD by RDF_QUAD_POGS      1e+02 rows   
+    Key RDF_QUAD_POGS  ASC  (<V s_37_3_t0.S$57 rn>)
+     P =  IRI_ID"...direct/P31"  ,  O = <v cast$113 Set115 an>
+    row specs:  O LIKE <c Tó>
+    vector param casts: <V _::trans_subj_37_5$30 rn>-> <v cast$113 Set115 an>
+    
+    After code:
+      0: <V var1$59 a> := Call __id2in (<V s_37_3_t0.S$57 rn>)
+      5: BReturn 0
+    time    0.0018% fanout         0 input       318 rows
+    $67 (56 29 68 ) $59 () 
+    s# 123 61 Select (<V var1$59 a>, <DB_NULL>, <DB_NULL>)
+      set no: <r set_ctr$67 via  Set109 Set115 Set79>
+  }
+Warning: You might have a Cartesian product.
+
+Warning: You might have a Cartesian product.
+
+
+
+ 27 msec 91% cpu,       334 rnd       322 seq  0.895522% same seg   66.5672% same pg 
+1 disk reads, 0 read ahead,   82.0511% wait
+Compilation: 2 msec 0 reads         0% read 0 messages         0% clw

@@ -1,0 +1,56 @@
+SELECT TOP 500 __id2in ( "s_0_18"."var1") AS "var1"
+FROM (
+    SELECT TOP 500 "s_37_12_t4"."S" AS "var1"
+    FROM DB.DBA.RDF_QUAD AS "s_37_13_t3-c17"
+      INNER JOIN DB.DBA.RDF_QUAD AS "s_37_4_t0-c5-c17"
+      ON (
+        "s_37_4_t0-c5-c17"."S" = "s_37_13_t3-c17"."S")
+      LEFT OUTER JOIN (
+        SELECT "s_37_9_t1-c19"."G" AS "_::default_37_7",
+          "s_37_9_t1-c19"."S" AS "var2"
+        FROM DB.DBA.RDF_QUAD AS "s_37_9_t1-c19"
+        WHERE
+          "s_37_9_t1-c19"."P" = __i2idn ( __bft( 'http://schema.org/inLanguage' , 1))
+          AND 
+          "s_37_9_t1-c19"."O" = DB.DBA.RDF_OBJ_OF_SQLVAL ( 'cy' )) AS "s_37_9-c19"
+      ON (1)
+      INNER JOIN DB.DBA.RDF_QUAD AS "s_37_12_t4"
+      ON (
+        "s_37_12_t4"."S" = "s_37_4_t0-c5-c17"."S"
+        AND 
+        "s_37_12_t4"."S" = "s_37_13_t3-c17"."S")
+    WHERE
+      "s_37_13_t3-c17"."P" = __i2idn ( __bft( 'http://www.wikidata.org/prop/direct/P21' , 1))
+      AND 
+      "s_37_13_t3-c17"."O" = __i2idn ( __bft( 'http://www.wikidata.org/entity/Q6581072' , 1))
+      AND 
+      "s_37_4_t0-c5-c17"."P" = __i2idn ( __bft( 'http://www.wikidata.org/prop/direct/P19' , 1))
+      AND 
+      "s_37_4_t0-c5-c17"."O" = __i2idn ( __bft( 'http://www.wikidata.org/entity/Q213154' , 1))
+      AND 
+      "s_37_12_t4"."P" = __i2idn ( __bft( 'http://www.wikidata.org/prop/direct/P31' , 1))
+      AND 
+      "s_37_12_t4"."O" = __i2idn ( __bft( 'http://www.wikidata.org/entity/Q5' , 1))
+    UNION ALL SELECT TOP 500 "s_37_12_t4"."S" AS "var1"
+    FROM DB.DBA.RDF_QUAD AS "s_37_13_t3-c25"
+      LEFT OUTER JOIN (
+        SELECT "s_37_9_t1-c27"."G" AS "_::default_37_7",
+          "s_37_9_t1-c27"."S" AS "var2"
+        FROM DB.DBA.RDF_QUAD AS "s_37_9_t1-c27"
+        WHERE
+          "s_37_9_t1-c27"."P" = __i2idn ( __bft( 'http://schema.org/inLanguage' , 1))
+          AND 
+          "s_37_9_t1-c27"."O" = DB.DBA.RDF_OBJ_OF_SQLVAL ( 'cy' )) AS "s_37_9-c27"
+      ON (1)
+      INNER JOIN DB.DBA.RDF_QUAD AS "s_37_12_t4"
+      ON (
+        "s_37_12_t4"."S" = "s_37_13_t3-c25"."S")
+    WHERE
+      "s_37_13_t3-c25"."P" = __i2idn ( __bft( 'http://www.wikidata.org/prop/direct/P21' , 1))
+      AND 
+      "s_37_13_t3-c25"."O" = __i2idn ( __bft( 'http://www.wikidata.org/entity/Q6581072' , 1))
+      AND 
+      "s_37_12_t4"."P" = __i2idn ( __bft( 'http://www.wikidata.org/prop/direct/P31' , 1))
+      AND 
+      "s_37_12_t4"."O" = __i2idn ( __bft( 'http://www.wikidata.org/entity/Q5' , 1))) AS "s_0_18"
+OPTION (QUIETCAST)

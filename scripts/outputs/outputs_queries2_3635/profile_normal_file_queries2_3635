@@ -1,0 +1,94 @@
+			
+
+  { 
+    time       2.9% fanout         1 input         1 rows
+      clear: (<V set_ctr$33 in>)
+    s# 84 34 cluster outer seq start, set no <V set_ctr$33 in>    
+    save ctx:()
+    time        41% fanout         1 input         1 rows
+      clear: (<V t1.S$28 rn>)
+      clear on continue: (<V t1.S$28 rn>)
+    s# 93 27 from DB.DBA.RDF_QUAD by RDF_QUAD_POGS          1 rows   
+    Key RDF_QUAD_POGS  ASC  (<V t1.S$28 rn>)
+     P =  IRI_ID"...direct/P31"  ,  O =  IRI_ID"...Q217526" 
+    
+    time       1.1% fanout         1 input         1 rows
+      clear: (<V set_ctr$36 i>)
+    s# 103 40 cluster outer seq start, set no <V set_ctr$36 i>    
+    save ctx:()
+    time        21% fanout         0 input         1 rows
+    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:         1 Fanout:         0
+      clear: (<V t3.O$31 a>)
+      clear on continue: (<V t3.O$31 a>)$116 (30 ) 
+    s# 112 30 from DB.DBA.RDF_QUAD by RDF_QUAD          1 rows   
+    Key RDF_QUAD  ASC  (<V t3.O$31 a>)
+     inlined  P =  IRI_ID"...direct/P2067"  ,  S = <v k_t1.S$116 Set118 rn>
+    vector param casts: <r t1.S$28 via  Set103>-> <v k_t1.S$116 Set118 rn>
+    
+    time         0% fanout         0 input         0 rows
+    $36 (30 40 ) 
+    s# 126 35 end of outer seq <r set_ctr$36 via  Set112 Set118>
+     out: (<V t3.O$31 a>)
+     shadow: ( <none> )
+    time         4% fanout         1 input         1 rows
+    Precode:
+      0: <V var1$45 a> := Call __ro2sq (<V t3.O$31 a>)
+      5: BReturn 0
+      clear: (<V set_ctr$51 i>, <V var1$45 a>)$31 (35 ) 
+    s# 134 55 cluster outer seq start, set no <V set_ctr$51 i>    
+    save ctx:()
+    time        15% fanout         0 input         1 rows
+    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:         1 Fanout:         0
+      clear: (<V t5.O$48 a>)
+      clear on continue: (<V t5.O$48 a>)$147 (47 ) 
+    s# 143 47 from DB.DBA.RDF_QUAD by RDF_QUAD          1 rows   
+    Key RDF_QUAD  ASC  (<V t5.O$48 a>)
+     inlined  P =  IRI_ID"...direct/P2386"  ,  S = <v k_t1.S$147 Set149 rn>
+    vector param casts: <r t1.S$28 via  Set134 Set126>-> <v k_t1.S$147 Set149 rn>
+    
+    time         0% fanout         0 input         0 rows
+    $51 (47 55 ) 
+    s# 157 50 end of outer seq <r set_ctr$51 via  Set143 Set149>
+     out: (<V t5.O$48 a>)
+     shadow: ( <none> )
+    time       1.2% fanout         1 input         1 rows
+    Precode:
+      0: <V var2$60 a> := Call __ro2sq (<V t5.O$48 a>)
+      5: BReturn 0
+      clear: (<V set_ctr$66 i>, <V var2$60 a>)$48 (50 ) 
+    s# 165 70 cluster outer seq start, set no <V set_ctr$66 i>    
+    save ctx:()
+    time        13% fanout         0 input         1 rows
+    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:       1.2 Fanout:         0
+      clear: (<V t7.O$63 a>)
+      clear on continue: (<V t7.O$63 a>)$178 (62 ) $28 (70 50 47 55 35 30 40 ) 
+    s# 174 62 from DB.DBA.RDF_QUAD by RDF_QUAD        1.2 rows   
+    Key RDF_QUAD  ASC  (<V t7.O$63 a>)
+     inlined  P =  IRI_ID"...direct/P2561"  ,  S = <v k_t1.S$178 Set180 rn>
+    vector param casts: <r t1.S$28 via  Set165 Set157 Set126>-> <v k_t1.S$178 Set180 rn>
+    
+    time         0% fanout         0 input         0 rows
+      clear: (<V var3$75 a>)$63 () $66 (62 70 ) 
+    s# 188 65 end of outer seq <r set_ctr$66 via  Set174 Set180>
+     out: (<V t7.O$63 a>)
+     shadow: ( <none> )
+    After code:
+      0: <V var3$75 a> := Call __ro2sq (<V t7.O$63 a>)
+      5: BReturn 0
+    time      0.95% fanout         0 input         1 rows
+    $33 (65 62 70 50 47 55 35 30 40 27 34 ) $75 (65 ) $45 (65 62 70 50 47 55 ) $60 (65 62 70 ) 
+    s# 196 77 Select (<r var1$45 via  Set188 Set157>, <r var2$60 via  Set188>, <V var3$75 a>)
+      set no: <r set_ctr$33 via  Set188 Set157 Set126 Set93>
+  }
+Warning: You might have a Cartesian product.
+
+Warning: You might have a Cartesian product.
+
+Warning: You might have a Cartesian product.
+
+Warning: You might have a Cartesian product.
+
+
+
+ 0 msec 0% cpu,         4 rnd         0 seq         0% same seg         0% same pg 
+Compilation: 29 msec 1 reads   92.1533% read 0 messages         0% clw

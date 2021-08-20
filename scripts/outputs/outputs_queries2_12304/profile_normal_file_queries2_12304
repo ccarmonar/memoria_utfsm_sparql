@@ -1,0 +1,47 @@
+
+  { 
+    time      0.13% fanout         1 input         1 rows
+      clear: (<V set_ctr$49 in>)
+    s# 52 50 cluster outer seq start, set no <V set_ctr$49 in>    
+    save ctx:()
+    time        10% fanout      4791 input         1 rows
+    Precode:
+      0: <V __rdflit$27 x> := Call __rdflit (rdflit0)
+      5: BReturn 0
+      clear: (<V s_37_4_t0.S$30 rn>, <V __rdflit$27 x>)
+      clear on continue: (<V s_37_4_t0.S$30 rn>)
+    s# 61 29 from DB.DBA.RDF_QUAD by RDF_QUAD_POGS    4.8e+03 rows   
+    Key RDF_QUAD_POGS  ASC  (<V s_37_4_t0.S$30 rn>)
+     P =  IRI_ID"...direct/P31"  ,  O =  IRI_ID"...Q179700" 
+    
+    time        60% fanout 0.0740973 input      4791 rows
+      clear: (<V s_37_4_t1.O$33 an>)
+      clear on continue: (<V s_37_4_t1.O$33 an>)
+    s# 71 32 from DB.DBA.RDF_QUAD by RDF_QUAD        0.7 rows   
+    Key RDF_QUAD  ASC  (<V s_37_4_t1.O$33 an>)
+     inlined  P =  IRI_ID"...direct/P571"  ,  S = <V s_37_4_t0.S$30 rn>
+    
+    time        29% fanout         0 input       355 rows
+      clear: (<V DB.DBA.RDF_LONG_CMP$37 i>, <V __ro2lo$35 a>, <V var2$41 a>, <V var1$39 a>)$33 () $27 (32 29 ) $30 (32 ) 
+    s# 86 81 END Node
+    After test:
+      0: <V __ro2lo$35 a> := Call __ro2lo (<V s_37_4_t1.O$33 an>)
+      5: <V DB.DBA.RDF_LONG_CMP$37 i> := Call DB.DBA.RDF_LONG_CMP (<V __ro2lo$35 a>, <r __rdflit$27 via  Set71 Set61>)
+      12: if (<V DB.DBA.RDF_LONG_CMP$37 i> <=  0 ) then 16 else 17 unkn 17
+      16: BReturn 1
+      17: BReturn 0
+    After code:
+      0: <V var1$39 a> := Call __id2in (<r s_37_4_t0.S$30 via  Set86 Set71>)
+      5: <V var2$41 a> := Call __ro2sq (<r s_37_4_t1.O$33 via  Set86>)
+      10: BReturn 0
+    time         0% fanout         0 input         0 rows
+    $39 (81 ) $41 (81 ) $49 (81 32 29 50 ) 
+    s# 94 43 Select (<V var1$39 a>, <V var2$41 a>)
+      set no: <r set_ctr$49 via  Set86 Set71 Set61>
+  }
+Warning: You might have a Cartesian product.
+
+
+
+ 2 msec 60% cpu,      4792 rnd      4791 seq   98.9777% same seg   0.83455% same pg 
+Compilation: 2 msec 0 reads         0% read 0 messages         0% clw

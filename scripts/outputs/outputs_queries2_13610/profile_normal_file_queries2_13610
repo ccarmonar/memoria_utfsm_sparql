@@ -1,0 +1,73 @@
+http://www.wikidata.org/entity/Q5331408	
+http://www.wikidata.org/entity/Q5527107	
+http://www.wikidata.org/entity/Q5530831	
+http://www.wikidata.org/entity/Q5642743	
+http://www.wikidata.org/entity/Q5645219	
+http://www.wikidata.org/entity/Q6250106	
+http://www.wikidata.org/entity/Q6250703	
+http://www.wikidata.org/entity/Q6948502	
+http://www.wikidata.org/entity/Q7083882	
+http://www.wikidata.org/entity/Q7148441	
+http://www.wikidata.org/entity/Q7312258	
+http://www.wikidata.org/entity/Q7317624	
+http://www.wikidata.org/entity/Q7374362	
+http://www.wikidata.org/entity/Q7450070	
+http://www.wikidata.org/entity/Q16900914	
+http://www.wikidata.org/entity/Q4711059	
+http://www.wikidata.org/entity/Q4803165	
+http://www.wikidata.org/entity/Q5066521	
+http://www.wikidata.org/entity/Q5541546	
+http://www.wikidata.org/entity/Q5543482	
+
+  { 
+    time      0.11% fanout         1 input         1 rows
+      clear: (<V set_ctr$35 in>)
+    s# 54 36 cluster outer seq start, set no <V set_ctr$35 in>    
+    save ctx:()
+    time       1.8% fanout       324 input         1 rows
+      clear: (<V t1.S$28 rn>)
+      clear on continue: (<V t1.S$28 rn>)
+    s# 63 27 from DB.DBA.RDF_QUAD by RDF_QUAD_POGS    3.2e+02 rows   
+    Key RDF_QUAD_POGS  ASC  (<V t1.S$28 rn>)
+     P =  IRI_ID"...direct/P31"  ,  O =  IRI_ID"...Q5773747" 
+    
+    time        74% fanout         1 input       324 rows
+    Precode:
+      0: <V var1$30 a> := Call __id2in (<V t1.S$28 rn>)
+      5: BReturn 0
+      clear: (<V set_ctr$38 i>, <V var1$30 a>)
+    s# 73 42 cluster outer seq start, set no <V set_ctr$38 i>    
+    save ctx:()
+    time        24% fanout  0.743827 input       324 rows
+      clear: (<V t3.O$33 a>)
+      clear on continue: (<V t3.O$33 a>)$86 (32 ) $28 (42 ) 
+    s# 82 32 from DB.DBA.RDF_QUAD by RDF_QUAD          1 rows   
+    Key RDF_QUAD  ASC  (<V t3.O$33 a>)
+     inlined  P =  IRI_ID"...direct/P18"  ,  S = <v k_t1.S$86 Set88 rn>
+    vector param casts: <r t1.S$28 via  Set73>-> <v k_t1.S$86 Set88 rn>
+    
+    time      0.14% fanout   1.34855 input       241 rows
+    $38 (32 42 ) 
+    s# 96 37 end of outer seq <r set_ctr$38 via  Set82 Set88>
+     out: (<V t3.O$33 a>)
+     shadow: ( <none> )
+    time      0.31% fanout  0.258462 input       325 rows
+    $33 (37 ) 
+    s# 109 104 END Node
+    After test:
+      0: if (<V t3.O$33 a>  IS NULL   0 ) then 4 else 5 unkn 5
+      4: BReturn 1
+      5: BReturn 0
+    time     0.027% fanout         0 input        84 rows
+    $35 (104 37 32 42 27 36 ) $30 (104 37 32 42 ) 
+    s# 117 47 Select (<r var1$30 via  Set109 Set96>)
+      set no: <r set_ctr$35 via  Set109 Set96 Set63>
+  }
+Warning: You might have a Cartesian product.
+
+Warning: You might have a Cartesian product.
+
+
+
+ 2 msec 11% cpu,       647 rnd       324 seq   46.2963% same seg   17.4383% same pg 
+Compilation: 16 msec 1 reads   79.5411% read 0 messages         0% clw

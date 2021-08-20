@@ -1,0 +1,43 @@
+Error: 23000: SR197: Non unique primary key on DB.DBA.RDF_OBJ.
+  { 
+    time     1e+02% fanout         1 input         1 rows
+      clear: (<V set_ctr$49 in>)
+    s# 52 50 cluster outer seq start, set no <V set_ctr$49 in>    
+    save ctx:()
+    time         0% fanout         0 input         1 rows
+    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:         2 Fanout:         0
+    Precode:
+      0: <V __i2id$27 r> := Call __i2id (<DB_NULL>)
+      5: <V DB.DBA.RDF_MAKE_OBJ_OF_TYPEDSQLVAL$29 x> := Call DB.DBA.RDF_MAKE_OBJ_OF_TYPEDSQLVAL (<c string1>, <V __i2id$27 r>, <c en>)
+      12: BReturn 0
+      clear: (<V s_37_2_t0.P$32 rn>, <V DB.DBA.RDF_MAKE_OBJ_OF_TYPEDSQLVAL$29 x>, <V __i2id$27 r>)
+      clear on continue: (<V s_37_2_t0.P$32 rn>)$65 (31 ) $27 (31 ) 
+    s# 61 31 from DB.DBA.RDF_QUAD by RDF_QUAD_OP          2 rows   
+    Key RDF_QUAD_OP  ASC  (<V s_37_2_t0.P$32 rn>)
+     inlined  O = <v k_DB.DBA.RDF_MAKE_OBJ_OF_TYPEDSQLVAL$65 Set67 an>
+    vector param casts: <V DB.DBA.RDF_MAKE_OBJ_OF_TYPEDSQLVAL$29 x>-> <v k_DB.DBA.RDF_MAKE_OBJ_OF_TYPEDSQLVAL$65 Set67 an>
+    
+    time         0% fanout         0 input         0 rows
+    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:       1.2 Fanout:         0
+      clear: (<V s_37_2_t0.S$36 rn>, <V var2Label$41 a>, <V var1$39 a>)
+      clear on continue: (<V var1$39 a>, <V var2Label$41 a>, <V s_37_2_t0.S$36 rn>)$32 () $79 (35 ) $83 (35 ) $29 (31 ) 
+    s# 75 35 from DB.DBA.RDF_QUAD by RDF_QUAD_POGS        1.2 rows   
+    Key RDF_QUAD_POGS  ASC  (<V s_37_2_t0.S$36 rn>)
+     P = <v k_s_37_2_t0.P$79 Set81 rn> ,  O = <V k_DB.DBA.RDF_MAKE_OBJ_OF_TYPEDSQLVAL$83 an>
+    vector param casts: <V s_37_2_t0.P$32 rn>-> <v k_s_37_2_t0.P$79 Set81 rn>, <r DB.DBA.RDF_MAKE_OBJ_OF_TYPEDSQLVAL$29 via  Set61 Set67>-> <V k_DB.DBA.RDF_MAKE_OBJ_OF_TYPEDSQLVAL$83 an>
+    
+    After code:
+      0: <V var1$39 a> := Call __id2in (<V s_37_2_t0.S$36 rn>)
+      5: <V var2Label$41 a> := Call __id2in (<r s_37_2_t0.P$32 via  Set75 Set81>)
+      10: BReturn 0
+    time         0% fanout         0 input         0 rows
+    $39 () $41 () $49 (35 31 50 ) 
+    s# 91 43 Select (<V var1$39 a>, <V var2Label$41 a>, <DB_NULL>)
+      set no: <r set_ctr$49 via  Set75 Set81 Set61 Set67>
+  }
+Warning: You might have a Cartesian product.
+
+
+
+ 0 msec 19% cpu,         3 rnd         0 seq         0% same seg         0% same pg 
+Compilation: 2 msec 0 reads         0% read 0 messages         0% clw

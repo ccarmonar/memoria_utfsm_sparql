@@ -1,0 +1,41 @@
+
+  { 
+    time       8.8% fanout         1 input         1 rows
+    time        91% fanout         0 input         1 rows
+    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:         2 Fanout:         0
+    RDF_QUAD_SP         2 rows(s_37_2_t0.P$28)
+     inlined  S =  IRI_ID"...Q29414159" 
+    time         0% fanout         0 input         0 rows
+    END Node
+    After test:
+    0: __id2in$31 := Call __id2in (s_37_2_t0.P$28)
+    5: __bft$33 := Call __bft (__id2in$31,  2 )
+    10: _cvt$35 := Call _cvt (<tag 193 flag 0>, __bft$33)
+    15: if (_cvt$35  LIKE  <c %string1%>) then 20 else 19 unkn 20
+    19: BReturn 1
+    20: BReturn 0
+    time         0% fanout         0 input         0 rows
+    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:       1.2 Fanout:         0
+    RDF_QUAD       1.2 rows(s_37_2_t0.O$38)
+     inlined  P = k_s_37_2_t0.P$94 ,  S =  IRI_ID"...Q29414159" 
+    time         0% fanout         0 input         0 rows
+    END Node
+    After test:
+    0: __ro2sq$43 := Call __ro2sq (s_37_2_t0.O$38)
+    5: DB.DBA.RDF_LANGUAGE_OF_OBJ$41 := Call DB.DBA.RDF_LANGUAGE_OF_OBJ (__ro2sq$43)
+    12: if (<c en> = DB.DBA.RDF_LANGUAGE_OF_OBJ$41) then 20 else 16 unkn 16
+    16: if (<c > = DB.DBA.RDF_LANGUAGE_OF_OBJ$41) then 20 else 21 unkn 21
+    20: BReturn 1
+    21: BReturn 0
+    
+    After code:
+    0: var1$45 := Call __ro2sq (s_37_2_t0.O$38)
+    5: var2$47 := Call __id2in (s_37_2_t0.P$28)
+    10: BReturn 0
+    time         0% fanout         0 input         0 rows
+    Select (var1$45, var2$47, <tag 182 flag 1 c http://www.wikidata.org/entity/Q29414159>)
+  }
+
+
+ 0 msec 3% cpu,         1 rnd         0 seq         0% same seg         0% same pg 
+Compilation: 2 msec 0 reads         0% read 0 messages         0% clw

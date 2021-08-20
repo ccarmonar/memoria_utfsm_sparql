@@ -1,0 +1,71 @@
+Error: 23000: SR197: Non unique primary key on DB.DBA.RDF_OBJ.
+  { 
+    time     1e+02% fanout         1 input         1 rows
+    Precode:
+      0: DB.DBA.RDF_OBJ_OF_SQLVAL$27 := Call DB.DBA.RDF_OBJ_OF_SQLVAL (<c string1>)
+      7: DB.DBA.RDF_OBJ_OF_SQLVAL$29 := Call DB.DBA.RDF_OBJ_OF_SQLVAL (<c string2>)
+      14: DB.DBA.RDF_OBJ_OF_SQLVAL$31 := Call DB.DBA.RDF_OBJ_OF_SQLVAL (<c L E Hashem>)
+      21: BReturn 0
+    Subquery 33 
+      { 
+        Union
+          { 
+            Subquery 37 
+              { 
+                Union
+                  { 
+                    time         0% fanout         0 input         0 rows
+                    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:       0.3 Fanout:         0
+                    RDF_QUAD_POGS       0.3 rows(s_37_2_t0-u11.S$42)
+                     P =  IRI_ID"...direct/P2093"  ,  O = k_DB.DBA.RDF_OBJ_OF_SQLVAL$118
+                    
+                    After code:
+                    0: var1$38 :=  := artm s_37_2_t0-u11.S$42
+                    4: BReturn 0
+                    time         0% fanout         0 input         0 rows
+                    Subquery Select(var1$38)
+                  }
+                  { 
+                    time         0% fanout         0 input         0 rows
+                    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:       0.3 Fanout:         0
+                    RDF_QUAD_POGS       0.3 rows(s_37_5_t1-u12.S$52)
+                     P =  IRI_ID"...direct/P2093"  ,  O = k_DB.DBA.RDF_OBJ_OF_SQLVAL$140
+                    
+                    After code:
+                    0: var1$38 :=  := artm s_37_5_t1-u12.S$52
+                    4: BReturn 0
+                    time         0% fanout         0 input         0 rows
+                    Subquery Select(var1$38)
+                  }
+              }
+            
+            After code:
+            0: var1$34 :=  := artm var1$38
+            4: BReturn 0
+            time         0% fanout         0 input         0 rows
+            Subquery Select(var1$34)
+          }
+          { 
+            time         0% fanout         0 input         0 rows
+            Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:       0.3 Fanout:         0
+            RDF_QUAD_POGS       0.3 rows(s_37_9_t2.S$70)
+             P =  IRI_ID"...direct/P2093"  ,  O = k_DB.DBA.RDF_OBJ_OF_SQLVAL$169
+            
+            After code:
+            0: var1$34 :=  := artm s_37_9_t2.S$70
+            4: BReturn 0
+            time         0% fanout         0 input         0 rows
+            Subquery Select(var1$34)
+          }
+      }
+    
+    After code:
+    0: var1$80 := Call __id2in (var1$34)
+    5: BReturn 0
+    time         0% fanout         0 input         0 rows
+    Select (var1$80)
+  }
+
+
+ 1 msec 12% cpu,         3 rnd         0 seq         0% same seg         0% same pg 
+Compilation: 2 msec 0 reads         0% read 0 messages         0% clw

@@ -1,0 +1,95 @@
+http://www.wikidata.org/entity/Q2707246		1962-09-19 00:00:00Z	
+http://www.wikidata.org/entity/Q2759019		1916-01-01 00:00:00Z	
+http://www.wikidata.org/entity/Q2862815		1923-06-28 00:00:00Z	
+http://www.wikidata.org/entity/Q3126457		1928-01-01 00:00:00Z	
+http://www.wikidata.org/entity/Q16088399		1935-01-01 00:00:00Z	
+http://www.wikidata.org/entity/Q41173595		1969-03-02 00:00:00Z	
+http://www.wikidata.org/entity/Q1335176		2001-03-31 00:00:00Z	
+http://www.wikidata.org/entity/Q185000		1935-07-28 00:00:00Z	
+http://www.wikidata.org/entity/Q260855		1947-01-01 00:00:00Z	
+http://www.wikidata.org/entity/Q262085		2005-05-29 00:00:00Z	
+http://www.wikidata.org/entity/Q308940		1959-07-30 00:00:00Z	
+http://www.wikidata.org/entity/Q309177		1990-04-13 00:00:00Z	
+http://www.wikidata.org/entity/Q309700		1922-03-26 00:00:00Z	
+http://www.wikidata.org/entity/Q771010		1982-08-30 00:00:00Z	
+http://www.wikidata.org/entity/Q381159		1981-04-10 00:00:00Z	
+http://www.wikidata.org/entity/Q381162		1976-08-12 00:00:00Z	
+http://www.wikidata.org/entity/Q381206		1934-01-01 00:00:00Z	
+http://www.wikidata.org/entity/Q381223		1924-01-01 00:00:00Z	
+http://www.wikidata.org/entity/Q381228		1938-01-01 00:00:00Z	
+http://www.wikidata.org/entity/Q381249		1947-07-21 00:00:00Z	
+
+  { 
+    time     0.096% fanout         1 input         1 rows
+      clear: (<V set_ctr$72 in>)
+    s# 75 73 cluster outer seq start, set no <V set_ctr$72 in>    
+    save ctx:()
+    time       3.1% fanout       778 input         1 rows
+    Precode:
+      0: __rdflit$27  := Call __rdflit (rdflit32005)
+      5: BReturn 0
+      clear: (<V s_37_7_t2.O$30 an>, <V s_37_7_t2.S$31 rn>)
+      clear on continue: (<V s_37_7_t2.O$30 an>, <V s_37_7_t2.S$31 rn>)
+    s# 84 29 from DB.DBA.RDF_QUAD by RDF_QUAD    7.8e+02 rows   
+    Key RDF_QUAD  ASC  (<V s_37_7_t2.S$31 rn>, <V s_37_7_t2.O$30 an>)
+     inlined  P =  IRI_ID"...direct/P606" 
+    
+    time      0.34% fanout         1 input       778 rows
+      clear: (<V set_ctr$51 i>)
+    s# 95 55 cluster outer seq start, set no <V set_ctr$51 i>    
+    save ctx:()
+      clear: (<V var1$35 a>, <V var2$34 r>, <V set_no$36 i>)
+    s# 104 33 Subquery 33 
+      multistate set no = <V set_no$36 i>
+      { 
+        time        91% fanout   1.02057 input       778 rows
+        Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:     1e+04 Fanout:         1
+          clear: (<V s_37_6_t0.O$38 an>, <V s_37_6_t0.S$39 rn>)
+          clear on continue: (<V s_37_6_t0.S$39 rn>, <V s_37_6_t0.O$38 an>)
+        s# 108 37 from DB.DBA.RDF_QUAD by RDF_QUAD_POGS      1e+04 rows   
+        Key RDF_QUAD_POGS  ASC  (<V s_37_6_t0.S$39 rn>, <V s_37_6_t0.O$38 an>)
+         P =  IRI_ID"...about"  ,  O = <v k_s_37_7_t2.S$112 Set114 an>
+        row specs:  O LIKE <c Tó>
+        vector param casts: <r s_37_7_t2.S$31 via  Set95>-> <v k_s_37_7_t2.S$112 Set114 an>
+        
+        time       5.1% fanout         0 input       794 rows
+        Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:   1.4e-07 Fanout:         0
+          clear: (<V var1$35 a>, <V var2$34 r>)
+          clear on continue: (<V var1$35 a>, <V var2$34 r>)$38 () $39 () 
+        s# 123 41 from DB.DBA.RDF_QUAD by RDF_QUAD_POGS    1.4e-07 rows   
+        Key RDF_QUAD_POGS  ASC  ()
+         inlined  P =  IRI_ID"...inLanguage"  ,  O = rdflit32005 ,  S = <V s_37_6_t0.S$39 rn>
+        
+        After code:
+          0: <V var2$34 r> :=  := artm <r s_37_6_t0.S$39 via  Set123>
+          4: <V var1$35 a> :=  := artm <r s_37_6_t0.O$38 via  Set123>
+          8: BReturn 0
+        time         0% fanout         0 input         0 rows
+        
+        s# 104 43 Subquery Select(<V var2$34 r>, <V var1$35 a>)
+          set no: <r set_no$36 via  Set123 Set108 Set114>
+      }
+    
+    time         0% fanout         0 input         0 rows
+      clear: (<V var2$64 a>, <V var1$62 a>, <V var3$60 a>)$31 (33 55 ) $34 (33 ) $35 (33 ) $36 (33 ) $51 (33 55 ) $30 (33 55 ) 
+    s# 141 50 end of outer seq <r set_ctr$51 via  Set104>
+     out: (<V var1$35 a>, <V set_no$36 i>, <V var2$34 r>)
+     shadow: ( <none> ,  <none> ,  <none> )
+    After code:
+      0: <V var3$60 a> := Call __ro2sq (<r s_37_7_t2.O$30 via  Set141>)
+      5: <V var1$62 a> := Call __id2in (<r s_37_7_t2.S$31 via  Set141>)
+      10: <V var2$64 a> := Call __id2in (<V var2$34 r>)
+      15: BReturn 0
+    time     0.016% fanout         0 input       778 rows
+    $62 (50 ) $64 (50 ) $72 (50 33 55 29 73 ) $60 (50 ) 
+    s# 149 66 Select (<V var1$62 a>, <V var2$64 a>, <V var3$60 a>)
+      set no: <r set_ctr$72 via  Set141 Set84>
+  }
+Warning: You might have a Cartesian product.
+
+Warning: You might have a Cartesian product.
+
+
+
+ 171 msec 98% cpu,      2331 rnd       793 seq   61.7496% same seg   14.8799% same pg 
+Compilation: 2 msec 0 reads         0% read 0 messages         0% clw

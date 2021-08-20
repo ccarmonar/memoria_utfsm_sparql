@@ -1,0 +1,48 @@
+http://www.wikidata.org/entity/Q2607622	e8d571e9-b73e-4925-9a61-5b44a720204f	
+http://www.wikidata.org/entity/Q2608479	4bbf86a2-6bdc-35e0-b2ee-bed9a56610da	
+http://www.wikidata.org/entity/Q2609711	912988b2-dd7e-4525-bf63-19e58ce9c579	
+http://www.wikidata.org/entity/Q2612039	d82aa643-dfd6-4445-9902-38c77ae097f1	
+http://www.wikidata.org/entity/Q2613947	25b805aa-6e20-33c1-9ddc-6977caaa330a	
+http://www.wikidata.org/entity/Q2630633	f8f31126-353c-388f-9b7c-6351a2d77ecb	
+http://www.wikidata.org/entity/Q2631001	cfccd37d-dde0-4c31-bc78-8bb6a2d53a08	
+http://www.wikidata.org/entity/Q2631105	f2ad7b77-1f4f-411f-aadd-7c7cd5b17c0c	
+http://www.wikidata.org/entity/Q2632086	b1d93865-7e03-4bab-bfd3-94acc54a6b13	
+http://www.wikidata.org/entity/Q2632128	d417d8d3-b86a-4e4f-aea5-f114ce794146	
+http://www.wikidata.org/entity/Q2632325	f8f80da4-d42b-4c6e-9845-1ebf8096b577	
+http://www.wikidata.org/entity/Q2632818	5c53194f-4766-48a1-aa62-526526ac0a61	
+http://www.wikidata.org/entity/Q2637757	e2d9865c-275a-4193-b231-d4fb1148b595	
+http://www.wikidata.org/entity/Q2640820	bddf1393-422f-4342-84d9-2ce2281ec117	
+http://www.wikidata.org/entity/Q2740251	45481af0-606f-34ca-8d5b-5a946158f051	
+http://www.wikidata.org/entity/Q2700904	215c44f7-bd47-37ef-a104-96176079148a	
+http://www.wikidata.org/entity/Q2702868	f3256dac-2586-3424-b5f4-3e14d22ab645	
+http://www.wikidata.org/entity/Q2703160	4ebcef2c-4fb0-3f97-8063-9a1247c50be4	
+http://www.wikidata.org/entity/Q2703182	cbea4e87-2c35-43a6-aa2f-b2e96a3067b9	
+http://www.wikidata.org/entity/Q2705905	82f8415e-2f04-4f7d-a15c-e58ceef7a39c	
+
+  { 
+    time      0.04% fanout         1 input         1 rows
+      clear: (<V set_ctr$41 in>)
+    s# 44 42 cluster outer seq start, set no <V set_ctr$41 in>    
+    save ctx:()
+    time     1e+02% fanout      1000 input         1 rows
+      clear: (<V s_37_2_t0.O$28 an>, <V s_37_2_t0.S$29 rn>, <V var2$33 a>, <V var1$31 a>)
+      clear on continue: (<V s_37_2_t0.O$28 an>, <V s_37_2_t0.S$29 rn>, <V var2$33 a>, <V var1$31 a>)
+    s# 53 27 from DB.DBA.RDF_QUAD by RDF_QUAD      4e+03 rows   
+    Key RDF_QUAD  ASC  (<V s_37_2_t0.S$29 rn>, <V s_37_2_t0.O$28 an>)
+     inlined  P =  IRI_ID"...direct/P435" 
+    
+    After code:
+      0: <V var1$31 a> := Call __id2in (<V s_37_2_t0.S$29 rn>)
+      5: <V var2$33 a> := Call __ro2sq (<V s_37_2_t0.O$28 an>)
+      10: BReturn 0
+    time     0.015% fanout         0 input      1000 rows
+    $31 () $33 () $41 (27 42 ) 
+    s# 64 35 Select (<V var1$31 a>, <V var2$33 a>)
+      set no: <r set_ctr$41 via  Set53>
+  }
+Warning: You might have a Cartesian product.
+
+
+
+ 8 msec 85% cpu,      1017 rnd       998 seq         0% same seg   18.7623% same pg 
+Compilation: 1 msec 0 reads         0% read 0 messages         0% clw

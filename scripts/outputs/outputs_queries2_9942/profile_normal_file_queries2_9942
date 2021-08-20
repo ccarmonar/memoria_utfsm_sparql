@@ -1,0 +1,79 @@
+
+  { 
+    time      0.77% fanout         1 input         1 rows
+      clear: (<V set_ctr$65 in>)
+    s# 71 66 cluster outer seq start, set no <V set_ctr$65 in>    
+    save ctx:()
+    time        99% fanout         0 input         1 rows
+    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:   1.4e-07 Fanout:         0
+    Precode:
+      0: <V ontology/isbn$27 r> := Call __i2idn (<tag 182 flag 1 c http://dbpedia.org/ontology/isbn>)
+      5: <V ontology/author$29 r> := Call __i2idn (<tag 182 flag 1 c http://dbpedia.org/ontology/author>)
+      10: <V ontology/publicationDate$31 r> := Call __i2idn (<tag 182 flag 1 c http://dbpedia.org/ontology/publicationDate>)
+      15: BReturn 0
+      clear: (<V s_37_10_t4.O$34 an>, <V s_37_10_t4.S$35 rn>, <V ontology/publicationDate$31 r>, <V ontology/author$29 r>, <V ontology/isbn$27 r>)
+      clear on continue: (<V s_37_10_t4.S$35 rn>, <V s_37_10_t4.O$34 an>)$84 (33 ) $27 (33 ) 
+    s# 80 33 from DB.DBA.RDF_QUAD by RDF_QUAD_POGS    1.4e-07 rows   
+    Key RDF_QUAD_POGS  ASC  (<V s_37_10_t4.S$35 rn>, <V s_37_10_t4.O$34 an>)
+     inlined  P = <v k_ontology/isbn$84 Set86 rn>
+    vector param casts: <V ontology/isbn$27 r>-> <v k_ontology/isbn$84 Set86 rn>
+    
+    time         0% fanout         0 input         0 rows
+    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:       0.8 Fanout:         0
+      clear: (<V s_37_10_t0.S$38 rn>)
+      clear on continue: (<V s_37_10_t0.S$38 rn>)$35 () 
+    s# 95 37 from DB.DBA.RDF_QUAD by RDF_QUAD_POGS        0.8 rows   
+    Key RDF_QUAD_POGS  ASC  (<V s_37_10_t0.S$38 rn>)
+     inlined  P =  IRI_ID"...type"  ,  O =  IRI_ID"...Book"  ,  S = <V s_37_10_t4.S$35 rn>
+    
+    time         0% fanout         0 input         0 rows
+    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:   1.4e-07 Fanout:         0
+      clear: (<V s_37_10_t2.O$41 an>, <V s_37_10_t2.S$42 rn>)
+      clear on continue: (<V s_37_10_t2.S$42 rn>, <V s_37_10_t2.O$41 an>)$109 (40 ) $113 (40 ) $29 (37 33 ) 
+    s# 105 40 from DB.DBA.RDF_QUAD by RDF_QUAD    1.4e-07 rows   
+    Key RDF_QUAD  ASC  (<V s_37_10_t2.S$42 rn>, <V s_37_10_t2.O$41 an>)
+     inlined  P = <v k_ontology/author$109 Set111 rn> ,  S = <V k_s_37_10_t0.S$113 rn>
+    vector param casts: <r ontology/author$29 via  Set95 Set80 Set86>-> <v k_ontology/author$109 Set111 rn>, <V s_37_10_t0.S$38 rn>-> <V k_s_37_10_t0.S$113 rn>
+    
+    time         0% fanout         0 input         0 rows
+    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:         1 Fanout:         0
+      clear: (<V s_37_10_t1.O$45 an>, <V s_37_10_t1.S$46 rn>)
+      clear on continue: (<V s_37_10_t1.S$46 rn>, <V s_37_10_t1.O$45 an>)$126 (44 ) 
+    s# 122 44 from DB.DBA.RDF_QUAD by RDF_QUAD          1 rows   
+    Key RDF_QUAD  ASC  (<V s_37_10_t1.S$46 rn>, <V s_37_10_t1.O$45 an>)
+     inlined  P =  IRI_ID"...name"  ,  S = <v k_s_37_10_t0.S$126 Set128 rn>
+    vector param casts: <r s_37_10_t0.S$38 via  Set105 Set111>-> <v k_s_37_10_t0.S$126 Set128 rn>
+    
+    time         0% fanout         0 input         0 rows
+    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:   1.4e-07 Fanout:         0
+      clear: (<V s_37_10_t3.O$49 an>)
+      clear on continue: (<V s_37_10_t3.O$49 an>)$31 (44 40 37 33 ) $38 (44 40 ) $141 (48 ) $145 (48 ) 
+    s# 137 48 from DB.DBA.RDF_QUAD by RDF_QUAD    1.4e-07 rows   
+    Key RDF_QUAD  ASC  (<V s_37_10_t3.O$49 an>)
+     inlined  P = <v k_ontology/publicationDate$141 Set143 rn> ,  S = <V k_s_37_10_t0.S$145 rn>
+    vector param casts: <r ontology/publicationDate$31 via  Set122 Set128 Set105 Set111 Set95 Set80 Set86>-> <v k_ontology/publicationDate$141 Set143 rn>, <r s_37_10_t0.S$38 via  Set122 Set128 Set105 Set111>-> <V k_s_37_10_t0.S$145 rn>
+    
+    time         0% fanout         0 input         0 rows
+      clear: (<V var3$57 a>, <V var1$55 a>, <V var2$53 a>, <V var4$51 a>)$34 (48 44 40 37 ) $41 (48 44 ) $45 (48 ) $49 () 
+    s# 153 69 skip node  10  <none> <r set_ctr$65 via  Set137 Set143 Set122 Set128 Set105 Set111 Set95 Set80 Set86>
+    After code:
+      0: <V var4$51 a> := Call __ro2sq (<r s_37_10_t4.O$34 via  Set153 Set137 Set143 Set122 Set128 Set105 Set111 Set95>)
+      5: <V var2$53 a> := Call __ro2sq (<r s_37_10_t2.O$41 via  Set153 Set137 Set143 Set122 Set128>)
+      10: <V var1$55 a> := Call __ro2sq (<r s_37_10_t1.O$45 via  Set153 Set137 Set143>)
+      15: <V var3$57 a> := Call __ro2sq (<r s_37_10_t3.O$49 via  Set153>)
+      20: BReturn 0
+    time         0% fanout         0 input         0 rows
+    $65 (69 48 44 40 37 33 66 ) $51 (69 ) $53 (69 ) $55 (69 ) $57 (69 ) 
+    s# 161 59 Select (<V var1$55 a>, <V var2$53 a>, <V var3$57 a>, <V var4$51 a>)
+      set no: <r set_ctr$65 via  Set153 Set137 Set143 Set122 Set128 Set105 Set111 Set95 Set80 Set86>
+  }
+Warning: You might have a Cartesian product.
+
+Warning: You might have a Cartesian product.
+
+Warning: You might have a Cartesian product.
+
+
+
+ 1 msec 9% cpu,        10 rnd         0 seq         0% same seg         0% same pg 
+Compilation: 4 msec 0 reads         0% read 0 messages         0% clw

@@ -1,0 +1,51 @@
+
+  { 
+    time        35% fanout         1 input         1 rows
+    time       2.2% fanout         1 input         1 rows
+    time        63% fanout         0 input         1 rows
+    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:   1.4e-07 Fanout:         0
+    RDF_QUAD_POGS   1.4e-07 rows(s_37_12_t5.S$33)
+     P =  IRI_ID"...isPartOf"  ,  O =  IRI_ID"..." 
+    time         0% fanout         0 input         0 rows
+    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:         1 Fanout:         0
+    RDF_QUAD         1 rows(s_37_12_t4.O$37, s_37_12_t4.S$36)
+     inlined  P =  IRI_ID"...about"  ,  S = s_37_12_t5.S$33
+    time         0% fanout         0 input         0 rows
+    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:    0.0017 Fanout:         0
+    RDF_QUAD    0.0017 rows(s_37_12_t0.S$40)
+     inlined  P =  IRI_ID"...direct/P31"  ,  S = cast$123 ,  O =  IRI_ID"...Q55488" 
+    time         0% fanout         0 input         0 rows
+    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:       1.1 Fanout:         0
+    RDF_QUAD       1.1 rows(s_37_12_t3.S$43)
+     inlined  P =  IRI_ID"...direct/P137"  ,  S = s_37_12_t0.S$40
+    time         0% fanout         0 input         0 rows
+    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:     0.014 Fanout:         0
+    RDF_QUAD_POGS     0.014 rows(s_37_12_t1.S$46)
+     inlined  P =  IRI_ID"...direct/P17"  ,  O =  IRI_ID"...Q38"  ,  S = k_s_37_12_t0.S$147
+    time         0% fanout         0 input         0 rows
+    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:       1.1 Fanout:         0
+    RDF_QUAD       1.1 rows(s_37_12_t2.O$49)
+     inlined  P =  IRI_ID"...direct/P625"  ,  S = k_s_37_12_t0.S$161
+    time         0% fanout         0 input         0 rows
+    Distinct (s_37_12_t0.S$40, s_37_12_t2.O$49, s_37_12_t4.S$36)
+    
+    After code:
+    0: var1$28 :=  := artm s_37_12_t0.S$40
+    4: var2$29 :=  := artm s_37_12_t2.O$49
+    8: var3$30 :=  := artm s_37_12_t4.S$36
+    12: BReturn 0
+    time         0% fanout         0 input         0 rows
+    Subquery Select(var1$28, var2$29, var3$30)
+    
+    After code:
+    0: var1$65 := Call __ro2sq (var1$28)
+    5: var2$67 := Call __ro2sq (var2$29)
+    10: var3$69 := Call __ro2sq (var3$30)
+    15: BReturn 0
+    time         0% fanout         0 input         0 rows
+    Select (var1$65, var2$67, var3$69)
+  }
+
+
+ 0 msec 1% cpu,         1 rnd         0 seq         0% same seg         0% same pg 
+Compilation: 5 msec 0 reads         0% read 0 messages         0% clw

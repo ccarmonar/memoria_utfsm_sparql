@@ -1,0 +1,61 @@
+952	
+
+  { 
+    time      0.49% fanout         1 input         1 rows
+      clear: (<V set_ctr$58 in>)
+    s# 72 59 cluster outer seq start, set no <V set_ctr$58 in>    
+    save ctx:()
+    time      0.77% fanout         1 input         1 rows
+    Precode:
+      0: <V __all_eq$27 x> := Call __all_eq ( IRI_ID"...Q783794" )
+      5: BReturn 0
+      clear: (<V __all_eq$27 x>)
+    s# 126 60 Fork 60 {  
+          clear: (<V _::trans_obj_37_6$31 an>, <V _::trans_subj_37_5$30 rn>)
+          clear on continue: (<V _::trans_obj_37_6$31 an>, <V _::trans_subj_37_5$30 rn>)$27 (29 ) 
+        s# 82 29 Transitive dt dir 2, input: (<V __all_eq$27 x>)
+          input shadow: (<V __all_eq$86 x>)
+          output: (<V _::trans_subj_37_5$30 rn>)
+          { 
+            time        37% fanout  0.888889 input         9 rows
+              clear: (<V s_37_9_t1.O$36 an>, <V s_37_9_t1.S$37 rn>, <V _::trans_obj_37_6$31 an>, <V _::trans_subj_37_5$30 rn>)
+              clear on continue: (<V _::trans_subj_37_5$30 rn>, <V _::trans_obj_37_6$31 an>, <V s_37_9_t1.S$37 rn>, <V s_37_9_t1.O$36 an>)$86 (35 ) $92 (35 ) 
+            s# 88 35 from DB.DBA.RDF_QUAD by RDF_QUAD_POGS        3.8 rows   
+            Key RDF_QUAD_POGS  ASC  (<V s_37_9_t1.S$37 rn>, <V s_37_9_t1.O$36 an>)
+             P =  IRI_ID"...direct/P279"  ,  O = <v k___all_eq$92 Set94 an>
+            vector param casts: <V __all_eq$86 x>-> <v k___all_eq$92 Set94 an>
+            
+            After code:
+              0: <V _::trans_subj_37_5$30 rn> :=  := artm <V s_37_9_t1.S$37 rn>
+              4: <V _::trans_obj_37_6$31 an> :=  := artm <V s_37_9_t1.O$36 an>
+              8: BReturn 0
+            time      0.21% fanout         0 input         8 rows
+            $31 () 
+            s# 105 39 Subquery Select(<V _::trans_subj_37_5$30 rn>, <V _::trans_obj_37_6$31 an>)
+              set no: <r step_set$32 via  Set88 Set94>
+          }
+        time        25% fanout         0 input         9 rows
+        Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:     1e+02 Fanout:         0
+        $116 (56 ) $30 () 
+        s# 112 56 from DB.DBA.RDF_QUAD by RDF_QUAD_POGS      1e+02 rows Parallel, tail cost        14   
+        Key RDF_QUAD_POGS  ASC  ()
+         P =  IRI_ID"...direct/P31"  ,  O = <v cast$116 Set118 an>
+        row specs:  O LIKE <c Tó>
+        vector param casts: <V _::trans_subj_37_5$30 rn>-> <v cast$116 Set118 an>
+        copy on branch $116 $58 $0 $0 sets: 72 82 
+        
+        After code:
+          0:  sum <V var1$61 i> 1 set no <r set_ctr$58 via  Set112 Set118 Set82>
+          5: BReturn 0
+    }
+    time      0.16% fanout         0 input         1 rows
+    $58 (60 59 ) $61 (65 ) 
+    s# 133 65 Select (<V var1$61 i>)
+      set no: <V set_ctr$58 in>
+  }
+Warning: You might have a Cartesian product.
+
+
+
+ 1 msec 14% cpu,        18 rnd       956 seq   5.26316% same seg   57.8947% same pg 
+Compilation: 3 msec 0 reads         0% read 0 messages         0% clw

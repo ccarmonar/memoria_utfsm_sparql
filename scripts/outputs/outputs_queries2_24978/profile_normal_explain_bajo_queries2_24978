@@ -1,0 +1,97 @@
+
+  { 
+    time       0.1% fanout         1 input         1 rows
+    Precode:
+      0: __all_eq$27 := Call __all_eq ( IRI_ID"...Q1190554" )
+      5: rdf_now_impl$29 := Call rdf_now_impl ()
+      10: BReturn 0
+    Transitive dt dir 2, input: (__all_eq$27)
+      input shadow: (__all_eq$130)
+      output: (_::trans_subj_37_5$32)
+      { 
+        time        14% fanout   1.03333 input        60 rows
+        RDF_QUAD_POGS       3.8 rows(t18.S$39, t18.O$38)
+         P =  IRI_ID"...direct/P279"  ,  O = k___all_eq$136
+        
+        After code:
+        0: _::trans_subj_37_5$32 :=  := artm t18.S$39
+        4: _::trans_obj_37_6$33 :=  := artm t18.O$38
+        8: BReturn 0
+        time     0.054% fanout         0 input        62 rows
+        Subquery Select(_::trans_subj_37_5$32, _::trans_obj_37_6$33)
+      }
+    time        17% fanout   5.95455 input        66 rows
+    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:     1e+02 Fanout:         6
+    RDF_QUAD_POGS     1e+02 rows(t16.S$59)
+     P =  IRI_ID"...direct/P31"  ,  O = cast$160 O LIKE <c Tó>
+    time        11% fanout         1 input       393 rows
+    outer {
+        time        13% fanout  0.391858 input       393 rows
+        RDF_QUAD         1 rows(t19.O$62)
+         inlined  P =  IRI_ID"...direct/P585"  ,  S = k_t16.S$183
+        time      0.13% fanout   2.56493 input       154 rows
+      } /* end of outer */
+    set_ctr$67
+     out: (t19.O$62)
+     shadow: ( <none> )
+    time       9.6% fanout         1 input       395 rows
+    outer {
+        time        11% fanout 0.0911392 input       395 rows
+        Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:         1 Fanout:     0.091
+        RDF_QUAD         1 rows(t20.O$77)
+         inlined  P =  IRI_ID"...direct/P580"  ,  S = k_t16.S$214
+        time      0.29% fanout  0.916667 input        36 rows
+        END Node
+        After test:
+        0: if (t19.O$62  IS NULL   0 ) then 8 else 4 unkn 4
+        4: if (t19.O$62 = t20.O$77) then 8 else 9 unkn 9
+        8: BReturn 1
+        9: BReturn 0
+        time     0.098% fanout   11.9697 input        33 rows
+      } /* end of outer */
+    set_ctr$92
+     out: (t20.O$77)
+     shadow: (t20.O$242)
+    time        11% fanout         0 input       395 rows
+    END Node
+    After test:
+    0: if (t19.O$62  IS NULL  <DB_NULL>) then 9 else 4 unkn 9
+    4: coalesce_ret$79 :=  := artm t19.O$62
+    8: Jump 22 (level=0)
+    9: if (t20.O$242  IS NULL  <DB_NULL>) then 18 else 13 unkn 18
+    13: coalesce_ret$79 :=  := artm t20.O$242
+    17: Jump 22 (level=0)
+    18: coalesce_ret$79 :=  := artm <DB_NULL>
+    22: temp$81 := artm rdf_now_impl$29 - coalesce_ret$79
+    26: if (temp$81 <  31 ) then 30 else 68 unkn 68
+    30: if (temp$81 >=  0 ) then 34 else 68 unkn 68
+    34: __ro2sq$83 := Call __ro2sq (coalesce_ret$79)
+    39: DB.DBA.RDF_DATATYPE_OF_OBJ$85 := Call DB.DBA.RDF_DATATYPE_OF_OBJ (__ro2sq$83)
+    46: if (<tag 182 flag 1 c http://www.w3.org/2001/XMLSchema#dateTime> = DB.DBA.RDF_DATATYPE_OF_OBJ$85) then 50 else 68 unkn 68
+    50: isiri_id$87 := Call isiri_id (coalesce_ret$79)
+    55: temp$89 := artm  1  - isiri_id$87
+    59: if ( 0  = temp$89) then 68 else 63 unkn 68
+    63: if (coalesce_ret$79  IS NULL   0 ) then 68 else 67 unkn 68
+    67: BReturn 1
+    68: BReturn 0
+    time         0% fanout         0 input         0 rows
+    skip node  10  <none> set_ctr$64
+    
+    After code:
+    0: var1$101 := Call __id2in (t16.S$59)
+    5: if (t19.O$62  IS NULL  <DB_NULL>) then 14 else 9 unkn 14
+    9: coalesce_ret$103 :=  := artm t19.O$62
+    13: Jump 27 (level=0)
+    14: if (t20.O$77  IS NULL  <DB_NULL>) then 23 else 18 unkn 23
+    18: coalesce_ret$103 :=  := artm t20.O$77
+    22: Jump 27 (level=0)
+    23: coalesce_ret$103 :=  := artm <DB_NULL>
+    27: var2$105 := Call __ro2sq (coalesce_ret$103)
+    32: BReturn 0
+    time         0% fanout         0 input         0 rows
+    Select (var1$101, <DB_NULL>, var2$105)
+  }
+
+
+ 3 msec 36% cpu,       915 rnd       434 seq   92.4672% same seg   5.78603% same pg 
+Compilation: 5 msec 0 reads         0% read 0 messages         0% clw

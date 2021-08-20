@@ -1,0 +1,49 @@
+http://www.wikidata.org/entity/Q2609815	95-50-1	
+http://www.wikidata.org/entity/Q2613976	10022-50-1	
+http://www.wikidata.org/entity/Q2631244	12013-82-0	
+http://www.wikidata.org/entity/Q2639429	1420-36-6	
+http://www.wikidata.org/entity/Q2698440	10373-78-1	
+http://www.wikidata.org/entity/Q2699537	9029-97-4	
+http://www.wikidata.org/entity/Q2701638	475-31-0	
+http://www.wikidata.org/entity/Q2709086	206440-72-4	
+http://www.wikidata.org/entity/Q2709182	2944-05-0	
+http://www.wikidata.org/entity/Q2759774	2470-73-7	
+http://www.wikidata.org/entity/Q2760354	68649-42-3	
+http://www.wikidata.org/entity/Q2783854	37332-99-3	
+http://www.wikidata.org/entity/Q2797009	1727-65-7	
+http://www.wikidata.org/entity/Q2852723	191-26-4	
+http://www.wikidata.org/entity/Q2981798	1339-63-5	
+http://www.wikidata.org/entity/Q3060385	22368-21-4	
+http://www.wikidata.org/entity/Q3060386	855-96-9	
+http://www.wikidata.org/entity/Q3063113	13598-56-6	
+http://www.wikidata.org/entity/Q3066403	6244-91-3	
+http://www.wikidata.org/entity/Q3068331	103112-36-3	
+
+  { 
+    time    0.0021% fanout         1 input         1 rows
+      clear: (<V set_ctr$41 in>)
+    s# 44 42 cluster outer seq start, set no <V set_ctr$41 in>    
+    save ctx:()
+    time     1e+02% fanout      1000 input         1 rows
+      clear: (<V s_37_2_t0.O$28 an>, <V s_37_2_t0.S$29 rn>, <V var2$33 a>, <V var1$31 a>)
+      clear on continue: (<V s_37_2_t0.O$28 an>, <V s_37_2_t0.S$29 rn>, <V var2$33 a>, <V var1$31 a>)
+    s# 53 27 from DB.DBA.RDF_QUAD by RDF_QUAD    9.7e+03 rows   
+    Key RDF_QUAD  ASC  (<V s_37_2_t0.S$29 rn>, <V s_37_2_t0.O$28 an>)
+     inlined  P =  IRI_ID"...direct/P231" 
+    
+    After code:
+      0: <V var1$31 a> := Call __id2in (<V s_37_2_t0.S$29 rn>)
+      5: <V var2$33 a> := Call __ro2sq (<V s_37_2_t0.O$28 an>)
+      10: BReturn 0
+    time    0.0015% fanout         0 input      1000 rows
+    $31 () $33 () $41 (27 42 ) 
+    s# 64 35 Select (<V var1$31 a>, <V var2$33 a>)
+      set no: <r set_ctr$41 via  Set53>
+  }
+Warning: You might have a Cartesian product.
+
+
+
+ 167 msec 99% cpu,      1294 rnd       998 seq         0% same seg   75.5985% same pg 
+3 disk reads, 0 read ahead,   93.8286% wait
+Compilation: 1 msec 0 reads         0% read 0 messages         0% clw

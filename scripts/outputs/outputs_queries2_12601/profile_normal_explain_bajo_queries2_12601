@@ -1,0 +1,70 @@
+http://www.wikidata.org/entity/Q79339143	1962-02-01 00:00:00Z	
+http://www.wikidata.org/entity/Q79641337	2008-10-14 00:00:00Z	
+http://www.wikidata.org/entity/Q41558511	2011-01-01 00:00:00Z	
+http://www.wikidata.org/entity/Q41558511	2011-01-01 00:00:00Z	
+http://www.wikidata.org/entity/Q41558511	2011-01-01 00:00:00Z	
+http://www.wikidata.org/entity/Q29619819	2005-01-01 00:00:00Z	
+http://www.wikidata.org/entity/Q29619819	2005-01-01 00:00:00Z	
+http://www.wikidata.org/entity/Q79168338	2006-10-01 00:00:00Z	
+http://www.wikidata.org/entity/Q78342521	2002-10-07 00:00:00Z	
+http://www.wikidata.org/entity/Q79555861	1962-08-01 00:00:00Z	
+http://www.wikidata.org/entity/Q79555861	1962-08-01 00:00:00Z	
+http://www.wikidata.org/entity/Q79733649	2007-01-01 00:00:00Z	
+http://www.wikidata.org/entity/Q79144656	2006-09-27 00:00:00Z	
+http://www.wikidata.org/entity/Q79487708	2007-01-03 00:00:00Z	
+http://www.wikidata.org/entity/Q79074131	2003-09-18 00:00:00Z	
+http://www.wikidata.org/entity/Q79213039	2003-10-01 00:00:00Z	
+http://www.wikidata.org/entity/Q79342635	1962-08-01 00:00:00Z	
+http://www.wikidata.org/entity/Q79784864	2007-03-01 00:00:00Z	
+http://www.wikidata.org/entity/Q79658161	1997-02-01 00:00:00Z	
+http://www.wikidata.org/entity/Q79658161	1997-02-01 00:00:00Z	
+
+  { 
+    time   5.5e-05% fanout         1 input         1 rows
+    time     0.011% fanout     32000 input         1 rows
+    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:   5.5e+05 Fanout:   3.2e+04
+    RDF_QUAD   5.5e+05 rows(s_37_10_t3.S$28)
+     inlined  P =  IRI_ID"...direct/P921" 
+    time        50% fanout 0.0604062 input     32000 rows
+    END Node
+    After test:
+    0: if (  { 
+        time    0.0033% fanout         1 input     32000 rows
+        time       1.1% fanout   51.5547 input     32000 rows
+        RDF_QUAD        14 rows(s_37_8_t0.O$31)
+         inlined  P =  IRI_ID"...description"  ,  S = k_s_37_10_t3.S$109
+        time        49% fanout 0.0182252 input 1.64975e+06 rows
+        END Node
+        After test:
+        0: __ro2sq$33 := Call __ro2sq (s_37_8_t0.O$31)
+        5: DB.DBA.RDF_LANGUAGE_OF_OBJ$35 := Call DB.DBA.RDF_LANGUAGE_OF_OBJ (__ro2sq$33)
+        12: if (<c ar> = DB.DBA.RDF_LANGUAGE_OF_OBJ$35) then 16 else 17 unkn 17
+        16: BReturn 1
+        17: BReturn 0
+        time     0.013% fanout         0 input     30067 rows
+        Subquery Select( <none> )
+      }
+    ) then 5 else 4 unkn 5
+    4: BReturn 1
+    5: BReturn 0
+    time     0.022% fanout 0.0237972 input      1933 rows
+    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:      0.38 Fanout:     0.024
+    RDF_QUAD      0.38 rows(s_37_10_t1.S$47)
+     inlined  P =  IRI_ID"...direct/P31"  ,  S = k_s_37_10_t3.S$148 ,  O =  IRI_ID"...Q13442814" 
+    time    0.0061% fanout  0.782609 input        46 rows
+    RDF_QUAD         1 rows(s_37_10_t2.O$50)
+     inlined  P =  IRI_ID"...direct/P577"  ,  S = s_37_10_t1.S$47
+    time     0.012% fanout         1 input        36 rows
+    skip node  100  <none> set_ctr$62
+    
+    After code:
+    0: var1$52 := Call __id2in (s_37_10_t1.S$47)
+    5: var2$54 := Call __ro2sq (s_37_10_t2.O$50)
+    10: BReturn 0
+    time   5.3e-05% fanout         0 input        36 rows
+    Select (var1$52, var2$54)
+  }
+
+
+ 2937 msec 99% cpu, 3.3318e+06 rnd 1.64808e+06 seq  0.902275% same seg   9.22771% same pg 
+Compilation: 2 msec 0 reads         0% read 0 messages         0% clw

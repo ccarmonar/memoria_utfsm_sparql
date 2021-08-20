@@ -1,0 +1,31 @@
+SELECT __id2in ( "s_37_10_t0"."S") AS "var1",
+  __id2in ( "s_37_10_t1"."S") AS "var2",
+  __id2in ( "s_37_10_t2"."S") AS "var3",
+  __id2in ( "s_37_10_t3"."S") AS "var4",
+  __id2in ( "s_37_10_t4"."S") AS "var5"
+FROM DB.DBA.RDF_QUAD AS "s_37_10_t0"
+  INNER JOIN DB.DBA.RDF_QUAD AS "s_37_10_t1"
+  ON (
+    "s_37_10_t0"."S" = "s_37_10_t1"."O")
+  INNER JOIN DB.DBA.RDF_QUAD AS "s_37_10_t2"
+  ON (
+    "s_37_10_t1"."S" = "s_37_10_t2"."O")
+  INNER JOIN DB.DBA.RDF_QUAD AS "s_37_10_t3"
+  ON (
+    "s_37_10_t2"."S" = "s_37_10_t3"."O")
+  INNER JOIN DB.DBA.RDF_QUAD AS "s_37_10_t4"
+  ON (
+    "s_37_10_t3"."S" = "s_37_10_t4"."O")
+WHERE
+  "s_37_10_t0"."P" = __i2idn ( __bft( 'http://www.wikidata.org/prop/direct/P279' , 1))
+  AND 
+  "s_37_10_t0"."O" = __i2idn ( __bft( 'http://www.wikidata.org/entity/Q18616576' , 1))
+  AND 
+  "s_37_10_t1"."P" = __i2idn ( __bft( 'http://www.wikidata.org/prop/direct/P279' , 1))
+  AND 
+  "s_37_10_t2"."P" = __i2idn ( __bft( 'http://www.wikidata.org/prop/direct/P279' , 1))
+  AND 
+  "s_37_10_t3"."P" = __i2idn ( __bft( 'http://www.wikidata.org/prop/direct/P279' , 1))
+  AND 
+  "s_37_10_t4"."P" = __i2idn ( __bft( 'http://www.wikidata.org/prop/direct/P279' , 1))
+OPTION (QUIETCAST)

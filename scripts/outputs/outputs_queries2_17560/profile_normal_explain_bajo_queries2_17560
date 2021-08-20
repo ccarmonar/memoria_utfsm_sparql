@@ -1,0 +1,76 @@
+Van_Beethoven-8	http://www.wikidata.org/entity/Q10336787	http://www.wikidata.org/entity/Q2153541	Van_Beethoven-4	
+Schröder-1876	http://www.wikidata.org/entity/Q1036892	http://www.wikidata.org/entity/Q1036893	Schröder-1875	
+Estévez-24	http://www.wikidata.org/entity/Q103939	http://www.wikidata.org/entity/Q184572	Estévez-12	
+Lennox-9	http://www.wikidata.org/entity/Q1065334	http://www.wikidata.org/entity/Q966008	Lennox-3	
+朱-22	http://www.wikidata.org/entity/Q11094099	http://www.wikidata.org/entity/Q1326844	朱-19	
+Koháry_de_Csábrág-3	http://www.wikidata.org/entity/Q1115002	http://www.wikidata.org/entity/Q1115007	Koháry_de_Csábrág-4	
+島津-117	http://www.wikidata.org/entity/Q11162856	http://www.wikidata.org/entity/Q1005245	島津-18	
+Vos-1256	http://www.wikidata.org/entity/Q1133566	http://www.wikidata.org/entity/Q1677409	Vos-1263	
+間部-26	http://www.wikidata.org/entity/Q11382678	http://www.wikidata.org/entity/Q11655471	間部-13	
+嘉納-3	http://www.wikidata.org/entity/Q11419446	http://www.wikidata.org/entity/Q1120563	嘉納-4	
+Oppenheim-77	http://www.wikidata.org/entity/Q1157360	http://www.wikidata.org/entity/Q107614	Oppenheim-74	
+田岡-2	http://www.wikidata.org/entity/Q11576588	http://www.wikidata.org/entity/Q2319325	田岡-1	
+前田-11	http://www.wikidata.org/entity/Q11644240	http://www.wikidata.org/entity/Q3532631	前田-10	
+Solms-Laubach-2	http://www.wikidata.org/entity/Q11918032	http://www.wikidata.org/entity/Q26206163	Solms-Laubach-3	
+Askanier-38	http://www.wikidata.org/entity/Q120373	http://www.wikidata.org/entity/Q347460	Askanier-39	
+Wilkinson-7252	http://www.wikidata.org/entity/Q1204884	http://www.wikidata.org/entity/Q3154783	Wilkinson-7251	
+Oldenburg-205	http://www.wikidata.org/entity/Q1210424	http://www.wikidata.org/entity/Q62816	Oldenburg-199	
+Kiev-80	http://www.wikidata.org/entity/Q12145343	http://www.wikidata.org/entity/Q14974	Рюриковичи-2	
+Kiev-80	http://www.wikidata.org/entity/Q12145343	http://www.wikidata.org/entity/Q14974	Рюриковичи-2	
+Ibn_Ka&#39;b-1	http://www.wikidata.org/entity/Q12242034	http://www.wikidata.org/entity/Q12234967	Ibn_Lu&#39;ayy-1	
+
+  { 
+    time     0.019% fanout         1 input         1 rows
+    Subquery 27 
+      { 
+        time     0.011% fanout         1 input         1 rows
+        fork {
+            time       4.2% fanout     12688 input         1 rows
+            RDF_QUAD   1.3e+04 rows(s_37_6_t0.S$35, s_37_6_t0.O$34)
+             inlined  P =  IRI_ID"...direct/P2949" 
+            time        18% fanout  0.487153 input     12688 rows
+            RDF_QUAD       1.1 rows(s_37_6_t1.O$39, s_37_6_t1.S$38)
+             inlined  P =  IRI_ID"...direct/P22"  ,  S = s_37_6_t0.S$35
+            time        28% fanout  0.097557 input      6181 rows
+            Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:         1 Fanout:     0.098
+            RDF_QUAD         1 rows(s_37_6_t2.S$43, s_37_6_t2.O$42)
+             inlined  P =  IRI_ID"...direct/P2949"  ,  S = cast$139
+            
+            After code:
+            0: __id2in$45 := Call __id2in (s_37_6_t1.S$38)
+            5: BReturn 0
+            time        19% fanout         0 input       603 rows
+            Sort (__id2in$45) -> (s_37_6_t0.O$34, s_37_6_t2.S$43, s_37_6_t2.O$42)
+            
+          }
+        time        31% fanout       603 input         1 rows
+        Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:         0 Fanout:     6e+02
+        Key from temp (s_37_6_t0.O$34, __id2in$45, s_37_6_t2.S$43, s_37_6_t2.O$42)
+        
+        
+        After code:
+        0: __ro2sq$69 := Call __ro2sq (s_37_6_t2.O$42)
+        5: __id2in$71 := Call __id2in (s_37_6_t2.S$43)
+        10: __ro2sq$73 := Call __ro2sq (s_37_6_t0.O$34)
+        15: var1$28 :=  := artm __ro2sq$73
+        19: var2$29 :=  := artm __id2in$45
+        23: var3$30 :=  := artm __id2in$71
+        27: var4$31 :=  := artm __ro2sq$69
+        31: BReturn 0
+        time    0.0019% fanout         0 input       603 rows
+        Subquery Select(var1$28, var2$29, var3$30, var4$31)
+      }
+    
+    After code:
+    0: var1$82 := Call __ro2sq (var1$28)
+    5: var2$84 := Call __ro2sq (var2$29)
+    10: var3$86 := Call __ro2sq (var3$30)
+    15: var4$88 := Call __ro2sq (var4$31)
+    20: BReturn 0
+    time    0.0015% fanout         0 input       603 rows
+    Select (var1$82, var2$84, var3$86, var4$88)
+  }
+
+
+ 16 msec 88% cpu,     20721 rnd     13469 seq   90.8551% same seg  0.405366% same pg 
+Compilation: 2 msec 0 reads         0% read 0 messages         0% clw

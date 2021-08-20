@@ -1,0 +1,46 @@
+
+  { 
+    time        11% fanout         1 input         1 rows
+      clear: (<V set_ctr$49 in>)
+    s# 52 50 cluster outer seq start, set no <V set_ctr$49 in>    
+    save ctx:()
+    time        89% fanout         0 input         1 rows
+    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:         2 Fanout:         0
+      clear: (<V s_37_3_t0.P$28 rn>)
+      clear on continue: (<V s_37_3_t0.P$28 rn>)
+    s# 61 27 from DB.DBA.RDF_QUAD by RDF_QUAD_SP          2 rows   
+    Key RDF_QUAD_SP  ASC  (<V s_37_3_t0.P$28 rn>)
+     inlined  S =  IRI_ID"...Q3083241" 
+    
+    time         0% fanout         0 input         0 rows
+    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:       1.2 Fanout:         0
+      clear: (<V s_37_3_t0.O$32 an>)
+      clear on continue: (<V s_37_3_t0.O$32 an>)
+    s# 71 31 from DB.DBA.RDF_QUAD by RDF_QUAD        1.2 rows   
+    Key RDF_QUAD  ASC  (<V s_37_3_t0.O$32 an>)
+     inlined  P = <V s_37_3_t0.P$28 rn> ,  S =  IRI_ID"...Q3083241" 
+    
+    time         0% fanout         0 input         0 rows
+      clear: (<V DB.DBA.RDF_LANGUAGE_OF_OBJ$37 a>, <V __ro2sq$35 a>, <V var3$41 a>, <V var2$39 a>)$32 () $28 (31 ) 
+    s# 86 81 END Node
+    After test:
+      0: <V __ro2sq$35 a> := Call __ro2sq (<V s_37_3_t0.O$32 an>)
+      5: <V DB.DBA.RDF_LANGUAGE_OF_OBJ$37 a> := Call DB.DBA.RDF_LANGUAGE_OF_OBJ (<V __ro2sq$35 a>)
+      12: if (<c fr> = <V DB.DBA.RDF_LANGUAGE_OF_OBJ$37 a>) then 16 else 17 unkn 17
+      16: BReturn 1
+      17: BReturn 0
+    After code:
+      0: <V var2$39 a> := Call __id2in (<r s_37_3_t0.P$28 via  Set86 Set71>)
+      5: <V var3$41 a> := Call __ro2sq (<r s_37_3_t0.O$32 via  Set86>)
+      10: BReturn 0
+    time         0% fanout         0 input         0 rows
+    $39 (81 ) $41 (81 ) $49 (81 31 27 50 ) 
+    s# 94 43 Select (<tag 182 flag 1 c http://www.wikidata.org/entity/Q3083241>, <V var2$39 a>, <V var3$41 a>)
+      set no: <r set_ctr$49 via  Set86 Set71 Set61>
+  }
+Warning: You might have a Cartesian product.
+
+
+
+ 0 msec 0% cpu,         1 rnd         0 seq         0% same seg         0% same pg 
+Compilation: 26 msec 1 reads   94.9217% read 0 messages         0% clw

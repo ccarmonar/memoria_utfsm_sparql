@@ -1,0 +1,67 @@
+SELECT  COUNT ( DISTINCT
+     "s_0_20"."var1") AS "var2"
+FROM (
+    SELECT "s_37_16_t4-u21"."S" AS "var1"
+    FROM DB.DBA.RDF_QUAD AS "s_37_16_t3-u21"
+      INNER JOIN DB.DBA.RDF_QUAD AS "s_37_16_t4-u21"
+      ON (
+        "s_37_16_t4-u21"."O" = "s_37_16_t3-u21"."S")
+      INNER JOIN DB.DBA.RDF_QUAD AS "s_37_6_t0-c5-u21"
+      ON (
+        "s_37_16_t4-u21"."S" = "s_37_6_t0-c5-u21"."S")
+      INNER JOIN DB.DBA.RDF_QUAD AS "s_37_16_t5-u21"
+      ON (
+        "s_37_16_t5-u21"."S" = "s_37_6_t0-c5-u21"."O")
+    WHERE
+      "s_37_16_t3-u21"."P" = __i2idn ( __bft( 'http://www.wikidata.org/prop/direct/P685' , 1))
+      AND 
+      "s_37_16_t3-u21"."O" = DB.DBA.RDF_OBJ_OF_SQLVAL ( '85962' )
+      AND 
+      "s_37_16_t4-u21"."P" = __i2idn ( __bft( 'http://www.wikidata.org/prop/direct/P703' , 1))
+      AND 
+      "s_37_6_t0-c5-u21"."P" = __i2idn ( __bft( 'http://www.wikidata.org/prop/direct/P680' , 1))
+      AND 
+      "s_37_16_t5-u21"."P" = __i2idn ( __bft( 'http://www.wikidata.org/prop/direct/P591' , 1))
+    UNION ALL SELECT "s_37_16_t4-u22"."S" AS "var1"
+    FROM DB.DBA.RDF_QUAD AS "s_37_16_t3-u22"
+      INNER JOIN DB.DBA.RDF_QUAD AS "s_37_16_t4-u22"
+      ON (
+        "s_37_16_t4-u22"."O" = "s_37_16_t3-u22"."S")
+      INNER JOIN DB.DBA.RDF_QUAD AS "s_37_9_t1-c11-u22"
+      ON (
+        "s_37_16_t4-u22"."S" = "s_37_9_t1-c11-u22"."S")
+      INNER JOIN DB.DBA.RDF_QUAD AS "s_37_16_t5-u22"
+      ON (
+        "s_37_16_t5-u22"."S" = "s_37_9_t1-c11-u22"."O")
+    WHERE
+      "s_37_16_t3-u22"."P" = __i2idn ( __bft( 'http://www.wikidata.org/prop/direct/P685' , 1))
+      AND 
+      "s_37_16_t3-u22"."O" = DB.DBA.RDF_OBJ_OF_SQLVAL ( '85962' )
+      AND 
+      "s_37_16_t4-u22"."P" = __i2idn ( __bft( 'http://www.wikidata.org/prop/direct/P703' , 1))
+      AND 
+      "s_37_9_t1-c11-u22"."P" = __i2idn ( __bft( 'http://www.wikidata.org/prop/direct/P681' , 1))
+      AND 
+      "s_37_16_t5-u22"."P" = __i2idn ( __bft( 'http://www.wikidata.org/prop/direct/P591' , 1))
+    UNION ALL SELECT "s_37_16_t4"."S" AS "var1"
+    FROM DB.DBA.RDF_QUAD AS "s_37_16_t3"
+      INNER JOIN DB.DBA.RDF_QUAD AS "s_37_16_t4"
+      ON (
+        "s_37_16_t4"."O" = "s_37_16_t3"."S")
+      INNER JOIN DB.DBA.RDF_QUAD AS "s_37_13_t2-c17"
+      ON (
+        "s_37_16_t4"."S" = "s_37_13_t2-c17"."S")
+      INNER JOIN DB.DBA.RDF_QUAD AS "s_37_16_t5"
+      ON (
+        "s_37_16_t5"."S" = "s_37_13_t2-c17"."O")
+    WHERE
+      "s_37_16_t3"."P" = __i2idn ( __bft( 'http://www.wikidata.org/prop/direct/P685' , 1))
+      AND 
+      "s_37_16_t3"."O" = DB.DBA.RDF_OBJ_OF_SQLVAL ( '85962' )
+      AND 
+      "s_37_16_t4"."P" = __i2idn ( __bft( 'http://www.wikidata.org/prop/direct/P703' , 1))
+      AND 
+      "s_37_13_t2-c17"."P" = __i2idn ( __bft( 'http://www.wikidata.org/prop/direct/P681' , 1))
+      AND 
+      "s_37_16_t5"."P" = __i2idn ( __bft( 'http://www.wikidata.org/prop/direct/P591' , 1))) AS "s_0_20"
+OPTION (QUIETCAST)

@@ -1,0 +1,27 @@
+ SELECT  __ro2sq ("s_37_6_rbc"."var1") AS "var1", __ro2sq ("s_37_6_rbc"."var3") AS "var3" FROM (SELECT TOP 10 __id2in ( "s_37_6_t0"."S") AS "var1",
+     COUNT (
+       NULL /* due to conflict on var2 */) AS "var3"
+  FROM DB.DBA.RDF_QUAD AS "s_37_6_t0"
+    INNER JOIN DB.DBA.RDF_QUAD AS "s_37_6_t1"
+    ON (
+      "s_37_6_t0"."S" = "s_37_6_t1"."S")
+    INNER JOIN DB.DBA.RDF_QUAD AS "s_37_6_t2"
+    ON (
+      "s_37_6_t0"."S" = "s_37_6_t2"."S"
+      AND 
+      "s_37_6_t1"."S" = "s_37_6_t2"."S")
+  WHERE
+    "s_37_6_t0"."P" = __i2idn ( __bft( 'http://www.wikidata.org/prop/direct/P31' , 1))
+    AND 
+    "s_37_6_t0"."O" = __i2idn ( __bft( 'http://www.wikidata.org/entity/Q5' , 1))
+    AND 
+    "s_37_6_t1"."P" = __i2idn ( __bft( 'http://www.wikidata.org/prop/direct/P734' , 1))
+    AND 
+    "s_37_6_t1"."O" = DB.DBA.RDF_OBJ_OF_SQLVAL ( 'Angela' )
+    AND 
+    "s_37_6_t2"."P" = __i2idn ( __bft( 'http://www.wikidata.org/prop/direct/P735' , 1))
+    AND 
+    "s_37_6_t2"."O" = DB.DBA.RDF_OBJ_OF_SQLVAL ( 'Merkel' )
+  GROUP BY "s_37_6_t0"."S"
+  ORDER BY 2 DESC
+OPTION (QUIETCAST)) AS "s_37_6_rbc"

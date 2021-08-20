@@ -1,0 +1,58 @@
+http://www.wikidata.org/prop/direct/P4741	
+http://www.wikidata.org/prop/direct/P3903	
+http://www.wikidata.org/prop/direct/P2273	
+http://www.wikidata.org/prop/direct/P3407	
+http://www.wikidata.org/prop/direct/P3507	
+http://www.wikidata.org/prop/direct/P3653	
+http://www.wikidata.org/prop/direct/P4859	
+http://www.wikidata.org/prop/direct/P5870	
+http://www.wikidata.org/prop/direct/P7251	
+http://www.wikidata.org/prop/direct/P1565	
+http://www.wikidata.org/prop/direct/P3725	
+http://www.wikidata.org/prop/direct/P7032	
+http://www.wikidata.org/prop/direct/P4488	
+http://www.wikidata.org/prop/direct/P5770	
+http://www.wikidata.org/prop/direct/P4547	
+http://www.wikidata.org/prop/direct/P5664	
+http://www.wikidata.org/prop/direct/P892	
+http://www.wikidata.org/prop/direct/P9131	
+http://www.wikidata.org/prop/direct/P4222	
+http://www.wikidata.org/prop/direct/P2525	
+
+  { 
+    time      0.16% fanout         1 input         1 rows
+    time     0.034% fanout         1 input         1 rows
+    time       6.2% fanout      1000 input         1 rows
+    RDF_QUAD   1.1e+03 rows(s_37_4_t0.O$31)
+     inlined  P =  IRI_ID"...direct/P2824" 
+    time        32% fanout         1 input      1000 rows
+    RDF_QUAD_OP       2.8 rows(s_37_4_t1.P$34)
+     inlined  O = cast$97
+    time       3.4% fanout     0.976 input      1000 rows
+    END Node
+    After test:
+    0: if (s_37_4_t1.P$34 =  IRI_ID"...direct/P2824" ) then 5 else 4 unkn 5
+    4: BReturn 1
+    5: BReturn 0
+    time        35% fanout   1.02459 input       976 rows
+    RDF_QUAD_POGS       1.2 rows()
+     P = k_s_37_4_t1.P$124 ,  O = k_s_37_4_t0.O$128
+    time       9.7% fanout     0.061 input      1000 rows
+    Distinct (s_37_4_t1.P$34)
+    
+    After code:
+    0: p1$28 :=  := artm s_37_4_t1.P$34
+    4: BReturn 0
+    time        13% fanout         1 input        61 rows
+    Subquery Select(p1$28)
+    
+    After code:
+    0: p1$54 := Call __ro2sq (p1$28)
+    5: BReturn 0
+    time     0.053% fanout         0 input        61 rows
+    Select (p1$54)
+  }
+
+
+ 3 msec 57% cpu,       127 rnd      2870 seq   77.3438% same seg   14.8438% same pg 
+Compilation: 1 msec 0 reads         0% read 0 messages         0% clw

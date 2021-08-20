@@ -1,0 +1,82 @@
+http://www.wikidata.org/entity/Q2766883	http://www.wikidata.org/entity/Q1291391	http://www.wikidata.org/entity/Q2766883	
+http://www.wikidata.org/entity/Q11748044	http://www.wikidata.org/entity/Q303478	http://www.wikidata.org/entity/Q11748044	
+http://www.wikidata.org/entity/Q9368369	http://www.wikidata.org/entity/Q165010	http://www.wikidata.org/entity/Q9368369	
+http://www.wikidata.org/entity/Q12046775	http://www.wikidata.org/entity/Q3509815	http://www.wikidata.org/entity/Q12046775	
+http://www.wikidata.org/entity/Q15886695	http://www.wikidata.org/entity/Q805105	http://www.wikidata.org/entity/Q15886695	
+http://www.wikidata.org/entity/Q18817194	http://www.wikidata.org/entity/Q1818296	http://www.wikidata.org/entity/Q15886753	
+http://www.wikidata.org/entity/Q15886753	http://www.wikidata.org/entity/Q1818296	http://www.wikidata.org/entity/Q15886753	
+http://www.wikidata.org/entity/Q15886774	http://www.wikidata.org/entity/Q1233524	http://www.wikidata.org/entity/Q15886774	
+http://www.wikidata.org/entity/Q15886806	http://www.wikidata.org/entity/Q2619854	http://www.wikidata.org/entity/Q15886806	
+http://www.wikidata.org/entity/Q15886927	http://www.wikidata.org/entity/Q1015011	http://www.wikidata.org/entity/Q15886927	
+http://www.wikidata.org/entity/Q15886943	http://www.wikidata.org/entity/Q1935413	http://www.wikidata.org/entity/Q15886943	
+http://www.wikidata.org/entity/Q15887039	http://www.wikidata.org/entity/Q921525	http://www.wikidata.org/entity/Q15887039	
+http://www.wikidata.org/entity/Q15887132	http://www.wikidata.org/entity/Q1000101	http://www.wikidata.org/entity/Q15887132	
+http://www.wikidata.org/entity/Q15887135	http://www.wikidata.org/entity/Q781530	http://www.wikidata.org/entity/Q15887135	
+http://www.wikidata.org/entity/Q15887173	http://www.wikidata.org/entity/Q207251	http://www.wikidata.org/entity/Q15887173	
+http://www.wikidata.org/entity/Q18817194	http://www.wikidata.org/entity/Q1818296	http://www.wikidata.org/entity/Q18817194	
+http://www.wikidata.org/entity/Q15886753	http://www.wikidata.org/entity/Q1818296	http://www.wikidata.org/entity/Q18817194	
+http://www.wikidata.org/entity/Q19400963	http://www.wikidata.org/entity/Q2119599	http://www.wikidata.org/entity/Q19400963	
+http://www.wikidata.org/entity/Q19401013	http://www.wikidata.org/entity/Q1883709	http://www.wikidata.org/entity/Q19401013	
+http://www.wikidata.org/entity/Q16622152	http://www.wikidata.org/entity/Q392861	http://www.wikidata.org/entity/Q16622152	
+
+  { 
+    time       0.1% fanout         1 input         1 rows
+      clear: (<V set_ctr$54 in>)
+    s# 57 55 cluster outer seq start, set no <V set_ctr$54 in>    
+    save ctx:()
+    time         2% fanout      1000 input         1 rows
+      clear: (<V s_37_12_t1.S$28 rn>)
+      clear on continue: (<V s_37_12_t1.S$28 rn>)
+    s# 66 27 from DB.DBA.RDF_QUAD by RDF_QUAD_POGS    9.7e+03 rows   
+    Key RDF_QUAD_POGS  ASC  (<V s_37_12_t1.S$28 rn>)
+     P =  IRI_ID"...direct/P31"  ,  O =  IRI_ID"...Q55488" 
+    
+    time        25% fanout     0.019 input      1000 rows
+      clear: (<V s_37_12_t2.S$31 rn>)
+      clear on continue: (<V s_37_12_t2.S$31 rn>)
+    s# 76 30 from DB.DBA.RDF_QUAD by RDF_QUAD      0.015 rows   
+    Key RDF_QUAD  ASC  (<V s_37_12_t2.S$31 rn>)
+     inlined  P =  IRI_ID"...direct/P17"  ,  S = <V s_37_12_t1.S$28 rn> ,  O =  IRI_ID"...Q213" 
+    
+    time       4.2% fanout         1 input        19 rows
+      clear: (<V s_37_12_t3.O$34 an>)
+      clear on continue: (<V s_37_12_t3.O$34 an>)$90 (33 ) 
+    s# 86 33 from DB.DBA.RDF_QUAD by RDF_QUAD        1.1 rows   
+    Key RDF_QUAD  ASC  (<V s_37_12_t3.O$34 an>)
+     inlined  P =  IRI_ID"...direct/P131"  ,  S = <v k_s_37_12_t1.S$90 Set92 rn>
+    vector param casts: <r s_37_12_t1.S$28 via  Set76>-> <v k_s_37_12_t1.S$90 Set92 rn>
+    
+    time       8.4% fanout   8.73684 input        19 rows
+      clear: (<V s_37_8_t0.S$37 rn>)
+      clear on continue: (<V s_37_8_t0.S$37 rn>)$104 (36 ) 
+    s# 100 36 from DB.DBA.RDF_QUAD by RDF_QUAD_POGS        9.6 rows   
+    Key RDF_QUAD_POGS  ASC  (<V s_37_8_t0.S$37 rn>)
+     P =  IRI_ID"...direct/P131"  ,  O = <v cast$104 Set106 an>
+    vector param casts: <V s_37_12_t3.O$34 an>-> <v cast$104 Set106 an>
+    
+    time        60% fanout  0.126506 input       166 rows
+    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:    0.0017 Fanout:      0.13
+      clear: (<V s_37_12_t4.S$40 rn>, <V var3$46 a>, <V var1$44 a>, <V var2$42 a>)
+      clear on continue: (<V s_37_12_t4.S$40 rn>, <V var3$46 a>, <V var1$44 a>, <V var2$42 a>)$34 (36 ) $37 () $28 (36 33 30 ) 
+    s# 114 39 from DB.DBA.RDF_QUAD by RDF_QUAD     0.0017 rows   
+    Key RDF_QUAD  ASC  (<V s_37_12_t4.S$40 rn>)
+     inlined  P =  IRI_ID"...direct/P31"  ,  S = <V s_37_8_t0.S$37 rn> ,  O =  IRI_ID"...Q55488" 
+    
+    After code:
+      0: <V var2$42 a> := Call __ro2sq (<r s_37_12_t3.O$34 via  Set114 Set100 Set106>)
+      5: <V var1$44 a> := Call __id2in (<r s_37_12_t1.S$28 via  Set114 Set100 Set106 Set86 Set92 Set76>)
+      10: <V var3$46 a> := Call __id2in (<V s_37_12_t4.S$40 rn>)
+      15: BReturn 0
+    time     0.027% fanout         0 input        21 rows
+    $42 () $44 () $46 () $54 (39 36 33 30 27 55 ) 
+    s# 124 48 Select (<V var1$44 a>, <V var2$42 a>, <V var3$46 a>)
+      set no: <r set_ctr$54 via  Set114 Set100 Set106 Set86 Set92 Set76 Set66>
+  }
+Warning: You might have a Cartesian product.
+
+Warning: You might have a Cartesian product.
+
+
+
+ 4 msec 53% cpu,      1245 rnd      1144 seq    90.931% same seg   5.77849% same pg 
+Compilation: 2 msec 0 reads         0% read 0 messages         0% clw

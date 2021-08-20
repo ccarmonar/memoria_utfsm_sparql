@@ -1,0 +1,184 @@
+Error: 23000: SR197: Non unique primary key on DB.DBA.RDF_OBJ.
+  { 
+    time     1e+02% fanout         1 input         1 rows
+      clear: (<V set_ctr$136 in>)
+    s# 139 137 cluster outer seq start, set no <V set_ctr$136 in>    
+    save ctx:()
+    Precode:
+      0: <V DB.DBA.RDF_OBJ_OF_SQLVAL$27 x> := Call DB.DBA.RDF_OBJ_OF_SQLVAL (<c string1>)
+      7: <V DB.DBA.RDF_OBJ_OF_SQLVAL$29 x> := Call DB.DBA.RDF_OBJ_OF_SQLVAL (<c string2>)
+      14: <V DB.DBA.RDF_OBJ_OF_SQLVAL$31 x> := Call DB.DBA.RDF_OBJ_OF_SQLVAL (<c string3>)
+      21: <V DB.DBA.RDF_OBJ_OF_SQLVAL$33 x> := Call DB.DBA.RDF_OBJ_OF_SQLVAL (<c L E Hashem>)
+      28: <V DB.DBA.RDF_OBJ_OF_SQLVAL$35 x> := Call DB.DBA.RDF_OBJ_OF_SQLVAL (<c string4>)
+      35: BReturn 0
+      clear: (<V var1$38 rn>, <V set_no$39 i>, <V DB.DBA.RDF_OBJ_OF_SQLVAL$35 x>, <V DB.DBA.RDF_OBJ_OF_SQLVAL$33 x>, <V DB.DBA.RDF_OBJ_OF_SQLVAL$31 x>, <V DB.DBA.RDF_OBJ_OF_SQLVAL$29 x>, <V DB.DBA.RDF_OBJ_OF_SQLVAL$27 x>, <V var1$128 a>)
+    s# 148 37 Subquery 37 
+      multistate set no = <V set_no$39 i>
+      { 
+        
+        s# 152 40 Union
+          { 
+              clear: (<V var1$42 rn>, <V set_no$43 i>, <V var1$38 rn>)
+            s# 155 41 Subquery 41 
+              multistate set no = <V set_no$43 i>
+              { 
+                
+                s# 159 44 Union
+                  { 
+                      clear: (<V var1$46 rn>, <V set_no$47 i>, <V var1$42 rn>)
+                    s# 162 45 Subquery 45 
+                      multistate set no = <V set_no$47 i>
+                      { 
+                        
+                        s# 166 48 Union
+                          { 
+                              clear: (<V var1$50 rn>, <V set_no$51 i>, <V var1$46 rn>)
+                            s# 169 49 Subquery 49 
+                              multistate set no = <V set_no$51 i>
+                              { 
+                                
+                                s# 173 52 Union
+                                  { 
+                                    time         0% fanout         0 input         0 rows
+                                    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:       0.3 Fanout:         0
+                                      clear: (<V s_37_2_t0-u17.S$54 rn>, <V var1$50 rn>)
+                                      clear on continue: (<V var1$50 rn>, <V s_37_2_t0-u17.S$54 rn>)$27 (53 ) 
+                                    s# 176 53 from DB.DBA.RDF_QUAD by RDF_QUAD_POGS        0.3 rows   
+                                    Key RDF_QUAD_POGS  ASC  (<V s_37_2_t0-u17.S$54 rn>)
+                                     P =  IRI_ID"...direct/P2093"  ,  O = <v k_DB.DBA.RDF_OBJ_OF_SQLVAL$180 Set182 an>
+                                    vector param casts: <V DB.DBA.RDF_OBJ_OF_SQLVAL$27 x>-> <v k_DB.DBA.RDF_OBJ_OF_SQLVAL$180 Set182 an>
+                                    
+                                    After code:
+                                      0: <V var1$50 rn> :=  := artm <V s_37_2_t0-u17.S$54 rn>
+                                      4: BReturn 0
+                                    time         0% fanout         0 input         0 rows
+                                    
+                                    s# 169 56 Subquery Select(<V var1$50 rn>)
+                                      set no: <r set_no$51 via  Set176 Set182>
+                                  }
+                                  { 
+                                    time         0% fanout         0 input         0 rows
+                                    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:       0.3 Fanout:         0
+                                      clear: (<V s_37_5_t1-u18.S$64 rn>, <V var1$50 rn>)
+                                      clear on continue: (<V var1$50 rn>, <V s_37_5_t1-u18.S$64 rn>)$29 (63 ) 
+                                    s# 198 63 from DB.DBA.RDF_QUAD by RDF_QUAD_POGS        0.3 rows   
+                                    Key RDF_QUAD_POGS  ASC  (<V s_37_5_t1-u18.S$64 rn>)
+                                     P =  IRI_ID"...direct/P2093"  ,  O = <v k_DB.DBA.RDF_OBJ_OF_SQLVAL$202 Set204 an>
+                                    vector param casts: <V DB.DBA.RDF_OBJ_OF_SQLVAL$29 x>-> <v k_DB.DBA.RDF_OBJ_OF_SQLVAL$202 Set204 an>
+                                    
+                                    After code:
+                                      0: <V var1$50 rn> :=  := artm <V s_37_5_t1-u18.S$64 rn>
+                                      4: BReturn 0
+                                    time         0% fanout         0 input         0 rows
+                                    
+                                    Subquery Select(<V var1$50 rn>)
+                                      set no: <r set_no$51 via  Set198 Set204>
+                                  }
+                              }
+                            
+                            After code:
+                              0: <V var1$46 rn> :=  := artm <V var1$50 rn>
+                              4: BReturn 0
+                            time         0% fanout         0 input         0 rows
+                            
+                            s# 162 74 Subquery Select(<V var1$46 rn>)
+                              set no: <r set_no$47 via  Set169>
+                          }
+                          { 
+                            time         0% fanout         0 input         0 rows
+                            Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:       0.3 Fanout:         0
+                              clear: (<V s_37_9_t2-u19.S$82 rn>, <V var1$46 rn>)
+                              clear on continue: (<V var1$46 rn>, <V s_37_9_t2-u19.S$82 rn>)$31 (81 ) 
+                            s# 227 81 from DB.DBA.RDF_QUAD by RDF_QUAD_POGS        0.3 rows   
+                            Key RDF_QUAD_POGS  ASC  (<V s_37_9_t2-u19.S$82 rn>)
+                             P =  IRI_ID"...direct/P2093"  ,  O = <v k_DB.DBA.RDF_OBJ_OF_SQLVAL$231 Set233 an>
+                            vector param casts: <V DB.DBA.RDF_OBJ_OF_SQLVAL$31 x>-> <v k_DB.DBA.RDF_OBJ_OF_SQLVAL$231 Set233 an>
+                            
+                            After code:
+                              0: <V var1$46 rn> :=  := artm <V s_37_9_t2-u19.S$82 rn>
+                              4: BReturn 0
+                            time         0% fanout         0 input         0 rows
+                            
+                            Subquery Select(<V var1$46 rn>)
+                              set no: <r set_no$47 via  Set227 Set233>
+                          }
+                      }
+                    
+                    After code:
+                      0: <V var1$42 rn> :=  := artm <V var1$46 rn>
+                      4: BReturn 0
+                    time         0% fanout         0 input         0 rows
+                    
+                    s# 155 92 Subquery Select(<V var1$42 rn>)
+                      set no: <r set_no$43 via  Set162>
+                  }
+                  { 
+                    time         0% fanout         0 input         0 rows
+                    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:       0.3 Fanout:         0
+                      clear: (<V s_37_12_t3-u20.S$100 rn>, <V var1$42 rn>)
+                      clear on continue: (<V var1$42 rn>, <V s_37_12_t3-u20.S$100 rn>)$33 (99 ) 
+                    s# 256 99 from DB.DBA.RDF_QUAD by RDF_QUAD_POGS        0.3 rows   
+                    Key RDF_QUAD_POGS  ASC  (<V s_37_12_t3-u20.S$100 rn>)
+                     P =  IRI_ID"...direct/P2093"  ,  O = <v k_DB.DBA.RDF_OBJ_OF_SQLVAL$260 Set262 an>
+                    vector param casts: <V DB.DBA.RDF_OBJ_OF_SQLVAL$33 x>-> <v k_DB.DBA.RDF_OBJ_OF_SQLVAL$260 Set262 an>
+                    
+                    After code:
+                      0: <V var1$42 rn> :=  := artm <V s_37_12_t3-u20.S$100 rn>
+                      4: BReturn 0
+                    time         0% fanout         0 input         0 rows
+                    
+                    Subquery Select(<V var1$42 rn>)
+                      set no: <r set_no$43 via  Set256 Set262>
+                  }
+              }
+            
+            After code:
+              0: <V var1$38 rn> :=  := artm <V var1$42 rn>
+              4: BReturn 0
+            time         0% fanout         0 input         0 rows
+            
+            s# 148 110 Subquery Select(<V var1$38 rn>)
+              set no: <r set_no$39 via  Set155>
+          }
+          { 
+            time         0% fanout         0 input         0 rows
+            Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:       0.3 Fanout:         0
+              clear: (<V s_37_15_t4.S$118 rn>, <V var1$38 rn>)
+              clear on continue: (<V var1$38 rn>, <V s_37_15_t4.S$118 rn>)$35 (117 ) 
+            s# 285 117 from DB.DBA.RDF_QUAD by RDF_QUAD_POGS        0.3 rows   
+            Key RDF_QUAD_POGS  ASC  (<V s_37_15_t4.S$118 rn>)
+             P =  IRI_ID"...direct/P2093"  ,  O = <v k_DB.DBA.RDF_OBJ_OF_SQLVAL$289 Set291 an>
+            vector param casts: <V DB.DBA.RDF_OBJ_OF_SQLVAL$35 x>-> <v k_DB.DBA.RDF_OBJ_OF_SQLVAL$289 Set291 an>
+            
+            After code:
+              0: <V var1$38 rn> :=  := artm <V s_37_15_t4.S$118 rn>
+              4: BReturn 0
+            time         0% fanout         0 input         0 rows
+            
+            Subquery Select(<V var1$38 rn>)
+              set no: <r set_no$39 via  Set285 Set291>
+          }
+      }
+    
+    After code:
+      0: <V var1$128 a> := Call __id2in (<V var1$38 rn>)
+      5: BReturn 0
+    time         0% fanout         0 input         0 rows
+    $128 (37 ) $136 (37 137 ) 
+    s# 306 130 Select (<V var1$128 a>)
+      set no: <r set_ctr$136 via  Set148>
+  }
+Warning: You might have a Cartesian product.
+
+Warning: You might have a Cartesian product.
+
+Warning: You might have a Cartesian product.
+
+Warning: You might have a Cartesian product.
+
+Warning: You might have a Cartesian product.
+
+
+
+ 0 msec 0% cpu,         3 rnd         0 seq         0% same seg         0% same pg 
+Compilation: 23 msec 2 reads   88.8025% read 0 messages         0% clw

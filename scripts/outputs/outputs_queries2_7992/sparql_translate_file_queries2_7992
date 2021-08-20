@@ -1,0 +1,21 @@
+SELECT TOP 5000 __ro2sq ( "s_37_6_t2"."O") AS "var1",
+  'string1'  AS "var2",
+  __ro2sq ( "s_37_6_t1"."O") AS "var3"
+FROM DB.DBA.RDF_QUAD AS "s_37_6_t0"
+  INNER JOIN DB.DBA.RDF_QUAD AS "s_37_6_t1"
+  ON (
+    "s_37_6_t0"."S" = "s_37_6_t1"."S")
+  INNER JOIN DB.DBA.RDF_QUAD AS "s_37_6_t2"
+  ON (
+    "s_37_6_t0"."S" = "s_37_6_t2"."S"
+    AND 
+    "s_37_6_t1"."S" = "s_37_6_t2"."S")
+WHERE
+  "s_37_6_t0"."P" = __i2idn ( __bft( 'http://schema.org/isPartOf' , 1))
+  AND 
+  "s_37_6_t1"."P" = __i2idn ( __bft( 'http://schema.org/name' , 1))
+  AND 
+  "s_37_6_t2"."P" = __i2idn ( __bft( 'http://schema.org/about' , 1))
+  AND 
+  rdf_strstarts_impl ( __ro2lo ( "s_37_6_t1"."O"),  DB.DBA.RDF_MAKE_LONG_OF_SQLVAL ( 'Category:' ))
+OPTION (QUIETCAST)

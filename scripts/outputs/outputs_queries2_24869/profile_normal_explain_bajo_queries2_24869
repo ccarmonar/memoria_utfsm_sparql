@@ -1,0 +1,55 @@
+http://www.wikidata.org/entity/Q2611830	1820-03-17 00:00:00Z	
+http://www.wikidata.org/entity/Q2612902	1820-12-11 00:00:00Z	
+http://www.wikidata.org/entity/Q2632163	1821-06-27 00:00:00Z	
+http://www.wikidata.org/entity/Q2635211	1821-03-25 00:00:00Z	
+http://www.wikidata.org/entity/Q2638053	1822-01-03 00:00:00Z	
+http://www.wikidata.org/entity/Q4221435	1821-01-01 00:00:00Z	
+http://www.wikidata.org/entity/Q2979690	1821-06-19 00:00:00Z	
+http://www.wikidata.org/entity/Q9258668	1820-01-14 00:00:00Z	
+http://www.wikidata.org/entity/Q3059667	1820-02-15 00:00:00Z	
+http://www.wikidata.org/entity/Q3067463	1821-03-15 00:00:00Z	
+http://www.wikidata.org/entity/Q3121195	1820-02-28 00:00:00Z	
+http://www.wikidata.org/entity/Q3125466	1821-10-14 00:00:00Z	
+http://www.wikidata.org/entity/Q3126938	1820-05-30 00:00:00Z	
+http://www.wikidata.org/entity/Q6993155	1820-06-08 00:00:00Z	
+http://www.wikidata.org/entity/Q3172589	1820-09-22 00:00:00Z	
+http://www.wikidata.org/entity/Q3179768	1821-01-01 00:00:00Z	
+http://www.wikidata.org/entity/Q3180969	1822-01-30 00:00:00Z	
+http://www.wikidata.org/entity/Q15927253	1820-09-22 00:00:00Z	
+http://www.wikidata.org/entity/Q16006156	1820-03-13 00:00:00Z	
+http://www.wikidata.org/entity/Q16085550	1822-01-01 00:00:00Z	
+
+  { 
+    time     0.041% fanout         1 input         1 rows
+    time      0.22% fanout         1 input         1 rows
+    END Node
+    After test:
+    0: __xqf_str_parse_date$28 := Call __xqf_str_parse_date (<c date>, <c 1830-01-01>,  1 )
+    5: __xqf_str_parse_date$30 := Call __xqf_str_parse_date (<c date>, <c 1820-01-01>,  1 )
+    10: if (__xqf_str_parse_date$28 >= __xqf_str_parse_date$30) then 14 else 15 unkn 15
+    14: BReturn 1
+    15: BReturn 0
+    time        10% fanout      1000 input         1 rows
+    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:   4.3e+04 Fanout:     1e+03
+    Precode:
+      0: __xqf_str_parse_date$32 := Call __xqf_str_parse_date (<c date>, <c 1820-01-01>,  1 )
+      5: __xqf_str_parse_date$34 := Call __xqf_str_parse_date (<c date>, <c 1830-01-01>,  1 )
+      10: BReturn 0
+    RDF_QUAD_POGS   4.3e+04 rows(s_37_4_t1.S$38, s_37_4_t1.O$37)
+     P =  IRI_ID"...direct/P569"  ,  O >= k___xqf_str_parse_date$77 <= k___xqf_str_parse_date$81 O >= k___xqf_str_parse_date$83 <= k___xqf_str_parse_date$85
+    time        89% fanout         1 input      1000 rows
+    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:     0.091 Fanout:         1
+    RDF_QUAD     0.091 rows(s_37_4_t0.S$41)
+     inlined  P =  IRI_ID"...direct/P31"  ,  S = s_37_4_t1.S$38 ,  O =  IRI_ID"...Q5" 
+    
+    After code:
+    0: var2$43 := Call __ro2sq (s_37_4_t1.O$37)
+    5: var1$45 := Call __id2in (s_37_4_t0.S$41)
+    10: BReturn 0
+    time    0.0096% fanout         0 input      1000 rows
+    Select (var1$45, var2$43)
+  }
+
+
+ 9 msec 82% cpu,      1000 rnd      6855 seq   77.8222% same seg    20.979% same pg 
+Compilation: 1 msec 0 reads         0% read 0 messages         0% clw

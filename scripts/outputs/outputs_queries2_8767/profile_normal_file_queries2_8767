@@ -1,0 +1,89 @@
+http://www.wikidata.org/entity/Q41135234	1992-01-01 00:00:00Z	http://www.wikidata.org/entity/Q41135234	
+http://www.wikidata.org/entity/Q41139765	1985-11-01 00:00:00Z	http://www.wikidata.org/entity/Q41139765	
+http://www.wikidata.org/entity/Q41139765	1985-11-01 00:00:00Z	http://www.wikidata.org/entity/Q108779	
+http://www.wikidata.org/entity/Q41173095	2017-07-31 00:00:00Z	http://www.wikidata.org/entity/Q41173095	
+http://www.wikidata.org/entity/Q41173112	1979-11-01 00:00:00Z	http://www.wikidata.org/entity/Q41173112	
+http://www.wikidata.org/entity/Q41173114	1996-01-01 00:00:00Z	http://www.wikidata.org/entity/Q41173114	
+http://www.wikidata.org/entity/Q41173114	1996-01-01 00:00:00Z	http://www.wikidata.org/entity/Q1079120	
+http://www.wikidata.org/entity/Q41173118	1992-01-01 00:00:00Z	http://www.wikidata.org/entity/Q41173118	
+http://www.wikidata.org/entity/Q41173121	2015-03-20 00:00:00Z	http://www.wikidata.org/entity/Q41173121	
+http://www.wikidata.org/entity/Q41173168	1979-01-01 00:00:00Z	http://www.wikidata.org/entity/Q41173168	
+http://www.wikidata.org/entity/Q41173177	2015-03-17 00:00:00Z	http://www.wikidata.org/entity/Q41173177	
+http://www.wikidata.org/entity/Q41173184	2015-03-22 00:00:00Z	http://www.wikidata.org/entity/Q41173184	
+http://www.wikidata.org/entity/Q41173194	2017-05-09 00:00:00Z	http://www.wikidata.org/entity/Q41173194	
+http://www.wikidata.org/entity/Q41173196	1979-01-01 00:00:00Z	http://www.wikidata.org/entity/Q41173196	
+http://www.wikidata.org/entity/Q41173219	1996-08-01 00:00:00Z	http://www.wikidata.org/entity/Q41173219	
+http://www.wikidata.org/entity/Q41173224	2017-05-09 00:00:00Z	http://www.wikidata.org/entity/Q41173224	
+http://www.wikidata.org/entity/Q41173224	2017-05-09 00:00:00Z	http://www.wikidata.org/entity/Q41112	
+http://www.wikidata.org/entity/Q41173244	2015-03-21 00:00:00Z	http://www.wikidata.org/entity/Q41173244	
+http://www.wikidata.org/entity/Q41173244	2015-03-21 00:00:00Z	http://www.wikidata.org/entity/Q7087	
+http://www.wikidata.org/entity/Q41173248	1996-08-01 00:00:00Z	http://www.wikidata.org/entity/Q41173248	
+
+  { 
+    time    0.0008% fanout         1 input         1 rows
+      clear: (<V set_ctr$75 in>)
+    s# 81 76 cluster outer seq start, set no <V set_ctr$75 in>    
+    save ctx:()
+    time     0.038% fanout      2000 input         1 rows
+    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:     2e+06 Fanout:     2e+03
+      clear: (<V s_37_12_t2.O$28 an>, <V s_37_12_t2.S$29 rn>)
+      clear on continue: (<V s_37_12_t2.O$28 an>, <V s_37_12_t2.S$29 rn>)
+    s# 90 27 from DB.DBA.RDF_QUAD by RDF_QUAD      2e+06 rows   
+    Key RDF_QUAD  ASC  (<V s_37_12_t2.S$29 rn>, <V s_37_12_t2.O$28 an>)
+     inlined  P =  IRI_ID"...direct/P577" 
+    
+    time      0.21% fanout    0.2175 input      2000 rows
+      clear: (<V s_37_12_t1.S$32 rn>)
+      clear on continue: (<V s_37_12_t1.S$32 rn>)
+    s# 101 31 from DB.DBA.RDF_QUAD by RDF_QUAD       0.38 rows   
+    Key RDF_QUAD  ASC  (<V s_37_12_t1.S$32 rn>)
+     inlined  P =  IRI_ID"...direct/P31"  ,  S = <V s_37_12_t2.S$29 rn> ,  O =  IRI_ID"...Q13442814" 
+    
+    Precode:
+      0: <V var2$34 a> := Call __ro2sq (<r s_37_12_t2.O$28 via  Set101>)
+      5: <V __all_eq$36 x> := Call __all_eq (<V s_37_12_t1.S$32 rn>, <r s_37_12_t2.S$29 via  Set101>)
+      10: <V var1$38 a> := Call __id2in (<V s_37_12_t1.S$32 rn>)
+      15: BReturn 0
+      clear: (<V _::trans_subj_37_4$41 rn>, <V _::trans_obj_37_5$42 an>, <V var1$38 a>, <V __all_eq$36 x>, <V var2$34 a>)
+      clear on continue: (<V _::trans_obj_37_5$42 an>, <V _::trans_subj_37_4$41 rn>)$32 () $36 (40 ) $28 (31 ) $29 (31 ) 
+    s# 111 40 Transitive dt dir 1, input: (<V __all_eq$36 x>)
+      input shadow: (<V __all_eq$115 x>)
+      output: (<V _::trans_obj_37_5$42 an>)
+      { 
+        time        46% fanout  0.275618 input       566 rows
+          clear: (<V s_37_8_t0.O$47 an>, <V s_37_8_t0.S$48 rn>, <V _::trans_obj_37_5$42 an>, <V _::trans_subj_37_4$41 rn>)
+          clear on continue: (<V _::trans_subj_37_4$41 rn>, <V _::trans_obj_37_5$42 an>, <V s_37_8_t0.S$48 rn>, <V s_37_8_t0.O$47 an>)$115 (46 ) $121 (46 ) 
+        s# 117 46 from DB.DBA.RDF_QUAD by RDF_QUAD        1.5 rows   
+        Key RDF_QUAD  ASC  (<V s_37_8_t0.S$48 rn>, <V s_37_8_t0.O$47 an>)
+         inlined  P =  IRI_ID"...direct/P921"  ,  S = <v k___all_eq$121 Set123 rn>
+        vector param casts: <V __all_eq$115 x>-> <v k___all_eq$121 Set123 rn>
+        
+        After code:
+          0: <V _::trans_subj_37_4$41 rn> :=  := artm <V s_37_8_t0.S$48 rn>
+          4: <V _::trans_obj_37_5$42 an> :=  := artm <V s_37_8_t0.O$47 an>
+          8: BReturn 0
+        time   7.3e-05% fanout         0 input       156 rows
+        $41 () 
+        s# 134 50 Subquery Select(<V _::trans_subj_37_4$41 rn>, <V _::trans_obj_37_5$42 an>)
+          set no: <r step_set$43 via  Set117 Set123>
+      }
+    time       8.6% fanout   0.16835 input       594 rows
+      clear: (<V var3$67 a>)$42 () 
+    s# 141 79 skip node  100  <none> <r set_ctr$75 via  Set111 Set101 Set90>
+    After code:
+      0: <V var3$67 a> := Call __ro2sq (<r _::trans_obj_37_5$42 via  Set141>)
+      5: BReturn 0
+    time   0.00016% fanout         0 input       100 rows
+    $34 (79 40 ) $67 (79 ) $38 (79 40 ) $75 (79 40 31 27 76 ) 
+    s# 149 69 Select (<r var1$38 via  Set141 Set111>, <r var2$34 via  Set141 Set111>, <V var3$67 a>)
+      set no: <r set_ctr$75 via  Set141 Set111 Set101 Set90>
+  }
+Warning: You might have a Cartesian product.
+
+Warning: You might have a Cartesian product.
+
+
+
+ 271 msec 96% cpu,      2825 rnd      2030 seq    89.632% same seg   9.05874% same pg 
+23 disk reads, 0 read ahead,   31.2339% wait
+Compilation: 9 msec 0 reads         0% read 0 messages         0% clw

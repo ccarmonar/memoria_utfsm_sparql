@@ -1,0 +1,47 @@
+
+  { 
+    time       8.5% fanout         1 input         1 rows
+      clear: (<V set_ctr$53 in>)
+    s# 56 54 cluster outer seq start, set no <V set_ctr$53 in>    
+    save ctx:()
+    time        91% fanout         0 input         1 rows
+    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:         2 Fanout:         0
+      clear: (<V s_37_2_t0.P$28 rn>)
+      clear on continue: (<V s_37_2_t0.P$28 rn>)
+    s# 65 27 from DB.DBA.RDF_QUAD by RDF_QUAD_SP          2 rows   
+    Key RDF_QUAD_SP  ASC  (<V s_37_2_t0.P$28 rn>)
+     inlined  S =  IRI_ID"...Q12418" 
+    
+    time         0% fanout         0 input         0 rows
+    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:       1.2 Fanout:         0
+      clear: (<V s_37_2_t0.O$32 an>, <V is_named_iri_id$45 i>, <V var3$39 a>, <V DB.DBA.RDF_DATATYPE_OF_OBJ$43 a>, <V __ro2sq$41 a>, <V var2$37 a>, <V var1$35 a>)
+      clear on continue: (<V s_37_2_t0.O$32 an>, <V is_named_iri_id$45 i>, <V var3$39 a>, <V DB.DBA.RDF_DATATYPE_OF_OBJ$43 a>, <V __ro2sq$41 a>, <V var2$37 a>, <V var1$35 a>)$28 () 
+    s# 75 31 from DB.DBA.RDF_QUAD by RDF_QUAD        1.2 rows   
+    Key RDF_QUAD  ASC  (<V s_37_2_t0.O$32 an>)
+     inlined  P = <V s_37_2_t0.P$28 rn> ,  S =  IRI_ID"...Q12418" 
+    
+    After code:
+      0: <V var1$35 a> := Call __id2in (<r s_37_2_t0.P$28 via  Set75>)
+      5: <V var2$37 a> := Call __ro2sq (<V s_37_2_t0.O$32 an>)
+      10: <V __ro2sq$41 a> := Call __ro2sq (<V s_37_2_t0.O$32 an>)
+      15: <V DB.DBA.RDF_DATATYPE_OF_OBJ$43 a> := Call DB.DBA.RDF_DATATYPE_OF_OBJ (<V __ro2sq$41 a>)
+      22: if (<V DB.DBA.RDF_DATATYPE_OF_OBJ$43 a>  IS NULL  <DB_NULL>) then 31 else 26 unkn 31
+      26: <V var3$39 a> :=  := artm <V DB.DBA.RDF_DATATYPE_OF_OBJ$43 a>
+      30: Jump 49 (level=0)
+      31: <V is_named_iri_id$45 i> := Call is_named_iri_id (<V s_37_2_t0.O$32 an>)
+      36: if (<V is_named_iri_id$45 i>  IS NULL  <DB_NULL>) then 45 else 40 unkn 45
+      40: <V var3$39 a> :=  := artm <V is_named_iri_id$45 i>
+      44: Jump 49 (level=0)
+      45: <V var3$39 a> :=  := artm <DB_NULL>
+      49: BReturn 0
+    time         0% fanout         0 input         0 rows
+    $35 () $37 () $39 () $53 (31 27 54 ) 
+    s# 87 47 Select (<V var1$35 a>, <V var2$37 a>, <V var3$39 a>)
+      set no: <r set_ctr$53 via  Set75 Set65>
+  }
+Warning: You might have a Cartesian product.
+
+
+
+ 0 msec 3% cpu,         1 rnd         0 seq         0% same seg         0% same pg 
+Compilation: 1 msec 0 reads         0% read 0 messages         0% clw

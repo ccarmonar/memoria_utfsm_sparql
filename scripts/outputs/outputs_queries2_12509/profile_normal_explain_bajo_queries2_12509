@@ -1,0 +1,47 @@
+http://www.wikidata.org/entity/Q165008				1884-01-01 00:00:00Z	1919-06-28 00:00:00Z	http://www.wikidata.org/entity/Q15217719	
+http://www.wikidata.org/entity/Q165008				1884-01-01 00:00:00Z	1919-06-28 00:00:00Z	http://www.wikidata.org/entity/Q218768	
+http://www.wikidata.org/entity/Q165008				1884-01-01 00:00:00Z	1919-06-28 00:00:00Z	http://www.wikidata.org/entity/Q326378	
+http://www.wikidata.org/entity/Q165008				1884-01-01 00:00:00Z	1919-06-28 00:00:00Z	http://www.wikidata.org/entity/Q33207207	
+http://www.wikidata.org/entity/Q165008				1884-01-01 00:00:00Z	1919-06-28 00:00:00Z	http://www.wikidata.org/entity/Q33223122	
+http://www.wikidata.org/entity/Q165008				1885-05-17 00:00:00Z	1919-06-28 00:00:00Z	http://www.wikidata.org/entity/Q15217719	
+http://www.wikidata.org/entity/Q165008				1885-05-17 00:00:00Z	1919-06-28 00:00:00Z	http://www.wikidata.org/entity/Q218768	
+http://www.wikidata.org/entity/Q165008				1885-05-17 00:00:00Z	1919-06-28 00:00:00Z	http://www.wikidata.org/entity/Q326378	
+http://www.wikidata.org/entity/Q165008				1885-05-17 00:00:00Z	1919-06-28 00:00:00Z	http://www.wikidata.org/entity/Q33207207	
+http://www.wikidata.org/entity/Q165008				1885-05-17 00:00:00Z	1919-06-28 00:00:00Z	http://www.wikidata.org/entity/Q33223122	
+http://www.wikidata.org/entity/Q153963				1885-01-01 00:00:00Z	1919-01-01 00:00:00Z	http://www.wikidata.org/entity/Q1960	
+http://www.wikidata.org/entity/Q153963				1885-01-01 00:00:00Z	1919-01-01 00:00:00Z	http://www.wikidata.org/entity/Q799843	
+
+  { 
+    time      0.84% fanout         1 input         1 rows
+    time        17% fanout         2 input         1 rows
+    RDF_QUAD_POGS         2 rows(s_37_8_t0.S$28)
+     P =  IRI_ID"...direct/P361"  ,  O =  IRI_ID"...Q329618" 
+    time        33% fanout       1.5 input         2 rows
+    Precode:
+      0: var1$30 := Call __id2in (s_37_8_t0.S$28)
+      5: BReturn 0
+    RDF_QUAD         1 rows(s_37_8_t1.S$34, s_37_8_t1.O$33)
+     inlined  P =  IRI_ID"...direct/P571"  ,  S = s_37_8_t0.S$28
+    time        18% fanout         1 input         3 rows
+    Precode:
+      0: var4$36 := Call __ro2sq (s_37_8_t1.O$33)
+      5: BReturn 0
+    RDF_QUAD         1 rows(s_37_8_t2.S$40, s_37_8_t2.O$39)
+     inlined  P =  IRI_ID"...direct/P576"  ,  S = k_s_37_8_t0.S$92
+    time        31% fanout         4 input         3 rows
+    Precode:
+      0: var5$42 := Call __ro2sq (s_37_8_t2.O$39)
+      5: BReturn 0
+    RDF_QUAD         1 rows(s_37_8_t3.O$45)
+     inlined  P =  IRI_ID"...direct/P36"  ,  S = k_s_37_8_t0.S$107
+    
+    After code:
+    0: var6$47 := Call __ro2sq (s_37_8_t3.O$45)
+    5: BReturn 0
+    time      0.35% fanout         0 input        12 rows
+    Select (var1$30, <DB_NULL>, <DB_NULL>, <DB_NULL>, var4$36, var5$42, var6$47)
+  }
+
+
+ 0 msec 15% cpu,         9 rnd        11 seq        30% same seg        20% same pg 
+Compilation: 2 msec 0 reads         0% read 0 messages         0% clw

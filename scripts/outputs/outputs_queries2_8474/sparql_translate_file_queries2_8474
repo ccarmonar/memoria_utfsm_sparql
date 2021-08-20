@@ -1,0 +1,37 @@
+ SELECT  __ro2sq ("s_37_13_rbc"."var1") AS "var1" FROM (SELECT DISTINCT "s_37_14_t6"."S" AS "var1"
+  FROM DB.DBA.RDF_QUAD AS "s_37_14_t5"
+    INNER JOIN DB.DBA.RDF_QUAD AS "s_37_14_t6"
+    ON (
+      "s_37_14_t6"."S" = "s_37_14_t5"."S")
+    LEFT OUTER JOIN (
+      SELECT "s_37_12_t1"."S" AS "var2",
+        "s_37_12_t1"."O" AS "var3"
+      FROM DB.DBA.RDF_QUAD AS "s_37_12_t1"
+        INNER JOIN DB.DBA.RDF_QUAD AS "s_37_12_t2"
+        ON (
+          "s_37_12_t1"."O" = "s_37_12_t2"."S")
+      WHERE
+        "s_37_12_t1"."P" = __i2idn ( __bft( 'http://www.w3.org/ns/prov#wasDerivedFrom' , 1))
+        AND 
+        not ( EXISTS ( (
+           SELECT TOP 1 1 AS __ask_retval
+            FROM DB.DBA.RDF_QUAD AS "s_37_10_t0"
+            WHERE
+              "s_37_10_t0"."P" = __i2idn ( __bft( 'http://www.wikidata.org/prop/direct/P31' , 1))
+              AND 
+              "s_37_10_t0"."O" = __i2idn ( __bft( 'http://www.wikidata.org/entity/Q10876391' , 1))
+              AND 
+              "s_37_10_t0"."S" = "s_37_12_t2"."O"
+OPTION (QUIETCAST)
+           )))) AS "s_37_12"
+    ON (
+      "s_37_14_t5"."O" = "s_37_12"."var2")
+  WHERE
+    "s_37_14_t5"."P" = __i2idn ( __bft( 'http://www.wikidata.org/prop/P91' , 1))
+    AND 
+    "s_37_14_t6"."P" = __i2idn ( __bft( 'http://www.wikidata.org/prop/direct/P31' , 1))
+    AND 
+    "s_37_14_t6"."O" = __i2idn ( __bft( 'http://www.wikidata.org/entity/Q5' , 1))
+    AND 
+    not ( ( "s_37_12"."var3" is not null))
+OPTION (QUIETCAST)) AS "s_37_13_rbc"

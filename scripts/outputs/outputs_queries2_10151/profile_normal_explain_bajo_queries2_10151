@@ -1,0 +1,49 @@
+
+  { 
+    time       7.1% fanout         1 input         1 rows
+    time        93% fanout         0 input         1 rows
+    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:   1.4e-07 Fanout:         0
+    RDF_QUAD_POGS   1.4e-07 rows(t4.S$29, t4.O$28)
+     inlined  P =  IRI_ID"...value/P625" 
+    time         0% fanout         0 input         0 rows
+    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:   1.4e-07 Fanout:         0
+    RDF_QUAD_POGS   1.4e-07 rows(t2.O$33, t2.S$32)
+     P =  IRI_ID"...P625"  ,  O = cast$92
+    time         0% fanout         0 input         0 rows
+    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:   1.4e-07 Fanout:         0
+    RDF_QUAD   1.4e-07 rows(t3.O$36)
+     inlined  P =  IRI_ID"...statement/P625"  ,  S = k_t2.O$107
+    time         0% fanout         0 input         0 rows
+    outer {
+        time         0% fanout         0 input         0 rows
+        Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:         1 Fanout:         0
+        RDF_QUAD         1 rows(t6.O$39)
+         inlined  P =  IRI_ID"...geoPrecision"  ,  S = k_t4.O$130
+        time         0% fanout         0 input         0 rows
+      } /* end of outer */
+    set_ctr$44
+     out: (t6.O$39)
+     shadow: ( <none> )
+    time         0% fanout         0 input         0 rows
+    END Node
+    After test:
+    0: if (t6.O$39  IS NULL   0 ) then 4 else 5 unkn 5
+    4: BReturn 1
+    5: BReturn 0
+    time         0% fanout         0 input         0 rows
+    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:         1 Fanout:         0
+    RDF_QUAD         1 rows()
+     inlined  P =  IRI_ID"...direct/P776"  ,  S = k_t2.S$165
+    
+    After code:
+    0: var3$55 := Call __ro2sq (t6.O$39)
+    5: var2$57 := Call __ro2sq (t3.O$36)
+    10: var1$59 := Call __id2in (t2.S$32)
+    15: BReturn 0
+    time         0% fanout         0 input         0 rows
+    Select (var1$59, var2$57, var3$55)
+  }
+
+
+ 0 msec 1% cpu,         1 rnd         0 seq         0% same seg         0% same pg 
+Compilation: 3 msec 0 reads         0% read 0 messages         0% clw

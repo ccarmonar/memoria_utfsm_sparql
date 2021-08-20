@@ -1,0 +1,58 @@
+http://irail.be/stations/NMBS/008894201	http://www.wikidata.org/entity/Q2614291	
+https://www.ncbi.nlm.nih.gov/protein/P05091	http://www.wikidata.org/entity/Q2640417	
+https://www.ncbi.nlm.nih.gov/protein/P06729	http://www.wikidata.org/entity/Q2630678	
+http://publications.europa.eu/resource/authority/language/KWK	http://www.wikidata.org/entity/Q2640628	
+http://purl.uniprot.org/uniprot/P05091	http://www.wikidata.org/entity/Q2640417	
+http://purl.uniprot.org/uniprot/P06729	http://www.wikidata.org/entity/Q2630678	
+https://identifiers.org/uniprot:P05091	http://www.wikidata.org/entity/Q2640417	
+https://identifiers.org/uniprot:P06729	http://www.wikidata.org/entity/Q2630678	
+http://purl.obolibrary.org/obo/HP_0003811	http://www.wikidata.org/entity/Q2781245	
+http://irail.be/stations/NMBS/008814167	http://www.wikidata.org/entity/Q2780991	
+http://irail.be/stations/NMBS/008843174	http://www.wikidata.org/entity/Q2786027	
+http://irail.be/stations/NMBS/008843349	http://www.wikidata.org/entity/Q2786157	
+http://irail.be/stations/NMBS/008886066	http://www.wikidata.org/entity/Q2796893	
+https://scigraph.springernature.com/person.01145155511.47	http://www.wikidata.org/entity/Q2853989	
+http://purl.obolibrary.org/obo/DOID_0110070	http://www.wikidata.org/entity/Q2852241	
+http://purl.obolibrary.org/obo/HP_0011724	http://www.wikidata.org/entity/Q2852241	
+http://identifiers.org/doid/DOID:0110070	http://www.wikidata.org/entity/Q2852241	
+http://publications.europa.eu/resource/authority/language/ORC	http://www.wikidata.org/entity/Q2919128	
+http://dbpedia.org/resource/Xfinity_Center_(College_Park,_Maryland)	http://www.wikidata.org/entity/Q2985114	
+http://publications.europa.eu/resource/authority/language/HMR	http://www.wikidata.org/entity/Q2992841	
+
+  { 
+    time     0.055% fanout         1 input         1 rows
+      clear: (<V set_ctr$45 in>)
+    s# 48 46 cluster outer seq start, set no <V set_ctr$45 in>    
+    save ctx:()
+    time         2% fanout      1000 input         1 rows
+    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:   1.2e+05 Fanout:     1e+03
+      clear: (<V s_37_2_t0.S$28 rn>, <V s_37_2_t0.O$29 an>)
+      clear on continue: (<V s_37_2_t0.S$28 rn>, <V s_37_2_t0.O$29 an>)
+    s# 57 27 from DB.DBA.RDF_QUAD by RDF_QUAD_POGS    1.2e+05 rows   
+    Key RDF_QUAD_POGS  ASC  (<V s_37_2_t0.O$29 an>, <V s_37_2_t0.S$28 rn>)
+     inlined  P =  IRI_ID"...direct/P2888" 
+    
+    time        98% fanout         1 input      1000 rows
+      clear: (<V temp$33 i>, <V isiri_id$31 i>, <V var2$37 a>, <V var1$35 a>)$28 () $29 () 
+    s# 73 68 END Node
+    After test:
+      0: <V isiri_id$31 i> := Call isiri_id (<V s_37_2_t0.O$29 an>)
+      5: <V temp$33 i> := artm  1  - <V isiri_id$31 i>
+      9: if ( 0  = <V temp$33 i>) then 13 else 14 unkn 14
+      13: BReturn 1
+      14: BReturn 0
+    After code:
+      0: <V var1$35 a> := Call __ro2sq (<r s_37_2_t0.O$29 via  Set73>)
+      5: <V var2$37 a> := Call __id2in (<r s_37_2_t0.S$28 via  Set73>)
+      10: BReturn 0
+    time     0.023% fanout         0 input      1000 rows
+    $35 (68 ) $37 (68 ) $45 (68 27 46 ) 
+    s# 81 39 Select (<V var1$35 a>, <V var2$37 a>)
+      set no: <r set_ctr$45 via  Set73 Set57>
+  }
+Warning: You might have a Cartesian product.
+
+
+
+ 5 msec 81% cpu,         1 rnd       998 seq         0% same seg         0% same pg 
+Compilation: 1 msec 0 reads         0% read 0 messages         0% clw

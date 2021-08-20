@@ -1,0 +1,53 @@
+http://www.wikidata.org/entity/Q2984717	
+http://www.wikidata.org/entity/Q2984737	
+http://www.wikidata.org/entity/Q2984827	
+http://www.wikidata.org/entity/Q2984927	
+http://www.wikidata.org/entity/Q3238000	
+http://www.wikidata.org/entity/Q16207208	
+http://www.wikidata.org/entity/Q16301854	
+http://www.wikidata.org/entity/Q1098377	
+http://www.wikidata.org/entity/Q1527271	
+http://www.wikidata.org/entity/Q4239680	
+http://www.wikidata.org/entity/Q5578135	
+http://www.wikidata.org/entity/Q12043108	
+http://www.wikidata.org/entity/Q16626781	
+http://www.wikidata.org/entity/Q16626783	
+http://www.wikidata.org/entity/Q16626793	
+http://www.wikidata.org/entity/Q16626794	
+http://www.wikidata.org/entity/Q16626945	
+http://www.wikidata.org/entity/Q16845026	
+http://www.wikidata.org/entity/Q20500192	
+http://www.wikidata.org/entity/Q20501233	
+
+  { 
+    time      0.19% fanout         1 input         1 rows
+    time       4.6% fanout      1000 input         1 rows
+    RDF_QUAD_POGS   1.6e+03 rows(t1.S$28)
+     P =  IRI_ID"...direct/P31"  ,  O =  IRI_ID"...Q178561" 
+    time      0.74% fanout         1 input      1000 rows
+    outer {
+        time        29% fanout     0.663 input      1000 rows
+        RDF_QUAD         1 rows(t3.O$31)
+         inlined  P =  IRI_ID"...direct/P585"  ,  S = k_t1.S$86
+        time      0.62% fanout   1.52187 input       663 rows
+      } /* end of outer */
+    set_ctr$36
+     out: (t3.O$31)
+     shadow: ( <none> )
+    time        65% fanout  0.342914 input      1009 rows
+    END Node
+    After test:
+    0: if (t3.O$31  IS NULL   0 ) then 4 else 5 unkn 5
+    4: BReturn 1
+    5: BReturn 0
+    
+    After code:
+    0: var1$45 := Call __id2in (t1.S$28)
+    5: BReturn 0
+    time      0.08% fanout         0 input       346 rows
+    Select (var1$45)
+  }
+
+
+ 2 msec 55% cpu,      1000 rnd      1007 seq   99.3007% same seg    0.2997% same pg 
+Compilation: 1 msec 0 reads         0% read 0 messages         0% clw

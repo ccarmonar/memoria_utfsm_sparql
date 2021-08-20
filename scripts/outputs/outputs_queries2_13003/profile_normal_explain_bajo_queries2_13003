@@ -1,0 +1,64 @@
+http://www.wikidata.org/prop/direct/P2923	
+http://www.wikidata.org/prop/direct/P2895	
+http://www.wikidata.org/prop/direct/P2109	
+http://www.wikidata.org/prop/direct/P2052	
+http://www.wikidata.org/prop/direct/P6801	
+http://www.wikidata.org/prop/direct/P1339	
+http://www.wikidata.org/prop/direct/P4253	
+http://www.wikidata.org/prop/direct/P4036	
+http://purl.org/dc/terms/extent	
+http://www.wikidata.org/prop/direct/P4250	
+http://www.wikidata.org/prop/direct/P2103	
+http://www.wikidata.org/prop/direct/P1082	
+http://www.wikidata.org/prop/direct/P1113	
+http://www.wikidata.org/prop/direct/P1086	
+http://www.wikidata.org/prop/direct/P1342	
+http://www.wikidata.org/prop/direct/P1120	
+http://www.wikidata.org/prop/direct/P1114	
+http://www.wikidata.org/prop/direct/P2114	
+http://www.wikidata.org/prop/direct/P1436	
+http://www.wikidata.org/prop/direct/P3891	
+
+  { 
+    time    0.0069% fanout         1 input         1 rows
+    time    0.0017% fanout         1 input         1 rows
+    time      0.13% fanout       168 input         1 rows
+    RDF_QUAD   1.7e+02 rows(s_37_6_t0.O$31)
+     inlined  P =  IRI_ID"...direct/P2144" 
+    time         2% fanout   17.8571 input       168 rows
+    RDF_QUAD_OP       2.8 rows(s_37_6_t2.P$35, s_37_6_t2.O$34)
+     inlined  O = cast$100
+    time      0.48% fanout     0.979 input      3000 rows
+    END Node
+    After test:
+    0: if (s_37_6_t2.P$35 =  IRI_ID"...direct/P2243" ) then 9 else 4 unkn 9
+    4: if (s_37_6_t2.P$35 =  IRI_ID"...direct/P2144" ) then 9 else 8 unkn 9
+    8: BReturn 1
+    9: BReturn 0
+    time        15% fanout   20.7429 input      2937 rows
+    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:       1.2 Fanout:        21
+    RDF_QUAD_POGS       1.2 rows()
+     P = k_s_37_6_t2.P$129 ,  O = k_s_37_6_t0.O$133
+    time        82% fanout 0.00456321 input     60922 rows
+    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:        38 Fanout:    0.0046
+    RDF_QUAD_POGS        38 rows()
+     P =  IRI_ID"...direct/P2243"  ,  O = k_s_37_6_t0.O$144
+    time      0.18% fanout 0.0791367 input       278 rows
+    Distinct (s_37_6_t2.P$35)
+    
+    After code:
+    0: p2$28 :=  := artm s_37_6_t2.P$35
+    4: BReturn 0
+    time       0.2% fanout         1 input        22 rows
+    Subquery Select(p2$28)
+    
+    After code:
+    0: p2$57 := Call __ro2sq (p2$28)
+    5: BReturn 0
+    time    0.0017% fanout         0 input        22 rows
+    Select (p2$57)
+  }
+
+
+ 45 msec 96% cpu,     63124 rnd     61779 seq   99.3996% same seg  0.353267% same pg 
+Compilation: 2 msec 0 reads         0% read 0 messages         0% clw

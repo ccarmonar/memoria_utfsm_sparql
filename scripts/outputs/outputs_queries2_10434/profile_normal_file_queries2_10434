@@ -1,0 +1,84 @@
+http://www.wikidata.org/entity/Q148		
+http://www.wikidata.org/entity/Q48		
+
+  { 
+    time       0.5% fanout         1 input         1 rows
+      clear: (<V set_ctr$97 in>)
+    s# 100 98 cluster outer seq start, set no <V set_ctr$97 in>    
+    save ctx:()
+    time      0.46% fanout         1 input         1 rows
+    Precode:
+      0: <V __all_eq$27 x> := Call __all_eq ( IRI_ID"...Q148" )
+      5: BReturn 0
+      clear: (<V set_no$32 i>, <V __all_eq$27 x>)
+    s# 109 88 cluster outer seq start, set no <V set_no$32 i>    
+    save ctx:()
+      clear: (<V _::trans_subj_37_2$34 rn>, <V _::trans_obj_37_3$35 an>)
+      clear on continue: (<V _::trans_subj_37_2$34 rn>, <V _::trans_obj_37_3$35 an>)$27 (88 ) 
+    s# 118 33 Transitive dt dir 1, input: (<r __all_eq$27 via  Set109>)
+      input shadow: (<V __all_eq$122 x>)
+      output: (<V _::trans_obj_37_3$35 an>)
+      { 
+        time         2% fanout         5 input         2 rows
+          clear: (<V in_iter$40 x>)
+          clear on continue: (<V in_iter$40 x>)
+        s# 124 41 in   iterates <V in_iter$40 x>
+          over ( IRI_ID"...direct/P131" ,  IRI_ID"...direct/P17" ,  IRI_ID"...direct/P30" ,  IRI_ID"...direct/P376" ,  IRI_ID"...direct/P501" )
+        time        32% fanout       0.4 input        10 rows
+          clear: (<V t5.O$44 an>, <V t5.S$45 rn>, <V _::trans_obj_37_3$35 an>, <V _::trans_subj_37_2$34 rn>)
+          clear on continue: (<V _::trans_subj_37_2$34 rn>, <V _::trans_obj_37_3$35 an>, <V t5.S$45 rn>, <V t5.O$44 an>)$40 () $141 (39 ) $145 (39 ) 
+        s# 137 39 from DB.DBA.RDF_QUAD by RDF_QUAD       0.33 rows   
+        Key RDF_QUAD  ASC  (<V t5.S$45 rn>, <V t5.O$44 an>)
+         inlined  P = <v k_in_iter$141 Set143 rn> ,  S = <V k___all_eq$145 rn>
+        vector param casts: <V in_iter$40 x>-> <v k_in_iter$141 Set143 rn>, <r __all_eq$122 via  Set124>-> <V k___all_eq$145 rn>
+        
+        After code:
+          0: <V _::trans_subj_37_2$34 rn> :=  := artm <V t5.S$45 rn>
+          4: <V _::trans_obj_37_3$35 an> :=  := artm <V t5.O$44 an>
+          8: BReturn 0
+        time      0.19% fanout         0 input         4 rows
+        $34 () 
+        s# 156 47 Subquery Select(<V _::trans_subj_37_2$34 rn>, <V _::trans_obj_37_3$35 an>)
+          set no: <r step_set$36 via  Set137 Set143 Set124>
+      }
+      clear: (<V __stub$65 in>, <V set_no$66 i>)
+    s# 163 64 Subquery 64 
+      multistate set no = <V set_no$66 i>
+      { 
+        time      0.38% fanout         1 input         3 rows
+        Precode:
+          0: <V __stub$65 in> :=  := artm  1 
+          4: BReturn 0
+          clear: (<V __stub$65 in>)
+        s# 168 73 END Node
+        time     0.057% fanout         0 input         3 rows
+        $65 (73 ) 
+        s# 163 67 Subquery Select(<r __stub$65 via  Set168>)
+          set no: <r set_no$66 via  Set168>
+      }
+    
+    time        17% fanout  0.666667 input         3 rows
+      clear: (<V var1Label$31 x>, <V var1$30 an>)$35 (64 ) 
+    s# 182 75 Distinct (HASH) set no <r set_no$32 via  Set163 Set118>(<r _::trans_obj_37_3$35 via  Set163>)
+    After code:
+      0: <V var1$30 an> :=  := artm <r _::trans_obj_37_3$35 via  Set182 Set163>
+      4: <V var1Label$31 x> :=  := artm <DB_NULL>
+      8: BReturn 0
+    time        13% fanout         1 input         2 rows
+      clear: (<V var1$89 a>)$32 (75 64 33 88 ) $30 (75 ) 
+    s# 192 81 Subquery Select(<V var1$30 an>, <V var1Label$31 x>)
+      set no: <r set_no$32 via  Set182 Set163 Set118>
+    After code:
+      0: <V var1$89 a> := Call __ro2sq (<V var1$30 an>)
+      5: BReturn 0
+    time      0.11% fanout         0 input         2 rows
+    $31 (81 75 ) $97 (81 75 64 33 88 98 ) $89 (81 ) 
+    s# 199 91 Select (<V var1$89 a>, <V var1Label$31 x>)
+      set no: <r set_ctr$97 via  Set192>
+  }
+Warning: You might have a Cartesian product.
+
+
+
+ 0 msec 15% cpu,        11 rnd         2 seq         0% same seg         0% same pg 
+Compilation: 3 msec 0 reads         0% read 0 messages         0% clw

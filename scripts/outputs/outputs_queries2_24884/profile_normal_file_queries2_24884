@@ -1,0 +1,83 @@
+http://www.wikidata.org/entity/Q49396531	10.1016/J.EATS.2017.08.042	
+http://www.wikidata.org/entity/Q38013315	10.2174/138161212803216870	
+http://www.wikidata.org/entity/Q33902762	10.1038/SJ.ONC.1203590	
+http://www.wikidata.org/entity/Q48705942	10.1159/000114242	
+http://www.wikidata.org/entity/Q47933313	10.1046/J.1540-8167.2004.03618.X	
+http://www.wikidata.org/entity/Q34916859	10.1128/JCM.02301-14	
+http://www.wikidata.org/entity/Q40349599	10.1136/BJO.2005.077065	
+http://www.wikidata.org/entity/Q34045254	10.1534/G3.115.023481	
+http://www.wikidata.org/entity/Q44817141	10.1007/S00234-009-0543-6	
+http://www.wikidata.org/entity/Q50904835	10.1007/S11695-007-9158-3	
+http://www.wikidata.org/entity/Q37065591	10.3349/YMJ.2007.48.5.765	
+http://www.wikidata.org/entity/Q42033581	10.1016/J.CRITREVONC.2003.05.003	
+http://www.wikidata.org/entity/Q33670447	10.4049/JIMMUNOL.181.3.1780	
+http://www.wikidata.org/entity/Q38613010	10.1007/S40620-017-0429-3	
+http://www.wikidata.org/entity/Q48650197	10.1111/BJD.15214	
+http://www.wikidata.org/entity/Q35688045	10.1371/JOURNAL.PONE.0132268	
+http://www.wikidata.org/entity/Q48367765	10.1080/19491034.2017.1279774	
+http://www.wikidata.org/entity/Q50539110	10.1016/J.CONCOG.2016.02.014	
+http://www.wikidata.org/entity/Q37766459	10.1039/C0AN00233J	
+http://www.wikidata.org/entity/Q27639760	10.1073/PNAS.192468299	
+
+  { 
+    time   0.00035% fanout         1 input         1 rows
+      clear: (<V set_ctr$80 in>)
+    s# 83 81 cluster outer seq start, set no <V set_ctr$80 in>    
+    save ctx:()
+      clear: (<V var2$29 a>, <V var1$28 a>, <V set_no$30 i>, <V var2$72 a>, <V var1$70 a>)
+    s# 92 27 Subquery 27 
+      multistate set no = <V set_no$30 i>
+      { 
+        time   0.00016% fanout         1 input         1 rows
+        
+        s# 116 37 Fork 37 {  
+                
+            save ctx:()
+              set no = <V set_no$30 i> array  <none>  save: 
+            time        38% fanout 1.60816e+06 input         1 rows
+              clear: (<V s_37_2_t0.O$32 an>, <V s_37_2_t0.S$33 rn>, <V rdf_rand_impl$35 d>)
+              clear on continue: (<V s_37_2_t0.O$32 an>, <V s_37_2_t0.S$33 rn>, <V rdf_rand_impl$35 d>)
+            s# 97 31 from DB.DBA.RDF_QUAD by RDF_QUAD    1.9e+06 rows Parallel, tail cost   2.4e+06   
+            Key RDF_QUAD  ASC  (<V s_37_2_t0.S$33 rn>, <V s_37_2_t0.O$32 an>)
+             inlined  P =  IRI_ID"...direct/P356" 
+            copy on branch $30 $0 $0 $0 sets: 83 
+            
+            After code:
+              0: <V rdf_rand_impl$35 d> := Call rdf_rand_impl ()
+              5: BReturn 0
+            time        11% fanout         0 input 1.60816e+06 rows
+            $35 () 
+            s# 108 38 Sort (HASH) set no <r set_no$30 via  Set97>(TOP  50  ) (<V rdf_rand_impl$35 d>) -> (<V s_37_2_t0.S$33 rn>, <V s_37_2_t0.O$32 an>)
+            
+        }
+        time        51% fanout        50 input         1 rows
+          clear: (<V s_37_2_t0.O$32 an>, <V s_37_2_t0.S$33 rn>, <V var2$29 a>, <V var1$28 a>, <V __id2in$61 a>, <V __ro2sq$59 a>)
+          clear on continue: (<V s_37_2_t0.O$32 an>, <V s_37_2_t0.S$33 rn>, <V var2$29 a>, <V var1$28 a>, <V __id2in$61 a>, <V __ro2sq$59 a>)
+        s# 123 43 top order by node (<V s_37_2_t0.S$33 rn>, <V s_37_2_t0.O$32 an>)
+        set no <V set_no$30 i>
+        After code:
+          0: <V __ro2sq$59 a> := Call __ro2sq (<V s_37_2_t0.O$32 an>)
+          5: <V __id2in$61 a> := Call __id2in (<V s_37_2_t0.S$33 rn>)
+          10: <V var1$28 a> :=  := artm <V __id2in$61 a>
+          14: <V var2$29 a> :=  := artm <V __ro2sq$59 a>
+          18: BReturn 0
+        time   4.6e-05% fanout         0 input        50 rows
+        
+        s# 92 63 Subquery Select(<V var1$28 a>, <V var2$29 a>)
+          set no: <r set_no$30 via  Set123>
+      }
+    
+    After code:
+      0: <V var1$70 a> := Call __ro2sq (<V var1$28 a>)
+      5: <V var2$72 a> := Call __ro2sq (<V var2$29 a>)
+      10: BReturn 0
+    time   9.2e-05% fanout         0 input        50 rows
+    $70 (27 ) $72 (27 ) $80 (27 81 ) 
+    s# 142 74 Select (<V var1$70 a>, <V var2$72 a>)
+      set no: <r set_ctr$80 via  Set92>
+  }
+
+
+ 530 msec 121% cpu,       100 rnd 1.60646e+06 seq         0% same seg         0% same pg 
+22 disk reads, 0 read ahead,   57.0968% wait
+Compilation: 1 msec 0 reads         0% read 0 messages         0% clw

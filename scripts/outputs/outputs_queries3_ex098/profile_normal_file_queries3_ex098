@@ -1,0 +1,95 @@
+http://learningsparql.com/ns/data#i9771	Cindy	Marshall			
+http://learningsparql.com/ns/data#i0432	Richard	Mutt			
+http://learningsparql.com/ns/data#i8301	Craig	Ellis			
+http://learningsparql.com/ns/addressbook#i0432	Richard	Mutt			
+http://learningsparql.com/ns/addressbook#i8301	Craig	Ellis			
+http://learningsparql.com/ns/addressbook#i9771	Cindy	Marshall			
+http://learningsparql.com/ns/data#i2194	Bradley	Perry			
+http://learningsparql.com/ns/data#i5433	Katherine	Duncan			
+			http://learningsparql.com/ns/data#course34	Modeling Data with OWL	
+			http://learningsparql.com/ns/data#course59	Using SPARQL with non-RDF Data	
+			http://learningsparql.com/ns/data#course71	Enhancing Websites with RDFa	
+			http://learningsparql.com/ns/data#course85	Updating Data with SPARQL	
+			http://learningsparql.com/ns/addressbook#course24	Using Named Graphs	
+			http://learningsparql.com/ns/addressbook#course42	Combining Public and Private RDF Data	
+
+  { 
+    time       2.4% fanout         1 input         1 rows
+      clear: (<V set_ctr$77 in>)
+    s# 80 78 cluster outer seq start, set no <V set_ctr$77 in>    
+    save ctx:()
+      clear: (<V course$32 a>, <V courseName$31 a>, <V person$30 a>, <V first$29 a>, <V last$28 a>, <V set_no$33 i>, <V courseName$69 a>, <V course$67 a>, <V last$65 a>, <V first$63 a>, <V person$61 a>)
+    s# 89 27 Subquery 27 
+      multistate set no = <V set_no$33 i>
+      { 
+        
+        s# 93 34 Union
+          { 
+            time        44% fanout         8 input         1 rows
+              clear: (<V s_11_4_t0.O$36 an>, <V s_11_4_t0.S$37 rn>)
+              clear on continue: (<V s_11_4_t0.O$36 an>, <V s_11_4_t0.S$37 rn>)
+            s# 96 35 from DB.DBA.RDF_QUAD by RDF_QUAD          8 rows   
+            Key RDF_QUAD  ASC  (<V s_11_4_t0.S$37 rn>, <V s_11_4_t0.O$36 an>)
+             inlined  P =  IRI_ID"...firstName" 
+            
+            time        27% fanout         1 input         8 rows
+              clear: (<V s_11_4_t1.O$40 an>, <V course$32 a>, <V courseName$31 a>, <V person$30 a>, <V first$29 a>, <V last$28 a>)
+              clear on continue: (<V s_11_4_t1.O$40 an>, <V course$32 a>, <V courseName$31 a>, <V person$30 a>, <V first$29 a>, <V last$28 a>)$36 () $37 () 
+            s# 107 39 from DB.DBA.RDF_QUAD by RDF_QUAD          1 rows   
+            Key RDF_QUAD  ASC  (<V s_11_4_t1.O$40 an>)
+             inlined  P =  IRI_ID"...lastName"  ,  S = <V s_11_4_t0.S$37 rn>
+            
+            After code:
+              0: <V last$28 a> :=  := artm <V s_11_4_t1.O$40 an>
+              4: <V first$29 a> :=  := artm <r s_11_4_t0.O$36 via  Set107>
+              8: <V person$30 a> :=  := artm <r s_11_4_t0.S$37 via  Set107>
+              12: <V courseName$31 a> :=  := artm <DB_NULL>
+              16: <V course$32 a> :=  := artm <DB_NULL>
+              20: BReturn 0
+            time       0.8% fanout         0 input         8 rows
+            
+            s# 89 42 Subquery Select(<V last$28 a>, <V first$29 a>, <V person$30 a>, <V courseName$31 a>, <V course$32 a>)
+              set no: <r set_no$33 via  Set107 Set96>
+          }
+          { 
+            time        24% fanout         6 input         1 rows
+              clear: (<V s_15_7_t2.S$50 rn>, <V s_15_7_t2.O$51 an>, <V course$32 a>, <V courseName$31 a>, <V person$30 a>, <V first$29 a>, <V last$28 a>)
+              clear on continue: (<V s_15_7_t2.S$50 rn>, <V s_15_7_t2.O$51 an>, <V course$32 a>, <V courseName$31 a>, <V person$30 a>, <V first$29 a>, <V last$28 a>)
+            s# 129 49 from DB.DBA.RDF_QUAD by RDF_QUAD          6 rows   
+            Key RDF_QUAD  ASC  (<V s_15_7_t2.O$51 an>, <V s_15_7_t2.S$50 rn>)
+             inlined  P =  IRI_ID"...courseTitle" 
+            
+            After code:
+              0: <V last$28 a> :=  := artm <DB_NULL>
+              4: <V first$29 a> :=  := artm <DB_NULL>
+              8: <V person$30 a> :=  := artm <DB_NULL>
+              12: <V courseName$31 a> :=  := artm <V s_15_7_t2.O$51 an>
+              16: <V course$32 a> :=  := artm <V s_15_7_t2.S$50 rn>
+              20: BReturn 0
+            time      0.35% fanout         0 input         6 rows
+            
+            Subquery Select(<V last$28 a>, <V first$29 a>, <V person$30 a>, <V courseName$31 a>, <V course$32 a>)
+              set no: <r set_no$33 via  Set129>
+          }
+      }
+    
+    After code:
+      0: <V person$61 a> := Call __id2in (<V person$30 a>)
+      5: <V first$63 a> := Call __ro2sq (<V first$29 a>)
+      10: <V last$65 a> := Call __ro2sq (<V last$28 a>)
+      15: <V course$67 a> := Call __id2in (<V course$32 a>)
+      20: <V courseName$69 a> := Call __ro2sq (<V courseName$31 a>)
+      25: BReturn 0
+    time      0.55% fanout         0 input        14 rows
+    $63 (27 ) $65 (27 ) $67 (27 ) $69 (27 ) $77 (27 78 ) $61 (27 ) 
+    s# 147 71 Select (<V person$61 a>, <V first$63 a>, <V last$65 a>, <V course$67 a>, <V courseName$69 a>)
+      set no: <r set_ctr$77 via  Set89>
+  }
+Warning: You might have a Cartesian product.
+
+Warning: You might have a Cartesian product.
+
+
+
+ 0 msec 24% cpu,        42 rnd        12 seq   16.2791% same seg   48.8372% same pg 
+Compilation: 2 msec 0 reads         0% read 0 messages         0% clw

@@ -1,0 +1,67 @@
+http://www.wikidata.org/entity/Q13434615	http://www.wikidata.org/entity/Q12045166	http://www.wikidata.org/entity/Q213	
+http://www.wikidata.org/entity/Q17494230	http://www.wikidata.org/entity/Q487981	http://www.wikidata.org/entity/Q29	
+http://www.wikidata.org/entity/Q30245731	http://www.wikidata.org/entity/Q815721	http://www.wikidata.org/entity/Q36	
+http://www.wikidata.org/entity/Q30245731	http://www.wikidata.org/entity/Q815721	http://www.wikidata.org/entity/Q39193	
+http://www.wikidata.org/entity/Q30245731	http://www.wikidata.org/entity/Q815721	http://www.wikidata.org/entity/Q193152	
+http://www.wikidata.org/entity/Q30245755	http://www.wikidata.org/entity/Q815721	http://www.wikidata.org/entity/Q36	
+http://www.wikidata.org/entity/Q30245755	http://www.wikidata.org/entity/Q815721	http://www.wikidata.org/entity/Q39193	
+http://www.wikidata.org/entity/Q30245755	http://www.wikidata.org/entity/Q815721	http://www.wikidata.org/entity/Q193152	
+http://www.wikidata.org/entity/Q20639716	http://www.wikidata.org/entity/Q272795	http://www.wikidata.org/entity/Q419	
+http://www.wikidata.org/entity/Q30232347	http://www.wikidata.org/entity/Q721928	http://www.wikidata.org/entity/Q36	
+http://www.wikidata.org/entity/Q33468899	http://www.wikidata.org/entity/Q930149	http://www.wikidata.org/entity/Q36	
+http://www.wikidata.org/entity/Q28667109	http://www.wikidata.org/entity/Q103212	http://www.wikidata.org/entity/Q159	
+http://www.wikidata.org/entity/Q4391995	http://www.wikidata.org/entity/Q6106	http://www.wikidata.org/entity/Q30	
+http://www.wikidata.org/entity/Q4391995	http://www.wikidata.org/entity/Q6106	http://www.wikidata.org/entity/Q30	
+http://www.wikidata.org/entity/Q759259	http://www.wikidata.org/entity/Q892684	http://www.wikidata.org/entity/Q183	
+http://www.wikidata.org/entity/Q1463550	http://www.wikidata.org/entity/Q892684	http://www.wikidata.org/entity/Q183	
+http://www.wikidata.org/entity/Q21523255	http://www.wikidata.org/entity/Q9899	http://www.wikidata.org/entity/Q55	
+http://www.wikidata.org/entity/Q21523255	http://www.wikidata.org/entity/Q9899	http://www.wikidata.org/entity/Q55	
+http://www.wikidata.org/entity/Q30063426	http://www.wikidata.org/entity/Q104302	http://www.wikidata.org/entity/Q36	
+http://www.wikidata.org/entity/Q30062534	http://www.wikidata.org/entity/Q106583	http://www.wikidata.org/entity/Q36	
+
+  { 
+    time     0.015% fanout         1 input         1 rows
+      clear: (<V set_ctr$48 in>)
+    s# 51 49 cluster outer seq start, set no <V set_ctr$48 in>    
+    save ctx:()
+    time      0.23% fanout       276 input         1 rows
+      clear: (<V s_37_6_t0.S$28 rn>)
+      clear on continue: (<V s_37_6_t0.S$28 rn>)
+    s# 60 27 from DB.DBA.RDF_QUAD by RDF_QUAD_POGS    2.8e+02 rows   
+    Key RDF_QUAD_POGS  ASC  (<V s_37_6_t0.S$28 rn>)
+     P =  IRI_ID"...direct/P31"  ,  O =  IRI_ID"...Q1497364" 
+    
+    time        94% fanout   1.01087 input       276 rows
+    Precode:
+      0: <V var1$30 a> := Call __id2in (<V s_37_6_t0.S$28 rn>)
+      5: BReturn 0
+      clear: (<V s_37_6_t1.O$33 an>, <V var1$30 a>)
+      clear on continue: (<V s_37_6_t1.O$33 an>)$28 () 
+    s# 70 32 from DB.DBA.RDF_QUAD by RDF_QUAD        1.1 rows   
+    Key RDF_QUAD  ASC  (<V s_37_6_t1.O$33 an>)
+     inlined  P =  IRI_ID"...direct/P131"  ,  S = <V s_37_6_t0.S$28 rn>
+    
+    time       5.8% fanout  0.107527 input       279 rows
+      clear: (<V s_37_6_t2.O$36 an>, <V var3$40 a>, <V var2$38 a>)
+      clear on continue: (<V var2$38 a>, <V var3$40 a>, <V s_37_6_t2.O$36 an>)$33 () $84 (35 ) 
+    s# 80 35 from DB.DBA.RDF_QUAD by RDF_QUAD          1 rows   
+    Key RDF_QUAD  ASC  (<V s_37_6_t2.O$36 an>)
+     inlined  P =  IRI_ID"...direct/P17"  ,  S = <v k_s_37_6_t1.O$84 Set86 rn>
+    vector param casts: <V s_37_6_t1.O$33 an>-> <v k_s_37_6_t1.O$84 Set86 rn>
+    
+    After code:
+      0: <V var2$38 a> := Call __ro2sq (<r s_37_6_t1.O$33 via  Set80 Set86>)
+      5: <V var3$40 a> := Call __ro2sq (<V s_37_6_t2.O$36 an>)
+      10: BReturn 0
+    time    0.0041% fanout         0 input        30 rows
+    $38 () $40 () $48 (35 32 27 49 ) $30 (35 32 ) 
+    s# 94 42 Select (<r var1$30 via  Set80 Set86 Set70>, <V var2$38 a>, <V var3$40 a>)
+      set no: <r set_ctr$48 via  Set80 Set86 Set70 Set60>
+  }
+Warning: You might have a Cartesian product.
+
+
+
+ 25 msec 90% cpu,       625 rnd       297 seq   71.5655% same seg   16.2939% same pg 
+1 disk reads, 0 read ahead,   1.65073% wait
+Compilation: 3 msec 0 reads         0% read 0 messages         0% clw

@@ -1,0 +1,64 @@
+
+  { 
+    time       7.1% fanout         1 input         1 rows
+      clear: (<V set_ctr$78 in>)
+    s# 81 79 cluster outer seq start, set no <V set_ctr$78 in>    
+    save ctx:()
+    Precode:
+      0: <V bigdata/namespace/wdq/no-such-p-qazxswedc$27 r> := Call __i2idn (<tag 182 flag 1 c https://query.wikidata.org/bigdata/namespace/wdq/no-such-p-qazxswedc>)
+      5: BReturn 0
+      clear: (<V var2$30 x>, <V set_no$31 i>, <V bigdata/namespace/wdq/no-such-p-qazxswedc$27 r>, <V var2$70 a>)
+    s# 90 29 Subquery 29 
+      multistate set no = <V set_no$31 i>
+      { 
+        time       5.2% fanout         1 input         1 rows
+        
+        s# 117 35 Fork 35 {  
+                
+            save ctx:()
+              set no = <V set_no$31 i> array  <none>  save: 
+            time        85% fanout         0 input         1 rows
+            Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:   1.4e-07 Fanout:         0
+              clear: (<V s_37_2_t0.S$33 rn>)
+              clear on continue: (<V s_37_2_t0.S$33 rn>)$27 (32 ) 
+            s# 95 32 from DB.DBA.RDF_QUAD by RDF_QUAD_POGS    1.4e-07 rows Parallel, tail cost       7.9   
+            Key RDF_QUAD_POGS  ASC  (<V s_37_2_t0.S$33 rn>)
+             inlined  P = <v k_bigdata/namespace/wdq/no-such-p-qazxswedc$99 Set101 rn>
+            vector param casts: <V bigdata/namespace/wdq/no-such-p-qazxswedc$27 r>-> <v k_bigdata/namespace/wdq/no-such-p-qazxswedc$99 Set101 rn>
+            copy on branch $99 $31 $0 $0 sets: 81 
+            
+            time         0% fanout         0 input         0 rows
+            
+            s# 109 36 Sort (HASH) set no <r set_no$31 via  Set95 Set101>(<V s_37_2_t0.S$33 rn>)
+        }
+        time       3.2% fanout         0 input         1 rows
+          clear: (<V s_37_2_t0.S$33 rn>)
+          clear on continue: (<V s_37_2_t0.S$33 rn>)
+        s# 124 41 group by read node  
+        (<V s_37_2_t0.S$33 rn>)
+        time         0% fanout         0 input         0 rows
+          clear: (<V var2$30 x>, <V __bft$58 x>, <V __id2in$56 a>)$33 () 
+        s# 133 68 skip node  1  <none> <r set_no$31 via  Set124>
+        After code:
+          0: <V __id2in$56 a> := Call __id2in (<r s_37_2_t0.S$33 via  Set133>)
+          5: <V __bft$58 x> := Call __bft (<V __id2in$56 a>,  2 )
+          10: <V var2$30 x> :=  := artm <V __bft$58 x>
+          14: BReturn 0
+        time         0% fanout         0 input         0 rows
+        
+        s# 90 60 Subquery Select(<V var2$30 x>)
+          set no: <r set_no$31 via  Set133 Set124>
+      }
+    
+    After code:
+      0: <V var2$70 a> := Call __ro2sq (<V var2$30 x>)
+      5: BReturn 0
+    time         0% fanout         0 input         0 rows
+    $70 (29 ) $78 (29 79 ) 
+    s# 149 72 Select (<V var2$70 a>)
+      set no: <r set_ctr$78 via  Set90>
+  }
+
+
+ 0 msec 9% cpu,         4 rnd         0 seq         0% same seg         0% same pg 
+Compilation: 1 msec 0 reads         0% read 0 messages         0% clw

@@ -1,0 +1,11 @@
+SELECT __ro2sq ( "s_37_2_t0"."O") AS "var1"
+FROM DB.DBA.RDF_QUAD AS "s_37_2_t0"
+WHERE
+  "s_37_2_t0"."S" = __i2idn ( __bft( 'http://www.wikidata.org/entity/Q1' , 1))
+  AND 
+  "s_37_2_t0"."P" = __i2idn ( __bft( 'http://schema.org/description' , 1))
+  AND 
+  rdf_contains_impl ( rdf_lcase_impl ( __ro2lo ( "s_37_2_t0"."O")),  DB.DBA.RDF_MAKE_LONG_OF_SQLVAL ( 'string1' ))
+  AND 
+ ( 'en'  =  DB.DBA.RDF_LANGUAGE_OF_OBJ (__ro2sq ( "s_37_2_t0"."O")))
+OPTION (QUIETCAST)

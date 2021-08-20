@@ -1,0 +1,25 @@
+SELECT  COUNT ( DISTINCT
+     __bft( 'http://www.wikidata.org/entity/Q3915' , 1)) AS "var2"
+FROM DB.DBA.RDF_QUAD AS "s_37_4_t0"
+  INNER JOIN DB.DBA.RDF_QUAD AS "s_37_8_t1"
+  ON (
+    "s_37_8_t1"."S" = "s_37_4_t0"."O")
+WHERE
+  "s_37_4_t0"."P" = __i2idn ( __bft( 'http://www.wikidata.org/prop/direct/P31' , 1))
+  AND 
+  "s_37_8_t1"."P" = __i2idn ( __bft( 'http://www.wikidata.org/prop/direct/P279' , 1))
+  AND 
+  "s_37_8_t1"."O" = __i2idn ( __bft( 'http://www.wikidata.org/entity/Q17334923' , 1))
+  AND 
+  "s_37_4_t0"."S" = __i2idn ( __bft( 'http://www.wikidata.org/entity/Q3915' , 1))
+  AND 
+  not ( EXISTS ( (
+     SELECT TOP 1 1 AS __ask_retval
+      FROM DB.DBA.RDF_QUAD AS "s_37_12_t2"
+      WHERE
+        "s_37_12_t2"."P" = __i2idn ( __bft( 'http://www.wikidata.org/prop/direct/P1566' , 1))
+        AND 
+        "s_37_12_t2"."S" = "s_37_4_t0"."S"
+OPTION (QUIETCAST)
+     )))
+OPTION (QUIETCAST)

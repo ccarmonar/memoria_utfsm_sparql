@@ -1,0 +1,42 @@
+ SELECT  __ro2sq ("s_37_11_rbc"."var1") AS "var1", "s_37_11_rbc"."var2" AS "var2" FROM (SELECT DISTINCT TOP 100 "s_37_12_t7"."S" AS "var1",
+    NULL /* due to conflict on var2 */ AS "var2"
+  FROM DB.DBA.RDF_QUAD AS "s_37_12_t5"
+    INNER JOIN DB.DBA.RDF_QUAD AS "s_37_12_t6"
+    ON (
+      "s_37_12_t6"."S" = "s_37_12_t5"."S")
+    INNER JOIN DB.DBA.RDF_QUAD AS "s_37_12_t7"
+    ON (
+      "s_37_12_t7"."S" = "s_37_12_t6"."S"
+      AND 
+      "s_37_12_t7"."S" = "s_37_12_t5"."S")
+    INNER JOIN DB.DBA.RDF_QUAD AS "s_37_12_t8"
+    ON (
+      "s_37_12_t8"."S" = "s_37_12_t7"."O")
+    LEFT OUTER JOIN (
+      SELECT "s_37_10_t0"."S" AS "var1"
+      FROM DB.DBA.RDF_QUAD AS "s_37_10_t0"
+      WHERE
+        "s_37_10_t0"."P" = __i2idn ( __bft( 'http://schema.org/description' , 1))
+        AND 
+       ( 'ar'  =  DB.DBA.RDF_LANGUAGE_OF_OBJ (__ro2sq ( "s_37_10_t0"."O")))) AS "s_37_10"
+    ON (
+      "s_37_12_t7"."S" = "s_37_10"."var1"
+      AND 
+      "s_37_12_t6"."S" = "s_37_10"."var1"
+      AND 
+      "s_37_12_t5"."S" = "s_37_10"."var1")
+  WHERE
+    "s_37_12_t5"."P" = __i2idn ( __bft( 'http://www.wikidata.org/prop/direct/P105' , 1))
+    AND 
+    "s_37_12_t5"."O" = __i2idn ( __bft( 'http://www.wikidata.org/entity/Q2752679' , 1))
+    AND 
+    "s_37_12_t6"."P" = __i2idn ( __bft( 'http://www.wikidata.org/prop/direct/P31' , 1))
+    AND 
+    "s_37_12_t6"."O" = __i2idn ( __bft( 'http://www.wikidata.org/entity/Q16521' , 1))
+    AND 
+    "s_37_12_t7"."P" = __i2idn ( __bft( 'http://www.wikidata.org/prop/direct/P171' , 1))
+    AND 
+    "s_37_12_t8"."P" = __i2idn ( __bft( 'http://www.wikidata.org/prop/direct/P105' , 1))
+    AND 
+    "s_37_12_t8"."O" = __i2idn ( __bft( 'http://www.wikidata.org/entity/Q36732' , 1))
+OPTION (QUIETCAST)) AS "s_37_11_rbc"

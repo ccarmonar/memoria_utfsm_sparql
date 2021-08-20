@@ -1,0 +1,24 @@
+ SELECT  __ro2sq ("s_37_9_rbc"."var1") AS "var1", __ro2sq ("s_37_9_rbc"."var2") AS "var2", __ro2sq ("s_37_9_rbc"."var3") AS "var3" FROM (SELECT DISTINCT "s_37_9_t0"."S" AS "var1",
+    "s_37_9_t2"."O" AS "var2",
+    "s_37_9_t3"."O" AS "var3"
+  FROM DB.DBA.RDF_QUAD AS "s_37_9_t0"
+    INNER JOIN DB.DBA.RDF_QUAD AS "s_37_9_t1"
+    ON (
+      "s_37_9_t0"."O" = "s_37_9_t1"."S")
+    INNER JOIN DB.DBA.RDF_QUAD AS "s_37_9_t2"
+    ON (
+      "s_37_9_t1"."O" = "s_37_9_t2"."S")
+    INNER JOIN DB.DBA.RDF_QUAD AS "s_37_9_t3"
+    ON (
+      "s_37_9_t1"."O" = "s_37_9_t3"."S"
+      AND 
+      "s_37_9_t2"."S" = "s_37_9_t3"."S")
+  WHERE
+    "s_37_9_t2"."P" = __i2idn ( __bft( 'http://wikiba.se/ontology#quantityAmount' , 1))
+    AND 
+    "s_37_9_t3"."P" = __i2idn ( __bft( 'http://wikiba.se/ontology#quantityUnit' , 1))
+    AND 
+    "s_37_9_t1"."P" = __i2idn ( __bft( 'http://www.wikidata.org/prop/qualifier/value/P2781' , 1))
+    AND 
+   ( "s_37_9_t3"."O" <>  __i2idn ( __bft ( __bft( 'http://www.wikidata.org/entity/Q11574' , 1), 1)))
+OPTION (QUIETCAST)) AS "s_37_9_rbc"

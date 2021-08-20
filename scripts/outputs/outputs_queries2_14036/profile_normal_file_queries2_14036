@@ -1,0 +1,76 @@
+http://www.w3.org/2002/07/owl#sameAs	
+http://schema.org/about	
+http://www.wikidata.org/prop/direct/P31	
+http://www.wikidata.org/prop/direct/P141	
+http://www.wikidata.org/prop/direct/P1889	
+http://www.wikidata.org/prop/direct/P301	
+http://www.wikidata.org/prop/direct/P793	
+http://www.wikidata.org/prop/direct/P5817	
+http://www.wikidata.org/prop/direct/P921	
+http://www.wikidata.org/prop/direct/P4224	
+http://www.wikidata.org/prop/direct/P971	
+
+  { 
+    time      0.12% fanout         1 input         1 rows
+      clear: (<V set_ctr$62 in>)
+    s# 65 63 cluster outer seq start, set no <V set_ctr$62 in>    
+    save ctx:()
+    time     0.027% fanout         1 input         1 rows
+      clear: (<V set_no$29 i>)
+    s# 74 53 cluster outer seq start, set no <V set_no$29 i>    
+    save ctx:()
+    time       2.4% fanout       706 input         1 rows
+      clear: (<V s_37_4_t0.O$31 an>)
+      clear on continue: (<V s_37_4_t0.O$31 an>)
+    s# 83 30 from DB.DBA.RDF_QUAD by RDF_QUAD    7.1e+02 rows   
+    Key RDF_QUAD  ASC  (<V s_37_4_t0.O$31 an>)
+     inlined  P =  IRI_ID"...direct/P5816" 
+    
+    time        23% fanout   3.50425 input       706 rows
+      clear: (<V s_37_4_t1.P$34 rn>)
+      clear on continue: (<V s_37_4_t1.P$34 rn>)$97 (33 ) 
+    s# 93 33 from DB.DBA.RDF_QUAD by RDF_QUAD_OP        2.8 rows   
+    Key RDF_QUAD_OP  ASC  (<V s_37_4_t1.P$34 rn>)
+     inlined  O = <v cast$97 Set99 an>
+    vector param casts: <V s_37_4_t0.O$31 an>-> <v cast$97 Set99 an>
+    
+    time       5.4% fanout  0.714632 input      2474 rows
+    
+    s# 112 107 END Node
+    After test:
+      0: if (<V s_37_4_t1.P$34 rn> =  IRI_ID"...direct/P5816" ) then 5 else 4 unkn 5
+      4: BReturn 1
+      5: BReturn 0
+    time        43% fanout   3.13914 input      1768 rows
+    $31 (107 33 ) $124 (37 ) $128 (37 ) 
+    s# 120 37 from DB.DBA.RDF_QUAD by RDF_QUAD_POGS        1.2 rows   
+    Key RDF_QUAD_POGS  ASC  ()
+     P = <v k_s_37_4_t1.P$124 Set126 rn> ,  O = <V k_s_37_4_t0.O$128 an>
+    vector param casts: <r s_37_4_t1.P$34 via  Set112>-> <v k_s_37_4_t1.P$124 Set126 rn>, <r s_37_4_t0.O$31 via  Set112 Set93 Set99>-> <V k_s_37_4_t0.O$128 an>
+    
+    time        20% fanout 0.00198198 input      5550 rows
+      clear: (<V p1$28 rn>)$34 (37 107 ) 
+    s# 135 40 Distinct (HASH) set no <r set_no$29 via  Set120 Set126 Set112 Set93 Set99 Set83>(<r s_37_4_t1.P$34 via  Set120 Set126 Set112>)
+    After code:
+      0: <V p1$28 rn> :=  := artm <r s_37_4_t1.P$34 via  Set135 Set120 Set126 Set112>
+      4: BReturn 0
+    time       6.2% fanout         1 input        11 rows
+      clear: (<V p1$54 a>)$28 (40 ) $29 (40 37 107 33 30 53 ) 
+    s# 144 46 Subquery Select(<V p1$28 rn>)
+      set no: <r set_no$29 via  Set135 Set120 Set126 Set112 Set93 Set99 Set83>
+    After code:
+      0: <V p1$54 a> := Call __ro2sq (<V p1$28 rn>)
+      5: BReturn 0
+    time      0.07% fanout         0 input        11 rows
+    $62 (46 40 37 107 33 30 53 63 ) $54 (46 ) 
+    s# 151 56 Select (<V p1$54 a>)
+      set no: <r set_ctr$62 via  Set144>
+  }
+Warning: You might have a Cartesian product.
+
+Warning: You might have a Cartesian product.
+
+
+
+ 3 msec 62% cpu,      2471 rnd      6251 seq   98.5437% same seg  0.283172% same pg 
+Compilation: 2 msec 0 reads         0% read 0 messages         0% clw

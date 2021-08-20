@@ -1,0 +1,60 @@
+http://www.wikidata.org/entity/Q2608670			http://www.wikidata.org/entity/Q746256	
+http://www.wikidata.org/entity/Q2918331			http://www.wikidata.org/entity/Q2237277	
+http://www.wikidata.org/entity/Q3071241			http://www.wikidata.org/entity/Q27597	
+http://www.wikidata.org/entity/Q3071276			http://www.wikidata.org/entity/Q27597	
+http://www.wikidata.org/entity/Q3113383			http://www.wikidata.org/entity/Q48957	
+http://www.wikidata.org/entity/Q15690792			http://www.wikidata.org/entity/Q40993	
+http://www.wikidata.org/entity/Q15825946			http://www.wikidata.org/entity/Q1123635	
+http://www.wikidata.org/entity/Q15891535			http://www.wikidata.org/entity/Q17264587	
+http://www.wikidata.org/entity/Q41550684			http://www.wikidata.org/entity/Q29296	
+http://www.wikidata.org/entity/Q41550684			http://www.wikidata.org/entity/Q27152	
+http://www.wikidata.org/entity/Q259561			http://www.wikidata.org/entity/Q747594	
+http://www.wikidata.org/entity/Q263434			http://www.wikidata.org/entity/Q23317	
+http://www.wikidata.org/entity/Q377287			http://www.wikidata.org/entity/Q20165	
+http://www.wikidata.org/entity/Q19944712			http://www.wikidata.org/entity/Q81965	
+http://www.wikidata.org/entity/Q496134			http://www.wikidata.org/entity/Q81965	
+http://www.wikidata.org/entity/Q496148			http://www.wikidata.org/entity/Q530099	
+http://www.wikidata.org/entity/Q500052			http://www.wikidata.org/entity/Q35996	
+http://www.wikidata.org/entity/Q796486			http://www.wikidata.org/entity/Q26678	
+http://www.wikidata.org/entity/Q1523687			http://www.wikidata.org/entity/Q17103769	
+http://www.wikidata.org/entity/Q3408037			http://www.wikidata.org/entity/Q562686	
+
+  { 
+    time     0.059% fanout         1 input         1 rows
+    time     0.014% fanout         1 input         1 rows
+    time       1.6% fanout      1000 input         1 rows
+    RDF_QUAD_POGS   1.1e+03 rows(t2.S$34)
+     P =  IRI_ID"...direct/P31"  ,  O =  IRI_ID"...Q3231690" 
+    time      0.25% fanout         1 input      1000 rows
+    outer {
+        time       6.6% fanout     0.854 input      1000 rows
+        RDF_QUAD       1.1 rows(t4.O$37)
+         inlined  P =  IRI_ID"...direct/P176"  ,  S = k_t2.S$117
+        time      0.24% fanout         1 input       854 rows
+      } /* end of outer */
+    set_ctr$40
+     out: (t4.O$37)
+     shadow: ( <none> )
+    time       6.5% fanout         1 input       854 rows
+    Distinct (t2.S$34, t4.O$37)
+    
+    After code:
+    0: var1$28 :=  := artm t2.S$34
+    4: var1Label$29 :=  := artm <DB_NULL>
+    8: var2Label$30 :=  := artm <DB_NULL>
+    12: var3$31 :=  := artm t4.O$37
+    16: BReturn 0
+    time        85% fanout         1 input       854 rows
+    Subquery Select(var1$28, var1Label$29, var2Label$30, var3$31)
+    
+    After code:
+    0: var1$63 := Call __ro2sq (var1$28)
+    5: var3$65 := Call __ro2sq (var3$31)
+    10: BReturn 0
+    time     0.017% fanout         0 input       854 rows
+    Select (var1$63, var1Label$29, var2Label$30, var3$65)
+  }
+
+
+ 6 msec 75% cpu,      1002 rnd      1041 seq   99.6012% same seg         0% same pg 
+Compilation: 2 msec 0 reads         0% read 0 messages         0% clw

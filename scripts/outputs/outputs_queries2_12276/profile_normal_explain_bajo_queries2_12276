@@ -1,0 +1,48 @@
+http://www.wikidata.org/entity/Q2640628	kwk	http://www.wikidata.org/entity/Q31171620	
+http://www.wikidata.org/entity/Q2992915	nce	http://www.wikidata.org/entity/Q33663752	
+http://www.wikidata.org/entity/Q3063759	faf	http://www.wikidata.org/entity/Q33657156	
+http://www.wikidata.org/entity/Q3063974	grr	http://www.wikidata.org/entity/Q33661468	
+http://www.wikidata.org/entity/Q3112363	lha	http://www.wikidata.org/entity/Q33663473	
+http://www.wikidata.org/entity/Q3125730	hah	http://www.wikidata.org/entity/Q33657082	
+http://www.wikidata.org/entity/Q3176748	jhi	http://www.wikidata.org/entity/Q33074024	
+http://www.wikidata.org/entity/Q3237491	aja	http://www.wikidata.org/entity/Q33140188	
+http://www.wikidata.org/entity/Q2592378	xsb	http://www.wikidata.org/entity/Q33077208	
+http://www.wikidata.org/entity/Q56236	lui	http://www.wikidata.org/entity/Q33109540	
+http://www.wikidata.org/entity/Q56241	mrt	http://www.wikidata.org/entity/Q33076633	
+http://www.wikidata.org/entity/Q56251	ker	http://www.wikidata.org/entity/Q33128985	
+http://www.wikidata.org/entity/Q56264	ubi	http://www.wikidata.org/entity/Q36166911	
+http://www.wikidata.org/entity/Q56272	bcw	http://www.wikidata.org/entity/Q36154053	
+http://www.wikidata.org/entity/Q56280	bdn	http://www.wikidata.org/entity/Q36154003	
+http://www.wikidata.org/entity/Q56320	fqs	http://www.wikidata.org/entity/Q33669512	
+http://www.wikidata.org/entity/Q56372	jee	http://www.wikidata.org/entity/Q33674051	
+http://www.wikidata.org/entity/Q56386	mrc	http://www.wikidata.org/entity/Q32144579	
+http://www.wikidata.org/entity/Q56387	xgf	http://www.wikidata.org/entity/Q33109490	
+http://www.wikidata.org/entity/Q56388	thz	http://www.wikidata.org/entity/Q105714936	
+
+  { 
+    time     0.029% fanout         1 input         1 rows
+    time       1.1% fanout      1000 input         1 rows
+    RDF_QUAD     1e+03 rows(s_37_6_t1.S$29, s_37_6_t1.O$28)
+     inlined  P =  IRI_ID"...direct/P220" 
+    time        34% fanout     0.979 input      1000 rows
+    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:   0.00021 Fanout:      0.98
+    RDF_QUAD   0.00021 rows(s_37_6_t0.S$32)
+     inlined  P =  IRI_ID"...direct/P31"  ,  S = s_37_6_t1.S$29 ,  O =  IRI_ID"...Q34770" 
+    time        65% fanout  0.688458 input       979 rows
+    Precode:
+      0: var2$34 := Call __ro2sq (s_37_6_t1.O$28)
+      5: var1$36 := Call __id2in (s_37_6_t0.S$32)
+      10: BReturn 0
+    RDF_QUAD         1 rows(s_37_6_t2.O$39)
+     inlined  P =  IRI_ID"...direct/P910"  ,  S = s_37_6_t0.S$32
+    
+    After code:
+    0: var3$41 := Call __ro2sq (s_37_6_t2.O$39)
+    5: BReturn 0
+    time    0.0021% fanout         0 input       674 rows
+    Select (var1$36, var2$34, var3$41)
+  }
+
+
+ 13 msec 88% cpu,      2959 rnd      1105 seq    62.973% same seg   14.2568% same pg 
+Compilation: 2 msec 0 reads         0% read 0 messages         0% clw

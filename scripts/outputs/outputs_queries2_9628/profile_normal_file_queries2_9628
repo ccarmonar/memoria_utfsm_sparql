@@ -1,0 +1,56 @@
+http://www.wikidata.org/entity/Q22329404	9356030133307939909	
+http://www.wikidata.org/entity/Q21012586	2682581971937769089	
+http://www.wikidata.org/entity/Q27789294		
+http://www.wikidata.org/entity/Q27790797		
+http://www.wikidata.org/entity/Q27094638		
+http://www.wikidata.org/entity/Q26236257		
+http://www.wikidata.org/entity/Q36374393		
+http://www.wikidata.org/entity/Q28936799		
+http://www.wikidata.org/entity/Q41799194		
+
+  { 
+    time       1.4% fanout         1 input         1 rows
+      clear: (<V set_ctr$33 in>)
+    s# 56 34 cluster outer seq start, set no <V set_ctr$33 in>    
+    save ctx:()
+    time        25% fanout         9 input         1 rows
+      clear: (<V t1.S$28 rn>)
+      clear on continue: (<V t1.S$28 rn>)
+    s# 65 27 from DB.DBA.RDF_QUAD by RDF_QUAD_POGS          9 rows   
+    Key RDF_QUAD_POGS  ASC  (<V t1.S$28 rn>)
+     P =  IRI_ID"...direct/P50"  ,  O =  IRI_ID"...Q20980928" 
+    
+    time      0.66% fanout         1 input         9 rows
+      clear: (<V set_ctr$36 i>)
+    s# 75 40 cluster outer seq start, set no <V set_ctr$36 i>    
+    save ctx:()
+    time        19% fanout  0.222222 input         9 rows
+      clear: (<V t3.O$31 a>)
+      clear on continue: (<V t3.O$31 a>)$88 (30 ) 
+    s# 84 30 from DB.DBA.RDF_QUAD by RDF_QUAD          1 rows   
+    Key RDF_QUAD  ASC  (<V t3.O$31 a>)
+     inlined  P =  IRI_ID"...direct/P4028"  ,  S = <v k_t1.S$88 Set90 rn>
+    vector param casts: <r t1.S$28 via  Set75>-> <v k_t1.S$88 Set90 rn>
+    
+    time        54% fanout       4.5 input         2 rows
+      clear: (<V var2$47 a>, <V var1$45 a>)$31 () $36 (30 40 ) $28 (30 40 ) 
+    s# 98 35 end of outer seq <r set_ctr$36 via  Set84 Set90>
+     out: (<V t3.O$31 a>)
+     shadow: ( <none> )
+    After code:
+      0: <V var1$45 a> := Call __id2in (<r t1.S$28 via  Set98>)
+      5: <V var2$47 a> := Call __ro2sq (<V t3.O$31 a>)
+      10: BReturn 0
+    time      0.38% fanout         0 input         9 rows
+    $33 (35 30 40 27 34 ) $45 (35 ) $47 (35 ) 
+    s# 106 49 Select (<V var1$45 a>, <V var2$47 a>)
+      set no: <r set_ctr$33 via  Set98 Set65>
+  }
+Warning: You might have a Cartesian product.
+
+Warning: You might have a Cartesian product.
+
+
+
+ 1 msec 19% cpu,        18 rnd         8 seq   42.1053% same seg   5.26316% same pg 
+Compilation: 1 msec 0 reads         0% read 0 messages         0% clw

@@ -1,0 +1,81 @@
+
+  { 
+    time       1.3% fanout         1 input         1 rows
+      clear: (<V set_ctr$66 in>)
+    s# 72 67 cluster outer seq start, set no <V set_ctr$66 in>    
+    save ctx:()
+    time        99% fanout         0 input         1 rows
+    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:   5.1e-06 Fanout:         0
+    Precode:
+      0: <V DB.DBA.RDF_MAKE_LONG_OF_SQLVAL$27 a> := Call DB.DBA.RDF_MAKE_LONG_OF_SQLVAL (<c Category:>)
+      7: <V $29 r> := Call __i2idn (<tag 182 flag 1 c https://meta.wikimedia.org/>)
+      12: <V $31 r> := Call __i2idn (<tag 182 flag 1 c https://en.wikiversity.org/>)
+      17: <V $33 r> := Call __i2idn (<tag 182 flag 1 c https://en.wikisource.org/>)
+      22: <V $35 r> := Call __i2idn (<tag 182 flag 1 c https://en.wikinews.org/>)
+      27: BReturn 0
+      clear: (<V s_37_6_t0.S$38 rn>, <V s_37_6_t0.O$39 an>, <V $35 r>, <V $33 r>, <V $31 r>, <V $29 r>, <V DB.DBA.RDF_MAKE_LONG_OF_SQLVAL$27 a>)
+      clear on continue: (<V s_37_6_t0.O$39 an>, <V s_37_6_t0.S$38 rn>)
+    s# 81 37 from DB.DBA.RDF_QUAD by RDF_QUAD    5.1e-06 rows   
+    Key RDF_QUAD  ASC  (<V s_37_6_t0.O$39 an>, <V s_37_6_t0.S$38 rn>)
+     inlined  P =  IRI_ID"...isPartOf" 
+    
+    time         0% fanout         0 input         0 rows
+      clear: (<V one_of_these$41 i>)$31 (37 ) $33 (37 ) $35 (37 ) $29 (37 ) 
+    s# 97 92 END Node
+    After test:
+      0: <V one_of_these$41 i> := Call one_of_these (<V s_37_6_t0.O$39 an>, <r $29 via  Set81>,  IRI_ID"..." , <r $31 via  Set81>, <r $33 via  Set81>, <r $35 via  Set81>,  IRI_ID"..." ,  IRI_ID"..." )
+      5: if ( 0  < <V one_of_these$41 i>) then 10 else 9 unkn 10
+      9: BReturn 1
+      10: BReturn 0
+    time         0% fanout         0 input         0 rows
+    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:         1 Fanout:         0
+      clear: (<V s_37_6_t2.O$44 an>, <V s_37_6_t2.S$45 rn>)
+      clear on continue: (<V s_37_6_t2.S$45 rn>, <V s_37_6_t2.O$44 an>)$109 (43 ) 
+    s# 105 43 from DB.DBA.RDF_QUAD by RDF_QUAD          1 rows   
+    Key RDF_QUAD  ASC  (<V s_37_6_t2.S$45 rn>, <V s_37_6_t2.O$44 an>)
+     inlined  P =  IRI_ID"...about"  ,  S = <v k_s_37_6_t0.S$109 Set111 rn>
+    vector param casts: <r s_37_6_t0.S$38 via  Set97>-> <v k_s_37_6_t0.S$109 Set111 rn>
+    
+    time         0% fanout         0 input         0 rows
+    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:       5.8 Fanout:         0
+    Precode:
+      0: <V var2$47 a> := Call __ro2sq (<r s_37_6_t0.O$39 via  Set105 Set111 Set97>)
+      5: <V var1$49 a> := Call __ro2sq (<V s_37_6_t2.O$44 an>)
+      10: BReturn 0
+      clear: (<V s_37_6_t1.O$52 an>, <V var1$49 a>, <V var2$47 a>)
+      clear on continue: (<V s_37_6_t1.O$52 an>)$124 (51 ) $38 (43 92 ) $39 (43 92 ) $44 () 
+    s# 120 51 from DB.DBA.RDF_QUAD by RDF_QUAD        5.8 rows   
+    Key RDF_QUAD  ASC  (<V s_37_6_t1.O$52 an>)
+     inlined  P =  IRI_ID"...name"  ,  S = <v k_s_37_6_t0.S$124 Set126 rn>
+    vector param casts: <r s_37_6_t0.S$38 via  Set105 Set111 Set97>-> <v k_s_37_6_t0.S$124 Set126 rn>
+    
+    time         0% fanout         0 input         0 rows
+      clear: (<V rdf_strstarts_impl$56 i>, <V __ro2lo$54 a>)$27 (51 43 92 37 ) 
+    s# 139 134 END Node
+    After test:
+      0: <V __ro2lo$54 a> := Call __ro2lo (<V s_37_6_t1.O$52 an>)
+      5: <V rdf_strstarts_impl$56 i> := Call rdf_strstarts_impl (<V __ro2lo$54 a>, <r DB.DBA.RDF_MAKE_LONG_OF_SQLVAL$27 via  Set120 Set126 Set105 Set111 Set97 Set81>)
+      10: if ( 0  = <V rdf_strstarts_impl$56 i>) then 15 else 14 unkn 15
+      14: BReturn 1
+      15: BReturn 0
+    time         0% fanout         0 input         0 rows
+      clear: (<V var3$58 a>)$52 (134 ) 
+    s# 147 70 skip node  5000  <none> <r set_ctr$66 via  Set139 Set120 Set126 Set105 Set111 Set97 Set81>
+    After code:
+      0: <V var3$58 a> := Call __ro2sq (<r s_37_6_t1.O$52 via  Set147 Set139>)
+      5: BReturn 0
+    time         0% fanout         0 input         0 rows
+    $66 (70 134 51 43 92 37 67 ) $47 (70 134 51 ) $49 (70 134 51 ) $58 (70 ) 
+    s# 155 60 Select (<r var1$49 via  Set147 Set139 Set120 Set126>, <r var2$47 via  Set147 Set139 Set120 Set126>, <V var3$58 a>)
+      set no: <r set_ctr$66 via  Set147 Set139 Set120 Set126 Set105 Set111 Set97 Set81>
+  }
+Warning: You might have a Cartesian product.
+
+Warning: You might have a Cartesian product.
+
+Warning: You might have a Cartesian product.
+
+
+
+ 0 msec 0% cpu,        16 rnd         0 seq         0% same seg         0% same pg 
+Compilation: 78 msec 4 reads   95.7677% read 0 messages         0% clw

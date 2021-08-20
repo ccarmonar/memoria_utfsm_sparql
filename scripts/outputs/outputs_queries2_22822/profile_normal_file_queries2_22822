@@ -1,0 +1,324 @@
+http://wikiba.se/ontology#statementProperty	http://wikiba.se/ontology#BestRank	17740	17780	
+http://wikiba.se/ontology#statementProperty		0	0	
+http://wikiba.se/ontology#reference		0	0	
+http://wikiba.se/ontology#qualifier		0	0	
+
+  { 
+    time     0.019% fanout         1 input         1 rows
+      clear: (<V set_ctr$270 in>)
+    s# 273 271 cluster outer seq start, set no <V set_ctr$270 in>    
+    save ctx:()
+      clear: (<V var4$31 a>, <V var3$30 a>, <V var2$29 a>, <V var1$28 a>, <V set_no$32 i>, <V var4$262 a>, <V var3$260 a>, <V var2$258 a>, <V var1$256 a>)
+    s# 282 27 Subquery 27 
+      multistate set no = <V set_no$32 i>
+      { 
+        time     0.012% fanout         1 input         1 rows
+        
+        s# 549 231 Fork 231 {  
+                
+            save ctx:()
+              set no = <V set_no$32 i> array  <none>  save: 
+              clear: (<V var2$37 a>, <V var4$36 a>, <V var3$35 a>, <V var1$34 r>, <V set_no$38 i>)
+            s# 287 33 Subquery 33 
+              multistate set no = <V set_no$38 i>
+              { 
+                
+                s# 291 39 Union
+                  { 
+                      clear: (<V var4$43 i>, <V var3$42 in>, <V var1$41 sn>, <V set_no$44 i>, <V var2$37 a>, <V var4$36 a>, <V var3$35 a>, <V var1$34 r>)
+                    s# 294 40 Subquery 40 
+                      multistate set no = <V set_no$44 i>
+                      { 
+                        time     0.048% fanout         1 input         1 rows
+                          clear: (<V var4$43 i>, <V var3$42 in>, <V var1$41 sn>)
+                        s# 313 51 Fork 51 {  
+                            time      0.28% fanout         0 input         1 rows
+                            Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:   1.4e-07 Fanout:         0
+                              clear: (<V s_37_2_t0.S$46 rn>, <V s_37_2_t0.O$47 an>, <V isnotnull$49 in>)
+                              clear on continue: (<V s_37_2_t0.S$46 rn>, <V s_37_2_t0.O$47 an>, <V isnotnull$49 in>)
+                            s# 299 45 from DB.DBA.RDF_QUAD by RDF_QUAD_POGS    1.4e-07 rows   
+                            Key RDF_QUAD_POGS  ASC  (<V s_37_2_t0.O$47 an>, <V s_37_2_t0.S$46 rn>)
+                             inlined  P =  IRI_ID"...P496" 
+                            
+                            After code:
+                              0: <V isnotnull$49 in> := Call isnotnull (<V s_37_2_t0.O$47 an>)
+                              5:  sum <V count$52 i><V isnotnull$49 in>set no <r set_no$44 via  Set299>
+                              10:  count <V count$53 in><V s_37_2_t0.S$46 rn>set no <r set_no$44 via  Set299>distinct via hash area <V DISTINCT HASH$57 x>
+                              15: BReturn 0
+                        }
+                        After code:
+                          0: <V var1$41 sn> :=  := artm <tag 182 flag 1 c http://wikiba.se/ontology#statementProperty>
+                          4: <V var3$42 in> :=  := artm <V count$53 in>
+                          8: <V var4$43 i> :=  := artm <V count$52 i>
+                          12: BReturn 0
+                        time    0.0073% fanout         0 input         1 rows
+                        $41 (51 ) 
+                        s# 294 58 Subquery Select(<V var1$41 sn>, <V var3$42 in>, <V var4$43 i>)
+                          set no: <V set_no$44 i>
+                      }
+                    
+                    After code:
+                      0: <V var1$34 r> :=  := artm  IRI_ID"...statementProperty" 
+                      4: <V var3$35 a> :=  := artm <V var3$42 in>
+                      8: <V var4$36 a> :=  := artm <V var4$43 i>
+                      12: <V var2$37 a> :=  := artm <DB_NULL>
+                      16: BReturn 0
+                    time      0.54% fanout         0 input         1 rows
+                    Precode:
+                      0: <V __id2in$227 a> := Call __id2in (<V var1$34 r>)
+                      5: <V __ro2sq$229 a> := Call __ro2sq (<V var2$37 a>)
+                      10: BReturn 0
+                      clear: (<V __ro2sq$229 a>, <V __id2in$227 a>)
+                    s# 334 232 Sort (HASH) set no <r set_no$32 via  Set294>(<V __id2in$227 a>, <V var3$35 a>, <V __ro2sq$229 a>) -> (<V var4$36 a>)
+                    
+                  }
+                  { 
+                      clear: (<V var4$76 i>, <V var3$75 in>, <V var2$74 sn>, <V var1$73 sn>, <V set_no$77 i>, <V var2$37 a>, <V var4$36 a>, <V var3$35 a>, <V var1$34 r>)
+                    s# 342 72 Subquery 72 
+                      multistate set no = <V set_no$77 i>
+                      { 
+                        time     0.037% fanout         1 input         1 rows
+                          clear: (<V var4$76 i>, <V var3$75 in>, <V var2$74 sn>, <V var1$73 sn>)
+                        s# 361 84 Fork 84 {  
+                            time        98% fanout         0 input         1 rows
+                            Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:   1.8e+04 Fanout:         0
+                              clear: (<V s_37_6_t1.S$79 rn>, <V s_37_6_t1.O$80 an>, <V isnotnull$82 in>)
+                              clear on continue: (<V s_37_6_t1.S$79 rn>, <V s_37_6_t1.O$80 an>, <V isnotnull$82 in>)
+                            s# 347 78 from DB.DBA.RDF_QUAD by RDF_QUAD    1.8e+04 rows   
+                            Key RDF_QUAD  ASC  (<V s_37_6_t1.O$80 an>, <V s_37_6_t1.S$79 rn>)
+                             inlined  P =  IRI_ID"...direct/P496" 
+                            
+                            After code:
+                              0: <V isnotnull$82 in> := Call isnotnull (<V s_37_6_t1.O$80 an>)
+                              5:  sum <V count$85 i><V isnotnull$82 in>set no <r set_no$77 via  Set347>
+                              10:  count <V count$86 in><V s_37_6_t1.S$79 rn>set no <r set_no$77 via  Set347>distinct via hash area <V DISTINCT HASH$90 x>
+                              15: BReturn 0
+                        }
+                        After code:
+                          0: <V var1$73 sn> :=  := artm <tag 182 flag 1 c http://wikiba.se/ontology#statementProperty>
+                          4: <V var2$74 sn> :=  := artm <tag 182 flag 1 c http://wikiba.se/ontology#BestRank>
+                          8: <V var3$75 in> :=  := artm <V count$86 in>
+                          12: <V var4$76 i> :=  := artm <V count$85 i>
+                          16: BReturn 0
+                        time    0.0045% fanout         0 input         1 rows
+                        $73 (84 ) $74 (84 ) 
+                        s# 342 91 Subquery Select(<V var1$73 sn>, <V var2$74 sn>, <V var3$75 in>, <V var4$76 i>)
+                          set no: <V set_no$77 i>
+                      }
+                    
+                    After code:
+                      0: <V var1$34 r> :=  := artm  IRI_ID"...statementProperty" 
+                      4: <V var3$35 a> :=  := artm <V var3$75 in>
+                      8: <V var4$36 a> :=  := artm <V var4$76 i>
+                      12: <V var2$37 a> :=  := artm  IRI_ID"...BestRank" 
+                      16: BReturn 0
+                    time       0.5% fanout         0 input         1 rows
+                    Precode:
+                      0: <V __id2in$227 a> := Call __id2in (<V var1$34 r>)
+                      5: <V __ro2sq$229 a> := Call __ro2sq (<V var2$37 a>)
+                      10: BReturn 0
+                      clear: (<V __ro2sq$229 a>, <V __id2in$227 a>)
+                    s# 379 232 Sort (HASH) set no <r set_no$32 via  Set342>(<V __id2in$227 a>, <V var3$35 a>, <V __ro2sq$229 a>) -> (<V var4$36 a>)
+                    
+                  }
+                  { 
+                      clear: (<V var4$109 in>, <V var3$108 in>, <V var2$107 an>, <V var1$106 sn>, <V set_no$110 i>, <V var2$37 a>, <V var4$36 a>, <V var3$35 a>, <V var1$34 r>)
+                    s# 386 105 Subquery 105 
+                      multistate set no = <V set_no$110 i>
+                      { 
+                        time    0.0054% fanout         1 input         1 rows
+                        
+                        s# 427 121 Fork 121 {  
+                                
+                            save ctx:()
+                              set no = <V set_no$110 i> array  <none>  save: 
+                            time      0.12% fanout         0 input         1 rows
+                            Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:   1.4e-07 Fanout:         0
+                              clear: (<V s_37_13_t3.O$112 an>, <V s_37_13_t3.S$113 rn>)
+                              clear on continue: (<V s_37_13_t3.O$112 an>, <V s_37_13_t3.S$113 rn>)
+                            s# 391 111 from DB.DBA.RDF_QUAD by RDF_QUAD_POGS    1.4e-07 rows   
+                            Key RDF_QUAD_POGS  ASC  (<V s_37_13_t3.S$113 rn>, <V s_37_13_t3.O$112 an>)
+                             inlined  P =  IRI_ID"...rank" 
+                            
+                            time         0% fanout         0 input         0 rows
+                            Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:   1.4e-07 Fanout:         0
+                              clear: (<V s_37_13_t2.S$116 rn>, <V s_37_13_t2.O$117 an>, <V isnotnull$119 in>)
+                              clear on continue: (<V s_37_13_t2.S$116 rn>, <V s_37_13_t2.O$117 an>, <V isnotnull$119 in>)$113 () $406 (115 ) 
+                            s# 402 115 from DB.DBA.RDF_QUAD by RDF_QUAD_POGS    1.4e-07 rows   
+                            Key RDF_QUAD_POGS  ASC  (<V s_37_13_t2.O$117 an>, <V s_37_13_t2.S$116 rn>)
+                             P =  IRI_ID"...P496"  ,  O = <v cast$406 Set408 an>
+                            vector param casts: <V s_37_13_t3.S$113 rn>-> <v cast$406 Set408 an>
+                            
+                            After code:
+                              0: <V isnotnull$119 in> := Call isnotnull (<V s_37_13_t2.O$117 an>)
+                              5: BReturn 0
+                            time         0% fanout         0 input         0 rows
+                            $116 () $119 () 
+                            s# 417 122 Sort (HASH) set no <r set_no$110 via  Set402 Set408 Set391>(<r s_37_13_t3.O$112 via  Set402 Set408>) -> (<V isnotnull$119 in>, <V inc$131 i>) up to   2.4e+07 distinct
+                            
+                        }
+                        time     0.013% fanout         0 input         1 rows
+                          clear: (<V aggregate$125 in>, <V aggregate$123 in>, <V s_37_13_t3.O$112 an>, <V var4$109 in>, <V var3$108 in>, <V var2$107 an>, <V var1$106 sn>)
+                          clear on continue: (<V aggregate$125 in>, <V aggregate$123 in>, <V s_37_13_t3.O$112 an>, <V var4$109 in>, <V var3$108 in>, <V var2$107 an>, <V var1$106 sn>)
+                        s# 434 136 group by read node  
+                        (<V s_37_13_t3.O$112 an>, <V aggregate$123 in>, <V aggregate$125 in>)
+                        After code:
+                          0: <V var1$106 sn> :=  := artm <tag 182 flag 1 c http://wikiba.se/ontology#statementProperty>
+                          4: <V var2$107 an> :=  := artm <V s_37_13_t3.O$112 an>
+                          8: <V var3$108 in> :=  := artm <V aggregate$125 in>
+                          12: <V var4$109 in> :=  := artm <V aggregate$123 in>
+                          16: BReturn 0
+                        time         0% fanout         0 input         0 rows
+                        $106 () 
+                        s# 386 148 Subquery Select(<V var1$106 sn>, <V var2$107 an>, <V var3$108 in>, <V var4$109 in>)
+                          set no: <r set_no$110 via  Set434>
+                      }
+                    
+                    After code:
+                      0: <V var1$34 r> :=  := artm  IRI_ID"...statementProperty" 
+                      4: <V var3$35 a> :=  := artm <V var3$108 in>
+                      8: <V var4$36 a> :=  := artm <V var4$109 in>
+                      12: <V var2$37 a> :=  := artm <V var2$107 an>
+                      16: BReturn 0
+                    time         0% fanout         0 input         0 rows
+                    Precode:
+                      0: <V __id2in$227 a> := Call __id2in (<V var1$34 r>)
+                      5: <V __ro2sq$229 a> := Call __ro2sq (<V var2$37 a>)
+                      10: BReturn 0
+                      clear: (<V __ro2sq$229 a>, <V __id2in$227 a>)
+                    s# 456 232 Sort (HASH) set no <r set_no$32 via  Set386>(<V __id2in$227 a>, <V var3$35 a>, <V __ro2sq$229 a>) -> (<V var4$36 a>)
+                    
+                  }
+                  { 
+                      clear: (<V var4$165 i>, <V var3$164 in>, <V var1$163 sn>, <V set_no$166 i>, <V var2$37 a>, <V var4$36 a>, <V var3$35 a>, <V var1$34 r>)
+                    s# 463 162 Subquery 162 
+                      multistate set no = <V set_no$166 i>
+                      { 
+                        time     0.019% fanout         1 input         1 rows
+                          clear: (<V var4$165 i>, <V var3$164 in>, <V var1$163 sn>)
+                        s# 482 173 Fork 173 {  
+                            time     0.081% fanout         0 input         1 rows
+                            Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:   1.4e-07 Fanout:         0
+                              clear: (<V s_37_17_t4.S$168 rn>, <V s_37_17_t4.O$169 an>, <V isnotnull$171 in>)
+                              clear on continue: (<V s_37_17_t4.S$168 rn>, <V s_37_17_t4.O$169 an>, <V isnotnull$171 in>)
+                            s# 468 167 from DB.DBA.RDF_QUAD by RDF_QUAD_POGS    1.4e-07 rows   
+                            Key RDF_QUAD_POGS  ASC  (<V s_37_17_t4.O$169 an>, <V s_37_17_t4.S$168 rn>)
+                             inlined  P =  IRI_ID"...reference/P496" 
+                            
+                            After code:
+                              0: <V isnotnull$171 in> := Call isnotnull (<V s_37_17_t4.O$169 an>)
+                              5:  sum <V count$174 i><V isnotnull$171 in>set no <r set_no$166 via  Set468>
+                              10:  count <V count$175 in><V s_37_17_t4.S$168 rn>set no <r set_no$166 via  Set468>distinct via hash area <V DISTINCT HASH$179 x>
+                              15: BReturn 0
+                        }
+                        After code:
+                          0: <V var1$163 sn> :=  := artm <tag 182 flag 1 c http://wikiba.se/ontology#reference>
+                          4: <V var3$164 in> :=  := artm <V count$175 in>
+                          8: <V var4$165 i> :=  := artm <V count$174 i>
+                          12: BReturn 0
+                        time    0.0028% fanout         0 input         1 rows
+                        $163 (173 ) 
+                        s# 463 180 Subquery Select(<V var1$163 sn>, <V var3$164 in>, <V var4$165 i>)
+                          set no: <V set_no$166 i>
+                      }
+                    
+                    After code:
+                      0: <V var1$34 r> :=  := artm  IRI_ID"...reference" 
+                      4: <V var3$35 a> :=  := artm <V var3$164 in>
+                      8: <V var4$36 a> :=  := artm <V var4$165 i>
+                      12: <V var2$37 a> :=  := artm <DB_NULL>
+                      16: BReturn 0
+                    time      0.16% fanout         0 input         1 rows
+                    Precode:
+                      0: <V __id2in$227 a> := Call __id2in (<V var1$34 r>)
+                      5: <V __ro2sq$229 a> := Call __ro2sq (<V var2$37 a>)
+                      10: BReturn 0
+                      clear: (<V __ro2sq$229 a>, <V __id2in$227 a>)
+                    s# 499 232 Sort (HASH) set no <r set_no$32 via  Set463>(<V __id2in$227 a>, <V var3$35 a>, <V __ro2sq$229 a>) -> (<V var4$36 a>)
+                    
+                  }
+                  { 
+                      clear: (<V var4$197 i>, <V var3$196 in>, <V var1$195 sn>, <V set_no$198 i>, <V var2$37 a>, <V var4$36 a>, <V var3$35 a>, <V var1$34 r>)
+                    s# 506 194 Subquery 194 
+                      multistate set no = <V set_no$198 i>
+                      { 
+                        time     0.016% fanout         1 input         1 rows
+                          clear: (<V var4$197 i>, <V var3$196 in>, <V var1$195 sn>)
+                        s# 525 205 Fork 205 {  
+                            time     0.063% fanout         0 input         1 rows
+                            Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:   1.4e-07 Fanout:         0
+                              clear: (<V s_37_21_t5.S$200 rn>, <V s_37_21_t5.O$201 an>, <V isnotnull$203 in>)
+                              clear on continue: (<V s_37_21_t5.S$200 rn>, <V s_37_21_t5.O$201 an>, <V isnotnull$203 in>)
+                            s# 511 199 from DB.DBA.RDF_QUAD by RDF_QUAD_POGS    1.4e-07 rows   
+                            Key RDF_QUAD_POGS  ASC  (<V s_37_21_t5.O$201 an>, <V s_37_21_t5.S$200 rn>)
+                             inlined  P =  IRI_ID"...qualifier/P496" 
+                            
+                            After code:
+                              0: <V isnotnull$203 in> := Call isnotnull (<V s_37_21_t5.O$201 an>)
+                              5:  sum <V count$206 i><V isnotnull$203 in>set no <r set_no$198 via  Set511>
+                              10:  count <V count$207 in><V s_37_21_t5.S$200 rn>set no <r set_no$198 via  Set511>distinct via hash area <V DISTINCT HASH$211 x>
+                              15: BReturn 0
+                        }
+                        After code:
+                          0: <V var1$195 sn> :=  := artm <tag 182 flag 1 c http://wikiba.se/ontology#qualifier>
+                          4: <V var3$196 in> :=  := artm <V count$207 in>
+                          8: <V var4$197 i> :=  := artm <V count$206 i>
+                          12: BReturn 0
+                        time    0.0019% fanout         0 input         1 rows
+                        $195 (205 ) 
+                        s# 506 212 Subquery Select(<V var1$195 sn>, <V var3$196 in>, <V var4$197 i>)
+                          set no: <V set_no$198 i>
+                      }
+                    
+                    After code:
+                      0: <V var1$34 r> :=  := artm  IRI_ID"...qualifier" 
+                      4: <V var3$35 a> :=  := artm <V var3$196 in>
+                      8: <V var4$36 a> :=  := artm <V var4$197 i>
+                      12: <V var2$37 a> :=  := artm <DB_NULL>
+                      16: BReturn 0
+                    time      0.13% fanout         0 input         1 rows
+                    Precode:
+                      0: <V __id2in$227 a> := Call __id2in (<V var1$34 r>)
+                      5: <V __ro2sq$229 a> := Call __ro2sq (<V var2$37 a>)
+                      10: BReturn 0
+                      clear: (<V __ro2sq$229 a>, <V __id2in$227 a>)$34 (194 ) $37 (194 ) 
+                    s# 542 232 Sort (HASH) set no <r set_no$32 via  Set506>(<V __id2in$227 a>, <V var3$35 a>, <V __ro2sq$229 a>) -> (<V var4$36 a>)
+                    
+                  }
+              }
+            
+        }
+        time     0.068% fanout         4 input         1 rows
+        Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:         0 Fanout:         4
+          clear: (<V var4$36 a>, <V var3$35 a>, <V __ro2sq$229 a>, <V __id2in$227 a>, <V var4$31 a>, <V var3$30 a>, <V var2$29 a>, <V var1$28 a>)
+          clear on continue: (<V var4$36 a>, <V var3$35 a>, <V __ro2sq$229 a>, <V __id2in$227 a>, <V var4$31 a>, <V var3$30 a>, <V var2$29 a>, <V var1$28 a>)
+        s# 556 237 Key from temp (<V __id2in$227 a>, <V __ro2sq$229 a>, <V var3$35 a>, <V var4$36 a>)
+        
+        
+        After code:
+          0: <V var1$28 a> :=  := artm <V __id2in$227 a>
+          4: <V var2$29 a> :=  := artm <V __ro2sq$229 a>
+          8: <V var3$30 a> :=  := artm <V var3$35 a>
+          12: <V var4$31 a> :=  := artm <V var4$36 a>
+          16: BReturn 0
+        time    0.0025% fanout         0 input         4 rows
+        
+        s# 282 249 Subquery Select(<V var1$28 a>, <V var2$29 a>, <V var3$30 a>, <V var4$31 a>)
+          set no: <r set_no$32 via  Set556>
+      }
+    
+    After code:
+      0: <V var1$256 a> := Call __ro2sq (<V var1$28 a>)
+      5: <V var2$258 a> := Call __ro2sq (<V var2$29 a>)
+      10: <V var3$260 a> := Call __ro2sq (<V var3$30 a>)
+      15: <V var4$262 a> := Call __ro2sq (<V var4$31 a>)
+      20: BReturn 0
+    time     0.004% fanout         0 input         4 rows
+    $256 (27 ) $258 (27 ) $260 (27 ) $262 (27 ) $270 (27 271 ) 
+    s# 576 264 Select (<V var1$256 a>, <V var2$258 a>, <V var3$260 a>, <V var4$262 a>)
+      set no: <r set_ctr$270 via  Set282>
+  }
+
+
+ 12 msec 37% cpu,        10 rnd     17763 seq         0% same seg         0% same pg 
+Compilation: 11 msec 0 reads         0% read 0 messages         0% clw

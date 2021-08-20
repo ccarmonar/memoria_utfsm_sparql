@@ -1,0 +1,86 @@
+http://www.wikidata.org/entity/Q2979121		
+http://www.wikidata.org/entity/Q3064564		
+http://www.wikidata.org/entity/Q5315132		
+http://www.wikidata.org/entity/Q5326647		
+http://www.wikidata.org/entity/Q5467905		
+http://www.wikidata.org/entity/Q5530312		
+http://www.wikidata.org/entity/Q6439957		
+http://www.wikidata.org/entity/Q6492984		
+http://www.wikidata.org/entity/Q6745913		
+http://www.wikidata.org/entity/Q6948948		
+http://www.wikidata.org/entity/Q7194669		
+http://www.wikidata.org/entity/Q7236283		
+http://www.wikidata.org/entity/Q7317922		
+http://www.wikidata.org/entity/Q7446158		
+http://www.wikidata.org/entity/Q7642254		
+http://www.wikidata.org/entity/Q7642468		
+http://www.wikidata.org/entity/Q7700652		
+http://www.wikidata.org/entity/Q7712582		
+http://www.wikidata.org/entity/Q12057240		
+http://www.wikidata.org/entity/Q13400056		
+
+  { 
+    time   0.00061% fanout         1 input         1 rows
+      clear: (<V set_ctr$39 in>)
+    s# 60 40 cluster outer seq start, set no <V set_ctr$39 in>    
+    save ctx:()
+    time     0.014% fanout      1000 input         1 rows
+      clear: (<V t1.S$28 rn>)
+      clear on continue: (<V t1.S$28 rn>)
+    s# 69 27 from DB.DBA.RDF_QUAD by RDF_QUAD_POGS    4.3e+03 rows   
+    Key RDF_QUAD_POGS  ASC  (<V t1.S$28 rn>)
+     P =  IRI_ID"...direct/P31"  ,  O =  IRI_ID"...Q7889" 
+    
+    time       1.2% fanout         1 input      1000 rows
+    Precode:
+      0: <V var1$30 a> := Call __id2in (<V t1.S$28 rn>)
+      5: BReturn 0
+      clear: (<V set_ctr$42 i>, <V var1$30 a>)
+    s# 79 46 cluster outer seq start, set no <V set_ctr$42 i>    
+    save ctx:()
+    time        79% fanout    24.678 input      1000 rows
+      clear: (<V t3.O$33 a>)
+      clear on continue: (<V t3.O$33 a>)$28 (46 ) $92 (32 ) 
+    s# 88 32 from DB.DBA.RDF_QUAD by RDF_QUAD         14 rows   
+    Key RDF_QUAD  ASC  (<V t3.O$33 a>)
+     inlined  P =  IRI_ID"...description"  ,  S = <v k_t1.S$92 Set94 rn>
+    vector param casts: <r t1.S$28 via  Set79>-> <v k_t1.S$92 Set94 rn>
+    
+    time        19% fanout 0.0365913 input     24678 rows
+      clear: (<V DB.DBA.RDF_LANGUAGE_OF_OBJ$37 a>, <V __ro2sq$35 a>)
+    s# 107 102 END Node
+    After test:
+      0: <V __ro2sq$35 a> := Call __ro2sq (<V t3.O$33 a>)
+      5: <V DB.DBA.RDF_LANGUAGE_OF_OBJ$37 a> := Call DB.DBA.RDF_LANGUAGE_OF_OBJ (<V __ro2sq$35 a>)
+      12: if (<c en> = <V DB.DBA.RDF_LANGUAGE_OF_OBJ$37 a>) then 16 else 17 unkn 17
+      16: BReturn 1
+      17: BReturn 0
+    time     0.013% fanout   1.10742 input       903 rows
+      clear: (<V t3.O$119 a>)$33 (102 ) $35 (102 ) $37 (102 ) $42 (102 32 46 ) 
+    s# 115 41 end of outer seq <r set_ctr$42 via  Set107 Set88 Set94>
+     out: (<V DB.DBA.RDF_LANGUAGE_OF_OBJ$37 a>, <r t3.O$33 via  Set107>, <V __ro2sq$35 a>)
+     shadow: ( <none> , <V t3.O$119 a>,  <none> )
+    time     0.027% fanout     0.097 input      1000 rows
+      clear: (<V var2$51 a>)$119 (41 ) 
+    s# 130 125 END Node
+    After test:
+      0: if (<V t3.O$119 a>  IS NULL   0 ) then 4 else 5 unkn 5
+      4: BReturn 1
+      5: BReturn 0
+    After code:
+      0: <V var2$51 a> := Call __ro2sq (<r t3.O$119 via  Set130>)
+      5: BReturn 0
+    time   0.00012% fanout         0 input        97 rows
+    $39 (125 41 102 32 46 27 40 ) $51 (125 ) $30 (125 41 102 32 46 ) 
+    s# 138 53 Select (<r var1$30 via  Set130 Set115>, <V var2$51 a>)
+      set no: <r set_ctr$39 via  Set130 Set115 Set69>
+  }
+Warning: You might have a Cartesian product.
+
+Warning: You might have a Cartesian product.
+
+
+
+ 599 msec 99% cpu,     51331 rnd     24659 seq   1.21562% same seg   12.0139% same pg 
+46 disk reads, 0 read ahead,   81.9737% wait
+Compilation: 2 msec 0 reads         0% read 0 messages         0% clw

@@ -1,0 +1,50 @@
+Error: 22023: SL001: The SPARQL 1.1 function CONTAINS() needs a string value as first argument
+  { 
+    time     0.062% fanout         1 input         1 rows
+      clear: (<V set_ctr$47 in>)
+    s# 50 48 cluster outer seq start, set no <V set_ctr$47 in>    
+    save ctx:()
+    time       1.6% fanout      1000 input         1 rows
+    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:   4.1e+04 Fanout:     1e+03
+    Precode:
+      0: <V DB.DBA.RDF_MAKE_LONG_OF_SQLVAL$27 a> := Call DB.DBA.RDF_MAKE_LONG_OF_SQLVAL (<c wikipedia>)
+      7: BReturn 0
+      clear: (<V s_37_4_t0.S$30 rn>, <V DB.DBA.RDF_MAKE_LONG_OF_SQLVAL$27 a>)
+      clear on continue: (<V s_37_4_t0.S$30 rn>)
+    s# 59 29 from DB.DBA.RDF_QUAD by RDF_QUAD_POGS    4.1e+04 rows   
+    Key RDF_QUAD_POGS  ASC  (<V s_37_4_t0.S$30 rn>)
+     P =  IRI_ID"...direct/P31"  ,  O =  IRI_ID"...Q3305213" 
+    
+    time        98% fanout         1 input      1000 rows
+    Precode:
+      0: <V var1$32 a> := Call __id2in (<V s_37_4_t0.S$30 rn>)
+      5: BReturn 0
+      clear: (<V s_37_4_t1.S$35 rn>, <V var1$32 a>)
+      clear on continue: (<V s_37_4_t1.S$35 rn>)$73 (34 ) $30 () 
+    s# 69 34 from DB.DBA.RDF_QUAD by RDF_QUAD_POGS        1.1 rows   
+    Key RDF_QUAD_POGS  ASC  (<V s_37_4_t1.S$35 rn>)
+     P =  IRI_ID"...about"  ,  O = <v cast$73 Set75 an>
+    vector param casts: <V s_37_4_t0.S$30 rn>-> <v cast$73 Set75 an>
+    
+    time         0% fanout         0 input      1000 rows
+      clear: (<V rdf_contains_impl$37 i>, <V var3$39 a>)$35 () $27 (34 29 ) 
+    s# 88 83 END Node
+    After test:
+      0: <V rdf_contains_impl$37 i> := Call rdf_contains_impl (<V s_37_4_t1.S$35 rn>, <r DB.DBA.RDF_MAKE_LONG_OF_SQLVAL$27 via  Set69 Set75 Set59>)
+      5: if ( 0  = <V rdf_contains_impl$37 i>) then 10 else 9 unkn 10
+      9: BReturn 1
+      10: BReturn 0
+    After code:
+      0: <V var3$39 a> := Call __id2in (<r s_37_4_t1.S$35 via  Set88>)
+      5: BReturn 0
+    time         0% fanout         0 input         0 rows
+    $32 (83 34 ) $39 (83 ) $47 (83 34 29 48 ) 
+    s# 96 41 Select (<r var1$32 via  Set88 Set69 Set75>, <DB_NULL>, <V var3$39 a>)
+      set no: <r set_ctr$47 via  Set88 Set69 Set75 Set59>
+  }
+Warning: You might have a Cartesian product.
+
+
+
+ 6 msec 77% cpu,      1982 rnd       998 seq   49.7226% same seg   45.7892% same pg 
+Compilation: 2 msec 0 reads         0% read 0 messages         0% clw

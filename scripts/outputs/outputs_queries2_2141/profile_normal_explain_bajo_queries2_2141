@@ -1,0 +1,23 @@
+
+  { 
+    time       7.8% fanout         1 input         1 rows
+    time        92% fanout         0 input         1 rows
+    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:   1.4e-07 Fanout:         0
+    RDF_QUAD   1.4e-07 rows(s_37_4_t1.S$29, s_37_4_t1.O$28)
+     inlined  P =  IRI_ID"...inLanguage" 
+    time         0% fanout         0 input         0 rows
+    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:     5e-08 Fanout:         0
+    RDF_QUAD     5e-08 rows(s_37_4_t0.S$32)
+     inlined  P =  IRI_ID"...about"  ,  S = s_37_4_t1.S$29 ,  O =  IRI_ID"...Q26836418" 
+    
+    After code:
+    0: var2$34 := Call __ro2sq (s_37_4_t1.O$28)
+    5: var1$36 := Call __id2in (s_37_4_t0.S$32)
+    10: BReturn 0
+    time         0% fanout         0 input         0 rows
+    Select (var1$36, var2$34)
+  }
+
+
+ 0 msec 3% cpu,         1 rnd         0 seq         0% same seg         0% same pg 
+Compilation: 1 msec 0 reads         0% read 0 messages         0% clw

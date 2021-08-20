@@ -1,0 +1,38 @@
+1	
+
+  { 
+    time      0.49% fanout         1 input         1 rows
+      clear: (<V set_ctr$41 in>)
+    s# 47 42 cluster outer seq start, set no <V set_ctr$41 in>    
+    save ctx:()
+    time       6.5% fanout        71 input         1 rows
+      clear: (<V t2.S$28 rn>)
+      clear on continue: (<V t2.S$28 rn>)
+    s# 56 27 from DB.DBA.RDF_QUAD by RDF_QUAD_POGS         71 rows   
+    Key RDF_QUAD_POGS  ASC  (<V t2.S$28 rn>)
+     P =  IRI_ID"...direct/P31"  ,  O =  IRI_ID"...Q216107" 
+    
+    time        92% fanout         1 input        71 rows
+      clear: (<V t3.O$31 an>)
+      clear on continue: (<V t3.O$31 an>)$28 () 
+    s# 66 30 from DB.DBA.RDF_QUAD by RDF_QUAD          1 rows   max 1
+    Key RDF_QUAD  ASC  (<V t3.O$31 an>)
+     inlined  P =  IRI_ID"...direct/P17"  ,  S = <V t2.S$28 rn>
+    
+    time      0.95% fanout 0.0140845 input        71 rows
+      clear: (<V var2$33 i>)$31 () 
+    s# 76 45 skip node  1  <none> <r set_ctr$41 via  Set66 Set56>
+    After code:
+      0: <V var2$33 i> := Call is_named_iri_id (<r t3.O$31 via  Set76>)
+      5: BReturn 0
+    time      0.18% fanout         0 input         1 rows
+    $33 (45 ) $41 (45 30 27 42 ) 
+    s# 84 35 Select (<V var2$33 i>)
+      set no: <r set_ctr$41 via  Set76 Set66 Set56>
+  }
+Warning: You might have a Cartesian product.
+
+
+
+ 0 msec 2% cpu,        72 rnd        70 seq    39.726% same seg   42.4658% same pg 
+Compilation: 20 msec 1 reads   89.7534% read 0 messages         0% clw

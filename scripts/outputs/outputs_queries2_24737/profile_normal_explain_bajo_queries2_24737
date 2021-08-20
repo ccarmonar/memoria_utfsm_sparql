@@ -1,0 +1,63 @@
+http://www.wikidata.org/entity/Q46711808	10.1016/J.YDBIO.2008.01.040	
+http://www.wikidata.org/entity/Q50880145	10.1080/19440049.2016.1154613	
+http://www.wikidata.org/entity/Q49330740	10.1007/S12275-018-7475-Y	
+http://www.wikidata.org/entity/Q35229022	10.2147/IJN.S76513	
+http://www.wikidata.org/entity/Q34732754	10.1007/S00441-002-0577-0	
+http://www.wikidata.org/entity/Q46212432	10.1016/J.RVSC.2014.12.016	
+http://www.wikidata.org/entity/Q48194329	10.1213/ANE.0B013E318241FB37	
+http://www.wikidata.org/entity/Q24323380	10.1016/J.VIROL.2006.10.035	
+http://www.wikidata.org/entity/Q38523174	10.1126/SCIENCE.153.3743.1518	
+http://www.wikidata.org/entity/Q43925947	10.1016/J.GERINURSE.2014.02.019	
+http://www.wikidata.org/entity/Q39973940	10.1161/CIRCINTERVENTIONS.115.003104	
+http://www.wikidata.org/entity/Q47873827	10.1117/1.JBO.22.10.100901	
+http://www.wikidata.org/entity/Q50738236	10.1016/J.MIDW.2009.04.002	
+http://www.wikidata.org/entity/Q24644494	10.1021/MP0500768	
+http://www.wikidata.org/entity/Q39408978	10.3892/MMR.2016.4921	
+http://www.wikidata.org/entity/Q42165290	10.1292/JVMS.09-0239	
+http://www.wikidata.org/entity/Q45250023	10.1007/BF00017463	
+http://www.wikidata.org/entity/Q28088716	10.4022/JAFIB.1331	
+http://www.wikidata.org/entity/Q49243224	10.1093/BJA/57.9.841	
+http://www.wikidata.org/entity/Q47297111	10.1002/ASE.1629	
+
+  { 
+    time   0.00046% fanout         1 input         1 rows
+    Subquery 27 
+      { 
+        time   0.00023% fanout         1 input         1 rows
+        fork {
+            time        47% fanout 1.60816e+06 input         1 rows
+            RDF_QUAD   1.9e+06 rows(s_37_2_t0.S$33, s_37_2_t0.O$32)
+             inlined  P =  IRI_ID"...direct/P356" 
+            
+            After code:
+            0: rdf_rand_impl$35 := Call rdf_rand_impl ()
+            5: BReturn 0
+            time        14% fanout         0 input 1.60816e+06 rows
+            Sort (rdf_rand_impl$35) -> (s_37_2_t0.S$33, s_37_2_t0.O$32)
+            
+          }
+        time        39% fanout        50 input         1 rows
+        top order by read (s_37_2_t0.S$33, s_37_2_t0.O$32)
+        
+        After code:
+        0: __ro2sq$59 := Call __ro2sq (s_37_2_t0.O$32)
+        5: __id2in$61 := Call __id2in (s_37_2_t0.S$33)
+        10: var1$28 :=  := artm __id2in$61
+        14: var2$29 :=  := artm __ro2sq$59
+        18: BReturn 0
+        time   6.3e-05% fanout         0 input        50 rows
+        Subquery Select(var1$28, var2$29)
+      }
+    
+    After code:
+    0: var1$70 := Call __ro2sq (var1$28)
+    5: var2$72 := Call __ro2sq (var2$29)
+    10: BReturn 0
+    time   0.00013% fanout         0 input        50 rows
+    Select (var1$70, var2$72)
+  }
+
+
+ 348 msec 129% cpu,       101 rnd 1.60646e+06 seq         0% same seg         0% same pg 
+15 disk reads, 0 read ahead,   60.2612% wait
+Compilation: 1 msec 0 reads         0% read 0 messages         0% clw

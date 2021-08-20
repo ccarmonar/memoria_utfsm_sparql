@@ -1,0 +1,48 @@
+http://www.wikidata.org/entity/Q2613223	
+http://www.wikidata.org/entity/Q2613688	
+http://www.wikidata.org/entity/Q2613708	
+http://www.wikidata.org/entity/Q2613800	
+http://www.wikidata.org/entity/Q2614983	
+http://www.wikidata.org/entity/Q2616230	
+http://www.wikidata.org/entity/Q2616902	
+http://www.wikidata.org/entity/Q2617607	
+http://www.wikidata.org/entity/Q2617611	
+http://www.wikidata.org/entity/Q12124807	
+http://www.wikidata.org/entity/Q2630227	
+http://www.wikidata.org/entity/Q2633018	
+http://www.wikidata.org/entity/Q2633399	
+http://www.wikidata.org/entity/Q2635021	
+http://www.wikidata.org/entity/Q2635463	
+http://www.wikidata.org/entity/Q2635934	
+http://www.wikidata.org/entity/Q2637045	
+http://www.wikidata.org/entity/Q2638800	
+http://www.wikidata.org/entity/Q2640322	
+http://www.wikidata.org/entity/Q2640347	
+
+  { 
+    time     0.069% fanout         1 input         1 rows
+      clear: (<V set_ctr$38 in>)
+    s# 41 39 cluster outer seq start, set no <V set_ctr$38 in>    
+    save ctx:()
+    time     1e+02% fanout      1000 input         1 rows
+    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:   2.7e+04 Fanout:     1e+03
+      clear: (<V s_37_2_t0.S$28 rn>, <V var1$30 a>)
+      clear on continue: (<V s_37_2_t0.S$28 rn>, <V var1$30 a>)
+    s# 50 27 from DB.DBA.RDF_QUAD by RDF_QUAD_POGS    2.7e+04 rows   
+    Key RDF_QUAD_POGS  ASC  (<V s_37_2_t0.S$28 rn>)
+     P =  IRI_ID"...direct/P31"  ,  O =  IRI_ID"...Q11424" 
+    
+    After code:
+      0: <V var1$30 a> := Call __id2in (<V s_37_2_t0.S$28 rn>)
+      5: BReturn 0
+    time     0.033% fanout         0 input      1000 rows
+    $38 (27 39 ) $30 () 
+    s# 60 32 Select (<V var1$30 a>)
+      set no: <r set_ctr$38 via  Set50>
+  }
+Warning: You might have a Cartesian product.
+
+
+
+ 5 msec 76% cpu,       234 rnd       998 seq         0% same seg   54.0426% same pg 
+Compilation: 1 msec 0 reads         0% read 0 messages         0% clw

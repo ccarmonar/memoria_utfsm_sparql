@@ -1,0 +1,75 @@
+
+  { 
+    time       6.2% fanout         1 input         1 rows
+    Subquery 27 
+      { 
+        time       3.9% fanout         1 input         1 rows
+        fork {
+            time        85% fanout         0 input         1 rows
+            Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:   1.4e-07 Fanout:         0
+            RDF_QUAD_POGS   1.4e-07 rows(t3.O$34, t3.S$33)
+             inlined  P =  IRI_ID"...P195" 
+            time         0% fanout         0 input         0 rows
+            Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:   1.4e-07 Fanout:         0
+            RDF_QUAD_POGS   1.4e-07 rows()
+             inlined  P =  IRI_ID"...statement/P195"  ,  O =  IRI_ID"...Q190804"  ,  S = cast$151
+            time         0% fanout         0 input         0 rows
+            Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:      0.71 Fanout:         0
+            RDF_QUAD      0.71 rows(t5.O$39)
+             inlined  P =  IRI_ID"...direct/P217"  ,  S = k_t3.S$164
+            time         0% fanout         0 input         0 rows
+            END Node
+            After test:
+            0: __ro2sq$41 := Call __ro2sq (t5.O$39)
+            5: _cvt$43 := Call _cvt (<tag 193 flag 0>, __ro2sq$41)
+            10: if (_cvt$43  LIKE  <c %string1%>) then 14 else 15 unkn 15
+            14: BReturn 1
+            15: BReturn 0
+            time         0% fanout         0 input         0 rows
+            outer {
+                time         0% fanout         0 input         0 rows
+                Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:         1 Fanout:         0
+                RDF_QUAD         1 rows(t7.O$46)
+                 inlined  P =  IRI_ID"...qualifier/P580"  ,  S = k_t3.O$200
+                time         0% fanout         0 input         0 rows
+              } /* end of outer */
+            set_ctr$49
+             out: (t7.O$46)
+             shadow: ( <none> )
+            time         0% fanout         0 input         0 rows
+            Precode:
+              0: __ro2sq$58 := Call __ro2sq (t5.O$39)
+              5: __ro2lo$60 := Call __ro2lo (t5.O$39)
+              10: DB.DBA.rdf_replace_impl$62 := Call DB.DBA.rdf_replace_impl (__ro2lo$60, <c string2>, <c NULL>)
+              17: __rdf_sqlval_of_obj$64 := Call __rdf_sqlval_of_obj (DB.DBA.rdf_replace_impl$62)
+              22: _cvt$66 := Call _cvt (<tag 193 flag 0>, __rdf_sqlval_of_obj$64)
+              27: BReturn 0
+            Sort (_cvt$66, __ro2sq$58) -> (t3.S$33, t7.O$46)
+            
+          }
+        time       5.1% fanout         0 input         1 rows
+        top order by read (t3.S$33, __ro2sq$58, t7.O$46)
+        
+        After code:
+        0: __ro2sq$96 := Call __ro2sq (t7.O$46)
+        5: __id2in$98 := Call __id2in (t3.S$33)
+        10: var1$28 :=  := artm __id2in$98
+        14: var2$29 :=  := artm __ro2sq$58
+        18: var3$30 :=  := artm __ro2sq$96
+        22: BReturn 0
+        time         0% fanout         0 input         0 rows
+        Subquery Select(var1$28, var2$29, var3$30)
+      }
+    
+    After code:
+    0: var1$107 := Call __ro2sq (var1$28)
+    5: var2$109 := Call __ro2sq (var2$29)
+    10: var3$111 := Call __ro2sq (var3$30)
+    15: BReturn 0
+    time         0% fanout         0 input         0 rows
+    Select (var1$107, var2$109, var3$111)
+  }
+
+
+ 0 msec 2% cpu,         1 rnd         0 seq         0% same seg         0% same pg 
+Compilation: 3 msec 0 reads         0% read 0 messages         0% clw

@@ -1,0 +1,13 @@
+ SELECT  __ro2sq ("s_37_3_rbc"."var1") AS "var1", __ro2sq ("s_37_3_rbc"."var2") AS "var2", __ro2sq ("s_37_3_rbc"."var3") AS "var3" FROM (SELECT DISTINCT "s_37_3_t0"."S" AS "var1",
+    "s_37_3_t0"."P" AS "var2",
+    "s_37_3_t0"."O" AS "var3"
+  FROM DB.DBA.RDF_QUAD AS "s_37_3_t0"
+  WHERE
+    ( "s_37_3_t0"."S" < min_bnode_iri_id ())
+    AND 
+    ( "s_37_3_t0"."S" in ( __i2idn ( __bft ( __bft( 'http://www.wikidata.org/entity/Q3426243' , 1), 1)),  __i2idn ( __bft ( __bft( 'http://www.wikidata.org/entity/Q179458' , 1), 1)),  __i2idn ( __bft ( __bft( 'http://www.wikidata.org/entity/Q18115476' , 1), 1))))
+    AND 
+   (( not ( (1 - isiri_id ( "s_37_3_t0"."O"))) OR 
+       ( ''  =  DB.DBA.RDF_LANGUAGE_OF_OBJ (__ro2sq ( "s_37_3_t0"."O")))) OR 
+      DB.DBA.RDF_LANGMATCHES ( DB.DBA.RDF_LANGUAGE_OF_OBJ (__ro2sq ( "s_37_3_t0"."O")), 'fr' ))
+OPTION (QUIETCAST)) AS "s_37_3_rbc"

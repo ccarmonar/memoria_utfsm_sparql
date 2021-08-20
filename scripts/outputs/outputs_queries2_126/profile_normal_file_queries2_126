@@ -1,0 +1,49 @@
+
+  { 
+    time       8.9% fanout         1 input         1 rows
+      clear: (<V set_ctr$49 in>)
+    s# 52 50 cluster outer seq start, set no <V set_ctr$49 in>    
+    save ctx:()
+    time        91% fanout         0 input         1 rows
+    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:   1.4e-07 Fanout:         0
+    Precode:
+      0: <V __rdflit$27 x> := Call __rdflit (rdflit5869121)
+      5: BReturn 0
+      clear: (<V s_37_6_t2.S$30 rn>, <V __rdflit$27 x>)
+      clear on continue: (<V s_37_6_t2.S$30 rn>)
+    s# 61 29 from DB.DBA.RDF_QUAD by RDF_QUAD_POGS    1.4e-07 rows   
+    Key RDF_QUAD_POGS  ASC  (<V s_37_6_t2.S$30 rn>)
+     P =  IRI_ID"...inLanguage"  ,  O = rdflit5869121
+    
+    time         0% fanout         0 input         0 rows
+    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:         1 Fanout:         0
+      clear: (<V s_37_6_t1.S$33 rn>, <V s_37_6_t1.O$34 an>)
+      clear on continue: (<V s_37_6_t1.S$33 rn>, <V s_37_6_t1.O$34 an>)$30 () 
+    s# 71 32 from DB.DBA.RDF_QUAD by RDF_QUAD          1 rows   
+    Key RDF_QUAD  ASC  (<V s_37_6_t1.O$34 an>, <V s_37_6_t1.S$33 rn>)
+     inlined  P =  IRI_ID"...about"  ,  S = <V s_37_6_t2.S$30 rn>
+    
+    time         0% fanout         0 input         0 rows
+    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:    0.0082 Fanout:         0
+      clear: (<V s_37_6_t0.S$37 rn>, <V var1$41 a>, <V var2$39 a>)
+      clear on continue: (<V var2$39 a>, <V var1$41 a>, <V s_37_6_t0.S$37 rn>)$33 () $34 () $86 (36 ) 
+    s# 82 36 from DB.DBA.RDF_QUAD by RDF_QUAD     0.0082 rows   
+    Key RDF_QUAD  ASC  (<V s_37_6_t0.S$37 rn>)
+     inlined  P =  IRI_ID"...direct/P31"  ,  S = <v k_s_37_6_t1.O$86 Set88 rn> ,  O =  IRI_ID"...Q4022" 
+    vector param casts: <V s_37_6_t1.O$34 an>-> <v k_s_37_6_t1.O$86 Set88 rn>
+    
+    After code:
+      0: <V var2$39 a> := Call __id2in (<r s_37_6_t1.S$33 via  Set82 Set88>)
+      5: <V var1$41 a> := Call __id2in (<V s_37_6_t0.S$37 rn>)
+      10: BReturn 0
+    time         0% fanout         0 input         0 rows
+    $39 () $41 () $49 (36 32 29 50 ) 
+    s# 96 43 Select (<V var1$41 a>, <V var2$39 a>)
+      set no: <r set_ctr$49 via  Set82 Set88 Set71 Set61>
+  }
+Warning: You might have a Cartesian product.
+
+
+
+ 0 msec 0% cpu,         1 rnd         0 seq         0% same seg         0% same pg 
+Compilation: 23 msec 1 reads   91.8175% read 0 messages         0% clw

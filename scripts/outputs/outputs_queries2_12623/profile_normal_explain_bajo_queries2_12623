@@ -1,0 +1,59 @@
+http://www.wikidata.org/entity/Q2636164	
+http://www.wikidata.org/entity/Q2763097	
+http://www.wikidata.org/entity/Q2776701	
+http://www.wikidata.org/entity/Q2852492	
+http://www.wikidata.org/entity/Q2853445	
+http://www.wikidata.org/entity/Q2856596	
+http://www.wikidata.org/entity/Q2856818	
+http://www.wikidata.org/entity/Q2856871	
+http://www.wikidata.org/entity/Q2859943	
+http://www.wikidata.org/entity/Q2861317	
+http://www.wikidata.org/entity/Q2913424	
+http://www.wikidata.org/entity/Q2925095	
+http://www.wikidata.org/entity/Q2977943	
+http://www.wikidata.org/entity/Q2993518	
+http://www.wikidata.org/entity/Q3059626	
+http://www.wikidata.org/entity/Q3061372	
+http://www.wikidata.org/entity/Q3067145	
+http://www.wikidata.org/entity/Q3068180	
+http://www.wikidata.org/entity/Q3068493	
+http://www.wikidata.org/entity/Q12900966	
+
+  { 
+    time     0.081% fanout         1 input         1 rows
+    time       4.5% fanout      3000 input         1 rows
+    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:   5.3e+05 Fanout:     3e+03
+    RDF_QUAD_POGS   5.3e+05 rows(t2.S$28)
+     P =  IRI_ID"...direct/P31"  ,  O =  IRI_ID"...Q5" 
+    time        20% fanout     0.284 input      3000 rows
+    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:    0.0075 Fanout:      0.28
+    RDF_QUAD    0.0075 rows()
+     P =  IRI_ID"...direct/P569"  ,  S = k_t2.S$82 ,  O < <tag 211 c 1880-01-01 00:00:00Z> O < <tag 211 c 1880-01-01 00:00:00Z>
+    time        64% fanout         1 input       852 rows
+    Precode:
+      0: var1$32 := Call __id2in (t2.S$28)
+      5: BReturn 0
+    outer {
+        time       9.6% fanout   1.01995 input       852 rows
+        RDF_QUAD         1 rows(t5.O$35)
+         inlined  P =  IRI_ID"...direct/P570"  ,  S = k_t2.S$104
+        time      0.39% fanout   1.03567 input       869 rows
+      } /* end of outer */
+    set_ctr$40
+     out: (t5.O$35)
+     shadow: ( <none> )
+    time         1% fanout 0.0344444 input       900 rows
+    END Node
+    After test:
+    0: if (t5.O$35  IS NULL   0 ) then 4 else 5 unkn 5
+    4: BReturn 1
+    5: BReturn 0
+    time     0.081% fanout         1 input        31 rows
+    skip node  100  <none> set_ctr$37
+    time     0.049% fanout         0 input        31 rows
+    Select (var1$32)
+  }
+
+
+ 5 msec 66% cpu,      3852 rnd      3121 seq   99.7405% same seg 0.0519076% same pg 
+Compilation: 2 msec 0 reads         0% read 0 messages         0% clw

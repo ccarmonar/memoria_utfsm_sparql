@@ -1,0 +1,36 @@
+2021-08-17 08:32:04.207393	4.207393	
+
+  { 
+    time        43% fanout         1 input         1 rows
+      clear: (<V set_ctr$48 in>)
+    s# 51 49 cluster outer seq start, set no <V set_ctr$48 in>    
+    save ctx:()
+    Precode:
+      0: <V currentTime$27 t> := Call rdf_now_impl ()
+      5: <V currentSeconds$29 d> := Call rdf_seconds_impl (<V currentTime$27 t>)
+      10: BReturn 0
+      clear: (<V __stub$32 in>, <V set_no$33 i>, <V currentSeconds$29 d>, <V currentTime$27 t>)
+    s# 60 31 Subquery 31 
+      multistate set no = <V set_no$33 i>
+      { 
+        time        34% fanout         1 input         1 rows
+        Precode:
+          0: <V __stub$32 in> :=  := artm  1 
+          4: BReturn 0
+          clear: (<V __stub$32 in>)
+        s# 65 40 END Node
+        time        13% fanout         0 input         1 rows
+        $32 (40 ) 
+        s# 60 34 Subquery Select(<r __stub$32 via  Set65>)
+          set no: <r set_no$33 via  Set65>
+      }
+    
+    time       9.2% fanout         0 input         1 rows
+    $48 (31 49 ) $27 (31 ) $29 (31 ) 
+    s# 79 42 Select (<r currentTime$27 via  Set60>, <r currentSeconds$29 via  Set60>)
+      set no: <r set_ctr$48 via  Set60>
+  }
+
+
+ 0 msec 3% cpu,         0 rnd         0 seq         0% same seg         0% same pg 
+Compilation: 1 msec 0 reads         0% read 0 messages         0% clw

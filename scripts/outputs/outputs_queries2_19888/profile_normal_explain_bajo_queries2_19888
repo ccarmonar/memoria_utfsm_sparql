@@ -1,0 +1,69 @@
+http://www.wikidata.org/entity/Q11562198	
+http://www.wikidata.org/entity/Q11562212	
+http://www.wikidata.org/entity/Q11487491	
+http://www.wikidata.org/entity/Q27920483	
+http://www.wikidata.org/entity/Q27920506	
+http://www.wikidata.org/entity/Q27921192	
+http://www.wikidata.org/entity/Q3453977	
+http://www.wikidata.org/entity/Q11538669	
+http://www.wikidata.org/entity/Q11540276	
+http://www.wikidata.org/entity/Q11545140	
+http://www.wikidata.org/entity/Q29410867	
+http://www.wikidata.org/entity/Q28691894	
+http://www.wikidata.org/entity/Q28691895	
+http://www.wikidata.org/entity/Q38670747	
+http://www.wikidata.org/entity/Q3514932	
+http://www.wikidata.org/entity/Q18990459	
+http://www.wikidata.org/entity/Q20039795	
+http://www.wikidata.org/entity/Q11359845	
+http://www.wikidata.org/entity/Q43138608	
+http://www.wikidata.org/entity/Q43134916	
+
+  { 
+    time     0.011% fanout         1 input         1 rows
+    time      0.52% fanout      3650 input         1 rows
+    RDF_QUAD_POGS   3.6e+03 rows(s_37_12_t3.S$28)
+     P =  IRI_ID"...direct/P106"  ,  O =  IRI_ID"...Q483501" 
+    time        23% fanout  0.998082 input      3650 rows
+    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:     0.091 Fanout:         1
+    RDF_QUAD     0.091 rows(s_37_12_t1.S$31)
+     inlined  P =  IRI_ID"...direct/P31"  ,  S = s_37_12_t3.S$28 ,  O =  IRI_ID"...Q5" 
+    time       5.8% fanout   0.67417 input      3643 rows
+    RDF_QUAD      0.83 rows(s_37_12_t2.S$34)
+     inlined  P =  IRI_ID"...direct/P21"  ,  S = s_37_12_t1.S$31 ,  O =  IRI_ID"...Q6581097" 
+    time       4.7% fanout 0.0460098 input      2456 rows
+    RDF_QUAD     0.026 rows(s_37_12_t4.S$37)
+     inlined  P =  IRI_ID"...direct/P27"  ,  S = k_s_37_12_t1.S$109 ,  O =  IRI_ID"...Q17" 
+    time        34% fanout  0.176991 input       113 rows
+    END Node
+    After test:
+    0: if (  { 
+        time     0.011% fanout         1 input       113 rows
+        time         3% fanout   32.7876 input       113 rows
+        RDF_QUAD        14 rows(s_37_10_t0.O$40)
+         inlined  P =  IRI_ID"...description"  ,  S = k_s_37_12_t4.S$141
+        time        29% fanout 0.0337382 input      3705 rows
+        END Node
+        After test:
+        0: __ro2sq$42 := Call __ro2sq (s_37_10_t0.O$40)
+        5: DB.DBA.RDF_LANGUAGE_OF_OBJ$44 := Call DB.DBA.RDF_LANGUAGE_OF_OBJ (__ro2sq$42)
+        12: if (<c ar> = DB.DBA.RDF_LANGUAGE_OF_OBJ$44) then 16 else 17 unkn 17
+        16: BReturn 1
+        17: BReturn 0
+        time     0.015% fanout         0 input       125 rows
+        Subquery Select( <none> )
+      }
+    ) then 5 else 4 unkn 5
+    4: BReturn 1
+    5: BReturn 0
+    
+    After code:
+    0: var1$55 := Call __id2in (s_37_12_t1.S$31)
+    5: BReturn 0
+    time    0.0045% fanout         0 input        20 rows
+    Select (var1$55)
+  }
+
+
+ 22 msec 86% cpu,     17270 rnd      7266 seq   54.5133% same seg   4.49887% same pg 
+Compilation: 3 msec 0 reads         0% read 0 messages         0% clw

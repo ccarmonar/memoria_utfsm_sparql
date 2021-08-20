@@ -1,0 +1,25 @@
+96	
+
+  { 
+    time      0.29% fanout         1 input         1 rows
+    time      0.25% fanout         1 input         1 rows
+    fork {
+        time       6.8% fanout       454 input         1 rows
+        RDF_QUAD_POGS   4.5e+02 rows(s_37_2_t0.S$28)
+         P =  IRI_ID"...direct/P27"  ,  O =  IRI_ID"...Q222" 
+        time        93% fanout         0 input       454 rows
+        Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:         1 Fanout:         0
+        RDF_QUAD         1 rows(s_37_5_t1.S$31)
+         inlined  P =  IRI_ID"...direct/P18"  ,  S = s_37_2_t0.S$28
+        
+        After code:
+        0:  count var2$36s_37_5_t1.S$31set no set_ctr$33distinct via hash area DISTINCT HASH$40
+        5: BReturn 0
+      }
+    time      0.12% fanout         0 input         1 rows
+    Select (var2$36)
+  }
+
+
+ 2 msec 34% cpu,       455 rnd       455 seq   94.2982% same seg   5.04386% same pg 
+Compilation: 1 msec 0 reads         0% read 0 messages         0% clw

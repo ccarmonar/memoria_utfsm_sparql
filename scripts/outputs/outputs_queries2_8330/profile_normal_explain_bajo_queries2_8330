@@ -1,0 +1,64 @@
+0	
+
+  { 
+    time       6.3% fanout         1 input         1 rows
+    time       5.3% fanout         1 input         1 rows
+    fork {
+        Subquery 27 
+          { 
+            Union
+              { 
+                time        67% fanout         0 input         1 rows
+                Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:   1.4e-07 Fanout:         0
+                RDF_QUAD_POGS   1.4e-07 rows(s_37_9_t2-u13.O$33, s_37_9_t2-u13.S$32)
+                 inlined  P =  IRI_ID"...wasDerivedFrom" 
+                time         0% fanout         0 input         0 rows
+                Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:   1.4e-07 Fanout:         0
+                RDF_QUAD_POGS   1.4e-07 rows()
+                 inlined  P =  IRI_ID"...reference/P248"  ,  O =  IRI_ID"...Q29580583"  ,  S = k_s_37_9_t2-u13.O$118
+                
+                After code:
+                0: var1$28 :=  := artm s_37_9_t2-u13.S$32
+                4: BReturn 0
+                time         0% fanout         0 input         0 rows
+                Precode:
+                  0: isnotnull$58 := Call isnotnull (var1$28)
+                  5:  sum var2$63isnotnull$58set no set_ctr$60
+                  10: BReturn 0
+                END Node
+              }
+              { 
+                time        19% fanout         0 input         1 rows
+                Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:   1.4e-07 Fanout:         0
+                RDF_QUAD_POGS   1.4e-07 rows(s_37_9_t2.O$46, s_37_9_t2.S$45)
+                 inlined  P =  IRI_ID"...wasDerivedFrom" 
+                time         0% fanout         0 input         0 rows
+                Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:   1.4e-07 Fanout:         0
+                RDF_QUAD_POGS   1.4e-07 rows()
+                 inlined  P =  IRI_ID"...reference/P248"  ,  O =  IRI_ID"...Q29583405"  ,  S = k_s_37_9_t2.O$151
+                
+                After code:
+                0: var1$28 :=  := artm s_37_9_t2.S$45
+                4: BReturn 0
+                time         0% fanout         0 input         0 rows
+                Precode:
+                  0: isnotnull$58 := Call isnotnull (var1$28)
+                  5:  sum var2$63isnotnull$58set no set_ctr$60
+                  10: BReturn 0
+                END Node
+              }
+          }
+        time         0% fanout         0 input         0 rows
+        Precode:
+          0: isnotnull$58 := Call isnotnull (var1$28)
+          5:  sum var2$63isnotnull$58set no set_ctr$60
+          10: BReturn 0
+        END Node
+      }
+    time       2.5% fanout         0 input         1 rows
+    Select (var2$63)
+  }
+
+
+ 0 msec 2% cpu,         2 rnd         0 seq         0% same seg         0% same pg 
+Compilation: 4 msec 0 reads         0% read 0 messages         0% clw

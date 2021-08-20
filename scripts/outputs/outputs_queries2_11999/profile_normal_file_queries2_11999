@@ -1,0 +1,69 @@
+http://www.openlinksw.com/schemas/virtrdf#QuadMapFormat	http://www.openlinksw.com/virtrdf-data-formats#default-iid	
+http://www.openlinksw.com/schemas/virtrdf#QuadMapFormat	http://www.openlinksw.com/virtrdf-data-formats#default-iid-nullable	
+http://www.openlinksw.com/schemas/virtrdf#QuadMapFormat	http://www.openlinksw.com/virtrdf-data-formats#default-iid-nonblank	
+http://www.openlinksw.com/schemas/virtrdf#QuadMapFormat	http://www.openlinksw.com/virtrdf-data-formats#default-iid-nonblank-nullable	
+http://www.openlinksw.com/schemas/virtrdf#QuadMapFormat	http://www.openlinksw.com/virtrdf-data-formats#default	
+http://www.openlinksw.com/schemas/virtrdf#QuadMapFormat	http://www.openlinksw.com/virtrdf-data-formats#default-nullable	
+http://www.openlinksw.com/schemas/virtrdf#QuadMapFormat	http://www.openlinksw.com/virtrdf-data-formats#sql-varchar	
+http://www.openlinksw.com/schemas/virtrdf#QuadMapFormat	http://www.openlinksw.com/virtrdf-data-formats#sql-varchar-nullable	
+http://www.openlinksw.com/schemas/virtrdf#QuadMapFormat	http://www.openlinksw.com/virtrdf-data-formats#sql-varchar-dt	
+http://www.openlinksw.com/schemas/virtrdf#QuadMapFormat	http://www.openlinksw.com/virtrdf-data-formats#sql-varchar-dt-nullable	
+http://www.openlinksw.com/schemas/virtrdf#QuadMapFormat	http://www.openlinksw.com/virtrdf-data-formats#sql-varchar-lang	
+http://www.openlinksw.com/schemas/virtrdf#QuadMapFormat	http://www.openlinksw.com/virtrdf-data-formats#sql-varchar-lang-nullable	
+http://www.openlinksw.com/schemas/virtrdf#QuadMapFormat	http://www.openlinksw.com/virtrdf-data-formats#sql-varchar-fixedlang-x-any	
+http://www.openlinksw.com/schemas/virtrdf#QuadMapFormat	http://www.openlinksw.com/virtrdf-data-formats#sql-varchar-fixedlang-x-any-nullable	
+http://www.openlinksw.com/schemas/virtrdf#QuadMapFormat	http://www.openlinksw.com/virtrdf-data-formats#sql-varchar-uri	
+http://www.openlinksw.com/schemas/virtrdf#QuadMapFormat	http://www.openlinksw.com/virtrdf-data-formats#sql-varchar-uri-nullable	
+http://www.openlinksw.com/schemas/virtrdf#QuadMapFormat	http://www.openlinksw.com/virtrdf-data-formats#sql-varchar-literal	
+http://www.openlinksw.com/schemas/virtrdf#QuadMapFormat	http://www.openlinksw.com/virtrdf-data-formats#sql-varchar-literal-nullable	
+http://www.openlinksw.com/schemas/virtrdf#QuadMapFormat	http://www.openlinksw.com/virtrdf-data-formats#sql-longvarchar	
+http://www.openlinksw.com/schemas/virtrdf#QuadMapFormat	http://www.openlinksw.com/virtrdf-data-formats#sql-longvarchar-nullable	
+
+  { 
+    time      0.91% fanout         1 input         1 rows
+      clear: (<V set_ctr$61 in>)
+    s# 64 62 cluster outer seq start, set no <V set_ctr$61 in>    
+    save ctx:()
+      clear: (<V var2$29 rn>, <V var1$28 an>, <V set_no$30 i>, <V var2$53 a>, <V var1$51 a>)
+    s# 73 27 Subquery 27 
+      multistate set no = <V set_no$30 i>
+      { 
+        time        22% fanout      1000 input         1 rows
+        Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:   1.1e+07 Fanout:     1e+03
+          clear: (<V s_37_2_t0.S$32 rn>, <V s_37_2_t0.O$33 an>)
+          clear on continue: (<V s_37_2_t0.S$32 rn>, <V s_37_2_t0.O$33 an>)
+        s# 77 31 from DB.DBA.RDF_QUAD by RDF_QUAD    1.1e+07 rows   
+        Key RDF_QUAD  ASC  (<V s_37_2_t0.O$33 an>, <V s_37_2_t0.S$32 rn>)
+         inlined  P =  IRI_ID"...type" 
+        
+        time        74% fanout      0.96 input      1000 rows
+        
+        s# 88 35 Distinct (HASH) set no <r set_no$30 via  Set77>(<V s_37_2_t0.O$33 an>, <V s_37_2_t0.S$32 rn>)
+        time         2% fanout 0.0260417 input       960 rows
+          clear: (<V var2$29 rn>, <V var1$28 an>)$32 (35 ) $33 (35 ) 
+        s# 96 49 skip node  25  <none> <r set_no$30 via  Set88 Set77>
+        After code:
+          0: <V var1$28 an> :=  := artm <r s_37_2_t0.O$33 via  Set96 Set88>
+          4: <V var2$29 rn> :=  := artm <r s_37_2_t0.S$32 via  Set96 Set88>
+          8: BReturn 0
+        time      0.26% fanout         0 input        25 rows
+        
+        s# 73 41 Subquery Select(<V var1$28 an>, <V var2$29 rn>)
+          set no: <r set_no$30 via  Set96 Set88 Set77>
+      }
+    
+    After code:
+      0: <V var1$51 a> := Call __ro2sq (<V var1$28 an>)
+      5: <V var2$53 a> := Call __ro2sq (<V var2$29 rn>)
+      10: BReturn 0
+    time      0.21% fanout         0 input        25 rows
+    $51 (27 ) $53 (27 ) $61 (27 62 ) 
+    s# 113 55 Select (<V var1$51 a>, <V var2$53 a>)
+      set no: <r set_ctr$61 via  Set73>
+  }
+Warning: You might have a Cartesian product.
+
+
+
+ 1 msec 32% cpu,         4 rnd       998 seq         0% same seg        40% same pg 
+Compilation: 1 msec 0 reads         0% read 0 messages         0% clw

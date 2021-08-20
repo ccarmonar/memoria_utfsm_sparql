@@ -1,0 +1,52 @@
+
+  { 
+    time        29% fanout         1 input         1 rows
+    Subquery 27 
+      { 
+        time        18% fanout         1 input         1 rows
+        fork {
+            time        34% fanout         0 input         1 rows
+            END Node
+            After test:
+            0: if ( 0  = <DB_NULL>) then 5 else 4 unkn 5
+            4: BReturn 1
+            5: BReturn 0
+            time         0% fanout         0 input         0 rows
+            Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:   1.4e+02 Fanout:         0
+            RDF_QUAD   1.4e+02 rows(s_37_2_t0.S$35, s_37_2_t0.O$34)
+             inlined  P =  IRI_ID"...direct/P4009" 
+            
+            After code:
+            0: isnotnull$37 := Call isnotnull (s_37_2_t0.S$35)
+            5: BReturn 0
+            time         0% fanout         0 input         0 rows
+            Sort (s_37_2_t0.S$35, s_37_2_t0.O$34) -> (isnotnull$37)
+            
+          }
+        time        19% fanout         0 input         1 rows
+        group by read node  
+        (s_37_2_t0.S$35, s_37_2_t0.O$34, aggregate$41)
+        
+        After code:
+        0: __ro2sq$62 := Call __ro2sq (s_37_2_t0.O$34)
+        5: __id2in$64 := Call __id2in (s_37_2_t0.S$35)
+        10: var1$28 :=  := artm __id2in$64
+        14: var2$29 :=  := artm __ro2sq$62
+        18: var3$30 :=  := artm aggregate$41
+        22: BReturn 0
+        time         0% fanout         0 input         0 rows
+        Subquery Select(var1$28, var2$29, var3$30)
+      }
+    
+    After code:
+    0: var1$73 := Call __ro2sq (var1$28)
+    5: var2$75 := Call __ro2sq (var2$29)
+    10: var3$77 := Call __ro2sq (var3$30)
+    15: BReturn 0
+    time         0% fanout         0 input         0 rows
+    Select (var1$73, var2$75, var3$77)
+  }
+
+
+ 0 msec 1% cpu,         0 rnd         0 seq         0% same seg         0% same pg 
+Compilation: 2 msec 0 reads         0% read 0 messages         0% clw

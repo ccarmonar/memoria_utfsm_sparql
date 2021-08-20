@@ -1,0 +1,49 @@
+http://commons.wikimedia.org/wiki/Special:FilePath/Filarmonica%20de%20berlin%20interior.JPG	
+http://commons.wikimedia.org/wiki/Special:FilePath/La%20Fenice%20Opera%20House%20from%20the%20stage.jpg	
+http://commons.wikimedia.org/wiki/Special:FilePath/NiT%20classroom.jpg	
+http://commons.wikimedia.org/wiki/Special:FilePath/2-Bett-Krankenzimmer-2011-Dortmund.jpg	
+http://commons.wikimedia.org/wiki/Special:FilePath/Porters%20Lodge.jpg	
+http://commons.wikimedia.org/wiki/Special:FilePath/Ch%C3%A2teau%20de%20Mongenan%20Temple%20ma%C3%A7onnique.JPG	
+http://commons.wikimedia.org/wiki/Special:FilePath/Schockraum%20Uniklinik%20MA.jpg	
+http://commons.wikimedia.org/wiki/Special:FilePath/Schockraum1.JPG	
+http://commons.wikimedia.org/wiki/Special:FilePath/Casaperspectiva.jpg	
+http://commons.wikimedia.org/wiki/Special:FilePath/Courtroom%20European%20Court%20of%20Human%20Rights%2002.JPG	
+http://commons.wikimedia.org/wiki/Special:FilePath/Deutscher%20Bundestag%20Plenarsaal%20Seitenansicht.jpg	
+http://commons.wikimedia.org/wiki/Special:FilePath/BLW%20Operating%20Theatre.jpg	
+http://commons.wikimedia.org/wiki/Special:FilePath/Showroom.jpg	
+http://commons.wikimedia.org/wiki/Special:FilePath/SQ%20Lethal%20Injection%20Room.jpg	
+
+  { 
+    time     0.014% fanout         1 input         1 rows
+      clear: (<V set_ctr$41 in>)
+    s# 44 42 cluster outer seq start, set no <V set_ctr$41 in>    
+    save ctx:()
+    time       0.2% fanout        19 input         1 rows
+      clear: (<V s_37_4_t0.S$28 rn>)
+      clear on continue: (<V s_37_4_t0.S$28 rn>)
+    s# 53 27 from DB.DBA.RDF_QUAD by RDF_QUAD_POGS         19 rows   
+    Key RDF_QUAD_POGS  ASC  (<V s_37_4_t0.S$28 rn>)
+     P =  IRI_ID"...direct/P279"  ,  O =  IRI_ID"...Q180516" 
+    
+    time     1e+02% fanout  0.736842 input        19 rows
+      clear: (<V s_37_4_t1.O$31 an>, <V var1$33 a>)
+      clear on continue: (<V s_37_4_t1.O$31 an>, <V var1$33 a>)$28 () 
+    s# 63 30 from DB.DBA.RDF_QUAD by RDF_QUAD          1 rows   
+    Key RDF_QUAD  ASC  (<V s_37_4_t1.O$31 an>)
+     inlined  P =  IRI_ID"...direct/P18"  ,  S = <V s_37_4_t0.S$28 rn>
+    
+    After code:
+      0: <V var1$33 a> := Call __ro2sq (<V s_37_4_t1.O$31 an>)
+      5: BReturn 0
+    time    0.0024% fanout         0 input        14 rows
+    $33 () $41 (30 27 42 ) 
+    s# 73 35 Select (<V var1$33 a>)
+      set no: <r set_ctr$41 via  Set63 Set53>
+  }
+Warning: You might have a Cartesian product.
+
+
+
+ 26 msec 94% cpu,        34 rnd        20 seq   22.8571% same seg   34.2857% same pg 
+2 disk reads, 0 read ahead,   91.6852% wait
+Compilation: 2 msec 0 reads         0% read 0 messages         0% clw

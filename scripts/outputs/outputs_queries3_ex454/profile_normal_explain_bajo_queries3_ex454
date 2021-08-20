@@ -1,0 +1,72 @@
+http://schema.org/description	232010293	
+http://www.w3.org/2000/01/rdf-schema#label	41849359	
+http://www.w3.org/2004/02/skos/core#prefLabel	41849160	
+http://schema.org/name	41849156	
+http://www.wikidata.org/prop/direct/P2860	24989106	
+http://www.w3.org/1999/02/22-rdf-syntax-ns#type	12187522	
+http://www.w3.org/2004/02/skos/core#altLabel	8591544	
+http://www.wikidata.org/prop/direct/P2093	7966413	
+http://schema.org/dateModified	6232565	
+http://schema.org/version	6232531	
+http://schema.org/about	6232531	
+http://www.wikidata.org/prop/direct/P31	6081028	
+http://www.wikidata.org/prop/direct/P577	2194126	
+http://www.wikidata.org/prop/direct/P1476	2188242	
+http://www.wikidata.org/prop/direct/P1433	2097715	
+http://www.wikidata.org/prop/direct/P304	2009352	
+http://www.wikidata.org/prop/direct/P478	2004264	
+http://www.wikidata.org/prop/direct/P698	1999427	
+http://www.wikidata.org/prop/direct/P433	1756712	
+http://www.wikidata.org/prop/direct-normalized/P356	1603735	
+
+  { 
+    time   8.2e-06% fanout         1 input         1 rows
+    Subquery 27 
+      { 
+        time   5.6e-06% fanout         1 input         1 rows
+        fork {
+            time   5.5e-06% fanout         1 input         1 rows
+            fork {
+                time        22% fanout 4.8999e+08 input         1 rows
+                RDF_QUAD_POGS   7.3e+07 rows(s_7_2_t0.P$32)
+                
+                
+                After code:
+                0: isnotnull$35 := Call isnotnull (s_7_2_t0.P$32)
+                5: BReturn 0
+                time        78% fanout         0 input 4.8999e+08 rows
+                Sort (s_7_2_t0.P$32) -> (isnotnull$35)
+                
+              }
+            time    0.0015% fanout      8001 input         1 rows
+            group by read node  
+            (s_7_2_t0.P$32, aggregate$39)
+            time      0.22% fanout         0 input      8001 rows
+            Sort (aggregate$39) -> (s_7_2_t0.P$32)
+            
+          }
+        time     0.005% fanout      1000 input         1 rows
+        Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:         0 Fanout:     1e+03
+        Key from temp (s_7_2_t0.P$32, aggregate$39)
+        
+        
+        After code:
+        0: __id2in$73 := Call __id2in (s_7_2_t0.P$32)
+        5: p$28 :=  := artm __id2in$73
+        9: pTotal$29 :=  := artm aggregate$39
+        13: BReturn 0
+        time   1.5e-06% fanout         0 input      1000 rows
+        Subquery Select(p$28, pTotal$29)
+      }
+    
+    After code:
+    0: p$82 := Call __ro2sq (p$28)
+    5: pTotal$84 := Call __ro2sq (pTotal$29)
+    10: BReturn 0
+    time   1.6e-06% fanout         0 input      1000 rows
+    Select (p$82, pTotal$84)
+  }
+
+
+ 4773 msec 499% cpu,     14059 rnd 4.89469e+08 seq         0% same seg         0% same pg 
+Compilation: 1 msec 0 reads         0% read 0 messages         0% clw

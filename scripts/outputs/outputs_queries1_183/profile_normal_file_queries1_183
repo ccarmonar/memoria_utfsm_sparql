@@ -1,0 +1,49 @@
+
+  { 
+    time        10% fanout         1 input         1 rows
+      clear: (<V set_ctr$49 in>)
+    s# 52 50 cluster outer seq start, set no <V set_ctr$49 in>    
+    save ctx:()
+    time        90% fanout         0 input         1 rows
+    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:   1.4e-07 Fanout:         0
+      clear: (<V s_37_5_t1.O$28 an>, <V s_37_5_t1.S$29 rn>)
+      clear on continue: (<V s_37_5_t1.O$28 an>, <V s_37_5_t1.S$29 rn>)
+    s# 61 27 from DB.DBA.RDF_QUAD by RDF_QUAD    1.4e-07 rows   
+    Key RDF_QUAD  ASC  (<V s_37_5_t1.S$29 rn>, <V s_37_5_t1.O$28 an>)
+     P =  IRI_ID"...long"  ,  S <  IRI_ID"...nodeID://b0" 
+    row specs:  S <  IRI_ID"...nodeID://b0" 
+    
+    time         0% fanout         0 input         0 rows
+    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:   4.4e-09 Fanout:         0
+      clear: (<V s_37_5_t0.O$32 an>, <V s_37_5_t0.S$33 rn>)
+      clear on continue: (<V s_37_5_t0.S$33 rn>, <V s_37_5_t0.O$32 an>)$76 (31 ) $29 () 
+    s# 72 31 from DB.DBA.RDF_QUAD by RDF_QUAD    4.4e-09 rows   
+    Key RDF_QUAD  ASC  (<V s_37_5_t0.S$33 rn>, <V s_37_5_t0.O$32 an>)
+     inlined  P =  IRI_ID"...lat"  ,  S = <v k_s_37_5_t1.S$76 Set78 rn>
+    row specs:  S <  IRI_ID"...nodeID://b0" 
+    vector param casts: <V s_37_5_t1.S$29 rn>-> <v k_s_37_5_t1.S$76 Set78 rn>
+    
+    time         0% fanout         0 input         0 rows
+      clear: (<V one_of_these$35 i>, <V var2$41 a>, <V var1$39 a>, <V var3$37 a>)$32 () $33 () $28 (31 ) 
+    s# 92 87 END Node
+    After test:
+      0: <V one_of_these$35 i> := Call one_of_these (<V s_37_5_t0.S$33 rn>,  IRI_ID"...Bologna" ,  IRI_ID"...Bergamo" ,  IRI_ID"...University_of_Bologna" ,  IRI_ID"...Bononia_University_Press" ,  IRI_ID"...Frederick_I,_Holy_Roman_Emperor" ,  IRI_ID"...Giosuè_Carducci" ,  IRI_ID"...Nation_(university)" ,  IRI_ID"...Medieval_Roman_law" ,  IRI_ID"...Giacomo_Luigi_Ciamician" ,  IRI_ID"...FilCom_Center" ,  IRI_ID"...Guglielmo_Marconi" ,  IRI_ID"...Irnerius" ,  IRI_ID"...Glossator" )
+      5: if ( 0  < <V one_of_these$35 i>) then 9 else 10 unkn 10
+      9: BReturn 1
+      10: BReturn 0
+    After code:
+      0: <V var3$37 a> := Call __ro2sq (<r s_37_5_t1.O$28 via  Set92 Set72 Set78>)
+      5: <V var1$39 a> := Call __id2in (<r s_37_5_t0.S$33 via  Set92>)
+      10: <V var2$41 a> := Call __ro2sq (<r s_37_5_t0.O$32 via  Set92>)
+      15: BReturn 0
+    time         0% fanout         0 input         0 rows
+    $37 (87 ) $39 (87 ) $41 (87 ) $49 (87 31 27 50 ) 
+    s# 100 43 Select (<V var1$39 a>, <V var2$41 a>, <V var3$37 a>)
+      set no: <r set_ctr$49 via  Set92 Set72 Set78 Set61>
+  }
+Warning: You might have a Cartesian product.
+
+
+
+ 0 msec 0% cpu,         1 rnd         0 seq         0% same seg         0% same pg 
+Compilation: 24 msec 0 reads         0% read 0 messages         0% clw

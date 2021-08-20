@@ -1,0 +1,71 @@
+SELECT __id2in ( "s_37_29_t2"."S") AS "var1",
+  __ro2sq ( "s_37_29_t8"."O") AS "var2",
+  __ro2sq ( "s_37_29_t9"."O") AS "var3",
+  __ro2sq ( "s_37_29_t4"."O") AS "var4",
+  __ro2sq ( "s_37_29_t5"."O") AS "var5"
+FROM DB.DBA.RDF_QUAD AS "s_37_3_t0"
+  INNER JOIN (
+   SELECT TRANSITIVE T_OUT(2) T_IN(1) T_MIN( 0) T_NO_CYCLES "s_37_9_t1"."S" AS "_::trans_subj_37_5",
+      "s_37_9_t1"."O" AS "_::trans_obj_37_6"
+    FROM DB.DBA.RDF_QUAD AS "s_37_9_t1"
+    WHERE
+      "s_37_9_t1"."P" = __i2idn ( __bft( 'http://www.wikidata.org/prop/direct/P279' , 1))
+OPTION (QUIETCAST)
+    ) AS "s_37_12"
+  ON (
+    "s_37_3_t0"."O" = "s_37_12"."_::trans_subj_37_5")
+  INNER JOIN DB.DBA.RDF_QUAD AS "s_37_29_t2"
+  ON (
+    "s_37_29_t2"."S" = "s_37_3_t0"."S")
+  INNER JOIN DB.DBA.RDF_QUAD AS "s_37_29_t3"
+  ON (
+    "s_37_29_t2"."O" = "s_37_29_t3"."S")
+  INNER JOIN DB.DBA.RDF_QUAD AS "s_37_29_t4"
+  ON (
+    "s_37_29_t3"."O" = "s_37_29_t4"."S")
+  INNER JOIN DB.DBA.RDF_QUAD AS "s_37_29_t5"
+  ON (
+    "s_37_29_t3"."O" = "s_37_29_t5"."S"
+    AND 
+    "s_37_29_t4"."S" = "s_37_29_t5"."S")
+  INNER JOIN DB.DBA.RDF_QUAD AS "s_37_29_t6"
+  ON (
+    "s_37_29_t2"."S" = "s_37_29_t6"."S"
+    AND 
+    "s_37_29_t6"."S" = "s_37_3_t0"."S")
+  INNER JOIN DB.DBA.RDF_QUAD AS "s_37_29_t7"
+  ON (
+    "s_37_29_t6"."O" = "s_37_29_t7"."S")
+  INNER JOIN DB.DBA.RDF_QUAD AS "s_37_29_t8"
+  ON (
+    "s_37_29_t7"."O" = "s_37_29_t8"."S")
+  INNER JOIN DB.DBA.RDF_QUAD AS "s_37_29_t9"
+  ON (
+    "s_37_29_t7"."O" = "s_37_29_t9"."S"
+    AND 
+    "s_37_29_t8"."S" = "s_37_29_t9"."S")
+WHERE
+  "s_37_3_t0"."P" = __i2idn ( __bft( 'http://www.wikidata.org/prop/direct/P31' , 1))
+  AND 
+  isiri_id ( "s_37_3_t0"."O")
+  AND 
+  "s_37_29_t2"."P" = __i2idn ( __bft( 'http://www.wikidata.org/prop/P2048' , 1))
+  AND 
+  "s_37_29_t3"."P" = __i2idn ( __bft( 'http://www.wikidata.org/prop/statement/value/P2048' , 1))
+  AND 
+  "s_37_29_t4"."P" = __i2idn ( __bft( 'http://wikiba.se/ontology#quantityAmount' , 1))
+  AND 
+  "s_37_29_t5"."P" = __i2idn ( __bft( 'http://wikiba.se/ontology#quantityUnit' , 1))
+  AND 
+  "s_37_29_t6"."P" = __i2idn ( __bft( 'http://www.wikidata.org/prop/P2049' , 1))
+  AND 
+  "s_37_29_t7"."P" = __i2idn ( __bft( 'http://www.wikidata.org/prop/statement/value/P2049' , 1))
+  AND 
+  "s_37_29_t8"."P" = __i2idn ( __bft( 'http://wikiba.se/ontology#quantityAmount' , 1))
+  AND 
+  "s_37_29_t9"."P" = __i2idn ( __bft( 'http://wikiba.se/ontology#quantityUnit' , 1))
+  AND 
+ ( "s_37_12"."_::trans_obj_37_6" =  __i2idn ( __bft( 'http://www.wikidata.org/entity/Q14660' , 1)))
+  AND 
+  1
+OPTION (QUIETCAST)

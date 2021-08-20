@@ -1,0 +1,59 @@
+
+  { 
+    time       2.1% fanout         1 input         1 rows
+      clear: (<V set_ctr$52 in>)
+    s# 55 53 cluster outer seq start, set no <V set_ctr$52 in>    
+    save ctx:()
+    time        31% fanout         1 input         1 rows
+      clear: (<V t2.O$28 an>)
+      clear on continue: (<V t2.O$28 an>)
+    s# 64 27 from DB.DBA.RDF_QUAD by RDF_QUAD          2 rows   
+    Key RDF_QUAD  ASC  (<V t2.O$28 an>)
+     inlined  P =  IRI_ID"...direct/P1559"  ,  S =  IRI_ID"...Q1382212" 
+    
+    time        67% fanout         0 input         1 rows
+    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:        68 Fanout:         0
+    Precode:
+      0: <V __rdf_strsqlval$30 s> := Call __rdf_strsqlval (<V t2.O$28 an>,  0 )
+      5: <V var1$32 a> := Call __ro2sq (<V t2.O$28 an>)
+      10: BReturn 0
+      clear: (<V t3.S$35 rn>, <V var1$32 a>, <V __rdf_strsqlval$30 s>)
+      clear on continue: (<V t3.S$35 rn>)$78 (34 ) $28 () 
+    s# 74 34 from DB.DBA.RDF_QUAD by RDF_QUAD_POGS         68 rows   
+    Key RDF_QUAD_POGS  ASC  (<V t3.S$35 rn>)
+     P =  IRI_ID"...direct/P2093"  ,  O = <v cast$78 Set80 an>
+    vector param casts: <V t2.O$28 an>-> <v cast$78 Set80 an>
+    
+    time         0% fanout         0 input         0 rows
+    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:       1.8 Fanout:         0
+    Precode:
+      0: <V var2$37 a> := Call __id2in (<V t3.S$35 rn>)
+      5: BReturn 0
+      clear: (<V t4.O$40 an>, <V var2$37 a>)
+      clear on continue: (<V t4.O$40 an>)$35 () 
+    s# 88 39 from DB.DBA.RDF_QUAD by RDF_QUAD        1.8 rows   
+    Key RDF_QUAD  ASC  (<V t4.O$40 an>)
+     inlined  P =  IRI_ID"...direct/P2093"  ,  S = <V t3.S$35 rn>
+    
+    time         0% fanout         0 input         0 rows
+      clear: (<V __rdf_strsqlval$42 s>, <V var3$44 a>)$40 () $30 (39 34 ) 
+    s# 103 98 END Node
+    After test:
+      0: <V __rdf_strsqlval$42 s> := Call __rdf_strsqlval (<V t4.O$40 an>,  0 )
+      5: if (<V __rdf_strsqlval$42 s> = <r __rdf_strsqlval$30 via  Set88 Set74 Set80>) then 9 else 10 unkn 10
+      9: BReturn 1
+      10: BReturn 0
+    After code:
+      0: <V var3$44 a> := Call __ro2sq (<r t4.O$40 via  Set103>)
+      5: BReturn 0
+    time         0% fanout         0 input         0 rows
+    $32 (98 39 34 ) $37 (98 39 ) $44 (98 ) $52 (98 39 34 27 53 ) 
+    s# 111 46 Select (<r var1$32 via  Set103 Set88 Set74 Set80>, <r var2$37 via  Set103 Set88>, <V var3$44 a>)
+      set no: <r set_ctr$52 via  Set103 Set88 Set74 Set80 Set64>
+  }
+Warning: You might have a Cartesian product.
+
+
+
+ 0 msec 0% cpu,         4 rnd         0 seq         0% same seg         0% same pg 
+Compilation: 21 msec 0 reads         0% read 0 messages         0% clw

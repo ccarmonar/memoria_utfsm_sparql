@@ -1,0 +1,91 @@
+http://www.wikidata.org/entity/Q3908509	
+http://www.wikidata.org/entity/Q7713108	
+http://www.wikidata.org/entity/Q135574	
+http://www.wikidata.org/entity/Q27043460	
+http://www.wikidata.org/entity/Q11907319	
+http://www.wikidata.org/entity/Q7290612	
+http://www.wikidata.org/entity/Q12340342	
+http://www.wikidata.org/entity/Q3520551	
+http://www.wikidata.org/entity/Q7767996	
+http://www.wikidata.org/entity/Q16979501	
+http://www.wikidata.org/entity/Q7750289	
+http://www.wikidata.org/entity/Q1128961	
+http://www.wikidata.org/entity/Q6667101	
+http://www.wikidata.org/entity/Q22906279	
+http://www.wikidata.org/entity/Q16250251	
+http://www.wikidata.org/entity/Q28682298	
+http://www.wikidata.org/entity/Q29438355	
+http://www.wikidata.org/entity/Q2971907	
+http://www.wikidata.org/entity/Q79496289	
+http://www.wikidata.org/entity/Q47505958	
+
+  { 
+    time     0.047% fanout         1 input         1 rows
+      clear: (<V set_ctr$84 in>)
+    s# 87 85 cluster outer seq start, set no <V set_ctr$84 in>    
+    save ctx:()
+    time     0.046% fanout         1 input         1 rows
+    Precode:
+      0: <V __all_eq$27 x> := Call __all_eq ( IRI_ID"...Q11424" )
+      5: BReturn 0
+      clear: (<V set_no$31 i>, <V __all_eq$27 x>)
+    s# 96 75 cluster outer seq start, set no <V set_no$31 i>    
+    save ctx:()
+      clear: (<V _::trans_obj_37_6$34 an>, <V _::trans_subj_37_5$33 rn>)
+      clear on continue: (<V _::trans_obj_37_6$34 an>, <V _::trans_subj_37_5$33 rn>)$27 (75 ) 
+    s# 105 32 Transitive dt dir 2, input: (<r __all_eq$27 via  Set96>)
+      input shadow: (<V __all_eq$109 x>)
+      output: (<V _::trans_subj_37_5$33 rn>)
+      { 
+        time       3.7% fanout  0.933333 input        15 rows
+          clear: (<V s_37_9_t1.O$39 an>, <V s_37_9_t1.S$40 rn>, <V _::trans_obj_37_6$34 an>, <V _::trans_subj_37_5$33 rn>)
+          clear on continue: (<V _::trans_subj_37_5$33 rn>, <V _::trans_obj_37_6$34 an>, <V s_37_9_t1.S$40 rn>, <V s_37_9_t1.O$39 an>)$109 (38 ) $115 (38 ) 
+        s# 111 38 from DB.DBA.RDF_QUAD by RDF_QUAD_POGS        3.8 rows   
+        Key RDF_QUAD_POGS  ASC  (<V s_37_9_t1.S$40 rn>, <V s_37_9_t1.O$39 an>)
+         P =  IRI_ID"...direct/P279"  ,  O = <v k___all_eq$115 Set117 an>
+        vector param casts: <V __all_eq$109 x>-> <v k___all_eq$115 Set117 an>
+        
+        After code:
+          0: <V _::trans_subj_37_5$33 rn> :=  := artm <V s_37_9_t1.S$40 rn>
+          4: <V _::trans_obj_37_6$34 an> :=  := artm <V s_37_9_t1.O$39 an>
+          8: BReturn 0
+        time     0.025% fanout         0 input        14 rows
+        $34 () 
+        s# 128 42 Subquery Select(<V _::trans_subj_37_5$33 rn>, <V _::trans_obj_37_6$34 an>)
+          set no: <r step_set$35 via  Set111 Set117>
+      }
+    time       2.4% fanout   66.6667 input        15 rows
+      clear: (<V s_37_3_t0.S$60 rn>)
+      clear on continue: (<V s_37_3_t0.S$60 rn>)$33 () $139 (59 ) 
+    s# 135 59 from DB.DBA.RDF_QUAD by RDF_QUAD_POGS      1e+02 rows   
+    Key RDF_QUAD_POGS  ASC  (<V s_37_3_t0.S$60 rn>)
+     P =  IRI_ID"...direct/P31"  ,  O = <v cast$139 Set141 an>
+    row specs:  O LIKE <c Tó>
+    vector param casts: <V _::trans_subj_37_5$33 rn>-> <v cast$139 Set141 an>
+    
+    time       3.8% fanout         1 input      1000 rows
+      clear: (<V var1$30 rn>)$60 () 
+    s# 149 62 Distinct (HASH) set no <r set_no$31 via  Set135 Set141 Set105>(<V s_37_3_t0.S$60 rn>)
+    After code:
+      0: <V var1$30 rn> :=  := artm <r s_37_3_t0.S$60 via  Set149>
+      4: BReturn 0
+    time        86% fanout         1 input      1000 rows
+      clear: (<V var1$76 a>)$31 (62 59 32 75 ) $30 (62 ) 
+    s# 158 68 Subquery Select(<V var1$30 rn>)
+      set no: <r set_no$31 via  Set149 Set135 Set141 Set105>
+    After code:
+      0: <V var1$76 a> := Call __ro2sq (<V var1$30 rn>)
+      5: BReturn 0
+    time     0.015% fanout         0 input      1000 rows
+    $76 (68 ) $84 (68 62 59 32 75 85 ) 
+    s# 165 78 Select (<V var1$76 a>)
+      set no: <r set_ctr$84 via  Set158>
+  }
+Warning: You might have a Cartesian product.
+
+Warning: You might have a Cartesian product.
+
+
+
+ 8 msec 71% cpu,      1020 rnd      1008 seq  0.489716% same seg   81.3908% same pg 
+Compilation: 2 msec 0 reads         0% read 0 messages         0% clw

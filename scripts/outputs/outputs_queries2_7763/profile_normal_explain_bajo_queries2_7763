@@ -1,0 +1,55 @@
+15503	
+9729	
+4538	
+70225	
+504020	
+3241	
+28753	
+86421	
+70525	
+40519	
+368	
+53760	
+80278	
+113251	
+20051	
+127159	
+74821	
+4741	
+69799	
+3377	
+
+  { 
+    time     0.065% fanout         1 input         1 rows
+    Subquery 27 
+      { 
+        time     0.047% fanout         1 input         1 rows
+        fork {
+            time       3.2% fanout      1200 input         1 rows
+            RDF_QUAD   1.2e+03 rows(s_37_2_t0.O$31)
+             inlined  P =  IRI_ID"...direct/P2601" 
+            time       6.1% fanout         0 input      1200 rows
+            Sort (s_37_2_t0.O$31)
+          }
+        time        91% fanout      1000 input         1 rows
+        group by read node  
+        (s_37_2_t0.O$31)
+        
+        After code:
+        0: __ro2sq$54 := Call __ro2sq (s_37_2_t0.O$31)
+        5: var1$28 :=  := artm __ro2sq$54
+        9: BReturn 0
+        time     0.013% fanout         0 input      1000 rows
+        Subquery Select(var1$28)
+      }
+    
+    After code:
+    0: var1$63 := Call __ro2sq (var1$28)
+    5: BReturn 0
+    time    0.0073% fanout         0 input      1000 rows
+    Select (var1$63)
+  }
+
+
+ 5 msec 79% cpu,      1001 rnd      1198 seq         0% same seg   20.8583% same pg 
+Compilation: 1 msec 0 reads         0% read 0 messages         0% clw

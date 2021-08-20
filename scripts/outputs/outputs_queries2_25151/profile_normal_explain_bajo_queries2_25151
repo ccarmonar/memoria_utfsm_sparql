@@ -1,0 +1,86 @@
+
+  { 
+    time      0.52% fanout         1 input         1 rows
+    time      0.45% fanout         1 input         1 rows
+    Precode:
+      0: __all_eq$27 := Call __all_eq ( IRI_ID"...Q3995" )
+      5: BReturn 0
+    Transitive dt dir 2, input: (__all_eq$27)
+      input shadow: (__all_eq$155)
+      output: (_::trans_subj_37_6$37)
+      { 
+        time        33% fanout         1 input        13 rows
+        RDF_QUAD_POGS       9.6 rows(t6.S$44, t6.O$43)
+         P =  IRI_ID"...direct/P131"  ,  O = k___all_eq$161
+        
+        After code:
+        0: _::trans_subj_37_6$37 :=  := artm t6.S$44
+        4: _::trans_obj_37_7$38 :=  := artm t6.O$43
+        8: BReturn 0
+        time      0.18% fanout         0 input        13 rows
+        Subquery Select(_::trans_subj_37_6$37, _::trans_obj_37_7$38)
+      }
+    time        24% fanout 0.0714286 input        14 rows
+    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:       4.1 Fanout:     0.071
+    RDF_QUAD_POGS       4.1 rows(t4.S$65, t4.O$64)
+     P =  IRI_ID"...direct/P19"  ,  O = cast$185 O LIKE <c Tó>
+    time       4.4% fanout         1 input         1 rows
+    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:     0.091 Fanout:         1
+    RDF_QUAD     0.091 rows(t11.S$68)
+     inlined  P =  IRI_ID"...direct/P31"  ,  S = t4.S$65 ,  O =  IRI_ID"...Q5" 
+    time         4% fanout         0 input         1 rows
+    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:    0.0013 Fanout:         0
+    RDF_QUAD    0.0013 rows(t3.S$71)
+     inlined  P =  IRI_ID"...direct/P106"  ,  S = k_t4.S$210 ,  O =  IRI_ID"...Q82594" 
+    time         0% fanout         0 input         0 rows
+    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:      0.17 Fanout:         0
+    RDF_QUAD_POGS      0.17 rows(t2.S$74)
+     inlined  P =  IRI_ID"...direct/P21"  ,  O =  IRI_ID"...Q6581072"  ,  S = t3.S$71
+    time         0% fanout         0 input         0 rows
+    outer {
+        time         0% fanout         0 input         0 rows
+        Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:         1 Fanout:         0
+        RDF_QUAD         1 rows(t10.O$77)
+         inlined  P =  IRI_ID"...direct/P18"  ,  S = k_t4.S$243
+        time         0% fanout         0 input         0 rows
+      } /* end of outer */
+    set_ctr$80
+     out: (t10.O$77)
+     shadow: ( <none> )
+    time         0% fanout         0 input         0 rows
+    outer {
+        time         0% fanout         0 input         0 rows
+        Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:       1.1 Fanout:         0
+        RDF_QUAD       1.1 rows(t8.O$90)
+         inlined  P =  IRI_ID"...direct/P625"  ,  S = k_t4.O$274
+        time         0% fanout         0 input         0 rows
+      } /* end of outer */
+    set_ctr$93
+     out: (t8.O$90)
+     shadow: ( <none> )
+    time         0% fanout         0 input         0 rows
+    Distinct (t11.S$68, t10.O$77, t4.O$64, t8.O$90)
+    
+    After code:
+    0: var1$30 :=  := artm t11.S$68
+    4: var1Label$31 :=  := artm <DB_NULL>
+    8: var2$32 :=  := artm t10.O$77
+    12: var3$33 :=  := artm t4.O$64
+    16: var4$34 :=  := artm t8.O$90
+    20: BReturn 0
+    time         0% fanout         0 input         0 rows
+    Subquery Select(var1$30, var1Label$31, var2$32, var3$33, var4$34)
+    
+    After code:
+    0: var1$116 := Call __ro2sq (var1$30)
+    5: var2$118 := Call __ro2sq (var2$32)
+    10: var3$120 := Call __ro2sq (var3$33)
+    15: var4$122 := Call __ro2sq (var4$34)
+    20: BReturn 0
+    time         0% fanout         0 input         0 rows
+    Select (var1$116, var1Label$31, var2$118, var3$120, var4$122)
+  }
+
+
+ 0 msec 3% cpu,        29 rnd        12 seq        20% same seg        40% same pg 
+Compilation: 9 msec 0 reads         0% read 0 messages         0% clw

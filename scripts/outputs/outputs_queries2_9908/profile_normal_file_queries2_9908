@@ -1,0 +1,51 @@
+Error: 22023: SL001: The SPARQL 1.1 function CONTAINS() needs a string value as second argument
+  { 
+    time       3.8% fanout         1 input         1 rows
+      clear: (<V set_ctr$50 in>)
+    s# 53 51 cluster outer seq start, set no <V set_ctr$50 in>    
+    save ctx:()
+    time        96% fanout        81 input         1 rows
+    Precode:
+      0: <V DB.DBA.RDF_MAKE_LONG_OF_SQLVAL$27 a> := Call DB.DBA.RDF_MAKE_LONG_OF_SQLVAL (<c string1>)
+      7: BReturn 0
+      clear: (<V s_37_4_t0.S$30 rn>, <V s_37_4_t0.O$31 an>, <V DB.DBA.RDF_MAKE_LONG_OF_SQLVAL$27 a>)
+      clear on continue: (<V s_37_4_t0.O$31 an>, <V s_37_4_t0.S$30 rn>)
+    s# 62 29 from DB.DBA.RDF_QUAD by RDF_QUAD         80 rows   
+    Key RDF_QUAD  ASC  (<V s_37_4_t0.O$31 an>, <V s_37_4_t0.S$30 rn>)
+     inlined  P =  IRI_ID"...direct/P1628" 
+    
+    time         0% fanout         0 input        81 rows
+      clear: (<V rdf_contains_impl$35 i>, <V __ro2lo$33 a>)$27 (29 ) 
+    s# 78 73 END Node
+    After test:
+      0: <V __ro2lo$33 a> := Call __ro2lo (<V s_37_4_t0.O$31 an>)
+      5: <V rdf_contains_impl$35 i> := Call rdf_contains_impl (<r DB.DBA.RDF_MAKE_LONG_OF_SQLVAL$27 via  Set62>, <V __ro2lo$33 a>)
+      10: if ( 0  = <V rdf_contains_impl$35 i>) then 15 else 14 unkn 15
+      14: BReturn 1
+      15: BReturn 0
+    time         0% fanout         0 input         0 rows
+    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:         1 Fanout:         0
+      clear: (<V s_37_4_t1.O$38 an>, <V var1$42 a>, <V var2$40 a>)
+      clear on continue: (<V var2$40 a>, <V var1$42 a>, <V s_37_4_t1.O$38 an>)$31 (73 ) $90 (37 ) $30 (73 ) 
+    s# 86 37 from DB.DBA.RDF_QUAD by RDF_QUAD          1 rows   
+    Key RDF_QUAD  ASC  (<V s_37_4_t1.O$38 an>)
+     inlined  P =  IRI_ID"...directClaim"  ,  S = <v k_s_37_4_t0.S$90 Set92 rn>
+    vector param casts: <r s_37_4_t0.S$30 via  Set78>-> <v k_s_37_4_t0.S$90 Set92 rn>
+    
+    After code:
+      0: <V var2$40 a> := Call __ro2sq (<r s_37_4_t0.O$31 via  Set86 Set92 Set78>)
+      5: <V var1$42 a> := Call __ro2sq (<V s_37_4_t1.O$38 an>)
+      10: BReturn 0
+    time         0% fanout         0 input         0 rows
+    $40 () $42 () $50 (37 73 29 51 ) 
+    s# 100 44 Select (<V var1$42 a>, <V var2$40 a>)
+      set no: <r set_ctr$50 via  Set86 Set92 Set78 Set62>
+  }
+Warning: You might have a Cartesian product.
+
+Warning: You might have a Cartesian product.
+
+
+
+ 27 msec 94% cpu,         1 rnd        80 seq         0% same seg         0% same pg 
+Compilation: 2 msec 0 reads         0% read 0 messages         0% clw

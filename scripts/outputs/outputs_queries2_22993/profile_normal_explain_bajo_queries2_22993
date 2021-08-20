@@ -1,0 +1,69 @@
+http://www.wikidata.org/entity/Q20583901	AZ 5400	
+http://www.wikidata.org/entity/Q31728404	৪২০৪ / ৪২২২	
+http://www.wikidata.org/entity/Q31728293	৪২১২	
+http://www.wikidata.org/entity/Q31728399	৪২২২	
+
+  { 
+    time    0.0006% fanout         1 input         1 rows
+    Subquery 27 
+      { 
+        time   0.00045% fanout         1 input         1 rows
+        fork {
+            time      0.99% fanout    152758 input         1 rows
+            RDF_QUAD_POGS   6.1e+04 rows(s_37_6_t1.S$33, s_37_6_t1.O$32)
+             inlined  P =  IRI_ID"...direct/P281" 
+            time        84% fanout 2.61852e-05 input    152758 rows
+            END Node
+            After test:
+            0: __ro2sq$35 := Call __ro2sq (s_37_6_t1.O$32)
+            5: rdf_regex_impl$37 := Call rdf_regex_impl (__ro2sq$35, <c ^[0-9]{5}NULLstring1>)
+            10: if ( 0  = rdf_regex_impl$37) then 14 else 37 unkn 37
+            14: _cvt$39 := Call _cvt (<tag 193 flag 0>, __ro2sq$35)
+            19: if (_cvt$39  LIKE  <c %string2%>) then 37 else 23 unkn 37
+            23: if (  { 
+                time      0.18% fanout         1 input    152758 rows
+                time        14% fanout   1.01773 input    152758 rows
+                RDF_QUAD         1 rows()
+                 inlined  P =  IRI_ID"...direct/P17"  ,  S = k_s_37_6_t1.S$149
+                time      0.14% fanout         0 input    155466 rows
+                Subquery Select( <none> )
+              }
+            ) then 37 else 27 unkn 37
+            27: rdf_regex_impl$55 := Call rdf_regex_impl (__ro2sq$35, <c [^0-9]>)
+            32: if ( 0  = rdf_regex_impl$55) then 37 else 36 unkn 37
+            36: BReturn 1
+            37: BReturn 0
+            time     0.029% fanout         1 input         4 rows
+            Distinct (s_37_6_t1.S$33, s_37_6_t1.O$32)
+            time     0.029% fanout         0 input         4 rows
+            Precode:
+              0: __ro2sq$63 := Call __ro2sq (s_37_6_t1.O$32)
+              5: BReturn 0
+            Sort (__ro2sq$63) -> (s_37_6_t1.S$33)
+            
+          }
+        time     0.019% fanout         4 input         1 rows
+        Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:         0 Fanout:         4
+        Key from temp (s_37_6_t1.S$33, __ro2sq$63)
+        
+        
+        After code:
+        0: __id2in$78 := Call __id2in (s_37_6_t1.S$33)
+        5: var1$28 :=  := artm __id2in$78
+        9: var2$29 :=  := artm __ro2sq$63
+        13: BReturn 0
+        time   5.3e-05% fanout         0 input         4 rows
+        Subquery Select(var1$28, var2$29)
+      }
+    
+    After code:
+    0: var1$87 := Call __ro2sq (var1$28)
+    5: var2$89 := Call __ro2sq (var2$29)
+    10: BReturn 0
+    time   7.5e-05% fanout         0 input         4 rows
+    Select (var1$87, var2$89)
+  }
+
+
+ 388 msec 99% cpu,    305406 rnd    155432 seq   47.8627% same seg   34.4334% same pg 
+Compilation: 1 msec 0 reads         0% read 0 messages         0% clw

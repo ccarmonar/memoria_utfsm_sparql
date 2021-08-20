@@ -1,0 +1,52 @@
+
+  { 
+    time       2.4% fanout         1 input         1 rows
+      clear: (<V set_ctr$49 in>)
+    s# 52 50 cluster outer seq start, set no <V set_ctr$49 in>    
+    save ctx:()
+    time        98% fanout         0 input         1 rows
+    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:   1.4e-07 Fanout:         0
+    Precode:
+      0: <V prop/statement/P2046$27 r> := Call __i2idn (<tag 182 flag 1 c http://www.wikidata.org/prop/statement/P2046>)
+      5: BReturn 0
+      clear: (<V s_37_6_t1.O$30 an>, <V s_37_6_t1.S$31 rn>, <V prop/statement/P2046$27 r>)
+      clear on continue: (<V s_37_6_t1.S$31 rn>, <V s_37_6_t1.O$30 an>)$65 (29 ) $27 (29 ) 
+    s# 61 29 from DB.DBA.RDF_QUAD by RDF_QUAD_POGS    1.4e-07 rows   
+    Key RDF_QUAD_POGS  ASC  (<V s_37_6_t1.S$31 rn>, <V s_37_6_t1.O$30 an>)
+     inlined  P = <v k_prop/statement/P2046$65 Set67 rn>
+    vector param casts: <V prop/statement/P2046$27 r>-> <v k_prop/statement/P2046$65 Set67 rn>
+    
+    time         0% fanout         0 input         0 rows
+    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:   1.4e-07 Fanout:         0
+      clear: (<V s_37_6_t2.S$34 rn>)
+      clear on continue: (<V s_37_6_t2.S$34 rn>)
+    s# 76 33 from DB.DBA.RDF_QUAD by RDF_QUAD_POGS    1.4e-07 rows   
+    Key RDF_QUAD_POGS  ASC  (<V s_37_6_t2.S$34 rn>)
+     inlined  P =  IRI_ID"...qualifier/P143"  ,  O =  IRI_ID"...Q465"  ,  S = <V s_37_6_t1.S$31 rn>
+    
+    time         0% fanout         0 input         0 rows
+    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:   1.4e-07 Fanout:         0
+      clear: (<V s_37_6_t0.S$37 rn>, <V var1$41 a>, <V var2$39 a>)
+      clear on continue: (<V var2$39 a>, <V var1$41 a>, <V s_37_6_t0.S$37 rn>)$31 (33 ) $90 (36 ) $30 (33 ) 
+    s# 86 36 from DB.DBA.RDF_QUAD by RDF_QUAD_POGS    1.4e-07 rows   
+    Key RDF_QUAD_POGS  ASC  (<V s_37_6_t0.S$37 rn>)
+     P =  IRI_ID"...P2046"  ,  O = <v k_s_37_6_t1.S$90 Set92 an>
+    vector param casts: <r s_37_6_t1.S$31 via  Set76>-> <v k_s_37_6_t1.S$90 Set92 an>
+    
+    After code:
+      0: <V var2$39 a> := Call __ro2sq (<r s_37_6_t1.O$30 via  Set86 Set92 Set76>)
+      5: <V var1$41 a> := Call __id2in (<V s_37_6_t0.S$37 rn>)
+      10: BReturn 0
+    time         0% fanout         0 input         0 rows
+    $39 () $41 () $49 (36 33 29 50 ) 
+    s# 100 43 Select (<V var1$41 a>, <V var2$39 a>)
+      set no: <r set_ctr$49 via  Set86 Set92 Set76 Set61 Set67>
+  }
+Warning: You might have a Cartesian product.
+
+Warning: You might have a Cartesian product.
+
+
+
+ 0 msec 1% cpu,         4 rnd         0 seq         0% same seg         0% same pg 
+Compilation: 10 msec 0 reads         0% read 0 messages         0% clw

@@ -1,0 +1,48 @@
+SELECT __ro2sq ( "s_37_19_t2"."O") AS "var1",
+  __ro2sq ( "s_37_19_t3"."O") AS "var2",
+  __ro2sq ( "s_37_19_t5"."O") AS "var3",
+  __id2in ( "s_37_19_t6"."S") AS "var4"
+FROM DB.DBA.RDF_QUAD AS "s_37_3_t0"
+  INNER JOIN DB.DBA.RDF_QUAD AS "s_37_7_t1"
+  ON (
+    "s_37_7_t1"."S" = "s_37_3_t0"."O")
+  INNER JOIN DB.DBA.RDF_QUAD AS "s_37_19_t2"
+  ON (
+    "s_37_19_t2"."S" = "s_37_3_t0"."S")
+  INNER JOIN DB.DBA.RDF_QUAD AS "s_37_19_t3"
+  ON (
+    "s_37_19_t2"."S" = "s_37_19_t3"."S"
+    AND 
+    "s_37_19_t3"."S" = "s_37_3_t0"."S")
+  INNER JOIN DB.DBA.RDF_QUAD AS "s_37_19_t4"
+  ON (
+    "s_37_19_t2"."O" = "s_37_19_t4"."S")
+  INNER JOIN DB.DBA.RDF_QUAD AS "s_37_19_t5"
+  ON (
+    "s_37_19_t2"."O" = "s_37_19_t5"."S"
+    AND 
+    "s_37_19_t4"."S" = "s_37_19_t5"."S")
+  INNER JOIN DB.DBA.RDF_QUAD AS "s_37_19_t6"
+  ON (
+    "s_37_19_t5"."O" = "s_37_19_t6"."O")
+WHERE
+  "s_37_3_t0"."P" = __i2idn ( __bft( 'http://schema.org/isPartOf' , 1))
+  AND 
+  "s_37_7_t1"."P" = __i2idn ( __bft( 'http://wikiba.se/ontology#wikiGroup' , 1))
+  AND 
+  "s_37_7_t1"."O" = DB.DBA.RDF_OBJ_OF_SQLVAL ( 'wiktionary' )
+  AND 
+  "s_37_19_t2"."P" = __i2idn ( __bft( 'http://schema.org/about' , 1))
+  AND 
+  "s_37_19_t3"."P" = __i2idn ( __bft( 'http://schema.org/name' , 1))
+  AND 
+  "s_37_19_t4"."P" = __i2idn ( __bft( 'http://www.wikidata.org/prop/direct/P31' , 1))
+  AND 
+  "s_37_19_t4"."O" = __i2idn ( __bft( 'http://www.wikidata.org/entity/Q4167836' , 1))
+  AND 
+  "s_37_19_t5"."P" = __i2idn ( __bft( 'http://www.wikidata.org/prop/direct/P301' , 1))
+  AND 
+  "s_37_19_t6"."P" = __i2idn ( __bft( 'http://www.wikidata.org/prop/direct/P301' , 1))
+  AND 
+ ( "s_37_19_t2"."O" <>  "s_37_19_t6"."S")
+OPTION (QUIETCAST)

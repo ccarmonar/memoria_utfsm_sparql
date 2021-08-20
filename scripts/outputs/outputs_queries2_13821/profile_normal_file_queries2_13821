@@ -1,0 +1,108 @@
+Pfalz-Simmern-4	http://www.wikidata.org/entity/Q104785	http://www.wikidata.org/entity/Q1330491	Sachsen-108	
+Hohenzollern-11	http://www.wikidata.org/entity/Q105013	http://www.wikidata.org/entity/Q57674	Hannover-35	
+Bernadotte-21	http://www.wikidata.org/entity/Q1069138	http://www.wikidata.org/entity/Q130408	Nassau-Weilburg-15	
+Falsen-6	http://www.wikidata.org/entity/Q1080992	http://www.wikidata.org/entity/Q3916314	Mathiesen-104	
+朱-53	http://www.wikidata.org/entity/Q11094102	http://www.wikidata.org/entity/Q8250797	田-1	
+Habsburg-Lorraine-7	http://www.wikidata.org/entity/Q112866	http://www.wikidata.org/entity/Q50926	Bourbon-Parma-5	
+Erbach-33	http://www.wikidata.org/entity/Q11928267	http://www.wikidata.org/entity/Q11935499	Barby-72	
+Bernoulli-23	http://www.wikidata.org/entity/Q123992	http://www.wikidata.org/entity/Q20969976	Stähelin-12	
+Montmorency-10	http://www.wikidata.org/entity/Q1244221	http://www.wikidata.org/entity/Q18619804	Hainaut-48	
+Τζαβέλας-3	http://www.wikidata.org/entity/Q12877507	http://www.wikidata.org/entity/Q6915408	Unknown-552556	
+Ζαΐμης-13	http://www.wikidata.org/entity/Q12882708	http://www.wikidata.org/entity/Q21040943	Μουρούζη-17	
+Havemeyer-6	http://www.wikidata.org/entity/Q1325819	http://www.wikidata.org/entity/Q539280	Elder-1050	
+D&#39;Agoult-4	http://www.wikidata.org/entity/Q13409672	http://www.wikidata.org/entity/Q253453	Flavigny-3	
+Iotapa-1	http://www.wikidata.org/entity/Q13479304	http://www.wikidata.org/entity/Q13427712	Iotapa-2	
+Von_der_Mark-6	http://www.wikidata.org/entity/Q1348373	http://www.wikidata.org/entity/Q70769	Enke-49	
+Normandie-117	http://www.wikidata.org/entity/Q13563381	http://www.wikidata.org/entity/Q270777	Unknown-532784	
+Ketilsson-22	http://www.wikidata.org/entity/Q13611173	http://www.wikidata.org/entity/Q16728867	Ketilsdotter-2	
+Bourgogne-288	http://www.wikidata.org/entity/Q1371809	http://www.wikidata.org/entity/Q466252	Dampierre-29	
+Smith-167672	http://www.wikidata.org/entity/Q1453010	http://www.wikidata.org/entity/Q47012892	Furneaux-81	
+Welf-50	http://www.wikidata.org/entity/Q145718	http://www.wikidata.org/entity/Q354934	De_Alsace-19	
+
+  { 
+    time    0.0015% fanout         1 input         1 rows
+      clear: (<V set_ctr$96 in>)
+    s# 99 97 cluster outer seq start, set no <V set_ctr$96 in>    
+    save ctx:()
+      clear: (<V var4$31 a>, <V var3$30 a>, <V var2$29 a>, <V var1$28 a>, <V set_no$32 i>, <V var4$88 a>, <V var3$86 a>, <V var2$84 a>, <V var1$82 a>)
+    s# 108 27 Subquery 27 
+      multistate set no = <V set_no$32 i>
+      { 
+        time   0.00075% fanout         1 input         1 rows
+        
+        s# 158 47 Fork 47 {  
+                
+            save ctx:()
+              set no = <V set_no$32 i> array  <none>  save: 
+            time      0.39% fanout     12688 input         1 rows
+              clear: (<V s_37_6_t0.O$34 an>, <V s_37_6_t0.S$35 rn>)
+              clear on continue: (<V s_37_6_t0.O$34 an>, <V s_37_6_t0.S$35 rn>)
+            s# 113 33 from DB.DBA.RDF_QUAD by RDF_QUAD    1.3e+04 rows Parallel, tail cost   9.5e+04   
+            Key RDF_QUAD  ASC  (<V s_37_6_t0.S$35 rn>, <V s_37_6_t0.O$34 an>)
+             inlined  P =  IRI_ID"...direct/P2949" 
+            copy on branch $32 $0 $0 $0 sets: 99 
+            
+            time       1.5% fanout  0.370665 input     12688 rows
+              clear: (<V s_37_6_t1.S$38 rn>, <V s_37_6_t1.O$39 an>)
+              clear on continue: (<V s_37_6_t1.S$38 rn>, <V s_37_6_t1.O$39 an>)$35 () 
+            s# 124 37 from DB.DBA.RDF_QUAD by RDF_QUAD        1.2 rows Parallel, tail cost       7.5   
+            Key RDF_QUAD  ASC  (<V s_37_6_t1.O$39 an>, <V s_37_6_t1.S$38 rn>)
+             inlined  P =  IRI_ID"...direct/P25"  ,  S = <V s_37_6_t0.S$35 rn>
+            copy on branch $35 $32 $34 $0 sets: 99 113 
+            
+            time       2.2% fanout 0.0457155 input      4703 rows
+            Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:         1 Fanout:     0.046
+              clear: (<V s_37_6_t2.O$42 an>, <V s_37_6_t2.S$43 rn>, <V __id2in$45 a>)
+              clear on continue: (<V s_37_6_t2.O$42 an>, <V s_37_6_t2.S$43 rn>, <V __id2in$45 a>)$38 () $39 () $139 (41 ) 
+            s# 135 41 from DB.DBA.RDF_QUAD by RDF_QUAD          1 rows Parallel, tail cost       6.1   
+            Key RDF_QUAD  ASC  (<V s_37_6_t2.S$43 rn>, <V s_37_6_t2.O$42 an>)
+             inlined  P =  IRI_ID"...direct/P2949"  ,  S = <v cast$139 Set141 rn>
+            vector param casts: <V s_37_6_t1.O$39 an>-> <v cast$139 Set141 rn>
+            copy on branch $139 $38 $32 $34 sets: 99 113 124 
+            
+            After code:
+              0: <V __id2in$45 a> := Call __id2in (<r s_37_6_t1.S$38 via  Set135 Set141>)
+              5: BReturn 0
+            time       0.7% fanout         0 input       215 rows
+            
+            s# 150 48 Sort (HASH) set no <r set_no$32 via  Set135 Set141 Set124 Set113>(<V __id2in$45 a>) -> (<r s_37_6_t0.O$34 via  Set135 Set141 Set124>, <V s_37_6_t2.S$43 rn>, <V s_37_6_t2.O$42 an>)
+            
+        }
+        time        95% fanout       215 input         1 rows
+        Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:         0 Fanout:   2.2e+02
+          clear: (<V s_37_6_t2.O$42 an>, <V s_37_6_t2.S$43 rn>, <V __id2in$45 a>, <V s_37_6_t0.O$34 an>, <V var4$31 a>, <V var3$30 a>, <V var2$29 a>, <V var1$28 a>, <V __ro2sq$73 a>, <V __id2in$71 a>, <V __ro2sq$69 a>)
+          clear on continue: (<V s_37_6_t2.O$42 an>, <V s_37_6_t2.S$43 rn>, <V __id2in$45 a>, <V s_37_6_t0.O$34 an>, <V var4$31 a>, <V var3$30 a>, <V var2$29 a>, <V var1$28 a>, <V __ro2sq$73 a>, <V __id2in$71 a>, <V __ro2sq$69 a>)
+        s# 165 53 Key from temp (<V s_37_6_t0.O$34 an>, <V __id2in$45 a>, <V s_37_6_t2.S$43 rn>, <V s_37_6_t2.O$42 an>)
+        
+        
+        After code:
+          0: <V __ro2sq$69 a> := Call __ro2sq (<V s_37_6_t2.O$42 an>)
+          5: <V __id2in$71 a> := Call __id2in (<V s_37_6_t2.S$43 rn>)
+          10: <V __ro2sq$73 a> := Call __ro2sq (<V s_37_6_t0.O$34 an>)
+          15: <V var1$28 a> :=  := artm <V __ro2sq$73 a>
+          19: <V var2$29 a> :=  := artm <V __id2in$45 a>
+          23: <V var3$30 a> :=  := artm <V __id2in$71 a>
+          27: <V var4$31 a> :=  := artm <V __ro2sq$69 a>
+          31: BReturn 0
+        time   0.00033% fanout         0 input       215 rows
+        
+        s# 108 75 Subquery Select(<V var1$28 a>, <V var2$29 a>, <V var3$30 a>, <V var4$31 a>)
+          set no: <r set_no$32 via  Set165>
+      }
+    
+    After code:
+      0: <V var1$82 a> := Call __ro2sq (<V var1$28 a>)
+      5: <V var2$84 a> := Call __ro2sq (<V var2$29 a>)
+      10: <V var3$86 a> := Call __ro2sq (<V var3$30 a>)
+      15: <V var4$88 a> := Call __ro2sq (<V var4$31 a>)
+      20: BReturn 0
+    time   0.00013% fanout         0 input       215 rows
+    $96 (27 97 ) $82 (27 ) $84 (27 ) $86 (27 ) $88 (27 ) 
+    s# 185 90 Select (<V var1$82 a>, <V var2$84 a>, <V var3$86 a>, <V var4$88 a>)
+      set no: <r set_ctr$96 via  Set108>
+  }
+
+
+ 229 msec 98% cpu,     18374 rnd     13039 seq   94.4163% same seg  0.321088% same pg 
+13 disk reads, 0 read ahead,   92.7804% wait
+Compilation: 2 msec 0 reads         0% read 0 messages         0% clw

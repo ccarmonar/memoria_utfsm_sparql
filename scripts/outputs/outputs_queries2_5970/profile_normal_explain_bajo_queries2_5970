@@ -1,0 +1,73 @@
+
+  { 
+    time       6.1% fanout         1 input         1 rows
+    Subquery 27 
+      { 
+        time       3.8% fanout         1 input         1 rows
+        fork {
+            Subquery 31 
+              { 
+                time       2.1% fanout         1 input         1 rows
+                fork {
+                    time        80% fanout         0 input         1 rows
+                    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:   1.4e-07 Fanout:         0
+                    RDF_QUAD   1.4e-07 rows(s_37_10_t2.S$37, s_37_10_t2.O$36)
+                     inlined  P =  IRI_ID"...isPartOf" 
+                    time         0% fanout         0 input         0 rows
+                    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:         1 Fanout:         0
+                    RDF_QUAD         1 rows(s_37_10_t1.O$40)
+                     inlined  P =  IRI_ID"...about"  ,  S = s_37_10_t2.S$37
+                    time         0% fanout         0 input         0 rows
+                    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:   0.00015 Fanout:         0
+                    RDF_QUAD   0.00015 rows(s_37_10_t0.S$43)
+                     inlined  P =  IRI_ID"...direct/P31"  ,  S = cast$174 ,  O =  IRI_ID"...Q39715" 
+                    time         0% fanout         0 input         0 rows
+                    Sort (s_37_10_t2.O$36) -> (inc$53)
+                    
+                  }
+                time       4.1% fanout         0 input         1 rows
+                group by read node  
+                (s_37_10_t2.O$36, aggregate$47)
+                
+                After code:
+                0: var3$32 :=  := artm s_37_10_t2.O$36
+                4: var2$33 :=  := artm aggregate$47
+                8: BReturn 0
+                time         0% fanout         0 input         0 rows
+                Subquery Select(var3$32, var2$33)
+              }
+            time         0% fanout         0 input         0 rows
+            Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:         1 Fanout:         0
+            RDF_QUAD_POGS         1 rows(s_37_12_t4.S$78)
+             P =  IRI_ID"...direct/P856"  ,  O = cast$224
+            time         0% fanout         0 input         0 rows
+            Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:     7e-06 Fanout:         0
+            RDF_QUAD     7e-06 rows(s_37_12_t3.S$81)
+             inlined  P =  IRI_ID"...direct/P31"  ,  S = s_37_12_t4.S$78 ,  O =  IRI_ID"...Q10876391" 
+            time         0% fanout         0 input         0 rows
+            Sort (var2$33) -> (s_37_12_t3.S$81)
+            
+          }
+        time       4.3% fanout         0 input         1 rows
+        top order by read (s_37_12_t3.S$81, var2$33)
+        
+        After code:
+        0: __id2in$108 := Call __id2in (s_37_12_t3.S$81)
+        5: var1$28 :=  := artm __id2in$108
+        9: var2$29 :=  := artm var2$33
+        13: BReturn 0
+        time         0% fanout         0 input         0 rows
+        Subquery Select(var1$28, var2$29)
+      }
+    
+    After code:
+    0: var1$117 := Call __ro2sq (var1$28)
+    5: var2$119 := Call __ro2sq (var2$29)
+    10: BReturn 0
+    time         0% fanout         0 input         0 rows
+    Select (var1$117, var2$119)
+  }
+
+
+ 1 msec 1% cpu,         1 rnd         0 seq         0% same seg         0% same pg 
+Compilation: 4 msec 0 reads         0% read 0 messages         0% clw

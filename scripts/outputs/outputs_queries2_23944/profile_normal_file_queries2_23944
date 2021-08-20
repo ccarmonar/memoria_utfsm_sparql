@@ -1,0 +1,121 @@
+http://www.wikidata.org/entity/Q2613223	http://www.wikidata.org/entity/Q1433443		http://www.wikidata.org/entity/Q11424		
+http://www.wikidata.org/entity/Q2613688	http://www.wikidata.org/entity/Q130232		http://www.wikidata.org/entity/Q11424		
+http://www.wikidata.org/entity/Q2613688	http://www.wikidata.org/entity/Q188473		http://www.wikidata.org/entity/Q11424		
+http://www.wikidata.org/entity/Q2613688	http://www.wikidata.org/entity/Q226730		http://www.wikidata.org/entity/Q11424		
+http://www.wikidata.org/entity/Q2613688	http://www.wikidata.org/entity/Q172980		http://www.wikidata.org/entity/Q11424		
+http://www.wikidata.org/entity/Q2613708	http://www.wikidata.org/entity/Q471839		http://www.wikidata.org/entity/Q11424		
+http://www.wikidata.org/entity/Q2613800	http://www.wikidata.org/entity/Q157443		http://www.wikidata.org/entity/Q11424		
+http://www.wikidata.org/entity/Q2613800	http://www.wikidata.org/entity/Q185529		http://www.wikidata.org/entity/Q11424		
+http://www.wikidata.org/entity/Q2613800	http://www.wikidata.org/entity/Q20442589		http://www.wikidata.org/entity/Q11424		
+http://www.wikidata.org/entity/Q2614983	http://www.wikidata.org/entity/Q200092		http://www.wikidata.org/entity/Q11424		
+http://www.wikidata.org/entity/Q2614983	http://www.wikidata.org/entity/Q3072049		http://www.wikidata.org/entity/Q11424		
+http://www.wikidata.org/entity/Q2616230	http://www.wikidata.org/entity/Q52162262		http://www.wikidata.org/entity/Q11424		
+http://www.wikidata.org/entity/Q2616902	http://www.wikidata.org/entity/Q202866		http://www.wikidata.org/entity/Q11424		
+http://www.wikidata.org/entity/Q2616902	http://www.wikidata.org/entity/Q2143665		http://www.wikidata.org/entity/Q11424		
+http://www.wikidata.org/entity/Q2617611	http://www.wikidata.org/entity/Q224700		http://www.wikidata.org/entity/Q11424		
+http://www.wikidata.org/entity/Q12124807	http://www.wikidata.org/entity/Q860626		http://www.wikidata.org/entity/Q11424		
+http://www.wikidata.org/entity/Q12124807	http://www.wikidata.org/entity/Q842256		http://www.wikidata.org/entity/Q11424		
+http://www.wikidata.org/entity/Q2630227	http://www.wikidata.org/entity/Q369747		http://www.wikidata.org/entity/Q11424		
+http://www.wikidata.org/entity/Q2633399	http://www.wikidata.org/entity/Q157443		http://www.wikidata.org/entity/Q11424		
+http://www.wikidata.org/entity/Q2635021	http://www.wikidata.org/entity/Q157443		http://www.wikidata.org/entity/Q11424		
+
+  { 
+    time     0.046% fanout         1 input         1 rows
+      clear: (<V set_ctr$64 in>)
+    s# 100 65 cluster outer seq start, set no <V set_ctr$64 in>    
+    save ctx:()
+    Precode:
+      0: <V __all_eq$27 x> := Call __all_eq ( IRI_ID"...Q11424" )
+      5: BReturn 0
+      clear: (<V _::trans_obj_37_6$31 an>, <V _::trans_subj_37_5$30 rn>, <V __all_eq$27 x>)
+      clear on continue: (<V _::trans_subj_37_5$30 rn>, <V _::trans_obj_37_6$31 an>)$27 (29 ) 
+    s# 109 29 Transitive dt dir 2, input: (<V __all_eq$27 x>)
+      input shadow: (<V __all_eq$113 x>)
+      output: (<V _::trans_subj_37_5$30 rn>)
+      { 
+        time       3.3% fanout  0.933333 input        15 rows
+          clear: (<V t3.O$36 an>, <V t3.S$37 rn>, <V _::trans_obj_37_6$31 an>, <V _::trans_subj_37_5$30 rn>)
+          clear on continue: (<V _::trans_subj_37_5$30 rn>, <V _::trans_obj_37_6$31 an>, <V t3.S$37 rn>, <V t3.O$36 an>)$113 (35 ) $119 (35 ) 
+        s# 115 35 from DB.DBA.RDF_QUAD by RDF_QUAD_POGS        3.8 rows   
+        Key RDF_QUAD_POGS  ASC  (<V t3.S$37 rn>, <V t3.O$36 an>)
+         P =  IRI_ID"...direct/P279"  ,  O = <v k___all_eq$119 Set121 an>
+        vector param casts: <V __all_eq$113 x>-> <v k___all_eq$119 Set121 an>
+        
+        After code:
+          0: <V _::trans_subj_37_5$30 rn> :=  := artm <V t3.S$37 rn>
+          4: <V _::trans_obj_37_6$31 an> :=  := artm <V t3.O$36 an>
+          8: BReturn 0
+        time     0.021% fanout         0 input        14 rows
+        $31 () 
+        s# 132 39 Subquery Select(<V _::trans_subj_37_5$30 rn>, <V _::trans_obj_37_6$31 an>)
+          set no: <r step_set$32 via  Set115 Set121>
+      }
+    time         2% fanout   66.6667 input        15 rows
+      clear: (<V t1.S$57 rn>)
+      clear on continue: (<V t1.S$57 rn>)$143 (56 ) $30 () 
+    s# 139 56 from DB.DBA.RDF_QUAD by RDF_QUAD_POGS      1e+02 rows   
+    Key RDF_QUAD_POGS  ASC  (<V t1.S$57 rn>)
+     P =  IRI_ID"...direct/P31"  ,  O = <v cast$143 Set145 an>
+    row specs:  O LIKE <c Tó>
+    vector param casts: <V _::trans_subj_37_5$30 rn>-> <v cast$143 Set145 an>
+    
+    time        46% fanout         1 input      1000 rows
+    Precode:
+      0: <V var1$59 a> := Call __id2in (<V t1.S$57 rn>)
+      5: BReturn 0
+      clear: (<V set_ctr$67 i>, <V var1$59 a>)
+    s# 153 71 cluster outer seq start, set no <V set_ctr$67 i>    
+    save ctx:()
+    time       9.8% fanout         1 input      1000 rows
+      clear: (<V t7.O$62 a>)
+      clear on continue: (<V t7.O$62 a>)$166 (61 ) 
+    s# 162 61 from DB.DBA.RDF_QUAD by RDF_QUAD        1.1 rows   
+    Key RDF_QUAD  ASC  (<V t7.O$62 a>)
+     inlined  P =  IRI_ID"...direct/P31"  ,  S = <v k_t1.S$166 Set168 rn>
+    vector param casts: <r t1.S$57 via  Set153>-> <v k_t1.S$166 Set168 rn>
+    
+    time      0.19% fanout         1 input      1000 rows
+    $67 (61 71 ) 
+    s# 176 66 end of outer seq <r set_ctr$67 via  Set162 Set168>
+     out: (<V t7.O$62 a>)
+     shadow: ( <none> )
+    time        16% fanout         1 input      1000 rows
+    Precode:
+      0: <V var3$76 a> := Call __ro2sq (<V t7.O$62 a>)
+      5: BReturn 0
+      clear: (<V set_ctr$82 i>, <V var3$76 a>)$62 (66 ) 
+    s# 184 86 cluster outer seq start, set no <V set_ctr$82 i>    
+    save ctx:()
+    time       1.6% fanout         1 input      1000 rows
+      clear: (<V t5.O$79 a>)
+      clear on continue: (<V t5.O$79 a>)$197 (78 ) $57 (86 66 61 71 ) 
+    s# 193 78 from DB.DBA.RDF_QUAD by RDF_QUAD        1.2 rows   
+    Key RDF_QUAD  ASC  (<V t5.O$79 a>)
+     inlined  P =  IRI_ID"...direct/P136"  ,  S = <v k_t1.S$197 Set199 rn>
+    vector param casts: <r t1.S$57 via  Set184 Set176>-> <v k_t1.S$197 Set199 rn>
+    
+    time        18% fanout         1 input      1000 rows
+      clear: (<V var2$91 a>)$79 () $82 (78 86 ) 
+    s# 207 81 end of outer seq <r set_ctr$82 via  Set193 Set199>
+     out: (<V t5.O$79 a>)
+     shadow: ( <none> )
+    After code:
+      0: <V var2$91 a> := Call __ro2sq (<V t5.O$79 a>)
+      5: BReturn 0
+    time    0.0046% fanout         0 input      1000 rows
+    $64 (81 78 86 66 61 71 56 29 65 ) $76 (81 78 86 ) $59 (81 78 86 66 61 71 ) $91 (81 ) 
+    s# 215 93 Select (<r var1$59 via  Set207 Set176>, <V var2$91 a>, <DB_NULL>, <r var3$76 via  Set207>, <DB_NULL>)
+      set no: <r set_ctr$64 via  Set207 Set176 Set139 Set145 Set109>
+  }
+Warning: You might have a Cartesian product.
+
+Warning: You might have a Cartesian product.
+
+Warning: You might have a Cartesian product.
+
+Warning: You might have a Cartesian product.
+
+
+
+ 9 msec 70% cpu,      2764 rnd      1371 seq    62.604% same seg   1.22966% same pg 
+Compilation: 3 msec 0 reads         0% read 0 messages         0% clw

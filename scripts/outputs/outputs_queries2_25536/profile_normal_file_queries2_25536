@@ -1,0 +1,66 @@
+776	
+
+  { 
+    time     0.057% fanout         1 input         1 rows
+      clear: (<V set_ctr$45 in>)
+    s# 60 46 cluster outer seq start, set no <V set_ctr$45 in>    
+    save ctx:()
+    time     0.045% fanout         1 input         1 rows
+    
+    s# 133 47 Fork 47 {  
+        time         2% fanout       871 input         1 rows
+          clear: (<V s_37_6_t1.S$28 rn>, <V s_37_6_t1.O$29 an>)
+          clear on continue: (<V s_37_6_t1.S$28 rn>, <V s_37_6_t1.O$29 an>)
+        s# 70 27 from DB.DBA.RDF_QUAD by RDF_QUAD    8.6e+02 rows   
+        Key RDF_QUAD  ASC  (<V s_37_6_t1.O$29 an>, <V s_37_6_t1.S$28 rn>)
+         inlined  P =  IRI_ID"...direct/P2428" 
+        
+        time       3.3% fanout         1 input       871 rows
+          clear: (<V temp$33 i>, <V isiri_id$31 i>)$29 () 
+        s# 86 81 END Node
+        After test:
+          0: <V isiri_id$31 i> := Call isiri_id (<V s_37_6_t1.O$29 an>)
+          5: <V temp$33 i> := artm  1  - <V isiri_id$31 i>
+          9: if ( 0  = <V temp$33 i>) then 14 else 13 unkn 14
+          13: BReturn 1
+          14: BReturn 0
+        time        66% fanout    1.0023 input       871 rows
+        Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:     0.091 Fanout:         1
+          clear: (<V s_37_6_t0.S$36 rn>)
+          clear on continue: (<V s_37_6_t0.S$36 rn>)$98 (35 ) $28 (81 ) 
+        s# 94 35 from DB.DBA.RDF_QUAD by RDF_QUAD      0.091 rows   
+        Key RDF_QUAD  ASC  (<V s_37_6_t0.S$36 rn>)
+         inlined  P =  IRI_ID"...direct/P31"  ,  S = <v k_s_37_6_t1.S$98 Set100 rn> ,  O =  IRI_ID"...Q5" 
+        vector param casts: <r s_37_6_t1.S$28 via  Set86>-> <v k_s_37_6_t1.S$98 Set100 rn>
+        
+        time       9.7% fanout  0.896907 input       873 rows
+          clear: (<V s_37_6_t2.O$39 an>)
+          clear on continue: (<V s_37_6_t2.O$39 an>)
+        s# 108 38 from DB.DBA.RDF_QUAD by RDF_QUAD          1 rows   
+        Key RDF_QUAD  ASC  (<V s_37_6_t2.O$39 an>)
+         inlined  P =  IRI_ID"...direct/P227"  ,  S = <V s_37_6_t0.S$36 rn>
+        
+        time        19% fanout         0 input       783 rows
+          clear: (<V temp$43 i>, <V isiri_id$41 i>)$36 (38 ) $39 () 
+        s# 123 118 END Node
+        After test:
+          0: <V isiri_id$41 i> := Call isiri_id (<V s_37_6_t2.O$39 an>)
+          5: <V temp$43 i> := artm  1  - <V isiri_id$41 i>
+          9: if ( 0  = <V temp$43 i>) then 14 else 13 unkn 14
+          13: BReturn 1
+          14: BReturn 0
+        After code:
+          0:  count <V var2$48 in><r s_37_6_t0.S$36 via  Set123 Set108>set no <r set_ctr$45 via  Set123 Set108 Set94 Set100 Set86 Set70>distinct via hash area <V DISTINCT HASH$52 x>
+          5: BReturn 0
+    }
+    time     0.022% fanout         0 input         1 rows
+    $45 (47 46 ) $48 (53 ) 
+    s# 140 53 Select (<V var2$48 in>)
+      set no: <V set_ctr$45 in>
+  }
+Warning: You might have a Cartesian product.
+
+
+
+ 5 msec 62% cpu,      1745 rnd       876 seq   91.9817% same seg   7.44559% same pg 
+Compilation: 3 msec 0 reads         0% read 0 messages         0% clw

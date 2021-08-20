@@ -1,0 +1,42 @@
+http://www.wikidata.org/entity/Q10658304	
+http://www.wikidata.org/entity/Q6540674	
+http://www.wikidata.org/entity/Q16959650	
+http://www.wikidata.org/entity/Q26251061	
+http://www.wikidata.org/entity/Q21427344	
+http://www.wikidata.org/entity/Q881762	
+http://www.wikidata.org/entity/Q25035665	
+http://www.wikidata.org/entity/Q4640286	
+http://www.wikidata.org/entity/Q24078200	
+http://www.wikidata.org/entity/Q6268269	
+http://www.wikidata.org/entity/Q11751869	
+http://www.wikidata.org/entity/Q21084442	
+
+  { 
+    time      0.16% fanout         1 input         1 rows
+    time     0.036% fanout         1 input         1 rows
+    time        78% fanout        79 input         1 rows
+    RDF_QUAD_POGS        79 rows(s_37_4_t0.S$31)
+     P =  IRI_ID"...direct/P580"  ,  O >= <tag 211 c 1882-01-01 00:00:00Z> <= <tag 211 c 1892-12-31 23:59:59Z> O >= <tag 211 c 1882-01-01 00:00:00Z> <= <tag 211 c 1892-12-31 23:59:59Z>
+    time        12% fanout  0.151899 input        79 rows
+    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:    0.0054 Fanout:      0.15
+    RDF_QUAD    0.0054 rows()
+     P =  IRI_ID"...direct/P582"  ,  S = s_37_4_t0.S$31 ,  O >= <tag 211 c 1892-01-01 00:00:00Z> <= <tag 211 c 1902-12-31 23:59:59Z> O >= <tag 211 c 1892-01-01 00:00:00Z> <= <tag 211 c 1902-12-31 23:59:59Z>
+    time       5.4% fanout         1 input        12 rows
+    Distinct (s_37_4_t0.S$31)
+    
+    After code:
+    0: var1$28 :=  := artm s_37_4_t0.S$31
+    4: BReturn 0
+    time       4.6% fanout         1 input        12 rows
+    Subquery Select(var1$28)
+    
+    After code:
+    0: var1$49 := Call __ro2sq (var1$28)
+    5: BReturn 0
+    time     0.042% fanout         0 input        12 rows
+    Select (var1$49)
+  }
+
+
+ 2 msec 53% cpu,        80 rnd      7973 seq    91.358% same seg   4.93827% same pg 
+Compilation: 2 msec 0 reads         0% read 0 messages         0% clw

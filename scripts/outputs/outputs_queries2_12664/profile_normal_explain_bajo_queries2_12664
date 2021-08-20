@@ -1,0 +1,167 @@
+http://www.wikidata.org/entity/Q902623	http://www.wikidata.org/entity/P683	
+http://www.wikidata.org/entity/Q7575169	http://www.wikidata.org/entity/P5926	
+http://www.wikidata.org/entity/Q23948774	http://www.wikidata.org/entity/P2796	
+http://www.wikidata.org/entity/Q5090298		
+http://www.wikidata.org/entity/Q24170711		
+http://www.wikidata.org/entity/Q26879218	http://www.wikidata.org/entity/P3398	
+http://www.wikidata.org/entity/Q27777766	http://www.wikidata.org/entity/P3060	
+http://www.wikidata.org/entity/Q625817	http://www.wikidata.org/entity/P1070	
+http://www.wikidata.org/entity/Q1809095	http://www.wikidata.org/entity/P3099	
+http://www.wikidata.org/entity/Q1860469	http://www.wikidata.org/entity/P1391	
+http://www.wikidata.org/entity/Q433276	http://www.wikidata.org/entity/P2833	
+http://www.wikidata.org/entity/Q4918969	http://www.wikidata.org/entity/P8354	
+http://www.wikidata.org/entity/Q4743180	http://www.wikidata.org/entity/P4526	
+http://www.wikidata.org/entity/Q906796	http://www.wikidata.org/entity/P3519	
+http://www.wikidata.org/entity/Q374924	http://www.wikidata.org/entity/P6177	
+http://www.wikidata.org/entity/Q374924	http://www.wikidata.org/entity/P6681	
+http://www.wikidata.org/entity/Q2246990	http://www.wikidata.org/entity/P3405	
+http://www.wikidata.org/entity/Q24053150	http://www.wikidata.org/entity/P3322	
+http://www.wikidata.org/entity/Q24174701	http://www.wikidata.org/entity/P3890	
+http://www.wikidata.org/entity/Q20962955	http://www.wikidata.org/entity/P2040	
+
+  { 
+    time       0.5% fanout         1 input         1 rows
+    time      0.13% fanout         1 input         1 rows
+    Subquery 31 
+      { 
+        Union
+          { 
+            Subquery 36 
+              { 
+                Union
+                  { 
+                    Subquery 41 
+                      { 
+                        Union
+                          { 
+                            time       8.6% fanout         5 input         1 rows
+                            RDF_QUAD_POGS         5 rows(t5.S$47)
+                             P =  IRI_ID"...direct/P31"  ,  O =  IRI_ID"...Q2881060" 
+                            time      0.21% fanout         1 input         5 rows
+                            outer {
+                                time       7.5% fanout       0.6 input         5 rows
+                                RDF_QUAD       1.3 rows(t7.O$50)
+                                 inlined  P =  IRI_ID"...direct/P1687"  ,  S = k_t5.S$244
+                                time       0.7% fanout   1.66667 input         3 rows
+                              } /* end of outer */
+                            set_ctr$53
+                             out: (t7.O$50)
+                             shadow: ( <none> )
+                            
+                            After code:
+                            0: var2$42 :=  := artm t7.O$50
+                            4: var1$43 :=  := artm t5.S$47
+                            8: BReturn 0
+                            time      0.22% fanout         0 input         5 rows
+                            Subquery Select(var2$42, var1$43)
+                          }
+                          { 
+                            time       6.4% fanout        81 input         1 rows
+                            RDF_QUAD_POGS        81 rows(t12.S$70)
+                             P =  IRI_ID"...direct/P31"  ,  O =  IRI_ID"...Q4117139" 
+                            time      0.36% fanout         1 input        81 rows
+                            outer {
+                                time        11% fanout  0.209877 input        81 rows
+                                RDF_QUAD       1.3 rows(t14.O$73)
+                                 inlined  P =  IRI_ID"...direct/P1687"  ,  S = k_t12.S$294
+                                time      0.51% fanout         1 input        17 rows
+                              } /* end of outer */
+                            set_ctr$76
+                             out: (t14.O$73)
+                             shadow: ( <none> )
+                            
+                            After code:
+                            0: var2$42 :=  := artm t14.O$73
+                            4: var1$43 :=  := artm t12.S$70
+                            8: BReturn 0
+                            time      0.06% fanout         0 input        17 rows
+                            Subquery Select(var2$42, var1$43)
+                          }
+                      }
+                    
+                    After code:
+                    0: var2$37 :=  := artm var2$42
+                    4: var1$38 :=  := artm var1$43
+                    8: BReturn 0
+                    time      0.16% fanout         0 input        22 rows
+                    Subquery Select(var2$37, var1$38)
+                  }
+                  { 
+                    time         0% fanout         0 input         0 rows
+                    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:        80 Fanout:         0
+                    RDF_QUAD_POGS        80 rows(t20.S$101)
+                     P =  IRI_ID"...direct/P31"  ,  O =  IRI_ID"...Q8513" 
+                    time         0% fanout         0 input         0 rows
+                    outer {
+                        time         0% fanout         0 input         0 rows
+                        Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:       1.3 Fanout:         0
+                        RDF_QUAD       1.3 rows(t22.O$104)
+                         inlined  P =  IRI_ID"...direct/P1687"  ,  S = k_t20.S$351
+                        time         0% fanout         0 input         0 rows
+                      } /* end of outer */
+                    set_ctr$107
+                     out: (t22.O$104)
+                     shadow: ( <none> )
+                    
+                    After code:
+                    0: var2$37 :=  := artm t22.O$104
+                    4: var1$38 :=  := artm t20.S$101
+                    8: BReturn 0
+                    time         0% fanout         0 input         0 rows
+                    Subquery Select(var2$37, var1$38)
+                  }
+              }
+            
+            After code:
+            0: var2$32 :=  := artm var2$37
+            4: var1$33 :=  := artm var1$38
+            8: BReturn 0
+            time      0.13% fanout         0 input        22 rows
+            Subquery Select(var2$32, var1$33)
+          }
+          { 
+            time         0% fanout         0 input         0 rows
+            Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:         5 Fanout:         0
+            RDF_QUAD_POGS         5 rows(t28.S$132)
+             P =  IRI_ID"...direct/P31"  ,  O =  IRI_ID"...Q324254" 
+            time         0% fanout         0 input         0 rows
+            outer {
+                time         0% fanout         0 input         0 rows
+                Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:       1.3 Fanout:         0
+                RDF_QUAD       1.3 rows(t30.O$135)
+                 inlined  P =  IRI_ID"...direct/P1687"  ,  S = k_t28.S$408
+                time         0% fanout         0 input         0 rows
+              } /* end of outer */
+            set_ctr$138
+             out: (t30.O$135)
+             shadow: ( <none> )
+            
+            After code:
+            0: var2$32 :=  := artm t30.O$135
+            4: var1$33 :=  := artm t28.S$132
+            8: BReturn 0
+            time         0% fanout         0 input         0 rows
+            Subquery Select(var2$32, var1$33)
+          }
+      }
+    time        18% fanout  0.954545 input        22 rows
+    Distinct (var1$33, var2$32)
+    
+    After code:
+    0: var1$28 :=  := artm var1$33
+    4: var2$29 :=  := artm var2$32
+    8: BReturn 0
+    time        45% fanout         1 input        21 rows
+    Subquery Select(var1$28, var2$29)
+    
+    After code:
+    0: var1$169 := Call __ro2sq (var1$28)
+    5: var2$171 := Call __ro2sq (var2$29)
+    10: BReturn 0
+    time      0.28% fanout         0 input        21 rows
+    Select (var1$169, var2$171)
+  }
+
+
+ 1 msec 14% cpu,        88 rnd        85 seq    94.382% same seg         0% same pg 
+Compilation: 4 msec 0 reads         0% read 0 messages         0% clw

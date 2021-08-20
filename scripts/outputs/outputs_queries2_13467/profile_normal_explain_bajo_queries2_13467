@@ -1,0 +1,85 @@
+http://www.wikidata.org/entity/Q16009352		http://www.wikidata.org/entity/Q30225001				
+http://www.wikidata.org/entity/Q16018912		http://www.wikidata.org/entity/Q30132500				
+http://www.wikidata.org/entity/Q4589905		http://www.wikidata.org/entity/Q30573466				
+http://www.wikidata.org/entity/Q380659		http://www.wikidata.org/entity/Q30129142				
+http://www.wikidata.org/entity/Q4775638		http://www.wikidata.org/entity/Q1511218				
+http://www.wikidata.org/entity/Q5347978		http://www.wikidata.org/entity/Q30147446				
+http://www.wikidata.org/entity/Q5348007		http://www.wikidata.org/entity/Q30147464				
+http://www.wikidata.org/entity/Q5349649		http://www.wikidata.org/entity/Q30083381				
+http://www.wikidata.org/entity/Q5350060		http://www.wikidata.org/entity/Q30149683				
+http://www.wikidata.org/entity/Q5641296		http://www.wikidata.org/entity/Q30189034				
+http://www.wikidata.org/entity/Q5641307		http://www.wikidata.org/entity/Q30189085				
+http://www.wikidata.org/entity/Q5649974		http://www.wikidata.org/entity/Q3869252				
+http://www.wikidata.org/entity/Q5650638		http://www.wikidata.org/entity/Q30225070				
+http://www.wikidata.org/entity/Q5650696		http://www.wikidata.org/entity/Q30225109				
+http://www.wikidata.org/entity/Q5653719		http://www.wikidata.org/entity/Q30225256				
+http://www.wikidata.org/entity/Q5653724		http://www.wikidata.org/entity/Q30224380				
+http://www.wikidata.org/entity/Q5653935		http://www.wikidata.org/entity/Q28323434				
+http://www.wikidata.org/entity/Q6437945		http://www.wikidata.org/entity/Q29599				
+http://www.wikidata.org/entity/Q6438017		http://www.wikidata.org/entity/Q30350380				
+http://www.wikidata.org/entity/Q6491421		http://www.wikidata.org/entity/Q30080937				
+
+  { 
+    time       0.1% fanout         1 input         1 rows
+    time     0.026% fanout         1 input         1 rows
+    Subquery 35 
+      { 
+        Union
+          { 
+            time       2.5% fanout       408 input         1 rows
+            RDF_QUAD_POGS   4.1e+02 rows(s_37_2_t0-c5-u13.S$41)
+             P =  IRI_ID"...direct/P39"  ,  O =  IRI_ID"...Q9045502" 
+            time        24% fanout  0.990196 input       408 rows
+            RDF_QUAD         1 rows(s_37_9_t2-u13.S$45, s_37_9_t2-u13.O$44)
+             inlined  P =  IRI_ID"...direct/P734"  ,  S = s_37_2_t0-c5-u13.S$41
+            
+            After code:
+            0: var1$36 :=  := artm s_37_9_t2-u13.S$45
+            4: var2$37 :=  := artm s_37_9_t2-u13.O$44
+            8: BReturn 0
+            time     0.044% fanout         0 input       404 rows
+            Subquery Select(var1$36, var2$37)
+          }
+          { 
+            time         0% fanout         0 input         0 rows
+            Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:   3.9e+02 Fanout:         0
+            RDF_QUAD_POGS   3.9e+02 rows(s_37_5_t1-c11.S$55)
+             P =  IRI_ID"...direct/P39"  ,  O =  IRI_ID"...Q16159375" 
+            time         0% fanout         0 input         0 rows
+            Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:         1 Fanout:         0
+            RDF_QUAD         1 rows(s_37_9_t2.S$59, s_37_9_t2.O$58)
+             inlined  P =  IRI_ID"...direct/P734"  ,  S = s_37_5_t1-c11.S$55
+            
+            After code:
+            0: var1$36 :=  := artm s_37_9_t2.S$59
+            4: var2$37 :=  := artm s_37_9_t2.O$58
+            8: BReturn 0
+            time         0% fanout         0 input         0 rows
+            Subquery Select(var1$36, var2$37)
+          }
+      }
+    time         8% fanout  0.992574 input       404 rows
+    Distinct (var1$36, var2$37)
+    
+    After code:
+    0: var1$28 :=  := artm var1$36
+    4: var1Label$29 :=  := artm <DB_NULL>
+    8: var2$30 :=  := artm var2$37
+    12: var3$31 :=  := artm <DB_NULL>
+    16: var4$32 :=  := artm <DB_NULL>
+    20: var5$33 :=  := artm <DB_NULL>
+    24: BReturn 0
+    time        65% fanout         1 input       401 rows
+    Subquery Select(var1$28, var1Label$29, var2$30, var3$31, var4$32, var5$33)
+    
+    After code:
+    0: var1$83 := Call __ro2sq (var1$28)
+    5: var2$85 := Call __ro2sq (var2$30)
+    10: BReturn 0
+    time     0.026% fanout         0 input       401 rows
+    Select (var1$83, var1Label$29, var2$85, var3$31, var4$32, var5$33)
+  }
+
+
+ 3 msec 55% cpu,       409 rnd       410 seq    95.122% same seg   3.65854% same pg 
+Compilation: 2 msec 0 reads         0% read 0 messages         0% clw

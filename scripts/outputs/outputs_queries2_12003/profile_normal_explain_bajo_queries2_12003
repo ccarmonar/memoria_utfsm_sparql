@@ -1,0 +1,39 @@
+http://www.wikidata.org/entity/Q7351378	
+
+  { 
+    time     0.012% fanout         1 input         1 rows
+    time       1.1% fanout      6000 input         1 rows
+    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:   1.3e+05 Fanout:     6e+03
+    Precode:
+      0: rdf_now_impl$27 := Call rdf_now_impl ()
+      5: rdf_month_impl$29 := Call rdf_month_impl (rdf_now_impl$27)
+      10: rdf_day_impl$31 := Call rdf_day_impl (rdf_now_impl$27)
+      15: BReturn 0
+    RDF_QUAD_POGS   1.3e+05 rows(s_37_2_t0.O$35, s_37_2_t0.S$34)
+     inlined  P =  IRI_ID"...direct/P569" 
+    time        99% fanout 0.000166667 input      6000 rows
+    END Node
+    After test:
+    0: __ro2sq$39 := Call __ro2sq (s_37_2_t0.O$35)
+    5: DB.DBA.RDF_DATATYPE_OF_OBJ$37 := Call DB.DBA.RDF_DATATYPE_OF_OBJ (__ro2sq$39)
+    12: rdf_month_impl$41 := Call rdf_month_impl (s_37_2_t0.O$35)
+    17: if (rdf_month_impl$41 = rdf_month_impl$29) then 21 else 39 unkn 39
+    21: rdf_day_impl$43 := Call rdf_day_impl (s_37_2_t0.O$35)
+    26: if (rdf_day_impl$43 = rdf_day_impl$31) then 30 else 39 unkn 39
+    30: if (<tag 182 flag 1 c http://www.w3.org/2001/XMLSchema#date> = DB.DBA.RDF_DATATYPE_OF_OBJ$37) then 38 else 34 unkn 34
+    34: if (<tag 182 flag 1 c http://www.w3.org/2001/XMLSchema#dateTime> = DB.DBA.RDF_DATATYPE_OF_OBJ$37) then 38 else 39 unkn 39
+    38: BReturn 1
+    39: BReturn 0
+    time     0.086% fanout         1 input         1 rows
+    skip node  1  <none> set_ctr$53
+    
+    After code:
+    0: var1$45 := Call __id2in (s_37_2_t0.S$34)
+    5: BReturn 0
+    time    0.0024% fanout         0 input         1 rows
+    Select (var1$45)
+  }
+
+
+ 33 msec 94% cpu,         1 rnd      5992 seq         0% same seg         0% same pg 
+Compilation: 1 msec 0 reads         0% read 0 messages         0% clw

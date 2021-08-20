@@ -1,0 +1,146 @@
+	
+
+  { 
+    time       4.6% fanout         1 input         1 rows
+      clear: (<V set_ctr$30 in>)
+    s# 116 31 cluster outer seq start, set no <V set_ctr$30 in>    
+    save ctx:()
+    time       1.1% fanout         1 input         1 rows
+      clear: (<V set_ctr$33 i>)
+    s# 125 37 cluster outer seq start, set no <V set_ctr$33 i>    
+    save ctx:()
+    time        50% fanout         0 input         1 rows
+    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:         1 Fanout:         0
+      clear: (<V t13.O$28 a>)
+      clear on continue: (<V t13.O$28 a>)
+    s# 134 27 from DB.DBA.RDF_QUAD by RDF_QUAD          1 rows   
+    Key RDF_QUAD  ASC  (<V t13.O$28 a>)
+     inlined  P =  IRI_ID"...direct/P625"  ,  S =  IRI_ID"...Q27920050" 
+    
+    time         0% fanout         0 input         0 rows
+    $33 (27 37 ) 
+    s# 144 32 end of outer seq <r set_ctr$33 via  Set134>
+     out: (<V t13.O$28 a>)
+     shadow: ( <none> )
+    time         1% fanout         1 input         1 rows
+      clear: (<V set_ctr$59 i>)
+    s# 152 63 cluster outer seq start, set no <V set_ctr$59 i>    
+    save ctx:()
+      clear: (<V var4$43 a>, <V set_no$44 i>)
+    s# 161 42 Subquery 42 
+      multistate set no = <V set_no$44 i>
+      { 
+        time        22% fanout         0 input         1 rows
+        Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:       0.3 Fanout:         0
+          clear: (<V t18.O$46 an>)
+          clear on continue: (<V t18.O$46 an>)
+        s# 165 45 from DB.DBA.RDF_QUAD by RDF_QUAD        0.3 rows   
+        Key RDF_QUAD  ASC  (<V t18.O$46 an>)
+         inlined  P =  IRI_ID"...direct/P159"  ,  S =  IRI_ID"...Q27920050" 
+        
+        time         0% fanout         0 input         0 rows
+        Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:       1.1 Fanout:         0
+          clear: (<V t19.O$49 an>, <V var4$43 a>)
+          clear on continue: (<V var4$43 a>, <V t19.O$49 an>)$46 () $179 (48 ) 
+        s# 175 48 from DB.DBA.RDF_QUAD by RDF_QUAD        1.1 rows   
+        Key RDF_QUAD  ASC  (<V t19.O$49 an>)
+         inlined  P =  IRI_ID"...direct/P625"  ,  S = <v k_t18.O$179 Set181 rn>
+        vector param casts: <V t18.O$46 an>-> <v k_t18.O$179 Set181 rn>
+        
+        After code:
+          0: <V var4$43 a> :=  := artm <V t19.O$49 an>
+          4: BReturn 0
+        time         0% fanout         0 input         0 rows
+        
+        s# 161 51 Subquery Select(<V var4$43 a>)
+          set no: <r set_no$44 via  Set175 Set181 Set165>
+      }
+    
+    time         0% fanout         0 input         0 rows
+    $44 (42 ) $59 (42 63 ) 
+    s# 197 58 end of outer seq <r set_ctr$59 via  Set161>
+     out: (<V var4$43 a>, <V set_no$44 i>)
+     shadow: ( <none> ,  <none> )
+    time      0.84% fanout         1 input         1 rows
+      clear: (<V set_ctr$85 i>)
+    s# 205 89 cluster outer seq start, set no <V set_ctr$85 i>    
+    save ctx:()
+      clear: (<V var3$69 a>, <V set_no$70 i>)
+    s# 214 68 Subquery 68 
+      multistate set no = <V set_no$70 i>
+      { 
+        time        13% fanout         0 input         1 rows
+        Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:   1.4e-07 Fanout:         0
+          clear: (<V t16.O$72 an>, <V t16.S$73 rn>)
+          clear on continue: (<V t16.O$72 an>, <V t16.S$73 rn>)
+        s# 218 71 from DB.DBA.RDF_QUAD by RDF_QUAD_POGS    1.4e-07 rows   
+        Key RDF_QUAD_POGS  ASC  (<V t16.S$73 rn>, <V t16.O$72 an>)
+         inlined  P =  IRI_ID"...qualifier/P625" 
+        
+        time         0% fanout         0 input         0 rows
+        Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:   1.4e-07 Fanout:         0
+          clear: (<V var3$69 a>)
+          clear on continue: (<V var3$69 a>)$72 () $73 () $233 (75 ) 
+        s# 229 75 from DB.DBA.RDF_QUAD by RDF_QUAD_POGS    1.4e-07 rows   
+        Key RDF_QUAD_POGS  ASC  ()
+         inlined  P =  IRI_ID"...P159"  ,  O = <v cast$233 Set235 an> ,  S =  IRI_ID"...Q27920050" 
+        vector param casts: <V t16.S$73 rn>-> <v cast$233 Set235 an>
+        
+        After code:
+          0: <V var3$69 a> :=  := artm <r t16.O$72 via  Set229 Set235>
+          4: BReturn 0
+        time         0% fanout         0 input         0 rows
+        
+        s# 214 77 Subquery Select(<V var3$69 a>)
+          set no: <r set_no$70 via  Set229 Set235 Set218>
+      }
+    
+    time         0% fanout         0 input         0 rows
+    $70 (68 ) $85 (68 89 ) 
+    s# 250 84 end of outer seq <r set_ctr$85 via  Set214>
+     out: (<V var3$69 a>, <V set_no$70 i>)
+     shadow: ( <none> ,  <none> )
+      clear: (<V __stub$95 in>, <V set_no$96 i>, <V var1$107 a>, <V coalesce_ret$105 a>)$69 (84 68 ) $43 (84 68 89 58 42 ) $28 (84 68 89 58 42 63 32 ) 
+    s# 258 94 Subquery 94 
+      multistate set no = <V set_no$96 i>
+      { 
+        time       4.9% fanout         1 input         1 rows
+        Precode:
+          0: <V __stub$95 in> :=  := artm  1 
+          4: BReturn 0
+          clear: (<V __stub$95 in>)
+        s# 263 103 END Node
+        time       1.8% fanout         0 input         1 rows
+        $95 (103 ) 
+        s# 258 97 Subquery Select(<r __stub$95 via  Set263>)
+          set no: <r set_no$96 via  Set263>
+      }
+    
+    After code:
+      0: if (<r t13.O$28 via  Set258 Set250 Set197>  IS NULL  <DB_NULL>) then 9 else 4 unkn 9
+      4: <V coalesce_ret$105 a> :=  := artm <r t13.O$28 via  Set258 Set250 Set197>
+      8: Jump 31 (level=0)
+      9: if (<r var3$69 via  Set258>  IS NULL  <DB_NULL>) then 18 else 13 unkn 18
+      13: <V coalesce_ret$105 a> :=  := artm <r var3$69 via  Set258>
+      17: Jump 31 (level=0)
+      18: if (<r var4$43 via  Set258 Set250>  IS NULL  <DB_NULL>) then 27 else 22 unkn 27
+      22: <V coalesce_ret$105 a> :=  := artm <r var4$43 via  Set258 Set250>
+      26: Jump 31 (level=0)
+      27: <V coalesce_ret$105 a> :=  := artm <DB_NULL>
+      31: <V var1$107 a> := Call __ro2sq (<V coalesce_ret$105 a>)
+      36: BReturn 0
+    time      0.93% fanout         0 input         1 rows
+    $107 (94 ) $30 (94 84 68 89 58 42 63 32 27 37 31 ) 
+    s# 280 109 Select (<V var1$107 a>)
+      set no: <r set_ctr$30 via  Set258 Set250 Set197 Set144>
+  }
+Warning: You might have a Cartesian product.
+
+Warning: You might have a Cartesian product.
+
+Warning: You might have a Cartesian product.
+
+
+
+ 0 msec 0% cpu,         3 rnd         0 seq         0% same seg         0% same pg 
+Compilation: 19 msec 1 reads   74.2573% read 0 messages         0% clw

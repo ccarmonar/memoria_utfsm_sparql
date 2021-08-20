@@ -1,0 +1,55 @@
+C6125	
+F2288	
+L2896	
+A2663	
+C0528	
+C0002	
+L1868	
+J5536	
+C2439	
+H3928	
+D1294	
+C6015	
+C6797.78	
+H0920	
+N4903.8	
+G3799	
+E0476	
+M6234.5	
+G5204.1	
+D1640	
+
+  { 
+    time     0.097% fanout         1 input         1 rows
+    Subquery 27 
+      { 
+        time     0.072% fanout         1 input         1 rows
+        fork {
+            time       2.4% fanout       640 input         1 rows
+            RDF_QUAD   6.4e+02 rows(s_37_2_t0.O$31)
+             inlined  P =  IRI_ID"...direct/P3562" 
+            time       6.8% fanout         0 input       640 rows
+            Sort (s_37_2_t0.O$31)
+          }
+        time        91% fanout       640 input         1 rows
+        group by read node  
+        (s_37_2_t0.O$31)
+        
+        After code:
+        0: __ro2sq$54 := Call __ro2sq (s_37_2_t0.O$31)
+        5: var1$28 :=  := artm __ro2sq$54
+        9: BReturn 0
+        time     0.028% fanout         0 input       640 rows
+        Subquery Select(var1$28)
+      }
+    
+    After code:
+    0: var1$63 := Call __ro2sq (var1$28)
+    5: BReturn 0
+    time     0.014% fanout         0 input       640 rows
+    Select (var1$63)
+  }
+
+
+ 4 msec 71% cpu,       641 rnd       639 seq         0% same seg    34.891% same pg 
+Compilation: 1 msec 0 reads         0% read 0 messages         0% clw

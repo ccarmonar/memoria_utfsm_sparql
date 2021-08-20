@@ -1,0 +1,68 @@
+lunch	2011-10-15	9.45	
+dinner	2011-10-16	25.05	
+
+  { 
+    time     0.051% fanout         1 input         1 rows
+    time       1.5% fanout         9 input         1 rows
+    Precode:
+      0: DB.DBA.RDF_MAKE_LONG_OF_SQLVAL$27 := Call DB.DBA.RDF_MAKE_LONG_OF_SQLVAL (<c 2011-10-15>)
+      7: DB.DBA.RDF_MAKE_LONG_OF_SQLVAL$29 := Call DB.DBA.RDF_MAKE_LONG_OF_SQLVAL (<c lunch>)
+      14: vector$31 := Call vector (DB.DBA.RDF_MAKE_LONG_OF_SQLVAL$27, DB.DBA.RDF_MAKE_LONG_OF_SQLVAL$29)
+      19: DB.DBA.RDF_MAKE_LONG_OF_SQLVAL$33 := Call DB.DBA.RDF_MAKE_LONG_OF_SQLVAL (<c 2011-10-16>)
+      26: DB.DBA.RDF_MAKE_LONG_OF_SQLVAL$35 := Call DB.DBA.RDF_MAKE_LONG_OF_SQLVAL (<c dinner>)
+      33: vector$37 := Call vector (DB.DBA.RDF_MAKE_LONG_OF_SQLVAL$33, DB.DBA.RDF_MAKE_LONG_OF_SQLVAL$35)
+      38: vector$39 := Call vector (vector$31, vector$37)
+      43: BReturn 0
+    RDF_QUAD       8.9 rows(s_17_7_t0.O$43, s_17_7_t0.S$42)
+     inlined  P =  IRI_ID"...description" 
+    time      0.14% fanout         1 input         9 rows
+    END Node
+    After test:
+    0: isiri_id$45 := Call isiri_id (s_17_7_t0.O$43)
+    5: temp$47 := artm  1  - isiri_id$45
+    9: if ( 0  = temp$47) then 14 else 13 unkn 14
+    13: BReturn 1
+    14: BReturn 0
+    time      0.55% fanout         1 input         9 rows
+    RDF_QUAD         1 rows(s_17_7_t2.S$51, s_17_7_t2.O$50)
+     inlined  P =  IRI_ID"...amount"  ,  S = k_s_17_7_t0.S$130
+    time       2.1% fanout   1.66667 input         9 rows
+    Precode:
+      0: description$53 := Call __ro2sq (s_17_7_t0.O$43)
+      5: __ro2lo$55 := Call __ro2lo (s_17_7_t0.O$43)
+      10: amount$57 := Call __ro2sq (s_17_7_t2.O$50)
+      15: BReturn 0
+    RDF_QUAD       1.6 rows(s_17_7_t1.O$60)
+     inlined  P =  IRI_ID"...date"  ,  S = k_s_17_7_t0.S$145
+    time      0.15% fanout         1 input        15 rows
+    END Node
+    After test:
+    0: isiri_id$62 := Call isiri_id (s_17_7_t1.O$60)
+    5: temp$64 := artm  1  - isiri_id$62
+    9: if ( 0  = temp$64) then 14 else 13 unkn 14
+    13: BReturn 1
+    14: BReturn 0
+    time        95% fanout  0.133333 input        15 rows
+    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:         0 Fanout:      0.13
+    Precode:
+      0: __ro2lo$66 := Call __ro2lo (s_17_7_t1.O$60)
+      5: date$68 := Call __ro2sq (s_17_7_t1.O$60)
+      10: dta$77 :=  := artm vector$39
+      14: proc_ctr$71 :=  := artm  0 
+      18:  <none>  := Call __reset_temp ( 139910679418848 )
+      23:  <proc table>  := Call DB.DBA.SPARQL_BINDINGS_VIEW_C_2_IMP (vector$39)
+      30: BReturn 0
+    Key from temp (proc_ctr$71, BND0$73, BND1$75)
+    
+     Local Test
+    0: if (__ro2lo$66 = BND0$73) then 4 else 9 unkn 9
+    4: if (__ro2lo$55 = BND1$75) then 8 else 9 unkn 9
+    8: BReturn 1
+    9: BReturn 0
+    time     0.016% fanout         0 input         2 rows
+    Select (description$53, date$68, amount$57)
+  }
+
+
+ 8 msec 69% cpu,        61 rnd        14 seq   25.8065% same seg   25.8065% same pg 
+Compilation: 3 msec 0 reads         0% read 0 messages         0% clw

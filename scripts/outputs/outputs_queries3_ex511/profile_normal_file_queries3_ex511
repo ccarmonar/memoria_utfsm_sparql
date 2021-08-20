@@ -1,0 +1,42 @@
+Error: 22023: SL001: The SPARQL 1.1 function STRENDS() needs a string value as first argument
+  { 
+    time       3.7% fanout         1 input         1 rows
+      clear: (<V set_ctr$51 in>)
+    s# 54 52 cluster outer seq start, set no <V set_ctr$51 in>    
+    save ctx:()
+    time        96% fanout      1000 input         1 rows
+    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:   7.3e+07 Fanout:     1e+03
+    Precode:
+      0: <V DB.DBA.RDF_MAKE_LONG_OF_SQLVAL$27 a> := Call DB.DBA.RDF_MAKE_LONG_OF_SQLVAL (<c @yahoo.com>)
+      7: BReturn 0
+      clear: (<V s_10_2_t0.P$30 rn>, <V s_10_2_t0.S$31 rn>, <V s_10_2_t0.O$32 an>, <V DB.DBA.RDF_MAKE_LONG_OF_SQLVAL$27 a>)
+      clear on continue: (<V s_10_2_t0.O$32 an>, <V s_10_2_t0.S$31 rn>, <V s_10_2_t0.P$30 rn>)
+    s# 63 29 from DB.DBA.RDF_QUAD by RDF_QUAD_POGS    7.3e+07 rows   
+    Key RDF_QUAD_POGS  ASC  (<V s_10_2_t0.O$32 an>, <V s_10_2_t0.S$31 rn>, <V s_10_2_t0.P$30 rn>)
+    
+    
+    time         0% fanout         0 input      1000 rows
+      clear: (<V rdf_strends_impl$37 i>, <V __ro2lo$35 a>, <V o$43 a>, <V p$41 a>, <V s$39 a>)$31 () $32 () $27 (29 ) $30 () 
+    s# 80 75 END Node
+    After test:
+      0: <V __ro2lo$35 a> := Call __ro2lo (<V s_10_2_t0.O$32 an>)
+      5: <V rdf_strends_impl$37 i> := Call rdf_strends_impl (<V __ro2lo$35 a>, <r DB.DBA.RDF_MAKE_LONG_OF_SQLVAL$27 via  Set63>)
+      10: if ( 0  = <V rdf_strends_impl$37 i>) then 15 else 14 unkn 15
+      14: BReturn 1
+      15: BReturn 0
+    After code:
+      0: <V s$39 a> := Call __id2in (<r s_10_2_t0.S$31 via  Set80>)
+      5: <V p$41 a> := Call __id2in (<r s_10_2_t0.P$30 via  Set80>)
+      10: <V o$43 a> := Call __ro2sq (<r s_10_2_t0.O$32 via  Set80>)
+      15: BReturn 0
+    time         0% fanout         0 input         0 rows
+    $39 (75 ) $41 (75 ) $43 (75 ) $51 (75 29 52 ) 
+    s# 88 45 Select (<V s$39 a>, <V p$41 a>, <V o$43 a>)
+      set no: <r set_ctr$51 via  Set80 Set63>
+  }
+Warning: You might have a Cartesian product.
+
+
+
+ 1 msec 0% cpu,         1 rnd       998 seq         0% same seg         0% same pg 
+Compilation: 19 msec 0 reads         0% read 0 messages         0% clw

@@ -1,0 +1,55 @@
+v107425	
+v326906	
+v132731	
+v80246	
+v166620	
+v40367	
+v136044	
+v141793	
+v620786	
+v624112	
+v93979	
+v609358	
+v318319	
+v238320	
+v350974	
+v26037	
+v16043	
+v160671	
+v161983	
+v24735	
+
+  { 
+    time     0.029% fanout         1 input         1 rows
+    Subquery 27 
+      { 
+        time     0.028% fanout         1 input         1 rows
+        fork {
+            time       5.3% fanout     12332 input         1 rows
+            RDF_QUAD   1.2e+04 rows(s_37_2_t0.O$31)
+             inlined  P =  IRI_ID"...direct/P1562" 
+            time        40% fanout         0 input     12332 rows
+            Sort (s_37_2_t0.O$31)
+          }
+        time        54% fanout      1000 input         1 rows
+        group by read node  
+        (s_37_2_t0.O$31)
+        
+        After code:
+        0: __ro2sq$54 := Call __ro2sq (s_37_2_t0.O$31)
+        5: var1$28 :=  := artm __ro2sq$54
+        9: BReturn 0
+        time      0.01% fanout         0 input      1000 rows
+        Subquery Select(var1$28)
+      }
+    
+    After code:
+    0: var1$63 := Call __ro2sq (var1$28)
+    5: BReturn 0
+    time    0.0091% fanout         0 input      1000 rows
+    Select (var1$63)
+  }
+
+
+ 8 msec 86% cpu,      1001 rnd     12319 seq         0% same seg    52.994% same pg 
+Compilation: 0 msec 0 reads         0% read 0 messages         0% clw

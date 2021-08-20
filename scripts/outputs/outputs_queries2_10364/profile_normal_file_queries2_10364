@@ -1,0 +1,41 @@
+
+  { 
+    time       8.6% fanout         1 input         1 rows
+      clear: (<V set_ctr$44 in>)
+    s# 50 45 cluster outer seq start, set no <V set_ctr$44 in>    
+    save ctx:()
+    time        91% fanout         0 input         1 rows
+    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:      0.14 Fanout:         0
+      clear: (<V s_37_3_t0.O$28 an>)
+      clear on continue: (<V s_37_3_t0.O$28 an>)
+    s# 59 27 from DB.DBA.RDF_QUAD by RDF_QUAD       0.14 rows   
+    Key RDF_QUAD  ASC  (<V s_37_3_t0.O$28 an>)
+     inlined  P =  IRI_ID"...description"  ,  S =  IRI_ID"...Q221226" 
+    
+    time         0% fanout         0 input         0 rows
+      clear: (<V DB.DBA.RDF_LANGUAGE_OF_OBJ$32 a>, <V __ro2sq$30 a>)
+    s# 74 69 END Node
+    After test:
+      0: <V __ro2sq$30 a> := Call __ro2sq (<V s_37_3_t0.O$28 an>)
+      5: <V DB.DBA.RDF_LANGUAGE_OF_OBJ$32 a> := Call DB.DBA.RDF_LANGUAGE_OF_OBJ (<V __ro2sq$30 a>)
+      12: if (<c ar> = <V DB.DBA.RDF_LANGUAGE_OF_OBJ$32 a>) then 16 else 17 unkn 17
+      16: BReturn 1
+      17: BReturn 0
+    time         0% fanout         0 input         0 rows
+      clear: (<V var4$36 a>, <V __ro2sq$34 a>)$28 (69 ) 
+    s# 82 48 skip node  10  <none> <r set_ctr$44 via  Set74 Set59>
+    After code:
+      0: <V __ro2sq$34 a> := Call __ro2sq (<r s_37_3_t0.O$28 via  Set82 Set74>)
+      5: <V var4$36 a> := Call DB.DBA.RDF_LANGUAGE_OF_OBJ (<V __ro2sq$34 a>)
+      12: BReturn 0
+    time         0% fanout         0 input         0 rows
+    $36 (48 ) $44 (48 69 27 45 ) 
+    s# 90 38 Select (<tag 182 flag 1 c http://www.wikidata.org/entity/Q221226>, <DB_NULL>, <V var4$36 a>)
+      set no: <r set_ctr$44 via  Set82 Set74 Set59>
+  }
+Warning: You might have a Cartesian product.
+
+
+
+ 0 msec 0% cpu,         1 rnd         0 seq         0% same seg         0% same pg 
+Compilation: 18 msec 1 reads   91.7728% read 0 messages         0% clw

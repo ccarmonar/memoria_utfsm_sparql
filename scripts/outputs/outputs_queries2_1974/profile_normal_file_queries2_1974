@@ -1,0 +1,32 @@
+
+  { 
+    time         2% fanout         1 input         1 rows
+      clear: (<V set_ctr$40 in>)
+    s# 43 41 cluster outer seq start, set no <V set_ctr$40 in>    
+    save ctx:()
+    time        98% fanout         0 input         1 rows
+    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:       0.3 Fanout:         0
+    Precode:
+      0: <V entity/Q3868397$27 r> := Call __i2idn (<tag 182 flag 1 c http://www.wikidata.org/entity/Q3868397>)
+      5: BReturn 0
+      clear: (<V s_37_2_t0.O$30 an>, <V entity/Q3868397$27 r>, <V var1$32 a>)
+      clear on continue: (<V var1$32 a>, <V s_37_2_t0.O$30 an>)$56 (29 ) $27 (29 ) 
+    s# 52 29 from DB.DBA.RDF_QUAD by RDF_QUAD        0.3 rows   
+    Key RDF_QUAD  ASC  (<V s_37_2_t0.O$30 an>)
+     inlined  P =  IRI_ID"...direct/P2003"  ,  S = <v k_entity/Q3868397$56 Set58 rn>
+    vector param casts: <V entity/Q3868397$27 r>-> <v k_entity/Q3868397$56 Set58 rn>
+    
+    After code:
+      0: <V var1$32 a> := Call __ro2sq (<V s_37_2_t0.O$30 an>)
+      5: BReturn 0
+    time         0% fanout         0 input         0 rows
+    $32 () $40 (29 41 ) 
+    s# 66 34 Select (<V var1$32 a>)
+      set no: <r set_ctr$40 via  Set52 Set58>
+  }
+Warning: You might have a Cartesian product.
+
+
+
+ 1 msec 0% cpu,         4 rnd         0 seq         0% same seg         0% same pg 
+Compilation: 26 msec 0 reads         0% read 0 messages         0% clw

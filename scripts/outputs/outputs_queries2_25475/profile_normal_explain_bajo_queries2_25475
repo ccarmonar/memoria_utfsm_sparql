@@ -1,0 +1,55 @@
+http://www.wikidata.org/entity/Q946438	
+http://www.wikidata.org/entity/Q17229858	
+http://www.wikidata.org/entity/Q11664562	
+http://www.wikidata.org/entity/Q3342565	
+http://www.wikidata.org/entity/Q5244721	
+http://www.wikidata.org/entity/Q11364406	
+
+  { 
+    time     0.024% fanout         1 input         1 rows
+    time      0.85% fanout      1410 input         1 rows
+    RDF_QUAD_POGS   1.4e+03 rows(s_37_12_t3.S$28)
+     P =  IRI_ID"...direct/P106"  ,  O =  IRI_ID"...Q121594" 
+    time        60% fanout   1.00355 input      1410 rows
+    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:     0.091 Fanout:         1
+    RDF_QUAD     0.091 rows(s_37_12_t1.S$31)
+     inlined  P =  IRI_ID"...direct/P31"  ,  S = s_37_12_t3.S$28 ,  O =  IRI_ID"...Q5" 
+    time        13% fanout 0.0106007 input      1415 rows
+    RDF_QUAD     0.026 rows(s_37_12_t4.S$34)
+     inlined  P =  IRI_ID"...direct/P27"  ,  S = s_37_12_t1.S$31 ,  O =  IRI_ID"...Q17" 
+    time        12% fanout  0.466667 input        15 rows
+    END Node
+    After test:
+    0: if (  { 
+        time     0.019% fanout         1 input        15 rows
+        time       2.3% fanout   11.4667 input        15 rows
+        RDF_QUAD        14 rows(s_37_10_t0.O$37)
+         inlined  P =  IRI_ID"...description"  ,  S = k_s_37_12_t4.S$126
+        time       9.9% fanout 0.0465116 input       172 rows
+        END Node
+        After test:
+        0: __ro2sq$39 := Call __ro2sq (s_37_10_t0.O$37)
+        5: DB.DBA.RDF_LANGUAGE_OF_OBJ$41 := Call DB.DBA.RDF_LANGUAGE_OF_OBJ (__ro2sq$39)
+        12: if (<c ar> = DB.DBA.RDF_LANGUAGE_OF_OBJ$41) then 16 else 17 unkn 17
+        16: BReturn 1
+        17: BReturn 0
+        time     0.015% fanout         0 input         8 rows
+        Subquery Select( <none> )
+      }
+    ) then 5 else 4 unkn 5
+    4: BReturn 1
+    5: BReturn 0
+    time       1.9% fanout  0.857143 input         7 rows
+    RDF_QUAD_POGS      0.83 rows()
+     inlined  P =  IRI_ID"...direct/P21"  ,  O =  IRI_ID"...Q6581097"  ,  S = k_s_37_12_t1.S$165
+    
+    After code:
+    0: var1$54 := Call __id2in (s_37_12_t1.S$31)
+    5: BReturn 0
+    time    0.0054% fanout         0 input         6 rows
+    Select (var1$54)
+  }
+
+
+ 13 msec 79% cpu,      3192 rnd      1573 seq   79.1106% same seg   12.5274% same pg 
+Compilation: 3 msec 0 reads         0% read 0 messages         0% clw

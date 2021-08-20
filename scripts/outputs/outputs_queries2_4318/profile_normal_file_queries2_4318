@@ -1,0 +1,71 @@
+
+  { 
+    time       1.2% fanout         1 input         1 rows
+      clear: (<V set_ctr$82 in>)
+    s# 85 83 cluster outer seq start, set no <V set_ctr$82 in>    
+    save ctx:()
+    time        66% fanout         9 input         1 rows
+    Precode:
+      0: entity/Q1196801$27  := Call __i2idn (<tag 182 flag 1 c http://www.wikidata.org/entity/Q1196801>)
+      5: entity/Q2697453$29  := Call __i2idn (<tag 182 flag 1 c http://www.wikidata.org/entity/Q2697453>)
+      10: entity/Q735613$31  := Call __i2idn (<tag 182 flag 1 c http://www.wikidata.org/entity/Q735613>)
+      15: entity/Q2480047$33  := Call __i2idn (<tag 182 flag 1 c http://www.wikidata.org/entity/Q2480047>)
+      20: BReturn 0
+      clear: (<V in_iter$36 x>)
+      clear on continue: (<V in_iter$36 x>)
+    s# 94 37 in   iterates <V in_iter$36 x>
+      over ( IRI_ID"...Q216353" ,  IRI_ID"...Q1052131" ,  IRI_ID"...Q1205277" , entity/Q1196801$27 , entity/Q2697453$29 , entity/Q735613$31 ,  IRI_ID"...Q639955" , entity/Q2480047$33 ,  IRI_ID"...Q5721431" )
+    time        33% fanout         0 input         9 rows
+    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:       2.7 Fanout:         0
+      clear: (<V s_37_4_t0.S$40 rn>, <V s_37_4_t0.O$41 an>)
+      clear on continue: (<V s_37_4_t0.O$41 an>, <V s_37_4_t0.S$40 rn>)$36 () $111 (35 ) 
+    s# 107 35 from DB.DBA.RDF_QUAD by RDF_QUAD        2.7 rows   
+    Key RDF_QUAD  ASC  (<V s_37_4_t0.O$41 an>, <V s_37_4_t0.S$40 rn>)
+     inlined  P =  IRI_ID"...direct/P31"  ,  S = <v k_in_iter$111 Set113 rn>
+    row specs:  O LIKE <c Tó> ,  S <  IRI_ID"...nodeID://b0" 
+    vector param casts: <V in_iter$36 x>-> <v k_in_iter$111 Set113 rn>
+    
+    Precode:
+      0: <V __all_eq$43 x> := Call __all_eq (<V s_37_4_t0.O$41 an>)
+      5: <V var1$45 a> := Call __id2in (<V s_37_4_t0.S$40 rn>)
+      10: BReturn 0
+      clear: (<V _::trans_subj_37_6$48 rn>, <V _::trans_obj_37_7$49 an>, <V var1$45 a>, <V __all_eq$43 x>, <V var2$74 a>)
+      clear on continue: (<V var2$74 a>, <V _::trans_obj_37_7$49 an>, <V _::trans_subj_37_6$48 rn>)$40 () $41 () $43 (47 ) 
+    s# 122 47 Transitive dt dir 1, input: (<V __all_eq$43 x>)
+      input shadow: (<V __all_eq$126 x>)
+      output: (<V _::trans_obj_37_7$49 an>)
+      { 
+        time         0% fanout         0 input         0 rows
+        Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:       1.4 Fanout:         0
+          clear: (<V s_37_10_t1.O$54 an>, <V s_37_10_t1.S$55 rn>, <V _::trans_obj_37_7$49 an>, <V _::trans_subj_37_6$48 rn>)
+          clear on continue: (<V _::trans_subj_37_6$48 rn>, <V _::trans_obj_37_7$49 an>, <V s_37_10_t1.S$55 rn>, <V s_37_10_t1.O$54 an>)$126 (53 ) $132 (53 ) 
+        s# 128 53 from DB.DBA.RDF_QUAD by RDF_QUAD        1.4 rows   
+        Key RDF_QUAD  ASC  (<V s_37_10_t1.S$55 rn>, <V s_37_10_t1.O$54 an>)
+         inlined  P =  IRI_ID"...direct/P279"  ,  S = <v k___all_eq$132 Set134 rn>
+        vector param casts: <V __all_eq$126 x>-> <v k___all_eq$132 Set134 rn>
+        
+        After code:
+          0: <V _::trans_subj_37_6$48 rn> :=  := artm <V s_37_10_t1.S$55 rn>
+          4: <V _::trans_obj_37_7$49 an> :=  := artm <V s_37_10_t1.O$54 an>
+          8: BReturn 0
+        time         0% fanout         0 input         0 rows
+        $48 () 
+        s# 145 57 Subquery Select(<V _::trans_subj_37_6$48 rn>, <V _::trans_obj_37_7$49 an>)
+          set no: <r step_set$50 via  Set128 Set134>
+      }
+    After code:
+      0: <V var2$74 a> := Call __ro2sq (<V _::trans_obj_37_7$49 an>)
+      5: BReturn 0
+    time         0% fanout         0 input         0 rows
+    $74 () $45 (47 ) $82 (47 35 37 83 ) 
+    s# 152 76 Select (<r var1$45 via  Set122>, <V var2$74 a>)
+      set no: <r set_ctr$82 via  Set122 Set107 Set113 Set94>
+  }
+Warning: You might have a Cartesian product.
+
+Warning: You might have a Cartesian product.
+
+
+
+ 1 msec 0% cpu,        21 rnd         0 seq   22.7273% same seg   4.54545% same pg 
+Compilation: 215 msec 7 reads   85.7618% read 0 messages         0% clw

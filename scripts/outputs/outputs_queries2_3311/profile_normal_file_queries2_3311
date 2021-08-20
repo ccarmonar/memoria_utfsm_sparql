@@ -1,0 +1,69 @@
+
+  { 
+    time       8.4% fanout         1 input         1 rows
+      clear: (<V set_ctr$72 in>)
+    s# 75 73 cluster outer seq start, set no <V set_ctr$72 in>    
+    save ctx:()
+      clear: (<V var1$28 a>, <V set_no$29 i>, <V var1$64 a>)
+    s# 84 27 Subquery 27 
+      multistate set no = <V set_no$29 i>
+      { 
+        time       5.9% fanout         1 input         1 rows
+        
+        s# 129 44 Fork 44 {  
+                
+            save ctx:()
+              set no = <V set_no$29 i> array  <none>  save: 
+            time        80% fanout         0 input         1 rows
+            Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:   1.4e-07 Fanout:         0
+              clear: (<V s_37_4_t1.O$31 an>, <V s_37_4_t1.S$32 rn>)
+              clear on continue: (<V s_37_4_t1.O$31 an>, <V s_37_4_t1.S$32 rn>)
+            s# 89 30 from DB.DBA.RDF_QUAD by RDF_QUAD_POGS    1.4e-07 rows   
+            Key RDF_QUAD_POGS  ASC  (<V s_37_4_t1.S$32 rn>, <V s_37_4_t1.O$31 an>)
+             inlined  P =  IRI_ID"...statement/P220" 
+            
+            time         0% fanout         0 input         0 rows
+            Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:   1.4e-07 Fanout:         0
+            $32 () $104 (34 ) 
+            s# 100 34 from DB.DBA.RDF_QUAD by RDF_QUAD_POGS    1.4e-07 rows   
+            Key RDF_QUAD_POGS  ASC  ()
+             P =  IRI_ID"...P220"  ,  O = <v cast$104 Set106 an>
+            vector param casts: <V s_37_4_t1.S$32 rn>-> <v cast$104 Set106 an>
+            
+            time         0% fanout         0 input         0 rows
+            
+            s# 113 36 Distinct (HASH) set no <r set_no$29 via  Set100 Set106 Set89>(<r s_37_4_t1.O$31 via  Set100 Set106>)
+            time         0% fanout         0 input         0 rows
+            Precode:
+              0: <V __ro2sq$42 a> := Call __ro2sq (<r s_37_4_t1.O$31 via  Set113 Set100 Set106>)
+              5: BReturn 0
+              clear: (<V __ro2sq$42 a>)$31 (36 34 ) 
+            s# 121 45 Sort (HASH) set no <r set_no$29 via  Set113 Set100 Set106 Set89>(<V __ro2sq$42 a>)
+        }
+        time       5.5% fanout         0 input         1 rows
+          clear: (<V __ro2sq$42 a>, <V var1$28 a>)
+          clear on continue: (<V __ro2sq$42 a>, <V var1$28 a>)
+        s# 136 50 Key from temp (<V __ro2sq$42 a>)
+        
+        
+        After code:
+          0: <V var1$28 a> :=  := artm <V __ro2sq$42 a>
+          4: BReturn 0
+        time         0% fanout         0 input         0 rows
+        
+        s# 84 57 Subquery Select(<V var1$28 a>)
+          set no: <r set_no$29 via  Set136>
+      }
+    
+    After code:
+      0: <V var1$64 a> := Call __ro2sq (<V var1$28 a>)
+      5: BReturn 0
+    time         0% fanout         0 input         0 rows
+    $64 (27 ) $72 (27 73 ) 
+    s# 153 66 Select (<V var1$64 a>)
+      set no: <r set_ctr$72 via  Set84>
+  }
+
+
+ 0 msec 0% cpu,         1 rnd         0 seq         0% same seg         0% same pg 
+Compilation: 511 msec 0 reads         0% read 0 messages         0% clw

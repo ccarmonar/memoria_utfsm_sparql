@@ -1,0 +1,34 @@
+ SELECT  __ro2sq ("s_37_9_rbc"."var1") AS "var1", __ro2sq ("s_37_9_rbc"."var2") AS "var2", __ro2sq ("s_37_9_rbc"."var4") AS "var4" FROM (SELECT TOP 2000 __id2in ( "s_37_10"."var1") AS "var1",
+    __ro2sq ( "s_37_10"."var2") AS "var2",
+    rdf_year_impl ( "s_37_8"."var3") AS "var4"
+  FROM (
+      SELECT "s_37_10_t4"."S" AS "var1",
+        "s_37_10_t4"."O" AS "var5",
+        "s_37_10_t6"."O" AS "var2"
+      FROM DB.DBA.RDF_QUAD AS "s_37_10_t4"
+        INNER JOIN DB.DBA.RDF_QUAD AS "s_37_10_t5"
+        ON (
+          "s_37_10_t4"."O" = "s_37_10_t5"."S")
+        INNER JOIN DB.DBA.RDF_QUAD AS "s_37_10_t6"
+        ON (
+          "s_37_10_t4"."S" = "s_37_10_t6"."S")
+      WHERE
+        "s_37_10_t4"."P" = __i2idn ( __bft( 'http://www.wikidata.org/prop/P195' , 1))
+        AND 
+        "s_37_10_t5"."P" = __i2idn ( __bft( 'http://www.wikidata.org/prop/statement/P195' , 1))
+        AND 
+        "s_37_10_t5"."O" = __i2idn ( __bft( 'http://www.wikidata.org/entity/Q190804' , 1))
+        AND 
+        "s_37_10_t6"."P" = __i2idn ( __bft( 'http://www.wikidata.org/prop/direct/P217' , 1))
+        AND 
+        (cast ( __ro2sq ( "s_37_10_t6"."O") as varchar) like  '%string1%' )) AS "s_37_10"
+    LEFT OUTER JOIN (
+      SELECT "s_37_8_t0"."S" AS "var5",
+        "s_37_8_t0"."O" AS "var3"
+      FROM DB.DBA.RDF_QUAD AS "s_37_8_t0"
+      WHERE
+        "s_37_8_t0"."P" = __i2idn ( __bft( 'http://www.wikidata.org/prop/qualifier/P580' , 1))) AS "s_37_8"
+    ON (
+      "s_37_10"."var5" = "s_37_8"."var5")
+  ORDER BY  CAST ( __rdf_sqlval_of_obj /*l*/ ( DB.DBA.rdf_replace_impl ( __ro2lo ( "s_37_10"."var2"),  'string2' ,  'NULL' )) AS INTEGER) ASC, __ro2sq ( "s_37_10"."var2") ASC
+OPTION (QUIETCAST)) AS "s_37_9_rbc"

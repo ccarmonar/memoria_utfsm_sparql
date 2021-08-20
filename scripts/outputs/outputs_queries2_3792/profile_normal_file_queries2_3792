@@ -1,0 +1,31 @@
+http://www.wikidata.org/entity/Q3795628	
+
+  { 
+    time       2.2% fanout         1 input         1 rows
+      clear: (<V set_ctr$40 in>)
+    s# 43 41 cluster outer seq start, set no <V set_ctr$40 in>    
+    save ctx:()
+    time        97% fanout         1 input         1 rows
+    Precode:
+      0: <V __rdflit$27 x> := Call __rdflit (rdflit13421636)
+      5: BReturn 0
+      clear: (<V s_37_2_t0.S$30 rn>, <V __rdflit$27 x>, <V var1$32 a>)
+      clear on continue: (<V var1$32 a>, <V s_37_2_t0.S$30 rn>)
+    s# 52 29 from DB.DBA.RDF_QUAD by RDF_QUAD_POGS          1 rows   
+    Key RDF_QUAD_POGS  ASC  (<V s_37_2_t0.S$30 rn>)
+     P =  IRI_ID"...direct/P2603"  ,  O = rdflit13421636
+    
+    After code:
+      0: <V var1$32 a> := Call __id2in (<V s_37_2_t0.S$30 rn>)
+      5: BReturn 0
+    time      0.44% fanout         0 input         1 rows
+    $32 () $40 (29 41 ) 
+    s# 62 34 Select (<V var1$32 a>)
+      set no: <r set_ctr$40 via  Set52>
+  }
+Warning: You might have a Cartesian product.
+
+
+
+ 1 msec 0% cpu,         2 rnd         0 seq         0% same seg         0% same pg 
+Compilation: 26 msec 1 reads   95.1906% read 0 messages         0% clw

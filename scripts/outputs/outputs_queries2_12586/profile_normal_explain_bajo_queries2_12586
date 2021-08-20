@@ -1,0 +1,60 @@
+http://www.wikidata.org/entity/Q2849856	
+http://www.wikidata.org/entity/Q15906152	
+http://www.wikidata.org/entity/Q15916672	
+http://www.wikidata.org/entity/Q3399747	
+http://www.wikidata.org/entity/Q5321274	
+http://www.wikidata.org/entity/Q6382028	
+http://www.wikidata.org/entity/Q7073388	
+http://www.wikidata.org/entity/Q7075631	
+http://www.wikidata.org/entity/Q9364325	
+http://www.wikidata.org/entity/Q12036487	
+http://www.wikidata.org/entity/Q12039065	
+http://www.wikidata.org/entity/Q12039144	
+http://www.wikidata.org/entity/Q12040340	
+http://www.wikidata.org/entity/Q12040549	
+http://www.wikidata.org/entity/Q12041834	
+http://www.wikidata.org/entity/Q12042238	
+http://www.wikidata.org/entity/Q12042351	
+http://www.wikidata.org/entity/Q12043132	
+http://www.wikidata.org/entity/Q12045239	
+http://www.wikidata.org/entity/Q12047843	
+
+  { 
+    time      0.12% fanout         1 input         1 rows
+    time      0.03% fanout         1 input         1 rows
+    time        13% fanout      7000 input         1 rows
+    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:   6.2e+02 Fanout:     7e+03
+    RDF_QUAD   6.2e+02 rows(s_37_5_t1.O$32, s_37_5_t1.S$31)
+     inlined  P =  IRI_ID"...direct/P495" 
+    time        50% fanout 0.0125714 input      7000 rows
+    END Node
+    After test:
+    0: one_of_these$34 := Call one_of_these (s_37_5_t1.O$32,  IRI_ID"...Q213" ,  IRI_ID"...Q33946" )
+    5: if ( 0  < one_of_these$34) then 9 else 19 unkn 19
+    9: is_named_iri_id$36 := Call is_named_iri_id (s_37_5_t1.O$32)
+    14: if ( 0  = is_named_iri_id$36) then 19 else 18 unkn 19
+    18: BReturn 1
+    19: BReturn 0
+    time        19% fanout  0.306818 input        88 rows
+    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:    0.0046 Fanout:      0.31
+    RDF_QUAD    0.0046 rows(s_37_5_t0.S$39)
+     inlined  P =  IRI_ID"...direct/P31"  ,  S = k_s_37_5_t1.S$113 ,  O =  IRI_ID"...Q11424" 
+    time       6.8% fanout  0.925926 input        27 rows
+    Distinct (s_37_5_t0.S$39)
+    
+    After code:
+    0: var1$28 :=  := artm s_37_5_t0.S$39
+    4: BReturn 0
+    time        10% fanout         1 input        25 rows
+    Subquery Select(var1$28)
+    
+    After code:
+    0: var1$55 := Call __ro2sq (var1$28)
+    5: BReturn 0
+    time       0.1% fanout         0 input        25 rows
+    Select (var1$55)
+  }
+
+
+ 3 msec 55% cpu,        89 rnd      6991 seq   82.2222% same seg   8.88889% same pg 
+Compilation: 2 msec 0 reads         0% read 0 messages         0% clw

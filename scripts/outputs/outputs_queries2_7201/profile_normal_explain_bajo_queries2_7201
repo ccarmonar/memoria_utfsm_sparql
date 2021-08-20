@@ -1,0 +1,81 @@
+
+  { 
+    time       7.5% fanout         1 input         1 rows
+    time        93% fanout         0 input         1 rows
+    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:   1.4e-07 Fanout:         0
+    Precode:
+      0: __all_eq$27 := Call __all_eq ( IRI_ID"...Q4830453" )
+      5: BReturn 0
+    RDF_QUAD_POGS   1.4e-07 rows(s_37_7_t1.S$31, s_37_7_t1.O$30)
+     inlined  P =  IRI_ID"...qualifier/P625" 
+    time         0% fanout         0 input         0 rows
+    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:   5.7e-15 Fanout:         0
+    RDF_QUAD   5.7e-15 rows(s_37_3_t0.S$34)
+     inlined  P =  IRI_ID"...P159"  O = k_s_37_7_t1.S$140
+    time         0% fanout         0 input         0 rows
+    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:       1.1 Fanout:         0
+    RDF_QUAD       1.1 rows(s_37_14_t2.S$38, s_37_14_t2.O$37)
+     inlined  P =  IRI_ID"...direct/P31"  ,  S = s_37_3_t0.S$34 O LIKE <c Tó>
+    time         0% fanout         0 input         0 rows
+    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:   3.4e-05 Fanout:         0
+    RDF_QUAD   3.4e-05 rows(s_37_26_t4.S$42, s_37_26_t4.O$41)
+     inlined  P =  IRI_ID"...direct/P625"  ,  S = k_s_37_3_t0.S$165 ,  O = k_s_37_7_t1.O$169
+    Precode:
+      0: __all_eq$44 := Call __all_eq (s_37_14_t2.O$37)
+      5: var1$46 := Call __id2in (s_37_26_t4.S$42)
+      10: var3$48 := Call __ro2sq (s_37_26_t4.O$41)
+      15: BReturn 0
+    Transitive dt dir 2, input: (__all_eq$27)
+      input shadow: (__all_eq$182)
+      output: (_::trans_subj_37_16$51)
+     Target:  (__all_eq$44)
+      { 
+        time         0% fanout         0 input         0 rows
+        Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:       3.8 Fanout:         0
+        RDF_QUAD_POGS       3.8 rows(t6.S$58, t6.O$57)
+         P =  IRI_ID"...direct/P279"  ,  O = k___all_eq$188
+        
+        After code:
+        0: _::trans_subj_37_16$51 :=  := artm t6.S$58
+        4: _::trans_obj_37_17$52 :=  := artm t6.O$57
+        8: BReturn 0
+        time         0% fanout         0 input         0 rows
+        Subquery Select(_::trans_subj_37_16$51, _::trans_obj_37_17$52)
+      }
+    Reverse transitive node, input: (__all_eq$44)
+      output: (_::trans_obj_37_17$52)
+     Target:  (__all_eq$27)
+      { 
+        time         0% fanout         0 input         0 rows
+        Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:       1.4 Fanout:         0
+        RDF_QUAD       1.4 rows(t6.S$83, t6.O$82)
+         inlined  P =  IRI_ID"...direct/P279"  ,  S = k___all_eq$218
+        
+        After code:
+        0: _::trans_subj_37_16$51 :=  := artm t6.S$83
+        4: _::trans_obj_37_17$52 :=  := artm t6.O$82
+        8: BReturn 0
+        time         0% fanout         0 input         0 rows
+        Subquery Select(_::trans_subj_37_16$51, _::trans_obj_37_17$52)
+      }
+    time         0% fanout         0 input         0 rows
+    END Node
+    After test:
+    0: if (_::trans_obj_37_17$52 =  IRI_ID"...Q4830453" ) then 4 else 5 unkn 5
+    4: BReturn 1
+    5: BReturn 0
+    time         0% fanout         0 input         0 rows
+    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:         1 Fanout:         0
+    RDF_QUAD         1 rows(s_37_26_t5.O$103)
+     inlined  P =  IRI_ID"...direct/P2427"  ,  S = k_s_37_26_t4.S$258
+    
+    After code:
+    0: var2$105 := Call __ro2sq (s_37_26_t5.O$103)
+    5: BReturn 0
+    time         0% fanout         0 input         0 rows
+    Select (var1$46, var2$105, var3$48)
+  }
+
+
+ 1 msec 1% cpu,         1 rnd         0 seq         0% same seg         0% same pg 
+Compilation: 4 msec 0 reads         0% read 0 messages         0% clw

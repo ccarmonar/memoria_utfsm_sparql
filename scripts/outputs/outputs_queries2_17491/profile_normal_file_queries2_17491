@@ -1,0 +1,87 @@
+http://www.wikidata.org/entity/Q79308481	
+http://www.wikidata.org/entity/Q79298009	
+http://www.wikidata.org/entity/Q79410526	
+http://www.wikidata.org/entity/Q78361621	
+http://www.wikidata.org/entity/Q79339143	
+http://www.wikidata.org/entity/Q79526454	
+http://www.wikidata.org/entity/Q78919338	
+http://www.wikidata.org/entity/Q79430200	
+http://www.wikidata.org/entity/Q79635824	
+http://www.wikidata.org/entity/Q79641337	
+http://www.wikidata.org/entity/Q78249390	
+http://www.wikidata.org/entity/Q78327451	
+http://www.wikidata.org/entity/Q78880724	
+http://www.wikidata.org/entity/Q79365054	
+http://www.wikidata.org/entity/Q79395805	
+http://www.wikidata.org/entity/Q78249338	
+http://www.wikidata.org/entity/Q78892560	
+http://www.wikidata.org/entity/Q41558511	
+http://www.wikidata.org/entity/Q79562660	
+http://www.wikidata.org/entity/Q79717962	
+
+  { 
+    time   0.00012% fanout         1 input         1 rows
+      clear: (<V set_ctr$54 in>)
+    s# 60 55 cluster outer seq start, set no <V set_ctr$54 in>    
+    save ctx:()
+    time     0.014% fanout     13000 input         1 rows
+    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:   1.1e+06 Fanout:   1.3e+04
+      clear: (<V s_37_6_t1.S$28 rn>)
+      clear on continue: (<V s_37_6_t1.S$28 rn>)
+    s# 69 27 from DB.DBA.RDF_QUAD by RDF_QUAD_POGS    1.1e+06 rows   
+    Key RDF_QUAD_POGS  ASC  (<V s_37_6_t1.S$28 rn>)
+     P =  IRI_ID"...direct/P31"  ,  O =  IRI_ID"...Q13442814" 
+    
+    time        50% fanout 0.00215385 input     13000 rows
+    
+    s# 84 79 END Node
+    After test:
+      0: if (  { 
+          time    0.0027% fanout         1 input     13000 rows
+            clear: (<V set_ctr$43 in>)
+          s# 88 44 cluster outer seq start, set no <V set_ctr$43 in>    
+          save ctx:()
+          time      0.95% fanout   58.2915 input     13000 rows
+            clear: (<V s_37_4_t0.O$31 an>)
+            clear on continue: (<V s_37_4_t0.O$31 an>)$101 (30 ) 
+          s# 97 30 from DB.DBA.RDF_QUAD by RDF_QUAD         14 rows   
+          Key RDF_QUAD  ASC  (<V s_37_4_t0.O$31 an>)
+           inlined  P =  IRI_ID"...description"  ,  S = <v k_s_37_6_t1.S$101 Set103 rn>
+          vector param casts: <r s_37_6_t1.S$28 via  Set88>-> <v k_s_37_6_t1.S$101 Set103 rn>
+          
+          time        49% fanout 0.0171182 input    757790 rows
+            clear: (<V DB.DBA.RDF_LANGUAGE_OF_OBJ$35 a>, <V __ro2sq$33 a>)$31 () 
+          s# 116 111 END Node
+          After test:
+            0: <V __ro2sq$33 a> := Call __ro2sq (<V s_37_4_t0.O$31 an>)
+            5: <V DB.DBA.RDF_LANGUAGE_OF_OBJ$35 a> := Call DB.DBA.RDF_LANGUAGE_OF_OBJ (<V __ro2sq$33 a>)
+            12: if (<c ar> = <V DB.DBA.RDF_LANGUAGE_OF_OBJ$35 a>) then 16 else 17 unkn 17
+            16: BReturn 1
+            17: BReturn 0
+          time     0.011% fanout         0 input     12972 rows
+          $43 (111 30 44 ) 
+          s# 124 37 Subquery Select( <none> )
+            set no: <r set_ctr$43 via  Set116 Set97 Set103>
+        }
+      ) then 5 else 4 unkn 5
+      4: BReturn 1
+      5: BReturn 0
+    time     0.037% fanout         1 input        28 rows
+      clear: (<V var1$46 a>)$28 (79 ) 
+    s# 136 58 skip node  1000  <none> <r set_ctr$54 via  Set84 Set69>
+    After code:
+      0: <V var1$46 a> := Call __id2in (<r s_37_6_t1.S$28 via  Set136 Set84>)
+      5: BReturn 0
+    time   8.3e-05% fanout         0 input        28 rows
+    $46 (58 ) $54 (58 79 27 55 ) 
+    s# 144 48 Select (<V var1$46 a>)
+      set no: <r set_ctr$54 via  Set136 Set84 Set69>
+  }
+Warning: You might have a Cartesian product.
+
+Warning: You might have a Cartesian product.
+
+
+
+ 1507 msec 99% cpu, 1.5278e+06 rnd    756992 seq  0.744991% same seg   10.9212% same pg 
+Compilation: 1 msec 0 reads         0% read 0 messages         0% clw

@@ -1,0 +1,71 @@
+http://www.wikidata.org/entity/Q24868684	
+http://www.wikidata.org/entity/Q11548478	
+http://www.wikidata.org/entity/Q543984	
+http://www.wikidata.org/entity/Q11670999	
+http://www.wikidata.org/entity/Q30608855	
+
+  { 
+    time     0.015% fanout         1 input         1 rows
+    time       0.5% fanout      2156 input         1 rows
+    RDF_QUAD_POGS   2.2e+03 rows(s_37_16_t4.S$28)
+     P =  IRI_ID"...direct/P106"  ,  O =  IRI_ID"...Q169470" 
+    time        28% fanout    1.0116 input      2156 rows
+    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:     0.091 Fanout:         1
+    RDF_QUAD     0.091 rows(s_37_16_t2.S$31)
+     inlined  P =  IRI_ID"...direct/P31"  ,  S = s_37_16_t4.S$28 ,  O =  IRI_ID"...Q5" 
+    time       7.6% fanout   0.93856 input      2181 rows
+    RDF_QUAD      0.83 rows(s_37_16_t3.S$34)
+     inlined  P =  IRI_ID"...direct/P21"  ,  S = s_37_16_t2.S$31 ,  O =  IRI_ID"...Q6581097" 
+    time       7.2% fanout 0.0263801 input      2047 rows
+    RDF_QUAD     0.026 rows(s_37_16_t5.S$37)
+     inlined  P =  IRI_ID"...direct/P27"  ,  S = k_s_37_16_t2.S$128 ,  O =  IRI_ID"...Q17" 
+    time        29% fanout 0.0925926 input        54 rows
+    END Node
+    After test:
+    0: if (  { 
+        time     0.014% fanout         1 input        54 rows
+        time       3.2% fanout   15.2037 input        54 rows
+        RDF_QUAD        22 rows(s_37_14_t1.O$40)
+         inlined  P =  IRI_ID"...description"  ,  S = k_s_37_16_t5.S$160
+        time        12% fanout 0.0998782 input       821 rows
+        END Node
+        After test:
+        0: __ro2sq$42 := Call __ro2sq (s_37_14_t1.O$40)
+        5: _cvt$44 := Call _cvt (<tag 193 flag 0>, __ro2sq$42)
+        10: if (_cvt$44  LIKE  <c %Japanese %>) then 14 else 15 unkn 15
+        14: BReturn 1
+        15: BReturn 0
+        time     0.017% fanout         0 input        82 rows
+        Subquery Select( <none> )
+      }
+    ) then 4 else 9 unkn 9
+    4: if (  { 
+        time     0.013% fanout  0.888889 input        54 rows
+        time       2.9% fanout        16 input        48 rows
+        RDF_QUAD        14 rows(s_37_10_t0.O$59)
+         inlined  P =  IRI_ID"...description"  ,  S = k_s_37_16_t5.S$205
+        time       9.4% fanout 0.0559896 input       768 rows
+        END Node
+        After test:
+        0: __ro2sq$61 := Call __ro2sq (s_37_10_t0.O$59)
+        5: DB.DBA.RDF_LANGUAGE_OF_OBJ$63 := Call DB.DBA.RDF_LANGUAGE_OF_OBJ (__ro2sq$61)
+        12: if (<c ar> = DB.DBA.RDF_LANGUAGE_OF_OBJ$63) then 16 else 17 unkn 17
+        16: BReturn 1
+        17: BReturn 0
+        time    0.0088% fanout         0 input        43 rows
+        Subquery Select( <none> )
+      }
+    ) then 9 else 8 unkn 9
+    8: BReturn 1
+    9: BReturn 0
+    
+    After code:
+    0: var1$74 := Call __id2in (s_37_16_t2.S$31)
+    5: BReturn 0
+    time     0.002% fanout         0 input         5 rows
+    Select (var1$74)
+  }
+
+
+ 17 msec 79% cpu,      8843 rnd      3709 seq   68.5436% same seg   5.75531% same pg 
+Compilation: 4 msec 0 reads         0% read 0 messages         0% clw

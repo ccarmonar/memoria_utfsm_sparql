@@ -1,0 +1,71 @@
+http://www.wikidata.org/entity/Q157931	
+http://www.wikidata.org/entity/Q708452	
+http://www.wikidata.org/entity/Q708689	
+http://www.wikidata.org/entity/Q447311	
+http://www.wikidata.org/entity/Q17426654	
+http://www.wikidata.org/entity/Q17426873	
+http://www.wikidata.org/entity/Q16522978	
+http://www.wikidata.org/entity/Q362180	
+http://www.wikidata.org/entity/Q535831	
+http://www.wikidata.org/entity/Q50379072	
+http://www.wikidata.org/entity/Q50379793	
+http://www.wikidata.org/entity/Q11685717	
+http://www.wikidata.org/entity/Q3501233	
+http://www.wikidata.org/entity/Q317792	
+http://www.wikidata.org/entity/Q1406012	
+http://www.wikidata.org/entity/Q13889299	
+
+  { 
+    time       0.2% fanout         1 input         1 rows
+    time     0.054% fanout         1 input         1 rows
+    Subquery 30 
+      { 
+        Union
+          { 
+            time         4% fanout       102 input         1 rows
+            RDF_QUAD_POGS     1e+02 rows(s_37_9_t2-u13.S$35)
+             P =  IRI_ID"...direct/P106"  ,  O =  IRI_ID"...Q11631" 
+            time        40% fanout 0.0588235 input       102 rows
+            RDF_QUAD     0.029 rows()
+             inlined  P =  IRI_ID"...direct/P27"  ,  S = s_37_9_t2-u13.S$35 ,  O =  IRI_ID"...Q15180" 
+            
+            After code:
+            0: var1$31 :=  := artm s_37_9_t2-u13.S$35
+            4: BReturn 0
+            time     0.069% fanout         0 input         6 rows
+            Subquery Select(var1$31)
+          }
+          { 
+            time       2.6% fanout       102 input         1 rows
+            RDF_QUAD_POGS     1e+02 rows(s_37_9_t2.S$47)
+             P =  IRI_ID"...direct/P106"  ,  O =  IRI_ID"...Q11631" 
+            time        37% fanout  0.117647 input       102 rows
+            RDF_QUAD     0.019 rows()
+             inlined  P =  IRI_ID"...direct/P27"  ,  S = s_37_9_t2.S$47 ,  O =  IRI_ID"...Q159" 
+            
+            After code:
+            0: var1$31 :=  := artm s_37_9_t2.S$47
+            4: BReturn 0
+            time     0.029% fanout         0 input        12 rows
+            Subquery Select(var1$31)
+          }
+      }
+    time         7% fanout  0.888889 input        18 rows
+    Distinct (var1$31)
+    
+    After code:
+    0: var1$28 :=  := artm var1$31
+    4: BReturn 0
+    time       9.2% fanout         1 input        16 rows
+    Subquery Select(var1$28)
+    
+    After code:
+    0: var1$73 := Call __ro2sq (var1$28)
+    5: BReturn 0
+    time     0.088% fanout         0 input        16 rows
+    Select (var1$73)
+  }
+
+
+ 2 msec 40% cpu,       206 rnd       202 seq   79.2271% same seg   18.3575% same pg 
+Compilation: 2 msec 0 reads         0% read 0 messages         0% clw

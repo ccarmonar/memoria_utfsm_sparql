@@ -1,0 +1,47 @@
+
+  { 
+    time        10% fanout         1 input         1 rows
+      clear: (<V set_ctr$59 in>)
+    s# 62 60 cluster outer seq start, set no <V set_ctr$59 in>    
+    save ctx:()
+    time        90% fanout         0 input         1 rows
+    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:         2 Fanout:         0
+      clear: (<V s_37_2_t0.P$28 rn>)
+      clear on continue: (<V s_37_2_t0.P$28 rn>)
+    s# 71 27 from DB.DBA.RDF_QUAD by RDF_QUAD_SP          2 rows   
+    Key RDF_QUAD_SP  ASC  (<V s_37_2_t0.P$28 rn>)
+     inlined  S =  IRI_ID"...Q12418" 
+    
+    time         0% fanout         0 input         0 rows
+    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:       1.2 Fanout:         0
+      clear: (<V s_37_2_t0.O$32 an>, <V var3$39 s>, <V rdf_concat_impl$51 s>, <V __rdf_strsqlval$49 s>, <V DB.DBA.RDF_DATATYPE_OF_OBJ$47 a>, <V __ro2sq$45 a>, <V temp$43 i>, <V isiri_id$41 i>, <V var2$37 a>, <V var1$35 a>)
+      clear on continue: (<V s_37_2_t0.O$32 an>, <V var3$39 s>, <V rdf_concat_impl$51 s>, <V __rdf_strsqlval$49 s>, <V DB.DBA.RDF_DATATYPE_OF_OBJ$47 a>, <V __ro2sq$45 a>, <V temp$43 i>, <V isiri_id$41 i>, <V var2$37 a>, <V var1$35 a>)$28 () 
+    s# 81 31 from DB.DBA.RDF_QUAD by RDF_QUAD        1.2 rows   
+    Key RDF_QUAD  ASC  (<V s_37_2_t0.O$32 an>)
+     inlined  P = <V s_37_2_t0.P$28 rn> ,  S =  IRI_ID"...Q12418" 
+    
+    After code:
+      0: <V var1$35 a> := Call __id2in (<r s_37_2_t0.P$28 via  Set81>)
+      5: <V var2$37 a> := Call __ro2sq (<V s_37_2_t0.O$32 an>)
+      10: <V isiri_id$41 i> := Call isiri_id (<V s_37_2_t0.O$32 an>)
+      15: <V temp$43 i> := artm  1  - <V isiri_id$41 i>
+      19: if ( 0  = <V temp$43 i>) then 50 else 23 unkn 50
+      23: <V __ro2sq$45 a> := Call __ro2sq (<V s_37_2_t0.O$32 an>)
+      28: <V DB.DBA.RDF_DATATYPE_OF_OBJ$47 a> := Call DB.DBA.RDF_DATATYPE_OF_OBJ (<V __ro2sq$45 a>)
+      35: <V __rdf_strsqlval$49 s> := Call __rdf_strsqlval (<V DB.DBA.RDF_DATATYPE_OF_OBJ$47 a>,  0 )
+      40: <V rdf_concat_impl$51 s> := Call rdf_concat_impl (<c ss>, <V __rdf_strsqlval$49 s>)
+      45: <V var3$39 s> :=  := artm <V rdf_concat_impl$51 s>
+      49: Jump 54 (level=0)
+      50: <V var3$39 s> :=  := artm <c >
+      54: BReturn 0
+    time         0% fanout         0 input         0 rows
+    $35 () $37 () $39 () $59 (31 27 60 ) 
+    s# 92 53 Select (<V var1$35 a>, <V var2$37 a>, <V var3$39 s>)
+      set no: <r set_ctr$59 via  Set81 Set71>
+  }
+Warning: You might have a Cartesian product.
+
+
+
+ 0 msec 2% cpu,         1 rnd         0 seq         0% same seg         0% same pg 
+Compilation: 1 msec 0 reads         0% read 0 messages         0% clw

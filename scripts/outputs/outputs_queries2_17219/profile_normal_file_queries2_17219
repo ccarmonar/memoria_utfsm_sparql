@@ -1,0 +1,37 @@
+149	
+
+  { 
+    time      0.16% fanout         1 input         1 rows
+      clear: (<V set_ctr$32 in>)
+    s# 47 33 cluster outer seq start, set no <V set_ctr$32 in>    
+    save ctx:()
+    time      0.12% fanout         1 input         1 rows
+    
+    s# 78 34 Fork 34 {  
+        time        17% fanout      7992 input         1 rows
+          clear: (<V s_37_4_t0.S$28 rn>)
+          clear on continue: (<V s_37_4_t0.S$28 rn>)
+        s# 57 27 from DB.DBA.RDF_QUAD by RDF_QUAD_POGS      8e+03 rows   
+        Key RDF_QUAD_POGS  ASC  (<V s_37_4_t0.S$28 rn>)
+         P =  IRI_ID"...direct/P17"  ,  O =  IRI_ID"...Q35" 
+        
+        time        83% fanout         0 input      7992 rows
+        Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:       1.1 Fanout:         0
+        $28 () 
+        s# 67 30 from DB.DBA.RDF_QUAD by RDF_QUAD        1.1 rows   
+        Key RDF_QUAD  ASC  ()
+         inlined  P =  IRI_ID"...direct/P625"  ,  S = <V s_37_4_t0.S$28 rn>
+        
+        After code:
+          0:  count <V var2$35 in><r s_37_4_t0.S$28 via  Set67>set no <r set_ctr$32 via  Set67 Set57>distinct via hash area <V DISTINCT HASH$39 x>
+          5: BReturn 0
+    }
+    time     0.063% fanout         0 input         1 rows
+    $32 (34 33 ) $35 (40 ) 
+    s# 85 40 Select (<V var2$35 in>)
+      set no: <V set_ctr$32 in>
+  }
+
+
+ 3 msec 49% cpu,      7993 rnd      7997 seq   99.8374% same seg 0.0375281% same pg 
+Compilation: 2 msec 0 reads         0% read 0 messages         0% clw

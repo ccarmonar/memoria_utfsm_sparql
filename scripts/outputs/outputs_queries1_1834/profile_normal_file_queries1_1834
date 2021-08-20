@@ -1,0 +1,82 @@
+1	1	
+1	1	
+1	1	
+1	1	
+1	1	
+1	1	
+1	1	
+1	1	
+1	1	
+1	1	
+1	1	
+1	1	
+1	1	
+1	1	
+1	1	
+1	1	
+1	1	
+1	1	
+1	1	
+1	1	
+
+  { 
+    time    0.0084% fanout         1 input         1 rows
+      clear: (<V set_ctr$62 in>)
+    s# 65 63 cluster outer seq start, set no <V set_ctr$62 in>    
+    save ctx:()
+      clear: (<V var3$30 an>, <V var1$29 an>, <V var5$28 x>, <V set_no$31 i>, <V var4$54 i>, <V var2$52 i>)
+    s# 74 27 Subquery 27 
+      multistate set no = <V set_no$31 i>
+      { 
+        time      0.15% fanout       242 input         1 rows
+          clear: (<V s_37_6_t0.S$33 rn>)
+          clear on continue: (<V s_37_6_t0.S$33 rn>)
+        s# 78 32 from DB.DBA.RDF_QUAD by RDF_QUAD_POGS    2.4e+02 rows   
+        Key RDF_QUAD_POGS  ASC  (<V s_37_6_t0.S$33 rn>)
+         P =  IRI_ID"...direct/P31"  ,  O =  IRI_ID"...Q28045079" 
+        
+        time        57% fanout         1 input       242 rows
+          clear: (<V s_37_6_t2.O$36 an>, <V s_37_6_t2.S$37 rn>)
+          clear on continue: (<V s_37_6_t2.O$36 an>, <V s_37_6_t2.S$37 rn>)
+        s# 88 35 from DB.DBA.RDF_QUAD by RDF_QUAD          1 rows   
+        Key RDF_QUAD  ASC  (<V s_37_6_t2.S$37 rn>, <V s_37_6_t2.O$36 an>)
+         inlined  P =  IRI_ID"...direct/P17"  ,  S = <V s_37_6_t0.S$33 rn>
+        
+        time        43% fanout    1.0124 input       242 rows
+          clear: (<V s_37_6_t1.O$40 an>)
+          clear on continue: (<V s_37_6_t1.O$40 an>)$33 (35 ) $103 (39 ) 
+        s# 99 39 from DB.DBA.RDF_QUAD by RDF_QUAD        1.1 rows   
+        Key RDF_QUAD  ASC  (<V s_37_6_t1.O$40 an>)
+         inlined  P =  IRI_ID"...direct/P131"  ,  S = <v k_s_37_6_t0.S$103 Set105 rn>
+        vector param casts: <r s_37_6_t0.S$33 via  Set88>-> <v k_s_37_6_t0.S$103 Set105 rn>
+        
+        time     0.029% fanout         1 input       245 rows
+          clear: (<V var3$30 an>, <V var1$29 an>)$36 (39 ) $40 () 
+        s# 113 50 skip node  12354  <none> <r set_no$31 via  Set99 Set105 Set88 Set78>
+        After code:
+          0: <V var1$29 an> :=  := artm <r s_37_6_t1.O$40 via  Set113>
+          4: <V var3$30 an> :=  := artm <r s_37_6_t2.O$36 via  Set113 Set99 Set105>
+          8: BReturn 0
+        time    0.0022% fanout         0 input       245 rows
+        
+        s# 74 42 Subquery Select( <none> , <V var1$29 an>, <V var3$30 an>)
+          set no: <r set_no$31 via  Set113 Set99 Set105 Set88 Set78>
+      }
+    
+    After code:
+      0: <V var2$52 i> := Call is_named_iri_id (<V var1$29 an>)
+      5: <V var4$54 i> := Call is_named_iri_id (<V var3$30 an>)
+      10: BReturn 0
+    time    0.0016% fanout         0 input       245 rows
+    $62 (27 63 ) $52 (27 ) $54 (27 ) 
+    s# 131 56 Select (<V var2$52 i>, <V var4$54 i>)
+      set no: <r set_ctr$62 via  Set74>
+  }
+Warning: You might have a Cartesian product.
+
+Warning: You might have a Cartesian product.
+
+
+
+ 38 msec 94% cpu,       485 rnd       244 seq   90.7407% same seg   7.40741% same pg 
+Compilation: 2 msec 0 reads         0% read 0 messages         0% clw

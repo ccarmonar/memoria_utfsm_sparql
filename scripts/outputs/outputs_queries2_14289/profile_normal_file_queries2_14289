@@ -1,0 +1,54 @@
+http://www.wikidata.org/entity/Q11994103		Orkneycouncil	
+http://www.wikidata.org/entity/Q2607446		jacqueshoudek	
+http://www.wikidata.org/entity/Q2607531		Harmonix	
+http://www.wikidata.org/entity/Q2608846		DimitriYachvili	
+http://www.wikidata.org/entity/Q2609533		mideagulf	
+http://www.wikidata.org/entity/Q2612941		USF2000	
+http://www.wikidata.org/entity/Q2613004		jupiter_jp1	
+http://www.wikidata.org/entity/Q2613369		LisaMiddelhauve	
+http://www.wikidata.org/entity/Q2613643		tanakahideo006	
+http://www.wikidata.org/entity/Q2614519		VanityLewerissa	
+http://www.wikidata.org/entity/Q2616634		Onirama_band	
+http://www.wikidata.org/entity/Q2617758		nanowarofsteel	
+http://www.wikidata.org/entity/Q2630715		MaroYonebayashi	
+http://www.wikidata.org/entity/Q2632422		asv_hamm	
+http://www.wikidata.org/entity/Q2633583		ShohrehSolati	
+http://www.wikidata.org/entity/Q2634615		Yoshi_MUROYA	
+http://www.wikidata.org/entity/Q2634664		Its_Alexsander	
+http://www.wikidata.org/entity/Q2635412		OMandM	
+http://www.wikidata.org/entity/Q2636244		HEPHNERJEFF	
+http://www.wikidata.org/entity/Q2638095		lagimnastica	
+
+  { 
+    time     0.011% fanout         1 input         1 rows
+      clear: (<V set_ctr$47 in>)
+    s# 50 48 cluster outer seq start, set no <V set_ctr$47 in>    
+    save ctx:()
+    time     1e+02% fanout      1000 input         1 rows
+    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:   2.8e+04 Fanout:     1e+03
+    Precode:
+      0: <V var2Label$27 a> := Call __ro2sq (<DB_NULL>)
+      5: BReturn 0
+      clear: (<V t2.O$30 an>, <V t2.S$31 rn>, <V var2Label$27 a>, <V var3$39 a>, <V __ro2sq$37 a>, <V var1$35 a>, <V __id2in$33 a>)
+      clear on continue: (<V __id2in$33 a>, <V var1$35 a>, <V __ro2sq$37 a>, <V var3$39 a>, <V t2.S$31 rn>, <V t2.O$30 an>)
+    s# 59 29 from DB.DBA.RDF_QUAD by RDF_QUAD    2.8e+04 rows   
+    Key RDF_QUAD  ASC  (<V t2.S$31 rn>, <V t2.O$30 an>)
+     inlined  P =  IRI_ID"...direct/P2002" 
+    
+    After code:
+      0: <V __id2in$33 a> := Call __id2in (<V t2.S$31 rn>)
+      5: <V var1$35 a> := Call __ro2sq (<V __id2in$33 a>)
+      10: <V __ro2sq$37 a> := Call __ro2sq (<V t2.O$30 an>)
+      15: <V var3$39 a> := Call __ro2sq (<V __ro2sq$37 a>)
+      20: BReturn 0
+    time    0.0011% fanout         0 input      1000 rows
+    $35 () $39 () $47 (29 48 ) $27 (29 ) 
+    s# 70 41 Select (<V var1$35 a>, <r var2Label$27 via  Set59>, <V var3$39 a>)
+      set no: <r set_ctr$47 via  Set59>
+  }
+Warning: You might have a Cartesian product.
+
+
+
+ 31 msec 95% cpu,      1638 rnd       998 seq         0% same seg   40.8176% same pg 
+Compilation: 1 msec 0 reads         0% read 0 messages         0% clw

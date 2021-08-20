@@ -1,0 +1,52 @@
+
+  { 
+    time       5.4% fanout         1 input         1 rows
+    time       1.4% fanout         1 input         1 rows
+    time        11% fanout         3 input         1 rows
+    in iterates in_iter$33  over ( IRI_ID"...Q3426243" ,  IRI_ID"...Q179458" ,  IRI_ID"...Q18115476" )
+    time        82% fanout         0 input         3 rows
+    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:         2 Fanout:         0
+    RDF_QUAD_SP         2 rows(s_37_3_t0.S$38, s_37_3_t0.P$37)
+     inlined  S = k_in_iter$121 S <  IRI_ID"...nodeID://b0" 
+    time         0% fanout         0 input         0 rows
+    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:       1.2 Fanout:         0
+    RDF_QUAD       1.2 rows(s_37_3_t0.O$42)
+     inlined  P = k_s_37_3_t0.P$136 ,  S = k_s_37_3_t0.S$140 S = k_in_iter$142
+    time         0% fanout         0 input         0 rows
+    END Node
+    After test:
+    0: __ro2sq$47 := Call __ro2sq (s_37_3_t0.O$42)
+    5: DB.DBA.RDF_LANGUAGE_OF_OBJ$45 := Call DB.DBA.RDF_LANGUAGE_OF_OBJ (__ro2sq$47)
+    12: isiri_id$49 := Call isiri_id (s_37_3_t0.O$42)
+    17: temp$51 := artm  1  - isiri_id$49
+    21: if ( 0  = temp$51) then 40 else 25 unkn 25
+    25: if (<c > = DB.DBA.RDF_LANGUAGE_OF_OBJ$45) then 40 else 29 unkn 29
+    29: DB.DBA.RDF_LANGMATCHES$53 := Call DB.DBA.RDF_LANGMATCHES (DB.DBA.RDF_LANGUAGE_OF_OBJ$45, <c fr>)
+    36: if ( 0  = DB.DBA.RDF_LANGMATCHES$53) then 50 else 40 unkn 50
+    40: one_of_these$55 := Call one_of_these (s_37_3_t0.S$38,  IRI_ID"...Q3426243" ,  IRI_ID"...Q179458" ,  IRI_ID"...Q18115476" )
+    45: if ( 0  < one_of_these$55) then 49 else 50 unkn 50
+    49: BReturn 1
+    50: BReturn 0
+    time         0% fanout         0 input         0 rows
+    Distinct (s_37_3_t0.S$38, s_37_3_t0.P$37, s_37_3_t0.O$42)
+    
+    After code:
+    0: var1$28 :=  := artm s_37_3_t0.S$38
+    4: var2$29 :=  := artm s_37_3_t0.P$37
+    8: var3$30 :=  := artm s_37_3_t0.O$42
+    12: BReturn 0
+    time         0% fanout         0 input         0 rows
+    Subquery Select(var1$28, var2$29, var3$30)
+    
+    After code:
+    0: var1$71 := Call __ro2sq (var1$28)
+    5: var2$73 := Call __ro2sq (var2$29)
+    10: var3$75 := Call __ro2sq (var3$30)
+    15: BReturn 0
+    time         0% fanout         0 input         0 rows
+    Select (var1$71, var2$73, var3$75)
+  }
+
+
+ 0 msec 3% cpu,         3 rnd         0 seq        25% same seg         0% same pg 
+Compilation: 2 msec 0 reads         0% read 0 messages         0% clw

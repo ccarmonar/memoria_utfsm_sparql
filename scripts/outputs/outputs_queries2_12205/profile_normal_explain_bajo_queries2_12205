@@ -1,0 +1,42 @@
+http://www.wikidata.org/entity/Q38991		http://commons.wikimedia.org/wiki/Special:FilePath/Bukadai.jpg	
+http://www.wikidata.org/entity/Q39315		http://commons.wikimedia.org/wiki/Special:FilePath/Shiba%20inu%20taiki.jpg	
+http://www.wikidata.org/entity/Q39315		http://commons.wikimedia.org/wiki/Special:FilePath/Shiba3.jpg	
+http://www.wikidata.org/entity/Q38146		http://commons.wikimedia.org/wiki/Special:FilePath/Japanese%20Chin%20adult.jpg	
+http://www.wikidata.org/entity/Q38146		http://commons.wikimedia.org/wiki/Special:FilePath/Japanese%20Chin%20portrait.jpg	
+http://www.wikidata.org/entity/Q38146		http://commons.wikimedia.org/wiki/Special:FilePath/Japanesechins.jpg	
+http://www.wikidata.org/entity/Q38342		http://commons.wikimedia.org/wiki/Special:FilePath/Kishu%20puppy.jpg	
+http://www.wikidata.org/entity/Q38342		http://commons.wikimedia.org/wiki/Special:FilePath/Kishu.jpg	
+http://www.wikidata.org/entity/Q11657560			
+
+  { 
+    time      0.59% fanout         1 input         1 rows
+    time        12% fanout        78 input         1 rows
+    RDF_QUAD_POGS        78 rows(t1.S$28)
+     P =  IRI_ID"...direct/P31"  ,  O =  IRI_ID"...Q39367" 
+    time        40% fanout 0.0641026 input        78 rows
+    RDF_QUAD     0.035 rows()
+     inlined  P =  IRI_ID"...direct/P495"  ,  S = t1.S$28 ,  O =  IRI_ID"...Q17" 
+    time        14% fanout         1 input         5 rows
+    Precode:
+      0: var1$32 := Call __id2in (t1.S$28)
+      5: BReturn 0
+    outer {
+        time        21% fanout       1.6 input         5 rows
+        RDF_QUAD         1 rows(t3.O$35)
+         inlined  P =  IRI_ID"...direct/P18"  ,  S = k_t1.S$99
+        time        13% fanout     1.125 input         8 rows
+      } /* end of outer */
+    set_ctr$40
+     out: (t3.O$35)
+     shadow: ( <none> )
+    
+    After code:
+    0: var2$49 := Call __ro2sq (t3.O$35)
+    5: BReturn 0
+    time      0.28% fanout         0 input         9 rows
+    Select (var1$32, <DB_NULL>, var2$49)
+  }
+
+
+ 1 msec 25% cpu,        84 rnd        81 seq   85.8824% same seg   9.41176% same pg 
+Compilation: 1 msec 0 reads         0% read 0 messages         0% clw

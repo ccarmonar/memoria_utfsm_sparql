@@ -1,0 +1,48 @@
+http://learningsparql.com/ns/papers#paperH	
+http://learningsparql.com/ns/papers#paperI	
+http://learningsparql.com/ns/papers#paperI	
+http://learningsparql.com/ns/papers#paperI	
+http://learningsparql.com/ns/papers#paperI	
+
+  { 
+    time       1.7% fanout         1 input         1 rows
+      clear: (<V set_ctr$44 in>)
+    s# 47 45 cluster outer seq start, set no <V set_ctr$44 in>    
+    save ctx:()
+    time        20% fanout         4 input         1 rows
+      clear: (<V s_7_12_t2.S$28 rn>)
+      clear on continue: (<V s_7_12_t2.S$28 rn>)
+    s# 56 27 from DB.DBA.RDF_QUAD by RDF_QUAD_POGS          8 rows   
+    Key RDF_QUAD_POGS  ASC  (<V s_7_12_t2.S$28 rn>)
+     P =  IRI_ID"...cites"  ,  O =  IRI_ID"...paperA" 
+    
+    time        12% fanout       1.5 input         4 rows
+      clear: (<V s_7_8_t1.S$31 rn>)
+      clear on continue: (<V s_7_8_t1.S$31 rn>)$70 (30 ) $28 () 
+    s# 66 30 from DB.DBA.RDF_QUAD by RDF_QUAD_POGS        1.7 rows   
+    Key RDF_QUAD_POGS  ASC  (<V s_7_8_t1.S$31 rn>)
+     P =  IRI_ID"...cites"  ,  O = <v cast$70 Set72 an>
+    vector param casts: <V s_7_12_t2.S$28 rn>-> <v cast$70 Set72 an>
+    
+    time        66% fanout  0.833333 input         6 rows
+      clear: (<V s_7_3_t0.S$34 rn>, <V s$36 a>)
+      clear on continue: (<V s_7_3_t0.S$34 rn>, <V s$36 a>)$31 () $84 (33 ) 
+    s# 80 33 from DB.DBA.RDF_QUAD by RDF_QUAD_POGS        1.7 rows   
+    Key RDF_QUAD_POGS  ASC  (<V s_7_3_t0.S$34 rn>)
+     P =  IRI_ID"...cites"  ,  O = <v cast$84 Set86 an>
+    vector param casts: <V s_7_8_t1.S$31 rn>-> <v cast$84 Set86 an>
+    
+    After code:
+      0: <V s$36 a> := Call __id2in (<V s_7_3_t0.S$34 rn>)
+      5: BReturn 0
+    time      0.37% fanout         0 input         5 rows
+    $36 () $44 (33 30 27 45 ) 
+    s# 94 38 Select (<V s$36 a>)
+      set no: <r set_ctr$44 via  Set80 Set86 Set66 Set72 Set56>
+  }
+Warning: You might have a Cartesian product.
+
+
+
+ 0 msec 10% cpu,        16 rnd         5 seq   47.0588% same seg   5.88235% same pg 
+Compilation: 2 msec 0 reads         0% read 0 messages         0% clw

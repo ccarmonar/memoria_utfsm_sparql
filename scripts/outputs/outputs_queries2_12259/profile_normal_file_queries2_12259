@@ -1,0 +1,167 @@
+http://www.wikidata.org/prop/direct/P1566	1	38	38	
+http://www.wikidata.org/prop/direct/P373	1	38	38	
+http://www.wikidata.org/prop/direct/P395	1	37	37	
+http://www.wikidata.org/prop/direct/P646	1	38	38	
+http://www.wikidata.org/prop/direct/P214	1	22	22	
+http://www.wikidata.org/prop/direct/P402	1	2	2	
+http://schema.org/description	38	345	98	
+http://www.wikidata.org/prop/direct/P1705	1	9	9	
+http://www.wikidata.org/prop/direct/P7859	1	4	4	
+http://www.wikidata.org/prop/direct/P1653	1	1	1	
+http://www.wikidata.org/prop/direct/P227	1	3	3	
+http://www.wikidata.org/prop/direct/P3417	1	2	2	
+http://www.wikidata.org/prop/direct/P281	1	37	37	
+http://www.wikidata.org/prop/direct/P625	1	22	22	
+http://www.w3.org/2004/02/skos/core#altLabel	1	239	239	
+http://www.wikidata.org/prop/direct/P244	1	14	14	
+http://www.wikidata.org/prop/direct/P2163	1	1	1	
+http://www.wikidata.org/prop/direct/P7471	1	38	38	
+http://www.w3.org/2000/01/rdf-schema#label	1	1274	1274	
+http://www.w3.org/2004/02/skos/core#prefLabel	1	1274	1274	
+
+  { 
+    time     0.018% fanout         1 input         1 rows
+      clear: (<V set_ctr$150 in>)
+    s# 153 151 cluster outer seq start, set no <V set_ctr$150 in>    
+    save ctx:()
+      clear: (<V var5$31 in>, <V var4$30 in>, <V var3$29 in>, <V var1$28 a>, <V set_no$32 i>, <V var5$142 a>, <V var4$140 a>, <V var3$138 a>, <V var1$136 a>)
+    s# 162 27 Subquery 27 
+      multistate set no = <V set_no$32 i>
+      { 
+        time    0.0084% fanout         1 input         1 rows
+        
+        s# 296 103 Fork 103 {  
+                
+            save ctx:()
+              set no = <V set_no$32 i> array  <none>  save: 
+              clear: (<V var2$36 in>, <V var6$35 an>, <V var1$34 rn>, <V set_no$37 i>)
+            s# 167 33 Subquery 33 
+              multistate set no = <V set_no$37 i>
+              { 
+                time    0.0058% fanout         1 input         1 rows
+                
+                s# 261 59 Fork 59 {  
+                        
+                    save ctx:()
+                      set no = <V set_no$37 i> array  <none>  save: 
+                    time      0.27% fanout        43 input         1 rows
+                      clear: (<V s_37_8_t0.S$39 rn>)
+                      clear on continue: (<V s_37_8_t0.S$39 rn>)
+                    s# 172 38 from DB.DBA.RDF_QUAD by RDF_QUAD_POGS         43 rows Parallel, tail cost   2.9e+09   
+                    Key RDF_QUAD_POGS  ASC  (<V s_37_8_t0.S$39 rn>)
+                     P =  IRI_ID"...direct/P31"  ,  O =  IRI_ID"...Q247073" 
+                    copy on branch $37 $0 $0 $0 sets: 153 
+                    
+                    time       2.3% fanout  0.883721 input        43 rows
+                    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:     0.018 Fanout:      0.88
+                      clear: (<V s_37_8_t2.S$42 rn>)
+                      clear on continue: (<V s_37_8_t2.S$42 rn>)
+                    s# 182 41 from DB.DBA.RDF_QUAD by RDF_QUAD      0.018 rows Parallel, tail cost        19   
+                    Key RDF_QUAD  ASC  (<V s_37_8_t2.S$42 rn>)
+                     inlined  P =  IRI_ID"...direct/P17"  ,  S = <V s_37_8_t0.S$39 rn> ,  O =  IRI_ID"...Q36" 
+                    copy on branch $39 $37 $0 $0 sets: 153 172 
+                    
+                    time       1.3% fanout         1 input        38 rows
+                      clear: (<V s_37_8_t1.S$45 rn>)
+                      clear on continue: (<V s_37_8_t1.S$45 rn>)$196 (44 ) 
+                    s# 192 44 from DB.DBA.RDF_QUAD by RDF_QUAD        1.1 rows Parallel, tail cost   1.3e+02   
+                    Key RDF_QUAD  ASC  (<V s_37_8_t1.S$45 rn>)
+                     inlined  P =  IRI_ID"...direct/P131"  ,  S = <v k_s_37_8_t0.S$196 Set198 rn>
+                    vector param casts: <r s_37_8_t0.S$39 via  Set182>-> <v k_s_37_8_t0.S$196 Set198 rn>
+                    copy on branch $196 $39 $42 $37 sets: 153 172 182 
+                    
+                    time       2.1% fanout   31.8947 input        38 rows
+                      clear: (<V s_37_8_t3.P$48 rn>)
+                      clear on continue: (<V s_37_8_t3.P$48 rn>)$210 (47 ) $214 (47 ) 
+                    s# 206 47 from DB.DBA.RDF_QUAD by RDF_QUAD_SP        8.5 rows Parallel, tail cost   1.5e+03   
+                    Key RDF_QUAD_SP  ASC  (<V s_37_8_t3.P$48 rn>)
+                     inlined  S = <v k_s_37_8_t0.S$210 Set212 rn>
+                    row specs:  S = <V s_37_8_t1.S$45 rn> ,  S = <V k_s_37_8_t2.S$214 rn>
+                    vector param casts: <r s_37_8_t0.S$39 via  Set192 Set198 Set182>-> <v k_s_37_8_t0.S$210 Set212 rn>, <r s_37_8_t2.S$42 via  Set192 Set198>-> <V k_s_37_8_t2.S$214 rn>
+                    copy on branch $45 $210 $214 $39 $42 $37 $0 $0 sets: 153 172 182 198 192 
+                    
+                    time        79% fanout   4.82261 input      1212 rows
+                      clear: (<V s_37_8_t3.O$52 an>)
+                      clear on continue: (<V s_37_8_t3.O$52 an>)$226 (51 ) $230 (51 ) $232 (51 ) $39 (47 44 41 ) $42 (47 44 ) $45 (47 ) 
+                    s# 222 51 from DB.DBA.RDF_QUAD by RDF_QUAD        1.2 rows Parallel, tail cost     1e+02   
+                    Key RDF_QUAD  ASC  (<V s_37_8_t3.O$52 an>)
+                     inlined  P = <V s_37_8_t3.P$48 rn> ,  S = <v k_s_37_8_t0.S$226 Set228 rn>
+                    row specs:  S = <V k_s_37_8_t1.S$230 rn> ,  S = <V k_s_37_8_t2.S$232 rn>
+                    vector param casts: <r s_37_8_t0.S$39 via  Set206 Set212 Set192 Set198 Set182>-> <v k_s_37_8_t0.S$226 Set228 rn>, <r s_37_8_t1.S$45 via  Set206 Set212>-> <V k_s_37_8_t1.S$230 rn>, <r s_37_8_t2.S$42 via  Set206 Set212 Set192 Set198>-> <V k_s_37_8_t2.S$232 rn>
+                    copy on branch $48 $226 $230 $232 $37 $0 $0 $0 sets: 153 172 182 198 192 212 206 
+                    
+                    time       1.3% fanout  0.795896 input      1803 rows
+                      clear: (<V is_named_iri_id$55 i>)
+                    s# 245 240 END Node
+                    After test:
+                      0: <V is_named_iri_id$55 i> := Call is_named_iri_id (<V s_37_8_t3.O$52 an>)
+                      5: if ( 0  = <V is_named_iri_id$55 i>) then 9 else 10 unkn 10
+                      9: BReturn 1
+                      10: BReturn 0
+                    time       9.4% fanout         0 input      4796 rows
+                    Precode:
+                      0: <V isnotnull$57 in> := Call isnotnull (<r s_37_8_t3.O$52 via  Set245>)
+                      5: BReturn 0
+                      clear: (<V isnotnull$57 in>)$57 (60 ) 
+                    s# 253 60 Sort (HASH) set no <r set_no$37 via  Set245 Set222 Set228 Set206 Set212 Set192 Set198 Set182 Set172>(<r s_37_8_t3.P$48 via  Set245 Set222 Set228>, <r s_37_8_t3.O$52 via  Set245>) -> (<V isnotnull$57 in>) up to   1.9e+08 distinct
+                    
+                }
+                time         2% fanout      4540 input         1 rows
+                  clear: (<V aggregate$61 in>, <V s_37_8_t3.O$52 an>, <V s_37_8_t3.P$48 rn>, <V var2$36 in>, <V var6$35 an>, <V var1$34 rn>)
+                  clear on continue: (<V aggregate$61 in>, <V s_37_8_t3.O$52 an>, <V s_37_8_t3.P$48 rn>, <V var2$36 in>, <V var6$35 an>, <V var1$34 rn>)
+                s# 268 67 group by read node  
+                (<V s_37_8_t3.P$48 rn>, <V s_37_8_t3.O$52 an>, <V aggregate$61 in>)
+                After code:
+                  0: <V var1$34 rn> :=  := artm <V s_37_8_t3.P$48 rn>
+                  4: <V var6$35 an> :=  := artm <V s_37_8_t3.O$52 an>
+                  8: <V var2$36 in> :=  := artm <V aggregate$61 in>
+                  12: BReturn 0
+                time    0.0075% fanout         0 input      4540 rows
+                $35 () 
+                s# 167 94 Subquery Select(<V var1$34 rn>, <V var6$35 an>, <V var2$36 in>)
+                  set no: <r set_no$37 via  Set268>
+              }
+            
+            time       1.3% fanout         0 input      4540 rows
+            Precode:
+              0: <V isnotnull$101 in> := Call isnotnull (<V var2$36 in>)
+              5: BReturn 0
+              clear: (<V isnotnull$101 in>)$101 (104 ) $36 (33 ) 
+            s# 288 104 Sort (HASH) set no <r set_no$32 via  Set167>(<V var1$34 rn>) -> (<V isnotnull$101 in>, <V var2$36 in>, <V var2$36 in>) up to         8 distinct
+            
+        }
+        time      0.73% fanout        25 input         1 rows
+          clear: (<V aggregate$109 in>, <V aggregate$107 in>, <V aggregate$105 in>, <V var1$34 rn>, <V var5$31 in>, <V var4$30 in>, <V var3$29 in>, <V var1$28 a>, <V __id2in$127 a>)
+          clear on continue: (<V aggregate$109 in>, <V aggregate$107 in>, <V aggregate$105 in>, <V var1$34 rn>, <V var5$31 in>, <V var4$30 in>, <V var3$29 in>, <V var1$28 a>, <V __id2in$127 a>)
+        s# 303 115 group by read node  
+        (<V var1$34 rn>, <V aggregate$105 in>, <V aggregate$107 in>, <V aggregate$109 in>)
+        After code:
+          0: <V __id2in$127 a> := Call __id2in (<V var1$34 rn>)
+          5: <V var1$28 a> :=  := artm <V __id2in$127 a>
+          9: <V var3$29 in> :=  := artm <V aggregate$109 in>
+          13: <V var4$30 in> :=  := artm <V aggregate$107 in>
+          17: <V var5$31 in> :=  := artm <V aggregate$105 in>
+          21: BReturn 0
+        time    0.0014% fanout         0 input        25 rows
+        
+        s# 162 129 Subquery Select(<V var1$28 a>, <V var3$29 in>, <V var4$30 in>, <V var5$31 in>)
+          set no: <r set_no$32 via  Set303>
+      }
+    
+    After code:
+      0: <V var1$136 a> := Call __ro2sq (<V var1$28 a>)
+      5: <V var3$138 a> := Call __ro2sq (<V var3$29 in>)
+      10: <V var4$140 a> := Call __ro2sq (<V var4$30 in>)
+      15: <V var5$142 a> := Call __ro2sq (<V var5$31 in>)
+      20: BReturn 0
+    time    0.0025% fanout         0 input        25 rows
+    $136 (27 ) $138 (27 ) $140 (27 ) $142 (27 ) $150 (27 151 ) 
+    s# 326 144 Select (<V var1$136 a>, <V var3$138 a>, <V var4$140 a>, <V var5$142 a>)
+      set no: <r set_ctr$150 via  Set162>
+  }
+Warning: You might have a Cartesian product.
+
+
+
+ 11 msec 82% cpu,      1331 rnd      5844 seq   66.5916% same seg   21.8468% same pg 
+Compilation: 6 msec 0 reads         0% read 0 messages         0% clw

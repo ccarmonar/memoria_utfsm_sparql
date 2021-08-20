@@ -1,0 +1,105 @@
+
+  { 
+    time       5.6% fanout         1 input         1 rows
+      clear: (<V set_ctr$90 in>)
+    s# 96 91 cluster outer seq start, set no <V set_ctr$90 in>    
+    save ctx:()
+    Precode:
+      0: <V resource/Category:2016年の映画$27 r> := Call __i2idn (<tag 182 flag 1 c http://ja.dbpedia.org/resource/Category:2016年の映画>)
+      5: <V resource/Category:2016年のアニメ映画$29 r> := Call __i2idn (<tag 182 flag 1 c http://ja.dbpedia.org/resource/Category:2016年のアニメ映画>)
+      10: BReturn 0
+      clear: (<V var1$32 rn>, <V set_no$33 i>, <V resource/Category:2016年のアニメ映画$29 r>, <V resource/Category:2016年の映画$27 r>)
+    s# 105 31 Subquery 31 
+      multistate set no = <V set_no$33 i>
+      { 
+        
+        s# 109 34 Union
+          { 
+              clear: (<V var1$36 rn>, <V set_no$37 i>, <V var1$32 rn>)
+            s# 112 35 Subquery 35 
+              multistate set no = <V set_no$37 i>
+              { 
+                time        76% fanout         0 input         1 rows
+                Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:   1.4e-07 Fanout:         0
+                  clear: (<V s_37_2_t0-u8.S$39 rn>)
+                  clear on continue: (<V s_37_2_t0-u8.S$39 rn>)$27 (38 ) 
+                s# 116 38 from DB.DBA.RDF_QUAD by RDF_QUAD_POGS    1.4e-07 rows   
+                Key RDF_QUAD_POGS  ASC  (<V s_37_2_t0-u8.S$39 rn>)
+                 P =  IRI_ID"...subject"  ,  O = <v k_resource/Category:2016年の映画$120 Set122 an>
+                vector param casts: <V resource/Category:2016年の映画$27 r>-> <v k_resource/Category:2016年の映画$120 Set122 an>
+                
+                time         0% fanout         0 input         0 rows
+                  clear: (<V var1$36 rn>)$39 () 
+                s# 130 49 skip node  10000  <none> <r set_no$37 via  Set116 Set122>
+                After code:
+                  0: <V var1$36 rn> :=  := artm <r s_37_2_t0-u8.S$39 via  Set130>
+                  4: BReturn 0
+                time         0% fanout         0 input         0 rows
+                
+                s# 112 41 Subquery Select(<V var1$36 rn>)
+                  set no: <r set_no$37 via  Set130 Set116 Set122>
+              }
+            
+            After code:
+              0: <V var1$32 rn> :=  := artm <V var1$36 rn>
+              4: BReturn 0
+            time         0% fanout         0 input         0 rows
+            
+            s# 105 51 Subquery Select(<V var1$32 rn>)
+              set no: <r set_no$33 via  Set112>
+          }
+          { 
+              clear: (<V var1$59 rn>, <V set_no$60 i>, <V var1$32 rn>)
+            s# 154 58 Subquery 58 
+              multistate set no = <V set_no$60 i>
+              { 
+                time        18% fanout         0 input         1 rows
+                Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:   1.4e-07 Fanout:         0
+                  clear: (<V s_37_5_t1.S$62 rn>)
+                  clear on continue: (<V s_37_5_t1.S$62 rn>)$29 (61 ) 
+                s# 158 61 from DB.DBA.RDF_QUAD by RDF_QUAD_POGS    1.4e-07 rows   
+                Key RDF_QUAD_POGS  ASC  (<V s_37_5_t1.S$62 rn>)
+                 P =  IRI_ID"...subject"  ,  O = <v k_resource/Category:2016年のアニメ映画$162 Set164 an>
+                vector param casts: <V resource/Category:2016年のアニメ映画$29 r>-> <v k_resource/Category:2016年のアニメ映画$162 Set164 an>
+                
+                time         0% fanout         0 input         0 rows
+                  clear: (<V var1$59 rn>)$62 () 
+                s# 172 72 skip node  10000  <none> <r set_no$60 via  Set158 Set164>
+                After code:
+                  0: <V var1$59 rn> :=  := artm <r s_37_5_t1.S$62 via  Set172>
+                  4: BReturn 0
+                time         0% fanout         0 input         0 rows
+                
+                s# 154 64 Subquery Select(<V var1$59 rn>)
+                  set no: <r set_no$60 via  Set172 Set158 Set164>
+              }
+            
+            After code:
+              0: <V var1$32 rn> :=  := artm <V var1$59 rn>
+              4: BReturn 0
+            time         0% fanout         0 input         0 rows
+            
+            Subquery Select(<V var1$32 rn>)
+              set no: <r set_no$33 via  Set154>
+          }
+      }
+    
+    time         0% fanout         0 input         0 rows
+      clear: (<V var1$82 a>)$32 (31 ) 
+    s# 195 94 skip node  10000  <none> <r set_ctr$90 via  Set105>
+    After code:
+      0: <V var1$82 a> := Call __id2in (<r var1$32 via  Set195>)
+      5: BReturn 0
+    time         0% fanout         0 input         0 rows
+    $82 (94 ) $90 (94 31 91 ) 
+    s# 203 84 Select (<V var1$82 a>)
+      set no: <r set_ctr$90 via  Set195 Set105>
+  }
+Warning: You might have a Cartesian product.
+
+Warning: You might have a Cartesian product.
+
+
+
+ 23 msec 59% cpu,        11 rnd         0 seq         0% same seg         0% same pg 
+Compilation: 16 msec 0 reads         0% read 0 messages         0% clw

@@ -1,0 +1,61 @@
+http://www.wikidata.org/entity/Q15835811	1	
+http://www.wikidata.org/entity/Q1759652	1	
+http://www.wikidata.org/entity/Q1413628	1	
+http://www.wikidata.org/entity/Q15836515	1	
+http://www.wikidata.org/entity/Q5049074	1	
+http://www.wikidata.org/entity/Q6703608	1	
+http://www.wikidata.org/entity/Q7243868	1	
+http://www.wikidata.org/entity/Q79407468	1	
+http://www.wikidata.org/entity/Q7430467	1	
+http://www.wikidata.org/entity/Q28114532	1	
+http://www.wikidata.org/entity/Q1750907	1	
+http://www.wikidata.org/entity/Q27745008	1	
+http://www.wikidata.org/entity/Q677525	2	
+
+  { 
+    time       0.5% fanout         1 input         1 rows
+    Subquery 27 
+      { 
+        time      0.26% fanout         1 input         1 rows
+        fork {
+            time       8.9% fanout        13 input         1 rows
+            RDF_QUAD_POGS        13 rows(t2.S$32)
+             P =  IRI_ID"...direct/P31"  ,  O =  IRI_ID"...Q146" 
+            time      0.31% fanout         1 input        13 rows
+            outer {
+                time        58% fanout   1.07692 input        13 rows
+                RDF_QUAD       1.1 rows(t4.O$35)
+                 inlined  P =  IRI_ID"...direct/P31"  ,  S = k_t2.S$131
+                time      0.34% fanout         1 input        14 rows
+              } /* end of outer */
+            set_ctr$38
+             out: (t4.O$35)
+             shadow: ( <none> )
+            time        10% fanout         0 input        14 rows
+            Sort (t2.S$32) -> (inc$55)
+            
+          }
+        time        22% fanout        13 input         1 rows
+        group by read node  
+        (t2.S$32, aggregate$49)
+        
+        After code:
+        0: __id2in$72 := Call __id2in (t2.S$32)
+        5: var1$28 :=  := artm __id2in$72
+        9: var3$29 :=  := artm aggregate$49
+        13: BReturn 0
+        time      0.16% fanout         0 input        13 rows
+        Subquery Select(var1$28, var3$29)
+      }
+    
+    After code:
+    0: var1$81 := Call __ro2sq (var1$28)
+    5: var3$83 := Call __ro2sq (var3$29)
+    10: BReturn 0
+    time       0.1% fanout         0 input        13 rows
+    Select (var1$81, var3$83)
+  }
+
+
+ 0 msec 21% cpu,        14 rnd        13 seq   6.66667% same seg   46.6667% same pg 
+Compilation: 3 msec 0 reads         0% read 0 messages         0% clw

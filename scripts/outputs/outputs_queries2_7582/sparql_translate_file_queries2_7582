@@ -1,0 +1,54 @@
+ SELECT  __ro2sq ("s_37_22_rbc"."var1") AS "var1", __ro2sq ("s_37_22_rbc"."var2") AS "var2", __ro2sq ("s_37_22_rbc"."var3") AS "var3" FROM (SELECT DISTINCT "s_37_22_t5"."S" AS "var1",
+    "s_37_17"."var2" AS "var2",
+    "s_37_22_t5"."O" AS "var3"
+  FROM DB.DBA.RDF_QUAD AS "s_37_3_t0"
+    INNER JOIN (
+     SELECT TRANSITIVE T_OUT(2) T_IN(1) T_MIN( 0) T_NO_CYCLES "s_37_9_t1"."S" AS "_::trans_subj_37_5",
+        "s_37_9_t1"."O" AS "_::trans_obj_37_6"
+      FROM DB.DBA.RDF_QUAD AS "s_37_9_t1"
+      WHERE
+        "s_37_9_t1"."P" = __i2idn ( __bft( 'http://www.wikidata.org/prop/direct/P279' , 1))
+OPTION (QUIETCAST)
+      ) AS "s_37_12"
+    ON (
+      "s_37_3_t0"."O" = "s_37_12"."_::trans_subj_37_5")
+    INNER JOIN DB.DBA.RDF_QUAD AS "s_37_23_t4"
+    ON (
+      "s_37_23_t4"."S" = "s_37_3_t0"."S")
+    LEFT OUTER JOIN (
+      SELECT "s_37_17_t2"."S" AS "var1",
+        "s_37_17_t2"."O" AS "var2"
+      FROM DB.DBA.RDF_QUAD AS "s_37_17_t2"
+      WHERE
+        "s_37_17_t2"."P" = __i2idn ( __bft( 'http://www.wikidata.org/prop/direct/P360' , 1))) AS "s_37_17"
+    ON (
+      "s_37_23_t4"."S" = "s_37_17"."var1"
+      AND 
+      "s_37_3_t0"."S" = "s_37_17"."var1")
+    INNER JOIN DB.DBA.RDF_QUAD AS "s_37_22_t5"
+    ON (
+      "s_37_22_t5"."S" = "s_37_23_t4"."S"
+      AND 
+      "s_37_22_t5"."S" = "s_37_3_t0"."S")
+    INNER JOIN DB.DBA.RDF_QUAD AS "s_37_22_t6"
+    ON (
+      "s_37_22_t5"."O" = "s_37_22_t6"."S")
+  WHERE
+    "s_37_3_t0"."P" = __i2idn ( __bft( 'http://www.wikidata.org/prop/direct/P279' , 1))
+    AND 
+    isiri_id ( "s_37_3_t0"."O")
+    AND 
+    "s_37_23_t4"."P" = __i2idn ( __bft( 'http://www.wikidata.org/prop/direct/P279' , 1))
+    AND 
+    "s_37_23_t4"."O" = __i2idn ( __bft( 'http://www.wikidata.org/entity/Q10864048' , 1))
+    AND 
+    "s_37_22_t5"."P" = __i2idn ( __bft( 'http://www.wikidata.org/prop/direct/P17' , 1))
+    AND 
+    "s_37_22_t6"."P" = __i2idn ( __bft( 'http://www.wikidata.org/prop/direct/P297' , 1))
+    AND 
+    "s_37_22_t6"."O" = DB.DBA.RDF_OBJ_OF_SQLVAL ( 'PL' )
+    AND 
+   ( "s_37_12"."_::trans_obj_37_6" =  __i2idn ( __bft( 'http://www.wikidata.org/entity/Q56061' , 1)))
+    AND 
+    1
+OPTION (QUIETCAST)) AS "s_37_22_rbc"

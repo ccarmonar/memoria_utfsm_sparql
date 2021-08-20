@@ -1,0 +1,68 @@
+http://www.wikidata.org/entity/Q7920497	
+http://www.wikidata.org/entity/Q7920497	
+http://www.wikidata.org/entity/Q1394612	
+http://www.wikidata.org/entity/Q1394612	
+http://www.wikidata.org/entity/Q30167175	
+http://www.wikidata.org/entity/Q30167175	
+http://www.wikidata.org/entity/Q30505654	
+http://www.wikidata.org/entity/Q30505654	
+http://www.wikidata.org/entity/Q30509916	
+http://www.wikidata.org/entity/Q30509916	
+http://www.wikidata.org/entity/Q30141827	
+http://www.wikidata.org/entity/Q30141827	
+
+  { 
+    time      0.17% fanout         1 input         1 rows
+    Precode:
+      0: __all_eq$27 := Call __all_eq ( IRI_ID"...Q5711" )
+      5: BReturn 0
+    Transitive dt dir 2, input: (__all_eq$27)
+      input shadow: (__all_eq$107)
+      output: (_::trans_subj_37_2$30)
+      { 
+        time        41% fanout   1.00418 input       239 rows
+        RDF_QUAD_POGS       9.6 rows(t3.S$37, t3.O$36)
+         P =  IRI_ID"...direct/P131"  ,  O = k___all_eq$113
+        
+        After code:
+        0: _::trans_subj_37_2$30 :=  := artm t3.S$37
+        4: _::trans_obj_37_3$31 :=  := artm t3.O$36
+        8: BReturn 0
+        time      0.11% fanout         0 input       240 rows
+        Subquery Select(_::trans_subj_37_2$30, _::trans_obj_37_3$31)
+      }
+    time       6.6% fanout 0.0257511 input       466 rows
+    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:         1 Fanout:     0.026
+    RDF_QUAD         1 rows(t1.S$57)
+     inlined  P =  IRI_ID"...direct/P4009"  ,  S = _::trans_subj_37_2$30
+    time         4% fanout         1 input        12 rows
+    Precode:
+      0: var1$59 := Call __id2in (t1.S$57)
+      5: BReturn 0
+    outer {
+        time       3.9% fanout  0.333333 input        12 rows
+        RDF_QUAD         1 rows()
+         inlined  P =  IRI_ID"...direct/P18"  ,  S = k_t1.S$156
+        time     0.068% fanout         3 input         4 rows
+      } /* end of outer */
+    set_ctr$66
+     out: ()
+     shadow: ()
+    time     0.089% fanout         1 input        12 rows
+    outer {
+        time       3.2% fanout         0 input        12 rows
+        Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:       1.1 Fanout:         0
+        RDF_QUAD       1.1 rows()
+         inlined  P =  IRI_ID"...direct/P625"  ,  S = k_t1.S$186
+        time         0% fanout         0 input         0 rows
+      } /* end of outer */
+    set_ctr$78
+     out: ()
+     shadow: ()
+    time     0.052% fanout         0 input        12 rows
+    Select (var1$59)
+  }
+
+
+ 1 msec 43% cpu,       729 rnd       237 seq   90.9589% same seg   7.67123% same pg 
+Compilation: 2 msec 0 reads         0% read 0 messages         0% clw

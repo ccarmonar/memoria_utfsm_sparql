@@ -1,0 +1,46 @@
+http://www.wikidata.org/entity/Q477130		
+
+  { 
+    time      0.21% fanout         1 input         1 rows
+      clear: (<V set_ctr$44 in>)
+    s# 50 45 cluster outer seq start, set no <V set_ctr$44 in>    
+    save ctx:()
+    time       5.5% fanout       843 input         1 rows
+      clear: (<V s_37_6_t2.S$28 rn>)
+      clear on continue: (<V s_37_6_t2.S$28 rn>)
+    s# 59 27 from DB.DBA.RDF_QUAD by RDF_QUAD_POGS    8.4e+02 rows   
+    Key RDF_QUAD_POGS  ASC  (<V s_37_6_t2.S$28 rn>)
+     P =  IRI_ID"...direct/P106"  ,  O =  IRI_ID"...Q11063" 
+    
+    time        85% fanout 0.00118624 input       843 rows
+      clear: (<V s_37_6_t1.S$31 rn>)
+      clear on continue: (<V s_37_6_t1.S$31 rn>)$28 () 
+    s# 69 30 from DB.DBA.RDF_QUAD by RDF_QUAD     0.0011 rows   
+    Key RDF_QUAD  ASC  (<V s_37_6_t1.S$31 rn>)
+     inlined  P =  IRI_ID"...direct/P19"  ,  S = <V s_37_6_t2.S$28 rn> ,  O =  IRI_ID"...Q30" 
+    
+    time       2.8% fanout         1 input         1 rows
+    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:     0.091 Fanout:         1
+      clear: (<V s_37_6_t0.S$34 rn>)
+      clear on continue: (<V s_37_6_t0.S$34 rn>)$31 () 
+    s# 79 33 from DB.DBA.RDF_QUAD by RDF_QUAD      0.091 rows   
+    Key RDF_QUAD  ASC  (<V s_37_6_t0.S$34 rn>)
+     inlined  P =  IRI_ID"...direct/P31"  ,  S = <V s_37_6_t1.S$31 rn> ,  O =  IRI_ID"...Q5" 
+    
+    time       6.4% fanout         1 input         1 rows
+      clear: (<V var1$36 a>)$34 () 
+    s# 89 48 skip node  100  <none> <r set_ctr$44 via  Set79 Set69 Set59>
+    After code:
+      0: <V var1$36 a> := Call __id2in (<r s_37_6_t0.S$34 via  Set89>)
+      5: BReturn 0
+    time      0.05% fanout         0 input         1 rows
+    $36 (48 ) $44 (48 33 30 27 45 ) 
+    s# 97 38 Select (<V var1$36 a>, <DB_NULL>)
+      set no: <r set_ctr$44 via  Set89 Set79 Set69 Set59>
+  }
+Warning: You might have a Cartesian product.
+
+
+
+ 2 msec 42% cpu,       846 rnd       842 seq   95.6316% same seg    2.5974% same pg 
+Compilation: 2 msec 0 reads         0% read 0 messages         0% clw

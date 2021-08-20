@@ -1,0 +1,34 @@
+http://www.wikidata.org/entity/Q10281306	http://commons.wikimedia.org/wiki/Special:FilePath/Correia%20dias%20auto-caricatura.JPG	
+
+  { 
+    time     0.088% fanout         1 input         1 rows
+    time       2.6% fanout      1000 input         1 rows
+    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:   5.3e+05 Fanout:     1e+03
+    RDF_QUAD_POGS   5.3e+05 rows(t1.S$28)
+     P =  IRI_ID"...direct/P31"  ,  O =  IRI_ID"...Q5" 
+    time        85% fanout         1 input      1000 rows
+    Precode:
+      0: var2$30 := Call __id2in (t1.S$28)
+      5: BReturn 0
+    outer {
+        time        10% fanout       0.4 input      1000 rows
+        RDF_QUAD         1 rows(t3.O$33)
+         inlined  P =  IRI_ID"...direct/P18"  ,  S = k_t1.S$91
+        time      0.22% fanout         1 input       400 rows
+      } /* end of outer */
+    set_ctr$38
+     out: (t3.O$33)
+     shadow: ( <none> )
+    time       1.2% fanout    0.0025 input       400 rows
+    skip node  1  <none> set_ctr$35
+    
+    After code:
+    0: var3$47 := Call __ro2sq (t3.O$33)
+    5: BReturn 0
+    time     0.032% fanout         0 input         1 rows
+    Select (var2$30, var3$47)
+  }
+
+
+ 4 msec 70% cpu,      1001 rnd      1007 seq    99.501% same seg  0.199601% same pg 
+Compilation: 2 msec 0 reads         0% read 0 messages         0% clw

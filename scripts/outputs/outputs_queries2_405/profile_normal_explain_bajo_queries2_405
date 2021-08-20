@@ -1,0 +1,31 @@
+
+  { 
+    time       1.1% fanout         1 input         1 rows
+    time        15% fanout         7 input         1 rows
+    RDF_QUAD_OP        14 rows(s_37_6_t0.P$28)
+     inlined  O =  IRI_ID"...Q188993" 
+    time        60% fanout  0.142857 input         7 rows
+    RDF_QUAD_POGS      0.21 rows()
+     inlined  P = s_37_6_t0.P$28 ,  O =  IRI_ID"...Q188993"  ,  S =  IRI_ID"...Q188670" 
+    time        24% fanout         0 input         1 rows
+    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:       2.8 Fanout:         0
+    Precode:
+      0: var2$34 := Call __id2in (s_37_6_t0.P$28)
+      5: BReturn 0
+    RDF_QUAD_OP       2.8 rows(s_37_6_t1.P$37)
+     inlined  O = k_s_37_6_t0.P$87
+    time         0% fanout         0 input         0 rows
+    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:       1.2 Fanout:         0
+    RDF_QUAD_POGS       1.2 rows(s_37_6_t1.S$41)
+     P = s_37_6_t1.P$37 ,  O = k_s_37_6_t0.P$101
+    
+    After code:
+    0: var2Label$44 := Call __id2in (s_37_6_t1.S$41)
+    5: BReturn 0
+    time         0% fanout         0 input         0 rows
+    Select (<tag 182 flag 1 c http://www.wikidata.org/entity/Q188670>, var2$34, var2Label$44, <tag 182 flag 1 c http://www.wikidata.org/entity/Q188993>)
+  }
+
+
+ 1 msec 16% cpu,         9 rnd         6 seq         0% same seg        10% same pg 
+Compilation: 1 msec 0 reads         0% read 0 messages         0% clw

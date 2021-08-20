@@ -1,0 +1,51 @@
+
+  { 
+    time       2.7% fanout         1 input         1 rows
+      clear: (<V set_ctr$46 in>)
+    s# 49 47 cluster outer seq start, set no <V set_ctr$46 in>    
+    save ctx:()
+    time        97% fanout         0 input         1 rows
+    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:   1.4e-07 Fanout:         0
+    Precode:
+      0: <V entity/Q18844323$27 r> := Call __i2idn (<tag 182 flag 1 c http://www.wikidata.org/entity/Q18844323>)
+      5: BReturn 0
+      clear: (<V s_37_3_t0.O$30 an>, <V entity/Q18844323$27 r>)
+      clear on continue: (<V s_37_3_t0.O$30 an>)$62 (29 ) $27 (29 ) 
+    s# 58 29 from DB.DBA.RDF_QUAD by RDF_QUAD    1.4e-07 rows   
+    Key RDF_QUAD  ASC  (<V s_37_3_t0.O$30 an>)
+     inlined  P =  IRI_ID"...P2114"  ,  S = <v k_entity/Q18844323$62 Set64 rn>
+    vector param casts: <V entity/Q18844323$27 r>-> <v k_entity/Q18844323$62 Set64 rn>
+    
+    time         0% fanout         0 input         0 rows
+    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:   1.7e-14 Fanout:         0
+      clear: (<V s_37_8_t1.O$33 an>)
+      clear on continue: (<V s_37_8_t1.O$33 an>)$76 (32 ) $30 () 
+    s# 72 32 from DB.DBA.RDF_QUAD by RDF_QUAD_POGS    1.7e-14 rows   
+    Key RDF_QUAD_POGS  ASC  (<V s_37_8_t1.O$33 an>)
+     inlined  P =  IRI_ID"...value-normalized/P2114" 
+    row specs:  S = <v k_s_37_3_t0.O$76 Set78 rn>
+    vector param casts: <V s_37_3_t0.O$30 an>-> <v k_s_37_3_t0.O$76 Set78 rn>
+    
+    time         0% fanout         0 input         0 rows
+    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:   1.4e-07 Fanout:         0
+      clear: (<V s_37_12_t2.O$36 an>, <V var1$38 a>)
+      clear on continue: (<V var1$38 a>, <V s_37_12_t2.O$36 an>)$33 () $90 (35 ) 
+    s# 86 35 from DB.DBA.RDF_QUAD by RDF_QUAD    1.4e-07 rows   
+    Key RDF_QUAD  ASC  (<V s_37_12_t2.O$36 an>)
+     inlined  P =  IRI_ID"...quantityAmount"  ,  S = <v k_s_37_8_t1.O$90 Set92 rn>
+    vector param casts: <V s_37_8_t1.O$33 an>-> <v k_s_37_8_t1.O$90 Set92 rn>
+    
+    After code:
+      0: <V var1$38 a> := Call __ro2sq (<V s_37_12_t2.O$36 an>)
+      5: BReturn 0
+    time         0% fanout         0 input         0 rows
+    $38 () $46 (35 32 29 47 ) 
+    s# 100 40 Select (<V var1$38 a>)
+      set no: <r set_ctr$46 via  Set86 Set92 Set72 Set78 Set58 Set64>
+  }
+Warning: You might have a Cartesian product.
+
+
+
+ 0 msec 0% cpu,         4 rnd        -1 seq         0% same seg         0% same pg 
+Compilation: 29 msec 1 reads   81.3495% read 0 messages         0% clw

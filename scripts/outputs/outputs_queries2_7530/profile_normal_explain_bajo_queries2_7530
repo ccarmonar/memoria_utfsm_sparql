@@ -1,0 +1,42 @@
+http://www.wikidata.org/entity/Q15830712	-490-01-01 00:00:00Z	
+http://www.wikidata.org/entity/Q32457821	1998-01-01 00:00:00Z	
+http://www.wikidata.org/entity/Q5641435	1877-01-01 00:00:00Z	
+http://www.wikidata.org/entity/Q6906858	1971-01-01 00:00:00Z	
+http://www.wikidata.org/entity/Q7604492	1633-01-01 00:00:00Z	
+http://www.wikidata.org/entity/Q12055475	1927-01-01 00:00:00Z	
+http://www.wikidata.org/entity/Q15875239	1963-01-01 00:00:00Z	
+http://www.wikidata.org/entity/Q20860980	1872-01-01 00:00:00Z	
+http://www.wikidata.org/entity/Q21280625	1687-01-01 00:00:00Z	
+http://www.wikidata.org/entity/Q21286535	1891-01-01 00:00:00Z	
+
+  { 
+    time     0.096% fanout         1 input         1 rows
+    time       2.6% fanout      1000 input         1 rows
+    RDF_QUAD_POGS   4.8e+03 rows(t1.S$28)
+     P =  IRI_ID"...direct/P31"  ,  O =  IRI_ID"...Q179700" 
+    time        81% fanout         1 input      1000 rows
+    Precode:
+      0: var1$30 := Call __id2in (t1.S$28)
+      5: BReturn 0
+    outer {
+        time        16% fanout     0.131 input      1000 rows
+        RDF_QUAD         1 rows(t3.O$33)
+         inlined  P =  IRI_ID"...direct/P571"  ,  S = k_t1.S$91
+        time       0.1% fanout         1 input       131 rows
+      } /* end of outer */
+    set_ctr$38
+     out: (t3.O$33)
+     shadow: ( <none> )
+    time      0.13% fanout 0.0763359 input       131 rows
+    skip node  10  <none> set_ctr$35
+    
+    After code:
+    0: var2$47 := Call __ro2sq (t3.O$33)
+    5: BReturn 0
+    time     0.024% fanout         0 input        10 rows
+    Select (var1$30, var2$47)
+  }
+
+
+ 2 msec 73% cpu,      1007 rnd       998 seq   97.2222% same seg   1.88492% same pg 
+Compilation: 0 msec 0 reads         0% read 0 messages         0% clw

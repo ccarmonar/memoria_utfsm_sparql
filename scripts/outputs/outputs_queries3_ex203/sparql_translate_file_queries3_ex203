@@ -1,0 +1,26 @@
+ DB.DBA.RDF_DICT_OF_TRIPLES_TO_THREE_COLS ((SELECT TOP 1  DB.DBA.SPARQL_CONSTRUCT (
+      vector (
+        vector (
+         1,
+         0,
+         3,
+         __i2id ( UNAME'http://learningsparql.com/ns/demo#problem' ),
+         3,
+         __i2id ( UNAME'http://learningsparql.com/ns/demo#prob29' ))),
+      vector (
+       "s_16_7_t2"."S"),
+      vector (
+        vector (
+         3,
+         __i2id ( UNAME'http://learningsparql.com/ns/demo#prob29' ),
+         3,
+         __i2id ( UNAME'http://www.w3.org/2000/01/rdf-schema#label' ),
+         3,
+         DB.DBA.RDF_MAKE_LONG_OF_SQLVAL ( 'Location value must be a URI.' ))),
+     1) AS "callret-0"
+FROM DB.DBA.RDF_QUAD AS "s_16_7_t2"
+WHERE
+  "s_16_7_t2"."P" = __i2idn ( __bft( 'http://learningsparql.com/ns/demo#location' , 1))
+  AND 
+  not ( is_named_iri_id ( "s_16_7_t2"."O"))
+OPTION (QUIETCAST)))

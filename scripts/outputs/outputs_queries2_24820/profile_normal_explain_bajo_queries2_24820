@@ -1,0 +1,67 @@
+
+  { 
+    time    0.0084% fanout         1 input         1 rows
+    time      0.29% fanout      2156 input         1 rows
+    RDF_QUAD_POGS   2.2e+03 rows(s_37_16_t4.S$28)
+     P =  IRI_ID"...direct/P106"  ,  O =  IRI_ID"...Q169470" 
+    time        15% fanout    1.0116 input      2156 rows
+    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:     0.091 Fanout:         1
+    RDF_QUAD     0.091 rows(s_37_16_t2.S$31)
+     inlined  P =  IRI_ID"...direct/P31"  ,  S = s_37_16_t4.S$28 ,  O =  IRI_ID"...Q5" 
+    time         4% fanout   0.93856 input      2181 rows
+    RDF_QUAD      0.83 rows(s_37_16_t3.S$34)
+     inlined  P =  IRI_ID"...direct/P21"  ,  S = s_37_16_t2.S$31 ,  O =  IRI_ID"...Q6581097" 
+    time         4% fanout  0.161212 input      2047 rows
+    RDF_QUAD      0.13 rows(s_37_16_t5.S$37)
+     inlined  P =  IRI_ID"...direct/P27"  ,  S = k_s_37_16_t2.S$128 ,  O =  IRI_ID"...Q30" 
+    time        36% fanout         0 input       330 rows
+    END Node
+    After test:
+    0: if (  { 
+        time     0.014% fanout         1 input       330 rows
+        time       8.5% fanout   19.8545 input       330 rows
+        RDF_QUAD        22 rows(s_37_14_t1.O$40)
+         inlined  P =  IRI_ID"...description"  ,  S = k_s_37_16_t5.S$160
+        time        32% fanout         0 input      4441 rows
+        END Node
+        After test:
+        0: __ro2sq$42 := Call __ro2sq (s_37_14_t1.O$40)
+        5: _cvt$44 := Call _cvt (<tag 193 flag 0>, __ro2sq$42)
+        10: if (_cvt$44  LIKE  <c %string1%>) then 14 else 15 unkn 15
+        14: BReturn 1
+        15: BReturn 0
+        time         0% fanout         0 input         0 rows
+        Subquery Select( <none> )
+      }
+    ) then 4 else 9 unkn 9
+    4: if (  { 
+        time         0% fanout         0 input         0 rows
+        time         0% fanout         0 input         0 rows
+        Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:        14 Fanout:         0
+        RDF_QUAD        14 rows(s_37_10_t0.O$59)
+         inlined  P =  IRI_ID"...description"  ,  S = k_s_37_16_t5.S$205
+        time         0% fanout         0 input         0 rows
+        END Node
+        After test:
+        0: __ro2sq$61 := Call __ro2sq (s_37_10_t0.O$59)
+        5: DB.DBA.RDF_LANGUAGE_OF_OBJ$63 := Call DB.DBA.RDF_LANGUAGE_OF_OBJ (__ro2sq$61)
+        12: if (<c ar> = DB.DBA.RDF_LANGUAGE_OF_OBJ$63) then 16 else 17 unkn 17
+        16: BReturn 1
+        17: BReturn 0
+        time         0% fanout         0 input         0 rows
+        Subquery Select( <none> )
+      }
+    ) then 8 else 9 unkn 9
+    8: BReturn 1
+    9: BReturn 0
+    
+    After code:
+    0: var1$74 := Call __id2in (s_37_16_t2.S$31)
+    5: BReturn 0
+    time         0% fanout         0 input         0 rows
+    Select (var1$74)
+  }
+
+
+ 23 msec 114% cpu,     13261 rnd      8455 seq   46.1695% same seg   8.46026% same pg 
+Compilation: 4 msec 0 reads         0% read 0 messages         0% clw

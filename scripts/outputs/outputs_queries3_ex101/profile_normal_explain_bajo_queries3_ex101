@@ -1,0 +1,71 @@
+Craig	Ellis	trumpet	
+Richard	Mutt	clarinet	
+Richard	Mutt	sax	
+
+  { 
+    time       1.6% fanout         1 input         1 rows
+    Precode:
+      0: __rdflit$27 := Call __rdflit (rdflit1112)
+      5: __rdflit$29 := Call __rdflit (rdflit1111)
+      10: BReturn 0
+    Subquery 31 
+      { 
+        Union
+          { 
+            time        24% fanout         1 input         1 rows
+            RDF_QUAD_POGS         2 rows(s_14_8_t2-u20.S$38)
+             P =  IRI_ID"...instrument"  ,  O = rdflit1112
+            time        17% fanout         1 input         1 rows
+            RDF_QUAD         1 rows(s_14_8_t1-u20.S$42, s_14_8_t1-u20.O$41)
+             inlined  P =  IRI_ID"...lastName"  ,  S = s_14_8_t2-u20.S$38
+            time       8.9% fanout         1 input         1 rows
+            RDF_QUAD         1 rows(s_14_8_t0-u20.S$46, s_14_8_t0-u20.O$45)
+             inlined  P =  IRI_ID"...firstName"  ,  S = s_14_8_t1-u20.S$42
+            time        11% fanout         1 input         1 rows
+            RDF_QUAD       1.3 rows(s_14_8_t3-u20.O$49)
+             inlined  P =  IRI_ID"...instrument"  ,  S = s_14_8_t0-u20.S$46
+            
+            After code:
+            0: first$32 :=  := artm s_14_8_t0-u20.O$45
+            4: last$33 :=  := artm s_14_8_t1-u20.O$41
+            8: instrument$34 :=  := artm s_14_8_t3-u20.O$49
+            12: BReturn 0
+            time      0.47% fanout         0 input         1 rows
+            Subquery Select(first$32, last$33, instrument$34)
+          }
+          { 
+            time        10% fanout         1 input         1 rows
+            RDF_QUAD_POGS         2 rows(s_22_17_t6.S$59)
+             P =  IRI_ID"...instrument"  ,  O = rdflit1111
+            time        10% fanout         1 input         1 rows
+            RDF_QUAD         1 rows(s_22_17_t5.S$63, s_22_17_t5.O$62)
+             inlined  P =  IRI_ID"...lastName"  ,  S = s_22_17_t6.S$59
+            time       8.2% fanout         1 input         1 rows
+            RDF_QUAD         1 rows(s_22_17_t4.S$67, s_22_17_t4.O$66)
+             inlined  P =  IRI_ID"...firstName"  ,  S = s_22_17_t5.S$63
+            time       8.2% fanout         2 input         1 rows
+            RDF_QUAD       1.3 rows(s_22_17_t7.O$70)
+             inlined  P =  IRI_ID"...instrument"  ,  S = s_22_17_t4.S$67
+            
+            After code:
+            0: first$32 :=  := artm s_22_17_t4.O$66
+            4: last$33 :=  := artm s_22_17_t5.O$62
+            8: instrument$34 :=  := artm s_22_17_t7.O$70
+            12: BReturn 0
+            time      0.22% fanout         0 input         2 rows
+            Subquery Select(first$32, last$33, instrument$34)
+          }
+      }
+    
+    After code:
+    0: first$80 := Call __ro2sq (first$32)
+    5: last$82 := Call __ro2sq (last$33)
+    10: instrument$84 := Call __ro2sq (instrument$34)
+    15: BReturn 0
+    time      0.44% fanout         0 input         3 rows
+    Select (first$80, last$82, instrument$84)
+  }
+
+
+ 0 msec 7% cpu,        17 rnd         1 seq         0% same seg   16.6667% same pg 
+Compilation: 5 msec 0 reads         0% read 0 messages         0% clw

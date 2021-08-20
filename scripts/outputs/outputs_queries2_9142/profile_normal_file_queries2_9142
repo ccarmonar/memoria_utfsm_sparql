@@ -1,0 +1,78 @@
+http://www.wikidata.org/entity/Q41674710			POINT(26.7225 58.38)	1998-03-26 00:00:00Z	
+http://www.wikidata.org/entity/Q41674710			POINT(26.7225 58.38)	1998-03-26 00:00:00Z	
+http://www.wikidata.org/entity/Q6758487			POINT(-84.390277777778 33.756944444444)	1992-08-12 00:00:00Z	
+http://www.wikidata.org/entity/Q6758487			POINT(-84.390277777778 33.756944444444)	1992-08-12 00:00:00Z	
+
+  { 
+    time      0.14% fanout         1 input         1 rows
+      clear: (<V set_ctr$57 in>)
+    s# 60 58 cluster outer seq start, set no <V set_ctr$57 in>    
+    save ctx:()
+    time       2.4% fanout       144 input         1 rows
+      clear: (<V s_37_10_t0.S$28 rn>)
+      clear on continue: (<V s_37_10_t0.S$28 rn>)
+    s# 69 27 from DB.DBA.RDF_QUAD by RDF_QUAD_POGS    1.4e+02 rows   
+    Key RDF_QUAD_POGS  ASC  (<V s_37_10_t0.S$28 rn>)
+     P =  IRI_ID"...direct/P69"  ,  O =  IRI_ID"...Q761534" 
+    
+    time        59% fanout  0.840278 input       144 rows
+      clear: (<V s_37_10_t3.S$31 rn>, <V s_37_10_t3.O$32 an>)
+      clear on continue: (<V s_37_10_t3.S$31 rn>, <V s_37_10_t3.O$32 an>)
+    s# 79 30 from DB.DBA.RDF_QUAD by RDF_QUAD       0.71 rows   
+    Key RDF_QUAD  ASC  (<V s_37_10_t3.O$32 an>, <V s_37_10_t3.S$31 rn>)
+     inlined  P =  IRI_ID"...direct/P569"  ,  S = <V s_37_10_t0.S$28 rn>
+    
+    time       1.3% fanout  0.173554 input       121 rows
+      clear: (<V rdf_year_impl$34 i>)
+    s# 95 90 END Node
+    After test:
+      0: <V rdf_year_impl$34 i> := Call rdf_year_impl (<V s_37_10_t3.O$32 an>)
+      5: if ( 1980  < <V rdf_year_impl$34 i>) then 9 else 10 unkn 10
+      9: BReturn 1
+      10: BReturn 0
+    time        21% fanout  0.571429 input        21 rows
+    Precode:
+      0: <V var1$36 a> := Call __id2in (<r s_37_10_t0.S$28 via  Set95 Set79>)
+      5: <V var4$38 a> := Call __ro2sq (<r s_37_10_t3.O$32 via  Set95>)
+      10: BReturn 0
+      clear: (<V s_37_10_t4.S$41 rn>, <V var4$38 a>, <V var1$36 a>)
+      clear on continue: (<V s_37_10_t4.S$41 rn>)$32 (90 ) $107 (40 ) 
+    s# 103 40 from DB.DBA.RDF_QUAD by RDF_QUAD          1 rows   
+    Key RDF_QUAD  ASC  (<V s_37_10_t4.S$41 rn>)
+     inlined  P =  IRI_ID"...direct/P18"  ,  S = <v k_s_37_10_t0.S$107 Set109 rn>
+    vector param casts: <r s_37_10_t0.S$28 via  Set95 Set79>-> <v k_s_37_10_t0.S$107 Set109 rn>
+    
+    time       9.3% fanout         1 input        12 rows
+      clear: (<V s_37_10_t1.O$44 an>)
+      clear on continue: (<V s_37_10_t1.O$44 an>)$28 (40 90 30 ) $121 (43 ) 
+    s# 117 43 from DB.DBA.RDF_QUAD by RDF_QUAD          1 rows   
+    Key RDF_QUAD  ASC  (<V s_37_10_t1.O$44 an>)
+     inlined  P =  IRI_ID"...direct/P19"  ,  S = <v k_s_37_10_t0.S$121 Set123 rn>
+    vector param casts: <r s_37_10_t0.S$28 via  Set103 Set109 Set95 Set79>-> <v k_s_37_10_t0.S$121 Set123 rn>
+    
+    time       6.9% fanout  0.333333 input        12 rows
+      clear: (<V s_37_10_t2.O$47 an>, <V var3$49 a>)
+      clear on continue: (<V var3$49 a>, <V s_37_10_t2.O$47 an>)$135 (46 ) $44 () 
+    s# 131 46 from DB.DBA.RDF_QUAD by RDF_QUAD        1.1 rows   
+    Key RDF_QUAD  ASC  (<V s_37_10_t2.O$47 an>)
+     inlined  P =  IRI_ID"...direct/P625"  ,  S = <v k_s_37_10_t1.O$135 Set137 rn>
+    vector param casts: <V s_37_10_t1.O$44 an>-> <v k_s_37_10_t1.O$135 Set137 rn>
+    
+    After code:
+      0: <V var3$49 a> := Call __ro2sq (<V s_37_10_t2.O$47 an>)
+      5: BReturn 0
+    time     0.021% fanout         0 input         4 rows
+    $36 (46 43 40 ) $38 (46 43 40 ) $49 () $57 (46 43 40 90 30 27 58 ) 
+    s# 145 51 Select (<r var1$36 via  Set131 Set137 Set117 Set123 Set103 Set109>, <DB_NULL>, <DB_NULL>, <V var3$49 a>, <r var4$38 via  Set131 Set137 Set117 Set123 Set103 Set109>)
+      set no: <r set_ctr$57 via  Set131 Set137 Set117 Set123 Set103 Set109 Set95 Set79 Set69>
+  }
+Warning: You might have a Cartesian product.
+
+Warning: You might have a Cartesian product.
+
+Warning: You might have a Cartesian product.
+
+
+
+ 2 msec 35% cpu,       194 rnd       146 seq   61.0256% same seg   31.2821% same pg 
+Compilation: 4 msec 0 reads         0% read 0 messages         0% clw

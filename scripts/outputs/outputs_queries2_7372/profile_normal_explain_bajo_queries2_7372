@@ -1,0 +1,207 @@
+
+  { 
+    time       5.9% fanout         1 input         1 rows
+    time       1.6% fanout         1 input         1 rows
+    Subquery 34 
+      { 
+        Union
+          { 
+            time        77% fanout         0 input         1 rows
+            Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:   1.4e-07 Fanout:         0
+            RDF_QUAD_POGS   1.4e-07 rows(t4.O$42, t4.S$41)
+             inlined  P =  IRI_ID"...prop/P31" 
+            time         0% fanout         0 input         0 rows
+            Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:   1.4e-07 Fanout:         0
+            RDF_QUAD_POGS   1.4e-07 rows(t5.S$45)
+             inlined  P =  IRI_ID"...statement/P31"  ,  O =  IRI_ID"...Q17362920"  ,  S = cast$258
+            time         0% fanout         0 input         0 rows
+            Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:         1 Fanout:         0
+            RDF_QUAD_POGS         1 rows(t7.S$49, t7.O$48)
+             P =  IRI_ID"...about"  ,  O = k_t4.S$272
+            time         0% fanout         0 input         0 rows
+            Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:   1.4e-07 Fanout:         0
+            RDF_QUAD   1.4e-07 rows(t8.O$52)
+             inlined  P =  IRI_ID"...isPartOf"  ,  S = t7.S$49
+            time         0% fanout         0 input         0 rows
+            in iterates in_iter$55  over ( IRI_ID"...qualifier/P460" ,  IRI_ID"...qualifier/P642" )
+            time         0% fanout         0 input         0 rows
+            Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:   3.4e-14 Fanout:         0
+            RDF_QUAD   3.4e-14 rows(t6.O$59)
+             inlined  P = k_in_iter$310 ,  S = k_t5.S$314
+            time         0% fanout         0 input         0 rows
+            Precode:
+              0: __ro2sq$61 := Call __ro2sq (t8.O$52)
+              5: DB.DBA.RDF_DATATYPE_OF_OBJ$63 := Call DB.DBA.RDF_DATATYPE_OF_OBJ (__ro2sq$61)
+              12: DB.DBA.RDF_LANGUAGE_OF_OBJ$65 := Call DB.DBA.RDF_LANGUAGE_OF_OBJ (__ro2sq$61)
+              19: BReturn 0
+            outer {
+                Subquery 67 
+                  { 
+                    time         0% fanout         0 input         0 rows
+                    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:   4.2e-08 Fanout:         0
+                    RDF_QUAD_POGS   4.2e-08 rows(t11.O$78, t11.S$77, t11.G$76)
+                     P =  IRI_ID"...isPartOf"  ,  O = k_t8.O$339
+                    time         0% fanout         0 input         0 rows
+                    END Node
+                    After test:
+                    0: __ro2sq$82 := Call __ro2sq (t11.O$78)
+                    5: DB.DBA.RDF_LANGUAGE_OF_OBJ$80 := Call DB.DBA.RDF_LANGUAGE_OF_OBJ (__ro2sq$82)
+                    12: DB.DBA.RDF_DATATYPE_OF_OBJ$84 := Call DB.DBA.RDF_DATATYPE_OF_OBJ (__ro2sq$82)
+                    19: if (__ro2sq$61 = <DB_NULL>) then 23 else 48 unkn 48
+                    23: if (DB.DBA.RDF_DATATYPE_OF_OBJ$63  IS NULL   0 ) then 27 else 31 unkn 31
+                    27: if (DB.DBA.RDF_DATATYPE_OF_OBJ$84  IS NULL   0 ) then 35 else 31 unkn 31
+                    31: if (DB.DBA.RDF_DATATYPE_OF_OBJ$63 = DB.DBA.RDF_DATATYPE_OF_OBJ$84) then 35 else 48 unkn 48
+                    35: if (DB.DBA.RDF_LANGUAGE_OF_OBJ$65  IS NULL   0 ) then 39 else 43 unkn 43
+                    39: if (DB.DBA.RDF_LANGUAGE_OF_OBJ$80  IS NULL   0 ) then 47 else 43 unkn 43
+                    43: if (DB.DBA.RDF_LANGUAGE_OF_OBJ$65 = DB.DBA.RDF_LANGUAGE_OF_OBJ$80) then 47 else 48 unkn 48
+                    47: BReturn 1
+                    48: BReturn 0
+                    time         0% fanout         0 input         0 rows
+                    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:   1.3e-07 Fanout:         0
+                    RDF_QUAD   1.3e-07 rows(t10.O$88, t10.G$87)
+                     inlined  P =  IRI_ID"...about"  ,  S = k_t11.S$374 ,  O = k_t6.O$378
+                    
+                    After code:
+                    0: var3$68 :=  := artm <DB_NULL>
+                    4: var5$69 :=  := artm t11.O$78
+                    8: _::ppath_seq_37_26$70 :=  := artm t11.S$77
+                    12: var2$71 :=  := artm t10.O$88
+                    16: _::default_37_31$72 :=  := artm t11.G$76
+                    20: _::default_37_27$73 :=  := artm t10.G$87
+                    24: BReturn 0
+                    time         0% fanout         0 input         0 rows
+                    Subquery Select(var3$68, var5$69, _::ppath_seq_37_26$70, var2$71, _::default_37_31$72, _::default_37_27$73)
+                  }
+                time         0% fanout         0 input         0 rows
+              } /* end of outer */
+            set_ctr$98
+             out: (set_no$74, var3$68, var2$71, var5$69, _::default_37_27$73, _::ppath_seq_37_26$70, _::default_37_31$72)
+             shadow: ( <none> ,  <none> ,  <none> ,  <none> ,  <none> ,  <none> ,  <none> )
+            time         0% fanout         0 input         0 rows
+            END Node
+            After test:
+            0: if (var5$69  IS NULL   0 ) then 4 else 5 unkn 5
+            4: BReturn 1
+            5: BReturn 0
+            
+            After code:
+            0: var2$35 :=  := artm t6.O$59
+            4: var1$36 :=  := artm t7.O$48
+            8: var3$37 :=  := artm t8.O$52
+            12: BReturn 0
+            time         0% fanout         0 input         0 rows
+            Subquery Select(var2$35, var1$36, var3$37)
+          }
+          { 
+            time        15% fanout         0 input         1 rows
+            Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:   1.4e-07 Fanout:         0
+            RDF_QUAD_POGS   1.4e-07 rows(t23.O$116, t23.S$115)
+             inlined  P =  IRI_ID"...prop/P31" 
+            time         0% fanout         0 input         0 rows
+            Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:   1.4e-07 Fanout:         0
+            RDF_QUAD_POGS   1.4e-07 rows()
+             inlined  P =  IRI_ID"...statement/P31"  ,  O =  IRI_ID"...Q17362920"  ,  S = cast$446
+            time         0% fanout         0 input         0 rows
+            in iterates in_iter$121  over ( IRI_ID"...direct/P2959" ,  IRI_ID"...direct/P460" )
+            time         0% fanout         0 input         0 rows
+            Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:    0.0039 Fanout:         0
+            RDF_QUAD    0.0039 rows(t25.S$126, t25.O$125)
+             inlined  P = k_in_iter$472 ,  S = k_t23.S$476
+            time         0% fanout         0 input         0 rows
+            Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:         1 Fanout:         0
+            RDF_QUAD_POGS         1 rows(t26.S$130, t26.O$129)
+             P =  IRI_ID"...about"  ,  O = k_t23.S$489
+            time         0% fanout         0 input         0 rows
+            Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:   1.7e-14 Fanout:         0
+            RDF_QUAD_POGS   1.7e-14 rows(t27.O$133)
+             inlined  P =  IRI_ID"...isPartOf"  S = t26.S$130
+            time         0% fanout         0 input         0 rows
+            Precode:
+              0: __ro2sq$135 := Call __ro2sq (t27.O$133)
+              5: DB.DBA.RDF_DATATYPE_OF_OBJ$137 := Call DB.DBA.RDF_DATATYPE_OF_OBJ (__ro2sq$135)
+              12: DB.DBA.RDF_LANGUAGE_OF_OBJ$139 := Call DB.DBA.RDF_LANGUAGE_OF_OBJ (__ro2sq$135)
+              19: BReturn 0
+            outer {
+                Subquery 141 
+                  { 
+                    time         0% fanout         0 input         0 rows
+                    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:   4.2e-08 Fanout:         0
+                    RDF_QUAD_POGS   4.2e-08 rows(t30.O$152, t30.S$151, t30.G$150)
+                     P =  IRI_ID"...isPartOf"  ,  O = k_t27.O$527
+                    time         0% fanout         0 input         0 rows
+                    END Node
+                    After test:
+                    0: __ro2sq$156 := Call __ro2sq (t30.O$152)
+                    5: DB.DBA.RDF_LANGUAGE_OF_OBJ$154 := Call DB.DBA.RDF_LANGUAGE_OF_OBJ (__ro2sq$156)
+                    12: DB.DBA.RDF_DATATYPE_OF_OBJ$158 := Call DB.DBA.RDF_DATATYPE_OF_OBJ (__ro2sq$156)
+                    19: if (__ro2sq$135 = <DB_NULL>) then 23 else 48 unkn 48
+                    23: if (DB.DBA.RDF_DATATYPE_OF_OBJ$137  IS NULL   0 ) then 27 else 31 unkn 31
+                    27: if (DB.DBA.RDF_DATATYPE_OF_OBJ$158  IS NULL   0 ) then 35 else 31 unkn 31
+                    31: if (DB.DBA.RDF_DATATYPE_OF_OBJ$137 = DB.DBA.RDF_DATATYPE_OF_OBJ$158) then 35 else 48 unkn 48
+                    35: if (DB.DBA.RDF_LANGUAGE_OF_OBJ$139  IS NULL   0 ) then 39 else 43 unkn 43
+                    39: if (DB.DBA.RDF_LANGUAGE_OF_OBJ$154  IS NULL   0 ) then 47 else 43 unkn 43
+                    43: if (DB.DBA.RDF_LANGUAGE_OF_OBJ$139 = DB.DBA.RDF_LANGUAGE_OF_OBJ$154) then 47 else 48 unkn 48
+                    47: BReturn 1
+                    48: BReturn 0
+                    time         0% fanout         0 input         0 rows
+                    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:   1.3e-07 Fanout:         0
+                    RDF_QUAD   1.3e-07 rows(t29.O$162, t29.G$161)
+                     inlined  P =  IRI_ID"...about"  ,  S = k_t30.S$562 ,  O = k_t25.O$566
+                    
+                    After code:
+                    0: var3$142 :=  := artm <DB_NULL>
+                    4: var5$143 :=  := artm t30.O$152
+                    8: _::ppath_seq_37_26$144 :=  := artm t30.S$151
+                    12: var2$145 :=  := artm t29.O$162
+                    16: _::default_37_31$146 :=  := artm t30.G$150
+                    20: _::default_37_27$147 :=  := artm t29.G$161
+                    24: BReturn 0
+                    time         0% fanout         0 input         0 rows
+                    Subquery Select(var3$142, var5$143, _::ppath_seq_37_26$144, var2$145, _::default_37_31$146, _::default_37_27$147)
+                  }
+                time         0% fanout         0 input         0 rows
+              } /* end of outer */
+            set_ctr$172
+             out: (_::ppath_seq_37_26$144, _::default_37_31$146, var5$143, set_no$148, var3$142, var2$145, _::default_37_27$147)
+             shadow: ( <none> ,  <none> ,  <none> ,  <none> ,  <none> ,  <none> ,  <none> )
+            time         0% fanout         0 input         0 rows
+            END Node
+            After test:
+            0: if (var5$143  IS NULL   0 ) then 4 else 5 unkn 5
+            4: BReturn 1
+            5: BReturn 0
+            
+            After code:
+            0: var2$35 :=  := artm t25.O$125
+            4: var1$36 :=  := artm t26.O$129
+            8: var3$37 :=  := artm t27.O$133
+            12: BReturn 0
+            time         0% fanout         0 input         0 rows
+            Subquery Select(var2$35, var1$36, var3$37)
+          }
+      }
+    time         0% fanout         0 input         0 rows
+    Distinct (var1$36, var2$35, var3$37)
+    
+    After code:
+    0: var1$28 :=  := artm var1$36
+    4: var1Label$29 :=  := artm <DB_NULL>
+    8: var2$30 :=  := artm var2$35
+    12: var2Label$31 :=  := artm <DB_NULL>
+    16: var3$32 :=  := artm var3$37
+    20: BReturn 0
+    time         0% fanout         0 input         0 rows
+    Subquery Select(var1$28, var1Label$29, var2$30, var2Label$31, var3$32)
+    
+    After code:
+    0: var1$203 := Call __ro2sq (var1$28)
+    5: var2$205 := Call __ro2sq (var2$30)
+    10: var3$207 := Call __ro2sq (var3$32)
+    15: BReturn 0
+    time         0% fanout         0 input         0 rows
+    Select (var1$203, var1Label$29, var2$205, var2Label$31, var3$207)
+  }
+
+
+ 0 msec 0% cpu,         2 rnd         0 seq         0% same seg         0% same pg 
+Compilation: 14 msec 0 reads         0% read 0 messages         0% clw

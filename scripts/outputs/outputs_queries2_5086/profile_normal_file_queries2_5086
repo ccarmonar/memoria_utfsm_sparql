@@ -1,0 +1,36 @@
+http://www.wikidata.org/entity/Q381595	
+http://www.wikidata.org/entity/Q1089613	
+http://www.wikidata.org/entity/Q146094	
+http://www.wikidata.org/entity/Q1032866	
+http://www.wikidata.org/entity/Q375784	
+http://www.wikidata.org/entity/Q733565	
+http://www.wikidata.org/entity/Q502171	
+http://www.wikidata.org/entity/Q492941	
+http://www.wikidata.org/entity/Q549024	
+
+  { 
+    time       1.4% fanout         1 input         1 rows
+      clear: (<V set_ctr$38 in>)
+    s# 41 39 cluster outer seq start, set no <V set_ctr$38 in>    
+    save ctx:()
+    time        98% fanout         9 input         1 rows
+      clear: (<V s_37_2_t0.S$28 rn>, <V var1$30 a>)
+      clear on continue: (<V s_37_2_t0.S$28 rn>, <V var1$30 a>)
+    s# 50 27 from DB.DBA.RDF_QUAD by RDF_QUAD_POGS          9 rows   
+    Key RDF_QUAD_POGS  ASC  (<V s_37_2_t0.S$28 rn>)
+     P =  IRI_ID"...direct/P31"  ,  O =  IRI_ID"...Q568683" 
+    
+    After code:
+      0: <V var1$30 a> := Call __id2in (<V s_37_2_t0.S$28 rn>)
+      5: BReturn 0
+    time      0.34% fanout         0 input         9 rows
+    $38 (27 39 ) $30 () 
+    s# 60 32 Select (<V var1$30 a>)
+      set no: <r set_ctr$38 via  Set50>
+  }
+Warning: You might have a Cartesian product.
+
+
+
+ 0 msec 0% cpu,        10 rnd         8 seq         0% same seg         0% same pg 
+Compilation: 26 msec 1 reads   95.3776% read 0 messages         0% clw

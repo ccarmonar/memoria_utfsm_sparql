@@ -1,0 +1,55 @@
+http://www.wikidata.org/entity/Q17779222	
+http://www.wikidata.org/entity/Q38176704	
+http://www.wikidata.org/entity/Q233737	
+http://www.wikidata.org/entity/Q10318280	
+http://www.wikidata.org/entity/Q38086895	
+http://www.wikidata.org/entity/Q1425040	
+http://www.wikidata.org/entity/Q4708669	
+http://www.wikidata.org/entity/Q2365068	
+http://www.wikidata.org/entity/Q10384524	
+http://www.wikidata.org/entity/Q26503481	
+http://www.wikidata.org/entity/Q26578674	
+http://www.wikidata.org/entity/Q1796696	
+http://www.wikidata.org/entity/Q1852240	
+http://www.wikidata.org/entity/Q2171950	
+http://www.wikidata.org/entity/Q17536692	
+http://www.wikidata.org/entity/Q27087148	
+http://www.wikidata.org/entity/Q980401	
+http://www.wikidata.org/entity/Q21100458	
+http://www.wikidata.org/entity/Q3556578	
+http://www.wikidata.org/entity/Q3556614	
+
+  { 
+    time     0.085% fanout         1 input         1 rows
+    Precode:
+      0: __all_eq$27 := Call __all_eq ( IRI_ID"...Q12280" )
+      5: BReturn 0
+    Transitive dt dir 2, input: (__all_eq$27)
+      input shadow: (__all_eq$83)
+      output: (_::trans_subj_37_5$30)
+      { 
+        time       5.2% fanout       0.9 input        10 rows
+        RDF_QUAD_POGS       3.8 rows(s_37_9_t1.S$37, s_37_9_t1.O$36)
+         P =  IRI_ID"...direct/P279"  ,  O = k___all_eq$89
+        
+        After code:
+        0: _::trans_subj_37_5$30 :=  := artm s_37_9_t1.S$37
+        4: _::trans_obj_37_6$31 :=  := artm s_37_9_t1.O$36
+        8: BReturn 0
+        time     0.032% fanout         0 input         9 rows
+        Subquery Select(_::trans_subj_37_5$30, _::trans_obj_37_6$31)
+      }
+    time        89% fanout       100 input        10 rows
+    RDF_QUAD_POGS     1e+02 rows(s_37_3_t0.S$57)
+     P =  IRI_ID"...direct/P31"  ,  O = cast$113 O LIKE <c Tó>
+    
+    After code:
+    0: var1$59 := Call __id2in (s_37_3_t0.S$57)
+    5: BReturn 0
+    time     0.034% fanout         0 input      1000 rows
+    Select (var1$59)
+  }
+
+
+ 4 msec 62% cpu,        17 rnd      1004 seq   22.2222% same seg   44.4444% same pg 
+Compilation: 2 msec 0 reads         0% read 0 messages         0% clw

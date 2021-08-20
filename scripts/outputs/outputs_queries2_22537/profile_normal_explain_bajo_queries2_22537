@@ -1,0 +1,45 @@
+http://www.wikidata.org/entity/Q14864744	
+http://www.wikidata.org/entity/Q14863662	
+http://www.wikidata.org/entity/Q14863662	
+http://www.wikidata.org/entity/Q14863082	
+http://www.wikidata.org/entity/Q21104640	
+http://www.wikidata.org/entity/Q14911863	
+http://www.wikidata.org/entity/Q21130569	
+http://www.wikidata.org/entity/Q21116444	
+http://www.wikidata.org/entity/Q21096254	
+http://www.wikidata.org/entity/Q14872989	
+http://www.wikidata.org/entity/Q21120944	
+http://www.wikidata.org/entity/Q21108640	
+http://www.wikidata.org/entity/Q21108160	
+http://www.wikidata.org/entity/Q21105021	
+http://www.wikidata.org/entity/Q21122105	
+http://www.wikidata.org/entity/Q14864915	
+http://www.wikidata.org/entity/Q21112483	
+
+  { 
+    time     0.013% fanout         1 input         1 rows
+    time      0.43% fanout      1322 input         1 rows
+    RDF_QUAD_POGS   1.3e+03 rows(s_37_6_t1.S$28)
+     P =  IRI_ID"...direct/P31"  ,  O =  IRI_ID"...Q14860489" 
+    time        12% fanout   1.68684 input      1322 rows
+    RDF_QUAD_OP       2.8 rows(s_37_6_t0.O$32, s_37_6_t0.P$31)
+     inlined  O = cast$78
+    time        18% fanout   6.32556 input      2230 rows
+    RDF_QUAD_POGS       1.2 rows(s_37_6_t0.S$36)
+     P = s_37_6_t0.P$31 ,  O = k_s_37_6_t1.S$93
+    time        69% fanout 0.00120516 input     14106 rows
+    RDF_QUAD   0.00087 rows()
+     inlined  P =  IRI_ID"...direct/P31"  ,  S = s_37_6_t0.S$36 ,  O =  IRI_ID"...Q2996394" 
+    time      0.58% fanout         1 input        17 rows
+    skip node  100  <none> set_ctr$49
+    
+    After code:
+    0: var1$41 := Call __ro2sq (s_37_6_t0.O$32)
+    5: BReturn 0
+    time    0.0074% fanout         0 input        17 rows
+    Select (var1$41)
+  }
+
+
+ 25 msec 93% cpu,     17644 rnd     14094 seq    91.805% same seg   7.36186% same pg 
+Compilation: 2 msec 0 reads         0% read 0 messages         0% clw

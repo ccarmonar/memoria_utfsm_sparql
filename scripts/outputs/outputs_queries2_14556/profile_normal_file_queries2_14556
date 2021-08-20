@@ -1,0 +1,85 @@
+3749	
+
+  { 
+    time    0.0075% fanout         1 input         1 rows
+      clear: (<V set_ctr$53 in>)
+    s# 68 54 cluster outer seq start, set no <V set_ctr$53 in>    
+    save ctx:()
+    time    0.0061% fanout         1 input         1 rows
+    
+    s# 171 55 Fork 55 {  
+        time         2% fanout     49727 input         1 rows
+          clear: (<V s_37_17_t3.S$28 rn>)
+          clear on continue: (<V s_37_17_t3.S$28 rn>)
+        s# 78 27 from DB.DBA.RDF_QUAD by RDF_QUAD_POGS      5e+04 rows   
+        Key RDF_QUAD_POGS  ASC  (<V s_37_17_t3.S$28 rn>)
+         P =  IRI_ID"...direct/P27"  ,  O =  IRI_ID"...Q30" 
+        
+        time        37% fanout  0.993746 input     49727 rows
+        Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:     0.091 Fanout:      0.99
+          clear: (<V s_37_17_t4.S$31 rn>)
+          clear on continue: (<V s_37_17_t4.S$31 rn>)
+        s# 88 30 from DB.DBA.RDF_QUAD by RDF_QUAD      0.091 rows   
+        Key RDF_QUAD  ASC  (<V s_37_17_t4.S$31 rn>)
+         inlined  P =  IRI_ID"...direct/P31"  ,  S = <V s_37_17_t3.S$28 rn> ,  O =  IRI_ID"...Q5" 
+        
+        time        15% fanout  0.745791 input     49416 rows
+          clear: (<V s_37_7_t0.O$34 an>, <V s_37_7_t0.S$35 rn>)
+          clear on continue: (<V s_37_7_t0.S$35 rn>, <V s_37_7_t0.O$34 an>)$102 (33 ) 
+        s# 98 33 from DB.DBA.RDF_QUAD by RDF_QUAD       0.81 rows   
+        Key RDF_QUAD  ASC  (<V s_37_7_t0.S$35 rn>, <V s_37_7_t0.O$34 an>)
+         inlined  P =  IRI_ID"...direct/P19"  ,  S = <v k_s_37_17_t3.S$102 Set104 rn>
+        vector param casts: <r s_37_17_t3.S$28 via  Set88>-> <v k_s_37_17_t3.S$102 Set104 rn>
+        
+        time       9.7% fanout  0.891735 input     36854 rows
+        
+        s# 118 113 END Node
+        After test:
+          0: if (  { 
+              time      0.49% fanout         1 input     36854 rows
+                clear: (<V set_ctr$45 in>)
+              s# 122 46 cluster outer seq start, set no <V set_ctr$45 in>    
+              save ctx:()
+              time       8.6% fanout  0.118142 input     36854 rows
+              $35 (46 ) $135 (37 ) 
+              s# 131 37 from DB.DBA.RDF_QUAD by RDF_QUAD          1 rows Parallel, tail cost        10   max 1
+              Key RDF_QUAD  ASC  ()
+               inlined  P =  IRI_ID"...direct/P1559"  ,  S = <v k_s_37_7_t0.S$135 Set137 rn>
+              vector param casts: <r s_37_7_t0.S$35 via  Set122>-> <v k_s_37_7_t0.S$135 Set137 rn>
+              copy on branch $135 $45 $0 $0 sets: 68 78 88 104 98 122 
+              
+              time     0.086% fanout         0 input      4354 rows
+              $45 (37 46 ) 
+              s# 144 39 Subquery Select( <none> )
+                set no: <r set_ctr$45 via  Set131 Set137>
+            }
+          ) then 5 else 4 unkn 5
+          4: BReturn 1
+          5: BReturn 0
+        time        27% fanout         0 input     32864 rows
+        Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:     0.089 Fanout:         0
+        $34 (113 ) $160 (51 ) $28 (113 33 30 ) 
+        s# 156 51 from DB.DBA.RDF_QUAD by RDF_QUAD_POGS      0.089 rows   
+        Key RDF_QUAD_POGS  ASC  ()
+         inlined  P =  IRI_ID"...direct/P17"  ,  O =  IRI_ID"...Q30"  ,  S = <v k_s_37_7_t0.O$160 Set162 rn>
+        vector param casts: <r s_37_7_t0.O$34 via  Set118>-> <v k_s_37_7_t0.O$160 Set162 rn>
+        
+        After code:
+          0:  count <V var2$56 in><r s_37_17_t3.S$28 via  Set156 Set162 Set118 Set98 Set104 Set88>set no <r set_ctr$53 via  Set156 Set162 Set118 Set98 Set104 Set88 Set78>distinct via hash area <V DISTINCT HASH$60 x>
+          5: BReturn 0
+    }
+    time    0.0016% fanout         0 input         1 rows
+    $53 (55 54 ) $56 (61 ) 
+    s# 178 61 Select (<V var2$56 in>)
+      set no: <V set_ctr$53 in>
+  }
+Warning: You might have a Cartesian product.
+
+Warning: You might have a Cartesian product.
+
+Warning: You might have a Cartesian product.
+
+
+
+ 44 msec 82% cpu,    168853 rnd     51906 seq    99.438% same seg  0.418113% same pg 
+Compilation: 6 msec 0 reads         0% read 0 messages         0% clw

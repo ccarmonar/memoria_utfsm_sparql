@@ -1,0 +1,48 @@
+http://www.wikidata.org/entity/Q29891990	WP382	
+http://www.wikidata.org/entity/Q29892200	WP179	
+http://www.wikidata.org/entity/Q28031274	WP534	
+http://www.wikidata.org/entity/Q30102320	WP561	
+http://www.wikidata.org/entity/Q30225370	WP15	
+http://www.wikidata.org/entity/Q30225385	WP1742	
+http://www.wikidata.org/entity/Q30225392	WP186	
+http://www.wikidata.org/entity/Q30225399	WP363	
+http://www.wikidata.org/entity/Q30225457	WP195	
+http://www.wikidata.org/entity/Q30225469	WP2037	
+http://www.wikidata.org/entity/Q30225494	WP2374	
+http://www.wikidata.org/entity/Q30225495	WP23	
+http://www.wikidata.org/entity/Q30225505	WP244	
+http://www.wikidata.org/entity/Q30225523	WP3878	
+http://www.wikidata.org/entity/Q30225524	WP3879	
+http://www.wikidata.org/entity/Q30225532	WP3931	
+http://www.wikidata.org/entity/Q30225547	WP400	
+http://www.wikidata.org/entity/Q30225578	WP558	
+http://www.wikidata.org/entity/Q30230733	WP3627	
+http://www.wikidata.org/entity/Q30230775	WP1995	
+
+  { 
+    time      0.56% fanout         1 input         1 rows
+      clear: (<V set_ctr$41 in>)
+    s# 44 42 cluster outer seq start, set no <V set_ctr$41 in>    
+    save ctx:()
+    time        99% fanout        67 input         1 rows
+      clear: (<V s_37_2_t0.O$28 an>, <V s_37_2_t0.S$29 rn>, <V var2$33 a>, <V var1$31 a>)
+      clear on continue: (<V s_37_2_t0.O$28 an>, <V s_37_2_t0.S$29 rn>, <V var2$33 a>, <V var1$31 a>)
+    s# 53 27 from DB.DBA.RDF_QUAD by RDF_QUAD         67 rows   
+    Key RDF_QUAD  ASC  (<V s_37_2_t0.S$29 rn>, <V s_37_2_t0.O$28 an>)
+     inlined  P =  IRI_ID"...direct/P2410" 
+    
+    After code:
+      0: <V var1$31 a> := Call __id2in (<V s_37_2_t0.S$29 rn>)
+      5: <V var2$33 a> := Call __ro2sq (<V s_37_2_t0.O$28 an>)
+      10: BReturn 0
+    time      0.06% fanout         0 input        67 rows
+    $31 () $33 () $41 (27 42 ) 
+    s# 64 35 Select (<V var1$31 a>, <V var2$33 a>)
+      set no: <r set_ctr$41 via  Set53>
+  }
+Warning: You might have a Cartesian product.
+
+
+
+ 0 msec 0% cpu,       102 rnd        66 seq         0% same seg   82.5243% same pg 
+Compilation: 129 msec 0 reads         0% read 0 messages         0% clw

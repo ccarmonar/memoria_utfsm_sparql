@@ -1,0 +1,46 @@
+3749	
+
+  { 
+    time    0.0077% fanout         1 input         1 rows
+    time    0.0062% fanout         1 input         1 rows
+    fork {
+        time       2.1% fanout     49727 input         1 rows
+        RDF_QUAD_POGS     5e+04 rows(s_37_17_t3.S$28)
+         P =  IRI_ID"...direct/P27"  ,  O =  IRI_ID"...Q30" 
+        time        37% fanout  0.993746 input     49727 rows
+        Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:     0.091 Fanout:      0.99
+        RDF_QUAD     0.091 rows(s_37_17_t4.S$31)
+         inlined  P =  IRI_ID"...direct/P31"  ,  S = s_37_17_t3.S$28 ,  O =  IRI_ID"...Q5" 
+        time        15% fanout  0.745791 input     49416 rows
+        RDF_QUAD      0.81 rows(s_37_7_t0.S$35, s_37_7_t0.O$34)
+         inlined  P =  IRI_ID"...direct/P19"  ,  S = k_s_37_17_t3.S$102
+        time       9.5% fanout  0.891735 input     36854 rows
+        END Node
+        After test:
+        0: if (  { 
+            time      0.48% fanout         1 input     36854 rows
+            time       8.5% fanout  0.118142 input     36854 rows
+            RDF_QUAD         1 rows()
+             inlined  P =  IRI_ID"...direct/P1559"  ,  S = k_s_37_7_t0.S$135
+            time     0.085% fanout         0 input      4354 rows
+            Subquery Select( <none> )
+          }
+        ) then 5 else 4 unkn 5
+        4: BReturn 1
+        5: BReturn 0
+        time        27% fanout         0 input     32864 rows
+        Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:     0.089 Fanout:         0
+        RDF_QUAD_POGS     0.089 rows()
+         inlined  P =  IRI_ID"...direct/P17"  ,  O =  IRI_ID"...Q30"  ,  S = k_s_37_7_t0.O$160
+        
+        After code:
+        0:  count var2$56s_37_17_t3.S$28set no set_ctr$53distinct via hash area DISTINCT HASH$60
+        5: BReturn 0
+      }
+    time    0.0015% fanout         0 input         1 rows
+    Select (var2$56)
+  }
+
+
+ 44 msec 86% cpu,    168853 rnd     51906 seq    99.438% same seg  0.418113% same pg 
+Compilation: 5 msec 0 reads         0% read 0 messages         0% clw

@@ -1,0 +1,74 @@
+
+  { 
+    time       3.7% fanout         1 input         1 rows
+      clear: (<V set_ctr$79 in>)
+    s# 82 80 cluster outer seq start, set no <V set_ctr$79 in>    
+    save ctx:()
+    time        96% fanout         0 input         1 rows
+    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:       0.3 Fanout:         0
+    Precode:
+      0: <V DB.DBA.RDF_MAKE_LONG_OF_SQLVAL$27 a> := Call DB.DBA.RDF_MAKE_LONG_OF_SQLVAL (<c crh-latn>)
+      7: <V vector$29 x> := Call vector (<V DB.DBA.RDF_MAKE_LONG_OF_SQLVAL$27 a>)
+      12: <V DB.DBA.RDF_MAKE_LONG_OF_SQLVAL$31 a> := Call DB.DBA.RDF_MAKE_LONG_OF_SQLVAL (<c crh-Latn>)
+      19: <V vector$33 x> := Call vector (<V DB.DBA.RDF_MAKE_LONG_OF_SQLVAL$31 a>)
+      24: <V DB.DBA.RDF_MAKE_LONG_OF_SQLVAL$35 a> := Call DB.DBA.RDF_MAKE_LONG_OF_SQLVAL (<c nds-nl>)
+      31: <V vector$37 x> := Call vector (<V DB.DBA.RDF_MAKE_LONG_OF_SQLVAL$35 a>)
+      36: <V DB.DBA.RDF_MAKE_LONG_OF_SQLVAL$39 a> := Call DB.DBA.RDF_MAKE_LONG_OF_SQLVAL (<c nds-NL>)
+      43: <V vector$41 x> := Call vector (<V DB.DBA.RDF_MAKE_LONG_OF_SQLVAL$39 a>)
+      48: <V vector$43 x> := Call vector (<V vector$29 x>, <V vector$33 x>, <V vector$37 x>, <V vector$41 x>)
+      53: BReturn 0
+      clear: (<V s_37_5_t0.S$46 rn>, <V vector$43 x>, <V vector$41 x>, <V DB.DBA.RDF_MAKE_LONG_OF_SQLVAL$39 a>, <V vector$37 x>, <V DB.DBA.RDF_MAKE_LONG_OF_SQLVAL$35 a>, <V vector$33 x>, <V DB.DBA.RDF_MAKE_LONG_OF_SQLVAL$31 a>, <V vector$29 x>, <V DB.DBA.RDF_MAKE_LONG_OF_SQLVAL$27 a>)
+      clear on continue: (<V s_37_5_t0.S$46 rn>)$31 (45 ) $33 (45 ) $35 (45 ) $37 (45 ) $39 (45 ) $41 (45 ) $27 (45 ) $29 (45 ) 
+    s# 91 45 from DB.DBA.RDF_QUAD by RDF_QUAD_POGS        0.3 rows   
+    Key RDF_QUAD_POGS  ASC  (<V s_37_5_t0.S$46 rn>)
+     P =  IRI_ID"...about"  ,  O =  IRI_ID"...Q5296" 
+    
+    time         0% fanout         0 input         0 rows
+    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:       5.9 Fanout:         0
+    Precode:
+      0: <V var2$48 a> := Call __id2in (<V s_37_5_t0.S$46 rn>)
+      5: BReturn 0
+      clear: (<V s_37_5_t1.O$51 an>, <V var2$48 a>)
+      clear on continue: (<V s_37_5_t1.O$51 an>)$46 () 
+    s# 101 50 from DB.DBA.RDF_QUAD by RDF_QUAD        5.9 rows   
+    Key RDF_QUAD  ASC  (<V s_37_5_t1.O$51 an>)
+     inlined  P =  IRI_ID"...name"  ,  S = <V s_37_5_t0.S$46 rn>
+    
+    time         0% fanout         0 input         0 rows
+    Precode:
+      0: <V var3$53 a> := Call __ro2sq (<V s_37_5_t1.O$51 an>)
+      5: <V DB.DBA.RDF_LANGUAGE_OF_OBJ$55 a> := Call DB.DBA.RDF_LANGUAGE_OF_OBJ (<V var3$53 a>)
+      12: <V dta$62 x> :=  := artm <r vector$43 via  Set101 Set91>
+      16: <V proc_ctr$58 i> :=  := artm  0 
+      20:  <none>  := Call __reset_temp ( 139910702194528 )
+      25:  <proc table>  := Call DB.DBA.SPARQL_BINDINGS_VIEW_C_1_IMP (<r vector$43 via  Set101 Set91>)
+      32: BReturn 0
+      clear: (<V BND0$60 a>, <V proc_ctr$58 i>, <V dta$62 x>, <V DB.DBA.RDF_LANGUAGE_OF_OBJ$55 a>, <V var3$53 a>)
+      clear on continue: (<V proc_ctr$58 i>, <V BND0$60 a>)$43 (50 45 ) $51 () 
+    s# 111 57 Key from temp (<V proc_ctr$58 i>, <V BND0$60 a>)
+    
+    
+    time         0% fanout         0 input         0 rows
+      clear: (<V __rdf_sqlval_of_obj$69 a>, <V var1$71 a>)$55 (57 ) $60 () 
+    s# 125 120 END Node
+    After test:
+      0: <V __rdf_sqlval_of_obj$69 a> := Call __rdf_sqlval_of_obj (<V BND0$60 a>)
+      5: if (<V __rdf_sqlval_of_obj$69 a> = <r DB.DBA.RDF_LANGUAGE_OF_OBJ$55 via  Set111>) then 9 else 10 unkn 10
+      9: BReturn 1
+      10: BReturn 0
+    After code:
+      0: <V var1$71 a> := Call __rdf_sqlval_of_obj (<r BND0$60 via  Set125>)
+      5: BReturn 0
+    time         0% fanout         0 input         0 rows
+    $71 (120 ) $48 (120 57 50 ) $79 (120 57 50 45 80 ) $53 (120 57 ) 
+    s# 133 73 Select (<V var1$71 a>, <r var2$48 via  Set125 Set111 Set101>, <r var3$53 via  Set125 Set111>)
+      set no: <r set_ctr$79 via  Set125 Set111 Set101 Set91>
+  }
+Warning: You might have a Cartesian product.
+
+Warning: You might have a Cartesian product.
+
+
+
+ 0 msec 3% cpu,         1 rnd         0 seq         0% same seg         0% same pg 
+Compilation: 2 msec 0 reads         0% read 0 messages         0% clw

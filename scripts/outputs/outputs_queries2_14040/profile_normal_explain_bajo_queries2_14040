@@ -1,0 +1,73 @@
+10001433g	
+101131534	
+105191491	
+110015974	
+11200423d	
+115590471	
+11862256k	
+11862497q	
+11863379r	
+11863436r	
+11863712k	
+118642384	
+118642938	
+11864299b	
+118646298	
+11864838s	
+118649669	
+11865344k	
+11865422j	
+11865452g	
+
+  { 
+    time    0.0023% fanout         1 input         1 rows
+    Subquery 27 
+      { 
+        time    0.0013% fanout         1 input         1 rows
+        fork {
+            time   0.00097% fanout         1 input         1 rows
+            fork {
+                time       1.1% fanout     59169 input         1 rows
+                RDF_QUAD   5.9e+04 rows(s_37_2_t0.O$31)
+                 inlined  P =  IRI_ID"...direct/P268" 
+                time       8.6% fanout         0 input     59169 rows
+                Sort (s_37_2_t0.O$31) -> (inc$37)
+                
+              }
+            time       1.3% fanout     58478 input         1 rows
+            group by read node  
+            (s_37_2_t0.O$31, aggregate$35)
+            time        88% fanout 0.0117993 input     58478 rows
+            Precode:
+              0: __ro2sq$57 := Call __ro2sq (s_37_2_t0.O$31)
+              5: BReturn 0
+            END Node
+            After test:
+            0: if ( 2  <= aggregate$35) then 4 else 5 unkn 5
+            4: BReturn 1
+            5: BReturn 0
+            time       1.3% fanout         0 input       690 rows
+            Sort (__ro2sq$57)
+          }
+        time     0.099% fanout       690 input         1 rows
+        Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:         0 Fanout:   6.9e+02
+        Key from temp (__ro2sq$57)
+        
+        
+        After code:
+        0: var1$28 :=  := artm __ro2sq$57
+        4: BReturn 0
+        time   0.00051% fanout         0 input       690 rows
+        Subquery Select(var1$28)
+      }
+    
+    After code:
+    0: var1$80 := Call __ro2sq (var1$28)
+    5: BReturn 0
+    time    0.0002% fanout         0 input       690 rows
+    Select (var1$80)
+  }
+
+
+ 150 msec 98% cpu,     59170 rnd     59794 seq         0% same seg   28.3619% same pg 
+Compilation: 2 msec 0 reads         0% read 0 messages         0% clw

@@ -1,0 +1,64 @@
+ SELECT  __ro2sq ("s_37_30_rbc"."var1") AS "var1", __ro2sq ("s_37_30_rbc"."var2") AS "var2", __ro2sq ("s_37_30_rbc"."var3") AS "var3" FROM (SELECT __ro2sq ( "s_37_30_t6"."O") AS "var1",
+    __ro2sq ( "s_37_30_t5"."O") AS "var2",
+    __ro2sq ( "s_37_30_t4"."O") AS "var3"
+  FROM DB.DBA.RDF_QUAD AS "s_37_3_t0"
+    INNER JOIN DB.DBA.RDF_QUAD AS "s_37_7_t1"
+    ON (
+      "s_37_7_t1"."S" = "s_37_3_t0"."O")
+    INNER JOIN DB.DBA.RDF_QUAD AS "s_37_30_t4"
+    ON (
+      "s_37_30_t4"."S" = "s_37_3_t0"."S")
+    INNER JOIN DB.DBA.RDF_QUAD AS "s_37_30_t5"
+    ON (
+      "s_37_30_t4"."S" = "s_37_30_t5"."S"
+      AND 
+      "s_37_30_t5"."S" = "s_37_3_t0"."S")
+    INNER JOIN DB.DBA.RDF_QUAD AS "s_37_30_t6"
+    ON (
+      "s_37_30_t4"."S" = "s_37_30_t6"."S"
+      AND 
+      "s_37_30_t5"."S" = "s_37_30_t6"."S"
+      AND 
+      "s_37_30_t6"."S" = "s_37_3_t0"."S")
+  WHERE
+    "s_37_3_t0"."P" = __i2idn ( __bft( 'http://schema.org/isPartOf' , 1))
+    AND 
+    "s_37_7_t1"."P" = __i2idn ( __bft( 'http://wikiba.se/ontology#wikiGroup' , 1))
+    AND 
+    "s_37_7_t1"."O" = DB.DBA.RDF_OBJ_OF_SQLVAL ( 'wiktionary' )
+    AND 
+    "s_37_30_t4"."P" = __i2idn ( __bft( 'http://schema.org/name' , 1))
+    AND 
+    "s_37_30_t5"."P" = __i2idn ( __bft( 'http://schema.org/inLanguage' , 1))
+    AND 
+    "s_37_30_t6"."P" = __i2idn ( __bft( 'http://schema.org/about' , 1))
+    AND 
+    rdf_strstarts_impl ( __ro2lo ( "s_37_30_t4"."O"),  DB.DBA.RDF_MAKE_LONG_OF_SQLVAL ( 'Category:' ))
+    AND 
+    not ( EXISTS ( (
+       SELECT TOP 1 1 AS __ask_retval
+        FROM DB.DBA.RDF_QUAD AS "s_37_18_t2"
+          INNER JOIN (
+           SELECT TRANSITIVE T_OUT(2) T_IN(1) T_MIN( 0) T_NO_CYCLES "s_37_24_t3"."S" AS "_::trans_subj_37_20",
+              "s_37_24_t3"."O" AS "_::trans_obj_37_21"
+            FROM DB.DBA.RDF_QUAD AS "s_37_24_t3"
+            WHERE
+              "s_37_24_t3"."P" = __i2idn ( __bft( 'http://www.wikidata.org/prop/direct/P279' , 1))
+OPTION (QUIETCAST)
+            ) AS "s_37_27"
+          ON (
+            "s_37_18_t2"."O" = "s_37_27"."_::trans_subj_37_20")
+        WHERE
+          "s_37_18_t2"."P" = __i2idn ( __bft( 'http://www.wikidata.org/prop/direct/P31' , 1))
+          AND 
+          isiri_id ( "s_37_18_t2"."O")
+          AND 
+         ( "s_37_27"."_::trans_obj_37_21" =  __i2idn ( __bft( 'http://www.wikidata.org/entity/Q4167836' , 1)))
+          AND 
+          "s_37_18_t2"."S" = "s_37_30_t6"."O"
+          AND 
+          1
+OPTION (QUIETCAST)
+       )))
+  ORDER BY __ro2sq ( "s_37_30_t5"."O") ASC, __ro2sq ( "s_37_30_t4"."O") ASC
+OPTION (QUIETCAST)) AS "s_37_30_rbc"

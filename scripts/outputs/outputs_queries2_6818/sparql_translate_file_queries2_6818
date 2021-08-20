@@ -1,0 +1,86 @@
+ SELECT  __ro2sq ("s_37_20_rbc"."var1Label") AS "var1Label", __ro2sq ("s_37_20_rbc"."var2Label") AS "var2Label", __ro2sq ("s_37_20_rbc"."var3") AS "var3", __ro2sq ("s_37_20_rbc"."var4") AS "var4", __ro2sq ("s_37_20_rbc"."var5") AS "var5", __ro2sq ("s_37_20_rbc"."var6") AS "var6" FROM (SELECT NULL /* due to conflict on var1Label */ AS "var1Label",
+    NULL /* due to conflict on var2Label */ AS "var2Label",
+    NULL /* due to conflict on var3 */ AS "var3",
+    NULL /* due to conflict on var4 */ AS "var4",
+    NULL /* due to conflict on var5 */ AS "var5",
+    NULL /* due to conflict on var6 */ AS "var6"
+  FROM (
+     SELECT "s_37_18_t0"."S" AS "var1",
+         COUNT (
+           "s_37_18_t6"."O") AS "var8"
+      FROM DB.DBA.RDF_QUAD AS "s_37_18_t0"
+        INNER JOIN DB.DBA.RDF_QUAD AS "s_37_18_t1"
+        ON (
+          "s_37_18_t0"."S" = "s_37_18_t1"."S")
+        INNER JOIN DB.DBA.RDF_QUAD AS "s_37_18_t2"
+        ON (
+          "s_37_18_t1"."O" = "s_37_18_t2"."S")
+        INNER JOIN DB.DBA.RDF_QUAD AS "s_37_18_t3"
+        ON (
+          "s_37_18_t1"."O" = "s_37_18_t3"."S"
+          AND 
+          "s_37_18_t2"."S" = "s_37_18_t3"."S")
+        INNER JOIN DB.DBA.RDF_QUAD AS "s_37_18_t4"
+        ON (
+          "s_37_18_t0"."S" = "s_37_18_t4"."S"
+          AND 
+          "s_37_18_t1"."S" = "s_37_18_t4"."S")
+        INNER JOIN DB.DBA.RDF_QUAD AS "s_37_18_t5"
+        ON (
+          "s_37_18_t0"."S" = "s_37_18_t5"."S"
+          AND 
+          "s_37_18_t1"."S" = "s_37_18_t5"."S"
+          AND 
+          "s_37_18_t4"."S" = "s_37_18_t5"."S")
+        INNER JOIN DB.DBA.RDF_QUAD AS "s_37_18_t6"
+        ON (
+          "s_37_18_t0"."S" = "s_37_18_t6"."S"
+          AND 
+          "s_37_18_t1"."S" = "s_37_18_t6"."S"
+          AND 
+          "s_37_18_t4"."S" = "s_37_18_t6"."S"
+          AND 
+          "s_37_18_t5"."S" = "s_37_18_t6"."S")
+        INNER JOIN DB.DBA.RDF_QUAD AS "s_37_18_t7"
+        ON (
+          "s_37_18_t6"."O" = "s_37_18_t7"."S")
+        INNER JOIN DB.DBA.RDF_QUAD AS "s_37_18_t8"
+        ON (
+          "s_37_18_t0"."S" = "s_37_18_t8"."S"
+          AND 
+          "s_37_18_t1"."S" = "s_37_18_t8"."S"
+          AND 
+          "s_37_18_t4"."S" = "s_37_18_t8"."S"
+          AND 
+          "s_37_18_t5"."S" = "s_37_18_t8"."S"
+          AND 
+          "s_37_18_t6"."S" = "s_37_18_t8"."S")
+      WHERE
+        "s_37_18_t0"."P" = __i2idn ( __bft( 'http://www.wikidata.org/prop/direct/P31' , 1))
+        AND 
+        "s_37_18_t0"."O" = __i2idn ( __bft( 'http://www.wikidata.org/entity/Q5' , 1))
+        AND 
+        "s_37_18_t1"."P" = __i2idn ( __bft( 'http://www.wikidata.org/prop/P39' , 1))
+        AND 
+        "s_37_18_t2"."P" = __i2idn ( __bft( 'http://www.wikidata.org/prop/statement/P39' , 1))
+        AND 
+        "s_37_18_t2"."O" = __i2idn ( __bft( 'http://www.wikidata.org/entity/Q11696' , 1))
+        AND 
+        "s_37_18_t3"."P" = __i2idn ( __bft( 'http://www.wikidata.org/prop/qualifier/P580' , 1))
+        AND 
+        "s_37_18_t4"."P" = __i2idn ( __bft( 'http://www.wikidata.org/prop/direct/P26' , 1))
+        AND 
+        "s_37_18_t5"."P" = __i2idn ( __bft( 'http://www.wikidata.org/prop/direct/P40' , 1))
+        AND 
+        "s_37_18_t6"."P" = __i2idn ( __bft( 'http://www.wikidata.org/prop/direct/P40' , 1))
+        AND 
+        "s_37_18_t7"."P" = __i2idn ( __bft( 'http://www.wikidata.org/prop/direct/P21' , 1))
+        AND 
+        "s_37_18_t7"."O" = __i2idn ( __bft( 'http://www.wikidata.org/entity/Q6581072' , 1))
+        AND 
+        "s_37_18_t8"."P" = __i2idn ( __bft( 'http://www.wikidata.org/prop/direct/P1971' , 1))
+      GROUP BY "s_37_18_t0"."S"
+OPTION (QUIETCAST)
+      ) AS "s_37_19"
+  ORDER BY NULL /* due to conflict on var6 */ ASC
+OPTION (QUIETCAST)) AS "s_37_20_rbc"

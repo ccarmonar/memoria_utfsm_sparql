@@ -1,0 +1,56 @@
+Error: 23000: SR197: Non unique primary key on DB.DBA.RDF_OBJ.
+  { 
+    time     1e+02% fanout         1 input         1 rows
+      clear: (<V set_ctr$54 in>)
+    s# 57 55 cluster outer seq start, set no <V set_ctr$54 in>    
+    save ctx:()
+    time         0% fanout         0 input         1 rows
+    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:   1.4e-07 Fanout:         0
+    Precode:
+      0: <V 2006/03/wn/wn20/schema/containsWordSense$27 r> := Call __i2idn (<tag 182 flag 1 c http://www.w3.org/2006/03/wn/wn20/schema/containsWordSense>)
+      5: <V 2006/03/wn/wn20/schema/word$29 r> := Call __i2idn (<tag 182 flag 1 c http://www.w3.org/2006/03/wn/wn20/schema/word>)
+      10: <V 2006/03/wn/wn20/schema/lexicalForm$31 r> := Call __i2idn (<tag 182 flag 1 c http://www.w3.org/2006/03/wn/wn20/schema/lexicalForm>)
+      15: <V __i2id$33 r> := Call __i2id (<DB_NULL>)
+      20: <V DB.DBA.RDF_MAKE_OBJ_OF_TYPEDSQLVAL$35 x> := Call DB.DBA.RDF_MAKE_OBJ_OF_TYPEDSQLVAL (<c couch>, <V __i2id$33 r>, <c en-US>)
+      27: BReturn 0
+      clear: (<V s_37_6_t0.S$38 rn>, <V s_37_6_t0.O$39 an>, <V DB.DBA.RDF_MAKE_OBJ_OF_TYPEDSQLVAL$35 x>, <V __i2id$33 r>, <V 2006/03/wn/wn20/schema/lexicalForm$31 r>, <V 2006/03/wn/wn20/schema/word$29 r>, <V 2006/03/wn/wn20/schema/containsWordSense$27 r>)
+      clear on continue: (<V s_37_6_t0.O$39 an>, <V s_37_6_t0.S$38 rn>)$33 (37 ) $70 (37 ) $27 (37 ) 
+    s# 66 37 from DB.DBA.RDF_QUAD by RDF_QUAD_POGS    1.4e-07 rows   
+    Key RDF_QUAD_POGS  ASC  (<V s_37_6_t0.O$39 an>, <V s_37_6_t0.S$38 rn>)
+     inlined  P = <v k_2006/03/wn/wn20/schema/containsWordSense$70 Set72 rn>
+    vector param casts: <V 2006/03/wn/wn20/schema/containsWordSense$27 r>-> <v k_2006/03/wn/wn20/schema/containsWordSense$70 Set72 rn>
+    
+    time         0% fanout         0 input         0 rows
+    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:   1.7e-14 Fanout:         0
+      clear: (<V s_37_6_t1.O$42 an>)
+      clear on continue: (<V s_37_6_t1.O$42 an>)$39 () $85 (41 ) $89 (41 ) $29 (37 ) 
+    s# 81 41 from DB.DBA.RDF_QUAD by RDF_QUAD_POGS    1.7e-14 rows   
+    Key RDF_QUAD_POGS  ASC  (<V s_37_6_t1.O$42 an>)
+     inlined  P = <v k_2006/03/wn/wn20/schema/word$85 Set87 rn>
+    row specs:  S = <V k_s_37_6_t0.O$89 rn>
+    vector param casts: <r 2006/03/wn/wn20/schema/word$29 via  Set66 Set72>-> <v k_2006/03/wn/wn20/schema/word$85 Set87 rn>, <V s_37_6_t0.O$39 an>-> <V k_s_37_6_t0.O$89 rn>
+    
+    time         0% fanout         0 input         0 rows
+    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:   1.4e-07 Fanout:         0
+      clear: (<V var1$46 a>)
+      clear on continue: (<V var1$46 a>)$31 (41 37 ) $35 (41 37 ) $38 (41 ) $101 (44 ) $42 () $105 (44 ) $107 (44 ) 
+    s# 97 44 from DB.DBA.RDF_QUAD by RDF_QUAD_POGS    1.4e-07 rows   
+    Key RDF_QUAD_POGS  ASC  ()
+     inlined  P = <v k_2006/03/wn/wn20/schema/lexicalForm$101 Set103 rn> ,  O = <V k_DB.DBA.RDF_MAKE_OBJ_OF_TYPEDSQLVAL$105 an> ,  S = <V k_s_37_6_t1.O$107 rn>
+    vector param casts: <r 2006/03/wn/wn20/schema/lexicalForm$31 via  Set81 Set87 Set66 Set72>-> <v k_2006/03/wn/wn20/schema/lexicalForm$101 Set103 rn>, <r DB.DBA.RDF_MAKE_OBJ_OF_TYPEDSQLVAL$35 via  Set81 Set87 Set66 Set72>-> <V k_DB.DBA.RDF_MAKE_OBJ_OF_TYPEDSQLVAL$105 an>, <V s_37_6_t1.O$42 an>-> <V k_s_37_6_t1.O$107 rn>
+    
+    After code:
+      0: <V var1$46 a> := Call __id2in (<r s_37_6_t0.S$38 via  Set97 Set103 Set81 Set87>)
+      5: BReturn 0
+    time         0% fanout         0 input         0 rows
+    $46 () $54 (44 41 37 55 ) 
+    s# 114 48 Select (<V var1$46 a>)
+      set no: <r set_ctr$54 via  Set97 Set103 Set81 Set87 Set66 Set72>
+  }
+Warning: You might have a Cartesian product.
+
+
+
+ 8 msec 74% cpu,        12 rnd         0 seq         0% same seg         0% same pg 
+1 disk reads, 0 read ahead,   69.4999% wait
+Compilation: 3 msec 0 reads         0% read 0 messages         0% clw

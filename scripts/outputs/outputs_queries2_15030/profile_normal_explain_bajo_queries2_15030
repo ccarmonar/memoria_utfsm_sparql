@@ -1,0 +1,51 @@
+55731	
+
+  { 
+    time    0.0069% fanout         1 input         1 rows
+    time    0.0064% fanout         1 input         1 rows
+    fork {
+        Subquery 27 
+          { 
+            Union
+              { 
+                time         3% fanout     55999 input         1 rows
+                RDF_QUAD_POGS   5.8e+04 rows(s_37_2_t0-u9.S$32)
+                 P =  IRI_ID"...direct/P17"  ,  O =  IRI_ID"...Q142" 
+                
+                After code:
+                0: var1$28 :=  := artm s_37_2_t0-u9.S$32
+                4: BReturn 0
+                time        97% fanout         0 input     55999 rows
+                Precode:
+                  0:  count var2$55var1$28set no set_ctr$52distinct via hash area DISTINCT HASH$59
+                  5: BReturn 0
+                END Node
+              }
+              { 
+                time     0.074% fanout       104 input         1 rows
+                RDF_QUAD_POGS     1e+02 rows(s_37_5_t1.S$42)
+                 P =  IRI_ID"...direct/P131"  ,  O =  IRI_ID"...Q142" 
+                
+                After code:
+                0: var1$28 :=  := artm s_37_5_t1.S$42
+                4: BReturn 0
+                time     0.064% fanout         0 input       104 rows
+                Precode:
+                  0:  count var2$55var1$28set no set_ctr$52distinct via hash area DISTINCT HASH$59
+                  5: BReturn 0
+                END Node
+              }
+          }
+        time         0% fanout         0 input         0 rows
+        Precode:
+          0:  count var2$55var1$28set no set_ctr$52distinct via hash area DISTINCT HASH$59
+          5: BReturn 0
+        END Node
+      }
+    time    0.0017% fanout         0 input         1 rows
+    Select (var2$55)
+  }
+
+
+ 42 msec 60% cpu,         2 rnd     56042 seq         0% same seg         0% same pg 
+Compilation: 2 msec 0 reads         0% read 0 messages         0% clw

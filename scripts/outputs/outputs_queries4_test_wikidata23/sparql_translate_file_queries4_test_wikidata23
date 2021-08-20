@@ -1,0 +1,34 @@
+ SELECT  __ro2sq ("s_46_9_rbc"."airport") AS "airport", "s_46_9_rbc"."airportLabel" AS "airportLabel", __ro2sq ("s_46_9_rbc"."coor") AS "coor" FROM (SELECT DISTINCT TOP 800 "s_46_9_t1"."S" AS "airport",
+    NULL /* due to conflict on airportLabel */ AS "airportLabel",
+    "s_46_9_t3"."O" AS "coor"
+  FROM DB.DBA.RDF_QUAD AS "s_46_9_t1"
+    INNER JOIN DB.DBA.RDF_QUAD AS "s_46_9_t2"
+    ON (
+      "s_46_9_t1"."S" = "s_46_9_t2"."S")
+    INNER JOIN DB.DBA.RDF_QUAD AS "s_46_9_t3"
+    ON (
+      "s_46_9_t1"."S" = "s_46_9_t3"."S"
+      AND 
+      "s_46_9_t2"."S" = "s_46_9_t3"."S")
+    INNER JOIN DB.DBA.SPARQL_SINV_2 "s_46_8"
+    ON (
+     "s_46_8".qtext_template =  ' SELECT ?stubvar10\012 WHERE {  <http://www.bigdata.com/rdf#serviceParam> <http://wikiba.se/ontology#language> "[AUTO_LANGUAGE],en" . }' 
+      AND 
+     "s_46_8".qtext_posmap =  N'' 
+      AND 
+     "s_46_8".ws_endpoint =  __bft ( __bft( 'http://wikiba.se/ontology#label' , 1), 1)
+      AND 
+     "s_46_8".ws_params = vector ()
+      AND 
+     "s_46_8".expected_vars = vector ( 'stubvar10' )
+      AND 
+     "s_46_8".param_row = vector ( NULL /* runaway coor after reorder */, NULL /* runaway airport after reorder */, NULL /* runaway range after reorder */))
+  WHERE
+    "s_46_9_t1"."P" = __i2idn ( __bft( 'http://www.wikidata.org/prop/direct/P31' , 1))
+    AND 
+    "s_46_9_t1"."O" = __i2idn ( __bft( 'http://www.wikidata.org/entity/Q1248784' , 1))
+    AND 
+    "s_46_9_t2"."O" = __i2idn ( __bft( 'http://www.wikidata.org/entity/Q31' , 1))
+    AND 
+    "s_46_9_t3"."P" = __i2idn ( __bft( 'http://www.wikidata.org/prop/direct/P625' , 1))
+OPTION (QUIETCAST)) AS "s_46_9_rbc"

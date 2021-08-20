@@ -1,0 +1,49 @@
+SELECT __id2in ( "s_37_13_t7"."S") AS "var1",
+  __ro2sq ( "s_37_13_t6"."O") AS "var2",
+  __ro2sq ( "s_37_8"."var3") AS "var3",
+  __ro2sq ( "s_37_11"."var4") AS "var4",
+  NULL /* due to conflict on var3Label */ AS "var3Label"
+FROM DB.DBA.RDF_QUAD AS "s_37_13_t5"
+  INNER JOIN DB.DBA.RDF_QUAD AS "s_37_13_t6"
+  ON (
+    "s_37_13_t6"."S" = "s_37_13_t5"."S")
+  INNER JOIN DB.DBA.RDF_QUAD AS "s_37_13_t7"
+  ON (
+    "s_37_13_t7"."S" = "s_37_13_t6"."S"
+    AND 
+    "s_37_13_t7"."S" = "s_37_13_t5"."S")
+  LEFT OUTER JOIN (
+    SELECT "s_37_8_t0"."S" AS "var1",
+      "s_37_8_t0"."O" AS "var3"
+    FROM DB.DBA.RDF_QUAD AS "s_37_8_t0"
+    WHERE
+      "s_37_8_t0"."P" = __i2idn ( __bft( 'http://www.wikidata.org/prop/direct/P18' , 1))) AS "s_37_8"
+  ON (
+    "s_37_13_t7"."S" = "s_37_8"."var1"
+    AND 
+    "s_37_13_t6"."S" = "s_37_8"."var1"
+    AND 
+    "s_37_13_t5"."S" = "s_37_8"."var1")
+  LEFT OUTER JOIN (
+    SELECT "s_37_11_t1"."S" AS "var1",
+      "s_37_11_t1"."O" AS "var4"
+    FROM DB.DBA.RDF_QUAD AS "s_37_11_t1"
+    WHERE
+      "s_37_11_t1"."P" = __i2idn ( __bft( 'http://www.wikidata.org/prop/direct/P131' , 1))) AS "s_37_11"
+  ON (
+    "s_37_13_t7"."S" = "s_37_11"."var1"
+    AND 
+    "s_37_13_t6"."S" = "s_37_11"."var1"
+    AND 
+    "s_37_13_t5"."S" = "s_37_11"."var1")
+WHERE
+  "s_37_13_t5"."P" = __i2idn ( __bft( 'http://www.wikidata.org/prop/direct/P31' , 1))
+  AND 
+  "s_37_13_t5"."O" = __i2idn ( __bft( 'http://www.wikidata.org/entity/Q41176' , 1))
+  AND 
+  "s_37_13_t6"."P" = __i2idn ( __bft( 'http://www.wikidata.org/prop/direct/P625' , 1))
+  AND 
+  "s_37_13_t7"."P" = __i2idn ( __bft( 'http://www.wikidata.org/prop/direct/P17' , 1))
+  AND 
+  "s_37_13_t7"."O" = __i2idn ( __bft( 'http://www.wikidata.org/entity/Q36' , 1))
+OPTION (QUIETCAST)

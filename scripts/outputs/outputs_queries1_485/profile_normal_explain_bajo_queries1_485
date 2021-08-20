@@ -1,0 +1,67 @@
+http://www.wikidata.org/entity/Q15835811	
+http://www.wikidata.org/entity/Q15836515	
+http://www.wikidata.org/entity/Q7243868	
+http://www.wikidata.org/entity/Q1413628	
+http://www.wikidata.org/entity/Q7430467	
+http://www.wikidata.org/entity/Q27745008	
+http://www.wikidata.org/entity/Q1750907	
+http://www.wikidata.org/entity/Q5049074	
+http://www.wikidata.org/entity/Q677525	
+http://www.wikidata.org/entity/Q6703608	
+http://www.wikidata.org/entity/Q1759652	
+http://www.wikidata.org/entity/Q28114532	
+http://www.wikidata.org/entity/Q79407468	
+
+  { 
+    time         2% fanout         1 input         1 rows
+    time      0.58% fanout         1 input         1 rows
+    END Node
+    time      0.67% fanout         1 input         1 rows
+    outer {
+        Subquery 27 
+          { 
+            Subquery 30 
+              { 
+                time      0.66% fanout         0 input         1 rows
+                END Node
+                After test:
+                0: BReturn 0
+                time         0% fanout         0 input         0 rows
+                Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:      0.46 Fanout:         0
+                SYS_IDONLY_EMPTY      0.46 rows()
+                
+                 Local Test
+                0: if ( 1  =  2 ) then 4 else 5 unkn 5
+                4: BReturn 1
+                5: BReturn 0
+                time         0% fanout         0 input         0 rows
+                skip node  1  <none> set_no$32
+                time         0% fanout         0 input         0 rows
+                Subquery Select( <none> )
+              }
+            
+            After code:
+            0: __dummy_retval$28 :=  := artm <DB_NULL>
+            4: BReturn 0
+            time         0% fanout         0 input         0 rows
+            Subquery Select(__dummy_retval$28)
+          }
+        time         0% fanout         0 input         0 rows
+      } /* end of outer */
+    set_ctr$55
+     out: (set_no$29, __dummy_retval$28)
+     shadow: ( <none> ,  <none> )
+    time        95% fanout        13 input         1 rows
+    RDF_QUAD_POGS        13 rows(s_37_3_t0.S$65)
+     P =  IRI_ID"...direct/P31"  ,  O =  IRI_ID"...Q146" 
+    
+    After code:
+    0: var1$67 := Call __id2in (s_37_3_t0.S$65)
+    5: BReturn 0
+    time      0.74% fanout         0 input        13 rows
+    Select (var1$67)
+  }
+
+
+ 0 msec 12% cpu,         1 rnd        12 seq         0% same seg         0% same pg 
+Compilation: 2 msec 0 reads         0% read 0 messages         0% clw

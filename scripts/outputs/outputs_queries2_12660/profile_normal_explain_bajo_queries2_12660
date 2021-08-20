@@ -1,0 +1,77 @@
+http://www.w3.org/2004/02/skos/core#prefLabel	1	
+http://schema.org/name	1	
+http://schema.org/name	1	
+http://www.wikidata.org/prop/direct/P150	1	
+http://www.w3.org/2004/02/skos/core#prefLabel	1	
+http://www.wikidata.org/prop/direct/P150	1	
+http://www.w3.org/2004/02/skos/core#prefLabel	1	
+http://www.w3.org/2004/02/skos/core#prefLabel	1	
+http://www.w3.org/2004/02/skos/core#prefLabel	1	
+http://www.w3.org/2004/02/skos/core#prefLabel	1	
+http://schema.org/name	1	
+http://schema.org/name	1	
+http://schema.org/name	1	
+http://schema.org/name	1	
+http://schema.org/name	1	
+http://schema.org/name	1	
+http://www.wikidata.org/prop/direct/P1082	1	
+http://www.wikidata.org/prop/direct-normalized/P1566	1	
+http://www.wikidata.org/prop/direct-normalized/P214	1	
+http://www.wikidata.org/prop/direct/P150	1	
+
+  { 
+    time     0.015% fanout         1 input         1 rows
+    Subquery 27 
+      { 
+        time    0.0081% fanout         1 input         1 rows
+        fork {
+            time      0.28% fanout        43 input         1 rows
+            RDF_QUAD_POGS        43 rows(s_37_8_t1.S$32)
+             P =  IRI_ID"...direct/P31"  ,  O =  IRI_ID"...Q247073" 
+            time       2.2% fanout  0.883721 input        43 rows
+            Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:     0.018 Fanout:      0.88
+            RDF_QUAD     0.018 rows(s_37_8_t3.S$35)
+             inlined  P =  IRI_ID"...direct/P17"  ,  S = s_37_8_t1.S$32 ,  O =  IRI_ID"...Q36" 
+            time       1.2% fanout         1 input        38 rows
+            RDF_QUAD       1.1 rows(s_37_8_t2.S$38)
+             inlined  P =  IRI_ID"...direct/P131"  ,  S = k_s_37_8_t1.S$152
+            time         2% fanout   31.8947 input        38 rows
+            RDF_QUAD_SP       8.5 rows(s_37_8_t0.P$42, s_37_8_t0.S$41)
+             inlined  S = k_s_37_8_t1.S$166 S = s_37_8_t2.S$38 ,  S = k_s_37_8_t3.S$170
+            time        76% fanout   4.82261 input      1212 rows
+            RDF_QUAD       1.2 rows(s_37_8_t0.O$46)
+             inlined  P = s_37_8_t0.P$42 ,  S = k_s_37_8_t1.S$183 S = k_s_37_8_t2.S$187 ,  S = k_s_37_8_t3.S$189
+            
+            After code:
+            0: isnotnull$49 := Call isnotnull (s_37_8_t0.S$41)
+            5: isnotnull$51 := Call isnotnull (s_37_8_t0.O$46)
+            10: BReturn 0
+            time        12% fanout         0 input      5845 rows
+            Sort (s_37_8_t0.P$42, s_37_8_t0.O$46) -> (isnotnull$49, isnotnull$51)
+            
+          }
+        time       5.9% fanout      1000 input         1 rows
+        group by read node  
+        (s_37_8_t0.P$42, s_37_8_t0.O$46, aggregate$55, aggregate$57)
+        
+        After code:
+        0: __id2in$90 := Call __id2in (s_37_8_t0.P$42)
+        5: temp$92 := artm aggregate$57 / aggregate$55
+        9: var1$28 :=  := artm __id2in$90
+        13: var4$29 :=  := artm temp$92
+        17: BReturn 0
+        time    0.0035% fanout         0 input      1000 rows
+        Subquery Select(var1$28, var4$29)
+      }
+    
+    After code:
+    0: var1$101 := Call __ro2sq (var1$28)
+    5: var4$103 := Call __ro2sq (var4$29)
+    10: BReturn 0
+    time    0.0021% fanout         0 input      1000 rows
+    Select (var1$101, var4$103)
+  }
+
+
+ 14 msec 95% cpu,      1331 rnd      5844 seq   66.5916% same seg   21.8468% same pg 
+Compilation: 4 msec 0 reads         0% read 0 messages         0% clw

@@ -1,0 +1,75 @@
+http://www.wikidata.org/entity/Q2638412	http://www.wikidata.org/entity/Q362	
+http://www.wikidata.org/entity/Q2915791	http://www.wikidata.org/entity/Q2763	
+http://www.wikidata.org/entity/Q2915791	http://www.wikidata.org/entity/Q362	
+http://www.wikidata.org/entity/Q2917367	http://www.wikidata.org/entity/Q184425	
+http://www.wikidata.org/entity/Q15824760	http://www.wikidata.org/entity/Q362	
+http://www.wikidata.org/entity/Q16836984	http://www.wikidata.org/entity/Q362	
+http://www.wikidata.org/entity/Q16842888	http://www.wikidata.org/entity/Q362	
+http://www.wikidata.org/entity/Q16842906	http://www.wikidata.org/entity/Q362	
+http://www.wikidata.org/entity/Q17017712	http://www.wikidata.org/entity/Q362	
+http://www.wikidata.org/entity/Q17027846	http://www.wikidata.org/entity/Q362	
+http://www.wikidata.org/entity/Q167002	http://www.wikidata.org/entity/Q362	
+http://www.wikidata.org/entity/Q708235	http://www.wikidata.org/entity/Q362	
+http://www.wikidata.org/entity/Q714265	http://www.wikidata.org/entity/Q362	
+http://www.wikidata.org/entity/Q12086465	http://www.wikidata.org/entity/Q362	
+http://www.wikidata.org/entity/Q696438	http://www.wikidata.org/entity/Q184425	
+http://www.wikidata.org/entity/Q671511	http://www.wikidata.org/entity/Q362	
+http://www.wikidata.org/entity/Q1332237	http://www.wikidata.org/entity/Q362	
+http://www.wikidata.org/entity/Q4220164	http://www.wikidata.org/entity/Q362	
+http://www.wikidata.org/entity/Q4851106	http://www.wikidata.org/entity/Q362	
+http://www.wikidata.org/entity/Q4859251	http://www.wikidata.org/entity/Q189266	
+
+  { 
+    time      0.14% fanout         1 input         1 rows
+    time       3.4% fanout         1 input         1 rows
+    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:         0 Fanout:         1
+    Precode:
+      0: __all_eq$27 := Call __all_eq ( IRI_ID"...Q362" )
+      5: vector$29  := Call vector ( IRI_ID"...Q362" )
+      10: vector$31  := Call vector (vector$29 )
+      15: dta$38  :=  := artm vector$31 
+      19: proc_ctr$34 :=  := artm  0 
+      23:  <none>  := Call __reset_temp ( 139910663187168 )
+      28:  <proc table>  := Call DB.DBA.SPARQL_BINDINGS_VIEW_C_1_IMP (vector$31 )
+      35: BReturn 0
+    Key from temp (proc_ctr$34, BND0$36)
+    
+    Transitive dt dir 2, input: (__all_eq$27)
+      input shadow: (__all_eq$120)
+      output: (_::trans_subj_37_1$46)
+      { 
+        time        25% fanout         1 input        96 rows
+        RDF_QUAD_POGS       4.2 rows(t3.S$53, t3.O$52)
+         P =  IRI_ID"...direct/P361"  ,  O = k___all_eq$126
+        
+        After code:
+        0: _::trans_subj_37_1$46 :=  := artm t3.S$53
+        4: _::trans_obj_37_2$47 :=  := artm t3.O$52
+        8: BReturn 0
+        time     0.074% fanout         0 input        96 rows
+        Subquery Select(_::trans_subj_37_1$46, _::trans_obj_37_2$47)
+      }
+    time        15% fanout         1 input        98 rows
+    Precode:
+      0: var1$72 := Call __id2in (_::trans_subj_37_1$46)
+      5: BReturn 0
+    outer {
+        time        18% fanout   1.08163 input        98 rows
+        RDF_QUAD       1.7 rows(t5.O$75)
+         inlined  P =  IRI_ID"...direct/P361"  ,  S = k__::trans_subj_37_1$159
+        time        13% fanout         1 input       106 rows
+      } /* end of outer */
+    set_ctr$80
+     out: (t5.O$75)
+     shadow: ( <none> )
+    
+    After code:
+    0: var2$89 := Call __ro2sq (t5.O$75)
+    5: BReturn 0
+    time     0.036% fanout         0 input       106 rows
+    Select (var1$72, var2$89)
+  }
+
+
+ 2 msec 44% cpu,       194 rnd        99 seq   77.4359% same seg   19.4872% same pg 
+Compilation: 3 msec 0 reads         0% read 0 messages         0% clw

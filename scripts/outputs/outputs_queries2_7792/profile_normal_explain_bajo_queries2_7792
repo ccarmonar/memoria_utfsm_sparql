@@ -1,0 +1,89 @@
+BE				11431406		
+SL				7557212		
+SD				40533330		
+CN				1409517397		
+CN				1443497378		
+BR				210147125		
+DE				83149300		
+MT				465292		
+CL				18054726		
+BH				1492584		
+PT				10295909		
+VU				276244		
+IL				9093000		
+LA				6858160		
+TJ				8921343		
+TH				65931550		
+AE				9400145		
+ML				18541980		
+AO				29784193		
+
+  { 
+    time      0.45% fanout         1 input         1 rows
+    time      0.12% fanout         1 input         1 rows
+    time       8.7% fanout        36 input         1 rows
+    RDF_QUAD_POGS        36 rows(t2.S$36)
+     P =  IRI_ID"...direct/P31"  ,  O =  IRI_ID"...Q3624078" 
+    time      0.31% fanout         1 input        36 rows
+    outer {
+        time       7.8% fanout         2 input        36 rows
+        RDF_QUAD         1 rows()
+         inlined  P =  IRI_ID"...direct/P36"  ,  S = k_t2.S$156
+        time      0.34% fanout         1 input        72 rows
+      } /* end of outer */
+    set_ctr$41
+     out: ()
+     shadow: ()
+    time      0.36% fanout         1 input        72 rows
+    outer {
+        time        12% fanout   2.11111 input        72 rows
+        RDF_QUAD       1.1 rows(t8.O$51)
+         inlined  P =  IRI_ID"...direct/P1082"  ,  S = k_t2.S$186
+        time      0.42% fanout         1 input       152 rows
+      } /* end of outer */
+    set_ctr$54
+     out: (t8.O$51)
+     shadow: ( <none> )
+    time       1.7% fanout         1 input       152 rows
+    Precode:
+      0: __ro2sq$63 := Call __ro2sq (t8.O$51)
+      5: BReturn 0
+    outer {
+        time        27% fanout         2 input       152 rows
+        RDF_QUAD         2 rows(t6.O$66)
+         inlined  P =  IRI_ID"...direct/P297"  ,  S = k_t2.S$217
+        time      0.65% fanout         1 input       304 rows
+      } /* end of outer */
+    set_ctr$69
+     out: (t6.O$66)
+     shadow: ( <none> )
+    time        39% fanout    0.0625 input       304 rows
+    Distinct (t6.O$66, t8.O$51)
+    
+    After code:
+    0: __ro2sq$84 := Call __ro2sq (t6.O$66)
+    5: var1$28 :=  := artm __ro2sq$84
+    9: var2Label$29 :=  := artm <DB_NULL>
+    13: var3Label$30 :=  := artm <DB_NULL>
+    17: var4Label$31 :=  := artm <DB_NULL>
+    21: var5$32 :=  := artm __ro2sq$63
+    25: var6$33 :=  := artm <DB_NULL>
+    29: BReturn 0
+    time       1.2% fanout         1 input        19 rows
+    Subquery Select(var1$28, var2Label$29, var3Label$30, var4Label$31, var5$32, var6$33)
+    
+    After code:
+    0: var1$94 := Call __ro2sq (var1$28)
+    5: var2Label$96 := Call __ro2sq (var2Label$29)
+    10: var3Label$98 := Call __ro2sq (var3Label$30)
+    15: var4Label$100 := Call __ro2sq (var4Label$31)
+    20: var5$102 := Call __ro2sq (var5$32)
+    25: var6$104 := Call __ro2sq (var6$33)
+    30: BReturn 0
+    time     0.041% fanout         0 input        19 rows
+    Select (var1$94, var2Label$96, var3Label$98, var4Label$100, var5$102, var6$104)
+  }
+
+
+ 1 msec 23% cpu,       280 rnd       303 seq   91.1032% same seg   2.84698% same pg 
+Compilation: 2 msec 0 reads         0% read 0 messages         0% clw

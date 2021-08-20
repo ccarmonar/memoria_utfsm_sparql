@@ -1,0 +1,56 @@
+1	1	
+1	1	
+1	1	
+1	1	
+1	1	
+1	1	
+1	1	
+1	1	
+1	1	
+1	1	
+1	1	
+1	1	
+1	1	
+1	1	
+1	1	
+1	1	
+1	1	
+1	1	
+1	1	
+1	1	
+
+  { 
+    time      0.12% fanout         1 input         1 rows
+    Subquery 27 
+      { 
+        time         4% fanout      1000 input         1 rows
+        RDF_QUAD_POGS   1.1e+03 rows(s_37_6_t0.S$33)
+         P =  IRI_ID"...direct/P31"  ,  O =  IRI_ID"...Q515" 
+        time        60% fanout         1 input      1000 rows
+        RDF_QUAD         1 rows(s_37_6_t2.S$37, s_37_6_t2.O$36)
+         inlined  P =  IRI_ID"...direct/P17"  ,  S = s_37_6_t0.S$33
+        time        35% fanout         1 input      1000 rows
+        RDF_QUAD       1.1 rows(s_37_6_t1.O$40)
+         inlined  P =  IRI_ID"...direct/P131"  ,  S = k_s_37_6_t0.S$103
+        time       1.1% fanout         1 input      1000 rows
+        skip node  1000  <none> set_no$31
+        
+        After code:
+        0: var1$29 :=  := artm s_37_6_t1.O$40
+        4: var3$30 :=  := artm s_37_6_t2.O$36
+        8: BReturn 0
+        time     0.037% fanout         0 input      1000 rows
+        Subquery Select( <none> , var1$29, var3$30)
+      }
+    
+    After code:
+    0: var2$52 := Call is_named_iri_id (var1$29)
+    5: var4$54 := Call is_named_iri_id (var3$30)
+    10: BReturn 0
+    time      0.03% fanout         0 input      1000 rows
+    Select (var2$52, var4$54)
+  }
+
+
+ 3 msec 58% cpu,      1556 rnd      1509 seq   95.2473% same seg    4.4316% same pg 
+Compilation: 2 msec 0 reads         0% read 0 messages         0% clw

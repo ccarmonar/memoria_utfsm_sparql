@@ -1,0 +1,41 @@
+http://www.wikidata.org/entity/Q21708660	http://www.wikidata.org/entity/Q142	
+http://www.wikidata.org/entity/Q13344365	http://www.wikidata.org/entity/Q145	
+http://www.wikidata.org/entity/Q28435900	http://www.wikidata.org/entity/Q232	
+http://www.wikidata.org/entity/Q24047579	http://www.wikidata.org/entity/Q801	
+http://www.wikidata.org/entity/Q28422814	http://www.wikidata.org/entity/Q258	
+
+  { 
+    time      0.98% fanout         1 input         1 rows
+    time        19% fanout         5 input         1 rows
+    RDF_QUAD_POGS         5 rows(t1.S$28)
+     P =  IRI_ID"...direct/P971"  ,  O =  IRI_ID"...Q31192219" 
+    time        22% fanout         1 input         5 rows
+    Precode:
+      0: var1$30 := Call __id2in (t1.S$28)
+      5: BReturn 0
+    outer {
+        time        41% fanout         2 input         5 rows
+        RDF_QUAD       1.6 rows(t3.O$33)
+         inlined  P =  IRI_ID"...direct/P971"  ,  S = k_t1.S$88
+        time       1.1% fanout       0.5 input        10 rows
+        END Node
+        After test:
+        0: if (t3.O$33 =  IRI_ID"...Q31192219" ) then 5 else 4 unkn 5
+        4: BReturn 1
+        5: BReturn 0
+        time        16% fanout         1 input         5 rows
+      } /* end of outer */
+    set_ctr$38
+     out: (t3.O$33)
+     shadow: (t3.O$115)
+    
+    After code:
+    0: var2$47 := Call __ro2sq (t3.O$115)
+    5: BReturn 0
+    time      0.33% fanout         0 input         5 rows
+    Select (var1$30, var2$47)
+  }
+
+
+ 0 msec 19% cpu,         6 rnd         9 seq   14.2857% same seg   14.2857% same pg 
+Compilation: 2 msec 0 reads         0% read 0 messages         0% clw

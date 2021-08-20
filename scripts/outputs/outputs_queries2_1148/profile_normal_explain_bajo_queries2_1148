@@ -1,0 +1,73 @@
+
+  { 
+    time       5.3% fanout         1 input         1 rows
+    Precode:
+      0: isnotnull$27 := Call isnotnull (<DB_NULL>)
+      5: BReturn 0
+    Subquery 29 
+      { 
+        time       3.7% fanout         1 input         1 rows
+        fork {
+            time       2.7% fanout         1 input         1 rows
+            fork {
+                time        80% fanout         0 input         1 rows
+                Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:   1.4e-07 Fanout:         0
+                RDF_QUAD_POGS   1.4e-07 rows(s_37_8_t3.S$35)
+                 inlined  P =  IRI_ID"...qualifier/P1310" 
+                time         0% fanout         0 input         0 rows
+                Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:       2.8 Fanout:         0
+                RDF_QUAD_OP       2.8 rows(s_37_8_t2.P$38)
+                 inlined  O = cast$152
+                time         0% fanout         0 input         0 rows
+                Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:       1.2 Fanout:         0
+                RDF_QUAD_POGS       1.2 rows()
+                 P = s_37_8_t2.P$38 ,  O = k_s_37_8_t3.S$166
+                time         0% fanout         0 input         0 rows
+                Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:         1 Fanout:         0
+                RDF_QUAD_POGS         1 rows(s_37_8_t1.S$45)
+                 P =  IRI_ID"...claim"  ,  O = k_s_37_8_t2.P$179
+                time         0% fanout         0 input         0 rows
+                Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:       0.8 Fanout:         0
+                RDF_QUAD_POGS       0.8 rows(s_37_8_t0.S$48)
+                 inlined  P =  IRI_ID"...type"  ,  O =  IRI_ID"...Property"  ,  S = s_37_8_t1.S$45
+                
+                After code:
+                0: $52 :=  := artm <DB_NULL>
+                4: BReturn 0
+                time         0% fanout         0 input         0 rows
+                Sort (s_37_8_t0.S$48, $52) -> (isnotnull$27)
+                
+              }
+            time       2.6% fanout         0 input         1 rows
+            group by read node  
+            (s_37_8_t0.S$48, $52, aggregate$53)
+            time         0% fanout         0 input         0 rows
+            Sort (aggregate$53) -> (s_37_8_t0.S$48, $52)
+            
+          }
+        time       5.6% fanout         0 input         1 rows
+        Key from temp (s_37_8_t0.S$48, $52, aggregate$53)
+        
+        
+        After code:
+        0: __id2in$99 := Call __id2in (s_37_8_t0.S$48)
+        5: var1$30 :=  := artm __id2in$99
+        9: var1Label$31 :=  := artm $52
+        13: var3$32 :=  := artm aggregate$53
+        17: BReturn 0
+        time         0% fanout         0 input         0 rows
+        Subquery Select(var1$30, var1Label$31, var3$32)
+      }
+    
+    After code:
+    0: var1$108 := Call __ro2sq (var1$30)
+    5: var1Label$110 := Call __ro2sq (var1Label$31)
+    10: var3$112 := Call __ro2sq (var3$32)
+    15: BReturn 0
+    time         0% fanout         0 input         0 rows
+    Select (var1$108, var1Label$110, var3$112)
+  }
+
+
+ 0 msec 2% cpu,         1 rnd         0 seq         0% same seg         0% same pg 
+Compilation: 2 msec 0 reads         0% read 0 messages         0% clw

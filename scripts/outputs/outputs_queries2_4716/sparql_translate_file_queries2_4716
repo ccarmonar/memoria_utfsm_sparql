@@ -1,0 +1,29 @@
+SELECT __ro2sq ( "s_37_15_t2"."O") AS "var1"
+FROM DB.DBA.RDF_QUAD AS "s_37_3_t0"
+  INNER JOIN (
+   SELECT TRANSITIVE T_OUT(2) T_IN(1) T_MIN( 0) T_NO_CYCLES "s_37_9_t1"."S" AS "_::trans_subj_37_5",
+      "s_37_9_t1"."O" AS "_::trans_obj_37_6"
+    FROM DB.DBA.RDF_QUAD AS "s_37_9_t1"
+    WHERE
+      "s_37_9_t1"."P" = __i2idn ( __bft( 'http://www.wikidata.org/prop/direct/P279' , 1))
+OPTION (QUIETCAST)
+    ) AS "s_37_12"
+  ON (
+    "s_37_3_t0"."O" = "s_37_12"."_::trans_subj_37_5")
+  INNER JOIN DB.DBA.RDF_QUAD AS "s_37_15_t2"
+  ON (1)
+WHERE
+  "s_37_3_t0"."S" = __i2idn ( __bft( 'http://dati.emilia-romagna.it/id/ibc/IT-ER-RA017' , 1))
+  AND 
+  "s_37_3_t0"."P" = __i2idn ( __bft( 'http://www.wikidata.org/prop/direct/P31' , 1))
+  AND 
+  isiri_id ( "s_37_3_t0"."O")
+  AND 
+  "s_37_15_t2"."S" = __i2idn ( __bft( 'http://dati.emilia-romagna.it/id/ibc/IT-ER-RA017' , 1))
+  AND 
+  "s_37_15_t2"."P" = __i2idn ( __bft( 'http://www.wikidata.org/prop/direct/P2003' , 1))
+  AND 
+ ( "s_37_12"."_::trans_obj_37_6" =  __i2idn ( __bft( 'http://www.wikidata.org/entity/Q33506' , 1)))
+  AND 
+  1
+OPTION (QUIETCAST)

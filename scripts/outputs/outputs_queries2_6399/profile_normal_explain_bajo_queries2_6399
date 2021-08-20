@@ -1,0 +1,43 @@
+
+  { 
+    time       7.3% fanout         1 input         1 rows
+    time        93% fanout         0 input         1 rows
+    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:   1.4e-07 Fanout:         0
+    RDF_QUAD_POGS   1.4e-07 rows(s_37_6_t0.O$29, s_37_6_t0.S$28)
+     inlined  P =  IRI_ID"...P486" 
+    time         0% fanout         0 input         0 rows
+    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:   1.4e-07 Fanout:         0
+    RDF_QUAD_POGS   1.4e-07 rows(s_37_6_t1.S$32)
+     inlined  P =  IRI_ID"...rank"  ,  O =  IRI_ID"...DeprecatedRank"  ,  S = k_s_37_6_t0.O$87
+    time         0% fanout         0 input         0 rows
+    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:       8.5 Fanout:         0
+    Precode:
+      0: var1$34 := Call __id2in (s_37_6_t0.S$28)
+      5: BReturn 0
+    RDF_QUAD_SP       8.5 rows(s_37_6_t2.P$37)
+     inlined  S = k_s_37_6_t0.O$101 S = k_s_37_6_t1.S$105
+    time         0% fanout         0 input         0 rows
+    END Node
+    After test:
+    0: __id2in$40 := Call __id2in (s_37_6_t2.P$37)
+    5: __bft$42 := Call __bft (__id2in$40,  2 )
+    10: _cvt$44 := Call _cvt (<tag 193 flag 0>, __bft$42)
+    15: if (_cvt$44  LIKE  <c %string1%>) then 19 else 20 unkn 20
+    19: BReturn 1
+    20: BReturn 0
+    time         0% fanout         0 input         0 rows
+    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:       1.2 Fanout:         0
+    RDF_QUAD       1.2 rows(s_37_6_t2.O$47)
+     inlined  P = k_s_37_6_t2.P$130 ,  S = k_s_37_6_t0.O$134 S = k_s_37_6_t1.S$136
+    
+    After code:
+    0: var2$50 := Call __id2in (s_37_6_t2.P$37)
+    5: var3$52 := Call __ro2sq (s_37_6_t2.O$47)
+    10: BReturn 0
+    time         0% fanout         0 input         0 rows
+    Select (var1$34, var2$50, var3$52, <DB_NULL>)
+  }
+
+
+ 1 msec 2% cpu,         1 rnd         0 seq         0% same seg         0% same pg 
+Compilation: 2 msec 0 reads         0% read 0 messages         0% clw

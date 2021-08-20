@@ -1,0 +1,55 @@
+ SELECT  __ro2sq ("s_37_14_rbc"."var1") AS "var1", __ro2sq ("s_37_14_rbc"."var2Label") AS "var2Label" FROM (SELECT DISTINCT "s_0_18"."var1" AS "var1",
+    "s_0_18"."var2Label" AS "var2Label"
+  FROM (
+      SELECT "s_37_14_t4-u19"."S" AS "var1",
+        "s_37_14_t3-u19"."P" AS "var2Label"
+      FROM DB.DBA.RDF_QUAD AS "s_37_2_t0-c5-u19"
+        INNER JOIN DB.DBA.RDF_QUAD AS "s_37_14_t3-u19"
+        ON (
+          "s_37_14_t3-u19"."S" = "s_37_2_t0-c5-u19"."S")
+        INNER JOIN DB.DBA.RDF_QUAD AS "s_37_14_t4-u19"
+        ON (
+          "s_37_14_t4-u19"."S" = "s_37_14_t3-u19"."S"
+          AND 
+          "s_37_14_t4-u19"."S" = "s_37_2_t0-c5-u19"."S")
+      WHERE
+        "s_37_2_t0-c5-u19"."P" = __i2idn ( __bft( 'http://www.wikidata.org/prop/direct/P31' , 1))
+        AND 
+        "s_37_2_t0-c5-u19"."O" = __i2idn ( __bft( 'http://www.wikidata.org/entity/Q11879590' , 1))
+        AND 
+        "s_37_14_t3-u19"."O" = DB.DBA.RDF_MAKE_OBJ_OF_TYPEDSQLVAL ( 'Marko' , __i2id( NULL),  'en' )
+      UNION ALL SELECT "s_37_14_t4-u20"."S" AS "var1",
+        "s_37_14_t3-u20"."P" AS "var2Label"
+      FROM DB.DBA.RDF_QUAD AS "s_37_5_t1-c11-u20"
+        INNER JOIN DB.DBA.RDF_QUAD AS "s_37_14_t3-u20"
+        ON (
+          "s_37_14_t3-u20"."S" = "s_37_5_t1-c11-u20"."S")
+        INNER JOIN DB.DBA.RDF_QUAD AS "s_37_14_t4-u20"
+        ON (
+          "s_37_14_t4-u20"."S" = "s_37_14_t3-u20"."S"
+          AND 
+          "s_37_14_t4-u20"."S" = "s_37_5_t1-c11-u20"."S")
+      WHERE
+        "s_37_5_t1-c11-u20"."P" = __i2idn ( __bft( 'http://www.wikidata.org/prop/direct/P31' , 1))
+        AND 
+        "s_37_5_t1-c11-u20"."O" = __i2idn ( __bft( 'http://www.wikidata.org/entity/Q12308941' , 1))
+        AND 
+        "s_37_14_t3-u20"."O" = DB.DBA.RDF_MAKE_OBJ_OF_TYPEDSQLVAL ( 'Marko' , __i2id( NULL),  'en' )
+      UNION ALL SELECT "s_37_14_t4"."S" AS "var1",
+        "s_37_14_t3"."P" AS "var2Label"
+      FROM DB.DBA.RDF_QUAD AS "s_37_9_t2-c17"
+        INNER JOIN DB.DBA.RDF_QUAD AS "s_37_14_t3"
+        ON (
+          "s_37_14_t3"."S" = "s_37_9_t2-c17"."S")
+        INNER JOIN DB.DBA.RDF_QUAD AS "s_37_14_t4"
+        ON (
+          "s_37_14_t4"."S" = "s_37_14_t3"."S"
+          AND 
+          "s_37_14_t4"."S" = "s_37_9_t2-c17"."S")
+      WHERE
+        "s_37_9_t2-c17"."P" = __i2idn ( __bft( 'http://www.wikidata.org/prop/direct/P31' , 1))
+        AND 
+        "s_37_9_t2-c17"."O" = __i2idn ( __bft( 'http://www.wikidata.org/entity/Q202444' , 1))
+        AND 
+        "s_37_14_t3"."O" = DB.DBA.RDF_MAKE_OBJ_OF_TYPEDSQLVAL ( 'Marko' , __i2id( NULL),  'en' )) AS "s_0_18"
+OPTION (QUIETCAST)) AS "s_37_14_rbc"

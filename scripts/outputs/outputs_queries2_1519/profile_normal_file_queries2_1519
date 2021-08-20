@@ -1,0 +1,52 @@
+
+  { 
+    time       8.6% fanout         1 input         1 rows
+      clear: (<V set_ctr$63 in>)
+    s# 66 64 cluster outer seq start, set no <V set_ctr$63 in>    
+    save ctx:()
+    time       2.2% fanout         1 input         1 rows
+      clear: (<V set_no$30 i>)
+    s# 75 52 cluster outer seq start, set no <V set_no$30 i>    
+    save ctx:()
+    time        89% fanout         0 input         1 rows
+    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:         2 Fanout:         0
+      clear: (<V s_37_2_t0.P$32 rn>)
+      clear on continue: (<V s_37_2_t0.P$32 rn>)
+    s# 84 31 from DB.DBA.RDF_QUAD by RDF_QUAD_SP          2 rows   
+    Key RDF_QUAD_SP  ASC  (<V s_37_2_t0.P$32 rn>)
+     inlined  S =  IRI_ID"...Q76" 
+    
+    time         0% fanout         0 input         0 rows
+    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:       1.2 Fanout:         0
+      clear: (<V s_37_2_t0.O$36 an>)
+      clear on continue: (<V s_37_2_t0.O$36 an>)
+    s# 94 35 from DB.DBA.RDF_QUAD by RDF_QUAD        1.2 rows   
+    Key RDF_QUAD  ASC  (<V s_37_2_t0.O$36 an>)
+     inlined  P = <V s_37_2_t0.P$32 rn> ,  S =  IRI_ID"...Q76" 
+    
+    time         0% fanout         0 input         0 rows
+      clear: (<V var2$29 rn>, <V var1$28 an>)$32 (35 ) $36 () 
+    s# 104 39 Distinct (HASH) set no <r set_no$30 via  Set94 Set84>(<V s_37_2_t0.O$36 an>, <r s_37_2_t0.P$32 via  Set94>)
+    After code:
+      0: <V var1$28 an> :=  := artm <r s_37_2_t0.O$36 via  Set104>
+      4: <V var2$29 rn> :=  := artm <r s_37_2_t0.P$32 via  Set104 Set94>
+      8: BReturn 0
+    time         0% fanout         0 input         0 rows
+      clear: (<V var2$55 a>, <V var1$53 a>)$28 (39 ) $29 (39 ) $30 (39 35 31 52 ) 
+    s# 114 45 Subquery Select(<V var1$28 an>, <V var2$29 rn>)
+      set no: <r set_no$30 via  Set104 Set94 Set84>
+    After code:
+      0: <V var1$53 a> := Call __ro2sq (<V var1$28 an>)
+      5: <V var2$55 a> := Call __ro2sq (<V var2$29 rn>)
+      10: BReturn 0
+    time         0% fanout         0 input         0 rows
+    $63 (45 39 35 31 52 64 ) $53 (45 ) $55 (45 ) 
+    s# 121 57 Select (<V var1$53 a>, <V var2$55 a>)
+      set no: <r set_ctr$63 via  Set114>
+  }
+Warning: You might have a Cartesian product.
+
+
+
+ 0 msec 3% cpu,         1 rnd         0 seq         0% same seg         0% same pg 
+Compilation: 2 msec 0 reads         0% read 0 messages         0% clw

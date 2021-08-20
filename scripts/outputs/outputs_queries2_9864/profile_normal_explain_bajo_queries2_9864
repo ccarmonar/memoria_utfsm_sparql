@@ -1,0 +1,52 @@
+Error: 23000: SR197: Non unique primary key on DB.DBA.RDF_OBJ.
+  { 
+    time     1e+02% fanout         1 input         1 rows
+    Precode:
+      0: DB.DBA.RDF_OBJ_OF_SQLVAL$27 := Call DB.DBA.RDF_OBJ_OF_SQLVAL (<c tt0114709>)
+      7: BReturn 0
+    Subquery 29 
+      { 
+        time         0% fanout         0 input         0 rows
+        fork {
+            time         0% fanout         0 input         0 rows
+            Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:       0.3 Fanout:         0
+            RDF_QUAD_POGS       0.3 rows(s_37_9_t1.S$33)
+             P =  IRI_ID"...direct/P345"  ,  O = k_DB.DBA.RDF_OBJ_OF_SQLVAL$109
+            time         0% fanout         0 input         0 rows
+            in iterates in_iter$36  over ( IRI_ID"...direct/P161" ,  IRI_ID"...direct/p725" )
+            time         0% fanout         0 input         0 rows
+            Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:     0.018 Fanout:         0
+            RDF_QUAD     0.018 rows(s_37_5_t0.O$40)
+             inlined  P = k_in_iter$136 ,  S = k_s_37_9_t1.S$140
+            time         0% fanout         0 input         0 rows
+            Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:       7.5 Fanout:         0
+            Precode:
+              0: __id2in$42 := Call __id2in (s_37_9_t1.S$33)
+              5: BReturn 0
+            RDF_QUAD       7.5 rows()
+             inlined  P =  IRI_ID"...label"  ,  S = cast$152
+            time         0% fanout         0 input         0 rows
+            Sort (s_37_9_t1.S$33) -> (__id2in$42)
+            
+          }
+        time         0% fanout         0 input         0 rows
+        group by read node  
+        (s_37_9_t1.S$33, __id2in$42)
+        
+        After code:
+        0: var1$30 :=  := artm __id2in$42
+        4: BReturn 0
+        time         0% fanout         0 input         0 rows
+        Subquery Select(var1$30)
+      }
+    
+    After code:
+    0: var1$80 := Call __ro2sq (var1$30)
+    5: BReturn 0
+    time         0% fanout         0 input         0 rows
+    Select (var1$80)
+  }
+
+
+ 1 msec 11% cpu,         3 rnd         0 seq         0% same seg         0% same pg 
+Compilation: 2 msec 0 reads         0% read 0 messages         0% clw

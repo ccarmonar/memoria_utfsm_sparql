@@ -1,0 +1,84 @@
+http://www.wikidata.org/entity/Q5279111	
+
+  { 
+    time      0.82% fanout         1 input         1 rows
+      clear: (<V set_ctr$98 in>)
+    s# 101 99 cluster outer seq start, set no <V set_ctr$98 in>    
+    save ctx:()
+    time        27% fanout         1 input         1 rows
+    Precode:
+      0: entity/Q5279111$27  := Call __i2idn (<tag 182 flag 1 c http://www.wikidata.org/entity/Q5279111>)
+      5: <V __all_eq$29 x> := Call __all_eq (entity/Q5279111$27 )
+      10: BReturn 0
+      clear: (<V set_no$33 i>, <V __all_eq$29 x>)
+    s# 110 89 cluster outer seq start, set no <V set_no$33 i>    
+    save ctx:()
+      clear: (<V _::trans_subj_37_2$35 rn>, <V _::trans_obj_37_3$36 an>)
+      clear on continue: (<V _::trans_subj_37_2$35 rn>, <V _::trans_obj_37_3$36 an>)$29 (89 ) 
+    s# 119 34 Transitive dt dir 1, input: (<r __all_eq$29 via  Set110>)
+      input shadow: (<V __all_eq$123 x>)
+      output: (<V _::trans_obj_37_3$36 an>)
+      { 
+        time       3.1% fanout         9 input         1 rows
+          clear: (<V in_iter$41 x>)
+          clear on continue: (<V in_iter$41 x>)
+        s# 125 42 in   iterates <V in_iter$41 x>
+          over ( IRI_ID"...direct/P171" ,  IRI_ID"...direct/P273" ,  IRI_ID"...direct/P70" ,  IRI_ID"...direct/P71" ,  IRI_ID"...direct/P74" ,  IRI_ID"...direct/P75" ,  IRI_ID"...direct/P76" ,  IRI_ID"...direct/P77" ,  IRI_ID"...direct/P89" )
+        time        16% fanout         0 input         9 rows
+        Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:     0.039 Fanout:         0
+          clear: (<V t5.O$45 an>, <V t5.S$46 rn>, <V _::trans_obj_37_3$36 an>, <V _::trans_subj_37_2$35 rn>)
+          clear on continue: (<V _::trans_subj_37_2$35 rn>, <V _::trans_obj_37_3$36 an>, <V t5.S$46 rn>, <V t5.O$45 an>)$41 () $142 (40 ) $146 (40 ) 
+        s# 138 40 from DB.DBA.RDF_QUAD by RDF_QUAD      0.039 rows   
+        Key RDF_QUAD  ASC  (<V t5.S$46 rn>, <V t5.O$45 an>)
+         inlined  P = <v k_in_iter$142 Set144 rn> ,  S = <V k___all_eq$146 rn>
+        vector param casts: <V in_iter$41 x>-> <v k_in_iter$142 Set144 rn>, <r __all_eq$123 via  Set125>-> <V k___all_eq$146 rn>
+        
+        After code:
+          0: <V _::trans_subj_37_2$35 rn> :=  := artm <V t5.S$46 rn>
+          4: <V _::trans_obj_37_3$36 an> :=  := artm <V t5.O$45 an>
+          8: BReturn 0
+        time         0% fanout         0 input         0 rows
+        $35 () 
+        s# 157 48 Subquery Select(<V _::trans_subj_37_2$35 rn>, <V _::trans_obj_37_3$36 an>)
+          set no: <r step_set$37 via  Set138 Set144 Set125>
+      }
+      clear: (<V __stub$66 in>, <V set_no$67 i>)
+    s# 164 65 Subquery 65 
+      multistate set no = <V set_no$67 i>
+      { 
+        time      0.57% fanout         1 input         1 rows
+        Precode:
+          0: <V __stub$66 in> :=  := artm  1 
+          4: BReturn 0
+          clear: (<V __stub$66 in>)
+        s# 169 74 END Node
+        time      0.23% fanout         0 input         1 rows
+        $66 (74 ) 
+        s# 164 68 Subquery Select(<r __stub$66 via  Set169>)
+          set no: <r set_no$67 via  Set169>
+      }
+    
+    time        21% fanout         1 input         1 rows
+      clear: (<V var1$32 an>)$36 (65 ) 
+    s# 183 76 Distinct (HASH) set no <r set_no$33 via  Set164 Set119>(<r _::trans_obj_37_3$36 via  Set164>)
+    After code:
+      0: <V var1$32 an> :=  := artm <r _::trans_obj_37_3$36 via  Set183 Set164>
+      4: BReturn 0
+    time        12% fanout         1 input         1 rows
+      clear: (<V var1$90 a>)$32 (76 ) $33 (76 65 34 89 ) 
+    s# 192 82 Subquery Select(<V var1$32 an>)
+      set no: <r set_no$33 via  Set183 Set164 Set119>
+    After code:
+      0: <V var1$90 a> := Call __ro2sq (<V var1$32 an>)
+      5: BReturn 0
+    time      0.21% fanout         0 input         1 rows
+    $98 (82 76 65 34 89 99 ) $90 (82 ) 
+    s# 199 92 Select (<V var1$90 a>)
+      set no: <r set_ctr$98 via  Set192>
+  }
+Warning: You might have a Cartesian product.
+
+
+
+ 0 msec 1% cpu,        12 rnd         0 seq   53.8462% same seg         0% same pg 
+Compilation: 24 msec 1 reads   88.1034% read 0 messages         0% clw

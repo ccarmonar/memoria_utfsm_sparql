@@ -1,0 +1,48 @@
+http://www.wikidata.org/entity/Q5998604	
+
+  { 
+    time     0.031% fanout         1 input         1 rows
+    time      0.65% fanout       225 input         1 rows
+    RDF_QUAD_POGS   2.2e+02 rows(t3.S$28)
+     P =  IRI_ID"...direct/P361"  ,  O =  IRI_ID"...Q28892" 
+    time       4.4% fanout  0.791111 input       225 rows
+    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:   0.00011 Fanout:      0.79
+    RDF_QUAD   0.00011 rows(t1.S$31)
+     inlined  P =  IRI_ID"...direct/P31"  ,  S = t3.S$28 ,  O =  IRI_ID"...Q577" 
+    time       8.8% fanout         1 input       178 rows
+    Precode:
+      0: var1$33 := Call __id2in (t3.S$28)
+      5: BReturn 0
+    RDF_QUAD       1.1 rows(t2.S$36)
+     inlined  P =  IRI_ID"...direct/P31"  ,  S = t1.S$31
+    time     0.038% fanout         1 input       178 rows
+    outer {
+        time       5.8% fanout   11.9719 input       178 rows
+        RDF_QUAD        14 rows(t5.O$39)
+         inlined  P =  IRI_ID"...description"  ,  S = k_t3.S$116
+        time        80% fanout 0.0830596 input      2131 rows
+        END Node
+        After test:
+        0: __ro2sq$41 := Call __ro2sq (t5.O$39)
+        5: DB.DBA.RDF_LANGUAGE_OF_OBJ$43 := Call DB.DBA.RDF_LANGUAGE_OF_OBJ (__ro2sq$41)
+        12: if (<c ar> = DB.DBA.RDF_LANGUAGE_OF_OBJ$43) then 16 else 17 unkn 17
+        16: BReturn 1
+        17: BReturn 0
+        time      0.11% fanout   1.00565 input       177 rows
+      } /* end of outer */
+    set_ctr$48
+     out: (DB.DBA.RDF_LANGUAGE_OF_OBJ$43, t5.O$39, __ro2sq$41)
+     shadow: ( <none> , t5.O$143,  <none> )
+    time      0.35% fanout 0.00561798 input       178 rows
+    END Node
+    After test:
+    0: if (t5.O$143  IS NULL   0 ) then 4 else 5 unkn 5
+    4: BReturn 1
+    5: BReturn 0
+    time    0.0042% fanout         0 input         1 rows
+    Select (var1$33)
+  }
+
+
+ 11 msec 79% cpu,      4842 rnd      2174 seq   11.2327% same seg   1.32149% same pg 
+Compilation: 2 msec 0 reads         0% read 0 messages         0% clw

@@ -1,0 +1,40 @@
+http://www.wikidata.org/entity/Q161258	
+http://www.wikidata.org/entity/Q31	
+http://www.wikidata.org/entity/Q1044	
+http://www.wikidata.org/entity/Q1049	
+http://www.wikidata.org/entity/Q1183	
+http://www.wikidata.org/entity/Q148	
+http://www.wikidata.org/entity/Q155	
+http://www.wikidata.org/entity/Q183	
+http://www.wikidata.org/entity/Q233	
+http://www.wikidata.org/entity/Q298	
+
+  { 
+    time       1.7% fanout         1 input         1 rows
+    Subquery 27 
+      { 
+        time        24% fanout        99 input         1 rows
+        RDF_QUAD        99 rows(s_37_2_t0.S$31)
+         inlined  P =  IRI_ID"...direct/P2852" 
+        time        70% fanout   0.20202 input        99 rows
+        Distinct (s_37_2_t0.S$31)
+        time       3.1% fanout       0.5 input        20 rows
+        skip node  10  <none> set_no$29
+        
+        After code:
+        0: var1$28 :=  := artm s_37_2_t0.S$31
+        4: BReturn 0
+        time       0.5% fanout         0 input        10 rows
+        Subquery Select(var1$28)
+      }
+    
+    After code:
+    0: var1$49 := Call __ro2sq (var1$28)
+    5: BReturn 0
+    time      0.43% fanout         0 input        10 rows
+    Select (var1$49)
+  }
+
+
+ 1 msec 21% cpu,         1 rnd        98 seq         0% same seg         0% same pg 
+Compilation: 1 msec 0 reads         0% read 0 messages         0% clw

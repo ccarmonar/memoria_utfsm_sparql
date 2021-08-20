@@ -1,0 +1,103 @@
+
+  { 
+    time       7.1% fanout         1 input         1 rows
+      clear: (<V set_ctr$79 in>)
+    s# 82 80 cluster outer seq start, set no <V set_ctr$79 in>    
+    save ctx:()
+    Precode:
+      0: <V ontology/AdministrativeRegion$27 r> := Call __i2idn (<tag 182 flag 1 c http://dbpedia.org/ontology/AdministrativeRegion>)
+      5: <V ontology/AcademicJournal$29 r> := Call __i2idn (<tag 182 flag 1 c http://dbpedia.org/ontology/AcademicJournal>)
+      10: <V ontology/AcademicSubject$31 r> := Call __i2idn (<tag 182 flag 1 c http://dbpedia.org/ontology/AcademicSubject>)
+      15: <V ontology/Agent$33 r> := Call __i2idn (<tag 182 flag 1 c http://dbpedia.org/ontology/Agent>)
+      20: BReturn 0
+      clear: (<V var1$36 rn>, <V set_no$37 i>, <V ontology/Agent$33 r>, <V ontology/AcademicSubject$31 r>, <V ontology/AcademicJournal$29 r>, <V ontology/AdministrativeRegion$27 r>, <V var1$71 a>)
+    s# 91 35 Subquery 35 
+      multistate set no = <V set_no$37 i>
+      { 
+        time        93% fanout         0 input         1 rows
+        Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:       0.3 Fanout:         0
+          clear: (<V s_37_12_t5.S$39 rn>)
+          clear on continue: (<V s_37_12_t5.S$39 rn>)
+        s# 95 38 from DB.DBA.RDF_QUAD by RDF_QUAD_POGS        0.3 rows   
+        Key RDF_QUAD_POGS  ASC  (<V s_37_12_t5.S$39 rn>)
+         P =  IRI_ID"...type"  ,  O = <v k_ontology/AdministrativeRegion$99 Set101 an>
+        vector param casts: <V ontology/AdministrativeRegion$27 r>-> <v k_ontology/AdministrativeRegion$99 Set101 an>
+        
+        time         0% fanout         0 input         0 rows
+        Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:       0.8 Fanout:         0
+          clear: (<V s_37_12_t0.S$42 rn>)
+          clear on continue: (<V s_37_12_t0.S$42 rn>)$39 () 
+        s# 109 41 from DB.DBA.RDF_QUAD by RDF_QUAD_POGS        0.8 rows   
+        Key RDF_QUAD_POGS  ASC  (<V s_37_12_t0.S$42 rn>)
+         inlined  P =  IRI_ID"...type"  ,  O =  IRI_ID"...Abbey"  ,  S = <V s_37_12_t5.S$39 rn>
+        
+        time         0% fanout         0 input         0 rows
+        Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:       0.8 Fanout:         0
+          clear: (<V s_37_12_t1.S$45 rn>)
+          clear on continue: (<V s_37_12_t1.S$45 rn>)$127 (44 ) $123 (44 ) 
+        s# 119 44 from DB.DBA.RDF_QUAD by RDF_QUAD_POGS        0.8 rows   
+        Key RDF_QUAD_POGS  ASC  (<V s_37_12_t1.S$45 rn>)
+         inlined  P =  IRI_ID"...type"  ,  O = <v k_ontology/AcademicJournal$123 Set125 an> ,  S = <V k_s_37_12_t0.S$127 rn>
+        vector param casts: <r ontology/AcademicJournal$29 via  Set109 Set95 Set101>-> <v k_ontology/AcademicJournal$123 Set125 an>, <V s_37_12_t0.S$42 rn>-> <V k_s_37_12_t0.S$127 rn>
+        
+        time         0% fanout         0 input         0 rows
+        Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:       0.8 Fanout:         0
+          clear: (<V s_37_12_t2.S$48 rn>)
+          clear on continue: (<V s_37_12_t2.S$48 rn>)$139 (47 ) $143 (47 ) 
+        s# 135 47 from DB.DBA.RDF_QUAD by RDF_QUAD_POGS        0.8 rows   
+        Key RDF_QUAD_POGS  ASC  (<V s_37_12_t2.S$48 rn>)
+         inlined  P =  IRI_ID"...type"  ,  O = <v k_ontology/AcademicSubject$139 Set141 an> ,  S = <V k_s_37_12_t0.S$143 rn>
+        vector param casts: <r ontology/AcademicSubject$31 via  Set119 Set125 Set109 Set95 Set101>-> <v k_ontology/AcademicSubject$139 Set141 an>, <r s_37_12_t0.S$42 via  Set119 Set125>-> <V k_s_37_12_t0.S$143 rn>
+        
+        time         0% fanout         0 input         0 rows
+        Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:       0.8 Fanout:         0
+          clear: (<V s_37_12_t3.S$51 rn>)
+          clear on continue: (<V s_37_12_t3.S$51 rn>)$155 (50 ) $159 (50 ) 
+        s# 151 50 from DB.DBA.RDF_QUAD by RDF_QUAD_POGS        0.8 rows   
+        Key RDF_QUAD_POGS  ASC  (<V s_37_12_t3.S$51 rn>)
+         inlined  P =  IRI_ID"...type"  ,  O = <v k_ontology/AdministrativeRegion$155 Set157 an> ,  S = <V k_s_37_12_t0.S$159 rn>
+        vector param casts: <r ontology/AdministrativeRegion$27 via  Set135 Set141 Set119 Set125 Set109 Set95 Set101>-> <v k_ontology/AdministrativeRegion$155 Set157 an>, <r s_37_12_t0.S$42 via  Set135 Set141 Set119 Set125>-> <V k_s_37_12_t0.S$159 rn>
+        
+        time         0% fanout         0 input         0 rows
+        Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:       0.8 Fanout:         0
+        $171 (53 ) $175 (53 ) 
+        s# 167 53 from DB.DBA.RDF_QUAD by RDF_QUAD_POGS        0.8 rows   
+        Key RDF_QUAD_POGS  ASC  ()
+         inlined  P =  IRI_ID"...type"  ,  O = <v k_ontology/Agent$171 Set173 an> ,  S = <V k_s_37_12_t0.S$175 rn>
+        vector param casts: <r ontology/Agent$33 via  Set151 Set157 Set135 Set141 Set119 Set125 Set109 Set95 Set101>-> <v k_ontology/Agent$171 Set173 an>, <r s_37_12_t0.S$42 via  Set151 Set157 Set135 Set141 Set119 Set125>-> <V k_s_37_12_t0.S$175 rn>
+        
+        time         0% fanout         0 input         0 rows
+        
+        s# 182 55 Distinct (HASH) set no <r set_no$37 via  Set167 Set173 Set151 Set157 Set135 Set141 Set119 Set125 Set109 Set95 Set101>(<r s_37_12_t0.S$42 via  Set167 Set173 Set151 Set157 Set135 Set141 Set119 Set125>)
+        time         0% fanout         0 input         0 rows
+          clear: (<V var1$36 rn>)$42 (55 53 50 47 44 ) 
+        s# 190 69 skip node  200  <none> <r set_no$37 via  Set182 Set167 Set173 Set151 Set157 Set135 Set141 Set119 Set125 Set109 Set95 Set101>
+        After code:
+          0: <V var1$36 rn> :=  := artm <r s_37_12_t0.S$42 via  Set190 Set182 Set167 Set173 Set151 Set157 Set135 Set141 Set119 Set125>
+          4: BReturn 0
+        time         0% fanout         0 input         0 rows
+        
+        s# 91 61 Subquery Select(<V var1$36 rn>)
+          set no: <r set_no$37 via  Set190 Set182 Set167 Set173 Set151 Set157 Set135 Set141 Set119 Set125 Set109 Set95 Set101>
+      }
+    
+    After code:
+      0: <V var1$71 a> := Call __ro2sq (<V var1$36 rn>)
+      5: BReturn 0
+    time         0% fanout         0 input         0 rows
+    $71 (35 ) $79 (35 80 ) 
+    s# 206 73 Select (<V var1$71 a>)
+      set no: <r set_ctr$79 via  Set91>
+  }
+Warning: You might have a Cartesian product.
+
+Warning: You might have a Cartesian product.
+
+Warning: You might have a Cartesian product.
+
+Warning: You might have a Cartesian product.
+
+
+
+ 0 msec 2% cpu,        13 rnd         0 seq         0% same seg         0% same pg 
+Compilation: 5 msec 0 reads         0% read 0 messages         0% clw

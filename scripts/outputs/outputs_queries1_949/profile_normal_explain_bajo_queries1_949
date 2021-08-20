@@ -1,0 +1,60 @@
+
+  { 
+    time       6.4% fanout         1 input         1 rows
+    Subquery 27 
+      { 
+        time         4% fanout         1 input         1 rows
+        fork {
+            time        86% fanout         0 input         1 rows
+            Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:   1.4e-07 Fanout:         0
+            RDF_QUAD_POGS   1.4e-07 rows(s_37_6_t2.S$33, s_37_6_t2.O$32)
+             inlined  P =  IRI_ID"...qualifier/P585" 
+            time         0% fanout         0 input         0 rows
+            Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:   1.4e-07 Fanout:         0
+            RDF_QUAD_POGS   1.4e-07 rows(s_37_6_t0.O$37, s_37_6_t0.S$36)
+             P =  IRI_ID"...P1087"  ,  O = cast$120
+            time         0% fanout         0 input         0 rows
+            Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:   1.4e-07 Fanout:         0
+            RDF_QUAD   1.4e-07 rows()
+             inlined  P =  IRI_ID"...statement/P1087"  ,  S = cast$135
+            time         0% fanout         0 input         0 rows
+            Precode:
+              0: __ro2sq$41 := Call __ro2sq (s_37_6_t2.O$32)
+              5: BReturn 0
+            Sort (s_37_6_t0.S$36) -> (gb_tmp$46 )
+            user aggregate init
+            0: ua_ret$47 := Call DB.DBA.GROUP_CONCAT_INIT (gb_tmp$46 )
+            7: BReturn 0
+             user aggregate accumulator
+            0: ua_ret$47 := Call DB.DBA.GROUP_CONCAT_ACC (gb_tmp$46 , __ro2sq$41)
+            7: BReturn 0
+            
+            
+          }
+        time       3.7% fanout         0 input         1 rows
+        group by read node  
+        (s_37_6_t0.S$36, aggregate$45)
+        time         0% fanout         0 input         0 rows
+        skip node  100  <none> set_no$30
+        
+        After code:
+        0: __id2in$64 := Call __id2in (s_37_6_t0.S$36)
+        5: DB.DBA.GROUP_CONCAT_FIN$66 := Call DB.DBA.GROUP_CONCAT_FIN (aggregate$45)
+        12: var1$28 :=  := artm __id2in$64
+        16: var3$29 :=  := artm DB.DBA.GROUP_CONCAT_FIN$66
+        20: BReturn 0
+        time         0% fanout         0 input         0 rows
+        Subquery Select(var1$28, var3$29)
+      }
+    
+    After code:
+    0: var1$78 := Call __ro2sq (var1$28)
+    5: var3$80 := Call __ro2sq (var3$29)
+    10: BReturn 0
+    time         0% fanout         0 input         0 rows
+    Select (var1$78, var3$80)
+  }
+
+
+ 0 msec 2% cpu,         1 rnd         0 seq         0% same seg         0% same pg 
+Compilation: 2 msec 0 reads         0% read 0 messages         0% clw

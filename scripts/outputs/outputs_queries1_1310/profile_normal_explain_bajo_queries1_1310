@@ -1,0 +1,103 @@
+Error: 23000: SR197: Non unique primary key on DB.DBA.RDF_OBJ.
+  { 
+    time     1e+02% fanout         1 input         1 rows
+    Precode:
+      0: __rdflit$27 := Call __rdflit (rdflit175402)
+      5: DB.DBA.RDF_OBJ_OF_SQLVAL$29 := Call DB.DBA.RDF_OBJ_OF_SQLVAL (<c XK>)
+      12: __rdflit$31 := Call __rdflit (rdflit1764895)
+      17: __rdflit$33 := Call __rdflit (rdflit3479555)
+      22: __rdflit$35 := Call __rdflit (rdflit1564706)
+      27: __rdflit$37 := Call __rdflit (rdflit2166310)
+      32: __rdflit$39 := Call __rdflit (rdflit4510326)
+      37: __rdflit$41 := Call __rdflit (rdflit4059619)
+      42: __rdflit$43 := Call __rdflit (rdflit123300)
+      47: __rdflit$45 := Call __rdflit (rdflit1565859)
+      52: __rdflit$47 := Call __rdflit (rdflit19062)
+      57: __rdflit$49 := Call __rdflit (rdflit170580)
+      62: __rdflit$51 := Call __rdflit (rdflit172588)
+      67: __rdflit$53 := Call __rdflit (rdflit22088)
+      72: __rdflit$55 := Call __rdflit (rdflit1460687)
+      77: __rdflit$57 := Call __rdflit (rdflit40315650)
+      82: __rdflit$59 := Call __rdflit (rdflit4399008)
+      87: DB.DBA.RDF_OBJ_OF_SQLVAL$61 := Call DB.DBA.RDF_OBJ_OF_SQLVAL (<c NC>)
+      94: DB.DBA.RDF_OBJ_OF_SQLVAL$63 := Call DB.DBA.RDF_OBJ_OF_SQLVAL (<c BQ>)
+      101: __rdflit$65 := Call __rdflit (rdflit3097501)
+      106: __rdflit$67 := Call __rdflit (rdflit73291)
+      111: __rdflit$69 := Call __rdflit (rdflit4001514)
+      116: __rdflit$71 := Call __rdflit (rdflit833549)
+      121: __rdflit$73 := Call __rdflit (rdflit2170764)
+      126: __rdflit$75 := Call __rdflit (rdflit2863626)
+      131: __rdflit$77 := Call __rdflit (rdflit23580)
+      136: __rdflit$79 := Call __rdflit (rdflit248760)
+      141: __rdflit$81 := Call __rdflit (rdflit3243486)
+      146: __rdflit$83 := Call __rdflit (rdflit250344)
+      151: __rdflit$85 := Call __rdflit (rdflit1744050)
+      156: __rdflit$87 := Call __rdflit (rdflit598445)
+      161: __rdflit$89 := Call __rdflit (rdflit402864)
+      166: __rdflit$91 := Call __rdflit (rdflit12516371)
+      171: __rdflit$93 := Call __rdflit (rdflit2167008)
+      176: __rdflit$95 := Call __rdflit (rdflit9108764)
+      181: __rdflit$97 := Call __rdflit (rdflit504865)
+      186: DB.DBA.RDF_OBJ_OF_SQLVAL$99 := Call DB.DBA.RDF_OBJ_OF_SQLVAL (<c MF>)
+      193: __rdflit$101 := Call __rdflit (rdflit311432)
+      198: __rdflit$103 := Call __rdflit (rdflit2278630)
+      203: __rdflit$105 := Call __rdflit (rdflit611170)
+      208: __rdflit$107 := Call __rdflit (rdflit1645128)
+      213: __rdflit$109 := Call __rdflit (rdflit3136394)
+      218: __rdflit$111 := Call __rdflit (rdflit1009256)
+      223: __rdflit$113 := Call __rdflit (rdflit270134)
+      228: BReturn 0
+    Subquery 115 
+      { 
+        time         0% fanout         0 input         0 rows
+        fork {
+            time         0% fanout         0 input         0 rows
+            Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:        19 Fanout:         0
+            RDF_QUAD        19 rows(s_37_4_t0.S$122, s_37_4_t0.O$121)
+             inlined  P =  IRI_ID"...direct/P297" 
+            time         0% fanout         0 input         0 rows
+            END Node
+            After test:
+            0: one_of_these$124 := Call one_of_these (s_37_4_t0.O$121, __rdflit$27, DB.DBA.RDF_OBJ_OF_SQLVAL$29, __rdflit$31, __rdflit$33, __rdflit$35, __rdflit$37, __rdflit$39, __rdflit$41, __rdflit$43, __rdflit$45, __rdflit$47, __rdflit$49, __rdflit$51, __rdflit$53, __rdflit$55, __rdflit$57, __rdflit$59, DB.DBA.RDF_OBJ_OF_SQLVAL$61, DB.DBA.RDF_OBJ_OF_SQLVAL$63, __rdflit$65, __rdflit$67, __rdflit$69, __rdflit$71, __rdflit$73, __rdflit$75, __rdflit$77, __rdflit$79, __rdflit$81, __rdflit$83, __rdflit$85, __rdflit$87, __rdflit$89, __rdflit$91, __rdflit$93, __rdflit$95, __rdflit$97, DB.DBA.RDF_OBJ_OF_SQLVAL$99, __rdflit$101, __rdflit$103, __rdflit$105, __rdflit$107, __rdflit$109, __rdflit$111, __rdflit$113)
+            5: if ( 0  < one_of_these$124) then 9 else 10 unkn 10
+            9: BReturn 1
+            10: BReturn 0
+            time         0% fanout         0 input         0 rows
+            Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:         1 Fanout:         0
+            RDF_QUAD         1 rows(s_37_4_t1.O$127)
+             inlined  P =  IRI_ID"...direct/P17"  ,  S = k_s_37_4_t0.S$218
+            
+            After code:
+            0: __ro2sq$129 := Call __ro2sq (s_37_4_t0.O$121)
+            5: BReturn 0
+            time         0% fanout         0 input         0 rows
+            Sort (__ro2sq$129) -> (s_37_4_t0.S$122, s_37_4_t1.O$127)
+            
+          }
+        time         0% fanout         0 input         0 rows
+        Key from temp (s_37_4_t0.S$122, __ro2sq$129, s_37_4_t1.O$127)
+        
+        
+        After code:
+        0: __ro2sq$150 := Call __ro2sq (s_37_4_t1.O$127)
+        5: __id2in$152 := Call __id2in (s_37_4_t0.S$122)
+        10: var1$116 :=  := artm __id2in$152
+        14: var2$117 :=  := artm __ro2sq$129
+        18: var3$118 :=  := artm __ro2sq$150
+        22: BReturn 0
+        time         0% fanout         0 input         0 rows
+        Subquery Select(var1$116, var2$117, var3$118)
+      }
+    
+    After code:
+    0: var1$161 := Call __ro2sq (var1$116)
+    5: var2$163 := Call __ro2sq (var2$117)
+    10: var3$165 := Call __ro2sq (var3$118)
+    15: BReturn 0
+    time         0% fanout         0 input         0 rows
+    Select (var1$161, var2$163, var3$165)
+  }
+
+
+ 1 msec 2% cpu,         3 rnd         0 seq         0% same seg         0% same pg 
+Compilation: 8 msec 0 reads         0% read 0 messages         0% clw

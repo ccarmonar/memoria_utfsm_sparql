@@ -1,0 +1,76 @@
+http://www.wikidata.org/entity/Q764	http://www.w3.org/2004/02/skos/core#prefLabel	Chṳ̂n-khiùn	
+http://www.wikidata.org/entity/Q746	http://www.w3.org/2004/02/skos/core#prefLabel	Croque Madame	
+http://www.wikidata.org/entity/Q1504	http://www.w3.org/2004/02/skos/core#prefLabel	Cublize	
+http://www.wikidata.org/entity/Q1297	http://www.w3.org/2004/02/skos/core#prefLabel	Chicago	
+http://www.wikidata.org/entity/Q298	http://www.w3.org/2004/02/skos/core#prefLabel	Chile	
+http://www.wikidata.org/entity/Q298	http://www.w3.org/2004/02/skos/core#prefLabel	Cile	
+http://www.wikidata.org/entity/Q148	http://www.w3.org/2004/02/skos/core#prefLabel	China	
+http://www.wikidata.org/entity/Q1860	http://www.w3.org/2004/02/skos/core#prefLabel	Chingerezi	
+http://www.wikidata.org/entity/Q1504	http://www.w3.org/2004/02/skos/core#prefLabel	Cublize	
+http://www.wikidata.org/entity/Q688	http://www.w3.org/2004/02/skos/core#prefLabel	Chlor	
+http://www.wikidata.org/entity/Q298	http://www.w3.org/2004/02/skos/core#prefLabel	Chile	
+http://www.wikidata.org/entity/Q688	http://www.w3.org/2004/02/skos/core#prefLabel	Clôre	
+http://www.wikidata.org/entity/Q688	http://www.w3.org/2004/02/skos/core#prefLabel	Clorin	
+http://www.wikidata.org/entity/Q1297	http://www.w3.org/2004/02/skos/core#prefLabel	Chicago	
+http://www.wikidata.org/entity/Q1504	http://www.w3.org/2004/02/skos/core#prefLabel	Cublize	
+http://www.wikidata.org/entity/Q1297	http://www.w3.org/2004/02/skos/core#prefLabel	Chicago	
+http://www.wikidata.org/entity/Q1297	http://www.w3.org/2004/02/skos/core#prefLabel	Chicago	
+http://www.wikidata.org/entity/Q1297	http://www.w3.org/2004/02/skos/core#prefLabel	Chicago	
+http://www.wikidata.org/entity/Q688	http://www.w3.org/2004/02/skos/core#prefLabel	Clòrain	
+http://www.wikidata.org/entity/Q1297	http://www.w3.org/2004/02/skos/core#prefLabel	Chicago	
+
+  { 
+    time   1.4e-05% fanout         1 input         1 rows
+      clear: (<V set_ctr$55 in>)
+    s# 61 56 cluster outer seq start, set no <V set_ctr$55 in>    
+    save ctx:()
+    time        15% fanout 5.5453e+07 input         1 rows
+      clear: (<V s_37_6_t0.O$28 an>, <V s_37_6_t0.S$29 rn>, <V s_37_6_t0.P$30 rn>)
+      clear on continue: (<V s_37_6_t0.O$28 an>, <V s_37_6_t0.S$29 rn>, <V s_37_6_t0.P$30 rn>)
+    s# 70 27 from DB.DBA.RDF_QUAD by RDF_QUAD_POGS    7.3e+07 rows   
+    Key RDF_QUAD_POGS  ASC  (<V s_37_6_t0.P$30 rn>, <V s_37_6_t0.S$29 rn>, <V s_37_6_t0.O$28 an>)
+    
+    
+    time        40% fanout  0.754959 input 5.5453e+07 rows
+      clear: (<V s_37_6_t1.P$34 rn>)
+      clear on continue: (<V s_37_6_t1.P$34 rn>)$86 (33 ) 
+    s# 82 33 from DB.DBA.RDF_QUAD by RDF_QUAD_OP        2.8 rows   
+    Key RDF_QUAD_OP  ASC  (<V s_37_6_t1.P$34 rn>)
+     inlined  O = <v cast$86 Set88 an>
+    vector param casts: <V s_37_6_t0.P$30 rn>-> <v cast$86 Set88 an>
+    
+    time        38% fanout   1.00022 input 4.18648e+07 rows
+      clear: (<V s_37_6_t1.S$38 rn>)
+      clear on continue: (<V s_37_6_t1.S$38 rn>)$34 () $100 (37 ) 
+    s# 96 37 from DB.DBA.RDF_QUAD by RDF_QUAD_POGS        1.2 rows   
+    Key RDF_QUAD_POGS  ASC  (<V s_37_6_t1.S$38 rn>)
+     P = <V s_37_6_t1.P$34 rn> ,  O = <v k_s_37_6_t0.P$100 Set102 an>
+    vector param casts: <r s_37_6_t0.P$30 via  Set82 Set88>-> <v k_s_37_6_t0.P$100 Set102 an>
+    
+    time         8% fanout 0.000253546 input 4.1874e+07 rows
+    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:       0.8 Fanout:   0.00025
+    $38 () 
+    s# 110 41 from DB.DBA.RDF_QUAD by RDF_QUAD        0.8 rows   
+    Key RDF_QUAD  ASC  ()
+     inlined  P =  IRI_ID"...type"  ,  S = <V s_37_6_t1.S$38 rn> ,  O =  IRI_ID"...Property" 
+    
+    time     0.004% fanout 0.0188377 input     10617 rows
+      clear: (<V var3$47 a>, <V var2$45 a>, <V var1$43 a>)$28 (41 37 33 ) $29 (41 37 33 ) $30 (41 37 33 ) 
+    s# 119 59 skip node  200  10000 <r set_ctr$55 via  Set110 Set96 Set102 Set82 Set88 Set70>
+    After code:
+      0: <V var1$43 a> := Call __id2in (<r s_37_6_t0.S$29 via  Set119 Set110 Set96 Set102 Set82 Set88>)
+      5: <V var2$45 a> := Call __id2in (<r s_37_6_t0.P$30 via  Set119 Set110 Set96 Set102 Set82 Set88>)
+      10: <V var3$47 a> := Call __ro2sq (<r s_37_6_t0.O$28 via  Set119 Set110 Set96 Set102 Set82 Set88>)
+      15: BReturn 0
+    time   1.4e-06% fanout         0 input       200 rows
+    $43 (59 ) $45 (59 ) $47 (59 ) $55 (59 41 37 33 27 56 ) 
+    s# 127 49 Select (<V var1$43 a>, <V var2$45 a>, <V var3$47 a>)
+      set no: <r set_ctr$55 via  Set119 Set110 Set96 Set102 Set82 Set88 Set70>
+  }
+Warning: You might have a Cartesian product.
+
+
+
+ 23330 msec 99% cpu, 1.39108e+08 rnd 5.54913e+07 seq   99.8997% same seg 0.000153118% same pg 
+369 disk reads, 0 read ahead,    6.9859% wait
+Compilation: 2 msec 0 reads         0% read 0 messages         0% clw

@@ -1,0 +1,47 @@
+http://www.wikidata.org/entity/Q10281306	12078308d	
+http://www.wikidata.org/entity/Q2607446	155140702	
+http://www.wikidata.org/entity/Q2607536	12017812j	
+http://www.wikidata.org/entity/Q2607622	44503171d	
+http://www.wikidata.org/entity/Q2607699	106007155	
+http://www.wikidata.org/entity/Q2608002	15045137h	
+http://www.wikidata.org/entity/Q2609316	12597667s	
+http://www.wikidata.org/entity/Q2609758	170488781	
+http://www.wikidata.org/entity/Q2610341	14266405k	
+http://www.wikidata.org/entity/Q2610508	14116820c	
+http://www.wikidata.org/entity/Q2611253	12261963n	
+http://www.wikidata.org/entity/Q2611853	123956162	
+http://www.wikidata.org/entity/Q2612039	139101536	
+http://www.wikidata.org/entity/Q2612264	140474699	
+http://www.wikidata.org/entity/Q2612395	14638003b	
+http://www.wikidata.org/entity/Q2612777	14521227t	
+http://www.wikidata.org/entity/Q2613149	11889890h	
+http://www.wikidata.org/entity/Q2613190	12463230k	
+http://www.wikidata.org/entity/Q2613606	14606711s	
+http://www.wikidata.org/entity/Q2615276	16754038w	
+
+  { 
+    time     0.038% fanout         1 input         1 rows
+    time       1.2% fanout      1000 input         1 rows
+    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:   5.2e+04 Fanout:     1e+03
+    RDF_QUAD   5.2e+04 rows(s_37_2_t0.O$29, s_37_2_t0.S$28)
+     inlined  P =  IRI_ID"...direct/P268" 
+    time        99% fanout         1 input      1000 rows
+    END Node
+    After test:
+    0: __ro2sq$31 := Call __ro2sq (s_37_2_t0.O$29)
+    5: _cvt$33 := Call _cvt (<tag 193 flag 0>, __ro2sq$31)
+    10: if (_cvt$33  LIKE  <c %string1%>) then 15 else 14 unkn 15
+    14: BReturn 1
+    15: BReturn 0
+    
+    After code:
+    0: var1$35 := Call __id2in (s_37_2_t0.S$28)
+    5: var2$37 := Call __ro2sq (s_37_2_t0.O$29)
+    10: BReturn 0
+    time    0.0047% fanout         0 input      1000 rows
+    Select (var1$35, var2$37)
+  }
+
+
+ 10 msec 87% cpu,      2002 rnd       998 seq         0% same seg   87.7683% same pg 
+Compilation: 1 msec 0 reads         0% read 0 messages         0% clw

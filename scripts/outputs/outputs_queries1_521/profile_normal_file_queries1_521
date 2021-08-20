@@ -1,0 +1,52 @@
+
+  { 
+    time        39% fanout         1 input         1 rows
+      clear: (<V set_ctr$61 in>)
+    s# 64 62 cluster outer seq start, set no <V set_ctr$61 in>    
+    save ctx:()
+    time        11% fanout         1 input         1 rows
+      clear: (<V set_no$31 i>)
+    s# 73 50 cluster outer seq start, set no <V set_no$31 i>    
+    save ctx:()
+    time        50% fanout         0 input         1 rows
+    
+    s# 82 32 END Node
+    After test:
+      0: if ( 0  = <DB_NULL>) then 5 else 4 unkn 5
+      4: BReturn 1
+      5: BReturn 0
+    time         0% fanout         0 input         0 rows
+    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:   1.1e+02 Fanout:         0
+      clear: (<V s_37_2_t0.O$34 an>, <V s_37_2_t0.S$35 rn>)
+      clear on continue: (<V s_37_2_t0.O$34 an>, <V s_37_2_t0.S$35 rn>)
+    s# 90 33 from DB.DBA.RDF_QUAD by RDF_QUAD    1.1e+02 rows   
+    Key RDF_QUAD  ASC  (<V s_37_2_t0.S$35 rn>, <V s_37_2_t0.O$34 an>)
+     inlined  P =  IRI_ID"...direct/P854" 
+    
+    time         0% fanout         0 input         0 rows
+      clear: (<V var3$30 x>, <V var2$29 an>, <V var1$28 rn>)$34 () $35 () 
+    s# 101 37 Distinct (HASH) set no <r set_no$31 via  Set90 Set82>(<V s_37_2_t0.S$35 rn>, <V s_37_2_t0.O$34 an>)
+    After code:
+      0: <V var1$28 rn> :=  := artm <r s_37_2_t0.S$35 via  Set101>
+      4: <V var2$29 an> :=  := artm <r s_37_2_t0.O$34 via  Set101>
+      8: <V var3$30 x> :=  := artm <DB_NULL>
+      12: BReturn 0
+    time         0% fanout         0 input         0 rows
+      clear: (<V var2$53 a>, <V var1$51 a>)$31 (37 33 32 50 ) $28 (37 ) $29 (37 ) 
+    s# 112 43 Subquery Select(<V var1$28 rn>, <V var2$29 an>, <V var3$30 x>)
+      set no: <r set_no$31 via  Set101 Set90 Set82>
+    After code:
+      0: <V var1$51 a> := Call __ro2sq (<V var1$28 rn>)
+      5: <V var2$53 a> := Call __ro2sq (<V var2$29 an>)
+      10: BReturn 0
+    time         0% fanout         0 input         0 rows
+    $51 (43 ) $53 (43 ) $30 (43 37 ) $61 (43 37 33 32 50 62 ) 
+    s# 119 55 Select (<V var1$51 a>, <V var2$53 a>, <V var3$30 x>)
+      set no: <r set_ctr$61 via  Set112>
+  }
+Warning: You might have a Cartesian product.
+
+
+
+ 0 msec 1% cpu,         0 rnd         0 seq         0% same seg         0% same pg 
+Compilation: 1 msec 0 reads         0% read 0 messages         0% clw

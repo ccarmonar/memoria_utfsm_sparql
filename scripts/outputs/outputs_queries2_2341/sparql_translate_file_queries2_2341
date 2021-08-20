@@ -1,0 +1,33 @@
+SELECT __ro2sq ( "s_37_10_t5"."O") AS "var1",
+  __ro2sq ( "s_37_10_t6"."O") AS "var2",
+  __ro2sq ( "s_37_8"."var3") AS "var3"
+FROM DB.DBA.RDF_QUAD AS "s_37_10_t4"
+  INNER JOIN DB.DBA.RDF_QUAD AS "s_37_10_t5"
+  ON (
+    "s_37_10_t5"."S" = "s_37_10_t4"."O")
+  INNER JOIN DB.DBA.RDF_QUAD AS "s_37_10_t6"
+  ON (
+    "s_37_10_t6"."S" = "s_37_10_t5"."S"
+    AND 
+    "s_37_10_t6"."S" = "s_37_10_t4"."O")
+  LEFT OUTER JOIN (
+    SELECT "s_37_8_t0"."S" AS "var4",
+      "s_37_8_t0"."O" AS "var3"
+    FROM DB.DBA.RDF_QUAD AS "s_37_8_t0"
+    WHERE
+      "s_37_8_t0"."P" = __i2idn ( __bft( 'http://www.wikidata.org/prop/qualifier/P459' , 1))) AS "s_37_8"
+  ON (
+    "s_37_10_t6"."S" = "s_37_8"."var4"
+    AND 
+    "s_37_10_t5"."S" = "s_37_8"."var4"
+    AND 
+    "s_37_10_t4"."O" = "s_37_8"."var4")
+WHERE
+  "s_37_10_t4"."S" = __i2idn ( __bft( 'http://www.wikidata.org/entity/Q915' , 1))
+  AND 
+  "s_37_10_t4"."P" = __i2idn ( __bft( 'http://www.wikidata.org/prop/P1082' , 1))
+  AND 
+  "s_37_10_t5"."P" = __i2idn ( __bft( 'http://www.wikidata.org/prop/statement/P1082' , 1))
+  AND 
+  "s_37_10_t6"."P" = __i2idn ( __bft( 'http://www.wikidata.org/prop/qualifier/P585' , 1))
+OPTION (QUIETCAST)

@@ -1,0 +1,48 @@
+http://www.wikidata.org/entity/Q28540980	1834-01-01 00:00:00Z	
+http://www.wikidata.org/entity/Q28039127	1912-01-01 00:00:00Z	
+http://www.wikidata.org/entity/Q28039140	1912-01-01 00:00:00Z	
+http://www.wikidata.org/entity/Q28039154	1912-01-01 00:00:00Z	
+http://www.wikidata.org/entity/Q28039155	1912-01-01 00:00:00Z	
+http://www.wikidata.org/entity/Q28039159	1912-01-01 00:00:00Z	
+http://www.wikidata.org/entity/Q28039160	1912-01-01 00:00:00Z	
+http://www.wikidata.org/entity/Q28039164	1912-01-01 00:00:00Z	
+http://www.wikidata.org/entity/Q28039166	1912-01-01 00:00:00Z	
+http://www.wikidata.org/entity/Q28039173	1912-01-01 00:00:00Z	
+http://www.wikidata.org/entity/Q28039196	1912-01-01 00:00:00Z	
+http://www.wikidata.org/entity/Q28039204	1912-01-01 00:00:00Z	
+http://www.wikidata.org/entity/Q33056162	1848-01-01 00:00:00Z	
+http://www.wikidata.org/entity/Q1211109	1866-01-01 00:00:00Z	
+http://www.wikidata.org/entity/Q19234409	1909-01-01 00:00:00Z	
+http://www.wikidata.org/entity/Q19235822	1911-01-01 00:00:00Z	
+http://www.wikidata.org/entity/Q199940	1874-01-01 00:00:00Z	
+http://www.wikidata.org/entity/Q3085613	1829-01-01 00:00:00Z	
+http://www.wikidata.org/entity/Q27648808	1911-01-01 00:00:00Z	
+http://www.wikidata.org/entity/Q27648820	1911-01-01 00:00:00Z	
+
+  { 
+    time      0.38% fanout         1 input         1 rows
+    time        11% fanout       128 input         1 rows
+    RDF_QUAD_POGS   1.3e+02 rows(t1.S$28)
+     P =  IRI_ID"...direct/P50"  ,  O =  IRI_ID"...Q535" 
+    time      0.32% fanout         1 input       128 rows
+    outer {
+        time        58% fanout  0.492188 input       128 rows
+        RDF_QUAD         1 rows(t3.O$31)
+         inlined  P =  IRI_ID"...direct/P577"  ,  S = k_t1.S$88
+        time        29% fanout         1 input        63 rows
+      } /* end of outer */
+    set_ctr$36
+     out: (t3.O$31)
+     shadow: ( <none> )
+    
+    After code:
+    0: var1$45 := Call __id2in (t1.S$28)
+    5: var2$47 := Call __ro2sq (t3.O$31)
+    10: BReturn 0
+    time      0.13% fanout         0 input        63 rows
+    Select (var1$45, var2$47)
+  }
+
+
+ 1 msec 40% cpu,       129 rnd       127 seq   86.1538% same seg        10% same pg 
+Compilation: 1 msec 0 reads         0% read 0 messages         0% clw

@@ -1,0 +1,21 @@
+
+  { 
+    time      0.61% fanout         1 input         1 rows
+    time        15% fanout        50 input         1 rows
+    in iterates in_iter$28  over ( IRI_ID"...Q1000682" ,  IRI_ID"...Q100415" ,  IRI_ID"...Q1004881" ,  IRI_ID"...Q1007183" ,  IRI_ID"...Q1007923" ,  IRI_ID"...Q1010227" ,  IRI_ID"...Q101159" ,  IRI_ID"...Q1016388" ,  IRI_ID"...Q101855" ,  IRI_ID"...Q1018614" ,  IRI_ID"...Q1018624" ,  IRI_ID"...Q101884" ,  IRI_ID"...Q101888" ,  IRI_ID"...Q1022522" ,  IRI_ID"...Q10263847" ,  IRI_ID"...Q10264380" ,  IRI_ID"...Q10264618" ,  IRI_ID"...Q1026528" ,  IRI_ID"...Q1026552" ,  IRI_ID"...Q10268782" ,  IRI_ID"...Q1027090" ,  IRI_ID"...Q10285525" ,  IRI_ID"...Q1028724" ,  IRI_ID"...Q10288028" ,  IRI_ID"...Q1028819" ,  IRI_ID"...Q1029099" ,  IRI_ID"...Q1029535" ,  IRI_ID"...Q102994" ,  IRI_ID"...Q10304800" ,  IRI_ID"...Q10305089" ,  IRI_ID"...Q10306418" ,  IRI_ID"...Q10306912" ,  IRI_ID"...Q10306916" ,  IRI_ID"...Q10307036" ,  IRI_ID"...Q10308616" ,  IRI_ID"...Q103123" ,  IRI_ID"...Q10312853" ,  IRI_ID"...Q10313172" ,  IRI_ID"...Q10313819" ,  IRI_ID"...Q1031712" ,  IRI_ID"...Q1032023" ,  IRI_ID"...Q10328978" ,  IRI_ID"...Q1032961" ,  IRI_ID"...Q10335454" ,  IRI_ID"...Q1033909" ,  IRI_ID"...Q10343898" ,  IRI_ID"...Q10346097" ,  IRI_ID"...Q10346285" ,  IRI_ID"...Q10346344" ,  IRI_ID"...Q1035938" )
+    time        84% fanout         0 input        50 rows
+    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:        15 Fanout:         0
+    RDF_QUAD        15 rows(s_37_3_t0.S$33, s_37_3_t0.O$32)
+     inlined  P =  IRI_ID"...direct/P18"  ,  S = k_in_iter$74 S <  IRI_ID"...nodeID://b0" 
+    
+    After code:
+    0: var1$35 := Call __id2in (s_37_3_t0.S$33)
+    5: var2$37 := Call __ro2sq (s_37_3_t0.O$32)
+    10: BReturn 0
+    time         0% fanout         0 input         0 rows
+    Select (var1$35, var2$37)
+  }
+
+
+ 1 msec 12% cpu,        50 rnd         0 seq   60.7843% same seg   35.2941% same pg 
+Compilation: 5 msec 0 reads         0% read 0 messages         0% clw

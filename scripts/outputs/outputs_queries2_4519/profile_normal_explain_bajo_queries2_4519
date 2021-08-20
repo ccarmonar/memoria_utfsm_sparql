@@ -1,0 +1,46 @@
+BS-HT	
+BS-SE	
+BS-WG	
+SO-JD	
+SB-WE	
+UA-46	
+MC-MO	
+BW-KL	
+BW-SO	
+HR-10	
+HR-19	
+HR-20	
+CY-01	
+BT-44	
+BT-TY	
+MM-02	
+MM-15	
+TD-ME	
+IE-U	
+AF-SAM	
+
+  { 
+    time     0.087% fanout         1 input         1 rows
+    time     0.017% fanout         1 input         1 rows
+    time       2.2% fanout       778 input         1 rows
+    RDF_QUAD   7.8e+02 rows(s_37_2_t0.O$31)
+     inlined  P =  IRI_ID"...direct/P300" 
+    time       6.3% fanout  0.861183 input       778 rows
+    Distinct (s_37_2_t0.O$31)
+    
+    After code:
+    0: var1$28 :=  := artm s_37_2_t0.O$31
+    4: BReturn 0
+    time        91% fanout         1 input       670 rows
+    Subquery Select(var1$28)
+    
+    After code:
+    0: var1$47 := Call __ro2sq (var1$28)
+    5: BReturn 0
+    time     0.021% fanout         0 input       670 rows
+    Select (var1$47)
+  }
+
+
+ 3 msec 73% cpu,       671 rnd       777 seq         0% same seg    30.506% same pg 
+Compilation: 1 msec 0 reads         0% read 0 messages         0% clw

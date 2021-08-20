@@ -1,0 +1,71 @@
+Error: 22007: DT001: Function year needs a datetime, date or time as argument 1, not an arg of type DB_NULL (204)
+  { 
+    time     1e+02% fanout         1 input         1 rows
+      clear: (<V set_ctr$69 in>)
+    s# 72 70 cluster outer seq start, set no <V set_ctr$69 in>    
+    save ctx:()
+    Precode:
+      0: <V rdf_year_impl$27 i> := Call rdf_year_impl (<DB_NULL>)
+      5: BReturn 0
+      clear: (<V var3$32 a>, <V var2$31 an>, <V var1$30 rn>, <V set_no$33 i>, <V rdf_year_impl$27 i>, <V var2$61 a>, <V var1$59 a>)
+    s# 81 29 Subquery 29 
+      multistate set no = <V set_no$33 i>
+      { 
+        time         0% fanout         0 input         0 rows
+        
+        s# 85 34 END Node
+        After test:
+          0: if ( 2012  = <V rdf_year_impl$27 i>) then 4 else 5 unkn 5
+          4: BReturn 1
+          5: BReturn 0
+        time         0% fanout         0 input         0 rows
+        Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:   2.8e+04 Fanout:         0
+          clear: (<V s_37_2_t0.O$36 an>, <V s_37_2_t0.S$37 rn>)
+          clear on continue: (<V s_37_2_t0.O$36 an>, <V s_37_2_t0.S$37 rn>)
+        s# 93 35 from DB.DBA.RDF_QUAD by RDF_QUAD    2.8e+04 rows   
+        Key RDF_QUAD  ASC  (<V s_37_2_t0.S$37 rn>, <V s_37_2_t0.O$36 an>)
+         inlined  P =  IRI_ID"...direct/P585" 
+        
+        time         0% fanout         0 input         0 rows
+          clear: (<V DB.DBA.RDF_DATATYPE_OF_OBJ$41 a>, <V __ro2sq$39 a>)
+        s# 109 104 END Node
+        After test:
+          0: if ( 2012  = <r rdf_year_impl$27 via  Set93 Set85>) then 4 else 5 unkn 5
+          4: BReturn 1
+          5: BReturn 0
+        After code:
+          0: <V __ro2sq$39 a> := Call __ro2sq (<r s_37_2_t0.O$36 via  Set109>)
+          5: <V DB.DBA.RDF_DATATYPE_OF_OBJ$41 a> := Call DB.DBA.RDF_DATATYPE_OF_OBJ (<V __ro2sq$39 a>)
+          12: BReturn 0
+        time         0% fanout         0 input         0 rows
+        
+        s# 117 43 Distinct (HASH) set no <r set_no$33 via  Set109 Set93 Set85>(<r s_37_2_t0.S$37 via  Set109>, <r s_37_2_t0.O$36 via  Set109>, <V DB.DBA.RDF_DATATYPE_OF_OBJ$41 a>)
+        time         0% fanout         0 input         0 rows
+          clear: (<V var3$32 a>, <V var2$31 an>, <V var1$30 rn>)$36 (43 104 ) $37 (43 104 ) $41 (43 104 ) 
+        s# 125 57 skip node  100  <none> <r set_no$33 via  Set117 Set109 Set93 Set85>
+        After code:
+          0: <V var1$30 rn> :=  := artm <r s_37_2_t0.S$37 via  Set125 Set117 Set109>
+          4: <V var2$31 an> :=  := artm <r s_37_2_t0.O$36 via  Set125 Set117 Set109>
+          8: <V var3$32 a> :=  := artm <r DB.DBA.RDF_DATATYPE_OF_OBJ$41 via  Set125 Set117>
+          12: BReturn 0
+        time         0% fanout         0 input         0 rows
+        
+        s# 81 49 Subquery Select(<V var1$30 rn>, <V var2$31 an>, <V var3$32 a>)
+          set no: <r set_no$33 via  Set125 Set117 Set109 Set93 Set85>
+      }
+    
+    After code:
+      0: <V var1$59 a> := Call __ro2sq (<V var1$30 rn>)
+      5: <V var2$61 a> := Call __ro2sq (<V var2$31 an>)
+      10: BReturn 0
+    time         0% fanout         0 input         0 rows
+    $32 (29 ) $69 (29 70 ) $59 (29 ) $61 (29 ) 
+    s# 143 63 Select (<V var1$59 a>, <V var2$61 a>, <V var3$32 a>)
+      set no: <r set_ctr$69 via  Set81>
+  }
+Warning: You might have a Cartesian product.
+
+
+
+ 0 msec 1% cpu,         0 rnd         0 seq         0% same seg         0% same pg 
+Compilation: 1 msec 0 reads         0% read 0 messages         0% clw

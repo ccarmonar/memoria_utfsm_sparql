@@ -1,0 +1,31 @@
+0	
+
+  { 
+    time       8.1% fanout         1 input         1 rows
+      clear: (<V set_ctr$29 in>)
+    s# 43 30 cluster outer seq start, set no <V set_ctr$29 in>    
+    save ctx:()
+    time       6.7% fanout         1 input         1 rows
+    
+    s# 63 31 Fork 31 {  
+        time        82% fanout         0 input         1 rows
+        Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:   1.4e-07 Fanout:         0
+        
+        s# 53 27 from DB.DBA.RDF_QUAD by RDF_QUAD_POGS    1.4e-07 rows Parallel, tail cost       7.9   
+        Key RDF_QUAD_POGS  ASC  ()
+         inlined  P =  IRI_ID"...qualifier/P2241" 
+        copy on branch $29 $0 $0 $0 sets: 43 
+        
+        After code:
+          0:  sum <V var1$32 i> 1 set no <r set_ctr$29 via  Set53>
+          5: BReturn 0
+    }
+    time         3% fanout         0 input         1 rows
+    $32 (36 ) $29 (31 30 ) 
+    s# 70 36 Select (<V var1$32 i>)
+      set no: <V set_ctr$29 in>
+  }
+
+
+ 0 msec 1% cpu,         1 rnd         0 seq         0% same seg         0% same pg 
+Compilation: 4 msec 0 reads         0% read 0 messages         0% clw

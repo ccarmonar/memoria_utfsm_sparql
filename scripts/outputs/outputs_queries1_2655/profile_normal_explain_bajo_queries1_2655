@@ -1,0 +1,88 @@
+http://www.wikidata.org/entity/Q2272	http://www.wikidata.org/entity/Q104764	http://www.wikidata.org/entity/Q20	
+http://www.wikidata.org/entity/Q6816	http://www.wikidata.org/entity/Q128499	http://www.wikidata.org/entity/Q159	
+http://www.wikidata.org/entity/Q4100	http://www.wikidata.org/entity/Q128499	http://www.wikidata.org/entity/Q183	
+http://www.wikidata.org/entity/Q170996	http://www.wikidata.org/entity/Q128499	http://www.wikidata.org/entity/Q218	
+http://www.wikidata.org/entity/Q1018160	http://www.wikidata.org/entity/Q128499	http://www.wikidata.org/entity/Q227	
+http://www.wikidata.org/entity/Q159288	http://www.wikidata.org/entity/Q128499	http://www.wikidata.org/entity/Q30	
+http://www.wikidata.org/entity/Q188731	http://www.wikidata.org/entity/Q128499	http://www.wikidata.org/entity/Q41	
+http://www.wikidata.org/entity/Q200030	http://www.wikidata.org/entity/Q128499	http://www.wikidata.org/entity/Q858	
+http://www.wikidata.org/entity/Q179833	http://www.wikidata.org/entity/Q135410	http://www.wikidata.org/entity/Q227	
+http://www.wikidata.org/entity/Q936780	http://www.wikidata.org/entity/Q135466	http://www.wikidata.org/entity/Q30	
+http://www.wikidata.org/entity/Q152641	http://www.wikidata.org/entity/Q135466	http://www.wikidata.org/entity/Q801	
+http://www.wikidata.org/entity/Q19313	http://www.wikidata.org/entity/Q135616	http://www.wikidata.org/entity/Q184	
+http://www.wikidata.org/entity/Q406470	http://www.wikidata.org/entity/Q155569	http://www.wikidata.org/entity/Q219	
+http://www.wikidata.org/entity/Q898	http://www.wikidata.org/entity/Q172637	http://www.wikidata.org/entity/Q159	
+http://www.wikidata.org/entity/Q271922	http://www.wikidata.org/entity/Q175452	http://www.wikidata.org/entity/Q403	
+http://www.wikidata.org/entity/Q3802	http://www.wikidata.org/entity/Q2423	http://www.wikidata.org/entity/Q183	
+http://www.wikidata.org/entity/Q33345	http://www.wikidata.org/entity/Q3323	http://www.wikidata.org/entity/Q159	
+http://www.wikidata.org/entity/Q7525	http://www.wikidata.org/entity/Q3323	http://www.wikidata.org/entity/Q159	
+http://www.wikidata.org/entity/Q1004257	http://www.wikidata.org/entity/Q3323	http://www.wikidata.org/entity/Q212	
+http://www.wikidata.org/entity/Q156752	http://www.wikidata.org/entity/Q3323	http://www.wikidata.org/entity/Q212	
+
+  { 
+    time     0.064% fanout         1 input         1 rows
+    Subquery 27 
+      { 
+        time     0.035% fanout         1 input         1 rows
+        fork {
+            time         8% fanout      7309 input         1 rows
+            RDF_QUAD   7.3e+03 rows(s_37_10_t2.S$34, s_37_10_t2.O$33)
+             inlined  P =  IRI_ID"...direct/P190" 
+            time        45% fanout 0.0931728 input      7309 rows
+            RDF_QUAD      0.03 rows(s_37_10_t1.S$37)
+             inlined  P =  IRI_ID"...direct/P17"  ,  S = s_37_10_t2.S$34 ,  O =  IRI_ID"...Q159" 
+            time        14% fanout  0.220264 input       681 rows
+            RDF_QUAD         1 rows(s_37_10_t3.O$40)
+             inlined  P =  IRI_ID"...direct/P17"  ,  S = k_s_37_10_t2.O$142
+            time       5.9% fanout         1 input       150 rows
+            END Node
+            After test:
+            0: if (  { 
+                time      0.14% fanout         1 input       150 rows
+                time       5.3% fanout         0 input       150 rows
+                Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:   5.9e-05 Fanout:         0
+                RDF_QUAD   5.9e-05 rows()
+                 inlined  P =  IRI_ID"...direct/P31"  ,  S = k_s_37_10_t3.O$174 ,  O =  IRI_ID"...Q3024240" 
+                time         0% fanout         0 input         0 rows
+                Subquery Select( <none> )
+              }
+            ) then 5 else 4 unkn 5
+            4: BReturn 1
+            5: BReturn 0
+            time         3% fanout  0.253333 input       150 rows
+            Distinct (s_37_10_t2.O$33, s_37_10_t1.S$37, s_37_10_t3.O$40)
+            time        17% fanout         0 input        38 rows
+            Precode:
+              0: __id2in$62 := Call __id2in (s_37_10_t1.S$37)
+              5: __ro2sq$64 := Call __ro2sq (s_37_10_t3.O$40)
+              10: BReturn 0
+            Sort (__id2in$62, __ro2sq$64) -> (s_37_10_t2.O$33)
+            
+          }
+        time       1.7% fanout        38 input         1 rows
+        Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:         0 Fanout:        38
+        Key from temp (s_37_10_t2.O$33, __id2in$62, __ro2sq$64)
+        
+        
+        After code:
+        0: __ro2sq$79 := Call __ro2sq (s_37_10_t2.O$33)
+        5: var1$28 :=  := artm __ro2sq$79
+        9: var2$29 :=  := artm __id2in$62
+        13: var3$30 :=  := artm __ro2sq$64
+        17: BReturn 0
+        time     0.014% fanout         0 input        38 rows
+        Subquery Select(var1$28, var2$29, var3$30)
+      }
+    
+    After code:
+    0: var1$88 := Call __ro2sq (var1$28)
+    5: var2$90 := Call __ro2sq (var2$29)
+    10: var3$92 := Call __ro2sq (var3$30)
+    15: BReturn 0
+    time    0.0095% fanout         0 input        38 rows
+    Select (var1$88, var2$90, var3$92)
+  }
+
+
+ 5 msec 62% cpu,      8187 rnd      7686 seq   98.5344% same seg  0.476307% same pg 
+Compilation: 3 msec 0 reads         0% read 0 messages         0% clw

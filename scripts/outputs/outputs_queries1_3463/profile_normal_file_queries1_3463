@@ -1,0 +1,70 @@
+2	
+1	
+
+  { 
+    time   9.6e-05% fanout         1 input         1 rows
+      clear: (<V set_ctr$78 in>)
+    s# 81 79 cluster outer seq start, set no <V set_ctr$78 in>    
+    save ctx:()
+      clear: (<V var2$28 in>, <V set_no$29 i>, <V var2$70 a>)
+    s# 90 27 Subquery 27 
+      multistate set no = <V set_no$29 i>
+      { 
+        time   8.4e-05% fanout         1 input         1 rows
+        
+        s# 122 37 Fork 37 {  
+                
+            save ctx:()
+              set no = <V set_no$29 i> array  <none>  save: 
+            time        26% fanout    148078 input         1 rows
+              clear: (<V s_37_4_t0.S$31 rn>)
+              clear on continue: (<V s_37_4_t0.S$31 rn>)
+            s# 95 30 from DB.DBA.RDF_QUAD by RDF_QUAD_POGS    6.2e+05 rows Parallel, tail cost   6.7e+06   
+            Key RDF_QUAD_POGS  ASC  (<V s_37_4_t0.S$31 rn>)
+             P =  IRI_ID"...direct/P31"  ,  O =  IRI_ID"...Q4167410" 
+            copy on branch $29 $0 $0 $0 sets: 81 
+            
+            time        74% fanout 2.02596e-05 input    148078 rows
+            Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:       1.9 Fanout:     2e-05
+            Precode:
+              0: <V isnotnull$33 in> := Call isnotnull (<V s_37_4_t0.S$31 rn>)
+              5: BReturn 0
+              clear: (<V isnotnull$33 in>)
+              clear on continue: ()
+            s# 105 35 from DB.DBA.RDF_QUAD by RDF_QUAD        1.9 rows Parallel, tail cost      0.65   
+            Key RDF_QUAD  ASC  ()
+             inlined  P =  IRI_ID"...direct/P50"  ,  S = <V s_37_4_t0.S$31 rn>
+            copy on branch $31 $29 $33 $0 sets: 81 95 
+            
+            time     0.003% fanout         0 input         3 rows
+            $31 (35 ) $33 (35 ) 
+            s# 114 38 Sort (HASH) set no <r set_no$29 via  Set105 Set95>(<r s_37_4_t0.S$31 via  Set105>) -> (<r isnotnull$33 via  Set105>) up to   6.8e+06 distinct
+            
+        }
+        time    0.0031% fanout         2 input         1 rows
+          clear: (<V aggregate$39 in>, <V s_37_4_t0.S$31 rn>, <V var2$28 in>)
+          clear on continue: (<V aggregate$39 in>, <V s_37_4_t0.S$31 rn>, <V var2$28 in>)
+        s# 129 45 group by read node  
+        (<V s_37_4_t0.S$31 rn>, <V aggregate$39 in>)
+        After code:
+          0: <V var2$28 in> :=  := artm <V aggregate$39 in>
+          4: BReturn 0
+        time   4.4e-05% fanout         0 input         2 rows
+        
+        s# 90 63 Subquery Select(<V var2$28 in>)
+          set no: <r set_no$29 via  Set129>
+      }
+    
+    After code:
+      0: <V var2$70 a> := Call __ro2sq (<V var2$28 in>)
+      5: BReturn 0
+    time   3.1e-05% fanout         0 input         2 rows
+    $70 (27 ) $78 (27 79 ) 
+    s# 147 72 Select (<V var2$70 a>)
+      set no: <r set_ctr$78 via  Set90>
+  }
+
+
+ 1807 msec 97% cpu,    148079 rnd    147924 seq   99.8204% same seg 0.0763101% same pg 
+63 disk reads, 0 read ahead,   136.333% wait
+Compilation: 2 msec 0 reads         0% read 0 messages         0% clw

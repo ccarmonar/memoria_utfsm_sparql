@@ -1,0 +1,71 @@
+http://www.snee.com/hr/emp3	http://www.w3.org/1999/02/22-rdf-syntax-ns#type	http://xmlns.com/foaf/0.1/Person	
+http://www.snee.com/hr/emp2	http://xmlns.com/foaf/0.1/givenName	John	
+http://www.snee.com/hr/emp4	http://xmlns.com/foaf/0.1/familyName	Berger	
+http://www.snee.com/hr/emp4	http://www.w3.org/1999/02/22-rdf-syntax-ns#type	http://xmlns.com/foaf/0.1/Person	
+http://www.snee.com/hr/emp3	http://xmlns.com/foaf/0.1/familyName	Jones	
+http://www.snee.com/hr/emp1	http://xmlns.com/foaf/0.1/name	Heidi Smith	
+http://www.snee.com/hr/emp2	http://xmlns.com/foaf/0.1/name	John Smith	
+http://www.snee.com/hr/emp2	http://xmlns.com/foaf/0.1/familyName	Smith	
+http://www.snee.com/hr/emp1	http://www.w3.org/1999/02/22-rdf-syntax-ns#type	http://xmlns.com/foaf/0.1/Person	
+http://www.snee.com/hr/emp1	http://xmlns.com/foaf/0.1/givenName	Heidi	
+http://www.snee.com/hr/emp1	http://xmlns.com/foaf/0.1/familyName	Smith	
+http://www.snee.com/hr/emp4	http://xmlns.com/foaf/0.1/givenName	Jane	
+http://www.snee.com/hr/emp2	http://www.w3.org/1999/02/22-rdf-syntax-ns#type	http://xmlns.com/foaf/0.1/Person	
+http://www.snee.com/hr/emp3	http://xmlns.com/foaf/0.1/givenName	Francis	
+http://www.snee.com/hr/emp4	http://xmlns.com/foaf/0.1/name	Jane Berger	
+http://www.snee.com/hr/emp3	http://xmlns.com/foaf/0.1/name	Francis Jones	
+
+  { 
+    Precode:
+      0:   { 
+          time         3% fanout         1 input         1 rows
+          time       5.8% fanout         1 input         1 rows
+          Precode:
+            0: vector$27 := Call vector ( 1 ,  0 ,  3 ,  IRI_ID"...type" ,  3 ,  IRI_ID"...Person" )
+            5: vector$29 := Call vector ( 1 ,  0 ,  3 ,  IRI_ID"...givenName" ,  1 ,  3 )
+            10: vector$31 := Call vector ( 1 ,  0 ,  3 ,  IRI_ID"...familyName" ,  1 ,  2 )
+            15: vector$33 := Call vector ( 1 ,  0 ,  3 ,  IRI_ID"...name" ,  1 ,  1 )
+            20: vector$35 := Call vector (vector$27, vector$29, vector$31, vector$33)
+            25: vector$37 := Call vector ()
+            30: BReturn 0
+          fork {
+              time        11% fanout         4 input         1 rows
+              RDF_QUAD         4 rows(t2.S$41, t2.O$40)
+               inlined  P =  IRI_ID"...given-name" 
+              time        79% fanout         0 input         4 rows
+              Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:         1 Fanout:         0
+              RDF_QUAD         1 rows(t3.O$44)
+               inlined  P =  IRI_ID"...family-name"  ,  S = t2.S$41
+              
+              After code:
+              0: __ro2lo$46 := Call __ro2lo (t2.O$40)
+              5: __ro2sq$48 := Call __ro2sq (t2.O$40)
+              10: __ro2sq$50 := Call __ro2sq (t3.O$44)
+              15: rdf_concat_impl$52 := Call rdf_concat_impl (__ro2sq$48, <c  >, __ro2sq$50)
+              20: DB.DBA.RDF_LONG_OF_SQLVAL$54 := Call DB.DBA.RDF_LONG_OF_SQLVAL (rdf_concat_impl$52)
+              27: __ro2lo$56 := Call __ro2lo (t3.O$44)
+              32: vector$58 := Call vector (t2.S$41, DB.DBA.RDF_LONG_OF_SQLVAL$54, __ro2lo$56, __ro2lo$46)
+              37: if (user_aggr_notfirst$63  =  1 ) then 52 else 41 unkn 41
+              41: user_aggr_notfirst$63  :=  := artm  1 
+              45: user_aggr_ret$65 := Call DB.DBA.SPARQL_CONSTRUCT_INIT (user_aggr_env$64 )
+              52: user_aggr_ret$65 := Call DB.DBA.SPARQL_CONSTRUCT_ACC (user_aggr_env$64 , vector$35, vector$58, vector$37,  1 )
+              59: BReturn 0
+            }
+          time       1.4% fanout         1 input         1 rows
+          skip node  1  <none> set_ctr$60
+          
+          After code:
+          0: callret-0$66 := Call DB.DBA.SPARQL_CONSTRUCT_FIN (user_aggr_env$64 )
+          7: BReturn 0
+          time      0.17% fanout         0 input         1 rows
+          Subquery Select(callret-0$66)
+        }
+      
+      8:  <none>  := Call DB.DBA.RDF_DICT_OF_TRIPLES_TO_THREE_COLS (scalar$136 )
+      15: BReturn 0
+    END Node
+  }
+
+
+ 1 msec 29% cpu,        21 rnd         3 seq   13.6364% same seg   54.5455% same pg 
+Compilation: 2 msec 0 reads         0% read 0 messages         0% clw

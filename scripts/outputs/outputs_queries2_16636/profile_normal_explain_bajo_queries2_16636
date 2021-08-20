@@ -1,0 +1,63 @@
+http://www.wikidata.org/prop/direct/P750	
+http://www.wikidata.org/prop/direct/P108	
+http://www.wikidata.org/prop/direct/P162	
+http://www.wikidata.org/prop/direct/P123	
+http://www.wikidata.org/prop/direct/P127	
+http://schema.org/about	
+http://www.wikidata.org/prop/direct/P355	
+http://www.wikidata.org/prop/direct/P449	
+http://www.wikidata.org/prop/direct/P749	
+http://www.wikidata.org/prop/direct/P1889	
+http://www.wikidata.org/prop/direct/P31	
+http://www.wikidata.org/prop/direct/P1416	
+http://www.w3.org/2002/07/owl#sameAs	
+http://www.wikidata.org/prop/direct/P2378	
+http://www.wikidata.org/prop/direct/P463	
+http://www.wikidata.org/prop/direct/P137	
+http://www.wikidata.org/prop/direct/P301	
+http://www.wikidata.org/prop/direct/P361	
+http://www.wikidata.org/prop/direct/P971	
+http://www.wikidata.org/prop/direct/P3301	
+
+  { 
+    time     0.017% fanout         1 input         1 rows
+    time     0.004% fanout         1 input         1 rows
+    time      0.72% fanout      4760 input         1 rows
+    RDF_QUAD   4.8e+03 rows(s_37_6_t1.O$31)
+     inlined  P =  IRI_ID"...direct/P1830" 
+    time        42% fanout   1.53298 input      4760 rows
+    RDF_QUAD_OP       2.8 rows(s_37_6_t2.P$35, s_37_6_t2.O$34)
+     inlined  O = cast$100
+    time       2.3% fanout  0.362204 input      7297 rows
+    END Node
+    After test:
+    0: if (s_37_6_t2.P$35 =  IRI_ID"...direct/P1830" ) then 9 else 4 unkn 9
+    4: if (s_37_6_t2.P$35 =  IRI_ID"...direct/P272" ) then 9 else 8 unkn 9
+    8: BReturn 1
+    9: BReturn 0
+    time        37% fanout   3.71888 input      2643 rows
+    RDF_QUAD_POGS       1.2 rows()
+     P = k_s_37_6_t2.P$129 ,  O = k_s_37_6_t1.O$133
+    time        15% fanout  0.287415 input      9829 rows
+    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:       4.3 Fanout:      0.29
+    RDF_QUAD_POGS       4.3 rows()
+     P =  IRI_ID"...direct/P272"  ,  O = k_s_37_6_t1.O$144
+    time       1.1% fanout 0.00743363 input      2825 rows
+    Distinct (s_37_6_t2.P$35)
+    
+    After code:
+    0: p2$28 :=  := artm s_37_6_t2.P$35
+    4: BReturn 0
+    time       1.1% fanout         1 input        21 rows
+    Subquery Select(p2$28)
+    
+    After code:
+    0: p2$57 := Call __ro2sq (p2$28)
+    5: BReturn 0
+    time     0.011% fanout         0 input        21 rows
+    Select (p2$57)
+  }
+
+
+ 21 msec 91% cpu,     17098 rnd     17005 seq    90.865% same seg   6.55594% same pg 
+Compilation: 2 msec 0 reads         0% read 0 messages         0% clw

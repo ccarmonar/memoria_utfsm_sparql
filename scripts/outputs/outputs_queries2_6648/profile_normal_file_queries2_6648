@@ -1,0 +1,70 @@
+http://www.wikidata.org/entity/Q23742	POINT(37.309961 44.89619)		
+http://www.wikidata.org/entity/Q1046324	POINT(42.65 0.98333333333333)		
+http://www.wikidata.org/entity/Q117303	POINT(13.933333333333 41.466666666667)		
+http://www.wikidata.org/entity/Q117319	POINT(13.841666666667 41.368055555556)		
+http://www.wikidata.org/entity/Q126084	POINT(35.083888888889 32.926111111111)		
+http://www.wikidata.org/entity/Q150325	POINT(157 -8)		
+http://www.wikidata.org/entity/Q154563	POINT(13.401111111111 52.519166666667)		
+http://www.wikidata.org/entity/Q156737	POINT(10.1225 54.338888888889)		
+http://www.wikidata.org/entity/Q157685	POINT(2.1747222222222 49.87)		
+http://www.wikidata.org/entity/Q157873	POINT(36.316666666667 49.966666666667)		
+http://www.wikidata.org/entity/Q161982	POINT(8.2416666666667 49.993055555556)		
+http://www.wikidata.org/entity/Q164193	POINT(23.950277777778 49.7175)		
+http://www.wikidata.org/entity/Q165380	POINT(9.65 51.416666666667)		
+http://www.wikidata.org/entity/Q171387	POINT(-46.697222222222 -23.701111111111)		
+http://www.wikidata.org/entity/Q175721	POINT(116.6965 38.0405)		
+http://www.wikidata.org/entity/Q200747	POINT(135.16666666667 34.233333333333)		
+http://www.wikidata.org/entity/Q240549	POINT(40.432661111111 56.141544444444)		
+http://www.wikidata.org/entity/Q274846	POINT(-4.6213888888889 48.433888888889)		
+http://www.wikidata.org/entity/Q278257	POINT(116.2633 37.69189)		
+http://www.wikidata.org/entity/Q370224	POINT(2.4536111111111 48.890833333333)		
+
+  { 
+    time      0.77% fanout         1 input         1 rows
+      clear: (<V set_ctr$62 in>)
+    s# 65 63 cluster outer seq start, set no <V set_ctr$62 in>    
+    save ctx:()
+      clear: (<V var3$30 x>, <V var2$29 an>, <V var1$28 rn>, <V set_no$31 i>, <V var2$54 a>, <V var1$52 a>)
+    s# 74 27 Subquery 27 
+      multistate set no = <V set_no$31 i>
+      { 
+        time        29% fanout      1000 input         1 rows
+        Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:   3.4e+04 Fanout:     1e+03
+          clear: (<V s_37_2_t0.O$33 an>, <V s_37_2_t0.S$34 rn>)
+          clear on continue: (<V s_37_2_t0.O$33 an>, <V s_37_2_t0.S$34 rn>)
+        s# 78 32 from DB.DBA.RDF_QUAD by RDF_QUAD    3.4e+04 rows   
+        Key RDF_QUAD  ASC  (<V s_37_2_t0.S$34 rn>, <V s_37_2_t0.O$33 an>)
+         inlined  P =  IRI_ID"...direct/P625" 
+        
+        time        66% fanout         1 input      1000 rows
+        
+        s# 89 36 Distinct (HASH) set no <r set_no$31 via  Set78>(<V s_37_2_t0.S$34 rn>, <V s_37_2_t0.O$33 an>)
+        time       3.4% fanout       0.1 input      1000 rows
+          clear: (<V var3$30 x>, <V var2$29 an>, <V var1$28 rn>)$33 (36 ) $34 (36 ) 
+        s# 97 50 skip node  100  <none> <r set_no$31 via  Set89 Set78>
+        After code:
+          0: <V var1$28 rn> :=  := artm <r s_37_2_t0.S$34 via  Set97 Set89>
+          4: <V var2$29 an> :=  := artm <r s_37_2_t0.O$33 via  Set97 Set89>
+          8: <V var3$30 x> :=  := artm <DB_NULL>
+          12: BReturn 0
+        time      0.21% fanout         0 input       100 rows
+        
+        s# 74 42 Subquery Select(<V var1$28 rn>, <V var2$29 an>, <V var3$30 x>)
+          set no: <r set_no$31 via  Set97 Set89 Set78>
+      }
+    
+    After code:
+      0: <V var1$52 a> := Call __ro2sq (<V var1$28 rn>)
+      5: <V var2$54 a> := Call __ro2sq (<V var2$29 an>)
+      10: BReturn 0
+    time      0.11% fanout         0 input       100 rows
+    $62 (27 63 ) $52 (27 ) $54 (27 ) $30 (27 ) 
+    s# 115 56 Select (<V var1$52 a>, <V var2$54 a>, <V var3$30 x>)
+      set no: <r set_ctr$62 via  Set74>
+  }
+Warning: You might have a Cartesian product.
+
+
+
+ 2 msec 53% cpu,       189 rnd       998 seq         0% same seg   82.1053% same pg 
+Compilation: 1 msec 0 reads         0% read 0 messages         0% clw

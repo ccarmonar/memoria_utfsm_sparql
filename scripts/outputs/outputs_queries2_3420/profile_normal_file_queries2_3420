@@ -1,0 +1,79 @@
+
+  { 
+    time   1.7e-05% fanout         1 input         1 rows
+      clear: (<V set_ctr$66 in>)
+    s# 72 67 cluster outer seq start, set no <V set_ctr$66 in>    
+    save ctx:()
+    time        12% fanout 2.19413e+06 input         1 rows
+      clear: (<V s_37_8_t2.O$28 an>, <V s_37_8_t2.S$29 rn>)
+      clear on continue: (<V s_37_8_t2.O$28 an>, <V s_37_8_t2.S$29 rn>)
+    s# 81 27 from DB.DBA.RDF_QUAD by RDF_QUAD      2e+06 rows   
+    Key RDF_QUAD  ASC  (<V s_37_8_t2.S$29 rn>, <V s_37_8_t2.O$28 an>)
+     inlined  P =  IRI_ID"...direct/P577" 
+    
+    time       1.5% fanout  0.928802 input 2.19413e+06 rows
+      clear: (<V s_37_8_t0.S$32 rn>)
+      clear on continue: (<V s_37_8_t0.S$32 rn>)$29 () 
+    s# 92 31 from DB.DBA.RDF_QUAD by RDF_QUAD       0.38 rows   
+    Key RDF_QUAD  ASC  (<V s_37_8_t0.S$32 rn>)
+     inlined  P =  IRI_ID"...direct/P31"  ,  S = <V s_37_8_t2.S$29 rn> ,  O =  IRI_ID"...Q13442814" 
+    
+    time        58% fanout   55.3056 input 2.03791e+06 rows
+    Precode:
+      0: <V var2$34 a> := Call __ro2sq (<r s_37_8_t2.O$28 via  Set92>)
+      5: <V var1$36 a> := Call __id2in (<V s_37_8_t0.S$32 rn>)
+      10: BReturn 0
+      clear: (<V var1$36 a>, <V var2$34 a>)
+      clear on continue: ()$32 () $28 (31 ) 
+    s# 102 38 from DB.DBA.RDF_QUAD by RDF_QUAD         25 rows   
+    Key RDF_QUAD  ASC  ()
+     inlined  P =  IRI_ID"...description"  ,  S = <V s_37_8_t0.S$32 rn>
+    
+    time        17% fanout         0 input 1.12708e+08 rows
+    
+    s# 116 111 END Node
+    After test:
+      0: if (  { 
+          time         3% fanout         1 input 1.12708e+08 rows
+            clear: (<V set_ctr$57 in>)
+          s# 120 58 cluster outer seq start, set no <V set_ctr$57 in>    
+          save ctx:()
+            clear: (<V __stub$41 in>, <V set_no$42 i>)
+          s# 129 40 Subquery 40 
+            multistate set no = <V set_no$42 i>
+            { 
+              time         7% fanout         1 input 1.12708e+08 rows
+              Precode:
+                0: <V __stub$41 in> :=  := artm  1 
+                4: BReturn 0
+                clear: (<V __stub$41 in>)
+              s# 134 49 END Node
+              time     0.045% fanout         0 input 1.12708e+08 rows
+              $41 (49 ) 
+              s# 129 43 Subquery Select(<r __stub$41 via  Set134>)
+                set no: <r set_no$42 via  Set134>
+            }
+          
+          time       1.7% fanout         0 input 1.12708e+08 rows
+          $57 (40 58 ) 
+          s# 148 51 Subquery Select( <none> )
+            set no: <r set_ctr$57 via  Set129>
+        }
+      ) then 5 else 4 unkn 5
+      4: BReturn 1
+      5: BReturn 0
+    time         0% fanout         0 input         0 rows
+    
+    s# 160 70 skip node  200  <none> <r set_ctr$66 via  Set116 Set102 Set92 Set81>
+    time         0% fanout         0 input         0 rows
+    $34 (70 111 38 ) $66 (70 111 38 31 27 67 ) $36 (70 111 38 ) 
+    s# 168 60 Select (<r var1$36 via  Set160 Set116 Set102>, <r var2$34 via  Set160 Set116 Set102>)
+      set no: <r set_ctr$66 via  Set160 Set116 Set102 Set92 Set81>
+  }
+Warning: You might have a Cartesian product.
+
+
+
+ 17445 msec 99% cpu, 6.14879e+06 rnd 1.12749e+08 seq   64.8745% same seg   34.6763% same pg 
+1860 disk reads, 0 read ahead,   15.5943% wait
+Compilation: 2 msec 0 reads         0% read 0 messages         0% clw

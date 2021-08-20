@@ -1,0 +1,55 @@
+Error: 23000: SR197: Non unique primary key on DB.DBA.RDF_OBJ.
+  { 
+    time     1e+02% fanout         1 input         1 rows
+    time         0% fanout         0 input         1 rows
+    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:   1.4e-07 Fanout:         0
+    Precode:
+      0: DB.DBA.RDF_OBJ_OF_SQLVAL$27 := Call DB.DBA.RDF_OBJ_OF_SQLVAL (<c string1>)
+      7: BReturn 0
+    RDF_QUAD_POGS   1.4e-07 rows(s_37_12_t4.S$30)
+     P =  IRI_ID"...rank"  ,  O =  IRI_ID"...DeprecatedRank" 
+    time         0% fanout         0 input         0 rows
+    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:   1.4e-07 Fanout:         0
+    RDF_QUAD_POGS   1.4e-07 rows(s_37_12_t0.S$33)
+     inlined  P =  IRI_ID"...statement/P699"  ,  O = k_DB.DBA.RDF_OBJ_OF_SQLVAL$100 ,  S = k_s_37_12_t4.S$104
+    time         0% fanout         0 input         0 rows
+    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:       8.5 Fanout:         0
+    RDF_QUAD_SP       8.5 rows(s_37_12_t5.S$37, s_37_12_t5.P$36)
+     inlined  S = k_s_37_12_t0.S$116 S = k_s_37_12_t4.S$120
+    time         0% fanout         0 input         0 rows
+    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:       1.2 Fanout:         0
+    RDF_QUAD       1.2 rows(s_37_12_t5.O$41)
+     inlined  P = k_s_37_12_t5.P$133 ,  S = k_s_37_12_t0.S$137 S = k_s_37_12_t4.S$139
+    time         0% fanout         0 input         0 rows
+    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:       2.8 Fanout:         0
+    Precode:
+      0: var3$44 := Call __id2in (s_37_12_t5.P$36)
+      5: var4$46 := Call __ro2sq (s_37_12_t5.O$41)
+      10: BReturn 0
+    RDF_QUAD_OP       2.8 rows(s_37_12_t1.P$49)
+     inlined  O = k_s_37_12_t0.S$151 O = k_s_37_12_t4.S$155 ,  O = k_s_37_12_t5.S$157
+    time         0% fanout         0 input         0 rows
+    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:       1.2 Fanout:         0
+    RDF_QUAD_POGS       1.2 rows(s_37_12_t1.S$53)
+     P = k_s_37_12_t1.P$169 ,  O = k_s_37_12_t0.S$173 O = k_s_37_12_t4.S$175 ,  O = k_s_37_12_t5.S$177
+    time         0% fanout         0 input         0 rows
+    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:         1 Fanout:         0
+    RDF_QUAD_POGS         1 rows(s_37_12_t2.S$57)
+     P =  IRI_ID"...claim"  ,  O = k_s_37_12_t1.P$189
+    time         0% fanout         0 input         0 rows
+    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:         1 Fanout:         0
+    RDF_QUAD         1 rows(s_37_12_t3.O$60)
+     inlined  P =  IRI_ID"...propertyType"  ,  S = s_37_12_t2.S$57
+    
+    After code:
+    0: var2$62 := Call __id2in (s_37_12_t1.P$49)
+    5: var1$64 := Call __id2in (s_37_12_t1.S$53)
+    10: var5$66 := Call __ro2sq (s_37_12_t3.O$60)
+    15: BReturn 0
+    time         0% fanout         0 input         0 rows
+    Select (var1$64, var2$62, var3$44, var4$46, var5$66)
+  }
+
+
+ 1 msec 4% cpu,         3 rnd         0 seq         0% same seg         0% same pg 
+Compilation: 6 msec 0 reads         0% read 0 messages         0% clw

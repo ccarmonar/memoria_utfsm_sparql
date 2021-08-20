@@ -1,0 +1,42 @@
+http://www.wikidata.org/entity/Q10864575	
+http://www.wikidata.org/entity/Q10886723	
+http://www.wikidata.org/entity/Q10900961	
+http://www.wikidata.org/entity/Q10904613	
+http://www.wikidata.org/entity/Q10922222	
+http://www.wikidata.org/entity/Q10935248	
+http://www.wikidata.org/entity/Q11086990	
+
+  { 
+    time      0.81% fanout         1 input         1 rows
+      clear: (<V set_ctr$41 in>)
+    s# 44 42 cluster outer seq start, set no <V set_ctr$41 in>    
+    save ctx:()
+    time        11% fanout         7 input         1 rows
+      clear: (<V s_37_4_t1.S$28 rn>)
+      clear on continue: (<V s_37_4_t1.S$28 rn>)
+    s# 53 27 from DB.DBA.RDF_QUAD by RDF_QUAD_POGS          7 rows   
+    Key RDF_QUAD_POGS  ASC  (<V s_37_4_t1.S$28 rn>)
+     P =  IRI_ID"...direct/P131"  ,  O =  IRI_ID"...Q1332425" 
+    
+    time        88% fanout         1 input         7 rows
+    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:   0.00047 Fanout:         1
+      clear: (<V s_37_4_t0.S$31 rn>, <V var1$33 a>)
+      clear on continue: (<V s_37_4_t0.S$31 rn>, <V var1$33 a>)$28 () 
+    s# 63 30 from DB.DBA.RDF_QUAD by RDF_QUAD    0.00047 rows   
+    Key RDF_QUAD  ASC  (<V s_37_4_t0.S$31 rn>)
+     inlined  P =  IRI_ID"...direct/P31"  ,  S = <V s_37_4_t1.S$28 rn> ,  O =  IRI_ID"...Q735428" 
+    
+    After code:
+      0: <V var1$33 a> := Call __id2in (<V s_37_4_t0.S$31 rn>)
+      5: BReturn 0
+    time      0.18% fanout         0 input         7 rows
+    $33 () $41 (30 27 42 ) 
+    s# 73 35 Select (<V var1$33 a>)
+      set no: <r set_ctr$41 via  Set63 Set53>
+  }
+Warning: You might have a Cartesian product.
+
+
+
+ 1 msec 21% cpu,        15 rnd         6 seq      6.25% same seg        25% same pg 
+Compilation: 1 msec 0 reads         0% read 0 messages         0% clw

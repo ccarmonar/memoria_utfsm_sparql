@@ -1,0 +1,99 @@
+http://www.wikidata.org/entity/Q2608814	1956384	111584	
+http://www.wikidata.org/entity/Q2609763	38166	1172310	
+http://www.wikidata.org/entity/Q2609818	124291	2753603	
+http://www.wikidata.org/entity/Q2609974	1980067	984443	
+http://www.wikidata.org/entity/Q2610183	1039319	2743442	
+http://www.wikidata.org/entity/Q2612332	147073	1095025	
+http://www.wikidata.org/entity/Q2612650	2108390	984735	
+http://www.wikidata.org/entity/Q2614030	46650	32571	
+http://www.wikidata.org/entity/Q2614212	1876157	587782	
+http://www.wikidata.org/entity/Q2614314	2079204	1216625	
+
+  { 
+    time     0.013% fanout         1 input         1 rows
+      clear: (<V set_ctr$33 in>)
+    s# 86 34 cluster outer seq start, set no <V set_ctr$33 in>    
+    save ctx:()
+    time      0.34% fanout      1000 input         1 rows
+    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:     3e+05 Fanout:     1e+03
+      clear: (<V t1.S$28 rn>)
+      clear on continue: (<V t1.S$28 rn>)
+    s# 95 27 from DB.DBA.RDF_QUAD by RDF_QUAD_POGS      3e+05 rows   
+    Key RDF_QUAD_POGS  ASC  (<V t1.S$28 rn>)
+     P =  IRI_ID"...direct/P31"  ,  O =  IRI_ID"...Q16521" 
+    
+    time     0.057% fanout         1 input      1000 rows
+      clear: (<V set_ctr$36 i>)
+    s# 105 40 cluster outer seq start, set no <V set_ctr$36 i>    
+    save ctx:()
+    time         1% fanout     0.419 input      1000 rows
+      clear: (<V t7.O$31 a>)
+      clear on continue: (<V t7.O$31 a>)$118 (30 ) 
+    s# 114 30 from DB.DBA.RDF_QUAD by RDF_QUAD          1 rows   
+    Key RDF_QUAD  ASC  (<V t7.O$31 a>)
+     inlined  P =  IRI_ID"...direct/P830"  ,  S = <v k_t1.S$118 Set120 rn>
+    vector param casts: <r t1.S$28 via  Set105>-> <v k_t1.S$118 Set120 rn>
+    
+    time     0.029% fanout         1 input       419 rows
+    $36 (30 40 ) 
+    s# 128 35 end of outer seq <r set_ctr$36 via  Set114 Set120>
+     out: (<V t7.O$31 a>)
+     shadow: ( <none> )
+    time     0.026% fanout         1 input       419 rows
+      clear: (<V set_ctr$48 i>)
+    s# 136 52 cluster outer seq start, set no <V set_ctr$48 i>    
+    save ctx:()
+    time      0.47% fanout  0.768496 input       419 rows
+    $149 (45 ) 
+    s# 145 45 from DB.DBA.RDF_QUAD by RDF_QUAD          1 rows   
+    Key RDF_QUAD  ASC  ()
+     inlined  P =  IRI_ID"...direct/P815"  ,  S = <v k_t1.S$149 Set151 rn>
+    vector param casts: <r t1.S$28 via  Set136 Set128>-> <v k_t1.S$149 Set151 rn>
+    
+    time     0.021% fanout         1 input       322 rows
+    $48 (45 52 ) 
+    s# 158 47 end of outer seq <r set_ctr$48 via  Set145 Set151>
+     out: ()
+     shadow: ()
+    time      0.02% fanout         1 input       322 rows
+      clear: (<V set_ctr$61 i>)
+    s# 166 65 cluster outer seq start, set no <V set_ctr$61 i>    
+    save ctx:()
+    time      0.39% fanout  0.319876 input       322 rows
+      clear: (<V t3.O$58 a>)
+      clear on continue: (<V t3.O$58 a>)$179 (57 ) 
+    s# 175 57 from DB.DBA.RDF_QUAD by RDF_QUAD          1 rows   
+    Key RDF_QUAD  ASC  (<V t3.O$58 a>)
+     inlined  P =  IRI_ID"...direct/P685"  ,  S = <v k_t1.S$179 Set181 rn>
+    vector param casts: <r t1.S$28 via  Set166 Set158 Set128>-> <v k_t1.S$179 Set181 rn>
+    
+    time    0.0098% fanout         1 input       103 rows
+    $61 (57 65 ) 
+    s# 189 60 end of outer seq <r set_ctr$61 via  Set175 Set181>
+     out: (<V t3.O$58 a>)
+     shadow: ( <none> )
+    time        98% fanout 0.0970874 input       103 rows
+      clear: (<V var2$74 a>, <V var1$72 a>, <V var3$70 a>)$31 (60 57 65 47 45 52 35 ) $58 (60 ) $28 (60 57 65 47 45 52 35 30 40 ) 
+    s# 197 84 skip node  10  <none> <r set_ctr$33 via  Set189 Set158 Set128 Set95>
+    After code:
+      0: <V var3$70 a> := Call __ro2sq (<r t7.O$31 via  Set197 Set189 Set158>)
+      5: <V var1$72 a> := Call __id2in (<r t1.S$28 via  Set197 Set189 Set158 Set128>)
+      10: <V var2$74 a> := Call __ro2sq (<r t3.O$58 via  Set197>)
+      15: BReturn 0
+    time    0.0015% fanout         0 input        10 rows
+    $33 (84 60 57 65 47 45 52 35 30 40 27 34 ) $70 (84 ) $72 (84 ) $74 (84 ) 
+    s# 205 76 Select (<V var1$72 a>, <V var2$74 a>, <V var3$70 a>)
+      set no: <r set_ctr$33 via  Set197 Set189 Set158 Set128 Set95>
+  }
+Warning: You might have a Cartesian product.
+
+Warning: You might have a Cartesian product.
+
+Warning: You might have a Cartesian product.
+
+Warning: You might have a Cartesian product.
+
+
+
+ 30 msec 91% cpu,      1771 rnd       998 seq   98.0813% same seg  0.507901% same pg 
+Compilation: 2 msec 0 reads         0% read 0 messages         0% clw

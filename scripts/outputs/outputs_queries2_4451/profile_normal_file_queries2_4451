@@ -1,0 +1,56 @@
+http://www.w3.org/1999/02/22-rdf-syntax-ns#type	http://wikiba.se/ontology#Item	
+http://www.w3.org/2000/01/rdf-schema#label	30S ribosomal protein S7 CT2193	
+http://www.w3.org/2000/01/rdf-schema#label	30S ribosomal protein S7 CT2193	
+http://www.w3.org/2004/02/skos/core#prefLabel	30S ribosomal protein S7 CT2193	
+http://www.w3.org/2004/02/skos/core#prefLabel	30S ribosomal protein S7 CT2193	
+http://schema.org/name	30S ribosomal protein S7 CT2193	
+http://schema.org/name	30S ribosomal protein S7 CT2193	
+http://www.wikidata.org/prop/direct/P31	http://www.wikidata.org/entity/Q7187	
+http://www.wikidata.org/prop/direct/P279	http://www.wikidata.org/entity/Q7187	
+http://www.wikidata.org/prop/direct/P279	http://www.wikidata.org/entity/Q20747295	
+http://www.wikidata.org/prop/direct/P703	http://www.wikidata.org/entity/Q21397889	
+http://www.wikidata.org/prop/direct/P2393	CT2193	
+http://www.w3.org/2004/02/skos/core#altLabel	rpsG	
+http://www.w3.org/2004/02/skos/core#altLabel	30S ribosomal protein S7	
+http://www.w3.org/2004/02/skos/core#altLabel	CT2193	
+http://schema.org/description	microbial gene found in Chlorobaculum tepidum TLS	
+http://schema.org/description	gen in30S ribosomal protein S7 CT2193	
+http://www.wikidata.org/prop/direct-normalized/P351	http://purl.uniprot.org/geneid/1007365	
+http://www.wikidata.org/prop/direct/P2548	http://www.wikidata.org/entity/Q22809711	
+http://www.wikidata.org/prop/direct/P351	1007365	
+
+  { 
+    time    0.0016% fanout         1 input         1 rows
+      clear: (<V set_ctr$45 in>)
+    s# 48 46 cluster outer seq start, set no <V set_ctr$45 in>    
+    save ctx:()
+    time     0.018% fanout        16 input         1 rows
+      clear: (<V s_37_2_t0.P$28 rn>)
+      clear on continue: (<V s_37_2_t0.P$28 rn>)
+    s# 57 27 from DB.DBA.RDF_QUAD by RDF_QUAD_SP         16 rows   
+    Key RDF_QUAD_SP  ASC  (<V s_37_2_t0.P$28 rn>)
+     inlined  S =  IRI_ID"...Q24087649" 
+    
+    time     1e+02% fanout    1.4375 input        16 rows
+      clear: (<V s_37_2_t0.O$32 an>, <V var2$37 a>, <V var1$35 a>)
+      clear on continue: (<V s_37_2_t0.O$32 an>, <V var2$37 a>, <V var1$35 a>)$28 () 
+    s# 67 31 from DB.DBA.RDF_QUAD by RDF_QUAD        1.2 rows   
+    Key RDF_QUAD  ASC  (<V s_37_2_t0.O$32 an>)
+     inlined  P = <V s_37_2_t0.P$28 rn> ,  S =  IRI_ID"...Q24087649" 
+    
+    After code:
+      0: <V var1$35 a> := Call __id2in (<r s_37_2_t0.P$28 via  Set67>)
+      5: <V var2$37 a> := Call __ro2sq (<V s_37_2_t0.O$32 an>)
+      10: BReturn 0
+    time   0.00041% fanout         0 input        23 rows
+    $35 () $37 () $45 (31 27 46 ) 
+    s# 77 39 Select (<V var1$35 a>, <V var2$37 a>)
+      set no: <r set_ctr$45 via  Set67 Set57>
+  }
+Warning: You might have a Cartesian product.
+
+
+
+ 220 msec 99% cpu,        40 rnd        22 seq         0% same seg   19.5122% same pg 
+25 disk reads, 0 read ahead,   98.6739% wait
+Compilation: 1 msec 0 reads         0% read 0 messages         0% clw

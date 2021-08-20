@@ -1,0 +1,35 @@
+http://www.wikidata.org/entity/Q3545001	
+http://www.wikidata.org/entity/Q23	
+http://www.wikidata.org/entity/Q23	
+
+  { 
+    time      0.96% fanout         1 input         1 rows
+    time        23% fanout        19 input         1 rows
+    RDF_QUAD_POGS        19 rows(t1.S$28)
+     P =  IRI_ID"...direct/P39"  ,  O =  IRI_ID"...Q11696" 
+    time        38% fanout         1 input        19 rows
+    Precode:
+      0: var1$30 := Call __id2in (t1.S$28)
+      5: BReturn 0
+    outer {
+        time        35% fanout   3.89474 input        19 rows
+        RDF_QUAD       1.3 rows(t3.O$33)
+         inlined  P =  IRI_ID"...direct/P69"  ,  S = k_t1.S$86
+        time         1% fanout   1.04054 input        74 rows
+      } /* end of outer */
+    set_ctr$38
+     out: (t3.O$33)
+     shadow: ( <none> )
+    time       1.6% fanout  0.038961 input        77 rows
+    END Node
+    After test:
+    0: if (t3.O$33  IS NULL   0 ) then 4 else 5 unkn 5
+    4: BReturn 1
+    5: BReturn 0
+    time      0.37% fanout         0 input         3 rows
+    Select (var1$30)
+  }
+
+
+ 0 msec 18% cpu,        20 rnd        76 seq   80.9524% same seg    4.7619% same pg 
+Compilation: 2 msec 0 reads         0% read 0 messages         0% clw

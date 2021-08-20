@@ -1,0 +1,34 @@
+
+  { 
+    time       8.6% fanout         1 input         1 rows
+    time       2.5% fanout         1 input         1 rows
+    time        89% fanout         0 input         1 rows
+    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:         2 Fanout:         0
+    RDF_QUAD_SP         2 rows(s_37_3_t0.P$33)
+     inlined  S =  IRI_ID"...Q41749" 
+    time         0% fanout         0 input         0 rows
+    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:       1.2 Fanout:         0
+    RDF_QUAD       1.2 rows(s_37_3_t0.O$37)
+     inlined  P = s_37_3_t0.P$33 ,  S =  IRI_ID"...Q41749" 
+    time         0% fanout         0 input         0 rows
+    Distinct (s_37_3_t0.P$33, s_37_3_t0.O$37)
+    
+    After code:
+    0: var1$28 :=  := artm <tag 182 flag 1 c http://www.wikidata.org/entity/Q41749>
+    4: var2$29 :=  := artm s_37_3_t0.P$33
+    8: var3$30 :=  := artm s_37_3_t0.O$37
+    12: BReturn 0
+    time         0% fanout         0 input         0 rows
+    Subquery Select(var1$28, var2$29, var3$30)
+    
+    After code:
+    0: var2$54 := Call __ro2sq (var2$29)
+    5: var3$56 := Call __ro2sq (var3$30)
+    10: BReturn 0
+    time         0% fanout         0 input         0 rows
+    Select (var1$28, var2$54, var3$56)
+  }
+
+
+ 1 msec 3% cpu,         1 rnd         0 seq         0% same seg         0% same pg 
+Compilation: 1 msec 0 reads         0% read 0 messages         0% clw

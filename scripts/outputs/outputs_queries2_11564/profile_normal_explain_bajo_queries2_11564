@@ -1,0 +1,54 @@
+http://www.wikidata.org/entity/Q2612010	http://www.wikidata.org/entity/Q3042249	http://commons.wikimedia.org/wiki/Special:FilePath/Gyantse%20Dzong%2C%20Gyantse%2C%20Tibet%20on%208%20May%202015.jpg		
+http://www.wikidata.org/entity/Q2610436	http://www.wikidata.org/entity/Q15944511	http://commons.wikimedia.org/wiki/Special:FilePath/France%20WC2018%20final.jpg		
+http://www.wikidata.org/entity/Q2610436	http://www.wikidata.org/entity/Q15944511	http://commons.wikimedia.org/wiki/Special:FilePath/German%20football%20team%202016%20Olympics%20women.jpg		
+http://www.wikidata.org/entity/Q22345485	http://www.wikidata.org/entity/Q3863	http://commons.wikimedia.org/wiki/Special:FilePath/Asteroidsscale.jpg		
+http://www.wikidata.org/entity/Q22345485	http://www.wikidata.org/entity/Q3863	http://commons.wikimedia.org/wiki/Special:FilePath/Asteroidsscale.jpg		
+http://www.wikidata.org/entity/Q22345576	http://www.wikidata.org/entity/Q3863	http://commons.wikimedia.org/wiki/Special:FilePath/Asteroidsscale.jpg		
+http://www.wikidata.org/entity/Q22345576	http://www.wikidata.org/entity/Q3863	http://commons.wikimedia.org/wiki/Special:FilePath/Asteroidsscale.jpg		
+http://www.wikidata.org/entity/Q22345630	http://www.wikidata.org/entity/Q3863	http://commons.wikimedia.org/wiki/Special:FilePath/Asteroidsscale.jpg		
+http://www.wikidata.org/entity/Q22345630	http://www.wikidata.org/entity/Q3863	http://commons.wikimedia.org/wiki/Special:FilePath/Asteroidsscale.jpg		
+http://www.wikidata.org/entity/Q22346101	http://www.wikidata.org/entity/Q3863	http://commons.wikimedia.org/wiki/Special:FilePath/Asteroidsscale.jpg		
+http://www.wikidata.org/entity/Q22346101	http://www.wikidata.org/entity/Q3863	http://commons.wikimedia.org/wiki/Special:FilePath/Asteroidsscale.jpg		
+http://www.wikidata.org/entity/Q22970192	http://www.wikidata.org/entity/Q3863	http://commons.wikimedia.org/wiki/Special:FilePath/Asteroidsscale.jpg		
+http://www.wikidata.org/entity/Q22970192	http://www.wikidata.org/entity/Q3863	http://commons.wikimedia.org/wiki/Special:FilePath/Asteroidsscale.jpg		
+http://www.wikidata.org/entity/Q2609837	http://www.wikidata.org/entity/Q3863	http://commons.wikimedia.org/wiki/Special:FilePath/Asteroidsscale.jpg		
+http://www.wikidata.org/entity/Q2609837	http://www.wikidata.org/entity/Q3863	http://commons.wikimedia.org/wiki/Special:FilePath/Asteroidsscale.jpg		
+http://www.wikidata.org/entity/Q2609912	http://www.wikidata.org/entity/Q3863	http://commons.wikimedia.org/wiki/Special:FilePath/Asteroidsscale.jpg		
+http://www.wikidata.org/entity/Q2609912	http://www.wikidata.org/entity/Q3863	http://commons.wikimedia.org/wiki/Special:FilePath/Asteroidsscale.jpg		
+http://www.wikidata.org/entity/Q2609919	http://www.wikidata.org/entity/Q3863	http://commons.wikimedia.org/wiki/Special:FilePath/Asteroidsscale.jpg		
+http://www.wikidata.org/entity/Q2609919	http://www.wikidata.org/entity/Q3863	http://commons.wikimedia.org/wiki/Special:FilePath/Asteroidsscale.jpg		
+http://www.wikidata.org/entity/Q2609945	http://www.wikidata.org/entity/Q3863	http://commons.wikimedia.org/wiki/Special:FilePath/Asteroidsscale.jpg		
+
+  { 
+    time     0.049% fanout         1 input         1 rows
+    time       1.7% fanout      1000 input         1 rows
+    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:   6.3e+06 Fanout:     1e+03
+    RDF_QUAD   6.3e+06 rows(t1.O$29, t1.S$28)
+     inlined  P =  IRI_ID"...direct/P31" 
+    time        89% fanout         1 input      1000 rows
+    Precode:
+      0: var1$31 := Call __id2in (t1.S$28)
+      5: var2$33 := Call __ro2sq (t1.O$29)
+      10: BReturn 0
+    outer {
+        time       8.2% fanout     0.268 input      1000 rows
+        RDF_QUAD         1 rows(t3.O$36)
+         inlined  P =  IRI_ID"...direct/P18"  ,  S = k_t1.O$95
+        time     0.054% fanout         1 input       268 rows
+      } /* end of outer */
+    set_ctr$41
+     out: (t3.O$36)
+     shadow: ( <none> )
+    time       0.6% fanout 0.0746269 input       268 rows
+    skip node  20  <none> set_ctr$38
+    
+    After code:
+    0: var3$50 := Call __ro2sq (t3.O$36)
+    5: BReturn 0
+    time    0.0071% fanout         0 input        20 rows
+    Select (var1$31, var2$33, var3$50, <DB_NULL>)
+  }
+
+
+ 8 msec 82% cpu,      1005 rnd      1131 seq   97.8131% same seg   1.68986% same pg 
+Compilation: 1 msec 0 reads         0% read 0 messages         0% clw

@@ -1,0 +1,38 @@
+
+  { 
+    time    0.0028% fanout         1 input         1 rows
+    time   0.00069% fanout         1 input         1 rows
+    time      0.76% fanout     41388 input         1 rows
+    RDF_QUAD_POGS   4.1e+04 rows(s_37_4_t0.S$31)
+     P =  IRI_ID"...direct/P31"  ,  O =  IRI_ID"...Q3305213" 
+    time        13% fanout         1 input     41388 rows
+    RDF_QUAD_POGS      0.79 rows(s_37_4_t1.S$34)
+     P =  IRI_ID"...about"  ,  O = cast$99
+    time        87% fanout         0 input     41388 rows
+    END Node
+    After test:
+    0: __id2in$36 := Call __id2in (s_37_4_t1.S$34)
+    5: __bft$38 := Call __bft (__id2in$36,  2 )
+    10: _cvt$40 := Call _cvt (<tag 193 flag 0>, __bft$38)
+    15: if (_cvt$40  LIKE  <c %string1%>) then 19 else 20 unkn 20
+    19: BReturn 1
+    20: BReturn 0
+    time         0% fanout         0 input         0 rows
+    Distinct (s_37_4_t0.S$31)
+    
+    After code:
+    0: var1$28 :=  := artm s_37_4_t0.S$31
+    4: BReturn 0
+    time         0% fanout         0 input         0 rows
+    Subquery Select(var1$28)
+    
+    After code:
+    0: var1$56 := Call __ro2sq (var1$28)
+    5: BReturn 0
+    time         0% fanout         0 input         0 rows
+    Select (var1$56)
+  }
+
+
+ 109 msec 98% cpu,     41374 rnd     41384 seq    98.968% same seg  0.812085% same pg 
+Compilation: 1 msec 0 reads         0% read 0 messages         0% clw

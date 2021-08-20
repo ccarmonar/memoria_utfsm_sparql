@@ -1,0 +1,40 @@
+
+  { 
+    time       8.5% fanout         1 input         1 rows
+    time        91% fanout         0 input         1 rows
+    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:         2 Fanout:         0
+    RDF_QUAD_SP         2 rows(s_37_6_t0.P$28)
+     inlined  S =  IRI_ID"...Q1369941" 
+    time         0% fanout         0 input         0 rows
+    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:       1.2 Fanout:         0
+    RDF_QUAD       1.2 rows(s_37_6_t0.O$32)
+     inlined  P = s_37_6_t0.P$28 ,  S =  IRI_ID"...Q1369941" 
+    time         0% fanout         0 input         0 rows
+    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:         1 Fanout:         0
+    RDF_QUAD_POGS         1 rows(s_37_6_t1.S$36)
+     P =  IRI_ID"...directClaim"  ,  O = k_s_37_6_t0.P$98
+    time         0% fanout         0 input         0 rows
+    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:       8.5 Fanout:         0
+    Precode:
+      0: var2$38 := Call __ro2sq (s_37_6_t0.O$32)
+      5: var1$40 := Call __id2in (s_37_6_t0.P$28)
+      10: var3$42 := Call __id2in (s_37_6_t1.S$36)
+      15: BReturn 0
+    RDF_QUAD_SP       8.5 rows(s_37_6_t2.P$45)
+     inlined  S = k_s_37_6_t0.O$112
+    time         0% fanout         0 input         0 rows
+    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:       1.2 Fanout:         0
+    RDF_QUAD       1.2 rows(s_37_6_t2.O$49)
+     inlined  P = k_s_37_6_t2.P$126 ,  S = k_s_37_6_t0.O$130
+    
+    After code:
+    0: var4$52 := Call __id2in (s_37_6_t2.P$45)
+    5: var5$54 := Call __ro2sq (s_37_6_t2.O$49)
+    10: BReturn 0
+    time         0% fanout         0 input         0 rows
+    Select (var1$40, var2$38, var3$42, var4$52, var5$54)
+  }
+
+
+ 0 msec 2% cpu,         1 rnd         0 seq         0% same seg         0% same pg 
+Compilation: 2 msec 0 reads         0% read 0 messages         0% clw

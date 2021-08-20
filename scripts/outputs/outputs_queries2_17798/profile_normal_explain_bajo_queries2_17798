@@ -1,0 +1,30 @@
+
+  { 
+    time    0.0021% fanout         1 input         1 rows
+    time     0.027% fanout         8 input         1 rows
+    RDF_QUAD_OP         8 rows(s_37_2_t0.P$28)
+     inlined  O =  IRI_ID"...Q486972" 
+    time      0.93% fanout   7967.25 input         8 rows
+    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:       1.2 Fanout:     8e+03
+    RDF_QUAD_POGS       1.2 rows(s_37_2_t0.S$32)
+     P = s_37_2_t0.P$28 ,  O =  IRI_ID"...Q486972" 
+    time        99% fanout         0 input     63738 rows
+    END Node
+    After test:
+    0: __id2in$35 := Call __id2in (s_37_2_t0.S$32)
+    5: __bft$37 := Call __bft (__id2in$35,  2 )
+    10: rdf_regex_impl$39 := Call rdf_regex_impl (__bft$37, <c balashov>, <c i>)
+    15: if ( 0  = rdf_regex_impl$39) then 20 else 19 unkn 20
+    19: BReturn 1
+    20: BReturn 0
+    
+    After code:
+    0: var1$41 := Call __id2in (s_37_2_t0.P$28)
+    5: BReturn 0
+    time         0% fanout         0 input         0 rows
+    Select (var1$41, <DB_NULL>)
+  }
+
+
+ 145 msec 99% cpu,      2335 rnd     63670 seq         0% same seg   59.5034% same pg 
+Compilation: 1 msec 0 reads         0% read 0 messages         0% clw

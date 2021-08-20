@@ -1,0 +1,95 @@
+http://www.w3.org/1999/02/22-rdf-syntax-ns#type	
+http://www.w3.org/2000/01/rdf-schema#label	
+http://www.w3.org/2004/02/skos/core#prefLabel	
+http://schema.org/name	
+http://www.wikidata.org/prop/direct/P31	
+http://www.wikidata.org/prop/direct/P3704	
+http://www.wikidata.org/prop/direct/P840	
+http://www.wikidata.org/prop/direct/P136	
+http://www.wikidata.org/prop/direct-normalized/P244	
+http://www.wikidata.org/prop/direct-normalized/P3212	
+http://www.wikidata.org/prop/direct-normalized/P4276	
+http://www.wikidata.org/prop/direct-normalized/P646	
+http://www.wikidata.org/prop/direct/P1040	
+http://www.wikidata.org/prop/direct/P1237	
+http://www.wikidata.org/prop/direct/P1258	
+http://www.wikidata.org/prop/direct/P1265	
+http://www.wikidata.org/prop/direct/P1411	
+http://www.wikidata.org/prop/direct/P1417	
+http://www.wikidata.org/prop/direct/P1476	
+http://www.wikidata.org/prop/direct/P156	
+
+  { 
+    time      0.19% fanout         1 input         1 rows
+      clear: (<V set_ctr$65 in>)
+    s# 68 66 cluster outer seq start, set no <V set_ctr$65 in>    
+    save ctx:()
+    time     0.048% fanout         1 input         1 rows
+      clear: (<V set_no$29 i>)
+    s# 77 56 cluster outer seq start, set no <V set_no$29 i>    
+    save ctx:()
+    time       4.6% fanout      1000 input         1 rows
+      clear: (<V s_37_6_t1.S$31 rn>)
+      clear on continue: (<V s_37_6_t1.S$31 rn>)
+    s# 86 30 from DB.DBA.RDF_QUAD by RDF_QUAD    9.2e+03 rows   
+    Key RDF_QUAD  ASC  (<V s_37_6_t1.S$31 rn>)
+     inlined  P =  IRI_ID"...direct/P1970" 
+    
+    time        17% fanout     0.911 input      1000 rows
+      clear: (<V s_37_6_t0.S$34 rn>)
+      clear on continue: (<V s_37_6_t0.S$34 rn>)
+    s# 96 33 from DB.DBA.RDF_QUAD by RDF_QUAD        1.4 rows   
+    Key RDF_QUAD  ASC  (<V s_37_6_t0.S$34 rn>)
+     inlined  P =  IRI_ID"...direct/P750"  ,  S = <V s_37_6_t1.S$31 rn>
+    
+    time       8.1% fanout   1.09769 input       911 rows
+      clear: (<V s_37_6_t2.P$37 rn>)
+      clear on continue: (<V s_37_6_t2.P$37 rn>)$110 (36 ) 
+    s# 106 36 from DB.DBA.RDF_QUAD by RDF_QUAD_SP        8.5 rows   
+    Key RDF_QUAD_SP  ASC  (<V s_37_6_t2.P$37 rn>)
+     inlined  S = <V s_37_6_t0.S$34 rn>
+    row specs:  S = <v k_s_37_6_t1.S$110 Set112 rn>
+    vector param casts: <r s_37_6_t1.S$31 via  Set96>-> <v k_s_37_6_t1.S$110 Set112 rn>
+    
+    time       7.3% fanout     0.967 input      1000 rows
+    
+    s# 125 120 END Node
+    After test:
+      0: if (<V s_37_6_t2.P$37 rn> =  IRI_ID"...direct/P1970" ) then 9 else 4 unkn 9
+      4: if (<V s_37_6_t2.P$37 rn> =  IRI_ID"...direct/P750" ) then 9 else 8 unkn 9
+      8: BReturn 1
+      9: BReturn 0
+    time        43% fanout   1.03413 input       967 rows
+    $31 (120 36 33 ) $34 (120 36 ) $138 (40 ) $142 (40 ) $144 (40 ) 
+    s# 134 40 from DB.DBA.RDF_QUAD by RDF_QUAD        1.2 rows   
+    Key RDF_QUAD  ASC  ()
+     inlined  P = <v k_s_37_6_t2.P$138 Set140 rn> ,  S = <V k_s_37_6_t0.S$142 rn>
+    row specs:  S = <V k_s_37_6_t1.S$144 rn>
+    vector param casts: <r s_37_6_t2.P$37 via  Set125>-> <v k_s_37_6_t2.P$138 Set140 rn>, <r s_37_6_t0.S$34 via  Set125 Set106 Set112>-> <V k_s_37_6_t0.S$142 rn>, <r s_37_6_t1.S$31 via  Set125 Set106 Set112 Set96>-> <V k_s_37_6_t1.S$144 rn>
+    
+    time        11% fanout     0.022 input      1000 rows
+      clear: (<V p2$28 rn>)$37 (40 120 ) 
+    s# 151 43 Distinct (HASH) set no <r set_no$29 via  Set134 Set140 Set125 Set106 Set112 Set96 Set86>(<r s_37_6_t2.P$37 via  Set134 Set140 Set125>)
+    After code:
+      0: <V p2$28 rn> :=  := artm <r s_37_6_t2.P$37 via  Set151 Set134 Set140 Set125>
+      4: BReturn 0
+    time       8.5% fanout         1 input        22 rows
+      clear: (<V p2$57 a>)$28 (43 ) $29 (43 40 120 36 33 30 56 ) 
+    s# 160 49 Subquery Select(<V p2$28 rn>)
+      set no: <r set_no$29 via  Set151 Set134 Set140 Set125 Set106 Set112 Set96 Set86>
+    After code:
+      0: <V p2$57 a> := Call __ro2sq (<V p2$28 rn>)
+      5: BReturn 0
+    time     0.051% fanout         0 input        22 rows
+    $65 (49 43 40 120 36 33 30 56 66 ) $57 (49 ) 
+    s# 167 59 Select (<V p2$57 a>)
+      set no: <r set_ctr$65 via  Set160>
+  }
+Warning: You might have a Cartesian product.
+
+Warning: You might have a Cartesian product.
+
+
+
+ 2 msec 45% cpu,      1247 rnd      3120 seq    96.875% same seg   1.28205% same pg 
+Compilation: 1 msec 0 reads         0% read 0 messages         0% clw

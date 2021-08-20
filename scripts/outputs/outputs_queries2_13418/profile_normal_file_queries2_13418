@@ -1,0 +1,61 @@
+http://www.wikidata.org/entity/Q16008638	
+http://www.wikidata.org/entity/Q163179	
+http://www.wikidata.org/entity/Q89188	
+http://www.wikidata.org/entity/Q573153	
+http://www.wikidata.org/entity/Q2905903	
+http://www.wikidata.org/entity/Q4710115	
+http://www.wikidata.org/entity/Q21157917	
+http://www.wikidata.org/entity/Q1608387	
+http://www.wikidata.org/entity/Q1676422	
+http://www.wikidata.org/entity/Q2423575	
+http://www.wikidata.org/entity/Q10307482	
+http://www.wikidata.org/entity/Q10383117	
+http://www.wikidata.org/entity/Q16194544	
+http://www.wikidata.org/entity/Q41816100	
+http://www.wikidata.org/entity/Q1700932	
+http://www.wikidata.org/entity/Q1796439	
+http://www.wikidata.org/entity/Q558460	
+http://www.wikidata.org/entity/Q1680787	
+http://www.wikidata.org/entity/Q689754	
+http://www.wikidata.org/entity/Q25343253	
+
+  { 
+    time       0.1% fanout         1 input         1 rows
+      clear: (<V set_ctr$43 in>)
+    s# 46 44 cluster outer seq start, set no <V set_ctr$43 in>    
+    save ctx:()
+    time         4% fanout      2000 input         1 rows
+      clear: (<V s_37_6_t1.S$28 rn>)
+      clear on continue: (<V s_37_6_t1.S$28 rn>)
+    s# 55 27 from DB.DBA.RDF_QUAD by RDF_QUAD_POGS      4e+03 rows   
+    Key RDF_QUAD_POGS  ASC  (<V s_37_6_t1.S$28 rn>)
+     P =  IRI_ID"...direct/P106"  ,  O =  IRI_ID"...Q37226" 
+    
+    time        79% fanout     0.018 input      2000 rows
+      clear: (<V s_37_6_t0.S$31 rn>)
+      clear on continue: (<V s_37_6_t0.S$31 rn>)$28 () 
+    s# 65 30 from DB.DBA.RDF_QUAD by RDF_QUAD      0.011 rows   
+    Key RDF_QUAD  ASC  (<V s_37_6_t0.S$31 rn>)
+     inlined  P =  IRI_ID"...direct/P106"  ,  S = <V s_37_6_t1.S$28 rn> ,  O =  IRI_ID"...Q40348" 
+    
+    time        17% fanout  0.694444 input        36 rows
+      clear: (<V var1$35 a>)
+      clear on continue: (<V var1$35 a>)$31 () 
+    s# 75 33 from DB.DBA.RDF_QUAD by RDF_QUAD      0.092 rows   
+    Key RDF_QUAD  ASC  ()
+     inlined  P =  IRI_ID"...direct/P106"  ,  S = <V s_37_6_t0.S$31 rn> ,  O =  IRI_ID"...Q82955" 
+    
+    After code:
+      0: <V var1$35 a> := Call __id2in (<r s_37_6_t0.S$31 via  Set75>)
+      5: BReturn 0
+    time       0.1% fanout         0 input        25 rows
+    $35 () $43 (33 30 27 44 ) 
+    s# 84 37 Select (<V var1$35 a>)
+      set no: <r set_ctr$43 via  Set75 Set65 Set55>
+  }
+Warning: You might have a Cartesian product.
+
+
+
+ 4 msec 63% cpu,      2037 rnd      1997 seq    97.792% same seg   1.61923% same pg 
+Compilation: 1 msec 0 reads         0% read 0 messages         0% clw

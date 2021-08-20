@@ -1,0 +1,85 @@
+http://www.wikidata.org/entity/Q1058266	POINT(11.36633333 43.07611111)	
+
+  { 
+    time      0.24% fanout         1 input         1 rows
+      clear: (<V set_ctr$69 in>)
+    s# 88 70 cluster outer seq start, set no <V set_ctr$69 in>    
+    save ctx:()
+    Precode:
+      0: <V __all_eq$27 x> := Call __all_eq ( IRI_ID"...Q1273" )
+      5: BReturn 0
+      clear: (<V _::trans_obj_37_3$31 an>, <V _::trans_subj_37_2$30 rn>, <V __all_eq$27 x>)
+      clear on continue: (<V _::trans_subj_37_2$30 rn>, <V _::trans_obj_37_3$31 an>)$27 (29 ) 
+    s# 97 29 Transitive dt dir 2, input: (<V __all_eq$27 x>)
+      input shadow: (<V __all_eq$101 x>)
+      output: (<V _::trans_subj_37_2$30 rn>)
+      { 
+        time        28% fanout  0.966667 input        30 rows
+          clear: (<V t3.O$36 an>, <V t3.S$37 rn>, <V _::trans_obj_37_3$31 an>, <V _::trans_subj_37_2$30 rn>)
+          clear on continue: (<V _::trans_subj_37_2$30 rn>, <V _::trans_obj_37_3$31 an>, <V t3.S$37 rn>, <V t3.O$36 an>)$101 (35 ) $107 (35 ) 
+        s# 103 35 from DB.DBA.RDF_QUAD by RDF_QUAD_POGS        9.6 rows   
+        Key RDF_QUAD_POGS  ASC  (<V t3.S$37 rn>, <V t3.O$36 an>)
+         P =  IRI_ID"...direct/P131"  ,  O = <v k___all_eq$107 Set109 an>
+        vector param casts: <V __all_eq$101 x>-> <v k___all_eq$107 Set109 an>
+        
+        After code:
+          0: <V _::trans_subj_37_2$30 rn> :=  := artm <V t3.S$37 rn>
+          4: <V _::trans_obj_37_3$31 an> :=  := artm <V t3.O$36 an>
+          8: BReturn 0
+        time     0.091% fanout         0 input        29 rows
+        $31 () 
+        s# 120 39 Subquery Select(<V _::trans_subj_37_2$30 rn>, <V _::trans_obj_37_3$31 an>)
+          set no: <r step_set$32 via  Set103 Set109>
+      }
+    time        22% fanout  0.966667 input        30 rows
+      clear: (<V t1.S$57 rn>)
+      clear on continue: (<V t1.S$57 rn>)$131 (56 ) $30 () 
+    s# 127 56 from DB.DBA.RDF_QUAD by RDF_QUAD_POGS        9.6 rows   
+    Key RDF_QUAD_POGS  ASC  (<V t1.S$57 rn>)
+     P =  IRI_ID"...direct/P131"  ,  O = <v cast$131 Set133 an>
+    row specs:  O LIKE <c Tó>
+    vector param casts: <V _::trans_subj_37_2$30 rn>-> <v cast$131 Set133 an>
+    
+    time       8.1% fanout 0.0344828 input        29 rows
+    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:       1.1 Fanout:     0.034
+      clear: (<V t4.O$60 an>, <V t4.S$61 rn>)
+      clear on continue: (<V t4.O$60 an>, <V t4.S$61 rn>)$57 () 
+    s# 141 59 from DB.DBA.RDF_QUAD by RDF_QUAD        1.1 rows   
+    Key RDF_QUAD  ASC  (<V t4.S$61 rn>, <V t4.O$60 an>)
+     inlined  P =  IRI_ID"...direct/P625"  ,  S = <V t1.S$57 rn>
+    
+    time        10% fanout         1 input         1 rows
+    Precode:
+      0: <V var1$63 a> := Call __id2in (<V t4.S$61 rn>)
+      5: <V var2$65 a> := Call __ro2sq (<V t4.O$60 an>)
+      10: BReturn 0
+      clear: (<V set_ctr$72 i>, <V var2$65 a>, <V var1$63 a>)$60 () 
+    s# 152 76 cluster outer seq start, set no <V set_ctr$72 i>    
+    save ctx:()
+    time       2.6% fanout         1 input         1 rows
+    $165 (67 ) $61 (76 ) 
+    s# 161 67 from DB.DBA.RDF_QUAD by RDF_QUAD          1 rows   
+    Key RDF_QUAD  ASC  ()
+     inlined  P =  IRI_ID"...direct/P18"  ,  S = <v k_t4.S$165 Set167 rn>
+    vector param casts: <r t4.S$61 via  Set152>-> <v k_t4.S$165 Set167 rn>
+    
+    time      0.11% fanout         1 input         1 rows
+    $72 (67 76 ) 
+    s# 174 71 end of outer seq <r set_ctr$72 via  Set161 Set167>
+     out: ()
+     shadow: ()
+    time     0.027% fanout         0 input         1 rows
+    $63 (71 67 76 ) $65 (71 67 76 ) $69 (71 67 76 59 56 29 70 ) 
+    s# 182 81 Select (<r var1$63 via  Set174>, <r var2$65 via  Set174>)
+      set no: <r set_ctr$69 via  Set174 Set141 Set127 Set133 Set97>
+  }
+Warning: You might have a Cartesian product.
+
+Warning: You might have a Cartesian product.
+
+Warning: You might have a Cartesian product.
+
+
+
+ 1 msec 24% cpu,        92 rnd        56 seq   52.6882% same seg   36.5591% same pg 
+Compilation: 4 msec 0 reads         0% read 0 messages         0% clw

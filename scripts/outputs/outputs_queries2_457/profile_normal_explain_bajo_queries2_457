@@ -1,0 +1,66 @@
+
+  { 
+    time       3.6% fanout         1 input         1 rows
+    Subquery 27 
+      { 
+        Union
+          { 
+            Subquery 31 
+              { 
+                time        62% fanout         0 input         1 rows
+                Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:       0.3 Fanout:         0
+                RDF_QUAD_POGS       0.3 rows(s_37_2_t0-u8.S$35)
+                 P =  IRI_ID"...direct/P31"  ,  O =  IRI_ID"...Q864380" 
+                time         0% fanout         0 input         0 rows
+                skip node  1  <none> set_no$33
+                
+                After code:
+                0: var1$32 :=  := artm s_37_2_t0-u8.S$35
+                4: BReturn 0
+                time         0% fanout         0 input         0 rows
+                Subquery Select(var1$32)
+              }
+            
+            After code:
+            0: var1$28 :=  := artm var1$32
+            4: BReturn 0
+            time         0% fanout         0 input         0 rows
+            Subquery Select(var1$28)
+          }
+          { 
+            Subquery 54 
+              { 
+                time        34% fanout         0 input         1 rows
+                Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:       0.3 Fanout:         0
+                RDF_QUAD       0.3 rows(s_37_5_t1.O$58)
+                 inlined  P =  IRI_ID"...direct/P373"  ,  S =  IRI_ID"...Q864380" 
+                time         0% fanout         0 input         0 rows
+                skip node  1  <none> set_no$56
+                
+                After code:
+                0: var1$55 :=  := artm s_37_5_t1.O$58
+                4: BReturn 0
+                time         0% fanout         0 input         0 rows
+                Subquery Select(var1$55)
+              }
+            
+            After code:
+            0: var1$28 :=  := artm var1$55
+            4: BReturn 0
+            time         0% fanout         0 input         0 rows
+            Subquery Select(var1$28)
+          }
+      }
+    time         0% fanout         0 input         0 rows
+    skip node  1  <none> set_ctr$86
+    
+    After code:
+    0: var1$78 := Call __ro2sq (var1$28)
+    5: BReturn 0
+    time         0% fanout         0 input         0 rows
+    Select (var1$78)
+  }
+
+
+ 0 msec 6% cpu,         2 rnd         0 seq         0% same seg         0% same pg 
+Compilation: 2 msec 0 reads         0% read 0 messages         0% clw

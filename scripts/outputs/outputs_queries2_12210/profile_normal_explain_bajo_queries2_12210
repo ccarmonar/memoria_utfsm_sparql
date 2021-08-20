@@ -1,0 +1,52 @@
+http://www.wikidata.org/entity/Q5779800	
+http://www.wikidata.org/entity/Q17327688	
+http://www.wikidata.org/entity/Q17334375	
+http://www.wikidata.org/entity/Q3937558	
+http://www.wikidata.org/entity/Q12899705	
+http://www.wikidata.org/entity/Q20177276	
+http://www.wikidata.org/entity/Q13107541	
+http://www.wikidata.org/entity/Q17525890	
+http://www.wikidata.org/entity/Q17525914	
+http://www.wikidata.org/entity/Q17741073	
+http://www.wikidata.org/entity/Q17741097	
+http://www.wikidata.org/entity/Q17324631	
+http://www.wikidata.org/entity/Q17319859	
+http://www.wikidata.org/entity/Q17323994	
+http://www.wikidata.org/entity/Q17319840	
+http://www.wikidata.org/entity/Q17319893	
+http://www.wikidata.org/entity/Q17319913	
+http://www.wikidata.org/entity/Q17319949	
+http://www.wikidata.org/entity/Q17319994	
+http://www.wikidata.org/entity/Q17320008	
+
+  { 
+    time      0.22% fanout         1 input         1 rows
+    time       5.8% fanout       134 input         1 rows
+    RDF_QUAD_POGS   1.3e+02 rows(s_37_6_t1.S$28)
+     P =  IRI_ID"...direct/P1343"  ,  O =  IRI_ID"...Q16986324" 
+    time        65% fanout         1 input       134 rows
+    END Node
+    After test:
+    0: if (  { 
+        time      0.17% fanout         1 input       134 rows
+        time        29% fanout         1 input       134 rows
+        Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:   1.8e+02 Fanout:         1
+        RDF_QUAD_POGS   1.8e+02 rows()
+         P =  IRI_ID"...about"  ,  O = k_s_37_6_t1.S$96
+        time      0.26% fanout         0 input       134 rows
+        Subquery Select( <none> )
+      }
+    ) then 4 else 5 unkn 5
+    4: BReturn 1
+    5: BReturn 0
+    
+    After code:
+    0: var1$44 := Call __id2in (s_37_6_t1.S$28)
+    5: BReturn 0
+    time     0.055% fanout         0 input       134 rows
+    Select (var1$44)
+  }
+
+
+ 2 msec 38% cpu,       135 rnd       133 seq   83.0882% same seg   11.0294% same pg 
+Compilation: 1 msec 0 reads         0% read 0 messages         0% clw

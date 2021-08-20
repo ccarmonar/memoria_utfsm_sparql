@@ -1,0 +1,65 @@
+http://www.wikidata.org/entity/Q48981173	
+http://www.wikidata.org/entity/Q16427857	
+http://www.wikidata.org/entity/Q16427857	
+http://www.wikidata.org/entity/Q26001277	
+http://www.wikidata.org/entity/Q7446204	
+http://www.wikidata.org/entity/Q30669871	
+http://www.wikidata.org/entity/Q40896108	
+http://www.wikidata.org/entity/Q27181527	
+http://www.wikidata.org/entity/Q27908825	
+http://www.wikidata.org/entity/Q38218862	
+http://www.wikidata.org/entity/Q48965239	
+http://www.wikidata.org/entity/Q41334171	
+http://www.wikidata.org/entity/Q26000614	
+http://www.wikidata.org/entity/Q26000623	
+http://www.wikidata.org/entity/Q26000623	
+http://www.wikidata.org/entity/Q26000627	
+http://www.wikidata.org/entity/Q26157466	
+http://www.wikidata.org/entity/Q27166181	
+http://www.wikidata.org/entity/Q34521152	
+http://www.wikidata.org/entity/Q27882156	
+
+  { 
+    time   0.00022% fanout         1 input         1 rows
+    time     0.012% fanout      6000 input         1 rows
+    RDF_QUAD_POGS     3e+04 rows(t1.S$28)
+     P =  IRI_ID"...direct/P31"  ,  O =  IRI_ID"...Q101352" 
+    time      0.15% fanout   1.04117 input      6000 rows
+    RDF_QUAD       1.1 rows(t2.S$31)
+     inlined  P =  IRI_ID"...direct/P31"  ,  S = t1.S$28
+    time      0.74% fanout         1 input      6247 rows
+    Precode:
+      0: var1$33 := Call __id2in (t2.S$31)
+      5: BReturn 0
+    outer {
+        time       1.9% fanout   132.788 input      6247 rows
+        RDF_QUAD        14 rows(t4.O$36)
+         inlined  P =  IRI_ID"...description"  ,  S = k_t2.S$106
+        time        97% fanout 0.00750547 input    829528 rows
+        END Node
+        After test:
+        0: __ro2sq$38 := Call __ro2sq (t4.O$36)
+        5: DB.DBA.RDF_LANGUAGE_OF_OBJ$40 := Call DB.DBA.RDF_LANGUAGE_OF_OBJ (__ro2sq$38)
+        12: if (<c ar> = DB.DBA.RDF_LANGUAGE_OF_OBJ$40) then 16 else 17 unkn 17
+        16: BReturn 1
+        17: BReturn 0
+        time     0.045% fanout   1.00337 input      6226 rows
+      } /* end of outer */
+    set_ctr$45
+     out: (t4.O$36, DB.DBA.RDF_LANGUAGE_OF_OBJ$40, __ro2sq$38)
+     shadow: (t4.O$133,  <none> ,  <none> )
+    time     0.063% fanout 0.00336161 input      6247 rows
+    END Node
+    After test:
+    0: if (t4.O$133  IS NULL   0 ) then 4 else 5 unkn 5
+    4: BReturn 1
+    5: BReturn 0
+    time   0.00021% fanout         1 input        21 rows
+    skip node  102  <none> set_ctr$42
+    time   8.8e-05% fanout         0 input        21 rows
+    Select (var1$33)
+  }
+
+
+ 1546 msec 99% cpu, 1.67053e+06 rnd    828692 seq  0.594482% same seg   23.4609% same pg 
+Compilation: 2 msec 0 reads         0% read 0 messages         0% clw

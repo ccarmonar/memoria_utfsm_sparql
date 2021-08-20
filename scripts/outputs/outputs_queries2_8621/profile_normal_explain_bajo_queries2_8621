@@ -1,0 +1,54 @@
+Error: 22007: DT001: Function year needs a datetime, date or time as argument 1, not an arg of type DB_NULL (204)
+  { 
+    time     1e+02% fanout         1 input         1 rows
+    Precode:
+      0: rdf_year_impl$27 := Call rdf_year_impl (<DB_NULL>)
+      5: BReturn 0
+    Subquery 29 
+      { 
+        time         0% fanout         0 input         0 rows
+        END Node
+        After test:
+        0: if ( 2012  = rdf_year_impl$27) then 4 else 5 unkn 5
+        4: BReturn 1
+        5: BReturn 0
+        time         0% fanout         0 input         0 rows
+        Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:   2.8e+04 Fanout:         0
+        RDF_QUAD   2.8e+04 rows(s_37_2_t0.S$37, s_37_2_t0.O$36)
+         inlined  P =  IRI_ID"...direct/P585" 
+        time         0% fanout         0 input         0 rows
+        END Node
+        After test:
+        0: if ( 2012  = rdf_year_impl$27) then 4 else 5 unkn 5
+        4: BReturn 1
+        5: BReturn 0
+        
+        After code:
+        0: __ro2sq$39 := Call __ro2sq (s_37_2_t0.O$36)
+        5: DB.DBA.RDF_DATATYPE_OF_OBJ$41 := Call DB.DBA.RDF_DATATYPE_OF_OBJ (__ro2sq$39)
+        12: BReturn 0
+        time         0% fanout         0 input         0 rows
+        Distinct (s_37_2_t0.S$37, s_37_2_t0.O$36, DB.DBA.RDF_DATATYPE_OF_OBJ$41)
+        time         0% fanout         0 input         0 rows
+        skip node  100  <none> set_no$33
+        
+        After code:
+        0: var1$30 :=  := artm s_37_2_t0.S$37
+        4: var2$31 :=  := artm s_37_2_t0.O$36
+        8: var3$32 :=  := artm DB.DBA.RDF_DATATYPE_OF_OBJ$41
+        12: BReturn 0
+        time         0% fanout         0 input         0 rows
+        Subquery Select(var1$30, var2$31, var3$32)
+      }
+    
+    After code:
+    0: var1$59 := Call __ro2sq (var1$30)
+    5: var2$61 := Call __ro2sq (var2$31)
+    10: BReturn 0
+    time         0% fanout         0 input         0 rows
+    Select (var1$59, var2$61, var3$32)
+  }
+
+
+ 0 msec 1% cpu,         0 rnd         0 seq         0% same seg         0% same pg 
+Compilation: 2 msec 0 reads         0% read 0 messages         0% clw

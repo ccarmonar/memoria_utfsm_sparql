@@ -1,0 +1,74 @@
+http://www.wikidata.org/entity/Q25713830	1938-01-01 00:00:00Z	http://www.w3.org/2001/XMLSchema#dateTime	
+http://www.wikidata.org/entity/Q2607760	2008-05-29 00:00:00Z	http://www.w3.org/2001/XMLSchema#dateTime	
+http://www.wikidata.org/entity/Q2607974	1922-01-01 00:00:00Z	http://www.w3.org/2001/XMLSchema#dateTime	
+http://www.wikidata.org/entity/Q2608937	2008-01-01 00:00:00Z	http://www.w3.org/2001/XMLSchema#dateTime	
+http://www.wikidata.org/entity/Q2609942	1911-01-01 00:00:00Z	http://www.w3.org/2001/XMLSchema#dateTime	
+http://www.wikidata.org/entity/Q2610441	1977-07-01 00:00:00Z	http://www.w3.org/2001/XMLSchema#dateTime	
+http://www.wikidata.org/entity/Q2610532	2011-01-01 00:00:00Z	http://www.w3.org/2001/XMLSchema#dateTime	
+http://www.wikidata.org/entity/Q2611606	1912-01-01 00:00:00Z	http://www.w3.org/2001/XMLSchema#dateTime	
+http://www.wikidata.org/entity/Q2611615	1984-01-01 00:00:00Z	http://www.w3.org/2001/XMLSchema#dateTime	
+http://www.wikidata.org/entity/Q2612555	2011-01-01 00:00:00Z	http://www.w3.org/2001/XMLSchema#dateTime	
+http://www.wikidata.org/entity/Q2612786	1959-01-01 00:00:00Z	http://www.w3.org/2001/XMLSchema#dateTime	
+http://www.wikidata.org/entity/Q2612941	2000-01-01 00:00:00Z	http://www.w3.org/2001/XMLSchema#dateTime	
+http://www.wikidata.org/entity/Q2613156	1919-03-23 00:00:00Z	http://www.w3.org/2001/XMLSchema#dateTime	
+http://www.wikidata.org/entity/Q2613387	1990-01-01 00:00:00Z	http://www.w3.org/2001/XMLSchema#dateTime	
+http://www.wikidata.org/entity/Q2613450	2012-01-01 00:00:00Z	http://www.w3.org/2001/XMLSchema#dateTime	
+http://www.wikidata.org/entity/Q2613562	2012-02-26 00:00:00Z	http://www.w3.org/2001/XMLSchema#dateTime	
+http://www.wikidata.org/entity/Q2614347	2008-01-01 00:00:00Z	http://www.w3.org/2001/XMLSchema#dateTime	
+http://www.wikidata.org/entity/Q2614800	1920-07-14 00:00:00Z	http://www.w3.org/2001/XMLSchema#dateTime	
+http://www.wikidata.org/entity/Q2615155	2012-01-01 00:00:00Z	http://www.w3.org/2001/XMLSchema#dateTime	
+http://www.wikidata.org/entity/Q2615532	1241-04-01 00:00:00Z	http://www.w3.org/2001/XMLSchema#dateTime	
+
+  { 
+    time      0.04% fanout         1 input         1 rows
+      clear: (<V set_ctr$66 in>)
+    s# 69 67 cluster outer seq start, set no <V set_ctr$66 in>    
+    save ctx:()
+      clear: (<V var3$30 a>, <V var2$29 an>, <V var1$28 rn>, <V set_no$31 i>, <V var2$58 a>, <V var1$56 a>)
+    s# 78 27 Subquery 27 
+      multistate set no = <V set_no$31 i>
+      { 
+        time        97% fanout      1000 input         1 rows
+        Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:   6.1e+04 Fanout:     1e+03
+          clear: (<V s_37_2_t0.O$33 an>, <V s_37_2_t0.S$34 rn>, <V DB.DBA.RDF_DATATYPE_OF_OBJ$38 a>, <V __ro2sq$36 a>)
+          clear on continue: (<V s_37_2_t0.O$33 an>, <V s_37_2_t0.S$34 rn>, <V DB.DBA.RDF_DATATYPE_OF_OBJ$38 a>, <V __ro2sq$36 a>)
+        s# 82 32 from DB.DBA.RDF_QUAD by RDF_QUAD    6.1e+04 rows   
+        Key RDF_QUAD  ASC  (<V s_37_2_t0.S$34 rn>, <V s_37_2_t0.O$33 an>)
+         inlined  P =  IRI_ID"...direct/P585" 
+        
+        After code:
+          0: <V __ro2sq$36 a> := Call __ro2sq (<V s_37_2_t0.O$33 an>)
+          5: <V DB.DBA.RDF_DATATYPE_OF_OBJ$38 a> := Call DB.DBA.RDF_DATATYPE_OF_OBJ (<V __ro2sq$36 a>)
+          12: BReturn 0
+        time       2.9% fanout         1 input      1000 rows
+        
+        s# 93 40 Distinct (HASH) set no <r set_no$31 via  Set82>(<V s_37_2_t0.S$34 rn>, <V s_37_2_t0.O$33 an>, <V DB.DBA.RDF_DATATYPE_OF_OBJ$38 a>)
+        time     0.066% fanout       0.1 input      1000 rows
+          clear: (<V var3$30 a>, <V var2$29 an>, <V var1$28 rn>)$33 (40 ) $34 (40 ) $38 (40 ) 
+        s# 101 54 skip node  100  <none> <r set_no$31 via  Set93 Set82>
+        After code:
+          0: <V var1$28 rn> :=  := artm <r s_37_2_t0.S$34 via  Set101 Set93>
+          4: <V var2$29 an> :=  := artm <r s_37_2_t0.O$33 via  Set101 Set93>
+          8: <V var3$30 a> :=  := artm <r DB.DBA.RDF_DATATYPE_OF_OBJ$38 via  Set101 Set93>
+          12: BReturn 0
+        time    0.0078% fanout         0 input       100 rows
+        
+        s# 78 46 Subquery Select(<V var1$28 rn>, <V var2$29 an>, <V var3$30 a>)
+          set no: <r set_no$31 via  Set101 Set93 Set82>
+      }
+    
+    After code:
+      0: <V var1$56 a> := Call __ro2sq (<V var1$28 rn>)
+      5: <V var2$58 a> := Call __ro2sq (<V var2$29 an>)
+      10: BReturn 0
+    time    0.0062% fanout         0 input       100 rows
+    $66 (27 67 ) $56 (27 ) $58 (27 ) $30 (27 ) 
+    s# 119 60 Select (<V var1$56 a>, <V var2$58 a>, <V var3$30 a>)
+      set no: <r set_ctr$66 via  Set78>
+  }
+Warning: You might have a Cartesian product.
+
+
+
+ 9 msec 85% cpu,         3 rnd       998 seq         0% same seg         0% same pg 
+Compilation: 1 msec 0 reads         0% read 0 messages         0% clw

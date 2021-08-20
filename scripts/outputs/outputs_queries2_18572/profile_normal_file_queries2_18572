@@ -1,0 +1,48 @@
+http://www.wikidata.org/entity/Q29601526			
+http://www.wikidata.org/entity/Q20347195			
+http://www.wikidata.org/entity/Q3239224			
+http://www.wikidata.org/entity/Q15651566			
+http://www.wikidata.org/entity/Q15651694			
+http://www.wikidata.org/entity/Q15651773			
+http://www.wikidata.org/entity/Q15652085			
+http://www.wikidata.org/entity/Q15654949			
+http://www.wikidata.org/entity/Q15654952			
+http://www.wikidata.org/entity/Q15655162			
+http://www.wikidata.org/entity/Q15655546			
+http://www.wikidata.org/entity/Q15656197			
+http://www.wikidata.org/entity/Q15658545			
+http://www.wikidata.org/entity/Q15661090			
+http://www.wikidata.org/entity/Q15664167			
+http://www.wikidata.org/entity/Q15679812			
+http://www.wikidata.org/entity/Q15685221			
+http://www.wikidata.org/entity/Q15687753			
+http://www.wikidata.org/entity/Q15688751			
+http://www.wikidata.org/entity/Q15689108			
+
+  { 
+    time     0.072% fanout         1 input         1 rows
+      clear: (<V set_ctr$38 in>)
+    s# 41 39 cluster outer seq start, set no <V set_ctr$38 in>    
+    save ctx:()
+    time     1e+02% fanout      1000 input         1 rows
+    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:     1e+05 Fanout:     1e+03
+      clear: (<V s_37_2_t0.S$28 rn>, <V var1$30 a>)
+      clear on continue: (<V s_37_2_t0.S$28 rn>, <V var1$30 a>)
+    s# 50 27 from DB.DBA.RDF_QUAD by RDF_QUAD_POGS      1e+05 rows   
+    Key RDF_QUAD_POGS  ASC  (<V s_37_2_t0.S$28 rn>)
+     P =  IRI_ID"...direct/P31"  ,  O =  IRI_ID"...Q11266439" 
+    
+    After code:
+      0: <V var1$30 a> := Call __id2in (<V s_37_2_t0.S$28 rn>)
+      5: BReturn 0
+    time     0.025% fanout         0 input      1000 rows
+    $38 (27 39 ) $30 () 
+    s# 60 32 Select (<V var1$30 a>, <DB_NULL>, <DB_NULL>)
+      set no: <r set_ctr$38 via  Set50>
+  }
+Warning: You might have a Cartesian product.
+
+
+
+ 5 msec 78% cpu,       361 rnd       998 seq         0% same seg    81.768% same pg 
+Compilation: 1 msec 0 reads         0% read 0 messages         0% clw

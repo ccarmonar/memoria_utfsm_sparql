@@ -1,0 +1,19 @@
+ SELECT  "s_37_3_rbc"."var1" AS "var1", "s_37_3_rbc"."var1Label" AS "var1Label", "s_37_3_rbc"."var2" AS "var2", "s_37_3_rbc"."var3" AS "var3" FROM (SELECT DISTINCT NULL /* due to conflict on var1 */ AS "var1",
+    NULL /* due to conflict on var1Label */ AS "var1Label",
+    NULL /* due to conflict on var2 */ AS "var2",
+    NULL /* due to conflict on var3 */ AS "var3"
+  FROM
+     DB.DBA.SPARQL_BINDINGS_VIEW_C_1 AS "s_37_0" TABLE OPTION (EST_SIZE 2, EST_TIME 10)
+    INNER JOIN DB.DBA.RDF_QUAD AS "s_37_3_t0"
+    ON (1)
+  WHERE
+   
+    "s_37_0".DTA = vector (
+      vector ( rdf_box ( 1, 275, 257, 0, 1)),
+      vector ( rdf_box ( 0, 275, 257, 0, 1)))
+    
+    AND 
+    "s_37_3_t0"."P" = __i2idn ( __bft( 'http://www.wikidata.org/prop/direct/P31' , 1))
+    AND 
+    "s_37_3_t0"."O" = __i2idn ( __bft( 'http://www.wikidata.org/entity/Q11085' , 1))
+OPTION (QUIETCAST)) AS "s_37_3_rbc"

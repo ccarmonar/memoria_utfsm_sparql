@@ -1,0 +1,157 @@
+
+  { 
+    time       8.9% fanout         1 input         1 rows
+      clear: (<V set_ctr$107 in>)
+    s# 128 108 cluster outer seq start, set no <V set_ctr$107 in>    
+    save ctx:()
+    time        91% fanout         0 input         1 rows
+    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:       0.3 Fanout:         0
+      clear: (<V t1.S$28 rn>)
+      clear on continue: (<V t1.S$28 rn>)
+    s# 137 27 from DB.DBA.RDF_QUAD by RDF_QUAD_POGS        0.3 rows   
+    Key RDF_QUAD_POGS  ASC  (<V t1.S$28 rn>)
+     P =  IRI_ID"...direct/P31"  ,  O =  IRI_ID"...Q39829" 
+    
+    time         0% fanout         0 input         0 rows
+      clear: (<V set_ctr$57 i>)
+    s# 147 61 cluster outer seq start, set no <V set_ctr$57 i>    
+    save ctx:()
+      clear: (<V __dummy_retval$31 x>, <V set_no$32 i>)
+    s# 156 30 Subquery 30 
+      multistate set no = <V set_no$32 i>
+      { 
+          clear: (<V __stub$34 x>, <V set_no$35 i>, <V __dummy_retval$31 x>)
+        s# 160 33 Subquery 33 
+          multistate set no = <V set_no$35 i>
+          { 
+            time         0% fanout         0 input         0 rows
+            
+            s# 164 36 END Node
+            After test:
+              0: BReturn 0
+            time         0% fanout         0 input         0 rows
+            Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:      0.46 Fanout:         0
+            
+            s# 171 37 from DB.DBA.SYS_IDONLY_EMPTY by SYS_IDONLY_EMPTY       0.46 rows   max 1
+            Key SYS_IDONLY_EMPTY  ASC  ()
+            
+             Local Test
+            0: if ( 1  =  2 ) then 4 else 5 unkn 5
+            4: BReturn 1
+            5: BReturn 0
+            
+            time         0% fanout         0 input         0 rows
+            
+            s# 181 47 skip node  1  <none> <r set_no$35 via  Set171 Set164>
+            time         0% fanout         0 input         0 rows
+            
+            s# 160 39 Subquery Select( <none> )
+              set no: <r set_no$35 via  Set181 Set171 Set164>
+          }
+        
+        After code:
+          0: <V __dummy_retval$31 x> :=  := artm <DB_NULL>
+          4: BReturn 0
+        time         0% fanout         0 input         0 rows
+        
+        s# 156 49 Subquery Select(<V __dummy_retval$31 x>)
+          set no: <r set_no$32 via  Set160>
+      }
+    
+    time         0% fanout         0 input         0 rows
+    $31 (30 ) $32 (30 ) $57 (30 61 ) 
+    s# 205 56 end of outer seq <r set_ctr$57 via  Set156>
+     out: (<V __dummy_retval$31 x>, <V set_no$32 i>)
+     shadow: ( <none> ,  <none> )
+    time         0% fanout         0 input         0 rows
+      clear: (<V set_ctr$93 i>)
+    s# 213 97 cluster outer seq start, set no <V set_ctr$93 i>    
+    save ctx:()
+      clear: (<V __dummy_retval$67 x>, <V set_no$68 i>)
+    s# 222 66 Subquery 66 
+      multistate set no = <V set_no$68 i>
+      { 
+          clear: (<V __stub$70 x>, <V set_no$71 i>, <V __dummy_retval$67 x>)
+        s# 226 69 Subquery 69 
+          multistate set no = <V set_no$71 i>
+          { 
+            time         0% fanout         0 input         0 rows
+            
+            s# 230 72 END Node
+            After test:
+              0: BReturn 0
+            time         0% fanout         0 input         0 rows
+            Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:      0.46 Fanout:         0
+            
+            s# 237 73 from DB.DBA.SYS_IDONLY_EMPTY by SYS_IDONLY_EMPTY       0.46 rows   max 1
+            Key SYS_IDONLY_EMPTY  ASC  ()
+            
+             Local Test
+            0: if ( 1  =  2 ) then 4 else 5 unkn 5
+            4: BReturn 1
+            5: BReturn 0
+            
+            time         0% fanout         0 input         0 rows
+            
+            s# 247 83 skip node  1  <none> <r set_no$71 via  Set237 Set230>
+            time         0% fanout         0 input         0 rows
+            
+            s# 226 75 Subquery Select( <none> )
+              set no: <r set_no$71 via  Set247 Set237 Set230>
+          }
+        
+        After code:
+          0: <V __dummy_retval$67 x> :=  := artm <DB_NULL>
+          4: BReturn 0
+        time         0% fanout         0 input         0 rows
+        
+        s# 222 85 Subquery Select(<V __dummy_retval$67 x>)
+          set no: <r set_no$68 via  Set226>
+      }
+    
+    time         0% fanout         0 input         0 rows
+    $93 (66 97 ) $67 (66 ) $68 (66 ) 
+    s# 271 92 end of outer seq <r set_ctr$93 via  Set222>
+     out: (<V set_no$68 i>, <V __dummy_retval$67 x>)
+     shadow: ( <none> ,  <none> )
+    time         0% fanout         0 input         0 rows
+    Precode:
+      0: <V var2$102 a> := Call __id2in (<r t1.S$28 via  Set271 Set205>)
+      5: BReturn 0
+      clear: (<V set_ctr$110 i>, <V var2$102 a>)
+    s# 279 114 cluster outer seq start, set no <V set_ctr$110 i>    
+    save ctx:()
+    time         0% fanout         0 input         0 rows
+    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:       1.1 Fanout:         0
+      clear: (<V t9.O$105 a>)
+      clear on continue: (<V t9.O$105 a>)$292 (104 ) $28 (114 92 66 97 56 30 61 ) 
+    s# 288 104 from DB.DBA.RDF_QUAD by RDF_QUAD        1.1 rows   
+    Key RDF_QUAD  ASC  (<V t9.O$105 a>)
+     inlined  P =  IRI_ID"...direct/P22"  ,  S = <v k_t1.S$292 Set294 rn>
+    vector param casts: <r t1.S$28 via  Set279 Set271 Set205>-> <v k_t1.S$292 Set294 rn>
+    
+    time         0% fanout         0 input         0 rows
+      clear: (<V var3$119 a>)$105 () $110 (104 114 ) 
+    s# 302 109 end of outer seq <r set_ctr$110 via  Set288 Set294>
+     out: (<V t9.O$105 a>)
+     shadow: ( <none> )
+    After code:
+      0: <V var3$119 a> := Call __ro2sq (<V t9.O$105 a>)
+      5: BReturn 0
+    time         0% fanout         0 input         0 rows
+    $102 (109 104 114 ) $107 (109 104 114 92 66 97 56 30 61 27 108 ) $119 (109 ) 
+    s# 310 121 Select (<DB_NULL>, <r var2$102 via  Set302>, <V var3$119 a>)
+      set no: <r set_ctr$107 via  Set302 Set271 Set205 Set137>
+  }
+Warning: You might have a Cartesian product.
+
+Warning: You might have a Cartesian product.
+
+Warning: You might have a Cartesian product.
+
+Warning: You might have a Cartesian product.
+
+
+
+ 0 msec 1% cpu,         1 rnd         0 seq         0% same seg         0% same pg 
+Compilation: 3 msec 0 reads         0% read 0 messages         0% clw

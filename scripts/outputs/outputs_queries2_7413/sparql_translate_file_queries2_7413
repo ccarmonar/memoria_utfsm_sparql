@@ -1,0 +1,22 @@
+ SELECT  __ro2sq ("s_37_6_rbc"."var1") AS "var1" FROM (SELECT __ro2sq ( "s_37_6_t1"."O") AS "var1"
+  FROM DB.DBA.RDF_QUAD AS "s_37_6_t0"
+    INNER JOIN DB.DBA.RDF_QUAD AS "s_37_6_t1"
+    ON (
+      "s_37_6_t0"."S" = "s_37_6_t1"."S")
+    INNER JOIN DB.DBA.RDF_QUAD AS "s_37_6_t2"
+    ON (
+      "s_37_6_t0"."S" = "s_37_6_t2"."S"
+      AND 
+      "s_37_6_t1"."S" = "s_37_6_t2"."S")
+  WHERE
+    "s_37_6_t0"."P" = __i2idn ( __bft( 'http://www.w3.org/1999/02/22-rdf-syntax-ns#type' , 1))
+    AND 
+    "s_37_6_t0"."O" = __i2idn ( __bft( 'http://education.data.gov.uk/def/school/School' , 1))
+    AND 
+    "s_37_6_t1"."P" = __i2idn ( __bft( 'http://education.data.gov.uk/def/school/establishmentName' , 1))
+    AND 
+    "s_37_6_t2"."P" = __i2idn ( __bft( 'http://education.data.gov.uk/def/school/districtAdministrative' , 1))
+    AND 
+    "s_37_6_t2"."O" = __i2idn ( __bft( 'http://statistics.data.gov.uk/id/local-authority-district/00AA' , 1))
+  ORDER BY __ro2sq ( "s_37_6_t1"."O") ASC
+OPTION (QUIETCAST)) AS "s_37_6_rbc"

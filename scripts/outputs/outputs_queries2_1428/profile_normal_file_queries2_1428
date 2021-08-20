@@ -1,0 +1,69 @@
+
+  { 
+    time       5.8% fanout         1 input         1 rows
+      clear: (<V set_ctr$76 in>)
+    s# 79 77 cluster outer seq start, set no <V set_ctr$76 in>    
+    save ctx:()
+    Precode:
+      0: <V __rdflit$27 x> := Call __rdflit (rdflit29450850)
+      5: BReturn 0
+      clear: (<V var2$32 x>, <V var1Label$31 x>, <V var1$30 a>, <V set_no$33 i>, <V __rdflit$27 x>, <V var2$68 a>, <V var1Label$66 a>, <V var1$64 a>)
+    s# 88 29 Subquery 29 
+      multistate set no = <V set_no$33 i>
+      { 
+        time       4.1% fanout         1 input         1 rows
+        
+        s# 113 39 Fork 39 {  
+                
+            save ctx:()
+              set no = <V set_no$33 i> array  <none>  save: 
+            time        83% fanout         0 input         1 rows
+            Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:       0.3 Fanout:         0
+              clear: (<V s_37_2_t0.S$35 rn>, <V $42 x>, <V $41 x>, <V __id2in$37 a>)
+              clear on continue: (<V s_37_2_t0.S$35 rn>, <V $42 x>, <V $41 x>, <V __id2in$37 a>)
+            s# 93 34 from DB.DBA.RDF_QUAD by RDF_QUAD_POGS        0.3 rows Parallel, tail cost       9.7   
+            Key RDF_QUAD_POGS  ASC  (<V s_37_2_t0.S$35 rn>)
+             P =  IRI_ID"...direct/P238"  ,  O = rdflit29450850
+            copy on branch $33 $0 $0 $0 sets: 79 
+            
+            After code:
+              0: <V __id2in$37 a> := Call __id2in (<V s_37_2_t0.S$35 rn>)
+              5: <V $41 x> :=  := artm <DB_NULL>
+              9: <V $42 x> :=  := artm <DB_NULL>
+              13: BReturn 0
+            time         0% fanout         0 input         0 rows
+            $41 () $42 () 
+            s# 105 40 Sort (HASH) set no <r set_no$33 via  Set93>(<V __id2in$37 a>) -> (<V $41 x>, <V $42 x>)
+            
+        }
+        time       7.1% fanout         0 input         1 rows
+          clear: (<V $42 x>, <V $41 x>, <V __id2in$37 a>, <V var2$32 x>, <V var1Label$31 x>, <V var1$30 a>)
+          clear on continue: (<V $42 x>, <V $41 x>, <V __id2in$37 a>, <V var2$32 x>, <V var1Label$31 x>, <V var1$30 a>)
+        s# 120 47 Key from temp (<V __id2in$37 a>, <V $41 x>, <V $42 x>)
+        
+        
+        After code:
+          0: <V var1$30 a> :=  := artm <V __id2in$37 a>
+          4: <V var1Label$31 x> :=  := artm <DB_NULL>
+          8: <V var2$32 x> :=  := artm <DB_NULL>
+          12: BReturn 0
+        time         0% fanout         0 input         0 rows
+        
+        s# 88 57 Subquery Select(<V var1$30 a>, <V var1Label$31 x>, <V var2$32 x>)
+          set no: <r set_no$33 via  Set120>
+      }
+    
+    After code:
+      0: <V var1$64 a> := Call __ro2sq (<V var1$30 a>)
+      5: <V var1Label$66 a> := Call __ro2sq (<V var1Label$31 x>)
+      10: <V var2$68 a> := Call __ro2sq (<V var2$32 x>)
+      15: BReturn 0
+    time         0% fanout         0 input         0 rows
+    $64 (29 ) $66 (29 ) $68 (29 ) $76 (29 77 ) 
+    s# 139 70 Select (<V var1$64 a>, <V var1Label$66 a>, <V var2$68 a>)
+      set no: <r set_ctr$76 via  Set88>
+  }
+
+
+ 0 msec 0% cpu,         1 rnd         0 seq         0% same seg         0% same pg 
+Compilation: 22 msec 1 reads   94.5877% read 0 messages         0% clw

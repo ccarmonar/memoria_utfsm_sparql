@@ -1,0 +1,93 @@
+-- More than 0 parameters, ignoring all the rest of the statement SPARQL PREFIX bds: <http://www.bigdata.com/rdf/search#>
+PREFIX gas: <http://www.bigdata.com/rdf/gas#>
+PREFIX hint: <http://www.bigdata.com/queryHints#>
+PREFIX bd: <http://www.bigdata.com/rdf#>
+PREFIX cc: <http://creativecommons.org/ns#>
+PREFIX dct: <http://purl.org/dc/terms/>
+PREFIX geo: <http://www.opengis.net/ont/geosparql#>
+PREFIX ontolex: <http://www.w3.org/ns/lemon/ontolex#>
+PREFIX owl: <http://www.w3.org/2002/07/owl#>
+PREFIX p: <http://www.wikidata.org/prop/>
+PREFIX pq: <http://www.wikidata.org/prop/qualifier/>
+PREFIX pqn: <http://www.wikidata.org/prop/qualifier/value-normalized/>
+PREFIX pqv: <http://www.wikidata.org/prop/qualifier/value/>
+PREFIX pr: <http://www.wikidata.org/prop/reference/>
+PREFIX prn: <http://www.wikidata.org/prop/reference/value-normalized/>
+PREFIX prov: <http://www.w3.org/ns/prov#>
+PREFIX prv: <http://www.wikidata.org/prop/reference/value/>
+PREFIX ps: <http://www.wikidata.org/prop/statement/>
+PREFIX psn: <http://www.wikidata.org/prop/statement/value-normalized/>
+PREFIX psv: <http://www.wikidata.org/prop/statement/value/>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX schema: <http://schema.org/>
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+PREFIX wd: <http://www.wikidata.org/entity/>
+PREFIX wdata: <http://www.wikidata.org/wiki/Special:EntityData/>
+PREFIX wdno: <http://www.wikidata.org/prop/novalue/>
+PREFIX wdref: <http://www.wikidata.org/reference/>
+PREFIX wds: <http://www.wikidata.org/entity/statement/>
+PREFIX wdt: <http://www.wikidata.org/prop/direct/>
+PREFIX wdtn: <http://www.wikidata.org/prop/direct-normalized/>
+PREFIX wdv: <http://www.wikidata.org/value/>
+PREFIX wikibase: <http://wikiba.se/ontology#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX mwapi: <https://www.mediawiki.org/ontology#API/>
+
+SELECT DISTINCT  ?var1 WHERE   { ?var1  <http://www.wikidata.org/prop/P31>  ?var2 ;            <http://www.wikidata.org/prop/P31>  ?var3 .     ?var2  <http://www.wikidata.org/prop/statement/P31>  <http://www.wikidata.org/entity/Q341>     FILTER ( ?var2 != ?var3 )     ?var1 (<http://www.wikidata.org/prop/direct/P275>/(<http://www.wikidata.org/prop/direct/P31>)?)/(<http://www.wikidata.org/prop/direct/P279>)* <http://www.wikidata.org/entity/Q3943414>   } 
+ SELECT  __ro2sq ("s_37_28_rbc"."var1") AS "var1" FROM (SELECT DISTINCT "s_37_28_t3"."S" AS "var1"
+  FROM DB.DBA.RDF_QUAD AS "s_37_28_t3"
+    INNER JOIN DB.DBA.RDF_QUAD AS "s_37_28_t4"
+    ON (
+      "s_37_28_t3"."S" = "s_37_28_t4"."S")
+    INNER JOIN DB.DBA.RDF_QUAD AS "s_37_28_t5"
+    ON (
+      "s_37_28_t3"."O" = "s_37_28_t5"."S")
+    INNER JOIN DB.DBA.RDF_QUAD AS "s_37_9_t0"
+    ON (
+      "s_37_28_t3"."S" = "s_37_9_t0"."S"
+      AND 
+      "s_37_28_t4"."S" = "s_37_9_t0"."S")
+    INNER JOIN (
+     SELECT TRANSITIVE T_OUT(2) T_IN(1) T_MAX( 1) T_MIN( 0) T_NO_CYCLES "s_37_16_t1"."S" AS "_::trans_subj_37_12",
+        "s_37_16_t1"."O" AS "_::trans_obj_37_13"
+      FROM DB.DBA.RDF_QUAD AS "s_37_16_t1"
+      WHERE
+        "s_37_16_t1"."P" = __i2idn ( __bft( 'http://www.wikidata.org/prop/direct/P31' , 1))
+OPTION (QUIETCAST)
+      ) AS "s_37_19"
+    ON (
+      "s_37_9_t0"."O" = "s_37_19"."_::trans_subj_37_12")
+    INNER JOIN (
+     SELECT TRANSITIVE T_OUT(2) T_IN(1) T_MIN( 0) T_NO_CYCLES "s_37_24_t2"."S" AS "_::trans_subj_37_20",
+        "s_37_24_t2"."O" AS "_::trans_obj_37_21"
+      FROM DB.DBA.RDF_QUAD AS "s_37_24_t2"
+      WHERE
+        "s_37_24_t2"."P" = __i2idn ( __bft( 'http://www.wikidata.org/prop/direct/P279' , 1))
+OPTION (QUIETCAST)
+      ) AS "s_37_27"
+    ON (
+      "s_37_19"."_::trans_obj_37_13" = "s_37_27"."_::trans_subj_37_20")
+  WHERE
+    "s_37_28_t3"."P" = __i2idn ( __bft( 'http://www.wikidata.org/prop/P31' , 1))
+    AND 
+    "s_37_28_t4"."P" = __i2idn ( __bft( 'http://www.wikidata.org/prop/P31' , 1))
+    AND 
+    "s_37_28_t5"."P" = __i2idn ( __bft( 'http://www.wikidata.org/prop/statement/P31' , 1))
+    AND 
+    "s_37_28_t5"."O" = __i2idn ( __bft( 'http://www.wikidata.org/entity/Q341' , 1))
+    AND 
+    "s_37_9_t0"."P" = __i2idn ( __bft( 'http://www.wikidata.org/prop/direct/P275' , 1))
+    AND 
+    isiri_id ( "s_37_9_t0"."O")
+    AND 
+   ( "s_37_27"."_::trans_obj_37_21" =  __i2idn ( __bft( 'http://www.wikidata.org/entity/Q3943414' , 1)))
+    AND 
+   ( "s_37_28_t4"."O" <>  "s_37_28_t3"."O")
+    AND 
+    1
+    AND 
+    1
+    AND 
+    1
+OPTION (QUIETCAST)) AS "s_37_28_rbc"

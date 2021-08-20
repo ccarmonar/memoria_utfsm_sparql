@@ -1,0 +1,50 @@
+http://www.wikidata.org/entity/Q2608006	170193	
+http://www.wikidata.org/entity/Q2608515	286613	
+http://www.wikidata.org/entity/Q2608590	274009	
+http://www.wikidata.org/entity/Q2608763	2249988	
+http://www.wikidata.org/entity/Q2608814	1956384	
+http://www.wikidata.org/entity/Q2608928	1107888	
+http://www.wikidata.org/entity/Q2609040	475737	
+http://www.wikidata.org/entity/Q2609288	1524987	
+http://www.wikidata.org/entity/Q2609351	330755	
+http://www.wikidata.org/entity/Q2609507	2108423	
+http://www.wikidata.org/entity/Q2609622	909966	
+http://www.wikidata.org/entity/Q2609743	334385	
+http://www.wikidata.org/entity/Q2609763	38166	
+http://www.wikidata.org/entity/Q2609818	124291	
+http://www.wikidata.org/entity/Q2609974	1980067	
+http://www.wikidata.org/entity/Q2610183	1039319	
+http://www.wikidata.org/entity/Q2610529	1981044	
+http://www.wikidata.org/entity/Q2610658	1602176	
+http://www.wikidata.org/entity/Q2610659	2829201	
+http://www.wikidata.org/entity/Q2611061	1696836	
+
+  { 
+    time    0.0048% fanout         1 input         1 rows
+      clear: (<V set_ctr$41 in>)
+    s# 44 42 cluster outer seq start, set no <V set_ctr$41 in>    
+    save ctx:()
+    time     1e+02% fanout      1000 input         1 rows
+    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:   6.3e+04 Fanout:     1e+03
+      clear: (<V s_37_2_t0.O$28 an>, <V s_37_2_t0.S$29 rn>, <V var2$33 a>, <V var1$31 a>)
+      clear on continue: (<V s_37_2_t0.O$28 an>, <V s_37_2_t0.S$29 rn>, <V var2$33 a>, <V var1$31 a>)
+    s# 53 27 from DB.DBA.RDF_QUAD by RDF_QUAD    6.3e+04 rows   
+    Key RDF_QUAD  ASC  (<V s_37_2_t0.S$29 rn>, <V s_37_2_t0.O$28 an>)
+     inlined  P =  IRI_ID"...direct/P685" 
+    
+    After code:
+      0: <V var1$31 a> := Call __id2in (<V s_37_2_t0.S$29 rn>)
+      5: <V var2$33 a> := Call __ro2sq (<V s_37_2_t0.O$28 an>)
+      10: BReturn 0
+    time    0.0007% fanout         0 input      1000 rows
+    $31 () $33 () $41 (27 42 ) 
+    s# 64 35 Select (<V var1$31 a>, <V var2$33 a>)
+      set no: <r set_ctr$41 via  Set53>
+  }
+Warning: You might have a Cartesian product.
+
+
+
+ 81 msec 98% cpu,      1533 rnd       998 seq         0% same seg   63.2986% same pg 
+1 disk reads, 0 read ahead,   87.6083% wait
+Compilation: 1 msec 0 reads         0% read 0 messages         0% clw

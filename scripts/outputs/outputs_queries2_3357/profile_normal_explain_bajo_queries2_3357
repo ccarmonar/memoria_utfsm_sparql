@@ -1,0 +1,61 @@
+
+  { 
+    time        10% fanout         1 input         1 rows
+    Subquery 27 
+      { 
+        time       6.1% fanout         1 input         1 rows
+        fork {
+            time        77% fanout         0 input         1 rows
+            Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:   1.4e-07 Fanout:         0
+            RDF_QUAD_POGS   1.4e-07 rows(s_37_8_t3.S$35, s_37_8_t3.O$34)
+             inlined  P =  IRI_ID"...seasonNumber" 
+            time         0% fanout         0 input         0 rows
+            Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:   1.4e-07 Fanout:         0
+            RDF_QUAD_POGS   1.4e-07 rows(s_37_8_t0.S$38)
+             inlined  P =  IRI_ID"...series"  ,  O =  IRI_ID"...The_Sopranos"  ,  S = s_37_8_t3.S$35
+            time         0% fanout         0 input         0 rows
+            Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:   1.4e-07 Fanout:         0
+            RDF_QUAD   1.4e-07 rows(s_37_8_t2.S$42, s_37_8_t2.O$41)
+             inlined  P =  IRI_ID"...episodeNumber"  ,  S = s_37_8_t0.S$38
+            time         0% fanout         0 input         0 rows
+            Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:   1.4e-07 Fanout:         0
+            RDF_QUAD   1.4e-07 rows(s_37_8_t1.O$45)
+             inlined  P =  IRI_ID"...releaseDate"  ,  S = k_s_37_8_t0.S$154
+            
+            After code:
+            0: __ro2sq$47 := Call __ro2sq (s_37_8_t1.O$45)
+            5: BReturn 0
+            time         0% fanout         0 input         0 rows
+            Sort (__ro2sq$47) -> (s_37_8_t0.S$38, s_37_8_t2.O$41, s_37_8_t3.O$34)
+            
+          }
+        time       7.3% fanout         0 input         1 rows
+        Key from temp (s_37_8_t0.S$38, __ro2sq$47, s_37_8_t2.O$41, s_37_8_t3.O$34)
+        
+        
+        After code:
+        0: __ro2sq$74 := Call __ro2sq (s_37_8_t3.O$34)
+        5: __ro2sq$76 := Call __ro2sq (s_37_8_t2.O$41)
+        10: __id2in$78 := Call __id2in (s_37_8_t0.S$38)
+        15: var1$28 :=  := artm __id2in$78
+        19: var2$29 :=  := artm __ro2sq$47
+        23: var3$30 :=  := artm __ro2sq$76
+        27: var4$31 :=  := artm __ro2sq$74
+        31: BReturn 0
+        time         0% fanout         0 input         0 rows
+        Subquery Select(var1$28, var2$29, var3$30, var4$31)
+      }
+    
+    After code:
+    0: var1$87 := Call __ro2sq (var1$28)
+    5: var2$89 := Call __ro2sq (var2$29)
+    10: var3$91 := Call __ro2sq (var3$30)
+    15: var4$93 := Call __ro2sq (var4$31)
+    20: BReturn 0
+    time         0% fanout         0 input         0 rows
+    Select (var1$87, var2$89, var3$91, var4$93)
+  }
+
+
+ 0 msec 0% cpu,         1 rnd         0 seq         0% same seg         0% same pg 
+Compilation: 19 msec 0 reads         0% read 0 messages         0% clw

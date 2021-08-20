@@ -1,0 +1,80 @@
+
+  { 
+    time     0.012% fanout         1 input         1 rows
+      clear: (<V set_ctr$87 in>)
+    s# 90 88 cluster outer seq start, set no <V set_ctr$87 in>    
+    save ctx:()
+    time     0.012% fanout         1 input         1 rows
+    Precode:
+      0: <V __all_eq$27 x> := Call __all_eq ( IRI_ID"...Q7372078" )
+      5: BReturn 0
+      clear: (<V set_no$31 i>, <V __all_eq$27 x>)
+    s# 99 78 cluster outer seq start, set no <V set_no$31 i>    
+    save ctx:()
+      clear: (<V _::trans_obj_37_6$34 an>, <V _::trans_subj_37_5$33 rn>)
+      clear on continue: (<V _::trans_obj_37_6$34 an>, <V _::trans_subj_37_5$33 rn>)$27 (78 ) 
+    s# 108 32 Transitive dt dir 2, input: (<r __all_eq$27 via  Set99>)
+      input shadow: (<V __all_eq$112 x>)
+      output: (<V _::trans_subj_37_5$33 rn>)
+      { 
+        time      0.22% fanout         0 input         1 rows
+        Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:       3.8 Fanout:         0
+          clear: (<V s_37_9_t1.O$39 an>, <V s_37_9_t1.S$40 rn>, <V _::trans_obj_37_6$34 an>, <V _::trans_subj_37_5$33 rn>)
+          clear on continue: (<V _::trans_subj_37_5$33 rn>, <V _::trans_obj_37_6$34 an>, <V s_37_9_t1.S$40 rn>, <V s_37_9_t1.O$39 an>)$112 (38 ) $118 (38 ) 
+        s# 114 38 from DB.DBA.RDF_QUAD by RDF_QUAD_POGS        3.8 rows   
+        Key RDF_QUAD_POGS  ASC  (<V s_37_9_t1.S$40 rn>, <V s_37_9_t1.O$39 an>)
+         P =  IRI_ID"...direct/P279"  ,  O = <v k___all_eq$118 Set120 an>
+        vector param casts: <V __all_eq$112 x>-> <v k___all_eq$118 Set120 an>
+        
+        After code:
+          0: <V _::trans_subj_37_5$33 rn> :=  := artm <V s_37_9_t1.S$40 rn>
+          4: <V _::trans_obj_37_6$34 an> :=  := artm <V s_37_9_t1.O$39 an>
+          8: BReturn 0
+        time         0% fanout         0 input         0 rows
+        $34 () 
+        s# 131 42 Subquery Select(<V _::trans_subj_37_5$33 rn>, <V _::trans_obj_37_6$34 an>)
+          set no: <r step_set$35 via  Set114 Set120>
+      }
+    time      0.18% fanout        87 input         1 rows
+      clear: (<V s_37_3_t0.S$60 rn>)
+      clear on continue: (<V s_37_3_t0.S$60 rn>)$33 () $142 (59 ) 
+    s# 138 59 from DB.DBA.RDF_QUAD by RDF_QUAD_POGS      1e+02 rows   
+    Key RDF_QUAD_POGS  ASC  (<V s_37_3_t0.S$60 rn>)
+     P =  IRI_ID"...direct/P31"  ,  O = <v cast$142 Set144 an>
+    row specs:  O LIKE <c Tó>
+    vector param casts: <V _::trans_subj_37_5$33 rn>-> <v cast$142 Set144 an>
+    
+    time        99% fanout         0 input        87 rows
+    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:       1.7 Fanout:         0
+      clear: (<V s_37_15_t2.S$63 rn>)
+      clear on continue: (<V s_37_15_t2.S$63 rn>)$60 () 
+    s# 152 62 from DB.DBA.RDF_QUAD by RDF_QUAD        1.7 rows   
+    Key RDF_QUAD  ASC  (<V s_37_15_t2.S$63 rn>)
+     inlined  P =  IRI_ID"...direct/P1346"  ,  S = <V s_37_3_t0.S$60 rn>
+    
+    time         0% fanout         0 input         0 rows
+      clear: (<V var1$30 rn>)$63 () 
+    s# 162 65 Distinct (HASH) set no <r set_no$31 via  Set152 Set138 Set144 Set108>(<V s_37_15_t2.S$63 rn>)
+    After code:
+      0: <V var1$30 rn> :=  := artm <r s_37_15_t2.S$63 via  Set162>
+      4: BReturn 0
+    time         0% fanout         0 input         0 rows
+      clear: (<V var1$79 a>)$31 (65 62 59 32 78 ) $30 (65 ) 
+    s# 171 71 Subquery Select(<V var1$30 rn>)
+      set no: <r set_no$31 via  Set162 Set152 Set138 Set144 Set108>
+    After code:
+      0: <V var1$79 a> := Call __ro2sq (<V var1$30 rn>)
+      5: BReturn 0
+    time         0% fanout         0 input         0 rows
+    $79 (71 ) $87 (71 65 62 59 32 78 88 ) 
+    s# 178 81 Select (<V var1$79 a>)
+      set no: <r set_ctr$87 via  Set171>
+  }
+Warning: You might have a Cartesian product.
+
+Warning: You might have a Cartesian product.
+
+
+
+ 29 msec 90% cpu,        89 rnd        86 seq   94.4444% same seg   1.11111% same pg 
+Compilation: 2 msec 0 reads         0% read 0 messages         0% clw

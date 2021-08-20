@@ -1,0 +1,73 @@
+http://www.wikidata.org/entity/P1552	http://www.wikidata.org/entity/Q61719274	
+http://www.wikidata.org/entity/P1552	http://www.wikidata.org/entity/Q61719275	
+http://www.wikidata.org/entity/P1552	http://www.wikidata.org/entity/Q70564278	
+http://www.wikidata.org/entity/P1552	http://www.wikidata.org/entity/Q18616576	
+http://www.wikidata.org/entity/P2559	http://www.wikidata.org/entity/Q18616576	
+http://www.wikidata.org/entity/P1435	http://www.wikidata.org/entity/Q18616576	
+http://www.wikidata.org/entity/P4934	http://www.wikidata.org/entity/Q18616576	
+http://www.wikidata.org/entity/P1268	http://www.wikidata.org/entity/Q18616576	
+http://www.wikidata.org/entity/P5030	http://www.wikidata.org/entity/Q18616576	
+http://www.wikidata.org/entity/P5030	http://www.wikidata.org/entity/Q64830420	
+http://www.wikidata.org/entity/P3447	http://www.wikidata.org/entity/Q18616576	
+http://www.wikidata.org/entity/P3093	http://www.wikidata.org/entity/Q18616576	
+http://www.wikidata.org/entity/P2702	http://www.wikidata.org/entity/Q18616576	
+http://www.wikidata.org/entity/P7725	http://www.wikidata.org/entity/Q57633168	
+http://www.wikidata.org/entity/P7725	http://www.wikidata.org/entity/Q18616576	
+http://www.wikidata.org/entity/P7725	http://www.wikidata.org/entity/Q18609040	
+http://www.wikidata.org/entity/Q18616576		
+
+  { 
+    time      0.32% fanout         1 input         1 rows
+    time       8.5% fanout         1 input         1 rows
+    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:         0 Fanout:         1
+    Precode:
+      0: __all_eq$27 := Call __all_eq ( IRI_ID"...Q18616576" )
+      5: vector$29  := Call vector ( IRI_ID"...Q18616576" )
+      10: vector$31  := Call vector (vector$29 )
+      15: dta$38  :=  := artm vector$31 
+      19: proc_ctr$34 :=  := artm  0 
+      23:  <none>  := Call __reset_temp ( 139910667333904 )
+      28:  <proc table>  := Call DB.DBA.SPARQL_BINDINGS_VIEW_C_1_IMP (vector$31 )
+      35: BReturn 0
+    Key from temp (proc_ctr$34, BND0$36)
+    
+    Transitive dt dir 2, input: (__all_eq$27)
+      input shadow: (__all_eq$120)
+      output: (_::trans_subj_37_1$46)
+      { 
+        time        21% fanout  0.909091 input        11 rows
+        Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:     1e+02 Fanout:      0.91
+        RDF_QUAD_POGS     1e+02 rows(t3.S$53, t3.O$52)
+         P =  IRI_ID"...direct/P31"  ,  O = k___all_eq$126
+        
+        After code:
+        0: _::trans_subj_37_1$46 :=  := artm t3.S$53
+        4: _::trans_obj_37_2$47 :=  := artm t3.O$52
+        8: BReturn 0
+        time      0.12% fanout         0 input        10 rows
+        Subquery Select(_::trans_subj_37_1$46, _::trans_obj_37_2$47)
+      }
+    time       9.4% fanout         1 input        11 rows
+    Precode:
+      0: var1$72 := Call __id2in (_::trans_subj_37_1$46)
+      5: BReturn 0
+    outer {
+        time        30% fanout   1.45455 input        11 rows
+        RDF_QUAD       1.1 rows(t5.O$75)
+         inlined  P =  IRI_ID"...direct/P31"  ,  S = k__::trans_subj_37_1$159
+        time       8.2% fanout    1.0625 input        16 rows
+      } /* end of outer */
+    set_ctr$80
+     out: (t5.O$75)
+     shadow: ( <none> )
+    
+    After code:
+    0: var2$89 := Call __ro2sq (t5.O$75)
+    5: BReturn 0
+    time      0.12% fanout         0 input        17 rows
+    Select (var1$72, var2$89)
+  }
+
+
+ 1 msec 26% cpu,        22 rnd        15 seq   8.69565% same seg   39.1304% same pg 
+Compilation: 3 msec 0 reads         0% read 0 messages         0% clw

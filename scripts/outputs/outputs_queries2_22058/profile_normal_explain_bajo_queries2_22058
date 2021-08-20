@@ -1,0 +1,59 @@
+
+  { 
+    time     0.031% fanout         1 input         1 rows
+    time    0.0075% fanout         1 input         1 rows
+    time      0.54% fanout        72 input         1 rows
+    RDF_QUAD        72 rows(s_37_8_t2.O$33, s_37_8_t2.S$32)
+     inlined  P =  IRI_ID"...direct/P5287" 
+    time       8.4% fanout   5.44444 input        72 rows
+    RDF_QUAD_OP       2.8 rows(s_37_8_t3.P$36)
+     inlined  O = cast$113
+    time      0.49% fanout  0.816327 input       392 rows
+    END Node
+    After test:
+    0: if (s_37_8_t3.P$36 =  IRI_ID"...direct/P5287" ) then 9 else 4 unkn 9
+    4: if (s_37_8_t3.P$36 =  IRI_ID"...direct/P1830" ) then 9 else 8 unkn 9
+    8: BReturn 1
+    9: BReturn 0
+    time       9.8% fanout     1.125 input       320 rows
+    RDF_QUAD_POGS       1.2 rows(s_37_8_t3.S$40)
+     P = k_s_37_8_t3.P$141 ,  O = k_s_37_8_t2.O$145
+    time       8.2% fanout         6 input       360 rows
+    RDF_QUAD_OP       2.8 rows(s_37_8_t1.P$44)
+     inlined  O = cast$157
+    time         4% fanout         1 input      2160 rows
+    END Node
+    After test:
+    0: if (s_37_8_t1.P$44 = s_37_8_t3.P$36) then 13 else 4 unkn 13
+    4: if (s_37_8_t1.P$44 =  IRI_ID"...direct/P5287" ) then 13 else 8 unkn 13
+    8: if (s_37_8_t1.P$44 =  IRI_ID"...direct/P1830" ) then 13 else 12 unkn 13
+    12: BReturn 1
+    13: BReturn 0
+    time        29% fanout   4.37824 input      2160 rows
+    RDF_QUAD_POGS       1.2 rows(s_37_8_t1.S$48)
+     P = k_s_37_8_t1.P$186 ,  O = k_s_37_8_t3.S$190
+    time        40% fanout         0 input      9457 rows
+    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:   0.00069 Fanout:         0
+    RDF_QUAD   0.00069 rows()
+     inlined  P =  IRI_ID"...direct/P1830"  ,  S = s_37_8_t1.S$48 ,  O = k_s_37_8_t2.S$202
+    time         0% fanout         0 input         0 rows
+    Distinct (s_37_8_t1.P$44, s_37_8_t3.P$36)
+    
+    After code:
+    0: p2$28 :=  := artm s_37_8_t1.P$44
+    4: p3$29 :=  := artm s_37_8_t3.P$36
+    8: BReturn 0
+    time         0% fanout         0 input         0 rows
+    Subquery Select(p2$28, p3$29)
+    
+    After code:
+    0: p2$67 := Call __ro2sq (p2$28)
+    5: p3$69 := Call __ro2sq (p3$29)
+    10: BReturn 0
+    time         0% fanout         0 input         0 rows
+    Select (p2$67, p3$69)
+  }
+
+
+ 12 msec 80% cpu,     12360 rnd      9519 seq   97.5811% same seg   1.37529% same pg 
+Compilation: 3 msec 0 reads         0% read 0 messages         0% clw

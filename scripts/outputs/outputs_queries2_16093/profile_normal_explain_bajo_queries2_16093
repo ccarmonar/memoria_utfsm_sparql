@@ -1,0 +1,46 @@
+http://www.wikidata.org/entity/Q2617501	
+http://www.wikidata.org/entity/Q2703285	
+http://www.wikidata.org/entity/Q2780814	
+http://www.wikidata.org/entity/Q3560782	
+http://www.wikidata.org/entity/Q3240744	
+http://www.wikidata.org/entity/Q15822841	
+http://www.wikidata.org/entity/Q15835966	
+http://www.wikidata.org/entity/Q16007953	
+http://www.wikidata.org/entity/Q16013571	
+http://www.wikidata.org/entity/Q16082287	
+http://www.wikidata.org/entity/Q16084618	
+http://www.wikidata.org/entity/Q16090179	
+http://www.wikidata.org/entity/Q16092615	
+http://www.wikidata.org/entity/Q16300959	
+http://www.wikidata.org/entity/Q16301149	
+http://www.wikidata.org/entity/Q32540324	
+http://www.wikidata.org/entity/Q41431508	
+http://www.wikidata.org/entity/Q500298	
+http://www.wikidata.org/entity/Q1096705	
+http://www.wikidata.org/entity/Q4232400	
+
+  { 
+    time     0.074% fanout         1 input         1 rows
+    time     0.016% fanout         1 input         1 rows
+    time        21% fanout      1000 input         1 rows
+    RDF_QUAD_POGS   3.9e+03 rows(s_37_2_t0.S$31)
+     P =  IRI_ID"...direct/P569"  ,  O >= <tag 211 c 1955-01-01 00:00:00Z> <= <tag 211 c 1955-12-31 23:59:59Z> O >= <tag 211 c 1955-01-01 00:00:00Z> <= <tag 211 c 1955-12-31 23:59:59Z>
+    time       6.1% fanout     0.998 input      1000 rows
+    Distinct (s_37_2_t0.S$31)
+    
+    After code:
+    0: var1$28 :=  := artm s_37_2_t0.S$31
+    4: BReturn 0
+    time        73% fanout         1 input       998 rows
+    Subquery Select(var1$28)
+    
+    After code:
+    0: var1$47 := Call __ro2sq (var1$28)
+    5: BReturn 0
+    time     0.028% fanout         0 input       998 rows
+    Select (var1$47)
+  }
+
+
+ 3 msec 74% cpu,         2 rnd      5920 seq         0% same seg         0% same pg 
+Compilation: 1 msec 0 reads         0% read 0 messages         0% clw

@@ -1,0 +1,63 @@
+http://www.openlinksw.com/schemas/virtrdf#qmfIsSubformatOfLong	
+http://www.openlinksw.com/schemas/virtrdf#qmfMapsOnlyNullToNull	
+http://www.openlinksw.com/schemas/virtrdf#qmfHasCheapSqlval	
+http://www.openlinksw.com/schemas/virtrdf#qmfIsBijection	
+http://www.openlinksw.com/schemas/virtrdf#qmfColumnCount	
+http://learningsparql.com/ns/demo#column	
+http://www.openlinksw.com/schemas/virtrdf#qmfIsStable	
+http://www.wikidata.org/prop/direct/P1139	
+http://www.openlinksw.com/schemas/virtrdf#qmfWrapDistinct	
+http://www.openlinksw.com/schemas/virtrdf#qmfIsSubformatOfLongWhenRef	
+http://learningsparql.com/ns/demo#invoiced	
+http://learningsparql.com/ns/demo#jobGrade	
+http://www.openlinksw.com/schemas/virtrdf#qmfIsSubformatOfLongWhenEqToSql	
+http://www.openlinksw.com/schemas/virtrdf#qmvftXmlIndex	
+http://learningsparql.com/ns/demo#prop	
+http://www.wikidata.org/prop/direct/P7391	
+http://learningsparql.com/ns/demo#row	
+http://learningsparql.com/ns/demo#shipped	
+http://www.openlinksw.com/schemas/virtrdf#qmfOkForAnySqlvalue	
+http://www.wikidata.org/prop/direct/P1082	
+
+  { 
+    time     0.011% fanout         1 input         1 rows
+    time    0.0028% fanout         1 input         1 rows
+    time      0.24% fanout       819 input         1 rows
+    RDF_QUAD   8.2e+02 rows(s_37_6_t1.O$31)
+     inlined  P =  IRI_ID"...direct/P2610" 
+    time       6.2% fanout     3.663 input       819 rows
+    RDF_QUAD_OP       2.8 rows(s_37_6_t2.P$35, s_37_6_t2.O$34)
+     inlined  O = cast$100
+    time      0.78% fanout  0.970333 input      3000 rows
+    END Node
+    After test:
+    0: if (s_37_6_t2.P$35 =  IRI_ID"...direct/P2610" ) then 9 else 4 unkn 9
+    4: if (s_37_6_t2.P$35 =  IRI_ID"...direct/P2325" ) then 9 else 8 unkn 9
+    8: BReturn 1
+    9: BReturn 0
+    time        19% fanout   9.34902 input      2911 rows
+    RDF_QUAD_POGS       1.2 rows()
+     P = k_s_37_6_t2.P$129 ,  O = k_s_37_6_t1.O$133
+    time        72% fanout  0.110233 input     27215 rows
+    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:        25 Fanout:      0.11
+    RDF_QUAD_POGS        25 rows()
+     P =  IRI_ID"...direct/P2325"  ,  O = k_s_37_6_t1.O$144
+    time      0.74% fanout 0.0123333 input      3000 rows
+    Distinct (s_37_6_t2.P$35)
+    
+    After code:
+    0: p2$28 :=  := artm s_37_6_t2.P$35
+    4: BReturn 0
+    time      0.41% fanout         1 input        37 rows
+    Subquery Select(p2$28)
+    
+    After code:
+    0: p2$57 := Call __ro2sq (p2$28)
+    5: BReturn 0
+    time    0.0023% fanout         0 input        37 rows
+    Select (p2$57)
+  }
+
+
+ 28 msec 94% cpu,     28934 rnd     30276 seq   99.2224% same seg  0.442371% same pg 
+Compilation: 1 msec 0 reads         0% read 0 messages         0% clw

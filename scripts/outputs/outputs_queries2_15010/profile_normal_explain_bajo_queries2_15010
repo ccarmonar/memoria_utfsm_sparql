@@ -1,0 +1,32 @@
+http://www.wikidata.org/entity/Q17279924	
+http://www.wikidata.org/entity/Q4693105	
+http://www.wikidata.org/entity/Q935382	
+http://www.wikidata.org/entity/Q10855355	
+http://www.wikidata.org/entity/Q48897134	
+http://www.wikidata.org/entity/Q3568561	
+
+  { 
+    time      0.12% fanout         1 input         1 rows
+    time      0.03% fanout         1 input         1 rows
+    time        93% fanout         6 input         1 rows
+    RDF_QUAD_POGS         6 rows(s_37_2_t0.S$31)
+     P =  IRI_ID"...direct/P569"  ,  O >= <tag 211 c 1312-01-01 00:00:00Z> <= <tag 211 c 1312-12-31 23:59:59Z> O >= <tag 211 c 1312-01-01 00:00:00Z> <= <tag 211 c 1312-12-31 23:59:59Z>
+    time       4.1% fanout         1 input         6 rows
+    Distinct (s_37_2_t0.S$31)
+    
+    After code:
+    0: var1$28 :=  := artm s_37_2_t0.S$31
+    4: BReturn 0
+    time       3.1% fanout         1 input         6 rows
+    Subquery Select(var1$28)
+    
+    After code:
+    0: var1$47 := Call __ro2sq (var1$28)
+    5: BReturn 0
+    time     0.033% fanout         0 input         6 rows
+    Select (var1$47)
+  }
+
+
+ 2 msec 65% cpu,         1 rnd     13090 seq         0% same seg         0% same pg 
+Compilation: 1 msec 0 reads         0% read 0 messages         0% clw

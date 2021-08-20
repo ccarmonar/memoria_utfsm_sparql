@@ -1,0 +1,42 @@
+
+  { 
+    time         6% fanout         1 input         1 rows
+    time       1.7% fanout         1 input         1 rows
+    time        92% fanout         0 input         1 rows
+    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:       0.3 Fanout:         0
+    RDF_QUAD_POGS       0.3 rows(s_37_6_t0.S$33)
+     P =  IRI_ID"...direct/P31"  ,  O =  IRI_ID"...Q490" 
+    time         0% fanout         0 input         0 rows
+    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:       8.5 Fanout:         0
+    RDF_QUAD_SP       8.5 rows(s_37_6_t1.S$37, s_37_6_t1.P$36)
+     inlined  S = s_37_6_t0.S$33
+    time         0% fanout         0 input         0 rows
+    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:      0.21 Fanout:         0
+    RDF_QUAD_POGS      0.21 rows()
+     inlined  P = s_37_6_t1.P$36 ,  O =  IRI_ID"...Q490"  ,  S = k_s_37_6_t0.S$116
+    time         0% fanout         0 input         0 rows
+    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:       1.1 Fanout:         0
+    RDF_QUAD       1.1 rows(s_37_6_t2.O$44)
+     inlined  P =  IRI_ID"...direct/P625"  ,  S = k_s_37_6_t0.S$129
+    time         0% fanout         0 input         0 rows
+    Distinct (s_37_6_t2.O$44, s_37_6_t1.P$36)
+    
+    After code:
+    0: var1$28 :=  := artm <DB_NULL>
+    4: var2$29 :=  := artm s_37_6_t2.O$44
+    8: var3$30 :=  := artm s_37_6_t1.P$36
+    12: BReturn 0
+    time         0% fanout         0 input         0 rows
+    Subquery Select(var1$28, var2$29, var3$30)
+    
+    After code:
+    0: var2$60 := Call __ro2sq (var2$29)
+    5: var3$62 := Call __ro2sq (var3$30)
+    10: BReturn 0
+    time         0% fanout         0 input         0 rows
+    Select (var1$28, var2$60, var3$62)
+  }
+
+
+ 0 msec 2% cpu,         1 rnd         0 seq         0% same seg         0% same pg 
+Compilation: 2 msec 0 reads         0% read 0 messages         0% clw

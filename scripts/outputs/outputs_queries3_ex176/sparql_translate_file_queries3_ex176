@@ -1,0 +1,33 @@
+ DB.DBA.RDF_DICT_OF_TRIPLES_TO_THREE_COLS ((SELECT TOP 1  DB.DBA.SPARQL_CONSTRUCT (
+      vector (
+        vector (
+         1,
+         0,
+         1,
+         1,
+         1,
+         2)),
+      vector (
+       "s_14_9_t1"."S",
+       "s_14_9_t3"."P",
+       __ro2lo ( "s_14_9_t3"."O")),
+      vector (),
+     1) AS "callret-0"
+FROM DB.DBA.RDF_QUAD AS "s_14_9_t1"
+  INNER JOIN DB.DBA.RDF_QUAD AS "s_14_9_t2"
+  ON (
+    "s_14_9_t1"."S" = "s_14_9_t2"."S")
+  INNER JOIN DB.DBA.RDF_QUAD AS "s_14_9_t3"
+  ON (
+    "s_14_9_t1"."S" = "s_14_9_t3"."S"
+    AND 
+    "s_14_9_t2"."S" = "s_14_9_t3"."S")
+WHERE
+  "s_14_9_t1"."P" = __i2idn ( __bft( 'http://learningsparql.com/ns/addressbook#firstName' , 1))
+  AND 
+  "s_14_9_t1"."O" = DB.DBA.RDF_OBJ_OF_SQLVAL ( 'Craig' )
+  AND 
+  "s_14_9_t2"."P" = __i2idn ( __bft( 'http://learningsparql.com/ns/addressbook#lastName' , 1))
+  AND 
+  "s_14_9_t2"."O" = DB.DBA.RDF_OBJ_OF_SQLVAL ( 'Ellis' )
+OPTION (QUIETCAST)))

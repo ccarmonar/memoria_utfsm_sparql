@@ -1,0 +1,55 @@
+NGC 2353 180	
+NGC 1444B	
+Cl* NGC 1978 HOD 135	
+IREC 327	
+Cl* NGC 3114 SS 203	
+NGC 1664 341	
+IRAS 17482-2758	
+IRAS 17159-2713	
+OGLE BLG-LPV-205269	
+OGLE BLG-LPV-223580	
+OGLE BLG-LPV-200202	
+OGLE BLG-LPV-206880	
+IRAS 17400-2530	
+[SGG2000] 57609	
+OGLE BLG-LPV-220611	
+Terz V 2775	
+HD 316263	
+[PKK2003] MM1-1110	
+IRAS 17528-2715	
+CD-26 11815	
+
+  { 
+    time     0.012% fanout         1 input         1 rows
+    Subquery 27 
+      { 
+        time    0.0086% fanout         1 input         1 rows
+        fork {
+            time       7.1% fanout     89217 input         1 rows
+            RDF_QUAD   8.9e+04 rows(s_37_2_t0.O$31)
+             inlined  P =  IRI_ID"...direct/P3083" 
+            time        85% fanout         0 input     89217 rows
+            Sort (s_37_2_t0.O$31)
+          }
+        time       8.1% fanout      1000 input         1 rows
+        group by read node  
+        (s_37_2_t0.O$31)
+        
+        After code:
+        0: __ro2sq$54 := Call __ro2sq (s_37_2_t0.O$31)
+        5: var1$28 :=  := artm __ro2sq$54
+        9: BReturn 0
+        time    0.0023% fanout         0 input      1000 rows
+        Subquery Select(var1$28)
+      }
+    
+    After code:
+    0: var1$63 := Call __ro2sq (var1$28)
+    5: BReturn 0
+    time    0.0016% fanout         0 input      1000 rows
+    Select (var1$63)
+  }
+
+
+ 30 msec 95% cpu,      1001 rnd     89121 seq         0% same seg   47.8044% same pg 
+Compilation: 1 msec 0 reads         0% read 0 messages         0% clw

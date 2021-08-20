@@ -1,0 +1,78 @@
+http://www.wikidata.org/entity/Q185493	http://www.wikidata.org/entity/Q6581097	3382	
+http://www.wikidata.org/entity/Q695106	http://www.wikidata.org/entity/Q6581097	1991	
+http://www.wikidata.org/entity/Q10855271	http://www.wikidata.org/entity/Q6581097	1928	
+http://www.wikidata.org/entity/Q478850	http://www.wikidata.org/entity/Q6581097	1891	
+http://www.wikidata.org/entity/Q178473	http://www.wikidata.org/entity/Q6581097	1577	
+http://www.wikidata.org/entity/Q18080149	http://www.wikidata.org/entity/Q6581097	1513	
+http://www.wikidata.org/entity/Q960966	http://www.wikidata.org/entity/Q6581097	1437	
+http://www.wikidata.org/entity/Q337463	http://www.wikidata.org/entity/Q6581097	1428	
+http://www.wikidata.org/entity/Q278798	http://www.wikidata.org/entity/Q6581097	1210	
+http://www.wikidata.org/entity/Q10855195	http://www.wikidata.org/entity/Q6581097	1016	
+http://www.wikidata.org/entity/Q18200478	http://www.wikidata.org/entity/Q6581097	968	
+http://www.wikidata.org/entity/Q1316544	http://www.wikidata.org/entity/Q6581097	783	
+http://www.wikidata.org/entity/Q833163	http://www.wikidata.org/entity/Q6581097	760	
+http://www.wikidata.org/entity/Q208167	http://www.wikidata.org/entity/Q6581097	730	
+http://www.wikidata.org/entity/Q15631401	http://www.wikidata.org/entity/Q6581097	692	
+http://www.wikidata.org/entity/Q12201477	http://www.wikidata.org/entity/Q6581097	680	
+http://www.wikidata.org/entity/Q10905334	http://www.wikidata.org/entity/Q6581097	665	
+http://www.wikidata.org/entity/Q1915961	http://www.wikidata.org/entity/Q6581097	581	
+http://www.wikidata.org/entity/Q10905380	http://www.wikidata.org/entity/Q6581097	570	
+http://www.wikidata.org/entity/Q728960	http://www.wikidata.org/entity/Q6581097	570	
+
+  { 
+    time    0.0046% fanout         1 input         1 rows
+    Subquery 27 
+      { 
+        time    0.0021% fanout         1 input         1 rows
+        fork {
+            time    0.0022% fanout         1 input         1 rows
+            fork {
+                time        26% fanout    131435 input         1 rows
+                RDF_QUAD   1.3e+05 rows(s_37_4_t0.S$34, s_37_4_t0.O$33)
+                 inlined  P =  IRI_ID"...direct/P166" 
+                time        19% fanout  0.975866 input    131435 rows
+                RDF_QUAD         1 rows(s_37_4_t1.O$37)
+                 inlined  P =  IRI_ID"...direct/P21"  ,  S = s_37_4_t0.S$34
+                
+                After code:
+                0: isnotnull$39 := Call isnotnull (s_37_4_t0.S$34)
+                5: BReturn 0
+                time        17% fanout         0 input    128263 rows
+                Sort (s_37_4_t0.O$33, s_37_4_t1.O$37) -> (isnotnull$39)
+                
+              }
+            time      0.84% fanout     14848 input         1 rows
+            group by read node  
+            (s_37_4_t0.O$33, s_37_4_t1.O$37, aggregate$43)
+            time        34% fanout         0 input     14848 rows
+            Sort (aggregate$43) -> (s_37_4_t0.O$33, s_37_4_t1.O$37)
+            
+          }
+        time         3% fanout      1000 input         1 rows
+        Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:         0 Fanout:     1e+03
+        Key from temp (s_37_4_t0.O$33, s_37_4_t1.O$37, aggregate$43)
+        
+        
+        After code:
+        0: __ro2sq$80 := Call __ro2sq (s_37_4_t1.O$37)
+        5: __ro2sq$82 := Call __ro2sq (s_37_4_t0.O$33)
+        10: var1$28 :=  := artm __ro2sq$82
+        14: var2$29 :=  := artm __ro2sq$80
+        18: var4$30 :=  := artm aggregate$43
+        22: BReturn 0
+        time   0.00023% fanout         0 input      1000 rows
+        Subquery Select(var1$28, var2$29, var4$30)
+      }
+    
+    After code:
+    0: var1$91 := Call __ro2sq (var1$28)
+    5: var2$93 := Call __ro2sq (var2$29)
+    10: var4$95 := Call __ro2sq (var4$30)
+    15: BReturn 0
+    time   0.00061% fanout         0 input      1000 rows
+    Select (var1$91, var2$93, var4$95)
+  }
+
+
+ 50 msec 98% cpu,    160880 rnd    134418 seq   81.5808% same seg 0.0261063% same pg 
+Compilation: 3 msec 0 reads         0% read 0 messages         0% clw

@@ -1,0 +1,56 @@
+http://www.wikidata.org/entity/Q2778021	AIRLINES ALADIA	
+http://www.wikidata.org/entity/Q2781127	SKYJET	
+http://www.wikidata.org/entity/Q2913429	MEGANTARA	
+http://www.wikidata.org/entity/Q3061897	EAGLE FLIGHT	
+http://www.wikidata.org/entity/Q71988	YUNNAN	
+http://www.wikidata.org/entity/Q185620	BAIR	
+http://www.wikidata.org/entity/Q305350	ABAN	
+http://www.wikidata.org/entity/Q381078	AER ARANN	
+http://www.wikidata.org/entity/Q381252	AERO AFRICA	
+http://www.wikidata.org/entity/Q381257	AERO ASIA	
+http://www.wikidata.org/entity/Q381321	BIRD EXPRESS	
+http://www.wikidata.org/entity/Q381415	AEROCONDOR	
+http://www.wikidata.org/entity/Q384068	EXPRESS JET	
+http://www.wikidata.org/entity/Q859510	CEDAR JET	
+http://www.wikidata.org/entity/Q1018340	BUZZ	
+http://www.wikidata.org/entity/Q2162266	ADIK	
+http://www.wikidata.org/entity/Q3412468	QESHM AIR	
+http://www.wikidata.org/entity/Q4785554	ARCHANA	
+http://www.wikidata.org/entity/Q4790138	ARIABIRD	
+http://www.wikidata.org/entity/Q5315836	FLY DUO	
+
+  { 
+    time     0.051% fanout         1 input         1 rows
+      clear: (<V set_ctr$44 in>)
+    s# 47 45 cluster outer seq start, set no <V set_ctr$44 in>    
+    save ctx:()
+    time       1.4% fanout       315 input         1 rows
+      clear: (<V s_37_4_t1.O$28 an>, <V s_37_4_t1.S$29 rn>)
+      clear on continue: (<V s_37_4_t1.O$28 an>, <V s_37_4_t1.S$29 rn>)
+    s# 56 27 from DB.DBA.RDF_QUAD by RDF_QUAD    3.2e+02 rows   
+    Key RDF_QUAD  ASC  (<V s_37_4_t1.S$29 rn>, <V s_37_4_t1.O$28 an>)
+     inlined  P =  IRI_ID"...direct/P432" 
+    
+    time        99% fanout  0.971429 input       315 rows
+    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:    0.0001 Fanout:      0.97
+      clear: (<V s_37_4_t0.S$32 rn>, <V var1$36 a>, <V var2$34 a>)
+      clear on continue: (<V s_37_4_t0.S$32 rn>, <V var1$36 a>, <V var2$34 a>)$28 () $29 () 
+    s# 67 31 from DB.DBA.RDF_QUAD by RDF_QUAD     0.0001 rows   
+    Key RDF_QUAD  ASC  (<V s_37_4_t0.S$32 rn>)
+     inlined  P =  IRI_ID"...direct/P31"  ,  S = <V s_37_4_t1.S$29 rn> ,  O =  IRI_ID"...Q46970" 
+    
+    After code:
+      0: <V var2$34 a> := Call __ro2sq (<r s_37_4_t1.O$28 via  Set67>)
+      5: <V var1$36 a> := Call __id2in (<V s_37_4_t0.S$32 rn>)
+      10: BReturn 0
+    time    0.0087% fanout         0 input       306 rows
+    $34 () $36 () $44 (31 27 45 ) 
+    s# 77 38 Select (<V var1$36 a>, <V var2$34 a>)
+      set no: <r set_ctr$44 via  Set67 Set56>
+  }
+Warning: You might have a Cartesian product.
+
+
+
+ 7 msec 81% cpu,       656 rnd       314 seq   32.7245% same seg    16.895% same pg 
+Compilation: 1 msec 0 reads         0% read 0 messages         0% clw

@@ -1,0 +1,62 @@
+ SELECT  __ro2sq ("s_37_26_rbc"."var1") AS "var1", __ro2sq ("s_37_26_rbc"."var2") AS "var2", __ro2sq ("s_37_26_rbc"."var3") AS "var3", __ro2sq ("s_37_26_rbc"."var4") AS "var4", __ro2sq ("s_37_26_rbc"."var1Label") AS "var1Label", __ro2sq ("s_37_26_rbc"."var3Label") AS "var3Label" FROM (SELECT __id2in ( "s_37_27"."var1") AS "var1",
+    __id2in ( "s_37_27"."var2") AS "var2",
+    __id2in ( "s_37_27"."var3") AS "var3",
+    __ro2sq ( "s_37_27"."var4") AS "var4",
+    __ro2sq ( "s_37_14"."var1Label") AS "var1Label",
+    __ro2sq ( "s_37_25"."var3Label") AS "var3Label"
+  FROM (
+      SELECT "s_37_27_t6"."P" AS "var1",
+        "s_37_27_t6"."O" AS "var2",
+        "s_37_27_t7"."P" AS "var3",
+        "s_37_27_t7"."O" AS "var4"
+      FROM DB.DBA.RDF_QUAD AS "s_37_27_t6"
+        INNER JOIN DB.DBA.RDF_QUAD AS "s_37_27_t7"
+        ON (
+          "s_37_27_t6"."O" = "s_37_27_t7"."S")
+      WHERE
+        "s_37_27_t6"."S" = __i2idn ( __bft( 'http://www.wikidata.org/entity/Q9197118' , 1))
+        AND 
+       ( __bft ( __bft( 'http://www.w3.org/2000/01/rdf-schema#label' , 1), 1) =  __bft (__id2in ( "s_37_27_t7"."P"), 2))) AS "s_37_27"
+    LEFT OUTER JOIN (
+      SELECT "s_37_12_t1"."O" AS "var1Label",
+        "s_37_8_t0"."O" AS "var1"
+      FROM DB.DBA.RDF_QUAD AS "s_37_8_t0"
+        INNER JOIN DB.DBA.RDF_QUAD AS "s_37_12_t1"
+        ON (
+          "s_37_12_t1"."S" = "s_37_8_t0"."S")
+      WHERE
+        is_named_iri_id ( "s_37_8_t0"."O")
+        AND 
+        "s_37_12_t1"."P" = __i2idn ( __bft( 'http://www.w3.org/2000/01/rdf-schema#label' , 1))
+        AND 
+        ( "s_37_8_t0"."P" in ( __i2idn ( __bft ( __bft( 'http://wikiba.se/ontology#claim' , 1), 1)),  __i2idn ( __bft ( __bft( 'http://wikiba.se/ontology#directClaim' , 1), 1))))
+        AND 
+       ( 'en'  =  DB.DBA.RDF_LANGUAGE_OF_OBJ (__ro2sq ( "s_37_12_t1"."O")))) AS "s_37_14"
+    ON (
+      "s_37_27"."var1" = "s_37_14"."var1")
+    LEFT OUTER JOIN (
+      SELECT "s_37_23_t3"."O" AS "var3Label",
+        "s_37_19_t2"."O" AS "var3"
+      FROM DB.DBA.RDF_QUAD AS "s_37_19_t2"
+        INNER JOIN DB.DBA.RDF_QUAD AS "s_37_23_t3"
+        ON (
+          "s_37_23_t3"."S" = "s_37_19_t2"."S")
+      WHERE
+        is_named_iri_id ( "s_37_19_t2"."O")
+        AND 
+        "s_37_23_t3"."P" = __i2idn ( __bft( 'http://www.w3.org/2000/01/rdf-schema#label' , 1))
+        AND 
+       ( __bft ( __bft( 'http://www.w3.org/2000/01/rdf-schema#label' , 1), 1) =  __rdf_strsqlval ( "s_37_19_t2"."O", 0))
+        AND 
+        ( "s_37_19_t2"."P" in ( __i2idn ( __bft ( __bft( 'http://wikiba.se/ontology#claim' , 1), 1)),  __i2idn ( __bft ( __bft( 'http://wikiba.se/ontology#directClaim' , 1), 1))))
+        AND 
+       ( 'en'  =  DB.DBA.RDF_LANGUAGE_OF_OBJ (__ro2sq ( "s_37_23_t3"."O")))) AS "s_37_25"
+    ON (
+      "s_37_27"."var3" = "s_37_25"."var3")
+  WHERE
+   ((( 'en'  =  DB.DBA.RDF_LANGUAGE_OF_OBJ (__ro2sq ( "s_37_27"."var4"))) OR 
+       ( (1 - isiri_id ( "s_37_27"."var4")) AND 
+         ( DB.DBA.RDF_LANGUAGE_OF_OBJ (__ro2sq ( "s_37_27"."var4")) =  '' ))) OR 
+      not ( (1 - isiri_id ( "s_37_27"."var4"))))
+  ORDER BY __ro2sq ( "s_37_14"."var1Label") ASC, __ro2sq ( "s_37_25"."var3Label") ASC
+OPTION (QUIETCAST)) AS "s_37_26_rbc"

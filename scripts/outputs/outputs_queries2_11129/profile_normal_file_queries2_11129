@@ -1,0 +1,70 @@
+http://www.wikidata.org/entity/Q4055592	Daniil Antonovitsj Avdusin	
+http://www.wikidata.org/entity/Q2791036	Valerjan Ilitsj Tatarskij	
+http://www.wikidata.org/entity/Q2848716	Andre Tricot	
+http://www.wikidata.org/entity/Q2851390	Anne des Marquets	
+http://www.wikidata.org/entity/Q2853673	Antoine de Bertin	
+http://www.wikidata.org/entity/Q2853673	Chevalier de Bertin	
+http://www.wikidata.org/entity/Q2979764	Chloé Korman	
+http://www.wikidata.org/entity/Q3114975	Nils Gustav Wentzel	
+http://www.wikidata.org/entity/Q3120280	Guillaume De Berneville	
+http://www.wikidata.org/entity/Q3120280	Guillaume de berneville	
+
+  { 
+    time   0.00057% fanout         1 input         1 rows
+      clear: (<V set_ctr$50 in>)
+    s# 56 51 cluster outer seq start, set no <V set_ctr$50 in>    
+    save ctx:()
+    time     0.012% fanout      1000 input         1 rows
+    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:   1.5e+04 Fanout:     1e+03
+      clear: (<V s_37_6_t1.S$28 rn>)
+      clear on continue: (<V s_37_6_t1.S$28 rn>)
+    s# 65 27 from DB.DBA.RDF_QUAD by RDF_QUAD    1.5e+04 rows   
+    Key RDF_QUAD  ASC  (<V s_37_6_t1.S$28 rn>)
+     inlined  P =  IRI_ID"...direct/P1015" 
+    
+    time      0.15% fanout     0.962 input      1000 rows
+    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:     0.091 Fanout:      0.96
+      clear: (<V s_37_6_t0.S$31 rn>)
+      clear on continue: (<V s_37_6_t0.S$31 rn>)$28 () 
+    s# 75 30 from DB.DBA.RDF_QUAD by RDF_QUAD      0.091 rows   
+    Key RDF_QUAD  ASC  (<V s_37_6_t0.S$31 rn>)
+     inlined  P =  IRI_ID"...direct/P31"  ,  S = <V s_37_6_t1.S$28 rn> ,  O =  IRI_ID"...Q5" 
+    
+    time      0.94% fanout    1.0395 input       962 rows
+    Precode:
+      0: <V var1$33 a> := Call __id2in (<V s_37_6_t0.S$31 rn>)
+      5: BReturn 0
+      clear: (<V s_37_6_t2.O$36 an>, <V var1$33 a>)
+      clear on continue: (<V s_37_6_t2.O$36 an>)$31 () 
+    s# 85 35 from DB.DBA.RDF_QUAD by RDF_QUAD        4.1 rows   
+    Key RDF_QUAD  ASC  (<V s_37_6_t2.O$36 an>)
+     inlined  P =  IRI_ID"...altLabel"  ,  S = <V s_37_6_t0.S$31 rn>
+    
+    time        99% fanout     0.029 input      1000 rows
+      clear: (<V DB.DBA.RDF_LANGUAGE_OF_OBJ$40 a>, <V __ro2sq$38 a>)
+    s# 100 95 END Node
+    After test:
+      0: if (<c en> = <DB_NULL>) then 20 else 4 unkn 4
+      4: <V __ro2sq$38 a> := Call __ro2sq (<V s_37_6_t2.O$36 an>)
+      9: <V DB.DBA.RDF_LANGUAGE_OF_OBJ$40 a> := Call DB.DBA.RDF_LANGUAGE_OF_OBJ (<V __ro2sq$38 a>)
+      16: if (<c nb> = <V DB.DBA.RDF_LANGUAGE_OF_OBJ$40 a>) then 20 else 21 unkn 21
+      20: BReturn 1
+      21: BReturn 0
+    time     0.049% fanout  0.344828 input        29 rows
+      clear: (<V var2$42 a>)$36 (95 ) 
+    s# 109 54 skip node  10  <none> <r set_ctr$50 via  Set100 Set85 Set75 Set65>
+    After code:
+      0: <V var2$42 a> := Call __ro2sq (<r s_37_6_t2.O$36 via  Set109 Set100>)
+      5: BReturn 0
+    time   8.4e-05% fanout         0 input        10 rows
+    $33 (54 95 35 ) $42 (54 ) $50 (54 95 35 30 27 51 ) 
+    s# 117 44 Select (<r var1$33 via  Set109 Set100 Set85>, <V var2$42 a>)
+      set no: <r set_ctr$50 via  Set109 Set100 Set85 Set75 Set65>
+  }
+Warning: You might have a Cartesian product.
+
+
+
+ 316 msec 75% cpu,      4059 rnd      1861 seq   30.0493% same seg   33.2759% same pg 
+32 disk reads, 0 read ahead,   73.5837% wait
+Compilation: 102 msec 2 reads   8.71846% read 0 messages         0% clw

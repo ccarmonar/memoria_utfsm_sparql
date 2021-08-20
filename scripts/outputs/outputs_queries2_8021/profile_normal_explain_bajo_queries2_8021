@@ -1,0 +1,42 @@
+
+  { 
+    time       8.3% fanout         1 input         1 rows
+    time        92% fanout         0 input         1 rows
+    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:   1.4e-07 Fanout:         0
+    RDF_QUAD_POGS   1.4e-07 rows(s_37_10_t2.S$29, s_37_10_t2.O$28)
+     inlined  P =  IRI_ID"...quantityAmount" 
+    time         0% fanout         0 input         0 rows
+    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:   1.4e-07 Fanout:         0
+    RDF_QUAD_POGS   1.4e-07 rows(s_37_10_t1.S$33, s_37_10_t1.O$32)
+     P =  IRI_ID"...value/P2781"  ,  O = cast$88
+    time         0% fanout         0 input         0 rows
+    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:   1.4e-07 Fanout:         0
+    RDF_QUAD   1.4e-07 rows(s_37_10_t4.S$37, s_37_10_t4.O$36)
+     inlined  P =  IRI_ID"...quantityLowerBound"  ,  S = k_s_37_10_t1.O$103
+    time         0% fanout         0 input         0 rows
+    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:   1.4e-07 Fanout:         0
+    RDF_QUAD   1.4e-07 rows()
+     inlined  P =  IRI_ID"...quantityUpperBound"  ,  S = k_s_37_10_t1.O$118 ,  O = k_s_37_10_t4.O$122
+    time         0% fanout         0 input         0 rows
+    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:       2.8 Fanout:         0
+    Precode:
+      0: var3$41 := Call __ro2sq (s_37_10_t2.O$28)
+      5: BReturn 0
+    RDF_QUAD_OP       2.8 rows(s_37_10_t0.P$44)
+     inlined  O = k_s_37_10_t1.S$133
+    time         0% fanout         0 input         0 rows
+    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:       1.2 Fanout:         0
+    RDF_QUAD_POGS       1.2 rows(s_37_10_t0.S$48)
+     P = s_37_10_t0.P$44 ,  O = k_s_37_10_t1.S$147
+    
+    After code:
+    0: var1$51 := Call __id2in (s_37_10_t0.S$48)
+    5: var2$53 := Call __id2in (s_37_10_t0.P$44)
+    10: BReturn 0
+    time         0% fanout         0 input         0 rows
+    Select (var1$51, var2$53, var3$41)
+  }
+
+
+ 0 msec 1% cpu,         1 rnd         0 seq         0% same seg         0% same pg 
+Compilation: 3 msec 0 reads         0% read 0 messages         0% clw

@@ -1,0 +1,64 @@
+http://commons.wikimedia.org/wiki/Special:FilePath/Eau%20Claire%20-%20Free%20Masons%20Building%202005.jpg	
+http://commons.wikimedia.org/wiki/Special:FilePath/Prince%20Hall%20Masonic%20Temple%20%28Baton%20Rouge%2C%20Louisiana%29.jpg	
+http://commons.wikimedia.org/wiki/Special:FilePath/Harrisburg%20ancient%20landmark%20school%20and%20lodge.jpg	
+http://commons.wikimedia.org/wiki/Special:FilePath/Auditorium%20Building-1.jpg	
+http://commons.wikimedia.org/wiki/Special:FilePath/Ancienne%20loge%20ma%C3%A7onnique.jpg	
+http://commons.wikimedia.org/wiki/Special:FilePath/Catedral%20de%20tradici%C3%B3n%20escocesa%2C%20Indian%C3%A1polis%2C%20Estados%20Unidos%2C%202012-10-22%2C%20DD%2002.jpg	
+http://commons.wikimedia.org/wiki/Special:FilePath/Scottish%20rite%20temple.png	
+http://commons.wikimedia.org/wiki/Special:FilePath/Masonic%20Temple%20in%20Columbus%2C%20comprehensive.jpg	
+http://commons.wikimedia.org/wiki/Special:FilePath/Niles%20Masonic%20Temple.jpg	
+http://commons.wikimedia.org/wiki/Special:FilePath/Clearwater%20Masonic%20Lodge-Grand%20Army%20of%20the%20Republic%20Hall.jpg	
+http://commons.wikimedia.org/wiki/Special:FilePath/Devils%20Lake%20Masonic%20Temple.jpg	
+http://commons.wikimedia.org/wiki/Special:FilePath/Theater%20at%20the%20Performing%20Arts.png	
+http://commons.wikimedia.org/wiki/Special:FilePath/CommunityofChrist%20Auditoriu.jpg	
+http://commons.wikimedia.org/wiki/Special:FilePath/The%20Pemberton%20Memorial%20Operating%20Room%2C%201902%2C%20Item%20B-09492.jpg	
+http://commons.wikimedia.org/wiki/Special:FilePath/0956SpoletoSMariaDellaMannaDOro.JPG	
+http://commons.wikimedia.org/wiki/Special:FilePath/TU-Delft-Aula.jpg	
+http://commons.wikimedia.org/wiki/Special:FilePath/WyandotteMiOddFellowsTemple.jpg	
+http://commons.wikimedia.org/wiki/Special:FilePath/Montrose%20Masonic%20Temple%2C%20Lodge%20No.%2063.JPG	
+http://commons.wikimedia.org/wiki/Special:FilePath/KAM%207332%20%286469404627%29.jpg	
+http://commons.wikimedia.org/wiki/Special:FilePath/Masonic%20Hall%2C%20Church%20Lane%2C%20Windsor.jpg	
+
+  { 
+    time    0.0082% fanout         1 input         1 rows
+      clear: (<V set_ctr$44 in>)
+    s# 47 45 cluster outer seq start, set no <V set_ctr$44 in>    
+    save ctx:()
+    time      0.12% fanout        19 input         1 rows
+      clear: (<V s_37_6_t0.S$28 rn>)
+      clear on continue: (<V s_37_6_t0.S$28 rn>)
+    s# 56 27 from DB.DBA.RDF_QUAD by RDF_QUAD_POGS         19 rows   
+    Key RDF_QUAD_POGS  ASC  (<V s_37_6_t0.S$28 rn>)
+     P =  IRI_ID"...direct/P279"  ,  O =  IRI_ID"...Q180516" 
+    
+    time      0.71% fanout   2.36842 input        19 rows
+    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:     1e+02 Fanout:       2.4
+      clear: (<V s_37_6_t1.S$31 rn>)
+      clear on continue: (<V s_37_6_t1.S$31 rn>)$70 (30 ) $28 () 
+    s# 66 30 from DB.DBA.RDF_QUAD by RDF_QUAD_POGS      1e+02 rows   
+    Key RDF_QUAD_POGS  ASC  (<V s_37_6_t1.S$31 rn>)
+     P =  IRI_ID"...direct/P31"  ,  O = <v cast$70 Set72 an>
+    vector param casts: <V s_37_6_t0.S$28 rn>-> <v cast$70 Set72 an>
+    
+    time        99% fanout  0.688889 input        45 rows
+      clear: (<V s_37_6_t2.O$34 an>, <V var1$36 a>)
+      clear on continue: (<V s_37_6_t2.O$34 an>, <V var1$36 a>)$31 () 
+    s# 80 33 from DB.DBA.RDF_QUAD by RDF_QUAD          1 rows   
+    Key RDF_QUAD  ASC  (<V s_37_6_t2.O$34 an>)
+     inlined  P =  IRI_ID"...direct/P18"  ,  S = <V s_37_6_t1.S$31 rn>
+    
+    After code:
+      0: <V var1$36 a> := Call __ro2sq (<V s_37_6_t2.O$34 an>)
+      5: BReturn 0
+    time    0.0024% fanout         0 input        31 rows
+    $36 () $44 (33 30 27 45 ) 
+    s# 90 38 Select (<V var1$36 a>)
+      set no: <r set_ctr$44 via  Set80 Set66 Set72 Set56>
+  }
+Warning: You might have a Cartesian product.
+
+
+
+ 49 msec 96% cpu,        97 rnd        57 seq   34.6939% same seg   30.6122% same pg 
+3 disk reads, 0 read ahead,    93.113% wait
+Compilation: 2 msec 0 reads         0% read 0 messages         0% clw

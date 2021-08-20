@@ -1,0 +1,57 @@
+http://www.wikidata.org/entity/Q2630678	P06729	https://www.ncbi.nlm.nih.gov/protein/P06729	
+http://www.wikidata.org/entity/Q2630678	P06729	http://purl.uniprot.org/uniprot/P06729	
+http://www.wikidata.org/entity/Q2630678	P06729	https://identifiers.org/uniprot:P06729	
+http://www.wikidata.org/entity/Q2640417	P05091	https://www.ncbi.nlm.nih.gov/protein/P05091	
+http://www.wikidata.org/entity/Q2640417	P05091	http://purl.uniprot.org/uniprot/P05091	
+http://www.wikidata.org/entity/Q2640417	P05091	https://identifiers.org/uniprot:P05091	
+http://www.wikidata.org/entity/Q3067052	P48023	http://purl.uniprot.org/uniprot/P48023	
+http://www.wikidata.org/entity/Q3067052	P48023	https://identifiers.org/uniprot:P48023	
+http://www.wikidata.org/entity/Q3067052	P48023	https://www.ncbi.nlm.nih.gov/protein/P48023	
+http://www.wikidata.org/entity/Q7050954	P23975	http://purl.uniprot.org/uniprot/P23975	
+http://www.wikidata.org/entity/Q415364	P35354	http://purl.uniprot.org/uniprot/P35354	
+http://www.wikidata.org/entity/Q259292	Q9UBM7	http://purl.uniprot.org/uniprot/Q9UBM7	
+http://www.wikidata.org/entity/Q305481	P24298	https://identifiers.org/uniprot:P24298	
+http://www.wikidata.org/entity/Q305481	P24298	https://www.ncbi.nlm.nih.gov/protein/P24298	
+http://www.wikidata.org/entity/Q305481	P24298	http://purl.uniprot.org/uniprot/P24298	
+http://www.wikidata.org/entity/Q308856	P21917	http://purl.uniprot.org/uniprot/P21917	
+http://www.wikidata.org/entity/Q4236472	P23528	http://purl.uniprot.org/uniprot/P23528	
+http://www.wikidata.org/entity/Q4236472	P23528	https://identifiers.org/uniprot:P23528	
+http://www.wikidata.org/entity/Q4236472	P23528	https://www.ncbi.nlm.nih.gov/protein/P23528	
+http://www.wikidata.org/entity/Q21096399	P23497	https://identifiers.org/uniprot:P23497	
+
+  { 
+    time      0.17% fanout         1 input         1 rows
+    time      0.05% fanout         1 input         1 rows
+    time       4.8% fanout      1000 input         1 rows
+    Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:   1.6e+04 Fanout:     1e+03
+    RDF_QUAD_POGS   1.6e+04 rows(s_37_6_t2.S$33)
+     P =  IRI_ID"...direct/P703"  ,  O =  IRI_ID"...Q15978631" 
+    time        15% fanout     0.255 input      1000 rows
+    RDF_QUAD         1 rows(s_37_6_t0.S$37, s_37_6_t0.O$36)
+     inlined  P =  IRI_ID"...direct/P352"  ,  S = s_37_6_t2.S$33
+    time       8.1% fanout  0.470588 input       255 rows
+    RDF_QUAD         1 rows(s_37_6_t1.O$40)
+     inlined  P =  IRI_ID"...direct/P2888"  ,  S = s_37_6_t0.S$37
+    time       7.5% fanout         1 input       120 rows
+    Distinct (s_37_6_t0.S$37, s_37_6_t0.O$36, s_37_6_t1.O$40)
+    
+    After code:
+    0: var1$28 :=  := artm s_37_6_t0.S$37
+    4: var2$29 :=  := artm s_37_6_t0.O$36
+    8: var3$30 :=  := artm s_37_6_t1.O$40
+    12: BReturn 0
+    time        65% fanout         1 input       120 rows
+    Subquery Select(var1$28, var2$29, var3$30)
+    
+    After code:
+    0: var1$56 := Call __ro2sq (var1$28)
+    5: var2$58 := Call __ro2sq (var2$29)
+    10: var3$60 := Call __ro2sq (var3$30)
+    15: BReturn 0
+    time     0.024% fanout         0 input       120 rows
+    Select (var1$56, var2$58, var3$60)
+  }
+
+
+ 2 msec 49% cpu,      1376 rnd      1064 seq   90.7771% same seg   1.37981% same pg 
+Compilation: 1 msec 0 reads         0% read 0 messages         0% clw

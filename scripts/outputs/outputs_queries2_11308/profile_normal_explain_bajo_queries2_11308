@@ -1,0 +1,55 @@
+1993-019A	
+1982-047A	
+1985-051A	
+1987-044A	
+2013-010A	
+1964-038A	
+1991-034A	
+2009-070C	
+1984-112A	
+2014-033F	
+2001-053A	
+1985-063A	
+2008-055A	
+1997-016A	
+1990-029D	
+1974-105A	
+1997-039A	
+1966-036A	
+1967-023A	
+1970-033A	
+
+  { 
+    time     0.093% fanout         1 input         1 rows
+    Subquery 27 
+      { 
+        time     0.071% fanout         1 input         1 rows
+        fork {
+            time       3.1% fanout       727 input         1 rows
+            RDF_QUAD   7.3e+02 rows(s_37_2_t0.O$31)
+             inlined  P =  IRI_ID"...direct/P247" 
+            time       6.4% fanout         0 input       727 rows
+            Sort (s_37_2_t0.O$31)
+          }
+        time        90% fanout       722 input         1 rows
+        group by read node  
+        (s_37_2_t0.O$31)
+        
+        After code:
+        0: __ro2sq$54 := Call __ro2sq (s_37_2_t0.O$31)
+        5: var1$28 :=  := artm __ro2sq$54
+        9: BReturn 0
+        time     0.026% fanout         0 input       722 rows
+        Subquery Select(var1$28)
+      }
+    
+    After code:
+    0: var1$63 := Call __ro2sq (var1$28)
+    5: BReturn 0
+    time     0.015% fanout         0 input       722 rows
+    Select (var1$63)
+  }
+
+
+ 4 msec 70% cpu,       723 rnd       726 seq         0% same seg   56.3536% same pg 
+Compilation: 1 msec 0 reads         0% read 0 messages         0% clw

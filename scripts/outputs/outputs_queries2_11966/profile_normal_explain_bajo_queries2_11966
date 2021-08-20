@@ -1,0 +1,66 @@
+S0112	http://www.wikidata.org/entity/Q33108650		
+S0114	http://www.wikidata.org/entity/Q33108653		
+S0119	http://www.wikidata.org/entity/Q17265805		
+S0132	http://www.wikidata.org/entity/Q33108687		
+S0143	http://www.wikidata.org/entity/Q5343191		
+S0166	http://www.wikidata.org/entity/Q33108713		
+S0168	http://www.wikidata.org/entity/Q33108715		
+S0175	http://www.wikidata.org/entity/Q10480515		
+S0189	http://www.wikidata.org/entity/Q2199006		
+S0203	http://www.wikidata.org/entity/Q1978968		
+S0205	http://www.wikidata.org/entity/Q2012977		
+S0228	http://www.wikidata.org/entity/Q10441867		
+S0229	http://www.wikidata.org/entity/Q842877		
+S0238	http://www.wikidata.org/entity/Q30231898		
+S0241	http://www.wikidata.org/entity/Q3016371		
+S0251	http://www.wikidata.org/entity/Q20088670		
+S0265	http://www.wikidata.org/entity/Q18333800		
+S0266	http://www.wikidata.org/entity/Q33108783		
+S0267	http://www.wikidata.org/entity/Q3900143		
+S0290	http://www.wikidata.org/entity/Q30556892		
+
+  { 
+    time     0.049% fanout         1 input         1 rows
+    Subquery 27 
+      { 
+        time     0.029% fanout         1 input         1 rows
+        fork {
+            time        32% fanout       542 input         1 rows
+            RDF_QUAD   5.4e+02 rows(s_37_2_t0.O$34, s_37_2_t0.S$33)
+             inlined  P =  IRI_ID"...direct/P776" 
+            
+            After code:
+            0: __ro2sq$36 := Call __ro2sq (s_37_2_t0.O$34)
+            5: $40 :=  := artm <DB_NULL>
+            9: BReturn 0
+            time        41% fanout         0 input       542 rows
+            Sort (__ro2sq$36) -> (s_37_2_t0.S$33, $40)
+            
+          }
+        time        28% fanout       542 input         1 rows
+        Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:         0 Fanout:   5.4e+02
+        Key from temp (__ro2sq$36, s_37_2_t0.S$33, $40)
+        
+        
+        After code:
+        0: __id2in$55 := Call __id2in (s_37_2_t0.S$33)
+        5: var1$28 :=  := artm __ro2sq$36
+        9: var2$29 :=  := artm __id2in$55
+        13: var2Label$30 :=  := artm <DB_NULL>
+        17: BReturn 0
+        time     0.016% fanout         0 input       542 rows
+        Subquery Select(var1$28, var2$29, var2Label$30)
+      }
+    
+    After code:
+    0: var1$64 := Call __ro2sq (var1$28)
+    5: var2$66 := Call __ro2sq (var2$29)
+    10: var2Label$68 := Call __ro2sq (var2Label$30)
+    15: BReturn 0
+    time    0.0086% fanout         0 input       542 rows
+    Select (var1$64, var2$66, var2Label$68)
+  }
+
+
+ 7 msec 82% cpu,      1086 rnd      1082 seq         0% same seg   32.6587% same pg 
+Compilation: 2 msec 0 reads         0% read 0 messages         0% clw

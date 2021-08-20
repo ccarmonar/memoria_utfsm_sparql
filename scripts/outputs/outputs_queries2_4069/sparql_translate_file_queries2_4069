@@ -1,0 +1,49 @@
+SELECT __id2in ( "s_37_17"."_::trans_subj_37_0") AS "var1",
+  __ro2sq ( "s_37_17"."var2") AS "var2",
+  __id2in ( "s_37_15"."var3") AS "var3"
+FROM (
+    SELECT "s_37_10"."var2" AS "var2",
+      "s_37_10"."var1" AS "var1",
+      "s_37_7"."_::trans_subj_37_0" AS "_::trans_subj_37_0",
+      "s_37_7"."_::trans_obj_37_1" AS "_::trans_obj_37_1"
+    FROM (
+       SELECT TRANSITIVE T_OUT(2) T_IN(1) T_MIN( 0) T_NO_CYCLES "s_37_4_t0"."S" AS "_::trans_subj_37_0",
+          "s_37_4_t0"."O" AS "_::trans_obj_37_1"
+        FROM DB.DBA.RDF_QUAD AS "s_37_4_t0"
+        WHERE
+          "s_37_4_t0"."P" = __i2idn ( __bft( 'http://www.wikidata.org/prop/direct/P171' , 1))
+OPTION (QUIETCAST)
+        ) AS "s_37_7"
+      LEFT OUTER JOIN (
+        SELECT "s_37_10_t1"."S" AS "var1",
+          "s_37_10_t1"."O" AS "var2"
+        FROM DB.DBA.RDF_QUAD AS "s_37_10_t1"
+        WHERE
+          "s_37_10_t1"."P" = __i2idn ( __bft( 'http://www.wikidata.org/prop/direct/P685' , 1))) AS "s_37_10"
+      ON (1)) AS "s_37_17"
+  LEFT OUTER JOIN (
+    SELECT "s_37_15_t2"."S" AS "var3",
+      "s_37_15_t2"."O" AS "var1"
+    FROM DB.DBA.RDF_QUAD AS "s_37_15_t2"
+      INNER JOIN DB.DBA.RDF_QUAD AS "s_37_15_t3"
+      ON (
+        "s_37_15_t2"."S" = "s_37_15_t3"."S")
+    WHERE
+      "s_37_15_t2"."P" = __i2idn ( __bft( 'http://schema.org/about' , 1))
+      AND 
+      isiri_id ( "s_37_15_t2"."O")
+      AND 
+      "s_37_15_t3"."P" = __i2idn ( __bft( 'http://schema.org/isPartOf' , 1))
+      AND 
+      "s_37_15_t3"."O" = __i2idn ( __bft( 'https://en.wikipedia.org/' , 1))) AS "s_37_15"
+  ON (
+    ( "s_37_17"."var1" IS NULL  OR ( "s_37_17"."var1" = "s_37_15"."var1" ) )
+    AND 
+    "s_37_17"."_::trans_subj_37_0" = "s_37_15"."var1")
+WHERE
+  "s_37_17"."var1" = "s_37_17"."_::trans_subj_37_0"
+  AND 
+ ( "s_37_17"."_::trans_obj_37_1" =  __i2idn ( __bft( 'http://www.wikidata.org/entity/Q93315' , 1)))
+  AND 
+  1
+OPTION (QUIETCAST)

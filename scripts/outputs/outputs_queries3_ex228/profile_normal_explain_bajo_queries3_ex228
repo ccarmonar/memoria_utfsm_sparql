@@ -1,0 +1,47 @@
+http://learningsparql.com/ns/data#m40392	http://learningsparql.com/ns/expenses#date	2011-10-14 08:53:00	
+http://learningsparql.com/ns/data#m40392	http://learningsparql.com/ns/expenses#date	2011-10-14T08:53	
+http://learningsparql.com/ns/data#m40392	http://learningsparql.com/ns/expenses#date	2011-10-14	
+http://learningsparql.com/ns/data#m40393	http://learningsparql.com/ns/expenses#date	2011-10-14 13:19:00	
+http://learningsparql.com/ns/data#m40393	http://learningsparql.com/ns/expenses#date	2011-10-14T13:19	
+http://learningsparql.com/ns/data#m40393	http://learningsparql.com/ns/expenses#date	2011-10-14	
+http://learningsparql.com/ns/data#m40395	http://learningsparql.com/ns/expenses#date	2011-10-15	
+http://learningsparql.com/ns/data#m40396	http://learningsparql.com/ns/expenses#date	2011-10-15	
+http://learningsparql.com/ns/data#m40398	http://learningsparql.com/ns/expenses#date	2011-10-16	
+http://learningsparql.com/ns/data#m40399	http://learningsparql.com/ns/expenses#date	2011-10-16	
+http://learningsparql.com/ns/data#m40392	http://learningsparql.com/ns/expenses#amount	6.53	
+http://learningsparql.com/ns/data#m40393	http://learningsparql.com/ns/expenses#amount	11.13	
+http://learningsparql.com/ns/data#m40395	http://learningsparql.com/ns/expenses#amount	4.32	
+http://learningsparql.com/ns/data#m40396	http://learningsparql.com/ns/expenses#amount	9.45	
+http://learningsparql.com/ns/data#m40398	http://learningsparql.com/ns/expenses#amount	6.65	
+http://learningsparql.com/ns/data#m40399	http://learningsparql.com/ns/expenses#amount	10	
+http://learningsparql.com/ns/data#m40392	http://learningsparql.com/ns/expenses#description	breakfast	
+http://learningsparql.com/ns/data#m40393	http://learningsparql.com/ns/expenses#description	lunch	
+http://learningsparql.com/ns/data#m40395	http://learningsparql.com/ns/expenses#description	breakfast	
+http://learningsparql.com/ns/data#m40396	http://learningsparql.com/ns/expenses#description	lunch	
+
+  { 
+    time      0.83% fanout         1 input         1 rows
+    time        16% fanout         6 input         1 rows
+    RDF_QUAD_POGS        12 rows(s_12_4_t0.S$28)
+     P =  IRI_ID"...amount"  ,  O <  20  O <  20 
+    time        28% fanout         3 input         6 rows
+    Precode:
+      0: s$30 := Call __id2in (s_12_4_t0.S$28)
+      5: BReturn 0
+    RDF_QUAD_SP       8.5 rows(s_12_4_t1.P$33)
+     inlined  S = s_12_4_t0.S$28
+    time        55% fanout   1.22222 input        18 rows
+    RDF_QUAD       1.2 rows(s_12_4_t1.O$37)
+     inlined  P = s_12_4_t1.P$33 ,  S = k_s_12_4_t0.S$86
+    
+    After code:
+    0: p$40 := Call __id2in (s_12_4_t1.P$33)
+    5: o$42 := Call __ro2sq (s_12_4_t1.O$37)
+    10: BReturn 0
+    time     0.098% fanout         0 input        22 rows
+    Select (s$30, p$40, o$42)
+  }
+
+
+ 0 msec 28% cpu,        39 rnd        24 seq        55% same seg        15% same pg 
+Compilation: 1 msec 0 reads         0% read 0 messages         0% clw

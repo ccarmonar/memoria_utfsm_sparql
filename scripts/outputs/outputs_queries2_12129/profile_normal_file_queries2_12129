@@ -1,0 +1,90 @@
+http://www.wikidata.org/entity/Q15889292	SE753086-176808		
+http://www.wikidata.org/entity/Q304810	NL94_10		
+http://www.wikidata.org/entity/Q16497518	SE714652-176739		
+http://www.wikidata.org/entity/Q10646818	SE737691-184162		
+http://www.wikidata.org/entity/Q17693413	SE669944-145728		
+http://www.wikidata.org/entity/Q17693610	SE670275-146052		
+http://www.wikidata.org/entity/Q17780831	SE670023-153903		
+http://www.wikidata.org/entity/Q17780852	SE671539-152655		
+http://www.wikidata.org/entity/Q17780874	SE670384-153167		
+http://www.wikidata.org/entity/Q17780926	SE672100-152274		
+http://www.wikidata.org/entity/Q17780931	SE670648-153328		
+http://www.wikidata.org/entity/Q17781014	SE684616-155784		
+http://www.wikidata.org/entity/Q17781021	SE685796-157081		
+http://www.wikidata.org/entity/Q17781153	SE683888-154049		
+http://www.wikidata.org/entity/Q17781212	SE685768-153949		
+http://www.wikidata.org/entity/Q17781413	SE684061-157200		
+http://www.wikidata.org/entity/Q17781414	SE684410-158337		
+http://www.wikidata.org/entity/Q17781430	SE681489-157414		
+http://www.wikidata.org/entity/Q17781433	SE689444-151876		
+http://www.wikidata.org/entity/Q17781449	SE689323-151656		
+
+  { 
+    time       2.7% fanout         1 input         1 rows
+      clear: (<V set_ctr$68 in>)
+    s# 71 69 cluster outer seq start, set no <V set_ctr$68 in>    
+    save ctx:()
+      clear: (<V var3$30 a>, <V var2$29 a>, <V var1$28 rn>, <V set_no$31 i>, <V var3$60 a>, <V var2$58 a>, <V var1$56 a>)
+    s# 80 27 Subquery 27 
+      multistate set no = <V set_no$31 i>
+      { 
+        
+        s# 84 32 Union
+          { 
+            time        96% fanout       824 input         1 rows
+              clear: (<V s_37_2_t0-u8.O$34 an>, <V s_37_2_t0-u8.S$35 rn>, <V var3$30 a>, <V var2$29 a>, <V var1$28 rn>)
+              clear on continue: (<V s_37_2_t0-u8.O$34 an>, <V s_37_2_t0-u8.S$35 rn>, <V var3$30 a>, <V var2$29 a>, <V var1$28 rn>)
+            s# 87 33 from DB.DBA.RDF_QUAD by RDF_QUAD    8.2e+02 rows   
+            Key RDF_QUAD  ASC  (<V s_37_2_t0-u8.S$35 rn>, <V s_37_2_t0-u8.O$34 an>)
+             inlined  P =  IRI_ID"...direct/P2856" 
+            
+            After code:
+              0: <V var1$28 rn> :=  := artm <V s_37_2_t0-u8.S$35 rn>
+              4: <V var2$29 a> :=  := artm <V s_37_2_t0-u8.O$34 an>
+              8: <V var3$30 a> :=  := artm <DB_NULL>
+              12: BReturn 0
+            time      0.82% fanout         0 input       824 rows
+            
+            s# 80 37 Subquery Select(<V var1$28 rn>, <V var2$29 a>, <V var3$30 a>)
+              set no: <r set_no$31 via  Set87>
+          }
+          { 
+            time         0% fanout         0 input         0 rows
+            Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:         4 Fanout:         0
+              clear: (<V s_37_5_t1.O$45 an>, <V s_37_5_t1.S$46 rn>, <V var3$30 a>, <V var2$29 a>, <V var1$28 rn>)
+              clear on continue: (<V s_37_5_t1.O$45 an>, <V s_37_5_t1.S$46 rn>, <V var3$30 a>, <V var2$29 a>, <V var1$28 rn>)
+            s# 108 44 from DB.DBA.RDF_QUAD by RDF_QUAD          4 rows   
+            Key RDF_QUAD  ASC  (<V s_37_5_t1.S$46 rn>, <V s_37_5_t1.O$45 an>)
+             inlined  P =  IRI_ID"...direct/P2965" 
+            
+            After code:
+              0: <V var1$28 rn> :=  := artm <V s_37_5_t1.S$46 rn>
+              4: <V var2$29 a> :=  := artm <DB_NULL>
+              8: <V var3$30 a> :=  := artm <V s_37_5_t1.O$45 an>
+              12: BReturn 0
+            time         0% fanout         0 input         0 rows
+            
+            Subquery Select(<V var1$28 rn>, <V var2$29 a>, <V var3$30 a>)
+              set no: <r set_no$31 via  Set108>
+          }
+      }
+    
+    After code:
+      0: <V var1$56 a> := Call __id2in (<V var1$28 rn>)
+      5: <V var2$58 a> := Call __ro2sq (<V var2$29 a>)
+      10: <V var3$60 a> := Call __ro2sq (<V var3$30 a>)
+      15: BReturn 0
+    time       0.5% fanout         0 input       824 rows
+    $68 (27 69 ) $56 (27 ) $58 (27 ) $60 (27 ) 
+    s# 126 62 Select (<V var1$56 a>, <V var2$58 a>, <V var3$60 a>)
+      set no: <r set_ctr$68 via  Set80>
+  }
+Warning: You might have a Cartesian product.
+
+Warning: You might have a Cartesian product.
+
+
+
+ 52 msec 27% cpu,      1649 rnd       823 seq         0% same seg   88.2424% same pg 
+2 disk reads, 0 read ahead,   14.6463% wait
+Compilation: 142 msec 0 reads         0% read 0 messages         0% clw

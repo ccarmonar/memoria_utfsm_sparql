@@ -1,0 +1,58 @@
+http://www.wikidata.org/entity/Q186537	
+http://www.wikidata.org/entity/Q202422	
+http://www.wikidata.org/entity/Q193748	
+http://www.wikidata.org/entity/Q3623202	
+http://www.wikidata.org/entity/Q12506054	
+http://www.wikidata.org/entity/Q244762	
+http://www.wikidata.org/entity/Q321371	
+http://www.wikidata.org/entity/Q1508143	
+http://www.wikidata.org/entity/Q160307	
+http://www.wikidata.org/entity/Q207991	
+http://www.wikidata.org/entity/Q23681	
+http://www.wikidata.org/entity/Q268970	
+http://www.wikidata.org/entity/Q282428	
+http://www.wikidata.org/entity/Q55502	
+http://www.wikidata.org/entity/Q153665	
+http://www.wikidata.org/entity/Q156038	
+http://www.wikidata.org/entity/Q165008	
+http://www.wikidata.org/entity/Q189710	
+http://www.wikidata.org/entity/Q209065	
+http://www.wikidata.org/entity/Q2453974	
+
+  { 
+    time      0.96% fanout         1 input         1 rows
+    Subquery 27 
+      { 
+        time        20% fanout      1000 input         1 rows
+        Warning: the cardinality estimate of the cost model differs greatly from the measured time. Cardinality estimate:   1.1e+06 Fanout:     1e+03
+        RDF_QUAD_POGS   1.1e+06 rows(s_37_2_t0.O$31)
+         inlined  P =  IRI_ID"...direct/P17" 
+        time        19% fanout         1 input      1000 rows
+        END Node
+        After test:
+        0: is_named_iri_id$33 := Call is_named_iri_id (s_37_2_t0.O$31)
+        5: if ( 0  = is_named_iri_id$33) then 10 else 9 unkn 10
+        9: BReturn 1
+        10: BReturn 0
+        time        58% fanout     0.097 input      1000 rows
+        Distinct (s_37_2_t0.O$31)
+        time       1.6% fanout         1 input        97 rows
+        skip node  10000  <none> set_no$29
+        
+        After code:
+        0: var1$28 :=  := artm s_37_2_t0.O$31
+        4: BReturn 0
+        time      0.28% fanout         0 input        97 rows
+        Subquery Select(var1$28)
+      }
+    
+    After code:
+    0: var1$51 := Call __ro2sq (var1$28)
+    5: BReturn 0
+    time      0.23% fanout         0 input        97 rows
+    Select (var1$51)
+  }
+
+
+ 1 msec 36% cpu,         1 rnd       998 seq         0% same seg         0% same pg 
+Compilation: 1 msec 0 reads         0% read 0 messages         0% clw
