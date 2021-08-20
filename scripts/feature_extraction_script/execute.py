@@ -10,7 +10,8 @@ c = 0
 
 if not os.path.exists(os.getcwd()+'/scripts/feature_extraction_script/returns/'):
 	os.makedirs(os.getcwd()+'/scripts/feature_extraction_script/returns/')
-
+if not os.path.exists(os.getcwd()+'/scripts/csv_files/'):
+	os.makedirs(os.getcwd()+'/scripts/csv_files/')
 
 def execute(profile_sparql, profile_low_explain):
 	operators = MainCurlyBrackets(profile_sparql)
