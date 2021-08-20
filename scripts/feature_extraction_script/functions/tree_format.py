@@ -29,6 +29,9 @@ def IterateBuildTree(prearmed, binary_tree_format):
             prearmed = prearmed[2::]
             return IterateBuildTree(prearmed, aux)
 
+def Intermediate_Nodes():
+    return 0
+
 
 def BinaryTreeFormat(operators, matrix_format):
     list_op = list(operators.keys())

@@ -516,3 +516,44 @@ def SetAfterTest(operators):
 	return operators
 
 
+def SetTripleType(operators):
+	for k in operators.keys():
+		s, p, o = 'None', 'None', 'None'
+		if operators[k]['operator_type'] == 1:
+			### PREDICADO
+			if 'P' in list(operators[k].keys()):
+				if 'IRI' in operators[k]['P']:
+					p = 'URI'
+				else:
+					p = 'VAR'
+			else:
+				p = 'VAR'
+
+			### SUJETO
+			###### ARREGLAR ESTO
+			if 'S' in list(operators[k].keys()):
+				if 'IRI' in operators[k]['S']:
+					s = 'URI'
+				else:
+					s = 'VAR'
+			else:
+				s = 'VAR'
+
+
+			### OBJETO
+			##### ARREGLAR ESTO
+			if 'O' in list(operators[k].keys()):
+				if 'IRI' in operators[k]['O']:
+					o = 'URI'
+				elif 'rdflit' in operators[k]['O']:
+					o = 'LIT'
+				else:
+					o = 'VAR'
+			else:
+				o = 'VAR'
+			operators[k]['triple_type'] = s + '_' + p + '_' + o
+		else:
+			operators[k]['triple_type'] = 'None'
+
+	return operators
+
