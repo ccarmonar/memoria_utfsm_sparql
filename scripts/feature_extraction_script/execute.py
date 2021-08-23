@@ -1,5 +1,5 @@
 import os, json, csv
-from functions.main import GetFinalResults, GroupOperators, GetOperatorExecutionFeatures, IdentifyOperatorType, IdentifyPrecode, IdentifyAfterCode, IdentifyGroupBy, IdentifyDistinct, IdentifyTOP, IdentifyTopOrderByRead, IdentifySkipNode, IdentifySelect, GetGSPO, GetIRI_ID, GetAllPredicatesFromProfile, SetBooleanPredicates, GetStartAndEndOptionalSection, SetBooleanOptionalSection, SetTargetAndTransitive, SetSorts, SetSubqueries, SetAfterTest, SetTripleType
+from functions.main import GetFinalResults, GroupOperators, GetOperatorExecutionFeatures, IdentifyOperatorType, IdentifyPrecode, IdentifyAfterCode, IdentifyGroupBy, IdentifyDistinct, IdentifyTOP, IdentifyTopOrderByRead, IdentifySkipNode, IdentifySelect, GetGSPO, GetIRI_ID, GetAllPredicatesFromProfile, SetBooleanPredicates, GetStartAndEndOptionalSection, SetBooleanOptionalSection, SetTargetAndTransitive, SetSorts, SetSubqueries, SetAfterTest, SetTripleType, SetGSPODefault
 from functions.aux import GetSubstring, ParseNestedBracket, CleanOperators, GetPrefixes, VectorString, MainCurlyBrackets, CountCurlyBrackets, CleanSalts, SubstractStrings
 from functions.build_csv import AllData, FullDataframe
 #current working directorya
@@ -25,6 +25,7 @@ def execute(profile_sparql, profile_low_explain):
 		operators[i] = IdentifyGroupBy(operators[i])
 		operators[i] = IdentifyDistinct(operators[i])
 		operators[i] = GetGSPO(operators[i])
+		operators[i] = SetGSPODefault(operators[i])
 		operators[i] = IdentifyTOP(operators[i])
 		operators[i] = IdentifyTopOrderByRead(operators[i])
 		operators[i] = IdentifySkipNode(operators[i])
@@ -53,8 +54,22 @@ dataframe = []
 for i in path_profiles:
 	if os.path.isdir(os.getcwd()+"/scripts/outputs/"+i):
 		filename = "_".join(i.split("_")[1:])
-		#if all(e != filename for e in ['queries1_696', 'queries1_57']):
-		if filename == "queries4_test_wikidata22" or filename == "queries4_test_wikidata14" or filename == "queries3_ex052" or filename == "queries3_ex021":
+
+
+		#if all(e != filename for e in ['queries1_696', 'queries1_57']) and "queries1" in filename:
+		if filename == "queries4_test_wikidata22" \
+				or "test_wikidata" in filename \
+				or filename == "queries3_ex052" \
+				or filename == "queries3_ex021" \
+				or filename == "queries2_4" \
+				or filename == "queries2_5" \
+				or filename == "queries2_36" \
+				or filename == "queries2_78" \
+				or filename == "queries2_196" \
+				or filename == "queries2_30" \
+				or filename == "queries2_84" \
+				or filename == "queries2_87" \
+				or filename == "queries2_187":
 			print("filename: ", filename)
 			sparql_file = open(os.getcwd() + "/scripts/outputs/outputs_" + filename + "/" + filename + ".rq", 'r', encoding='latin-1').read()
 			profile_normal = open(os.getcwd() + "/scripts/outputs/outputs_" + filename + "/profile_normal_file_" + filename, 'r', encoding='latin-1').read()

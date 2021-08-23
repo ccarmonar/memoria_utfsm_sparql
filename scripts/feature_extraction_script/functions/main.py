@@ -185,12 +185,18 @@ def IdentifySkipNode(operator):
 def GetGSPO(operator):
 	lines = operator['profile_text'].split('\n')
 	for ls in lines:
-		#PREDICADOS
+		#PREDICADOS no rowspecs
 		if all(e in ls for e in [" P "]) and 'row specs' not in ls:
 			split_P = list(filter(None,ls.strip().split(' ')))
 			for s in range(0, len(split_P)):
 				if split_P[s] == 'P':
-					if split_P[s+2][:2].lower() == "<v" or split_P[s+2][:2].lower() == "<r" or split_P[s+2][:3].lower() == "<$r" or split_P[s+2][:3].lower() == "<$v" or split_P[s+2][:3].lower() == "<$c" or split_P[s+2][:3].lower() == "<c":
+					if split_P[s+2][:2].lower() == "<v" \
+							or split_P[s+2][:2].lower() == "<r" \
+							or split_P[s+2][:3].lower() == "<$r" \
+							or split_P[s+2][:3].lower() == "<$v" \
+							or split_P[s+2][:3].lower() == "<$c" \
+							or split_P[s+2][:3].lower() == "<c" \
+							or split_P[s + 2][:3].lower() == "<tag":
 						operator['P'] = VectorString(split_P[s+2:])
 						operator['P_math_op'] = split_P[s + 1]
 					elif "$" in split_P[s+2]:
@@ -203,7 +209,13 @@ def GetGSPO(operator):
 			split_P = list(filter(None,ls.strip().split(' ')))
 			for s in range(0, len(split_P)):
 				if split_P[s] == 'O':
-					if split_P[s+2][:2].lower() == "<v" or split_P[s+2][:2].lower() == "<r" or split_P[s+2][:3].lower() == "<$r" or split_P[s+2][:3].lower() == "<$v" or split_P[s+2][:3].lower() == "<$c" or split_P[s+2][:3].lower() == "<c":
+					if split_P[s+2][:2].lower() == "<v" \
+							or split_P[s+2][:2].lower() == "<r" \
+							or split_P[s+2][:3].lower() == "<$r" \
+							or split_P[s+2][:3].lower() == "<$v" \
+							or split_P[s+2][:3].lower() == "<$c" \
+							or split_P[s+2][:3].lower() == "<c" \
+							or split_P[s + 2][:3].lower() == "<tag":
 						operator['O'] = VectorString(split_P[s+2:])
 						operator['O_math_op'] = split_P[s + 1]
 					elif "$" in split_P[s + 2]:
@@ -216,7 +228,13 @@ def GetGSPO(operator):
 			split_P = list(filter(None,ls.strip().split(' ')))
 			for s in range(0, len(split_P)):
 				if split_P[s] == 'S':
-					if split_P[s+2][:2].lower() == "<v" or split_P[s+2][:2].lower() == "<r" or split_P[s+2][:3].lower() == "<$r" or split_P[s+2][:3].lower() == "<$v" or split_P[s+2][:3].lower() == "<$c" or split_P[s+2][:3].lower() == "<c":
+					if split_P[s+2][:2].lower() == "<v" \
+							or split_P[s+2][:2].lower() == "<r" \
+							or split_P[s+2][:3].lower() == "<$r" \
+							or split_P[s+2][:3].lower() == "<$v" \
+							or split_P[s+2][:3].lower() == "<$c" \
+							or split_P[s+2][:3].lower() == "<c" \
+							or split_P[s + 2][:3].lower() == "<tag":
 						operator['S'] = VectorString(split_P[s+2:])
 						operator['S_math_op'] = split_P[s+1]
 					elif "$" in split_P[s + 2]:
@@ -229,7 +247,13 @@ def GetGSPO(operator):
 			split_P = list(filter(None,ls.strip().split(' ')))
 			for s in range(0,len(split_P)):
 				if split_P[s] == 'G':
-					if split_P[s+2][:2].lower() == "<v" or split_P[s+2][:2].lower() == "<r" or split_P[s+2][:3].lower() == "<$r" or split_P[s+2][:3].lower() == "<$v" or split_P[s+2][:3].lower() == "<$c" or split_P[s+2][:3].lower() == "<c":
+					if split_P[s+2][:2].lower() == "<v" \
+							or split_P[s+2][:2].lower() == "<r" \
+							or split_P[s+2][:3].lower() == "<$r" \
+							or split_P[s+2][:3].lower() == "<$v" \
+							or split_P[s+2][:3].lower() == "<$c" \
+							or split_P[s+2][:3].lower() == "<c" \
+							or split_P[s + 2][:3].lower() == "<tag":
 						operator['G'] = VectorString(split_P[s+2:])
 						operator['G_math_op'] = split_P[s + 1]
 					elif "$" in split_P[s + 2]:
@@ -243,7 +267,13 @@ def GetGSPO(operator):
 			split_P = list(filter(None,ls.strip().split(' ')))
 			for s in range(0, len(split_P)):
 				if split_P[s] == 'P':
-					if split_P[s+2][:2].lower() == "<v" or split_P[s+2][:2].lower() == "<r" or split_P[s+2][:3].lower() == "<$r" or split_P[s+2][:3].lower() == "<$v" or split_P[s+2][:3].lower() == "<$c" or split_P[s+2][:3].lower() == "<c":
+					if split_P[s+2][:2].lower() == "<v" \
+							or split_P[s+2][:2].lower() == "<r" \
+							or split_P[s+2][:3].lower() == "<$r" \
+							or split_P[s+2][:3].lower() == "<$v" \
+							or split_P[s+2][:3].lower() == "<$c" \
+							or split_P[s+2][:3].lower() == "<c" \
+							or split_P[s + 2][:3].lower() == "<tag":
 						operator['P_rs'] = VectorString(split_P[s+2:])
 						operator['P_rs_math_op'] = split_P[s + 1]
 					elif "$" in split_P[s+2]:
@@ -256,7 +286,13 @@ def GetGSPO(operator):
 			split_P = list(filter(None,ls.strip().split(' ')))
 			for s in range(0, len(split_P)):
 				if split_P[s] == 'O':
-					if split_P[s+2][:2].lower() == "<v" or split_P[s+2][:2].lower() == "<r" or split_P[s+2][:3].lower() == "<$r" or split_P[s+2][:3].lower() == "<$v" or split_P[s+2][:3].lower() == "<$c" or split_P[s+2][:3].lower() == "<c":
+					if split_P[s+2][:2].lower() == "<v" \
+							or split_P[s+2][:2].lower() == "<r" \
+							or split_P[s+2][:3].lower() == "<$r" \
+							or split_P[s+2][:3].lower() == "<$v" \
+							or split_P[s+2][:3].lower() == "<$c" \
+							or split_P[s+2][:3].lower() == "<c" \
+							or split_P[s + 2][:3].lower() == "<tag":
 						operator['O_rs'] = VectorString(split_P[s+2:])
 						operator['O_rs_math_op'] = split_P[s + 1]
 					elif "$" in split_P[s + 2]:
@@ -269,7 +305,13 @@ def GetGSPO(operator):
 			split_P = list(filter(None,ls.strip().split(' ')))
 			for s in range(0, len(split_P)):
 				if split_P[s] == 'S':
-					if split_P[s+2][:2].lower() == "<v" or split_P[s+2][:2].lower() == "<r" or split_P[s+2][:3].lower() == "<$r" or split_P[s+2][:3].lower() == "<$v"or split_P[s+2][:3].lower() == "<$c" or split_P[s+2][:3].lower() == "<c":
+					if split_P[s+2][:2].lower() == "<v" \
+							or split_P[s+2][:2].lower() == "<r" \
+							or split_P[s+2][:3].lower() == "<$r" \
+							or split_P[s+2][:3].lower() == "<$v" \
+							or split_P[s+2][:3].lower() == "<$c" \
+							or split_P[s+2][:3].lower() == "<c" \
+							or split_P[s + 2][:3].lower() == "<tag":
 						operator['S_rs'] = VectorString(split_P[s+2:])
 						operator['S_rs_math_op'] = split_P[s+1]
 					elif "$" in split_P[s + 2]:
@@ -282,7 +324,13 @@ def GetGSPO(operator):
 			split_P = list(filter(None,ls.strip().split(' ')))
 			for s in range(0,len(split_P)):
 				if split_P[s] == 'G':
-					if split_P[s+2][:2].lower() == "<v" or split_P[s+2][:2].lower() == "<r" or split_P[s+2][:3].lower() == "<$r" or split_P[s+2][:3].lower() == "<$v" or split_P[s+2][:3].lower() == "<$c" or split_P[s+2][:3].lower() == "<c":
+					if split_P[s+2][:2].lower() == "<v" \
+							or split_P[s+2][:2].lower() == "<r" \
+							or split_P[s+2][:3].lower() == "<$r" \
+							or split_P[s+2][:3].lower() == "<$v" \
+							or split_P[s+2][:3].lower() == "<$c" \
+							or split_P[s+2][:3].lower() == "<c" \
+							or split_P[s + 2][:3].lower() == "<tag":
 						operator['G_rs'] = VectorString(split_P[s+2:])
 						operator['G_rs_math_op'] = split_P[s + 1]
 					elif "$" in split_P[s + 2]:
@@ -291,6 +339,35 @@ def GetGSPO(operator):
 					else:
 						operator['G_rs'] = split_P[s+2]
 						operator['G_rs_math_op'] = split_P[s + 1]
+
+	return operator
+
+
+def SetGSPODefault(operator):
+	if 'G' not in list(operator.keys()):
+		operator['G'] = 'None'
+		operator['G_math_op'] = 'None'
+	if 'G_rs' not in list(operator.keys()):
+		operator['G_rs'] = 'None'
+		operator['G_rs_math_op'] = 'None'
+	if 'S' not in list(operator.keys()):
+		operator['P'] = 'None'
+		operator['P_math_op'] = 'None'
+	if 'S_rs' not in list(operator.keys()):
+		operator['P_rs'] = 'None'
+		operator['P_rs_math_op'] = 'None'
+	if 'P' not in list(operator.keys()):
+		operator['P'] = 'None'
+		operator['P_math_op'] = 'None'
+	if 'P_rs' not in list(operator.keys()):
+		operator['P_rs'] = 'None'
+		operator['P_rs_math_op'] = 'None'
+	if 'O' not in list(operator.keys()):
+		operator['P'] = 'None'
+		operator['P_math_op'] = 'None'
+	if 'O_rs' not in list(operator.keys()):
+		operator['P_rs'] = 'None'
+		operator['P_rs_math_op'] = 'None'
 
 	return operator
 
@@ -545,13 +622,17 @@ def SetTripleType(operators):
 			if 'O' in list(operators[k].keys()):
 				if 'IRI' in operators[k]['O']:
 					o = 'URI'
-				elif 'rdflit' in operators[k]['O']:
+				elif any(e in operators[k]['O'] for e in ['cast','k___all_eq', 'all_eq', 'rdflit', 'k_Article', 'Article', 'DB.DBA.RDF_OBJ_OF_SQLVAL', 'DB.DBA.RDF_OBJ', 'DB.DBA.RDF_MAKE_OBJ']):
+				#elif any(e not in operators[k]['O'] for e in ['k_s_', 's_', '.O','.P']):
 					o = 'LIT'
 				else:
 					o = 'VAR'
+				print('O = ',operators[k]['O'])
+				print(o)
 			else:
 				o = 'VAR'
 			operators[k]['triple_type'] = s + '_' + p + '_' + o
+			print(k,operators[k]['triple_type'])
 		else:
 			operators[k]['triple_type'] = 'None'
 
