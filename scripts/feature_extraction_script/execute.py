@@ -57,6 +57,7 @@ for i in path_profiles:
 
 
 		#if all(e != filename for e in ['queries1_696', 'queries1_57']) and "queries1" in filename:
+
 		if filename == "queries4_test_wikidata22" \
 				or "test_wikidata" in filename \
 				or filename == "queries3_ex052" \
@@ -67,9 +68,22 @@ for i in path_profiles:
 				or filename == "queries2_78" \
 				or filename == "queries2_196" \
 				or filename == "queries2_30" \
+				or filename == "queries1_16" \
 				or filename == "queries2_84" \
 				or filename == "queries2_87" \
-				or filename == "queries2_187":
+				or filename == "queries2_187" \
+				or filename == "queries2_3000" \
+				or filename == "queries2_23000" \
+				or filename == "queries2_7800"   \
+				or filename == "queries3_ex010" \
+				or filename == "queries3_ex015" \
+				or filename == "queries3_ex021" \
+				or filename == "queries3_q1" \
+				or filename == "queries3_q2" \
+				or filename == "queries3_q3" \
+				or filename == "queries3_q4" \
+				or filename == "queries3_q5" \
+				or filename == "queries3_q6":
 			print("filename: ", filename)
 			sparql_file = open(os.getcwd() + "/scripts/outputs/outputs_" + filename + "/" + filename + ".rq", 'r', encoding='latin-1').read()
 			profile_normal = open(os.getcwd() + "/scripts/outputs/outputs_" + filename + "/profile_normal_file_" + filename, 'r', encoding='latin-1').read()
