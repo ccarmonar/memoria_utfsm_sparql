@@ -105,7 +105,7 @@ def GeneralFeaturesFromOperators(operators):
             if operators[k]['num_bgp'] != 'None':
                 bgps = max(bgps, int(operators[k]['num_bgp']))
     operators['GF_FROM_OP'] = {'triples' : triples, 'bgps' : bgps}
-
+    return operators
 
 def GeneralFeaturesFromPerformanceTuning(general_features_pt_file):
     general_features_pt_aux = [x.strip() for x in general_features_pt_file.split('\n')]

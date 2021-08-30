@@ -1,5 +1,9 @@
 import os, json, csv
-from functions.main import GetFinalResults, GroupOperators, GetOperatorExecutionFeatures, IdentifyOperatorType, IdentifyPrecode, IdentifyAfterCode, IdentifyGroupBy, IdentifyDistinct, IdentifyTOP, IdentifyTopOrderByRead, IdentifySkipNode, IdentifySelect, GetGSPO, GetIRI_ID, GetAllPredicatesFromProfile, SetBooleanPredicates, GetStartAndEndOptionalSection, SetBooleanOptionalSection, SetTargetAndTransitive, SetSorts, SetSubqueries, SetAfterTest, SetTripleType, SetGSPODefault, IdentifyBGPS
+from functions.main import GetFinalResults, GroupOperators, GetOperatorExecutionFeatures, IdentifyOperatorType, \
+	IdentifyPrecode, IdentifyAfterCode, IdentifyGroupBy, IdentifyDistinct, IdentifyTOP, IdentifyTopOrderByRead, \
+	IdentifySkipNode, IdentifySelect, GetGSPO, GetIRI_ID, GetAllPredicatesFromProfile, SetBooleanPredicates, \
+	GetStartAndEndOptionalSection, SetBooleanOptionalSection, SetTargetAndTransitive, SetSorts, SetSubqueries, \
+	SetAfterTest, SetTripleType, SetGSPODefault, IdentifyBGPS, IdentifyUnionFeatures
 from functions.aux import GetSubstring, ParseNestedBracket, CleanOperators, GetPrefixes, VectorString, MainCurlyBrackets, CountCurlyBrackets, CleanSalts, SubstractStrings
 from functions.build_csv import AllData, FullDataframe
 #current working directorya
@@ -41,6 +45,7 @@ def execute(profile_sparql, profile_low_explain):
 	operators = SetSubqueries(operators)
 	operators = IdentifyBGPS(operators)
 	operators = SetTripleType(operators)
+	operators = IdentifyUnionFeatures(operators,sparql_file)
 	return operators, predicates_list
 
 
@@ -93,7 +98,10 @@ for i in path_profiles:
 			or filename == "queries2_2303" \
 			or filename == "queries2_10969" \
 			or filename == "queries2_13963"\
-			or filename == "queries2_14351":
+			or filename == "queries2_14351" \
+			or filename == "queries2_14233" \
+			or filename == "queries2_21236" \
+			or filename == "queries2_5095":
 			#	or filename == "queries2_0" \
 			#	or filename == "queries2_8830"\
 			#	or filename == "queries2_0" \

@@ -961,7 +961,6 @@ def SetAfterTest(operators):
 
 
 
-
 def IdentifyBGPS(operators):
 	only_scans, os_keys = OnlyScans(operators)
 	list_keys = list(operators.keys())
@@ -976,8 +975,20 @@ def IdentifyBGPS(operators):
 				num_bgp += 1
 		operators[os_keys[k]]["num_bgp"] = num_bgp
 
+	return operators
 
 
+def IdentifyUnionFeatures(operators, sparql):
+	if 'UNION' in sparql:
+		union_i = 0
+		for k in operators.keys():
+			operators[k]['union_separate'] = 0
+			operators[k]['union_end'] = 0
+			if operators[k]['{'] >= 1 and operators[k]['}'] == 1 and operators[k]['subquery_select?'] == 1 and union_i == 0:
+				operators[k]['union_separate'] = 1
+				union_i = 1
+			if operators[k]['}'] >= 2 and operators[k]['subquery_select?'] == 1 and union_i == 1:
+				operators[k]['union_end'] = 1
 	return operators
 
 def SetTripleType(operators):
