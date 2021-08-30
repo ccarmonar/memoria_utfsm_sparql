@@ -95,6 +95,18 @@ def GeneralFeaturesFromProfileFile(profile_file,operators):
     return operators
 
 
+def GeneralFeaturesFromOperators(operators):
+    triples = 0
+    bgps = 0
+    for k in operators.keys():
+        if k != 'GENERAL_FEATURES':
+            if operators[k]['operator_type'] == 1:
+                triples += 1
+            if operators[k]['num_bgp'] != 'None':
+                bgps = max(bgps, int(operators[k]['num_bgp']))
+    operators['GF_FROM_OP'] = {'triples' : triples, 'bgps' : bgps}
+
+
 def GeneralFeaturesFromPerformanceTuning(general_features_pt_file):
     general_features_pt_aux = [x.strip() for x in general_features_pt_file.split('\n')]
     general_features_pt_list = []

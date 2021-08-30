@@ -1,15 +1,13 @@
 import pandas as pd
-from functions.general_features import GeneralFeaturesFromProfileFile, GeneralFeaturesFromPerformanceTuning
+from functions.general_features import GeneralFeaturesFromProfileFile, GeneralFeaturesFromPerformanceTuning, GeneralFeaturesFromOperators
 from functions.matrix_format import MatrixFormat, MatrixNumpyFormat, DataFrameFormat
-from functions.tree_format import IdentifyJoinType, OnlyScans, IterateBuildTree, BinaryTreeFormat, IdentifyBGPs
+from functions.tree_format import IdentifyJoinType, OnlyScans, IterateBuildTree, BinaryTreeFormat
 from functions.aux import HashStringId
 
 
 def AllData(operators, profile, predicates, filename, sparql_file, general_features_pt_file):
     matrix_format = MatrixFormat(operators, predicates)
     binary_tree = BinaryTreeFormat(operators, matrix_format)
-    bgps = IdentifyBGPs(operators)
-    print(bgps)
     general_features = GeneralFeaturesFromProfileFile(profile, operators)
     unique_id = HashStringId(str(predicates) + str(matrix_format) + str(binary_tree) + str(general_features))
     limit = general_features['GENERAL_FEATURES']['LIMIT']
@@ -19,6 +17,7 @@ def AllData(operators, profile, predicates, filename, sparql_file, general_featu
     all_data = [unique_id, filename, sparql_file, profile, limit] + precompiled_list + compiled_list + general_features_pt
     all_data.append(str(matrix_format))
     all_data.append(str(binary_tree))
+    operators = GeneralFeaturesFromOperators(operators)
     return all_data
 
 

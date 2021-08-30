@@ -115,3 +115,13 @@ def HashStringId(string):
 	sha.update(string.encode())
 	sha_return = sha.hexdigest()
 	return sha_return
+
+
+def OnlyScans(operators):
+	only_scans = []
+	keys = []
+	for k in operators.keys():
+		if operators[k]['operator_type'] == 1:
+			only_scans.append(operators[k])
+			keys.append(k)
+	return only_scans, keys

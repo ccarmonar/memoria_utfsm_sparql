@@ -1,19 +1,12 @@
 from anytree import Node, RenderTree
 from anytree.exporter import DotExporter
+from functions.aux import OnlyScans
 
 
 def IdentifyJoinType(operator):
     print(operator[''])
     join_type = 0
     return join_type
-
-
-def OnlyScans(operators):
-    only_scans = []
-    for k in operators.keys():
-        if operators[k]['operator_type'] == 1 or operators[k]['start_optional'] == 1:
-            only_scans.append(operators[k])
-    return only_scans
 
 
 def IterateBuildTree2(prearmed, binary_tree_format):
@@ -83,8 +76,6 @@ def BinaryTreeFormat2(operators, matrix_format):
     binary_tree_format = []
 
     binary_tree_format, prearmed = IterateBuildTree(prearmed, binary_tree_format)
-
-    print(binary_tree_format)
     return binary_tree_format
 
 
@@ -128,18 +119,24 @@ def BinaryTreeFormat(operators, matrix_format):
                 prearmed.append('JOIN')
     #print(prearmed)
     binary_tree_format, prearmed = IterateBuildTree(prearmed, binary_tree_format)
-    print(binary_tree_format)
+    #print(binary_tree_format)
 
     return binary_tree_format
 
 
 def IdentifyBGPs(operators):
-    scan_queries = ScanQueriesKeys(operators)
+    bgps = 1
+    list_op = list(operators.keys())
+    for k in range(len(list_op)):
+        if k > 1:
+            print(list_op[k-1],operators[list_op[k-1]]['subquerie_lvl'])
+            if operators[list_op[k-1]]['subquerie_lvl'] != operators[list_op[k]]['subquerie_lvl']:
+                bgps += 1
+            elif operators[list_op[k - 1]]['optional_section?'] != operators[list_op[k]]['optional_section?']:
+                bgps += 1
 
 
-    for k in range(len(scan_queries)):
-        print(operators[scan_queries[k]]['triple_type'])
 
-    return "t"
+    return bgps
 
 
