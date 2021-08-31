@@ -43,9 +43,9 @@ def execute(profile_sparql, profile_low_explain):
 	operators = SetTargetAndTransitive(operators)
 	operators = SetSorts(operators)
 	operators = SetSubqueries(operators)
-	operators = IdentifyBGPS(operators)
 	operators = SetTripleType(operators)
-	operators = IdentifyUnionFeatures(operators,sparql_file)
+	operators = IdentifyUnionFeatures(operators, sparql_file)
+	operators = IdentifyBGPS(operators)
 	return operators, predicates_list
 
 
@@ -57,70 +57,59 @@ def test_print():
 dataframe = []
 
 
+lst = [
+	0,
+	22,
+	275,
+	457,
+	556,
+	666,
+	766,
+	800,
+	998,
+	1248,
+	2303,
+	3222,
+	3599,
+	4732,
+	5095,
+	5429,
+	6985,
+	7788,
+	8358,
+	8830,
+	8930,
+	8932,
+	9568,
+	10757,
+	10969,
+	11000,
+	11725,
+	12008,
+	12345,
+	12664,
+	13456,
+	13963,
+	14233,
+	16790,
+	17865,
+	21291,
+	22004,
+	22088,
+	23391,
+	24200
+]
+
 for i in path_profiles:
 	if os.path.isdir(os.getcwd()+"/scripts/outputs/"+i):
 		filename = "_".join(i.split("_")[1:])
-
-
 		#if all(e != filename for e in ['queries1_696', 'queries1_57']) and "queries1" in filename:
-		'''
-		if filename == "queries4_test_wikidata22" \
-				or "test_wikidata" in filename \
-				or filename == "queries3_ex052" \
-				or filename == "queries3_ex021" \
-				or filename == "queries2_4" \
-				or filename == "queries2_5" \
-				or filename == "queries2_36" \
-				or filename == "queries2_78" \
-				or filename == "queries2_196" \
-				or filename == "queries2_30" \
-				or filename == "queries1_16" \
-				or filename == "queries2_84" \
-				or filename == "queries2_87" \
-				or filename == "queries2_187" \
-				or filename == "queries2_3000" \
-				or filename == "queries2_23000" \
-				or filename == "queries2_7800"   \
-				or filename == "queries3_ex010" \
-				or filename == "queries3_ex015" \
-				or filename == "queries3_ex021" \
-				or filename == "queries3_q1" \
-				or filename == "queries3_q2" \
-				or filename == "queries3_q3" \
-				or filename == "queries3_q4" \
-				or filename == "queries3_q5" \
-				or filename == "queries3_q6":
-		'''
-		if	filename == "queries2_24200" \
-			or filename == "queries2_0" \
-			or filename == "queries2_22"\
-			or filename == "queries2_22004" \
-			or filename == "queries2_2303" \
-			or filename == "queries2_10969" \
-			or filename == "queries2_13963"\
-			or filename == "queries2_14351" \
-			or filename == "queries2_14233" \
-			or filename == "queries2_21236" \
-			or filename == "queries2_5095":
-			#	or filename == "queries2_0" \
-			#	or filename == "queries2_8830"\
-			#	or filename == "queries2_0" \
-			#	or filename == "queries2_22" \
-			#	or filename == "queries2_8830"\
-			#	or filename == "queries2_5429"\
-			#	or filename == "queries2_3222"\
-			#	or filename == "queries2_8358":
+		if any(('queries2_'+str(e)) == filename for e in lst):
 			print("filename: ", filename)
 			sparql_file = open(os.getcwd() + "/scripts/outputs/outputs_" + filename + "/" + filename + ".rq", 'r', encoding='latin-1').read()
 			profile_normal = open(os.getcwd() + "/scripts/outputs/outputs_" + filename + "/profile_normal_file_" + filename, 'r', encoding='latin-1').read()
 			profile_explain_bajo = open(os.getcwd() + "/scripts/outputs/outputs_" + filename + "/profile_normal_file_" + filename, 'r', encoding='latin').read()
 			general_features_pt_file = open(os.getcwd() + "/scripts/outputs/outputs_" + filename + "/gfeatures_" + filename, 'r', encoding='latin-1').read()
-			'''
-				if 'wikidata' in filename:
-					sparql_file = open("/home/c161905/Memoria/memoria_utfsm_sparql/scripts/sparql_files/wikidata_queries/"+filename+".rq", 'r', encoding = 'latin-1').read()
-				else:
-					sparql_file = open("/home/c161905/Memoria/memoria_utfsm_sparql/scripts/sparql_files/" + filename + ".rq", 'r', encoding = 'latin-1').read()
-			'''
 			if profile_normal == '':
 				print("profile error")
 				continue
