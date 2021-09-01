@@ -1,4 +1,4 @@
-from functions.aux import MainCurlyBrackets
+from functions.aux import MainCurlyBrackets, OnlyScans
 
 
 def GeneralFeaturesFromProfileFile(profile_file,operators):
@@ -95,16 +95,35 @@ def GeneralFeaturesFromProfileFile(profile_file,operators):
     return operators
 
 
+
+
 def GeneralFeaturesFromOperators(operators):
     triples = 0
     bgps = 0
+    only_scans, os_keys = OnlyScans(operators)
+    ## NUMEROS TOTALES
     for k in operators.keys():
         if k != 'GENERAL_FEATURES':
             if operators[k]['operator_type'] == 1:
                 triples += 1
             if operators[k]['num_bgp'] != 'None':
                 bgps = max(bgps, int(operators[k]['num_bgp']))
-    operators['GF_FROM_OP'] = {'triples' : triples, 'bgps' : bgps}
+
+    ## GET BGPS
+    bgp_sub_dict = {}
+    aux_list = []
+    for k in range(len(only_scans)):
+        aux_list.append({'OP' : os_keys[k],
+                        'S' : operators[os_keys[k]]['S'],
+                        'P' : operators[os_keys[k]]['P'],
+                        'O' : operators[os_keys[k]]['O'],
+                        'triple_type' : operators[os_keys[k]]['triple_type']})
+        if operators[os_keys[k]]['num_bgp'] != operators[os_keys[k-1]]['num_bgp']:
+            bgp_sub_dict[operators[os_keys[k]]['num_bgp']] = aux_list
+            aux_list = []
+
+    operators['GF_FROM_OP'] = {'triples' : triples, 'total_bgps' : bgps, 'bgps_ops': bgp_sub_dict}
+
     return operators
 
 def GeneralFeaturesFromPerformanceTuning(general_features_pt_file):

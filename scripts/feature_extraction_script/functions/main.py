@@ -820,7 +820,12 @@ def IdentifyBGPS(operators):
 
 def IdentifyUnionFeatures(operators, sparql):
 	if 'UNION' in sparql:
-		union_lvl = sparql.count('UNION')
+		#union_lvl = sparql.count('UNION')
+		union_lvl = 0
+		for k in operators.keys():
+			if union_lvl == 0:
+				union_lvl = max(operators[k]['profile_text_low_explain'].count('Union'), union_lvl)
+
 		union_i = 0
 		union_count = 0
 		for k in operators.keys():
@@ -845,6 +850,8 @@ def IdentifyUnionFeatures(operators, sparql):
 			operators[k]['union_count'] = 0
 	return operators
 
+
+## CORREGIR
 def SetTripleType(operators):
 	for k in operators.keys():
 		if operators[k]['operator_type'] == 1:
