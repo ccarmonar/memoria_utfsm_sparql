@@ -56,7 +56,7 @@ def test_print():
 
 dataframe = []
 
-
+'''
 lst = [
 	0,
 	22,
@@ -99,7 +99,8 @@ lst = [
 	23391,
 	24200
 ]
-#lst = [0,4732]
+'''
+lst = [0,6985,4732,11000,10969]
 
 
 for i in path_profiles:

@@ -1,23 +1,25 @@
 import pandas as pd
 from functions.general_features import GeneralFeaturesFromProfileFile, GeneralFeaturesFromPerformanceTuning, GeneralFeaturesFromOperators
 from functions.matrix_format import MatrixFormat, MatrixNumpyFormat, DataFrameFormat
-from functions.tree_format import IdentifyJoinType, OnlyScans, IterateBuildTree, BinaryTreeFormat
+from functions.tree_format import TreeFormat
 from functions.aux import HashStringId
 
 
 def AllData(operators, profile, predicates, filename, sparql_file, general_features_pt_file):
     matrix_format = MatrixFormat(operators, predicates)
-    binary_tree = BinaryTreeFormat(operators, matrix_format)
+    #binary_tree = BinaryTreeFormat(operators, matrix_format)
     general_features = GeneralFeaturesFromProfileFile(profile, operators)
-    unique_id = HashStringId(str(predicates) + str(matrix_format) + str(binary_tree) + str(general_features))
     limit = general_features['GENERAL_FEATURES']['LIMIT']
     precompiled_list = list(general_features['GENERAL_FEATURES']['precompiled'].values())
     compiled_list = list(general_features['GENERAL_FEATURES']['compiled'].values())
     general_features_pt = GeneralFeaturesFromPerformanceTuning(general_features_pt_file)
+    operators = GeneralFeaturesFromOperators(operators)
+    binary_tree = TreeFormat(operators)
+    unique_id = HashStringId(str(predicates) + str(matrix_format) + str(binary_tree) + str(general_features))
     all_data = [unique_id, filename, sparql_file, profile, limit] + precompiled_list + compiled_list + general_features_pt
     all_data.append(str(matrix_format))
     all_data.append(str(binary_tree))
-    operators = GeneralFeaturesFromOperators(operators)
+
     return all_data
 
 

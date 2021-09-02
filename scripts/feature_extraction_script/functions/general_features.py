@@ -110,10 +110,11 @@ def GeneralFeaturesFromOperators(operators):
                 bgps = max(bgps, int(operators[k]['num_bgp']))
 
     ## GET BGPS
-    keys_to_extract = ['S','P','O','triple_type','num_bgp']
+    keys_to_extract = ['S','P','O','triple_type','optional_section?','num_bgp']
     subset_onlyscans = []
     for k in range(len(only_scans)):
         os_subset = {key: only_scans[k][key] for key in keys_to_extract}
+        os_subset['OP'] = os_keys[k]
         subset_onlyscans.append(os_subset)
     result = collections.defaultdict(list)
     for d in subset_onlyscans:

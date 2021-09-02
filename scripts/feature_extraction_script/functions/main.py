@@ -797,8 +797,7 @@ def SetAfterTest(operators):
 				operators[k]['after_test_lvl'] = after_test_lvl
 	return operators
 
-
-#COMO CCHUCHA HAGO ESTA WEA
+#FALTA CORREGIR ALGUNAS COSAS AQUI
 def IdentifyBGPS(operators):
 	only_scans, os_keys = OnlyScans(operators)
 	list_keys = list(operators.keys())
