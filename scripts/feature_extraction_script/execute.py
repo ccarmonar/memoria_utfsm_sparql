@@ -99,6 +99,8 @@ lst = [
 	23391,
 	24200
 ]
+#lst = [0,4732]
+
 
 for i in path_profiles:
 	if os.path.isdir(os.getcwd()+"/scripts/outputs/"+i):

@@ -1,5 +1,5 @@
 from functions.aux import MainCurlyBrackets, OnlyScans
-
+import collections
 
 def GeneralFeaturesFromProfileFile(profile_file,operators):
      ## IDENTIFICAR LIMIT
@@ -110,19 +110,22 @@ def GeneralFeaturesFromOperators(operators):
                 bgps = max(bgps, int(operators[k]['num_bgp']))
 
     ## GET BGPS
-    bgp_sub_dict = {}
-    aux_list = []
+    keys_to_extract = ['S','P','O','triple_type','num_bgp']
+    subset_onlyscans = []
     for k in range(len(only_scans)):
-        aux_list.append({'OP' : os_keys[k],
-                        'S' : operators[os_keys[k]]['S'],
-                        'P' : operators[os_keys[k]]['P'],
-                        'O' : operators[os_keys[k]]['O'],
-                        'triple_type' : operators[os_keys[k]]['triple_type']})
-        if operators[os_keys[k]]['num_bgp'] != operators[os_keys[k-1]]['num_bgp']:
-            bgp_sub_dict[operators[os_keys[k]]['num_bgp']] = aux_list
-            aux_list = []
+        os_subset = {key: only_scans[k][key] for key in keys_to_extract}
+        subset_onlyscans.append(os_subset)
+    result = collections.defaultdict(list)
+    for d in subset_onlyscans:
+        result[d['num_bgp']].append(d)
 
-    operators['GF_FROM_OP'] = {'triples' : triples, 'total_bgps' : bgps, 'bgps_ops': bgp_sub_dict}
+    result_list = list(result.values())
+    bgps_ops = dict(zip(range(1,len(result_list)+1),result_list))
+
+
+
+
+    operators['GF_FROM_OP'] = {'triples' : triples, 'total_bgps' : bgps, 'bgps_ops': bgps_ops}
 
     return operators
 

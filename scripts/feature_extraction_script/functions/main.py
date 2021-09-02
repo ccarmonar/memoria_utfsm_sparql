@@ -862,7 +862,6 @@ def SetTripleType(operators):
 			else:
 				s = 'VAR'
 
-
 			# PREDICADOS
 			if 'IRI' in operators[k]['P']:
 				p = 'URI'
