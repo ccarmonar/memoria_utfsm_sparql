@@ -116,16 +116,34 @@ def GeneralFeaturesFromOperators(operators):
         os_subset = {key: only_scans[k][key] for key in keys_to_extract}
         os_subset['OP'] = os_keys[k]
         subset_onlyscans.append(os_subset)
+
     result = collections.defaultdict(list)
     for d in subset_onlyscans:
         result[d['num_bgp']].append(d)
 
+
     result_list = list(result.values())
-    bgps_ops = dict(zip(range(1,len(result_list)+1),result_list))
+    bgps_ops_prearmed = dict(zip(range(1,len(result_list)+1),result_list))
+    bgps_ops = {}
 
 
-
-
+    for k,v in bgps_ops_prearmed.items():
+        bgps_ops["bgp_" + str(k)] = {
+            "bgp_list": bgps_ops_prearmed[k],
+            "opt": 0
+        }
+        if len(v) != 1:
+            test_aux1 = []
+            for d in v:
+                test_aux1.append(d['optional_section?'])
+            if len(set(test_aux1)) == 1:
+                ## Prueba pasada
+                bgps_ops["bgp_" + str(k)]['opt'] = d['optional_section?']
+            else:
+                print("error en un bgp")
+                bgps_ops["bgp_" + str(k)]['opt'] = 'ERROR'
+        else:
+            bgps_ops["bgp_" + str(k)]['opt'] = v[0]['optional_section?']
     operators['GF_FROM_OP'] = {'triples' : triples, 'total_bgps' : bgps, 'bgps_ops': bgps_ops}
 
     return operators

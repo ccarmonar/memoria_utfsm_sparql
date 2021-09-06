@@ -24,6 +24,7 @@ def IterateBuildTree(prearmed, binary_tree_format):
 def InnerJoinsIntraBGPS(bgp):
     prearmed = []
     binary_tree_format = []
+
     for k in range(len(bgp)):
         if k == 0:
             prearmed.append(bgp[k]['OP']+"|"+bgp[k]['P'])
@@ -34,11 +35,11 @@ def InnerJoinsIntraBGPS(bgp):
     return binary_tree_format
 
 
-def TreeFormat(operators):
+def TreeFormat(operators, sparql_file):
+    bgp_joins = []
+    tree_format = []
     for k in operators['GF_FROM_OP']['bgps_ops']:
         x = InnerJoinsIntraBGPS(operators['GF_FROM_OP']['bgps_ops'][k])
-        print(x)
-    x = InnerJoinsIntraBGPS(operators['GF_FROM_OP']['bgps_ops'][1])
-    print(x)
+        bgp_joins.append(x)
 
     return 0
