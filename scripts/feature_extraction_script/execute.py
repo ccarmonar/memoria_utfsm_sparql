@@ -44,7 +44,7 @@ def execute(profile_sparql, profile_low_explain, sparql_file):
 	operators = SetTargetAndTransitive(operators)
 	operators = SetSorts(operators)
 	operators = SetSubqueries(operators)
-	operators = SetTripleType(operators)
+	operators = SetTripleType(operators, sparql_file)
 	operators = IdentifyUnionFeatures(operators, sparql_file)
 	operators = IdentifyBGPS(operators)
 	return operators, predicates_list

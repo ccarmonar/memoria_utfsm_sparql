@@ -861,27 +861,65 @@ def IdentifyUnionFeatures(operators, sparql):
 
 
 ## CORREGIR
-def SetTripleType(operators):
+def SetTripleType(operators, sparql_file):
+	sparql_file_as_list = GetSparqlAsList(sparql_file)
+	print(sparql_file_as_list)
 	for k in operators.keys():
 		if operators[k]['operator_type'] == 1:
 			s, p, o = 'None', 'None', 'None'
 			# SUJETO
 			if 'IRI' in operators[k]['S']:
 				s = 'URI'
+			## OUTPUT ESPECIALES
+			elif all(e in operators[k]['S'] for e in ["k_"]):
+				q = ''
+				k_ = operators[k]['S'].split('_')[1].lower()
+				for i in set(sparql_file_as_list):
+					if k_ in i:
+						q = i
+				if 'http://' in q:
+					s = 'URI'
+				else:
+					s = 'VAR'
+
 			else:
 				s = 'VAR'
+
 
 			# PREDICADOS
 			if 'IRI' in operators[k]['P']:
 				p = 'URI'
+			## OUTPUT ESPECIALES
+			elif all(e in operators[k]['P'] for e in ["k_"]):
+				q = ''
+				k_ = operators[k]['P'].split('_')[1].lower()
+				for i in set(sparql_file_as_list):
+					if k_ in i:
+						q = i
+				if 'http://' in q:
+					p = 'URI'
+				else:
+					p = 'VAR'
 			else:
 				p = 'VAR'
+
 
 			#OBJETO
 			if 'IRI' in operators[k]['O']:
 				o = 'URI'
 			elif any(e in operators[k]['O'] for e in ["rdflit", "DB.DBA.RDF_OBJ", "DB.DBA.RDF_MAKE_OBJ", "all_eq"]): #tengo dudas con all_eq
 				o = 'LITERAL'
+			## OUTPUT ESPECIALES
+			elif all(e in operators[k]['O'] for e in ["k_"]):
+				q = ''
+				k_ = operators[k]['O'].split('_')[1].lower()
+				for i in set(sparql_file_as_list):
+					if k_ in i:
+						q = i
+				if 'http://' in q:
+					o = 'URI'
+				else:
+					o = 'VAR'
 			else:
 				o = 'VAR'
 
@@ -890,3 +928,17 @@ def SetTripleType(operators):
 			operators[k]['triple_type'] = 'None'
 
 	return operators
+
+
+def GetSparqlAsList(sparql_file):
+	remove_str = ['where','select','and','union','ask','delete','{','}','optional','filter','oder by','group by','limit','prefix']
+	aux1 = sparql_file.lower().split('\n')
+	aux2 = []
+	for i in aux1:
+		if 'prefix' not in i and i != '':
+			aux2.append(i)
+	sparql_list = []
+	for i in '\n'.join(aux2).split(' '):
+		if '' != i and all(e != i for e in remove_str):
+			sparql_list.append(i)
+	return sparql_list
