@@ -14,7 +14,7 @@ def AllData(operators, profile, predicates, filename, sparql_file, general_featu
     compiled_list = list(general_features['GENERAL_FEATURES']['compiled'].values())
     general_features_pt = GeneralFeaturesFromPerformanceTuning(general_features_pt_file)
     operators = GeneralFeaturesFromOperators(operators)
-    binary_tree = TreeFormat(operators, sparql_file)
+    binary_tree, operators = TreeFormat(operators, sparql_file)
     #binary_tree = 0
     unique_id = HashStringId(str(predicates) + str(matrix_format) + str(binary_tree) + str(general_features))
     all_data = [unique_id, filename, sparql_file, profile, limit] + precompiled_list + compiled_list + general_features_pt

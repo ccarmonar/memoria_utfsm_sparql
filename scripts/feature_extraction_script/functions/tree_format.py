@@ -12,7 +12,7 @@ def IterateBuildTree(tree_format, prearmed):
         return tree_format,prearmed
     else:
         if len(tree_format) == 0:
-            aux = [prearmed[1],[prearmed[0], prearmed[2]]]
+            aux = [prearmed[1],[prearmed[0]], [prearmed[2]]]
             prearmed = prearmed[3::]
         else:
             aux = [prearmed[0],tree_format,prearmed[1]]
@@ -76,5 +76,6 @@ def TreeFormat(operators, sparql_file):
     else:
         tree_format, prearmed = IterateBuildTreeBetweenBGPS(tree_format, prearmed)
     print(tree_format)
+    operators['GF_FROM_OP']['tree'] = tree_format
 
-    return tree_format
+    return tree_format, operators

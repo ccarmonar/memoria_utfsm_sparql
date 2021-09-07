@@ -16,11 +16,12 @@ if not os.path.exists(os.getcwd()+'/scripts/feature_extraction_script/returns/')
 	os.makedirs(os.getcwd()+'/scripts/feature_extraction_script/returns/')
 
 
-def execute(profile_sparql, profile_low_explain):
+def execute(profile_sparql, profile_low_explain, sparql_file):
 	operators = MainCurlyBrackets(profile_sparql)
 	operators_low_explain = MainCurlyBrackets(profile_low_explain)
 	operators = GroupOperators(operators, operators_low_explain)
 	operators = CleanOperators(operators)
+	still_not_optional_possibility = 0
 	for i in operators.keys():
 		operators[i] = GetOperatorExecutionFeatures(operators[i])
 		operators[i] = IdentifyOperatorType(operators[i])
@@ -35,7 +36,7 @@ def execute(profile_sparql, profile_low_explain):
 		operators[i] = IdentifySkipNode(operators[i])
 		operators[i] = CountCurlyBrackets(operators[i])
 		operators[i] = IdentifySelect(operators[i])
-		operators[i] = GetStartAndEndOptionalSection(operators[i], i)
+		operators[i], still_not_optional_possibility = GetStartAndEndOptionalSection(operators[i], sparql_file, still_not_optional_possibility)
 	predicates_list = GetAllPredicatesFromProfile(operators)
 	operators = SetBooleanPredicates(operators, predicates_list)
 	operators = SetBooleanOptionalSection(operators)
@@ -56,7 +57,6 @@ def test_print():
 
 dataframe = []
 
-'''
 lst = [
 	0,
 	22,
@@ -99,10 +99,7 @@ lst = [
 	23391,
 	24200
 ]
-'''
-lst = [0,2303,998,22,6985,4732,11000,10969]
-
-
+lst = [766,998,2303]
 
 for i in path_profiles:
 	if os.path.isdir(os.getcwd()+"/scripts/outputs/"+i):
@@ -117,7 +114,7 @@ for i in path_profiles:
 			if profile_normal == '':
 				print("profile error")
 				continue
-			operators, predicates_list = execute(profile_normal, profile_explain_bajo)
+			operators, predicates_list = execute(profile_normal, profile_explain_bajo, sparql_file)
 			all_data = AllData(operators, profile_normal, predicates_list, filename, sparql_file, general_features_pt_file)
 			#dataframe.append(all_data)
 			with open(os.getcwd()+'/scripts/feature_extraction_script/returns/'+filename+'.json', 'w') as json_file:

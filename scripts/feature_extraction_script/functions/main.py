@@ -591,11 +591,21 @@ def SetBooleanPredicates(operators, predicates_list):
 	return operators
 
 
-def GetStartAndEndOptionalSection(operator, key):
-	if key == 'OP1' or key == 'OP0':
+def GetStartAndEndOptionalSection(operator, sparql_file, still_not_optional_possibility=0):
+	if 'OPTIONAL' not in sparql_file:
 		operator['start_optional'] = 0
 		operator['end_optional'] = 0
-		return operator
+		return operator, 0
+	if any(element in operator['profile_text_low_explain'] for element in ["cluster outer seq start"]) and still_not_optional_possibility == 0:
+		still_not_optional_possibility = 1
+		operator['start_optional'] = 0
+		operator['end_optional'] = 0
+		return operator, still_not_optional_possibility
+
+	if still_not_optional_possibility == 0:
+		operator['start_optional'] = 0
+		operator['end_optional'] = 0
+		return operator, still_not_optional_possibility
 	else:
 		if any(element in operator['profile_text_low_explain'] for element in ["cluster outer seq start", "outer {"]):
 			operator['start_optional'] = 1
@@ -606,7 +616,7 @@ def GetStartAndEndOptionalSection(operator, key):
 		else:
 			operator['start_optional'] = 0
 			operator['end_optional'] = 0
-		return operator
+		return operator, still_not_optional_possibility
 
 
 def SetBooleanOptionalSection(operators):
