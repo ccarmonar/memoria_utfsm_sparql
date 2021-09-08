@@ -3,7 +3,7 @@ from functions.main import GetFinalResults, GroupOperators, GetOperatorExecution
 	IdentifyPrecode, IdentifyAfterCode, IdentifyGroupBy, IdentifyDistinct, IdentifyTOP, IdentifyTopOrderByRead, \
 	IdentifySkipNode, IdentifySelect, GetGSPO, GetIRI_ID, GetAllPredicatesFromProfile, SetBooleanPredicates, \
 	GetStartAndEndOptionalSection, SetBooleanOptionalSection, SetTargetAndTransitive, SetSorts, SetSubqueries, \
-	SetAfterTest, SetTripleType, SetGSPODefault, IdentifyBGPS, IdentifyUnionFeatures
+	SetAfterTest, SetTripleType, SetGSPODefault, IdentifyBGPS, IdentifyUnionFeatures, IdentifyEndNode
 from functions.aux import GetSubstring, ParseNestedBracket, CleanOperators, GetPrefixes, VectorString, MainCurlyBrackets, CountCurlyBrackets, CleanSalts, SubstractStrings
 from functions.build_csv import AllData, FullDataframe
 #current working directorya
@@ -36,6 +36,7 @@ def execute(profile_sparql, profile_low_explain, sparql_file):
 		operators[i] = IdentifySkipNode(operators[i])
 		operators[i] = CountCurlyBrackets(operators[i])
 		operators[i] = IdentifySelect(operators[i])
+		operators[i] = IdentifyEndNode(operators[i])
 		operators[i], still_not_optional_possibility = GetStartAndEndOptionalSection(operators[i], sparql_file, still_not_optional_possibility)
 	predicates_list = GetAllPredicatesFromProfile(operators)
 	operators = SetBooleanPredicates(operators, predicates_list)
@@ -99,7 +100,7 @@ lst = [
 	23391,
 	24200
 ]
-lst = [766,998,2303]
+lst = [16790]
 
 for i in path_profiles:
 	if os.path.isdir(os.getcwd()+"/scripts/outputs/"+i):

@@ -75,7 +75,6 @@ def TreeFormat(operators, sparql_file):
         tree_format = prearmed[0]
     else:
         tree_format, prearmed = IterateBuildTreeBetweenBGPS(tree_format, prearmed)
-    print(tree_format)
     operators['GF_FROM_OP']['tree'] = tree_format
 
     return tree_format, operators

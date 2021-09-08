@@ -755,6 +755,14 @@ def SetSubqueries(operators):
 	return operators
 
 
+def IdentifyEndNode(operator):
+	if 'END Node' in operator['profile_text']:
+		operator['END_NODE?'] = 1
+	else:
+		operator['END_NODE?'] = 0
+	return operator
+
+
 def SetAfterTest(operators):
 	after_test_lvl = 0
 	for k in operators.keys():
@@ -820,8 +828,9 @@ def IdentifyBGPS(operators):
 		if k != 0:
 			if operators[os_keys[k]]["union_count"] > operators[os_keys[k-1]]["union_count"]:
 				num_bgp += 1
-			if operators[os_keys[k]]["num_opt"] > operators[os_keys[k-1]]["num_opt"]:
+			if operators[os_keys[k]]["num_opt"] != operators[os_keys[k-1]]["num_opt"]:
 				num_bgp += 1
+
 		operators[os_keys[k]]["num_bgp"] = num_bgp
 
 	return operators
@@ -840,11 +849,11 @@ def IdentifyUnionFeatures(operators, sparql):
 		for k in operators.keys():
 			operators[k]['union_separate'] = 0
 			operators[k]['union_end'] = 0
-			if operators[k]['{'] >= 1 and operators[k]['}'] == 1 and operators[k]['subquery_select?'] == 1 and union_i == 0:
+			if operators[k]['{'] >= 1 and operators[k]['}'] == 1 and (operators[k]['subquery_select?'] == 1 or operators[k]['END_NODE?'] == 1) and union_i == 0:
 				operators[k]['union_separate'] = 1
 				union_count += 1
 				union_i = 1
-			if operators[k]['}'] >= 2 and operators[k]['subquery_select?'] == 1 and union_i == 1:
+			if operators[k]['}'] >= 2 and (operators[k]['subquery_select?'] == 1 or operators[k]['END_NODE?'] == 1) and union_i == 1:
 				operators[k]['union_end'] = 1
 				union_count += 1
 				union_i = 0
@@ -863,7 +872,6 @@ def IdentifyUnionFeatures(operators, sparql):
 ## CORREGIR
 def SetTripleType(operators, sparql_file):
 	sparql_file_as_list = GetSparqlAsList(sparql_file)
-	print(sparql_file_as_list)
 	for k in operators.keys():
 		if operators[k]['operator_type'] == 1:
 			s, p, o = 'None', 'None', 'None'
