@@ -138,7 +138,7 @@ def GeneralFeaturesFromOperators(operators):
                 test_aux1.append(d['optional_section?'])
             if len(set(test_aux1)) == 1:
                 ## Prueba pasada
-                bgps_ops["bgp_" + str(k)]['opt'] = d['optional_section?']
+                bgps_ops["bgp_" + str(k)]['opt'] = v[0]['optional_section?']
             else:
                 print("error en un bgp")
                 bgps_ops["bgp_" + str(k)]['opt'] = 'ERROR'

@@ -100,12 +100,15 @@ lst = [
 	23391,
 	24200
 ]
-lst = [16790]
+lst = [30, 87, 444, 459, 961, 1335, 1956, 2119, 2710, 2106, 10553, 12015, 18985, 25068, 25797]
+lst = [30,25068,1335,2710]
+lst = [486, 929, 3570, 4878, 7428, 8811, 9691, 10874, 12036, 12245, 12463, 13248, 16640, 25390, 25515]
 
 for i in path_profiles:
 	if os.path.isdir(os.getcwd()+"/scripts/outputs/"+i):
 		filename = "_".join(i.split("_")[1:])
 		#if all(e != filename for e in ['queries1_696', 'queries1_57']) and "queries1" in filename:
+		#if "queries2" in filename:
 		if any(('queries2_'+str(e)) == filename for e in lst):
 			print("filename: ", filename)
 			sparql_file = open(os.getcwd() + "/scripts/outputs/outputs_" + filename + "/" + filename + ".rq", 'r', encoding='latin-1').read()
@@ -127,3 +130,5 @@ df.to_csv('/home/c161905/Memoria/memoria_utfsm_sparql/scripts/csv_files/test_exa
 
 #print(df.to_csv('/home/c161905/Memoria/memoria_utfsm_sparql/scripts/csv_files/test_example.csv', index=False))
 
+import subprocess
+subprocess.call("/home/c161905/Memoria/memoria_utfsm_sparql/scripts/feature_extraction_script/pretty.sh")

@@ -879,7 +879,7 @@ def SetTripleType(operators, sparql_file):
 			if 'IRI' in operators[k]['S']:
 				s = 'URI'
 			## OUTPUT ESPECIALES
-			elif all(e in operators[k]['S'] for e in ["k_"]):
+			elif all(e in operators[k]['O'] for e in ["k_"]) and all(e not in operators[k]['O'] for e in [".S",".O",".P","all_eq","cast"]):
 				q = ''
 				k_ = operators[k]['S'].split('_')[1].lower()
 				for i in set(sparql_file_as_list):
@@ -898,7 +898,7 @@ def SetTripleType(operators, sparql_file):
 			if 'IRI' in operators[k]['P']:
 				p = 'URI'
 			## OUTPUT ESPECIALES
-			elif all(e in operators[k]['P'] for e in ["k_"]):
+			elif all(e in operators[k]['O'] for e in ["k_"]) and all(e not in operators[k]['O'] for e in [".S",".O",".P","all_eq","cast"]):
 				q = ''
 				k_ = operators[k]['P'].split('_')[1].lower()
 				for i in set(sparql_file_as_list):
@@ -915,10 +915,12 @@ def SetTripleType(operators, sparql_file):
 			#OBJETO
 			if 'IRI' in operators[k]['O']:
 				o = 'URI'
-			elif any(e in operators[k]['O'] for e in ["rdflit", "DB.DBA.RDF_OBJ", "DB.DBA.RDF_MAKE_OBJ", "all_eq"]): #tengo dudas con all_eq
+			elif any(e == operators[k]['O'] for e in set(sparql_file_as_list)):
+				o = 'LITERAL'
+			elif any(e in operators[k]['O'] for e in ["rdflit", "DB.DBA.RDF_OBJ", "DB.DBA.RDF_MAKE_OBJ"]): #tengo dudas con all_eq
 				o = 'LITERAL'
 			## OUTPUT ESPECIALES
-			elif all(e in operators[k]['O'] for e in ["k_"]):
+			elif all(e in operators[k]['O'] for e in ["k_"]) and all(e not in operators[k]['O'] for e in [".S",".O",".P","all_eq","cast"]):
 				q = ''
 				k_ = operators[k]['O'].split('_')[1].lower()
 				for i in set(sparql_file_as_list):
@@ -950,3 +952,12 @@ def GetSparqlAsList(sparql_file):
 		if '' != i and all(e != i for e in remove_str):
 			sparql_list.append(i)
 	return sparql_list
+
+
+def GetAllEqOperation(operators, op):
+	for k in operators.keys():
+		if operators[k]['precode_bool'] == 1:
+
+			o = 0
+		if k == op:
+			return 0
