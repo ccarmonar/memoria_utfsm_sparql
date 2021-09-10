@@ -97,7 +97,7 @@ def GeneralFeaturesFromProfileFile(profile_file,operators):
 
 
 
-def GeneralFeaturesFromOperators(operators):
+def GeneralFeaturesFromOperators(operators, list_alleq):
     triples = 0
     bgps = 0
     only_scans, os_keys = OnlyScans(operators)
@@ -144,8 +144,7 @@ def GeneralFeaturesFromOperators(operators):
                 bgps_ops["bgp_" + str(k)]['opt'] = 'ERROR'
         else:
             bgps_ops["bgp_" + str(k)]['opt'] = v[0]['optional_section?']
-    operators['GF_FROM_OP'] = {'triples' : triples, 'total_bgps' : bgps, 'bgps_ops': bgps_ops}
-
+    operators['GF_FROM_OP'] = {'triples' : triples, 'total_bgps' : bgps, 'list_alleq' : list_alleq, 'bgps_ops': bgps_ops}
     return operators
 
 def GeneralFeaturesFromPerformanceTuning(general_features_pt_file):

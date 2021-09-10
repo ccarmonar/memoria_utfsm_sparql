@@ -3,7 +3,7 @@ from functions.main import GetFinalResults, GroupOperators, GetOperatorExecution
 	IdentifyPrecode, IdentifyAfterCode, IdentifyGroupBy, IdentifyDistinct, IdentifyTOP, IdentifyTopOrderByRead, \
 	IdentifySkipNode, IdentifySelect, GetGSPO, GetIRI_ID, GetAllPredicatesFromProfile, SetBooleanPredicates, \
 	GetStartAndEndOptionalSection, SetBooleanOptionalSection, SetTargetAndTransitive, SetSorts, SetSubqueries, \
-	SetAfterTest, SetTripleType, SetGSPODefault, IdentifyBGPS, IdentifyUnionFeatures, IdentifyEndNode
+	SetAfterTest, SetTripleType, SetGSPODefault, IdentifyBGPS, IdentifyUnionFeatures, IdentifyEndNode, IdentifyAllEq
 from functions.aux import GetSubstring, ParseNestedBracket, CleanOperators, GetPrefixes, VectorString, MainCurlyBrackets, CountCurlyBrackets, CleanSalts, SubstractStrings
 from functions.build_csv import AllData, FullDataframe
 #current working directorya
@@ -45,10 +45,11 @@ def execute(profile_sparql, profile_low_explain, sparql_file):
 	operators = SetTargetAndTransitive(operators)
 	operators = SetSorts(operators)
 	operators = SetSubqueries(operators)
-	operators = SetTripleType(operators, sparql_file)
 	operators = IdentifyUnionFeatures(operators, sparql_file)
 	operators = IdentifyBGPS(operators)
-	return operators, predicates_list
+	operators, list_alleq = IdentifyAllEq(operators)
+	operators = SetTripleType(operators, sparql_file, list_alleq)
+	return operators, predicates_list, list_alleq
 
 
 def test_print():
@@ -100,8 +101,8 @@ lst = [
 	23391,
 	24200
 ]
-lst = [30, 87, 444, 459, 961, 1335, 1956, 2119, 2710, 2106, 10553, 12015, 18985, 25068, 25797]
-lst = [30,25068,1335,2710]
+#lst = [30, 87, 444, 459, 961, 1335, 1956, 2119, 2710, 2106, 10553, 12015, 18985, 25068, 25797]
+#lst = [30,25068,1335,2710]
 lst = [486, 929, 3570, 4878, 7428, 8811, 9691, 10874, 12036, 12245, 12463, 13248, 16640, 25390, 25515]
 
 for i in path_profiles:
@@ -118,8 +119,8 @@ for i in path_profiles:
 			if profile_normal == '':
 				print("profile error")
 				continue
-			operators, predicates_list = execute(profile_normal, profile_explain_bajo, sparql_file)
-			all_data = AllData(operators, profile_normal, predicates_list, filename, sparql_file, general_features_pt_file)
+			operators, predicates_list, list_alleq = execute(profile_normal, profile_explain_bajo, sparql_file)
+			all_data = AllData(operators, profile_normal, predicates_list, filename, sparql_file, general_features_pt_file, list_alleq)
 			#dataframe.append(all_data)
 			with open(os.getcwd()+'/scripts/feature_extraction_script/returns/'+filename+'.json', 'w') as json_file:
 				json.dump(operators, json_file)

@@ -1,3 +1,4 @@
+import re
 from functions.aux import GetSubstring, ParseNestedBracket, CleanOperators, GetPrefixes, VectorString, CleanSalts, SubstractStrings, OnlyScans
 
 
@@ -870,8 +871,9 @@ def IdentifyUnionFeatures(operators, sparql):
 
 
 ## CORREGIR
-def SetTripleType(operators, sparql_file):
+def SetTripleType(operators, sparql_file, list_alleq):
 	sparql_file_as_list = GetSparqlAsList(sparql_file)
+	list_alleq_aux = list_alleq[:]
 	for k in operators.keys():
 		if operators[k]['operator_type'] == 1:
 			s, p, o = 'None', 'None', 'None'
@@ -879,7 +881,7 @@ def SetTripleType(operators, sparql_file):
 			if 'IRI' in operators[k]['S']:
 				s = 'URI'
 			## OUTPUT ESPECIALES
-			elif all(e in operators[k]['O'] for e in ["k_"]) and all(e not in operators[k]['O'] for e in [".S",".O",".P","all_eq","cast"]):
+			elif all(e in operators[k]['S'] for e in ["k_"]) and all(e not in operators[k]['S'] for e in [".S",".O",".P","all_eq","cast"]):
 				q = ''
 				k_ = operators[k]['S'].split('_')[1].lower()
 				for i in set(sparql_file_as_list):
@@ -889,6 +891,13 @@ def SetTripleType(operators, sparql_file):
 					s = 'URI'
 				else:
 					s = 'VAR'
+			elif 'all_eq' in operators[k]['S']:
+				if 'IRI' in list_alleq_aux[0]:
+					s = 'URI'
+					del list_alleq_aux[0]
+				else:
+					s = 'VAR'
+					del list_alleq_aux[0]
 
 			else:
 				s = 'VAR'
@@ -898,7 +907,7 @@ def SetTripleType(operators, sparql_file):
 			if 'IRI' in operators[k]['P']:
 				p = 'URI'
 			## OUTPUT ESPECIALES
-			elif all(e in operators[k]['O'] for e in ["k_"]) and all(e not in operators[k]['O'] for e in [".S",".O",".P","all_eq","cast"]):
+			elif all(e in operators[k]['P'] for e in ["k_"]) and all(e not in operators[k]['P'] for e in [".S",".O",".P","all_eq","cast"]):
 				q = ''
 				k_ = operators[k]['P'].split('_')[1].lower()
 				for i in set(sparql_file_as_list):
@@ -930,13 +939,19 @@ def SetTripleType(operators, sparql_file):
 					o = 'URI'
 				else:
 					o = 'VAR'
+			elif 'all_eq' in operators[k]['O']:
+				if 'IRI' in list_alleq_aux[0]:
+					o = 'URI'
+					del list_alleq_aux[0]
+				else:
+					o = 'VAR'
+					del list_alleq_aux[0]
 			else:
 				o = 'VAR'
 
 			operators[k]['triple_type'] = s + '_' + p + '_' + o
 		else:
 			operators[k]['triple_type'] = 'None'
-
 	return operators
 
 
@@ -954,10 +969,27 @@ def GetSparqlAsList(sparql_file):
 	return sparql_list
 
 
-def GetAllEqOperation(operators, op):
+def IdentifyAllEq(operators):
+	list_alleq = []
 	for k in operators.keys():
-		if operators[k]['precode_bool'] == 1:
+		if 'all_eq' in operators[k]['profile_text']:
+			operators[k]['all_eq_bool'] = 1
+			if operators[k]['precode_bool'] == 1:
+				operators[k]['get_value_all_eq'] = GetAllEqFromPrecodeText(operators[k])
+				list_alleq = list_alleq + operators[k]['get_value_all_eq']
+			else:
+				operators[k]['get_value_all_eq'] = 'None'
+		else:
+			operators[k]['all_eq_bool'] = 0
+	return operators, list_alleq
 
-			o = 0
-		if k == op:
-			return 0
+
+
+def GetAllEqFromPrecodeText(OP):
+	aux = OP['precode_text'].split('\n')
+	aux_lst = []
+	for string in aux:
+		if 'Call __all_eq (' in string:
+			substring = re.search('\((.*)\)', string)
+			aux_lst.append(substring.group(1))
+	return aux_lst
