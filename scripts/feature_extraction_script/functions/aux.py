@@ -1,5 +1,10 @@
 import re, hashlib
 
+def GetAllSubstring(string_text,pattern1,pattern2):
+	pattern = pattern1+'(.*?)'+pattern2
+	substring_list = re.findall(pattern, string_text, flags=re.DOTALL)
+	return substring_list
+
 
 def GetSubstring(string_text,pattern1,pattern2,dotall = True):
 	if dotall==True:
@@ -98,7 +103,11 @@ def CountCurlyBrackets(operator):
 
 
 def SubstractStrings(a, b):
-	return "".join(a.rsplit(b))
+	x = ''
+	for remove in b:
+		x = "".join(a.rsplit(remove))
+	x = "".join(x.rsplit('Precode:Return 0'))
+	return x
 
 
 #Función que retorna todos los predicados leidos en un query profile

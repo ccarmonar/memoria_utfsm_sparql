@@ -1,5 +1,5 @@
 import re
-from functions.aux import GetSubstring, ParseNestedBracket, CleanOperators, GetPrefixes, VectorString, CleanSalts, SubstractStrings, OnlyScans
+from functions.aux import GetSubstring, ParseNestedBracket, CleanOperators, GetPrefixes, VectorString, CleanSalts, SubstractStrings, OnlyScans, GetAllSubstring
 
 
 #Funcion que guarda los resultados finales:
@@ -90,7 +90,9 @@ def IdentifyOperatorType(operator):
 def IdentifyPrecode(operator):
 	if "Precode:" in operator['profile_text']:
 		operator['precode_bool'] = 1
-		operator['precode_text'] = GetSubstring(operator['profile_text'],'Precode:','Return 0',True)
+		#operator['precode_text'] = GetSubstring(operator['profile_text'],'Precode:','Return 0',True)
+		operator['precode_text'] = GetAllSubstring(operator['profile_text'], 'Precode:', 'Return 0')
+
 	else:
 		operator['precode_bool'] = 0
 	return operator
@@ -100,7 +102,8 @@ def IdentifyPrecode(operator):
 def IdentifyAfterCode(operator):
 	if "After code:" in operator['profile_text']:
 		operator['after_code_bool'] = 1
-		operator['after_code_text'] = GetSubstring(operator['profile_text'], 'After code:', 'Return 0',True)
+		#operator['after_code_text'] = GetSubstring(operator['profile_text'], 'After code:', 'Return 0',True)
+		operator['after_code_text'] = GetAllSubstring(operator['profile_text'], 'After code:', 'Return 0')
 	else:
 		operator['after_code_bool'] = 0
 	return operator
@@ -110,7 +113,8 @@ def IdentifyAfterCode(operator):
 def IdentifyAfterTest(operator):
 	if "After test:" in operator['profile_text']:
 		operator['after_test_bool'] = 1
-		operator['after_test_text'] = GetSubstring(operator['profile_text'], 'After test:', 'Return 0',True)
+		#operator['after_test_text'] = GetSubstring(operator['profile_text'], 'After test:', 'Return 0',True)
+		operator['after_test_text'] = GetAllSubstring(operator['profile_text'], 'After test:', 'Return 0')
 	else:
 		operator['after_test_bool'] = 0
 	return operator
@@ -874,6 +878,8 @@ def IdentifyUnionFeatures(operators, sparql):
 def SetTripleType(operators, sparql_file, list_alleq):
 	sparql_file_as_list = GetSparqlAsList(sparql_file)
 	list_alleq_aux = list_alleq[:]
+	count = 0
+	max_count = len(list_alleq_aux)
 	for k in operators.keys():
 		if operators[k]['operator_type'] == 1:
 			s, p, o = 'None', 'None', 'None'
@@ -892,12 +898,14 @@ def SetTripleType(operators, sparql_file, list_alleq):
 				else:
 					s = 'VAR'
 			elif 'all_eq' in operators[k]['S']:
-				if 'IRI' in list_alleq_aux[0]:
+				if count == max_count:
+					s = 'VAR'
+				elif 'IRI' in list_alleq_aux[count]:
 					s = 'URI'
-					del list_alleq_aux[0]
+					count += 1
 				else:
 					s = 'VAR'
-					del list_alleq_aux[0]
+					count += 1
 
 			else:
 				s = 'VAR'
@@ -940,12 +948,14 @@ def SetTripleType(operators, sparql_file, list_alleq):
 				else:
 					o = 'VAR'
 			elif 'all_eq' in operators[k]['O']:
-				if 'IRI' in list_alleq_aux[0]:
+				if count == max_count:
+					o = 'VAR'
+				elif 'IRI' in list_alleq_aux[count]:
 					o = 'URI'
-					del list_alleq_aux[0]
+					count += 1
 				else:
 					o = 'VAR'
-					del list_alleq_aux[0]
+					count += 1
 			else:
 				o = 'VAR'
 
@@ -984,12 +994,23 @@ def IdentifyAllEq(operators):
 	return operators, list_alleq
 
 
-
 def GetAllEqFromPrecodeText(OP):
-	aux = OP['precode_text'].split('\n')
 	aux_lst = []
-	for string in aux:
-		if 'Call __all_eq (' in string:
-			substring = re.search('\((.*)\)', string)
-			aux_lst.append(substring.group(1))
+	for precode_text in OP['precode_text']:
+		aux = precode_text.split('\n')
+		for string in aux:
+			if 'Call __all_eq (' in string:
+				substring = re.search('\((.*)\)', string)
+				aux_lst.append(substring.group(1))
 	return aux_lst
+
+
+def IdentifyIter(operators):
+	for k in operators.keys():
+		operators[k]['iter'] = 0
+		if operators[k]['operator_type'] == 1:
+			if 'in_iter' in operators[k]['profile_text']:
+				operators[k]['iter'] = 1
+	return operators
+
+

@@ -3,8 +3,10 @@ from functions.main import GetFinalResults, GroupOperators, GetOperatorExecution
 	IdentifyPrecode, IdentifyAfterCode, IdentifyGroupBy, IdentifyDistinct, IdentifyTOP, IdentifyTopOrderByRead, \
 	IdentifySkipNode, IdentifySelect, GetGSPO, GetIRI_ID, GetAllPredicatesFromProfile, SetBooleanPredicates, \
 	GetStartAndEndOptionalSection, SetBooleanOptionalSection, SetTargetAndTransitive, SetSorts, SetSubqueries, \
-	SetAfterTest, SetTripleType, SetGSPODefault, IdentifyBGPS, IdentifyUnionFeatures, IdentifyEndNode, IdentifyAllEq
-from functions.aux import GetSubstring, ParseNestedBracket, CleanOperators, GetPrefixes, VectorString, MainCurlyBrackets, CountCurlyBrackets, CleanSalts, SubstractStrings
+	SetAfterTest, SetTripleType, SetGSPODefault, IdentifyBGPS, IdentifyUnionFeatures, IdentifyEndNode, IdentifyAllEq, \
+	IdentifyIter
+from functions.aux import GetSubstring, ParseNestedBracket, CleanOperators, GetPrefixes, VectorString, MainCurlyBrackets, \
+	CountCurlyBrackets, CleanSalts, SubstractStrings, GetAllSubstring
 from functions.build_csv import AllData, FullDataframe
 #current working directorya
 cwd = os.getcwd()
@@ -47,7 +49,9 @@ def execute(profile_sparql, profile_low_explain, sparql_file):
 	operators = SetSubqueries(operators)
 	operators = IdentifyUnionFeatures(operators, sparql_file)
 	operators = IdentifyBGPS(operators)
+	operators = IdentifyIter(operators)
 	operators, list_alleq = IdentifyAllEq(operators)
+	print(list_alleq)
 	operators = SetTripleType(operators, sparql_file, list_alleq)
 	return operators, predicates_list, list_alleq
 
@@ -103,14 +107,15 @@ lst = [
 ]
 #lst = [30, 87, 444, 459, 961, 1335, 1956, 2119, 2710, 2106, 10553, 12015, 18985, 25068, 25797]
 #lst = [30,25068,1335,2710]
-lst = [486, 929, 3570, 4878, 7428, 8811, 9691, 10874, 12036, 12245, 12463, 13248, 16640, 25390, 25515]
+#lst = [486, 929, 3570, 4878, 7428, 8811, 9691, 10874, 12036, 12245, 12463, 13248, 16640, 25390, 25515]
+lst = [449]
 
 for i in path_profiles:
 	if os.path.isdir(os.getcwd()+"/scripts/outputs/"+i):
 		filename = "_".join(i.split("_")[1:])
-		#if all(e != filename for e in ['queries1_696', 'queries1_57']) and "queries1" in filename:
+		if all(e != filename for e in ['queries1_696', 'queries1_57']): #and "queries1" in filename:
 		#if "queries2" in filename:
-		if any(('queries2_'+str(e)) == filename for e in lst):
+		#if any(('queries1_'+str(e)) == filename for e in lst):
 			print("filename: ", filename)
 			sparql_file = open(os.getcwd() + "/scripts/outputs/outputs_" + filename + "/" + filename + ".rq", 'r', encoding='latin-1').read()
 			profile_normal = open(os.getcwd() + "/scripts/outputs/outputs_" + filename + "/profile_normal_file_" + filename, 'r', encoding='latin-1').read()
