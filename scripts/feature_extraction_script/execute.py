@@ -192,12 +192,13 @@ for i in path_profiles:
 			profile_normal = open(os.getcwd() + "/scripts/outputs/outputs_" + filename + "/profile_normal_file_" + filename, 'r', encoding='latin-1').read()
 			profile_explain_bajo = open(os.getcwd() + "/scripts/outputs/outputs_" + filename + "/profile_normal_file_" + filename, 'r', encoding='latin').read()
 			general_features_pt_file = open(os.getcwd() + "/scripts/outputs/outputs_" + filename + "/gfeatures_" + filename, 'r', encoding='latin-1').read()
+			old_features_json = open(os.getcwd() + "/scripts/outputs/outputs_" + filename + "/" + filename + ".json", 'r', encoding='latin-1').read()
 			if profile_normal == '':
 				print("profile error")
 				continue
 			operators, predicates_list, list_alleq = execute(profile_normal, profile_explain_bajo, sparql_file)
-			all_data = AllData(operators, profile_normal, predicates_list, filename, sparql_file, general_features_pt_file, list_alleq)
-			#dataframe.append(all_data)
+			all_data = AllData(operators, profile_normal, predicates_list, filename, sparql_file, general_features_pt_file, list_alleq, old_features_json)
+			dataframe.append(all_data)
 			with open(os.getcwd()+'/scripts/feature_extraction_script/returns/'+filename+'.json', 'w') as json_file:
 				json.dump(operators, json_file)
 
