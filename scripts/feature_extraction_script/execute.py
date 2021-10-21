@@ -51,7 +51,6 @@ def execute(profile_sparql, profile_low_explain, sparql_file):
 	operators = IdentifyBGPS(operators)
 	operators = IdentifyIter(operators)
 	operators, list_alleq = IdentifyAllEq(operators)
-	print(list_alleq)
 	operators = SetTripleType(operators, sparql_file, list_alleq)
 	return operators, predicates_list, list_alleq
 
@@ -108,14 +107,86 @@ lst = [
 #lst = [30, 87, 444, 459, 961, 1335, 1956, 2119, 2710, 2106, 10553, 12015, 18985, 25068, 25797]
 #lst = [30,25068,1335,2710]
 #lst = [486, 929, 3570, 4878, 7428, 8811, 9691, 10874, 12036, 12245, 12463, 13248, 16640, 25390, 25515]
-lst = [449]
+
+lst = [
+	0,
+	22,
+	30,
+	87,
+	275,
+	444,
+	457,
+	459,
+	486,
+	556,
+	666,
+	766,
+	800,
+	926,
+	961,
+	998,
+	1248,
+	1335,
+	1956,
+	2106,
+	2119,
+	2303,
+	2710,
+	3222,
+	3570,
+	3599,
+	4732,
+	4878,
+	5095,
+	5429,
+	6985,
+	7428,
+	7788,
+	8358,
+	8811,
+	8830,
+	8930,
+	8932,
+	9568,
+	9691,
+	10553,
+	10757,
+	10874,
+	10969,
+	11000,
+	11725,
+	12008,
+	12015,
+	12036,
+	12245,
+	12345,
+	12463,
+	12664,
+	13248,
+	13456,
+	13963,
+	14233,
+	16640,
+	16790,
+	17865,
+	18985,
+	21291,
+	22004,
+	22088,
+	23391,
+	24200,
+	25068,
+	25390,
+	25515,
+	25797,
+]
 
 for i in path_profiles:
 	if os.path.isdir(os.getcwd()+"/scripts/outputs/"+i):
 		filename = "_".join(i.split("_")[1:])
-		if all(e != filename for e in ['queries1_696', 'queries1_57']): #and "queries1" in filename:
+		#if all(e != filename for e in ['queries1_696', 'queries1_57']): #and "queries1" in filename:
 		#if "queries2" in filename:
-		#if any(('queries1_'+str(e)) == filename for e in lst):
+		if any(('queries2_'+str(e)) == filename for e in lst):
 			print("filename: ", filename)
 			sparql_file = open(os.getcwd() + "/scripts/outputs/outputs_" + filename + "/" + filename + ".rq", 'r', encoding='latin-1').read()
 			profile_normal = open(os.getcwd() + "/scripts/outputs/outputs_" + filename + "/profile_normal_file_" + filename, 'r', encoding='latin-1').read()
@@ -135,6 +206,7 @@ df = FullDataframe(dataframe)
 df.to_csv('/home/c161905/Memoria/memoria_utfsm_sparql/scripts/csv_files/test_example.csv', index=False)
 
 #print(df.to_csv('/home/c161905/Memoria/memoria_utfsm_sparql/scripts/csv_files/test_example.csv', index=False))
+
 
 import subprocess
 subprocess.call("/home/c161905/Memoria/memoria_utfsm_sparql/scripts/feature_extraction_script/pretty.sh")

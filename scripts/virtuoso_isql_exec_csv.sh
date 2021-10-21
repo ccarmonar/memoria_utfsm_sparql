@@ -18,9 +18,11 @@ filename="${file_from_arg%.*}"
 mkdir -p outputs_$filename
 
 
+
 cd $current_path
 str_sparql=$(<temp/$1)
 cp "$current_path/temp/$1" "$current_path/outputs/outputs_$filename"
+cp "$current_path/temp/$filename.json" "$current_path/outputs/outputs_$filename"
 
 
 
