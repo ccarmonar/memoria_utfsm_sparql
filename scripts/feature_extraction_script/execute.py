@@ -196,7 +196,8 @@ for i in path_profiles:
 			profile_explain_bajo = open(os.getcwd() + "/scripts/outputs/outputs_" + filename + "/profile_normal_file_" + filename, 'r', encoding='latin').read()
 			#general_features_pt_file = open(os.getcwd() + "/scripts/outputs/outputs_" + filename + "/gfeatures_" + filename, 'r', encoding='latin-1').read()
 			general_features_pt_file = 0
-			old_features_json = open(os.getcwd() + "/scripts/outputs/outputs_" + filename + "/" + filename + ".json", 'r', encoding='latin-1').read()
+			#old_features_json = open(os.getcwd() + "/scripts/outputs/outputs_" + filename + "/" + filename + ".json", 'r', encoding='latin-1').read()
+			old_features_json = 0
 			if profile_normal == '':
 				print("profile error")
 				continue
@@ -214,10 +215,10 @@ for i in path_profiles:
 #df_train = FullDataframe(dataframe_train)
 df_full = FullDataframe(full_dataframe)
 
-csv_path = '/home/c161905/Memoria/memoria_utfsm_sparql/scripts/csv_files/train_dataset.csv'
-#df_test.to_csv(csv_path, index=False)
-#df_train.to_csv(csv_path, index=False)
-df_full.to_csv(csv_path, index=False)
+csv_path = '/home/c161905/Memoria/memoria_utfsm_sparql/scripts/csv_files/'
+#df_test.to_csv(csv_path + 'test_dataset.csv', index=False)
+#df_train.to_csv(csv_path + 'train_dataset.csv', index=False)
+df_full.to_csv(csv_path + 'new_dataset.csv', index=False)
 
 import subprocess
 subprocess.call("/home/c161905/Memoria/memoria_utfsm_sparql/scripts/feature_extraction_script/pretty.sh")
