@@ -62,6 +62,7 @@ def test_print():
 
 dataframe_test = []
 dataframe_train = []
+full_dataframe = []
 
 lst = [
 	0,
@@ -193,30 +194,30 @@ for i in path_profiles:
 			sparql_file = open(os.getcwd() + "/scripts/outputs/outputs_" + filename + "/" + filename + ".rq", 'r', encoding='latin-1').read()
 			profile_normal = open(os.getcwd() + "/scripts/outputs/outputs_" + filename + "/profile_normal_file_" + filename, 'r', encoding='latin-1').read()
 			profile_explain_bajo = open(os.getcwd() + "/scripts/outputs/outputs_" + filename + "/profile_normal_file_" + filename, 'r', encoding='latin').read()
-			general_features_pt_file = open(os.getcwd() + "/scripts/outputs/outputs_" + filename + "/gfeatures_" + filename, 'r', encoding='latin-1').read()
+			#general_features_pt_file = open(os.getcwd() + "/scripts/outputs/outputs_" + filename + "/gfeatures_" + filename, 'r', encoding='latin-1').read()
+			general_features_pt_file = 0
 			old_features_json = open(os.getcwd() + "/scripts/outputs/outputs_" + filename + "/" + filename + ".json", 'r', encoding='latin-1').read()
 			if profile_normal == '':
 				print("profile error")
 				continue
 			operators, predicates_list, list_alleq = execute(profile_normal, profile_explain_bajo, sparql_file)
 			all_data = AllData(operators, profile_normal, predicates_list, filename, sparql_file, general_features_pt_file, list_alleq, old_features_json)
-			if "queries1" in filename:
-				dataframe_test.append(all_data)
-			if "queries2" in filename:
-				dataframe_train.append(all_data)
+#			if "queries1" in filename:
+#				dataframe_test.append(all_data)
+#			if "queries2" in filename:
+#				dataframe_train.append(all_data)
+			full_dataframe.append(all_data)
 			with open(os.getcwd()+'/scripts/feature_extraction_script/returns/'+filename+'.json', 'w') as json_file:
 				json.dump(operators, json_file)
 
-df_test = FullDataframe(dataframe_test)
-df_train = FullDataframe(dataframe_train)
+#df_test = FullDataframe(dataframe_test)
+#df_train = FullDataframe(dataframe_train)
+df_full = FullDataframe(full_dataframe)
 
-#df.to_csv('/home/c161905/Memoria/memoria_utfsm_sparql/scripts/csv_files/test_example.csv', index=False)
-
-df_test.to_csv('/home/c161905/Memoria/memoria_utfsm_sparql/scripts/csv_files/test_dataset.csv', index=False)
-df_train.to_csv('/home/c161905/Memoria/memoria_utfsm_sparql/scripts/csv_files/train_dataset.csv', index=False)
-
-#print(df.to_csv('/home/c161905/Memoria/memoria_utfsm_sparql/scripts/csv_files/test_example.csv', index=False))
-
+csv_path = '/home/c161905/Memoria/memoria_utfsm_sparql/scripts/csv_files/train_dataset.csv'
+#df_test.to_csv(csv_path, index=False)
+#df_train.to_csv(csv_path, index=False)
+df_full.to_csv(csv_path, index=False)
 
 import subprocess
 subprocess.call("/home/c161905/Memoria/memoria_utfsm_sparql/scripts/feature_extraction_script/pretty.sh")
