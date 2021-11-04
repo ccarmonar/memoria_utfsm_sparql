@@ -135,3 +135,7 @@ def OnlyScans(operators):
 				only_scans.append(operators[k])
 				keys.append(k)
 	return only_scans, keys
+
+
+def Flatten(t):
+    return [item for sublist in t for item in sublist]

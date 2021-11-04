@@ -11,8 +11,10 @@ from functions.build_csv import AllData, FullDataframe
 #current working directorya
 cwd = os.getcwd()
 path_profiles = os.listdir(os.getcwd()+"/scripts/outputs")
+path_profiles_str = os.getcwd()+"/scripts/outputs"
 path_dataset = os.listdir(os.getcwd()+"/dataset")
 c = 0
+symbol = "ᶲ"
 
 if not os.path.exists(os.getcwd()+'/scripts/feature_extraction_script/returns/'):
 	os.makedirs(os.getcwd()+'/scripts/feature_extraction_script/returns/')
@@ -184,25 +186,27 @@ lst = [
 ]
 
 for i in path_profiles:
-	if os.path.isdir(os.getcwd()+"/scripts/outputs/"+i):
+	if os.path.isdir(path_profiles_str+"/"+i):
 		filename = "_".join(i.split("_")[1:])
 		#if all(e != filename for e in ['queries1_696', 'queries1_57']): #and "queries1" in filename:
 		#if "queries2" in filename:
 		#if any(('queries2_'+str(e)) == filename for e in lst):
+		#if "queries2_25390" in filename:
 		if True:
+
 			print("filename: ", filename)
-			sparql_file = open(os.getcwd() + "/scripts/outputs/outputs_" + filename + "/" + filename + ".rq", 'r', encoding='latin-1').read()
-			profile_normal = open(os.getcwd() + "/scripts/outputs/outputs_" + filename + "/profile_normal_file_" + filename, 'r', encoding='latin-1').read()
-			profile_explain_bajo = open(os.getcwd() + "/scripts/outputs/outputs_" + filename + "/profile_normal_file_" + filename, 'r', encoding='latin').read()
-			#general_features_pt_file = open(os.getcwd() + "/scripts/outputs/outputs_" + filename + "/gfeatures_" + filename, 'r', encoding='latin-1').read()
+			sparql_file = open(path_profiles_str + "/outputs_" + filename + "/" + filename + ".rq", 'r', encoding='latin-1').read()
+			profile_normal = open(path_profiles_str + "/outputs_" + filename + "/profile_normal_file_" + filename, 'r', encoding='latin-1').read()
+			profile_explain_bajo = open(path_profiles_str + "/outputs_" + filename + "/profile_normal_file_" + filename, 'r', encoding='latin').read()
+			#general_features_pt_file = open(path_profiles_str + "/outputs_" + filename + "/gfeatures_" + filename, 'r', encoding='latin-1').read()
 			general_features_pt_file = 0
-			#old_features_json = open(os.getcwd() + "/scripts/outputs/outputs_" + filename + "/" + filename + ".json", 'r', encoding='latin-1').read()
+			#old_features_json = open(path_profiles_str + "/outputs_" + filename + "/" + filename + ".json", 'r', encoding='latin-1').read()
 			old_features_json = 0
 			if profile_normal == '':
 				print("profile error")
 				continue
 			operators, predicates_list, list_alleq = execute(profile_normal, profile_explain_bajo, sparql_file)
-			all_data = AllData(operators, profile_normal, predicates_list, filename, sparql_file, general_features_pt_file, list_alleq, old_features_json)
+			all_data = AllData(operators, profile_normal, predicates_list, filename, sparql_file, general_features_pt_file, list_alleq, old_features_json, symbol)
 #			if "queries1" in filename:
 #				dataframe_test.append(all_data)
 #			if "queries2" in filename:

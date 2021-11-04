@@ -5,7 +5,7 @@ from functions.tree_format import TreeFormat
 from functions.aux import HashStringId
 
 
-def AllData(operators, profile, predicates, filename, sparql_file, general_features_pt_file, list_alleq, old_features_json):
+def AllData(operators, profile, predicates, filename, sparql_file, general_features_pt_file, list_alleq, old_features_json, symbol):
     matrix_format = MatrixFormat(operators, predicates)
     general_features = GeneralFeaturesFromProfileFile(profile, operators)
     limit = general_features['GENERAL_FEATURES']['LIMIT']
@@ -13,10 +13,18 @@ def AllData(operators, profile, predicates, filename, sparql_file, general_featu
     compiled_list = list(general_features['GENERAL_FEATURES']['compiled'].values())
     #general_features_pt = GeneralFeaturesFromPerformanceTuning(general_features_pt_file)
     operators = GeneralFeaturesFromOperators(operators, list_alleq)
-    binary_tree, operators = TreeFormat(operators, sparql_file)
+    binary_tree, operators = TreeFormat(operators, sparql_file, symbol)
+    num_bgp = general_features['GENERAL_FEATURES']['compiled']
+    num_triples = general_features['GENERAL_FEATURES']['compiled']
+    triples = general_features['GF_FROM_OP']['triples']
+    total_bgps = general_features['GF_FROM_OP']['total_bgps']
+    treesize = general_features['GF_FROM_OP']['treesize']
     unique_id = HashStringId(str(predicates) + str(matrix_format) + str(binary_tree) + str(general_features))
     #all_data = [unique_id, filename, sparql_file, profile, limit] + precompiled_list + compiled_list + general_features_pt + list(ast.literal_eval(old_features_json).values())
     all_data = [unique_id, filename, sparql_file, profile, limit] + precompiled_list + compiled_list
+    all_data.append(triples)
+    all_data.append(total_bgps)
+    all_data.append(treesize)
     all_data.append(str(matrix_format))
     all_data.append(str(binary_tree))
     return all_data
@@ -106,6 +114,9 @@ def FullDataframe(list_of_features):
         #'project_old', 'reduced_old', 'sequence_old', 'slice_old', 'tolist_old', 'top_old', 'tree_tdb_old', 'trees_old',
         #'treesize_old', 'triple_old', 'union_old', 'query_name_old',
         # matrix and binary tree
+        'triples',
+        'total_bgps',
+        'treesize',
         'matrix_format',
         'binary_tree',
     ]
