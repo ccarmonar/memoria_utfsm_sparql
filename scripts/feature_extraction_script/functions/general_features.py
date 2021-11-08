@@ -147,6 +147,7 @@ def GeneralFeaturesFromOperators(operators, list_alleq):
     operators['GF_FROM_OP'] = {'triples' : triples, 'total_bgps' : bgps, 'list_alleq' : list_alleq, 'bgps_ops': bgps_ops}
     return operators
 
+
 def GeneralFeaturesFromPerformanceTuning(general_features_pt_file):
     general_features_pt_aux = [x.strip() for x in general_features_pt_file.split('\n')]
     general_features_pt_list = []
