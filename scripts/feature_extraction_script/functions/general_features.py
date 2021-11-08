@@ -100,7 +100,7 @@ def GeneralFeaturesFromProfileFile(profile_file,operators):
 def GeneralFeaturesFromOperators(operators, list_alleq):
     triples = 0
     bgps = 0
-    only_scans, os_keys = OnlyScans(operators)
+    only_scans, os_keys = OnlyScans(operators, True)
     ## NUMEROS TOTALES
     for k in operators.keys():
         if k != 'GENERAL_FEATURES':

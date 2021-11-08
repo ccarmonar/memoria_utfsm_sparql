@@ -822,7 +822,7 @@ def SetAfterTest(operators):
 
 #FALTA CORREGIR ALGUNAS COSAS AQUI
 def IdentifyBGPS(operators):
-	only_scans, os_keys = OnlyScans(operators)
+	only_scans, os_keys = OnlyScans(operators, False)
 	list_keys = list(operators.keys())
 	num_bgp = 1
 

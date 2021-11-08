@@ -126,12 +126,15 @@ def HashStringId(string):
 	return sha_return
 
 
-def OnlyScans(operators):
+def OnlyScans(operators, set_nones_predicates):
 	only_scans = []
 	keys = []
 	for k in operators.keys():
 		if k != 'GENERAL_FEATURES' and k != 'GF_FROM_OP':
 			if operators[k]['operator_type'] == 1:
+				if set_nones_predicates:
+					if 'IRI_ID' not in operators[k]['P']:
+						operators[k]['P'] = 'NONE'
 				only_scans.append(operators[k])
 				keys.append(k)
 	return only_scans, keys

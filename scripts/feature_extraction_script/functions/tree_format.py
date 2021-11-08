@@ -26,10 +26,12 @@ def InnerJoinsIntraBGPS(bgp, symbol):
     predicates = []
     for k in range(len(bgp)):
         if k == 0:
-            predicates.append(bgp[k]['P'])
+            if 'NONE' not in bgp[k]['P']:
+                predicates.append(bgp[k]['P'])
             prearmed.append(bgp[k]['triple_type']+ symbol + bgp[k]['P'])
         else:
-            predicates.append(bgp[k]['P'])
+            if 'NONE' not in bgp[k]['P']:
+                predicates.append(bgp[k]['P'])
             prearmed.append('JOIN' + symbol + symbol.join(predicates[:k+1]))
             prearmed.append(bgp[k]['triple_type'] + symbol + bgp[k]['P'])
     tree_format, prearmed = IterateBuildTree(tree_format, prearmed, symbol)
