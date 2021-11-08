@@ -7,17 +7,23 @@ from functions.main import GetFinalResults, GroupOperators, GetOperatorExecution
 	IdentifyIter
 from functions.aux import GetSubstring, ParseNestedBracket, CleanOperators, GetPrefixes, VectorString, MainCurlyBrackets, \
 	CountCurlyBrackets, CleanSalts, SubstractStrings, GetAllSubstring
-from functions.build_csv import AllData, FullDataframe
+from functions.build_csv import AllData, FullDataframe, AllData_old, FullDataframe_old
 #current working directorya
 cwd = os.getcwd()
 path_profiles = os.listdir(os.getcwd()+"/scripts/outputs")
 path_profiles_str = os.getcwd()+"/scripts/outputs"
+
+path_profiles_old = os.listdir(os.getcwd()+"/scripts/outputs_old")
+path_profiles_str_old = os.getcwd()+"/scripts/outputs_old"
+
 path_dataset = os.listdir(os.getcwd()+"/dataset")
 c = 0
 symbol = "ᶲ"
 
 if not os.path.exists(os.getcwd()+'/scripts/feature_extraction_script/returns/'):
 	os.makedirs(os.getcwd()+'/scripts/feature_extraction_script/returns/')
+if not os.path.exists(os.getcwd()+'/scripts/feature_extraction_script/returns_old/'):
+	os.makedirs(os.getcwd()+'/scripts/feature_extraction_script/returns_old/')
 
 
 def execute(profile_sparql, profile_low_explain, sparql_file):
@@ -193,7 +199,6 @@ for i in path_profiles:
 		#if any(('queries2_'+str(e)) == filename for e in lst):
 		#if "queries2_25390" in filename:
 		if True:
-
 			print("filename: ", filename)
 			sparql_file = open(path_profiles_str + "/outputs_" + filename + "/" + filename + ".rq", 'r', encoding='latin-1').read()
 			profile_normal = open(path_profiles_str + "/outputs_" + filename + "/profile_normal_file_" + filename, 'r', encoding='latin-1').read()
@@ -207,22 +212,47 @@ for i in path_profiles:
 				continue
 			operators, predicates_list, list_alleq = execute(profile_normal, profile_explain_bajo, sparql_file)
 			all_data = AllData(operators, profile_normal, predicates_list, filename, sparql_file, general_features_pt_file, list_alleq, old_features_json, symbol)
-#			if "queries1" in filename:
-#				dataframe_test.append(all_data)
-#			if "queries2" in filename:
-#				dataframe_train.append(all_data)
 			full_dataframe.append(all_data)
 			with open(os.getcwd()+'/scripts/feature_extraction_script/returns/'+filename+'.json', 'w') as json_file:
 				json.dump(operators, json_file)
 
-#df_test = FullDataframe(dataframe_test)
-#df_train = FullDataframe(dataframe_train)
+operators, predicates_list, list_alleq = {}, [], []
+for i in path_profiles_old:
+	if os.path.isdir(path_profiles_str_old+"/"+i):
+		filename = "_".join(i.split("_")[1:])
+		#if all(e != filename for e in ['queries1_696', 'queries1_57']): #and "queries1" in filename:
+		#if "queries2" in filename:
+		#if any(('queries2_'+str(e)) == filename for e in lst):
+		#if "queries2_25390" in filename:
+		if True:
+			print("filename: ", filename)
+			sparql_file = open(path_profiles_str_old + "/outputs_" + filename + "/" + filename + ".rq", 'r', encoding='latin-1').read()
+			profile_normal = open(path_profiles_str_old + "/outputs_" + filename + "/profile_normal_file_" + filename, 'r', encoding='latin-1').read()
+			profile_explain_bajo = open(path_profiles_str_old + "/outputs_" + filename + "/profile_normal_file_" + filename, 'r', encoding='latin').read()
+			#general_features_pt_file = open(path_profiles_str + "/outputs_" + filename + "/gfeatures_" + filename, 'r', encoding='latin-1').read()
+			general_features_pt_file = 0
+			old_features_json = open(path_profiles_str_old + "/outputs_" + filename + "/" + filename + ".json", 'r', encoding='latin-1').read()
+			if profile_normal == '':
+				print("profile error")
+				continue
+			operators, predicates_list, list_alleq = execute(profile_normal, profile_explain_bajo, sparql_file)
+			all_data = AllData_old(operators, profile_normal, predicates_list, filename, sparql_file, general_features_pt_file, list_alleq, old_features_json, symbol)
+			if "queries1" in filename:
+				dataframe_test.append(all_data)
+			if "queries2" in filename:
+				dataframe_train.append(all_data)
+
+			with open(os.getcwd()+'/scripts/feature_extraction_script/returns_old/'+filename+'.json', 'w') as json_file:
+				json.dump(operators, json_file)
+
 df_full = FullDataframe(full_dataframe)
+df_test = FullDataframe_old(dataframe_test)
+df_train = FullDataframe_old(dataframe_train)
 
 csv_path = '/home/c161905/Memoria/memoria_utfsm_sparql/scripts/csv_files/'
-#df_test.to_csv(csv_path + 'test_dataset.csv', index=False)
-#df_train.to_csv(csv_path + 'train_dataset.csv', index=False)
 df_full.to_csv(csv_path + 'new_dataset.csv', index=False)
+df_test.to_csv(csv_path + 'test_old_dataset.csv', index=False)
+df_train.to_csv(csv_path + 'train_old_dataset.csv', index=False)
 
 import subprocess
 subprocess.call("/home/c161905/Memoria/memoria_utfsm_sparql/scripts/feature_extraction_script/pretty.sh")
