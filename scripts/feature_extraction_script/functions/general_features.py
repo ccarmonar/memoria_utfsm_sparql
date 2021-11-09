@@ -161,13 +161,21 @@ def GetJsonPredicatesFeatures(operators):
     operators['GF_FROM_OP']['json_input_rows_predicate'] = {}
     operators['GF_FROM_OP']['json_cardinality_fanout'] = {}
     operators['GF_FROM_OP']['json_cardinality'] = {}
+    var_count = 0
     for k in operators['GF_FROM_OP']['bgps_ops'].keys():
         bgp_list = operators['GF_FROM_OP']['bgps_ops'][k]['bgp_list']
         for bgp in bgp_list:
             if 'NONE' not in bgp['P']:
-                operators['GF_FROM_OP']['json_time_predicate'][bgp['P']] = bgp['time']
-                operators['GF_FROM_OP']['json_fanout_predicate'][bgp['P']] = bgp['fanout']
-                operators['GF_FROM_OP']['json_input_rows_predicate'][bgp['P']] = bgp['input_rows']
-                operators['GF_FROM_OP']['json_cardinality'][bgp['P']] = bgp['cardinality_estimate']
-                operators['GF_FROM_OP']['json_cardinality_fanout'][bgp['P']] = bgp['cardinality_fanout']
+                operators['GF_FROM_OP']['json_time_predicate'][bgp['P']] = str(bgp['time'])
+                operators['GF_FROM_OP']['json_fanout_predicate'][bgp['P']] = str(bgp['fanout'])
+                operators['GF_FROM_OP']['json_input_rows_predicate'][bgp['P']] = str(bgp['input_rows'])
+                operators['GF_FROM_OP']['json_cardinality'][bgp['P']] = str(bgp['cardinality_estimate'])
+                operators['GF_FROM_OP']['json_cardinality_fanout'][bgp['P']] = str(bgp['cardinality_fanout'])
+            else:
+                operators['GF_FROM_OP']['json_time_predicate'][str(k)+'var_'+str(var_count)] = str(bgp['time'])
+                operators['GF_FROM_OP']['json_fanout_predicate'][str(k)+'var_'+str(var_count)] = str(bgp['fanout'])
+                operators['GF_FROM_OP']['json_input_rows_predicate'][str(k)+'var_'+str(var_count)] = str(bgp['input_rows'])
+                operators['GF_FROM_OP']['json_cardinality'][str(k)+'var_'+str(var_count)] = str(bgp['cardinality_estimate'])
+                operators['GF_FROM_OP']['json_cardinality_fanout'][str(k)+'var_'+str(var_count)] = str(bgp['cardinality_fanout'])
+                var_count += 1
     return operators

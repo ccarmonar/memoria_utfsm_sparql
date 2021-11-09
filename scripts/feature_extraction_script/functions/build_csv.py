@@ -38,11 +38,11 @@ def AllData(operators, profile, predicates, filename, sparql_file, general_featu
     all_data.append(treesize)
     all_data.append(str(matrix_format))
     all_data.append(str(binary_tree).replace('"', ';').replace("'", '"'))
-    all_data.append(str(json_time_predicate))
-    all_data.append(str(json_fanout_predicate))
-    all_data.append(str(json_input_rows_predicate))
-    all_data.append(str(json_cardinality_fanout))
-    all_data.append(str(json_cardinality))
+    all_data.append(str(json_time_predicate).replace('"', ';').replace("'", '"'))
+    all_data.append(str(json_fanout_predicate).replace('"', ';').replace("'", '"'))
+    all_data.append(str(json_input_rows_predicate).replace('"', ';').replace("'", '"'))
+    all_data.append(str(json_cardinality_fanout).replace('"', ';').replace("'", '"'))
+    all_data.append(str(json_cardinality).replace('"', ';').replace("'", '"'))
     return all_data
 
 
