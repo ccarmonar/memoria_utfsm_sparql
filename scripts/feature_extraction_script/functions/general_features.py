@@ -95,8 +95,6 @@ def GeneralFeaturesFromProfileFile(profile_file,operators):
     return operators
 
 
-
-
 def GeneralFeaturesFromOperators(operators, list_alleq):
     triples = 0
     bgps = 0
@@ -110,7 +108,7 @@ def GeneralFeaturesFromOperators(operators, list_alleq):
                 bgps = max(bgps, int(operators[k]['num_bgp']))
 
     ## GET BGPS
-    keys_to_extract = ['S','P','O','triple_type','optional_section?','num_bgp']
+    keys_to_extract = ['S','P','O','time','fanout','input_rows','cardinality_estimate','cardinality_fanout','triple_type','optional_section?','num_bgp']
     subset_onlyscans = []
     for k in range(len(only_scans)):
         os_subset = {key: only_scans[k][key] for key in keys_to_extract}
@@ -155,3 +153,21 @@ def GeneralFeaturesFromPerformanceTuning(general_features_pt_file):
         if i % 2 == 1:
             general_features_pt_list.append(general_features_pt_aux[i])
     return general_features_pt_list
+
+
+def GetJsonPredicatesFeatures(operators):
+    operators['GF_FROM_OP']['json_time_predicate'] = {}
+    operators['GF_FROM_OP']['json_fanout_predicate'] = {}
+    operators['GF_FROM_OP']['json_input_rows_predicate'] = {}
+    operators['GF_FROM_OP']['json_cardinality_fanout'] = {}
+    operators['GF_FROM_OP']['json_cardinality'] = {}
+    for k in operators['GF_FROM_OP']['bgps_ops'].keys():
+        bgp_list = operators['GF_FROM_OP']['bgps_ops'][k]['bgp_list']
+        for bgp in bgp_list:
+            if 'NONE' not in bgp['P']:
+                operators['GF_FROM_OP']['json_time_predicate'][bgp['P']] = bgp['time']
+                operators['GF_FROM_OP']['json_fanout_predicate'][bgp['P']] = bgp['fanout']
+                operators['GF_FROM_OP']['json_input_rows_predicate'][bgp['P']] = bgp['input_rows']
+                operators['GF_FROM_OP']['json_cardinality'][bgp['P']] = bgp['cardinality_estimate']
+                operators['GF_FROM_OP']['json_cardinality_fanout'][bgp['P']] = bgp['cardinality_fanout']
+    return operators

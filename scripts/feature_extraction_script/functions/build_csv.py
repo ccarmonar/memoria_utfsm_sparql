@@ -1,11 +1,12 @@
 import pandas as pd, ast
-from functions.general_features import GeneralFeaturesFromProfileFile, GeneralFeaturesFromPerformanceTuning, GeneralFeaturesFromOperators
+from functions.general_features import GeneralFeaturesFromProfileFile, GeneralFeaturesFromPerformanceTuning, GeneralFeaturesFromOperators, \
+    GetJsonPredicatesFeatures
 from functions.matrix_format import MatrixFormat, MatrixNumpyFormat, DataFrameFormat
 from functions.tree_format import TreeFormat
 from functions.aux import HashStringId
 
 
-def AllData(operators, profile, predicates, filename, sparql_file, general_features_pt_file, list_alleq, old_features_json, symbol):
+def AllData(operators, profile, predicates, filename, sparql_file, general_features_pt_file, list_alleq, old_features_json, symbol,new=True):
     matrix_format = MatrixFormat(operators, predicates)
     general_features = GeneralFeaturesFromProfileFile(profile, operators)
     limit = general_features['GENERAL_FEATURES']['LIMIT']
@@ -14,21 +15,34 @@ def AllData(operators, profile, predicates, filename, sparql_file, general_featu
     #general_features_pt = GeneralFeaturesFromPerformanceTuning(general_features_pt_file)
     operators = GeneralFeaturesFromOperators(operators, list_alleq)
     binary_tree, operators = TreeFormat(operators, sparql_file, symbol)
-    num_bgp = general_features['GENERAL_FEATURES']['compiled']
-    num_triples = general_features['GENERAL_FEATURES']['compiled']
     triples = general_features['GF_FROM_OP']['triples']
     total_bgps = general_features['GF_FROM_OP']['total_bgps']
     treesize = general_features['GF_FROM_OP']['treesize']
+
+    JsonPredicatesFeatures = GetJsonPredicatesFeatures(operators)
+    json_time_predicate = operators['GF_FROM_OP']['json_time_predicate']
+    json_fanout_predicate = operators['GF_FROM_OP']['json_fanout_predicate']
+    json_input_rows_predicate = operators['GF_FROM_OP']['json_input_rows_predicate']
+    json_cardinality_fanout = operators['GF_FROM_OP']['json_cardinality_fanout']
+    json_cardinality = operators['GF_FROM_OP']['json_cardinality']
+
+
     unique_id = HashStringId(str(predicates) + str(matrix_format) + str(binary_tree) + str(general_features))
     #all_data = [unique_id, filename, sparql_file, profile, limit] + precompiled_list + compiled_list + general_features_pt + list(ast.literal_eval(old_features_json).values())
-    all_data = [unique_id, filename, sparql_file, profile, limit] + precompiled_list + compiled_list
+    if new:
+        all_data = [unique_id, filename, sparql_file, profile, limit] + precompiled_list + compiled_list
+    else:
+        all_data = [unique_id, filename, sparql_file, profile, limit] + precompiled_list + compiled_list + list(ast.literal_eval(old_features_json).values())
     all_data.append(triples)
-    all_data.append(num_bgp)
-    all_data.append(num_triples)
     all_data.append(total_bgps)
     all_data.append(treesize)
     all_data.append(str(matrix_format))
-    all_data.append(str(binary_tree))
+    all_data.append(str(binary_tree).replace('"', ';').replace("'", '"'))
+    all_data.append(str(json_time_predicate))
+    all_data.append(str(json_fanout_predicate))
+    all_data.append(str(json_input_rows_predicate))
+    all_data.append(str(json_cardinality_fanout))
+    all_data.append(str(json_cardinality))
     return all_data
 
 
@@ -37,11 +51,11 @@ def FullDataframe(list_of_features):
         ## general features - others
         'unique_id',
         'filename',
-        'sparql_file',
+        'query', #sparql_file
         'profile',
         'limit',
         ## general features - precompiled
-        'msec',
+        'time',
         'cpu_p',
         'rnd',
         'seq',
@@ -117,42 +131,18 @@ def FullDataframe(list_of_features):
         #'treesize_old', 'triple_old', 'union_old', 'query_name_old',
         # matrix and binary tree
         'triples',
-        'num_bgp',
-        'num_triples',
         'total_bgps',
         'treesize',
         'matrix_format',
-        'binary_tree',
+        'trees',
+        'json_time_predicate',
+        'json_fanout_predicate',
+        'json_input_rows_predicate',
+        'json_cardinality_fanout',
+        'json_cardinality'
     ]
     final_df = pd.DataFrame(list_of_features, columns=columns)
     return final_df
-
-
-def AllData_old(operators, profile, predicates, filename, sparql_file, general_features_pt_file, list_alleq, old_features_json, symbol):
-    matrix_format = MatrixFormat(operators, predicates)
-    general_features = GeneralFeaturesFromProfileFile(profile, operators)
-    limit = general_features['GENERAL_FEATURES']['LIMIT']
-    precompiled_list = list(general_features['GENERAL_FEATURES']['precompiled'].values())
-    compiled_list = list(general_features['GENERAL_FEATURES']['compiled'].values())
-    #general_features_pt = GeneralFeaturesFromPerformanceTuning(general_features_pt_file)
-    operators = GeneralFeaturesFromOperators(operators, list_alleq)
-    binary_tree, operators = TreeFormat(operators, sparql_file, symbol)
-    num_bgp = general_features['GENERAL_FEATURES']['compiled']
-    num_triples = general_features['GENERAL_FEATURES']['compiled']
-    triples = general_features['GF_FROM_OP']['triples']
-    total_bgps = general_features['GF_FROM_OP']['total_bgps']
-    treesize = general_features['GF_FROM_OP']['treesize']
-    unique_id = HashStringId(str(predicates) + str(matrix_format) + str(binary_tree) + str(general_features))
-    #all_data = [unique_id, filename, sparql_file, profile, limit] + precompiled_list + compiled_list + general_features_pt + list(ast.literal_eval(old_features_json).values())
-    all_data = [unique_id, filename, sparql_file, profile, limit] + precompiled_list + compiled_list + list(ast.literal_eval(old_features_json).values())
-    all_data.append(triples)
-    all_data.append(num_bgp)
-    all_data.append(num_triples)
-    all_data.append(total_bgps)
-    all_data.append(treesize)
-    all_data.append(str(matrix_format))
-    all_data.append(str(binary_tree))
-    return all_data
 
 
 def FullDataframe_old(list_of_features):
@@ -160,11 +150,11 @@ def FullDataframe_old(list_of_features):
         ## general features - others
         'unique_id',
         'filename',
-        'sparql_file',
+        'query', #sparql_file
         'profile',
         'limit',
         ## general features - precompiled
-        'msec',
+        'time',
         'cpu_p',
         'rnd',
         'seq',
@@ -240,12 +230,15 @@ def FullDataframe_old(list_of_features):
         'treesize_old', 'triple_old', 'union_old', 'query_name_old',
         # matrix and binary tree
         'triples',
-        'num_bgp',
-        'num_triples',
         'total_bgps',
         'treesize',
         'matrix_format',
-        'binary_tree',
+        'trees',
+        'json_time_predicate',
+        'json_fanout_predicate',
+        'json_input_rows_predicate',
+        'json_cardinality_fanout',
+        'json_cardinality'
     ]
     final_df = pd.DataFrame(list_of_features, columns=columns)
     return final_df

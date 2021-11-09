@@ -1,4 +1,4 @@
-import os, json, csv
+import os, json, csv, subprocess, shutil
 from functions.main import GetFinalResults, GroupOperators, GetOperatorExecutionFeatures, IdentifyOperatorType, \
 	IdentifyPrecode, IdentifyAfterCode, IdentifyGroupBy, IdentifyDistinct, IdentifyTOP, IdentifyTopOrderByRead, \
 	IdentifySkipNode, IdentifySelect, GetGSPO, GetIRI_ID, GetAllPredicatesFromProfile, SetBooleanPredicates, \
@@ -7,10 +7,11 @@ from functions.main import GetFinalResults, GroupOperators, GetOperatorExecution
 	IdentifyIter
 from functions.aux import GetSubstring, ParseNestedBracket, CleanOperators, GetPrefixes, VectorString, MainCurlyBrackets, \
 	CountCurlyBrackets, CleanSalts, SubstractStrings, GetAllSubstring
-from functions.build_csv import AllData, FullDataframe, AllData_old, FullDataframe_old
+from functions.build_csv import AllData, FullDataframe, FullDataframe_old
 
 execute_new = True
 execute_old = True
+
 
 #current working directory
 csv_path = '/home/c161905/Memoria/memoria_utfsm_sparql/scripts/csv_files/'
@@ -25,10 +26,12 @@ path_dataset = os.listdir(os.getcwd()+"/dataset")
 c = 0
 symbol = "ᶲ"
 
-if not os.path.exists(os.getcwd()+'/scripts/feature_extraction_script/returns/'):
-	os.makedirs(os.getcwd()+'/scripts/feature_extraction_script/returns/')
-if not os.path.exists(os.getcwd()+'/scripts/feature_extraction_script/returns_old/'):
-	os.makedirs(os.getcwd()+'/scripts/feature_extraction_script/returns_old/')
+if os.path.exists(os.getcwd()+'/scripts/feature_extraction_script/returns/'):
+	shutil.rmtree(os.getcwd()+'/scripts/feature_extraction_script/returns/')
+if os.path.exists(os.getcwd()+'/scripts/feature_extraction_script/returns_old/'):
+	shutil.rmtree(os.getcwd()+'/scripts/feature_extraction_script/returns_old/')
+os.makedirs(os.getcwd()+'/scripts/feature_extraction_script/returns/')
+os.makedirs(os.getcwd()+'/scripts/feature_extraction_script/returns_old/')
 
 
 def execute(profile_sparql, profile_low_explain, sparql_file):
@@ -200,10 +203,6 @@ if execute_new:
 	for i in path_profiles:
 		if os.path.isdir(path_profiles_str+"/"+i):
 			filename = "_".join(i.split("_")[1:])
-			#if all(e != filename for e in ['queries1_696', 'queries1_57']): #and "queries1" in filename:
-			#if "queries2" in filename:
-			#if any(('queries2_'+str(e)) == filename for e in lst):
-			#if "queries2_25390" in filename:
 			if True:
 				print("filename: ", filename)
 				sparql_file = open(path_profiles_str + "/outputs_" + filename + "/" + filename + ".rq", 'r', encoding='latin-1').read()
@@ -217,7 +216,7 @@ if execute_new:
 					print("profile error")
 					continue
 				operators, predicates_list, list_alleq = execute(profile_normal, profile_explain_bajo, sparql_file)
-				all_data = AllData(operators, profile_normal, predicates_list, filename, sparql_file, general_features_pt_file, list_alleq, old_features_json, symbol)
+				all_data = AllData(operators, profile_normal, predicates_list, filename, sparql_file, general_features_pt_file, list_alleq, old_features_json, symbol, True)
 				full_dataframe.append(all_data)
 				with open(os.getcwd()+'/scripts/feature_extraction_script/returns/'+filename+'.json', 'w') as json_file:
 					json.dump(operators, json_file)
@@ -229,9 +228,9 @@ if execute_old:
 			filename = "_".join(i.split("_")[1:])
 			#if all(e != filename for e in ['queries1_696', 'queries1_57']): #and "queries1" in filename:
 			#if "queries2" in filename:
-			#if any(('queries2_'+str(e)) == filename for e in lst):
+			if any(('queries2_'+str(e)) == filename for e in lst):
 			#if "queries2_25390" in filename:
-			if True:
+			#if True:
 				print("filename: ", filename)
 				sparql_file = open(path_profiles_str_old + "/outputs_" + filename + "/" + filename + ".rq", 'r', encoding='latin-1').read()
 				profile_normal = open(path_profiles_str_old + "/outputs_" + filename + "/profile_normal_file_" + filename, 'r', encoding='latin-1').read()
@@ -243,12 +242,11 @@ if execute_old:
 					print("profile error")
 					continue
 				operators, predicates_list, list_alleq = execute(profile_normal, profile_explain_bajo, sparql_file)
-				all_data = AllData_old(operators, profile_normal, predicates_list, filename, sparql_file, general_features_pt_file, list_alleq, old_features_json, symbol)
+				all_data = AllData(operators, profile_normal, predicates_list, filename, sparql_file, general_features_pt_file, list_alleq, old_features_json, symbol, False)
 				if "queries1" in filename:
 					dataframe_test.append(all_data)
 				if "queries2" in filename:
 					dataframe_train.append(all_data)
-
 				with open(os.getcwd()+'/scripts/feature_extraction_script/returns_old/'+filename+'.json', 'w') as json_file:
 					json.dump(operators, json_file)
 
@@ -262,6 +260,8 @@ if execute_new:
 	df_full = FullDataframe(full_dataframe)
 	df_full.to_csv(csv_path + 'new_dataset.csv', index=False)
 
-if execute_new or execute_old:
-	import subprocess
+if execute_new:
 	subprocess.call("/home/c161905/Memoria/memoria_utfsm_sparql/scripts/feature_extraction_script/pretty.sh")
+
+if execute_old:
+	subprocess.call("/home/c161905/Memoria/memoria_utfsm_sparql/scripts/feature_extraction_script/pretty_old.sh")
