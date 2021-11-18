@@ -1,8 +1,8 @@
-import pandas as pd, ast
+import pandas as pd, ast, json
 from functions.general_features import GeneralFeaturesFromProfileFile, GeneralFeaturesFromPerformanceTuning, GeneralFeaturesFromOperators, \
     GetJsonPredicatesFeatures
 from functions.matrix_format import MatrixFormat, MatrixNumpyFormat, DataFrameFormat
-from functions.tree_format import TreeFormat
+from functions.tree_format import TreeFormat, TreeFormat_old_format
 from functions.aux import HashStringId
 
 
@@ -14,18 +14,20 @@ def AllData(operators, profile, predicates, filename, sparql_file, general_featu
     compiled_list = list(general_features['GENERAL_FEATURES']['compiled'].values())
     #general_features_pt = GeneralFeaturesFromPerformanceTuning(general_features_pt_file)
     operators = GeneralFeaturesFromOperators(operators, list_alleq)
+    if not new:
+        old_trees = ast.literal_eval(old_features_json)['trees']
+        operators['GF_FROM_OP']['trees_daniel'] = json.loads(old_trees)
     binary_tree, operators = TreeFormat(operators, sparql_file, symbol)
+    binary_tree_old, operators = TreeFormat_old_format(operators, sparql_file, symbol)
     triples = general_features['GF_FROM_OP']['triples']
     total_bgps = general_features['GF_FROM_OP']['total_bgps']
     treesize = general_features['GF_FROM_OP']['treesize']
-
     JsonPredicatesFeatures = GetJsonPredicatesFeatures(operators)
     json_time_predicate = operators['GF_FROM_OP']['json_time_predicate']
     json_fanout_predicate = operators['GF_FROM_OP']['json_fanout_predicate']
     json_input_rows_predicate = operators['GF_FROM_OP']['json_input_rows_predicate']
     json_cardinality_fanout = operators['GF_FROM_OP']['json_cardinality_fanout']
     json_cardinality = operators['GF_FROM_OP']['json_cardinality']
-
 
     unique_id = HashStringId(str(predicates) + str(matrix_format) + str(binary_tree) + str(general_features))
     #all_data = [unique_id, filename, sparql_file, profile, limit] + precompiled_list + compiled_list + general_features_pt + list(ast.literal_eval(old_features_json).values())
@@ -38,6 +40,7 @@ def AllData(operators, profile, predicates, filename, sparql_file, general_featu
     all_data.append(treesize)
     all_data.append(str(matrix_format))
     all_data.append(str(binary_tree).replace('"', ';').replace("'", '"'))
+    all_data.append(str(binary_tree_old).replace('"', ';').replace("'", '"'))
     all_data.append(str(json_time_predicate).replace('"', ';').replace("'", '"'))
     all_data.append(str(json_fanout_predicate).replace('"', ';').replace("'", '"'))
     all_data.append(str(json_input_rows_predicate).replace('"', ';').replace("'", '"'))
@@ -135,6 +138,7 @@ def FullDataframe(list_of_features):
         'treesize',
         'matrix_format',
         'trees',
+        'trees_old_format',
         'json_time_predicate',
         'json_fanout_predicate',
         'json_input_rows_predicate',
@@ -234,6 +238,7 @@ def FullDataframe_old(list_of_features):
         'treesize',
         'matrix_format',
         'trees',
+        'trees_old_format',
         'json_time_predicate',
         'json_fanout_predicate',
         'json_input_rows_predicate',

@@ -12,6 +12,8 @@ from functions.build_csv import AllData, FullDataframe, FullDataframe_old
 execute_new = True
 execute_old = True
 
+name_new = 'new_dataset_3.0'
+name_old = 'old_dataset'
 
 #current working directory
 csv_path = '/home/c161905/Memoria/memoria_utfsm_sparql/scripts/csv_files/'
@@ -79,52 +81,6 @@ def test_print():
 dataframe_test = []
 dataframe_train = []
 full_dataframe = []
-
-lst = [
-	0,
-	22,
-	275,
-	457,
-	556,
-	666,
-	766,
-	800,
-	998,
-	1248,
-	2303,
-	3222,
-	3599,
-	4732,
-	5095,
-	5429,
-	6985,
-	7788,
-	8358,
-	8830,
-	8930,
-	8932,
-	9568,
-	10757,
-	10969,
-	11000,
-	11725,
-	12008,
-	12345,
-	12664,
-	13456,
-	13963,
-	14233,
-	16790,
-	17865,
-	21291,
-	22004,
-	22088,
-	23391,
-	24200
-]
-#lst = [30, 87, 444, 459, 961, 1335, 1956, 2119, 2710, 2106, 10553, 12015, 18985, 25068, 25797]
-#lst = [30,25068,1335,2710]
-#lst = [486, 929, 3570, 4878, 7428, 8811, 9691, 10874, 12036, 12245, 12463, 13248, 16640, 25390, 25515]
 
 lst = [
 	0,
@@ -199,11 +155,13 @@ lst = [
 	25797,
 ]
 
+#lst = [8930,10969,24200]
+error_list_new = ['query_5673','query_6072']
 if execute_new:
 	for i in path_profiles:
 		if os.path.isdir(path_profiles_str+"/"+i):
 			filename = "_".join(i.split("_")[1:])
-			if True:
+			if True and filename not in error_list_new:
 				print("filename: ", filename)
 				sparql_file = open(path_profiles_str + "/outputs_" + filename + "/" + filename + ".rq", 'r', encoding='latin-1').read()
 				profile_normal = open(path_profiles_str + "/outputs_" + filename + "/profile_normal_file_" + filename, 'r', encoding='latin-1').read()
@@ -250,15 +208,16 @@ if execute_old:
 				with open(os.getcwd()+'/scripts/feature_extraction_script/returns_old/'+filename+'.json', 'w') as json_file:
 					json.dump(operators, json_file)
 
+
 if execute_old:
 	df_test = FullDataframe_old(dataframe_test)
 	df_train = FullDataframe_old(dataframe_train)
-	df_train.to_csv(csv_path + 'train_old_dataset.csv', index=False)
-	df_test.to_csv(csv_path + 'test_old_dataset.csv', index=False)
+	df_train.to_csv(csv_path + 'train_' + name_old + '.csv', index=False)
+	df_test.to_csv(csv_path + 'test_' + name_old + '.csv', index=False)
 
 if execute_new:
 	df_full = FullDataframe(full_dataframe)
-	df_full.to_csv(csv_path + 'new_dataset.csv', index=False)
+	df_full.to_csv(csv_path + name_new + '.csv', index=False)
 
 if execute_new:
 	subprocess.call("/home/c161905/Memoria/memoria_utfsm_sparql/scripts/feature_extraction_script/pretty.sh")

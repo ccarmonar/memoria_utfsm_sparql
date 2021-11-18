@@ -68,12 +68,49 @@ def TreeFormat(operators, sparql_file, symbol):
         bgp_joins.append(bgp)
         bgp_type.append(type)
         list_current_predicates.append(current_predicates)
-
-
     treesize_between = len(list_current_predicates) - 1
     treesize_intra = 0
     for i in list_current_predicates:
         treesize_intra = max(treesize_intra,len(i) - 1)
+
+    for k in range(len(bgp_joins)):
+        if k == 0:
+            prearmed.append(bgp_joins[k])
+        else:
+            if bgp_type[k] == 0:
+                prearmed.append('JOIN')
+                prearmed.append(bgp_joins[k])
+            if bgp_type[k] == 1:
+                prearmed.append('LEFT JOIN')
+                prearmed.append(bgp_joins[k])
+    if operators['GF_FROM_OP']['total_bgps'] == 1:
+        tree_format = prearmed[0]
+    else:
+        tree_format, prearmed = IterateBuildTreeBetweenBGPS(tree_format, prearmed, symbol)
+    operators['GF_FROM_OP']['tree'] = tree_format
+
+    treesize = treesize_between + treesize_intra
+
+    operators['GF_FROM_OP']['treesize'] = treesize
+    return tree_format, operators
+
+
+def TreeFormat_old_format(operators, sparql_file, symbol):
+    bgp_joins = []
+    bgp_type = []
+    tree_format = []
+    prearmed = []
+    list_current_predicates = []
+    for k, v in operators['GF_FROM_OP']['bgps_ops'].items():
+        bgp, current_predicates = InnerJoinsIntraBGPS(v['bgp_list'], symbol)
+        type = v['opt']
+        bgp_joins.append(bgp)
+        bgp_type.append(type)
+        list_current_predicates.append(current_predicates)
+    #treesize_between = len(list_current_predicates) - 1
+    #treesize_intra = 0
+    #for i in list_current_predicates:
+    #    treesize_intra = max(treesize_intra,len(i) - 1)
 
     for k in range(len(bgp_joins)):
         if k == 0:
@@ -89,9 +126,7 @@ def TreeFormat(operators, sparql_file, symbol):
         tree_format = prearmed[0]
     else:
         tree_format, prearmed = IterateBuildTreeBetweenBGPS(tree_format, prearmed, symbol)
-    operators['GF_FROM_OP']['tree'] = tree_format
-
-    treesize = treesize_between + treesize_intra
-
-    operators['GF_FROM_OP']['treesize'] = treesize
+    operators['GF_FROM_OP']['trees_old_format'] = tree_format
+    #treesize = treesize_between + treesize_intra
+    #operators['GF_FROM_OP']['treesize'] = treesize
     return tree_format, operators
