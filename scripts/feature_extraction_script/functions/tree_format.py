@@ -28,7 +28,7 @@ def InnerJoinsIntraBGPS(bgp, symbol):
         if k == 0:
             if 'NONE' not in bgp[k]['P']:
                 predicates.append(bgp[k]['P'])
-            prearmed.append(bgp[k]['triple_type']+ symbol + bgp[k]['P'])
+            prearmed.append(bgp[k]['triple_type'] + symbol + bgp[k]['P'])
         else:
             if 'NONE' not in bgp[k]['P']:
                 predicates.append(bgp[k]['P'])
@@ -81,7 +81,7 @@ def TreeFormat(operators, sparql_file, symbol):
                 prearmed.append('JOIN')
                 prearmed.append(bgp_joins[k])
             if bgp_type[k] == 1:
-                prearmed.append('LEFT JOIN')
+                prearmed.append('LEFT_JOIN')
                 prearmed.append(bgp_joins[k])
     if operators['GF_FROM_OP']['total_bgps'] == 1:
         tree_format = prearmed[0]
@@ -120,7 +120,7 @@ def TreeFormat_old_format(operators, sparql_file, symbol):
                 prearmed.append('JOIN' + symbol + symbol.join(Flatten(list_current_predicates[:k+1])))
                 prearmed.append(bgp_joins[k])
             if bgp_type[k] == 1:
-                prearmed.append('LEFT JOIN' + symbol + symbol.join(Flatten(list_current_predicates[:k+1])))
+                prearmed.append('LEFT_JOIN' + symbol + symbol.join(Flatten(list_current_predicates[:k+1])))
                 prearmed.append(bgp_joins[k])
     if operators['GF_FROM_OP']['total_bgps'] == 1:
         tree_format = prearmed[0]
