@@ -9,11 +9,15 @@ from functions.aux import GetSubstring, ParseNestedBracket, CleanOperators, GetP
 	CountCurlyBrackets, CleanSalts, SubstractStrings, GetAllSubstring
 from functions.build_csv import AllData, FullDataframe, FullDataframe_old
 
-execute_new = True
+execute_new = False
 execute_old = True
 
-name_new = 'new_dataset_4.0'
-name_old = 'old_dataset'
+name_new = 'new_dataset_5.2'
+name_old = 'old_dataset_2.2'
+
+#error_list_new = []
+error_list_new = ['query_5673','query_6072','query_17945']
+error_data_deleted_new = len(error_list_new)
 
 #current working directory
 csv_path = '/home/c161905/Memoria/memoria_utfsm_sparql/scripts/csv_files/'
@@ -84,6 +88,11 @@ full_dataframe = []
 
 lst = [
 	0,
+	18,
+	1586,
+	3937,
+	10382,
+	12616,
 	22,
 	30,
 	87,
@@ -156,12 +165,14 @@ lst = [
 ]
 
 #lst = [8930,10969,24200]
-error_list_new = ['query_5673','query_6072']
+
+
 if execute_new:
 	for i in path_profiles:
 		if os.path.isdir(path_profiles_str+"/"+i):
+			total_data_proccesed = os.path.isdir(path_profiles_str+"/"+i)
 			filename = "_".join(i.split("_")[1:])
-			if True and filename not in error_list_new:
+			if filename not in error_list_new:
 				print("filename: ", filename)
 				sparql_file = open(path_profiles_str + "/outputs_" + filename + "/" + filename + ".rq", 'r', encoding='latin-1').read()
 				profile_normal = open(path_profiles_str + "/outputs_" + filename + "/profile_normal_file_" + filename, 'r', encoding='latin-1').read()
@@ -171,6 +182,7 @@ if execute_new:
 				#old_features_json = open(path_profiles_str + "/outputs_" + filename + "/" + filename + ".json", 'r', encoding='latin-1').read()
 				old_features_json = 0
 				if profile_normal == '':
+					error_data_deleted_new += 1
 					print("profile error")
 					continue
 				operators, predicates_list, list_alleq = execute(profile_normal, profile_explain_bajo, sparql_file)
@@ -209,6 +221,8 @@ if execute_old:
 					json.dump(operators, json_file)
 
 
+
+
 if execute_old:
 	df_test = FullDataframe_old(dataframe_test)
 	df_train = FullDataframe_old(dataframe_train)
@@ -218,6 +232,10 @@ if execute_old:
 if execute_new:
 	df_full = FullDataframe(full_dataframe)
 	df_full.to_csv(csv_path + name_new + '.csv', index=False)
+	print("----------------------------")
+	print("Numero de archivos revisados:", total_data_proccesed)
+	print("Número de errores eliminados: ", error_data_deleted_new)
+	print("----------------------------")
 
 if execute_new:
 	subprocess.call("/home/c161905/Memoria/memoria_utfsm_sparql/scripts/feature_extraction_script/pretty.sh")

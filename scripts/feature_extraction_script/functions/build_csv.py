@@ -1,9 +1,9 @@
 import pandas as pd, ast, json
-from functions.general_features import GeneralFeaturesFromProfileFile, GeneralFeaturesFromPerformanceTuning, GeneralFeaturesFromOperators, \
-    GetJsonPredicatesFeatures
+from functions.general_features import GeneralFeaturesFromProfileFile, GeneralFeaturesFromPerformanceTuning, GeneralFeaturesFromScan, \
+    GetJsonPredicatesFeatures, GeneralFeaturesFromOperatorsAndSparqlFile
 from functions.matrix_format import MatrixFormat, MatrixNumpyFormat, DataFrameFormat
 from functions.tree_format import TreeFormat, TreeFormat_old_format
-from functions.aux import HashStringId
+from functions.aux import HashStringId, OnlyScans, OnlyScansAsList
 
 
 def AllData(operators, profile, predicates, filename, sparql_file, general_features_pt_file, list_alleq, old_features_json, symbol,new=True):
@@ -13,10 +13,14 @@ def AllData(operators, profile, predicates, filename, sparql_file, general_featu
     precompiled_list = list(general_features['GENERAL_FEATURES']['precompiled'].values())
     compiled_list = list(general_features['GENERAL_FEATURES']['compiled'].values())
     #general_features_pt = GeneralFeaturesFromPerformanceTuning(general_features_pt_file)
-    operators = GeneralFeaturesFromOperators(operators, list_alleq)
+    operators = GeneralFeaturesFromScan(operators, list_alleq)
     if not new:
         old_trees = ast.literal_eval(old_features_json)['trees']
-        operators['GF_FROM_OP']['trees_daniel'] = json.loads(old_trees)
+        try:
+            operators['GF_FROM_OP']['trees_daniel'] = json.loads(old_trees)
+        except:
+            print("ERROR EN EL JSON LOAD, SE CARGARA COMO STR")
+            operators['GF_FROM_OP']['trees_daniel'] = old_trees
     binary_tree, operators = TreeFormat(operators, sparql_file, symbol)
     binary_tree_old, operators = TreeFormat_old_format(operators, sparql_file, symbol)
     triples = general_features['GF_FROM_OP']['triples']
@@ -28,9 +32,11 @@ def AllData(operators, profile, predicates, filename, sparql_file, general_featu
     json_input_rows_predicate = operators['GF_FROM_OP']['json_input_rows_predicate']
     json_cardinality_fanout = operators['GF_FROM_OP']['json_cardinality_fanout']
     json_cardinality = operators['GF_FROM_OP']['json_cardinality']
-
+    scan_queries = OnlyScansAsList(operators, True)
+    bgps = operators['GF_FROM_OP']['bgps_ops']
     unique_id = HashStringId(str(predicates) + str(matrix_format) + str(binary_tree) + str(general_features))
     #all_data = [unique_id, filename, sparql_file, profile, limit] + precompiled_list + compiled_list + general_features_pt + list(ast.literal_eval(old_features_json).values())
+    operators = GeneralFeaturesFromOperatorsAndSparqlFile(operators, sparql_file)
     if new:
         all_data = [unique_id, filename, sparql_file, profile, limit] + precompiled_list + compiled_list
     else:
@@ -46,6 +52,8 @@ def AllData(operators, profile, predicates, filename, sparql_file, general_featu
     all_data.append(str(json_input_rows_predicate).replace('"', ';').replace("'", '"'))
     all_data.append(str(json_cardinality_fanout).replace('"', ';').replace("'", '"'))
     all_data.append(str(json_cardinality).replace('"', ';').replace("'", '"'))
+    all_data.append(scan_queries)
+    all_data.append(bgps)
     return all_data
 
 
@@ -143,7 +151,9 @@ def FullDataframe(list_of_features):
         'json_fanout_predicate',
         'json_input_rows_predicate',
         'json_cardinality_fanout',
-        'json_cardinality'
+        'json_cardinality',
+        'scan_queries',
+        'bgps'
     ]
     final_df = pd.DataFrame(list_of_features, columns=columns)
     return final_df
@@ -243,7 +253,9 @@ def FullDataframe_old(list_of_features):
         'json_fanout_predicate',
         'json_input_rows_predicate',
         'json_cardinality_fanout',
-        'json_cardinality'
+        'json_cardinality',
+        'scan_queries',
+        'bgps'
     ]
     final_df = pd.DataFrame(list_of_features, columns=columns)
     return final_df

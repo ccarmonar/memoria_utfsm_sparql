@@ -140,6 +140,14 @@ def OnlyScans(operators, set_nones_predicates):
 	return only_scans, keys
 
 
+def OnlyScansAsList(operators, set_nones_predicates):
+	lst_os = []
+	only_scans, keys = OnlyScans(operators, set_nones_predicates)
+	for os, k in zip(only_scans,keys):
+		lst_os.append((k, os))
+	return lst_os
+
+
 def Flatten(t):
 	return [item for sublist in t for item in sublist]
 

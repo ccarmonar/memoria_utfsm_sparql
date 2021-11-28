@@ -95,7 +95,159 @@ def GeneralFeaturesFromProfileFile(profile_file,operators):
     return operators
 
 
-def GeneralFeaturesFromOperators(operators, list_alleq):
+def IdentifyFilter(operators, sparql_file):
+
+    split_1 = sparql_file.split('FILTER')[1:]
+    num_filter = sparql_file.count('FILTER')
+
+    #st = "sum((a+b)/(c+d))"
+    #print(st[st.find("(")+1:st.rfind(")")])
+    sparql_op = ["Distinct ", "Distinct (HASH)", "distinct","OPTIONAL", "optional", "GROUP BY"]
+
+    filter_eq = 0
+    filter_gt = 0
+    filter_ge = 0
+    filter_lt = 0
+    filter_le = 0
+    filter_neq = 0
+    filter_iri = 0
+
+    filter_bound = 0
+    filter_contains = 0
+    filter_exists = 0
+    filter_isBlank = 0
+    filter_isIRI = 0
+    filter_isLiteral = 0
+    filter_lang = 0
+    filter_langMatches = 0
+    filter_not = 0
+    filter_notexists = 0
+    filter_or = 0
+    filter_regex = 0
+    filter_sameTerm = 0
+    filter_str = 0
+    filter_strstarts = 0
+    filter_subtract = 0
+    filter_and = 0
+
+    for i in split_1:
+        print(i)
+        find_filter = i[i.find("(") + 1:i.rfind(")")]
+        #if any(e in find_filter for o in sparql_op):
+
+        print("find_filter", find_filter)
+        print("..............................")
+        if " = " in find_filter and all(e not in find_filter for e in ["<=,>=,!="]):
+            filter_eq += 1
+        if " > " in find_filter and all(e not in find_filter for e in ["<=,>=,!="]):
+            filter_gt += 1
+        if " >= " in find_filter:
+            filter_ge += 1
+        if " < " in find_filter and "<=" not in find_filter:
+            filter_lt += 1
+        if " <= " in find_filter:
+            filter_le += 1
+        if " !" in find_filter:
+            filter_not += 1
+        if " != " in find_filter:
+            filter_neq += 1
+        if " bound(" in find_filter and "!" not in find_filter:
+            filter_bound += 1
+        if " contains(" in find_filter and "!" not in find_filter:
+            filter_bound += 1
+        if " EXISTS " in find_filter and " NOT " not in find_filter:
+            filter_exists += 1
+        if " NOT EXISTS " in find_filter :
+            filter_notexists += 1
+        if " isBlank(" in find_filter and "!" not in find_filter:
+            filter_isBlank += 1
+        if " isIRI(" in find_filter and "!" not in find_filter:
+            filter_isIRI += 1
+        if " isLiteral(" in find_filter and "!" not in find_filter:
+            filter_isLiteral += 1
+        if " lang(" in find_filter and "!" not in find_filter:
+            filter_lang += 1
+        if " langMatches(" in find_filter and "!" not in find_filter:
+            filter_langMatches += 1
+        if " regex(" in find_filter and "!" not in find_filter:
+            filter_regex += 1
+        if " sameTerm(" in find_filter and "!" not in find_filter:
+            filter_sameTerm += 1
+        if " str(" in find_filter and "!" not in find_filter:
+            filter_str += 1
+        if " strstarts(" in find_filter and "!" not in find_filter:
+            filter_strstarts += 1
+        if " && " in find_filter:
+            filter_and += 1
+        if " || " in find_filter:
+            filter_or += 1
+
+        print(";;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;")
+
+
+    print("num_filter ",num_filter)
+
+    operators['GF_FROM_OP']['num_filter'] = num_filter
+    operators['GF_FROM_OP']['filter_eq'] = filter_eq
+    operators['GF_FROM_OP']['filter_gt'] = filter_gt
+    operators['GF_FROM_OP']['filter_ge'] = filter_ge
+    operators['GF_FROM_OP']['filter_lt'] = filter_lt
+    operators['GF_FROM_OP']['filter_le'] = filter_le
+    operators['GF_FROM_OP']['filter_neq'] = filter_neq
+    operators['GF_FROM_OP']['filter_iri'] = filter_iri
+    operators['GF_FROM_OP']['filter_neq'] = filter_neq
+    operators['GF_FROM_OP']['filter_bound'] = filter_bound
+    operators['GF_FROM_OP']['filter_contains'] = filter_contains
+    operators['GF_FROM_OP']['filter_exists'] = filter_exists
+    operators['GF_FROM_OP']['filter_isBlank'] = filter_isBlank
+    operators['GF_FROM_OP']['filter_isIRI'] = filter_isIRI
+    operators['GF_FROM_OP']['filter_isLiteral'] = filter_isLiteral
+    operators['GF_FROM_OP']['filter_lang'] = filter_lang
+    operators['GF_FROM_OP']['filter_langMatches'] = filter_langMatches
+    operators['GF_FROM_OP']['filter_not'] = filter_not
+    operators['GF_FROM_OP']['filter_notexist'] = filter_notexists
+    operators['GF_FROM_OP']['filter_regex'] = filter_regex
+    operators['GF_FROM_OP']['filter_sameTerm'] = filter_sameTerm
+    operators['GF_FROM_OP']['filter_str'] = filter_str
+    operators['GF_FROM_OP']['filter_strstarts'] = filter_strstarts
+    operators['GF_FROM_OP']['filter_or'] = filter_or
+    operators['GF_FROM_OP']['filter_and'] = filter_and
+
+
+    return operators
+
+
+def GeneralFeaturesFromOperatorsAndSparqlFile(operators, sparql_file):
+    operators['GF_FROM_OP']['group_by'] = 0
+    operators['GF_FROM_OP']['distinct'] = 0
+    operators['GF_FROM_OP']['order_by'] = 0
+    operators['GF_FROM_OP']['union'] = 0
+    operators['GF_FROM_OP']['left_join'] = 0
+    operators['GF_FROM_OP']['join'] = 0
+    operators['GF_FROM_OP']['iter'] = 0
+    operators['GF_FROM_OP']['filter'] = 0
+    for k, v in operators.items():
+        if k != 'GENERAL_FEATURES' and k != 'GF_FROM_OP':
+            if v['group_by_read_bool'] == 1:
+                operators['GF_FROM_OP']['group_by'] = 1
+            if v['distinct_bool'] == 1:
+                operators['GF_FROM_OP']['distinct'] = 1
+            if v['top_order_by_bool'] == 1 or v['skip_node_bool'] == 1:
+                operators['GF_FROM_OP']['order_by'] = 1
+            if v['start_optional'] == 1:
+                operators['GF_FROM_OP']['left_join'] = 1
+            if v['iter'] == 1:
+                operators['GF_FROM_OP']['iter'] = 1
+    if operators['GF_FROM_OP']['triples'] > 1:
+        operators['GF_FROM_OP']['join'] = 1
+    if 'UNION' in sparql_file:
+        operators['GF_FROM_OP']['union'] = 1
+    if 'FILTER' in sparql_file:
+        operators['GF_FROM_OP']['filter'] = 1
+        operators = IdentifyFilter(operators, sparql_file)
+    return operators
+
+def GeneralFeaturesFromScan(operators, list_alleq):
     triples = 0
     bgps = 0
     only_scans, os_keys = OnlyScans(operators, True)
