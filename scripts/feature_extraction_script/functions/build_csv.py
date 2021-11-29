@@ -37,10 +37,84 @@ def AllData(operators, profile, predicates, filename, sparql_file, general_featu
     unique_id = HashStringId(str(predicates) + str(matrix_format) + str(binary_tree) + str(general_features))
     #all_data = [unique_id, filename, sparql_file, profile, limit] + precompiled_list + compiled_list + general_features_pt + list(ast.literal_eval(old_features_json).values())
     operators = GeneralFeaturesFromOperatorsAndSparqlFile(operators, sparql_file)
+
+    group_by = operators['GF_FROM_OP']['group_by']
+    distinct = operators['GF_FROM_OP']['distinct']
+    order_by = operators['GF_FROM_OP']['order_by']
+    union = operators['GF_FROM_OP']['union']
+    left_join = operators['GF_FROM_OP']['left_join']
+    join = operators['GF_FROM_OP']['join']
+    iter = operators['GF_FROM_OP']['iter']
+    filter = operators['GF_FROM_OP']['filter']
+    num_filter = operators['GF_FROM_OP']['num_filter']
+    filter_eq = operators['GF_FROM_OP']['filter_eq']
+    filter_gt = operators['GF_FROM_OP']['filter_gt']
+    filter_ge = operators['GF_FROM_OP']['filter_ge']
+    filter_lt = operators['GF_FROM_OP']['filter_lt']
+    filter_le = operators['GF_FROM_OP']['filter_le']
+    filter_neq = operators['GF_FROM_OP']['filter_neq']
+    filter_iri = operators['GF_FROM_OP']['filter_iri']
+    filter_neq = operators['GF_FROM_OP']['filter_neq']
+    filter_bound = operators['GF_FROM_OP']['filter_bound']
+    filter_contains = operators['GF_FROM_OP']['filter_contains']
+    filter_exists = operators['GF_FROM_OP']['filter_exists']
+    filter_isBlank = operators['GF_FROM_OP']['filter_isBlank']
+    filter_isIRI = operators['GF_FROM_OP']['filter_isIRI']
+    filter_isLiteral = operators['GF_FROM_OP']['filter_isLiteral']
+    filter_lang = operators['GF_FROM_OP']['filter_lang']
+    filter_langMatches = operators['GF_FROM_OP']['filter_langMatches']
+    filter_not = operators['GF_FROM_OP']['filter_not']
+    filter_notexists = operators['GF_FROM_OP']['filter_notexist']
+    filter_regex = operators['GF_FROM_OP']['filter_regex']
+    filter_sameTerm = operators['GF_FROM_OP']['filter_sameTerm']
+    filter_str = operators['GF_FROM_OP']['filter_str']
+    filter_strstarts = operators['GF_FROM_OP']['filter_strstarts']
+    filter_or = operators['GF_FROM_OP']['filter_or']
+    filter_and = operators['GF_FROM_OP']['filter_and']
+
+    features_list = [unique_id,
+                    filename,
+                    sparql_file,
+                    profile,
+                    limit,
+                    group_by,
+                    distinct,
+                    order_by,
+                    union,
+                    left_join,
+                    join,
+                    iter,
+                    filter,
+                    num_filter,
+                    filter_eq,
+                    filter_gt,
+                    filter_ge,
+                    filter_lt,
+                    filter_le,
+                    filter_neq,
+                    filter_iri,
+                    filter_neq,
+                    filter_bound,
+                    filter_contains,
+                    filter_exists,
+                    filter_isBlank,
+                    filter_isIRI,
+                    filter_isLiteral,
+                    filter_lang,
+                    filter_langMatches,
+                    filter_not,
+                    filter_notexists,
+                    filter_regex,
+                    filter_sameTerm,
+                    filter_str,
+                    filter_strstarts,
+                    filter_or,
+                    filter_and]
+
     if new:
-        all_data = [unique_id, filename, sparql_file, profile, limit] + precompiled_list + compiled_list
+        all_data = features_list + precompiled_list + compiled_list
     else:
-        all_data = [unique_id, filename, sparql_file, profile, limit] + precompiled_list + compiled_list + list(ast.literal_eval(old_features_json).values())
+        all_data = features_list + precompiled_list + compiled_list + list(ast.literal_eval(old_features_json).values())
     all_data.append(triples)
     all_data.append(total_bgps)
     all_data.append(treesize)
@@ -65,6 +139,39 @@ def FullDataframe(list_of_features):
         'query', #sparql_file
         'profile',
         'limit',
+        'group_by',
+        'distinct',
+        'order_by',
+        'union',
+        'left_join',
+        'join',
+        'iter',
+        'filter',
+        'num_filter',
+        'filter_eq',
+        'filter_gt',
+        'filter_ge',
+        'filter_lt',
+        'filter_le',
+        'filter_neq',
+        'filter_iri',
+        'filter_neq',
+        'filter_bound',
+        'filter_contains',
+        'filter_exists',
+        'filter_isBlank',
+        'filter_isIRI',
+        'filter_isLiteral',
+        'filter_lang',
+        'filter_langMatches',
+        'filter_not',
+        'filter_notexists',
+        'filter_regex',
+        'filter_sameTerm',
+        'filter_str',
+        'filter_strstarts',
+        'filter_or',
+        'filter_and',
         ## general features - precompiled
         'time',
         'cpu_p',
@@ -167,6 +274,39 @@ def FullDataframe_old(list_of_features):
         'query', #sparql_file
         'profile',
         'limit',
+        'group_by',
+        'distinct',
+        'order_by',
+        'union',
+        'left_join',
+        'join',
+        'iter',
+        'filter',
+        'num_filter',
+        'filter_eq',
+        'filter_gt',
+        'filter_ge',
+        'filter_lt',
+        'filter_le',
+        'filter_neq',
+        'filter_iri',
+        'filter_neq',
+        'filter_bound',
+        'filter_contains',
+        'filter_exists',
+        'filter_isBlank',
+        'filter_isIRI',
+        'filter_isLiteral',
+        'filter_lang',
+        'filter_langMatches',
+        'filter_not',
+        'filter_notexists',
+        'filter_regex',
+        'filter_sameTerm',
+        'filter_str',
+        'filter_strstarts',
+        'filter_or',
+        'filter_and',
         ## general features - precompiled
         'time',
         'cpu_p',

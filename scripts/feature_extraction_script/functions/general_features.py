@@ -99,11 +99,6 @@ def IdentifyFilter(operators, sparql_file):
 
     split_1 = sparql_file.split('FILTER')[1:]
     num_filter = sparql_file.count('FILTER')
-
-    #st = "sum((a+b)/(c+d))"
-    #print(st[st.find("(")+1:st.rfind(")")])
-    sparql_op = ["Distinct ", "Distinct (HASH)", "distinct","OPTIONAL", "optional", "GROUP BY"]
-
     filter_eq = 0
     filter_gt = 0
     filter_ge = 0
@@ -111,7 +106,6 @@ def IdentifyFilter(operators, sparql_file):
     filter_le = 0
     filter_neq = 0
     filter_iri = 0
-
     filter_bound = 0
     filter_contains = 0
     filter_exists = 0
@@ -127,16 +121,10 @@ def IdentifyFilter(operators, sparql_file):
     filter_sameTerm = 0
     filter_str = 0
     filter_strstarts = 0
-    filter_subtract = 0
     filter_and = 0
 
     for i in split_1:
-        print(i)
         find_filter = i[i.find("(") + 1:i.rfind(")")]
-        #if any(e in find_filter for o in sparql_op):
-
-        print("find_filter", find_filter)
-        print("..............................")
         if " = " in find_filter and all(e not in find_filter for e in ["<=,>=,!="]):
             filter_eq += 1
         if " > " in find_filter and all(e not in find_filter for e in ["<=,>=,!="]):
@@ -181,12 +169,6 @@ def IdentifyFilter(operators, sparql_file):
             filter_and += 1
         if " || " in find_filter:
             filter_or += 1
-
-        print(";;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;")
-
-
-    print("num_filter ",num_filter)
-
     operators['GF_FROM_OP']['num_filter'] = num_filter
     operators['GF_FROM_OP']['filter_eq'] = filter_eq
     operators['GF_FROM_OP']['filter_gt'] = filter_gt
@@ -244,7 +226,7 @@ def GeneralFeaturesFromOperatorsAndSparqlFile(operators, sparql_file):
         operators['GF_FROM_OP']['union'] = 1
     if 'FILTER' in sparql_file:
         operators['GF_FROM_OP']['filter'] = 1
-        operators = IdentifyFilter(operators, sparql_file)
+    operators = IdentifyFilter(operators, sparql_file)
     return operators
 
 def GeneralFeaturesFromScan(operators, list_alleq):
