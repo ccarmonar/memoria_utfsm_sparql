@@ -21,8 +21,8 @@ def AllData(operators, profile, predicates, filename, sparql_file, general_featu
         except:
             print("ERROR EN EL JSON LOAD, SE CARGARA COMO STR")
             operators['GF_FROM_OP']['trees_daniel'] = old_trees
-    binary_tree, operators = TreeFormat(operators, sparql_file, symbol)
-    binary_tree_old, operators = TreeFormat_old_format(operators, sparql_file, symbol)
+    binary_tree, operators, subtrees = TreeFormat(operators, sparql_file, symbol)
+    binary_tree_old, operators, subtrees_old = TreeFormat_old_format(operators, sparql_file, symbol)
     triples = general_features['GF_FROM_OP']['triples']
     total_bgps = general_features['GF_FROM_OP']['total_bgps']
     treesize = general_features['GF_FROM_OP']['treesize']
@@ -120,7 +120,7 @@ def AllData(operators, profile, predicates, filename, sparql_file, general_featu
     all_data.append(treesize)
     all_data.append(str(matrix_format))
     all_data.append(str(binary_tree).replace('"', ';').replace("'", '"'))
-    all_data.append(str(binary_tree_old).replace('"', ';').replace("'", '"'))
+    #all_data.append(str(binary_tree_old).replace('"', ';').replace("'", '"'))
     all_data.append(str(json_time_predicate).replace('"', ';').replace("'", '"'))
     all_data.append(str(json_fanout_predicate).replace('"', ';').replace("'", '"'))
     all_data.append(str(json_input_rows_predicate).replace('"', ';').replace("'", '"'))
@@ -253,7 +253,7 @@ def FullDataframe(list_of_features):
         'treesize',
         'matrix_format',
         'trees',
-        'trees_old_format',
+        #'trees_old_format',
         'json_time_predicate',
         'json_fanout_predicate',
         'json_input_rows_predicate',
@@ -388,7 +388,7 @@ def FullDataframe_old(list_of_features):
         'treesize',
         'matrix_format',
         'trees',
-        'trees_old_format',
+        #'trees_old_format',
         'json_time_predicate',
         'json_fanout_predicate',
         'json_input_rows_predicate',

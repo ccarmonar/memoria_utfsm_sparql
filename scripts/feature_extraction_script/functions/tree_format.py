@@ -1,24 +1,28 @@
 from functions.aux import OnlyScans, Flatten
 
 
-def IterateBuildTree(tree_format, prearmed, symbol):
+def IterateBuildTree(tree_format, prearmed, subtrees, symbol):
     if len(prearmed) == 0:
-        return tree_format,prearmed
+        return tree_format,prearmed,subtrees
     if len(prearmed) == 1:
         tree_format = prearmed
         prearmed = []
-        return tree_format,prearmed
+        return tree_format,prearmed,subtrees
     else:
         if len(tree_format) == 0:
             aux = [prearmed[1],[prearmed[0]], [prearmed[2]]]
+            subtrees.append([prearmed[0]])
+            subtrees.append(aux)
             prearmed = prearmed[3::]
+
         else:
             aux = [prearmed[0],tree_format,prearmed[1]]
+            subtrees.append(aux)
             prearmed = prearmed[2::]
-    return IterateBuildTree(aux, prearmed, symbol)
+    return IterateBuildTree(aux, prearmed, subtrees, symbol)
 
 
-def InnerJoinsIntraBGPS(bgp, symbol):
+def InnerJoinsIntraBGPS(bgp, subtrees, symbol):
     prearmed = []
     tree_format = []
     predicates = []
@@ -32,11 +36,11 @@ def InnerJoinsIntraBGPS(bgp, symbol):
                 predicates.append(bgp[k]['P'])
             prearmed.append('JOIN' + symbol + symbol.join(predicates[:k+1]))
             prearmed.append(bgp[k]['triple_type'] + symbol + bgp[k]['P'])
-    tree_format, prearmed = IterateBuildTree(tree_format, prearmed, symbol)
-    return tree_format, predicates
+    tree_format, prearmed, subtrees = IterateBuildTree(tree_format, prearmed,subtrees ,symbol)
+    return tree_format, predicates, subtrees
 
 
-def IterateBuildTreeBetweenBGPS(tree_format, prearmed, symbol):
+def IterateBuildTreeBetweenBGPS(tree_format, prearmed, subtrees, symbol):
     if len(prearmed) == 0:
         return tree_format,prearmed
     if len(prearmed) == 1:
@@ -46,11 +50,14 @@ def IterateBuildTreeBetweenBGPS(tree_format, prearmed, symbol):
     else:
         if len(tree_format) == 0:
             aux = [prearmed[1],prearmed[0], prearmed[2]]
+            subtrees.append(prearmed[0])
+            subtrees.append(aux)
             prearmed = prearmed[3::]
         else:
             aux = [prearmed[0],tree_format,prearmed[1]]
+            subtrees.append(aux)
             prearmed = prearmed[2::]
-    return IterateBuildTreeBetweenBGPS(aux, prearmed, symbol)
+    return IterateBuildTreeBetweenBGPS(aux, prearmed, subtrees, symbol)
 
 
 
@@ -60,8 +67,9 @@ def TreeFormat(operators, sparql_file, symbol):
     tree_format = []
     prearmed = []
     list_current_predicates = []
+    subtrees = []
     for k, v in operators['GF_FROM_OP']['bgps_ops'].items():
-        bgp, current_predicates = InnerJoinsIntraBGPS(v['bgp_list'], symbol)
+        bgp, current_predicates, subtrees = InnerJoinsIntraBGPS(v['bgp_list'], subtrees, symbol)
         type = v['opt']
         bgp_joins.append(bgp)
         bgp_type.append(type)
@@ -84,13 +92,14 @@ def TreeFormat(operators, sparql_file, symbol):
     if operators['GF_FROM_OP']['total_bgps'] == 1:
         tree_format = prearmed[0]
     else:
-        tree_format, prearmed = IterateBuildTreeBetweenBGPS(tree_format, prearmed, symbol)
+        tree_format, prearmed = IterateBuildTreeBetweenBGPS(tree_format, prearmed, subtrees, symbol)
     operators['GF_FROM_OP']['tree'] = tree_format
 
     treesize = treesize_between + treesize_intra
-
+    operators['GF_FROM_OP']['subtrees'] = subtrees
     operators['GF_FROM_OP']['treesize'] = treesize
-    return tree_format, operators
+
+    return tree_format, operators, subtrees
 
 
 def TreeFormat_old_format(operators, sparql_file, symbol):
@@ -99,8 +108,9 @@ def TreeFormat_old_format(operators, sparql_file, symbol):
     tree_format = []
     prearmed = []
     list_current_predicates = []
+    subtrees = []
     for k, v in operators['GF_FROM_OP']['bgps_ops'].items():
-        bgp, current_predicates = InnerJoinsIntraBGPS(v['bgp_list'], symbol)
+        bgp, current_predicates, subtrees = InnerJoinsIntraBGPS(v['bgp_list'], subtrees, symbol)
         type = v['opt']
         bgp_joins.append(bgp)
         bgp_type.append(type)
@@ -123,8 +133,9 @@ def TreeFormat_old_format(operators, sparql_file, symbol):
     if operators['GF_FROM_OP']['total_bgps'] == 1:
         tree_format = prearmed[0]
     else:
-        tree_format, prearmed = IterateBuildTreeBetweenBGPS(tree_format, prearmed, symbol)
+        tree_format, prearmed = IterateBuildTreeBetweenBGPS(tree_format, prearmed, subtrees, symbol)
     operators['GF_FROM_OP']['trees_old_format'] = tree_format
     #treesize = treesize_between + treesize_intra
     #operators['GF_FROM_OP']['treesize'] = treesize
-    return tree_format, operators
+    operators['GF_FROM_OP']['subtrees_old_format'] = subtrees
+    return tree_format, operators, subtrees

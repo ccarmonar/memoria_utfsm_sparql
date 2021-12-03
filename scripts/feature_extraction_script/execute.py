@@ -9,7 +9,7 @@ from functions.aux import GetSubstring, ParseNestedBracket, CleanOperators, GetP
 	CountCurlyBrackets, CleanSalts, SubstractStrings, GetAllSubstring
 from functions.build_csv import AllData, FullDataframe, FullDataframe_old
 
-execute_new = True
+execute_new = False
 execute_old = True
 
 name_new = 'new_dataset_5.5_full'
@@ -198,9 +198,10 @@ if execute_old:
 			filename = "_".join(i.split("_")[1:])
 			#if all(e != filename for e in ['queries1_696', 'queries1_57']): #and "queries1" in filename:
 			#if "queries2" in filename:
-			#if any(('queries2_'+str(e)) == filename for e in lst):
+			if any(('queries2_'+str(e)) == filename for e in lst):
 			#if "queries2_25390" in filename:
-			if True:
+			#if True:
+			#if filename == "queries2_20584":
 				print("filename: ", filename)
 				sparql_file = open(path_profiles_str_old + "/outputs_" + filename + "/" + filename + ".rq", 'r', encoding='latin-1').read()
 				profile_normal = open(path_profiles_str_old + "/outputs_" + filename + "/profile_normal_file_" + filename, 'r', encoding='latin-1').read()
