@@ -1,4 +1,5 @@
-import hashlib, numpy as np, pandas as pd
+import hashlib, numpy as np, pandas as pd, re
+from functions.aux import OnlyScans
 
 
 def HashStringId(string):
@@ -6,6 +7,84 @@ def HashStringId(string):
     sha.update(string.encode())
     sha_return = sha.hexdigest()
     return sha_return
+
+
+def GetTriplesSubtree(subtree_as_str):
+    code_tpf = ['VAR_VAR_VAR', 'VAR_VAR_URI', 'VAR_URI_VAR', 'VAR_URI_URI', 'VAR_URI_LITERAL', 'VAR_VAR_LITERAL',
+                'URI_URI_LITERAL', 'URI_URI_VAR', 'URI_URI_URI', 'URI_VAR_VAR', 'URI_VAR_URI', 'URI_VAR_LITERAL',
+                'LITERAL_URI_VAR', 'LITERAL_URI_URI', 'LITERAL_URI_LITERAL']
+    total_triples = 0
+    for i in code_tpf:
+        total_triples += subtree_as_str.count(i)
+    #if subtree_as_str in code_tpf:
+    #    total_triples += 1
+    return total_triples
+
+def GetTreeSize(subtrees, treesize):
+    for st in subtrees:
+        #print(st)
+        if type(st) == str:
+            treesize += 1
+        else:
+            if len(st) == 3:
+                return GetTreeSize(st, treesize)
+            elif len(st) == 1:
+                treesize += 1
+                break
+    return treesize
+
+
+def GetAllJoins(subtree_as_str):
+    join = subtree_as_str.count('JOIN')
+    left_join = subtree_as_str.count('LEFT_JOIN')
+    return join-left_join, left_join
+
+
+
+def MatrixFormat_subtrees(operators, subtrees, total_time, num_bgp_subtree):
+    if not subtrees:
+        iter = 0
+        if 'iter' in operators['GF_FROM_OP']['tree']:
+            iter = 1
+        return [[operators['GF_FROM_OP']['tree'],total_time,1,1,1,0,0,iter]]
+    only_scans, keys = OnlyScans(operators, True)
+    times_op = []
+    times_only_scans_sums = []
+    time_sum = 0
+    for k,v in operators.items():
+        if k != 'GENERAL_FEATURES' and k != 'GF_FROM_OP':
+            times_op.append([k, np.float64(v['time'])])
+
+    for top in times_op:
+        time_sum += top[1]
+        if top[0] in keys:
+            if total_time != 0:
+                times_only_scans_sums.append([top[0], time_sum*float(total_time)/100, operators[top[0]]['P']])
+            time_sum = 0
+    times_only_scans_sums[-1][1] += time_sum
+
+    #print("total_time", total_time)
+
+    subtrees_as_str = []
+    for s in subtrees:
+        subtrees_as_str.append(str(s))
+
+    subtrees_with_features = []
+    for s_str, s, bgp in zip(subtrees_as_str,subtrees, num_bgp_subtree):
+        time_exc = 0
+        join, left_join = GetAllJoins(s_str)
+        treesize = GetTreeSize(s,0)
+        iter = 0
+        triples = GetTriplesSubtree(s_str)
+        for tons in times_only_scans_sums:
+            if tons[2] in s_str:
+                time_exc += tons[1]
+            if 'iter' in s_str:
+                iter = 1
+        subtrees_with_features.append([s,float(time_exc),bgp,triples,treesize,join,left_join,iter])
+    subtrees_with_features[-1][1] = float(total_time)
+    subtrees_with_features = subtrees_with_features
+    return subtrees_with_features
 
 
 def MatrixFormat(operators, predicates):

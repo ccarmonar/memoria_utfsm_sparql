@@ -92,6 +92,8 @@ def GeneralFeaturesFromProfileFile(profile_file,operators):
         if compilation_list[i] == 'clw':
             operators['GENERAL_FEATURES']['compiled']['comp_clw'] = compilation_list[i - 1]
 
+
+    #operators['GENERAL_FEATURES']['time'] = str(float(operators['GENERAL_FEATURES']['precompiled']['msec']) + float(operators['GENERAL_FEATURES']['compiled']['comp_msec']))
     return operators
 
 
@@ -289,7 +291,7 @@ def GeneralFeaturesFromPerformanceTuning(general_features_pt_file):
     return general_features_pt_list
 
 
-def GetJsonPredicatesFeatures(operators):
+def GetJsonPredicatesFeatures_deprecated(operators):
     operators['GF_FROM_OP']['json_time_predicate'] = {}
     operators['GF_FROM_OP']['json_fanout_predicate'] = {}
     operators['GF_FROM_OP']['json_input_rows_predicate'] = {}
@@ -340,6 +342,119 @@ def GetJsonPredicatesFeatures(operators):
                 operators['GF_FROM_OP']['json_cardinality'][str(k)+'var_'+str(var_count)] = str(bgp['cardinality_estimate'])
                 operators['GF_FROM_OP']['json_cardinality_fanout'][str(k)+'var_'+str(var_count)] = str(bgp['cardinality_fanout'])
                 var_count += 1
+            repeat_list_op.append(bgp['P'])
+            repeat_list_time.append(bgp['time'])
+            repeat_list_fanout.append(bgp['fanout'])
+            repeat_list_input_rows.append(bgp['input_rows'])
+            repeat_list_cardinality_estimate.append(bgp['cardinality_estimate'])
+            repeat_list_cardinality_fanout.append(bgp['cardinality_fanout'])
+
+    if len(repeat_list_op) != len(set(repeat_list_op)):
+        c = 0
+        for i in range(len(repeat_list_op)):
+            if repeat_list_op[i] in repeat_list_op[i+1:]:
+                operators['GF_FROM_OP']['json_time_predicate_wr'][repeat_list_op[i] + "_" + str(c)] = str(repeat_list_time[i])
+                operators['GF_FROM_OP']['json_fanout_predicate_wr'][repeat_list_op[i] + "_" + str(c)] = str(repeat_list_fanout[i])
+                operators['GF_FROM_OP']['json_input_rows_predicate_wr'][repeat_list_op[i] + "_" + str(c)] = str(repeat_list_input_rows[i])
+                operators['GF_FROM_OP']['json_cardinality_fanout_wr'][repeat_list_op[i] + "_" + str(c)] = str(repeat_list_cardinality_estimate[i])
+                operators['GF_FROM_OP']['json_cardinality_wr'][repeat_list_op[i] + "_" + str(c)] = str(repeat_list_cardinality_fanout[i])
+                c += 1
+            else:
+                operators['GF_FROM_OP']['json_time_predicate_wr'][repeat_list_op[i]] = str(repeat_list_time[i])
+                operators['GF_FROM_OP']['json_fanout_predicate_wr'][repeat_list_op[i]] = str(repeat_list_fanout[i])
+                operators['GF_FROM_OP']['json_input_rows_predicate_wr'][repeat_list_op[i]] = str(repeat_list_input_rows[i])
+                operators['GF_FROM_OP']['json_cardinality_fanout_wr'][repeat_list_op[i]] = str(repeat_list_cardinality_fanout[i])
+                operators['GF_FROM_OP']['json_cardinality_wr'][repeat_list_op[i]] = str(repeat_list_cardinality_estimate[i])
+
+
+
+
+        for i in set(repeat_list_op):
+            #print(ListDuplicatesOf(repeat_list_op, i))
+            duplicates_index = ListDuplicatesOf(repeat_list_op, i)
+            #if len(duplicates_index) > 1:
+            suma_time = 0
+            suma_fanout = 0
+            suma_input_rows = 0
+            suma_cardinality_estimate = 0
+            suma_cardinality_fanout = 0
+            for j in duplicates_index:
+                suma_time += repeat_list_time[j]
+                suma_fanout += repeat_list_fanout[j]
+                suma_input_rows += repeat_list_input_rows[j]
+                suma_cardinality_estimate += repeat_list_cardinality_estimate[j]
+                suma_cardinality_fanout += repeat_list_cardinality_fanout[j]
+            operators['GF_FROM_OP']['json_time_predicate_wrs'][i] = str(suma_time)
+            operators['GF_FROM_OP']['json_fanout_predicate_wrs'][i] = str(suma_fanout)
+            operators['GF_FROM_OP']['json_input_rows_predicate_wrs'][i] = str(suma_input_rows)
+            operators['GF_FROM_OP']['json_cardinality_fanout_wrs'][i] = str(suma_cardinality_fanout)
+            operators['GF_FROM_OP']['json_cardinality_wrs'][i] = str(suma_cardinality_estimate)
+            ########################################################
+            operators['GF_FROM_OP']['json_time_predicate_wrm'][i] = str(suma_time/len(duplicates_index))
+            operators['GF_FROM_OP']['json_fanout_predicate_wrm'][i] = str(suma_fanout/len(duplicates_index))
+            operators['GF_FROM_OP']['json_input_rows_predicate_wrm'][i] = str(suma_input_rows/len(duplicates_index))
+            operators['GF_FROM_OP']['json_cardinality_fanout_wrm'][i] = str(suma_cardinality_fanout/len(duplicates_index))
+            operators['GF_FROM_OP']['json_cardinality_wrm'][i] = str(suma_cardinality_estimate/len(duplicates_index))
+    else:
+        operators['GF_FROM_OP']['json_time_predicate_wrs'] = operators['GF_FROM_OP']['json_time_predicate']
+        operators['GF_FROM_OP']['json_fanout_predicate_wrs'] = operators['GF_FROM_OP']['json_fanout_predicate']
+        operators['GF_FROM_OP']['json_input_rows_predicate_wrs'] = operators['GF_FROM_OP']['json_input_rows_predicate']
+        operators['GF_FROM_OP']['json_cardinality_fanout_wrs'] = operators['GF_FROM_OP']['json_cardinality_fanout']
+        operators['GF_FROM_OP']['json_cardinality_wrs'] = operators['GF_FROM_OP']['json_cardinality']
+        #############################################################################################
+        operators['GF_FROM_OP']['json_time_predicate_wrm'] = operators['GF_FROM_OP']['json_time_predicate']
+        operators['GF_FROM_OP']['json_fanout_predicate_wrm'] = operators['GF_FROM_OP']['json_fanout_predicate']
+        operators['GF_FROM_OP']['json_input_rows_predicate_wrm'] = operators['GF_FROM_OP']['json_input_rows_predicate']
+        operators['GF_FROM_OP']['json_cardinality_fanout_wrm'] = operators['GF_FROM_OP']['json_cardinality_fanout']
+        operators['GF_FROM_OP']['json_cardinality_wrm'] = operators['GF_FROM_OP']['json_cardinality']
+
+    return operators
+
+
+
+def GetJsonPredicatesFeatures(operators):
+    operators['GF_FROM_OP']['json_time_predicate'] = {}
+    operators['GF_FROM_OP']['json_fanout_predicate'] = {}
+    operators['GF_FROM_OP']['json_input_rows_predicate'] = {}
+    operators['GF_FROM_OP']['json_cardinality_fanout'] = {}
+    operators['GF_FROM_OP']['json_cardinality'] = {}
+
+    #wrs = with repeat suma, wrm = with repeat mean
+    operators['GF_FROM_OP']['json_time_predicate_wr'] = {}
+    operators['GF_FROM_OP']['json_fanout_predicate_wr'] = {}
+    operators['GF_FROM_OP']['json_input_rows_predicate_wr'] = {}
+    operators['GF_FROM_OP']['json_cardinality_fanout_wr'] = {}
+    operators['GF_FROM_OP']['json_cardinality_wr'] = {}
+    ##############################
+    operators['GF_FROM_OP']['json_time_predicate_wrs'] = {}
+    operators['GF_FROM_OP']['json_fanout_predicate_wrs'] = {}
+    operators['GF_FROM_OP']['json_input_rows_predicate_wrs'] = {}
+    operators['GF_FROM_OP']['json_cardinality_fanout_wrs'] = {}
+    operators['GF_FROM_OP']['json_cardinality_wrs'] = {}
+    ##############################
+    operators['GF_FROM_OP']['json_time_predicate_wrm'] = {}
+    operators['GF_FROM_OP']['json_fanout_predicate_wrm'] = {}
+    operators['GF_FROM_OP']['json_input_rows_predicate_wrm'] = {}
+    operators['GF_FROM_OP']['json_cardinality_fanout_wrm'] = {}
+    operators['GF_FROM_OP']['json_cardinality_wrm'] = {}
+
+    var_count = 0
+    repeat_list_op = []
+    repeat_list_time = []
+    repeat_list_fanout = []
+    repeat_list_input_rows = []
+    repeat_list_cardinality_estimate = []
+    repeat_list_cardinality_fanout = []
+
+    for k in operators['GF_FROM_OP']['bgps_ops'].keys():
+        bgp_list = operators['GF_FROM_OP']['bgps_ops'][k]['bgp_list']
+        for bgp in bgp_list:
+            operators['GF_FROM_OP']['json_time_predicate'][bgp['P']] = str(bgp['time'])
+            operators['GF_FROM_OP']['json_fanout_predicate'][bgp['P']] = str(bgp['fanout'])
+            operators['GF_FROM_OP']['json_input_rows_predicate'][bgp['P']] = str(bgp['input_rows'])
+            operators['GF_FROM_OP']['json_cardinality'][bgp['P']] = str(bgp['cardinality_estimate'])
+            operators['GF_FROM_OP']['json_cardinality_fanout'][bgp['P']] = str(bgp['cardinality_fanout'])
+
             repeat_list_op.append(bgp['P'])
             repeat_list_time.append(bgp['time'])
             repeat_list_fanout.append(bgp['fanout'])

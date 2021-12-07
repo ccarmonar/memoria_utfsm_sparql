@@ -1,7 +1,7 @@
 import pandas as pd, ast, json
 from functions.general_features import GeneralFeaturesFromProfileFile, GeneralFeaturesFromPerformanceTuning, GeneralFeaturesFromScan, \
     GetJsonPredicatesFeatures, GeneralFeaturesFromOperatorsAndSparqlFile
-from functions.matrix_format import MatrixFormat, MatrixNumpyFormat, DataFrameFormat
+from functions.matrix_format import MatrixFormat, MatrixNumpyFormat, DataFrameFormat, MatrixFormat_subtrees
 from functions.tree_format import TreeFormat, TreeFormat_old_format
 from functions.aux import HashStringId, OnlyScans, OnlyScansAsList
 
@@ -12,6 +12,7 @@ def AllData(operators, profile, predicates, filename, sparql_file, general_featu
     limit = general_features['GENERAL_FEATURES']['LIMIT']
     precompiled_list = list(general_features['GENERAL_FEATURES']['precompiled'].values())
     compiled_list = list(general_features['GENERAL_FEATURES']['compiled'].values())
+    #total_time = general_features['GENERAL_FEATURES']['time']
     #general_features_pt = GeneralFeaturesFromPerformanceTuning(general_features_pt_file)
     operators = GeneralFeaturesFromScan(operators, list_alleq)
     if not new:
@@ -21,7 +22,7 @@ def AllData(operators, profile, predicates, filename, sparql_file, general_featu
         except:
             print("ERROR EN EL JSON LOAD, SE CARGARA COMO STR")
             operators['GF_FROM_OP']['trees_daniel'] = old_trees
-    binary_tree, operators, subtrees = TreeFormat(operators, sparql_file, symbol)
+    binary_tree, operators, subtrees, num_bgp_subtree = TreeFormat(operators, sparql_file, symbol)
     binary_tree_old, operators, subtrees_old = TreeFormat_old_format(operators, sparql_file, symbol)
     triples = general_features['GF_FROM_OP']['triples']
     total_bgps = general_features['GF_FROM_OP']['total_bgps']
@@ -72,6 +73,8 @@ def AllData(operators, profile, predicates, filename, sparql_file, general_featu
     filter_or = operators['GF_FROM_OP']['filter_or']
     filter_and = operators['GF_FROM_OP']['filter_and']
 
+    matrix_subtrees = MatrixFormat_subtrees(operators, subtrees, operators['GENERAL_FEATURES']['precompiled']['msec'], num_bgp_subtree)
+    operators['GF_FROM_OP']['matrix_subtrees'] = matrix_subtrees
     features_list = [unique_id,
                     filename,
                     sparql_file,
@@ -128,6 +131,7 @@ def AllData(operators, profile, predicates, filename, sparql_file, general_featu
     all_data.append(str(json_cardinality).replace('"', ';').replace("'", '"'))
     all_data.append(scan_queries)
     all_data.append(bgps)
+    all_data.append(matrix_subtrees)
     return all_data
 
 
@@ -260,7 +264,8 @@ def FullDataframe(list_of_features):
         'json_cardinality_fanout',
         'json_cardinality',
         'scan_queries',
-        'bgps'
+        'bgps',
+        'matrix_subtrees'
     ]
     final_df = pd.DataFrame(list_of_features, columns=columns)
     return final_df
@@ -395,7 +400,8 @@ def FullDataframe_old(list_of_features):
         'json_cardinality_fanout',
         'json_cardinality',
         'scan_queries',
-        'bgps'
+        'bgps',
+        'matrix_subtrees'
     ]
     final_df = pd.DataFrame(list_of_features, columns=columns)
     return final_df

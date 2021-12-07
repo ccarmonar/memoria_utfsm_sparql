@@ -210,7 +210,7 @@ def GetGSPO_normal_profile(operator):
 						else:
 							operator['P'] = split_P[s+2]
 							operator['P_math_op'] = split_P[s + 1]
-			if all(e in ls for e in [" O "]) and any(e in ls for e in [" = ", " > ", " < "]) and 'row specs' not in ls:
+			if all(e in ls for e in [" O "]) and any(e in ls for e in [" = ", " > ", " < ", "<=", ">="]) and 'row specs' not in ls:
 				split_P = list(filter(None,ls.strip().split(' ')))
 				for s in range(0, len(split_P)):
 					if split_P[s] == 'O':
@@ -248,7 +248,7 @@ def GetGSPO_normal_profile(operator):
 						else:
 							operator['S'] = split_P[s+2]
 							operator['S_math_op'] = split_P[s + 1]
-			if all(e in ls for e in [" G "]) and any(e in ls for e in [" = ", " > ", " < "]) and 'row specs' not in ls:
+			if all(e in ls for e in [" G "]) and any(e in ls for e in [" = ", " > ", " < ", "<=", ">="]) and 'row specs' not in ls:
 				split_P = list(filter(None,ls.strip().split(' ')))
 				for s in range(0,len(split_P)):
 					if split_P[s] == 'G':
@@ -287,7 +287,7 @@ def GetGSPO_normal_profile(operator):
 						else:
 							operator['P_rs'] = split_P[s+2]
 							operator['P_rs_math_op'] = split_P[s + 1]
-			if all(e in ls for e in [" O ", "row specs"]) and any(e in ls for e in [" = ", " > ", " < "]):
+			if all(e in ls for e in [" O ", "row specs"]) and any(e in ls for e in [" = ", " > ", " < ", "<=", ">="]):
 				split_P = list(filter(None,ls.strip().split(' ')))
 				for s in range(0, len(split_P)):
 					if split_P[s] == 'O':
@@ -306,7 +306,7 @@ def GetGSPO_normal_profile(operator):
 						else:
 							operator['O_rs'] = split_P[s+2]
 							operator['O_rs_math_op'] = split_P[s + 1]
-			if all(e in ls for e in [" S ", "row specs"]) and any(e in ls for e in [" = ", " > ", " < "]):
+			if all(e in ls for e in [" S ", "row specs"]) and any(e in ls for e in [" = ", " > ", " < ", "<=", ">="]):
 				split_P = list(filter(None,ls.strip().split(' ')))
 				for s in range(0, len(split_P)):
 					if split_P[s] == 'S':
@@ -325,7 +325,7 @@ def GetGSPO_normal_profile(operator):
 						else:
 							operator['S_rs'] = split_P[s+2]
 							operator['S_rs_math_op'] = split_P[s + 1]
-			if all(e in ls for e in [" G ", "row specs"]) and any(e in ls for e in [" = ", " > ", " < "]):
+			if all(e in ls for e in [" G ", "row specs"]) and any(e in ls for e in [" = ", " > ", " < ", "<=", ">="]):
 				split_P = list(filter(None,ls.strip().split(' ')))
 				for s in range(0,len(split_P)):
 					if split_P[s] == 'G':
