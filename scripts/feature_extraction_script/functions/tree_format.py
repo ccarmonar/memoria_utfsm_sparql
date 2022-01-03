@@ -59,6 +59,16 @@ def IterateBuildTreeBetweenBGPS(tree_format, prearmed, subtrees, symbol):
             prearmed = prearmed[2::]
     return IterateBuildTreeBetweenBGPS(aux, prearmed, subtrees, symbol)
 
+def GetTreeSize(subtrees, treesize):
+    if len(subtrees) == 1:
+        return treesize
+    else:
+        treesize += 1
+        left_treesize = GetTreeSize(subtrees[1], treesize)
+        right_treesize = GetTreeSize(subtrees[2], treesize)
+        treesize = max(left_treesize,right_treesize)
+    return treesize
+
 
 
 def TreeFormat(operators, sparql_file, symbol):
@@ -79,7 +89,7 @@ def TreeFormat(operators, sparql_file, symbol):
         num_bgp_subtree.append(1)
     subtrees_prev = subtrees.copy()
 
-    treesize_between = len(list_current_predicates) - 1
+    treesize_between = len(list_current_predicates)
     treesize_intra = 0
     for i in list_current_predicates:
         treesize_intra = max(treesize_intra,len(i) - 1)
@@ -107,7 +117,10 @@ def TreeFormat(operators, sparql_file, symbol):
 
     treesize = treesize_between + treesize_intra
     operators['GF_FROM_OP']['subtrees'] = subtrees
-    operators['GF_FROM_OP']['treesize'] = treesize
+    if len(tree_format) != 0:
+        operators['GF_FROM_OP']['treesize'] = GetTreeSize(tree_format, 1)
+    else:
+        operators['GF_FROM_OP']['treesize'] = 0
     return tree_format, operators, subtrees, num_bgp_subtree
 
 

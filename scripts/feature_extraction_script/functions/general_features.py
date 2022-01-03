@@ -218,17 +218,20 @@ def GeneralFeaturesFromOperatorsAndSparqlFile(operators, sparql_file):
                 operators['GF_FROM_OP']['distinct'] = 1
             if v['top_order_by_bool'] == 1 or v['skip_node_bool'] == 1:
                 operators['GF_FROM_OP']['order_by'] = 1
-            if v['start_optional'] == 1:
-                operators['GF_FROM_OP']['left_join'] = 1
+#            if v['start_optional'] == 1:
+#                operators['GF_FROM_OP']['left_join'] = 1
             if v['iter'] == 1:
                 operators['GF_FROM_OP']['iter'] = 1
-    if operators['GF_FROM_OP']['triples'] > 1:
-        operators['GF_FROM_OP']['join'] = 1
+#    if operators['GF_FROM_OP']['triples'] > 1:
+#        operators['GF_FROM_OP']['join'] = 1
     if 'UNION' in sparql_file:
         operators['GF_FROM_OP']['union'] = 1
     if 'FILTER' in sparql_file:
         operators['GF_FROM_OP']['filter'] = 1
     operators = IdentifyFilter(operators, sparql_file)
+
+
+
     return operators
 
 def GeneralFeaturesFromScan(operators, list_alleq):

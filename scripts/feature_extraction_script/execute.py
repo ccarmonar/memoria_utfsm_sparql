@@ -12,11 +12,11 @@ from functions.build_csv import AllData, FullDataframe, FullDataframe_old
 execute_new = True
 execute_old = True
 
-name_new = 'new_dataset_6.3_subqueries'
-name_old = 'old_dataset_3.3_subqueries'
+name_new = 'new_dataset_7.2_subqueries'
+name_old = 'old_dataset_4.2_subqueries'
 
 #error_list_new = []
-error_list_new = ['query_5673','query_6072','query_17945']
+error_list_new = ['query_5673','query_6072','query_17945','query_26791']
 error_data_deleted_new = len(error_list_new)
 
 #current working directory
@@ -173,7 +173,7 @@ if execute_new:
 			total_data_proccesed = os.path.isdir(path_profiles_str+"/"+i)
 			filename = "_".join(i.split("_")[1:])
 			if filename not in error_list_new:
-				print("filename: ", filename)
+				#print("filename: ", filename)
 				sparql_file = open(path_profiles_str + "/outputs_" + filename + "/" + filename + ".rq", 'r', encoding='latin-1').read()
 				profile_normal = open(path_profiles_str + "/outputs_" + filename + "/profile_normal_file_" + filename, 'r', encoding='latin-1').read()
 				profile_explain_bajo = open(path_profiles_str + "/outputs_" + filename + "/profile_normal_file_" + filename, 'r', encoding='latin').read()
@@ -183,8 +183,9 @@ if execute_new:
 				old_features_json = 0
 				if profile_normal == '':
 					error_data_deleted_new += 1
-					print("profile error")
+					print(f"profile error {filename}")
 					continue
+
 				operators, predicates_list, list_alleq = execute(profile_normal, profile_explain_bajo, sparql_file)
 				all_data = AllData(operators, profile_normal, predicates_list, filename, sparql_file, general_features_pt_file, list_alleq, old_features_json, symbol, True)
 				full_dataframe.append(all_data)
@@ -201,8 +202,9 @@ if execute_old:
 			#if any(('queries2_'+str(e)) == filename for e in lst):
 			#if "queries2_25390" in filename:
 			if True:
+
 			#if filename == "queries2_20584":
-				print("filename: ", filename)
+				#print("filename: ", filename)
 				sparql_file = open(path_profiles_str_old + "/outputs_" + filename + "/" + filename + ".rq", 'r', encoding='latin-1').read()
 				profile_normal = open(path_profiles_str_old + "/outputs_" + filename + "/profile_normal_file_" + filename, 'r', encoding='latin-1').read()
 				profile_explain_bajo = open(path_profiles_str_old + "/outputs_" + filename + "/profile_normal_file_" + filename, 'r', encoding='latin').read()
@@ -210,7 +212,7 @@ if execute_old:
 				general_features_pt_file = 0
 				old_features_json = open(path_profiles_str_old + "/outputs_" + filename + "/" + filename + ".json", 'r', encoding='latin-1').read()
 				if profile_normal == '':
-					print("profile error")
+					print("profile error ", filename)
 					continue
 				operators, predicates_list, list_alleq = execute(profile_normal, profile_explain_bajo, sparql_file)
 				all_data = AllData(operators, profile_normal, predicates_list, filename, sparql_file, general_features_pt_file, list_alleq, old_features_json, symbol, False)

@@ -39,12 +39,19 @@ def AllData(operators, profile, predicates, filename, sparql_file, general_featu
     #all_data = [unique_id, filename, sparql_file, profile, limit] + precompiled_list + compiled_list + general_features_pt + list(ast.literal_eval(old_features_json).values())
     operators = GeneralFeaturesFromOperatorsAndSparqlFile(operators, sparql_file)
 
+
+
+
     group_by = operators['GF_FROM_OP']['group_by']
     distinct = operators['GF_FROM_OP']['distinct']
     order_by = operators['GF_FROM_OP']['order_by']
     union = operators['GF_FROM_OP']['union']
-    left_join = operators['GF_FROM_OP']['left_join']
-    join = operators['GF_FROM_OP']['join']
+    #left_join = operators['GF_FROM_OP']['left_join']
+    #join = operators['GF_FROM_OP']['join']
+    left_join = str(binary_tree).replace('"', ';').replace("'", '"').count('JOIN')
+    join = str(binary_tree).replace('"', ';').replace("'", '"').count('JOIN') - left_join
+    operators['GF_FROM_OP']['left_join'] = left_join
+    operators['GF_FROM_OP']['join'] = join
     iter = operators['GF_FROM_OP']['iter']
     filter = operators['GF_FROM_OP']['filter']
     num_filter = operators['GF_FROM_OP']['num_filter']
@@ -75,6 +82,8 @@ def AllData(operators, profile, predicates, filename, sparql_file, general_featu
 
     matrix_subtrees = MatrixFormat_subtrees(operators, subtrees, operators['GENERAL_FEATURES']['precompiled']['msec'], num_bgp_subtree)
     operators['GF_FROM_OP']['matrix_subtrees'] = matrix_subtrees
+    matrix_subtrees_old = MatrixFormat_subtrees(operators, subtrees_old, operators['GENERAL_FEATURES']['precompiled']['msec'], num_bgp_subtree)
+    operators['GF_FROM_OP']['matrix_subtrees_old'] = matrix_subtrees_old
     features_list = [unique_id,
                     filename,
                     sparql_file,
@@ -123,7 +132,7 @@ def AllData(operators, profile, predicates, filename, sparql_file, general_featu
     all_data.append(treesize)
     all_data.append(str(matrix_format))
     all_data.append(str(binary_tree).replace('"', ';').replace("'", '"'))
-    #all_data.append(str(binary_tree_old).replace('"', ';').replace("'", '"'))
+    all_data.append(str(binary_tree_old).replace('"', ';').replace("'", '"'))
     all_data.append(str(json_time_predicate).replace('"', ';').replace("'", '"'))
     all_data.append(str(json_fanout_predicate).replace('"', ';').replace("'", '"'))
     all_data.append(str(json_input_rows_predicate).replace('"', ';').replace("'", '"'))
@@ -131,7 +140,8 @@ def AllData(operators, profile, predicates, filename, sparql_file, general_featu
     all_data.append(str(json_cardinality).replace('"', ';').replace("'", '"'))
     all_data.append(scan_queries)
     all_data.append(bgps)
-    all_data.append(matrix_subtrees)
+    all_data.append(str(matrix_subtrees).replace('"', ';').replace("'", '"'))
+    all_data.append(str(matrix_subtrees_old).replace('"', ';').replace("'", '"'))
     return all_data
 
 
@@ -257,7 +267,7 @@ def FullDataframe(list_of_features):
         'treesize',
         'matrix_format',
         'trees',
-        #'trees_old_format',
+        'trees_old_format',
         'json_time_predicate',
         'json_fanout_predicate',
         'json_input_rows_predicate',
@@ -265,7 +275,8 @@ def FullDataframe(list_of_features):
         'json_cardinality',
         'scan_queries',
         'bgps',
-        'matrix_subtrees'
+        'matrix_subtrees',
+        'matrix_subtrees_full'
     ]
     final_df = pd.DataFrame(list_of_features, columns=columns)
     return final_df
@@ -393,7 +404,7 @@ def FullDataframe_old(list_of_features):
         'treesize',
         'matrix_format',
         'trees',
-        #'trees_old_format',
+        'trees_old_format',
         'json_time_predicate',
         'json_fanout_predicate',
         'json_input_rows_predicate',
@@ -401,7 +412,8 @@ def FullDataframe_old(list_of_features):
         'json_cardinality',
         'scan_queries',
         'bgps',
-        'matrix_subtrees'
+        'matrix_subtrees',
+        'matrix_subtrees_full'
     ]
     final_df = pd.DataFrame(list_of_features, columns=columns)
     return final_df

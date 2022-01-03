@@ -21,16 +21,13 @@ def GetTriplesSubtree(subtree_as_str):
     return total_triples
 
 def GetTreeSize(subtrees, treesize):
-    for st in subtrees:
-        #print(st)
-        if type(st) == str:
-            treesize += 1
-        else:
-            if len(st) == 3:
-                return GetTreeSize(st, treesize)
-            elif len(st) == 1:
-                treesize += 1
-                break
+    if len(subtrees) == 1:
+        return treesize
+    else:
+        treesize += 1
+        left_treesize = GetTreeSize(subtrees[1], treesize)
+        right_treesize = GetTreeSize(subtrees[2], treesize)
+        treesize = max(left_treesize,right_treesize)
     return treesize
 
 
@@ -73,7 +70,7 @@ def MatrixFormat_subtrees(operators, subtrees, total_time, num_bgp_subtree):
     for s_str, s, bgp in zip(subtrees_as_str,subtrees, num_bgp_subtree):
         time_exc = 0
         join, left_join = GetAllJoins(s_str)
-        treesize = GetTreeSize(s,0)
+        treesize = GetTreeSize(s,1)
         iter = 0
         triples = GetTriplesSubtree(s_str)
         for tons in times_only_scans_sums:
